@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/Css_files/registrar.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <title>Registrar | University Example</title>
+</head>
+<body>
+
+      <!-- LOADER! -->
+      <div class="loader-wrapper" id="loader-wrapperID">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Billing Management System</span>
+        </div>
+    </div>
+    <!-- LOADER -->
+ 
+    <main>
+    
+
+        <div class="left-section">
+            <img src="/images/sample_registrar_pic.png" alt="Registar's Image">
+            <h3 class="reg-name">Juan A. Dela Cruz</h3>
+            <h4 class="reg-position">Registrar</h4>
+            <p id="reg-date-time"></p>
+
+            <div class="left-section-lower">
+                <ul>
+                    <button autofocus> <li>Dashboard</li></button>
+                    <button> <li>Manage Users</li></button>
+                    <button> <li>Manage School</li></button>
+                    <button> <li>Archives</li></button>
+                    <button> <li>Logout</li></button>
+                </ul>
+            </div>
+
+        </div>
+    </main>
+
+    <script type="text/javascript">
+        // LIVE CLOCK
+        var clockElement = document.getElementById('reg-date-time');
+    
+        function clock() {
+            clockElement.textContent = new Date().toLocaleTimeString();
+            clockElement.textContent += ", " + new Date().toLocaleDateString();
+        }
+    
+        setInterval(clock, 1000);   
+
+
+        // LOADER FUNCTION
+        $(window).on("load", function(){
+            $(".loader-wrapper").fadeOut('xslow');
+        });
+    </script>
+</body>
+</html>
