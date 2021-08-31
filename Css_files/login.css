@@ -113,7 +113,7 @@
 /* LOADER */
 
 section{
-    background-color: #EDE9E9;
+    background-color: #1e1e1e;
     width: 100%;
     height: 100vh;
 }
@@ -127,7 +127,7 @@ section{
 .parent-container{
     width: 100%;
     height: 80vh;
-    background-color: #EDE9E9;
+    background-color: #1e1e1e;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -135,7 +135,8 @@ section{
 }
 
 .login-title{
-    color: #246284;
+    color: #2091ce;
+    font-size: 2rem;
 }
 
 .user-types{
@@ -147,7 +148,7 @@ section{
     background-color: #C4C4C4;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 15px 12px 15px #1e1e1e;
+    box-shadow: 2px 5px 15px #06c;
     cursor: pointer;
     transition: 300ms ease-in;
 }
@@ -175,6 +176,7 @@ section{
     visibility: visible;
     opacity: 1;
     top: 50%;
+    box-shadow: 12px 5px 15px #06c;
 }
 
 
@@ -198,7 +200,7 @@ section{
 
 .left-popup{
     width: 40%;
-    background-color: #246284;
+    background-color: #272626;
     border-radius: 25px;
     display: flex;
     flex-direction: column;
@@ -227,7 +229,7 @@ section{
 
 .reglink a{
     text-decoration: underline;
-    color: #99ee99;
+    color: lightblue;
     font-size: .7rem;
 }
 
@@ -251,6 +253,7 @@ section{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    
 }
 
 .right-popup h3{
@@ -282,21 +285,22 @@ section{
 
 .right-popup form .login-btn{
     margin: 20px;
-    border: 2px solid black;
+    border: none;
     text-align: center;
     text-decoration: none;
     color: white;
-    background: #246284;
+    background: #06c;
     font-size: 1.2rem;
     cursor: pointer;
     transition: 300ms ease;
-    border-radius: 12px;
+    border-radius: 5px;
     padding: 5px;
     
 }
 
 .right-popup form .login-btn:hover{
     color: lightgreen;
+    transform: scale(1.05);
 }
 
 
