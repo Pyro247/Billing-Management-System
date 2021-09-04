@@ -4,23 +4,72 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Css_files/main.css">
+    <link rel="stylesheet" href="./Css_files/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <title>Web-based Billing Management System</title>
 </head>
 <body>
-    <!-- First Page -->
-    <section>
-        <div class="navbar-main">
-            <img src="/images/logo_example.png" alt="Logo">
-        </div>
 
-        <div class="main-section">
-            <h2 class="main-title">WEB-BASED BILLING MANAGEMENT SYSTEM</h2>
-            <h3 class="main-title2">Online <span>Records </span>and <span>Bills</span></h3>
-            <h3 class="main-title3">We Manage, Monitor, and Maintain!</h3>
-            <a href="/html/login.html" class="btn-main">Start Now</a>
+    <!-- LOADER! -->
+    <div class="loader-wrapper" id="loader-wrapperID">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Pyro Colleges Inc.</span>
         </div>
-    </section>
+    </div>
+    <!-- LOADER -->
+
+    
+    <nav>
+        <div class="nav2">
+        <img src="/images/logo.png" alt="">
+            <div class="nav2-text">
+                <span>Pyro Colleges Inc.</span>
+                <p>Excellence at its finest.</p>
+            </div>
+        </div>
+        
+    </nav>
+
+    <main>
+            <div class="login-box">
+                <img src="/images/logo.png" alt="">
+                <div class="login-header">
+                    <p>Login</p>
+            </div>
+                    <form action="">
+                    <div class="login__">
+                        <i class="fas fa-user-tie"></i><input type="email" name="" id="" placeholder="Email Address">
+                    </div>
+
+                    <div class="login__">
+                        <i class="fas fa-lock"></i><input type="password" name="" id="" placeholder="Password">
+                    </div>
+                        <button type="submit">Login</button>
+                    
+                    <p class="form_p log-reg"><span class="span_login">Login</span> | <span class="span_register">Register</span></p>
+
+                    <a href="html/forgot-password.html" class="form_p forgot-pass">Forgot Password?</a>
+
+                    </form>
+
+            </div>
+            
+    </main>
+
+    
+    <script type="text/javascript">
+        $(window).on("load", function(){
+            $(".loader-wrapper").fadeOut('xslow');
+        });
+
+    </script>
 
     
 

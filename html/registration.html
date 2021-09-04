@@ -5,43 +5,159 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Css_files/registration.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <title>Registration | University Example</title>
 </head>
 <body>
+
+      <!-- LOADER! -->
+      <div class="loader-wrapper" id="loader-wrapperID">
+        <div class="wrapper">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <div class="shadow"></div>
+            <span>Billing Management System</span>
+        </div>
+    </div>
+    <!-- LOADER -->
+
+    <main id="register-main-id">
     <!-- Validator -->
     <div class="register-validate">
         <div class="nav-bar">
         <img src="/images/logo_example.png" alt="">
         <h3>Billing Management System</h3>
     </div>
+     
     <div class="register-validate-input">
         <h1>Don't have an account yet?</h1>
         <h3>Keep track on your payments and submitted requirements!</h3>
-        <form action="">
-            <input type="text" placeholder="Enter Student Number" required class="register-input-text" >
-            <input type="submit" value="Submit" class="register-btn">
-        </form>
-        <p>Already have an account? <a href="">Login here</a></p>
+        
+            <input type="text" placeholder="Enter Student Number" required class="register-input-text" id="student-num-input">
+            <button class="register-btn" id="student-num-btn" onclick="validate_function()">Submit</button>
+       
+        <p>Already have an account? <a href="/html/login.html" onclick="validate_student_num()">Login here</a></p>
     </div>
     </div>
-    <!-- Main -->
+    </main>
+    <div class="invalid-student-number">
+        <img src="/images/binoculars.png" alt="">
+        <h3>No records found !</h3>
+        <p>Please contact the registrar and try again.</p>
+        <button onclick="back_to_home_registration()">Back to home</button>
+    </div>
+    
+   
+    <!-- REGISTRATION 2nd PAGE -->
+    <section id="sectId" class>
     <div class="l-form">
+        
         <form action="" class="form">
-            <h1 class="form-title">Register</h1>
+            <h1 class="form-title">Register - Default</h1>
+          
 
-            <!-- EMAIL TEXT BOX -->
-            <div class="form-div">
-                <input type="text" name="" id="" class="form-input" placeholder=" ">
-                <label for="" class="form-label">Email</label>
+            <!-- PERSONAL INFORMATION -->
+            <div class="register-left-div">
+                <h3 class="info-title">Personal Information</h3>
+           
+            <div class="personal_info_div">
+                <!-- FIRSTNAME -->
+                <div class="form-div">
+                    <input type="text" name="" id="" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">First name</label>
+                </div>
+
+                <!-- MIDDLENAME -->
+                <div class="form-div">
+                    <input type="text" name="" id="" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Middle name</label>
+                </div>
+
+                <!-- LASTNAME -->
+                <div class="form-div">
+                    <input type="text" name="" id="" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Last name</label>
+                </div>
+
+                <div class="form-div">
+                    <input type="text" name="" id="" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Civil Status</label>
+                </div>
+
+                <div class="form-div">
+                    <input type="text" name="" id="" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Citezenship</label>
+                </div>
+
+                <div class="form-div">
+                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Contact number</label>
+                </div>
             </div>
 
-            <!-- PASSWORD TEXT BOX -->
-            <div class="form-div">
-                <input type="password" name="" id="" class="form-input" placeholder=" ">
-                <label for="" class="form-label">Password</label>
+            
+            
+            <!-- <div class="personal_info_div3">
+
+                <div class="form-div">
+                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Sex</label>
+                </div>
+                
+                <div class="form-div">
+                    <input type="date" name="" id="dateId" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Birth date </label>
+                </div>
+                
+            </div> -->
+            <h3 class="info-title">College Information</h3>
+            <div class="college_div">
+                
+                <div class="form-div">
+                    <label for="" class="form-label selectlbl">College</label>
+                    <select name="" id="" class="form-input selectdrp">
+                    <option value="CCS">College of Computer Studies (CCS)</option>
+                    <option value="CCS">College of Business Administration (CBA)</option>
+                    <option value="CCS">College of Law (COL)</option>
+                </select>
+                </div>
+
+                <div class="form-div">
+                    <label for="" class="form-label selectlbl">Major</label>
+                    <select name="" id="" class="form-input selectdrp">
+                    <option value="CCS">Web and Mobile Application</option>
+                    <option value="CCS">Computer Science</option>
+                    <option value="CCS">Network Administrator</option>
+                </select>
+                </div>
+
+                <div class="form-div">
+                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Year</label>
+                </div>
+                
+                <div class="form-div">
+                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
+                    <label for="" class="form-label">Section</label>
+                </div>
+
             </div>
+        </div>
+            
+
+            
+        
         </form>
-    </div>
-
+    </div> 
+    </section>
+    <script type="text/javascript">
+     $(window).on("load", function(){
+            $(".loader-wrapper").fadeOut('xslow');
+        });
+        </script>
+    <script src="/Javascript_files/registration.js"></script>
 </body>
 </html>
