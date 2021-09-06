@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Css_files/registrar.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <title>Registrar | University Example</title>
@@ -25,8 +26,8 @@
     </div>
     <!-- LOADER -->
     <div class="nav-bar">
-        <img src="/images/logo_example.png" alt="">
-        <h3> University Example | Billing Management System</h3>
+        <img src="/images/logo.png" alt="">
+        <h3>Pyro Colleges Inc. | Registrar</h3>
     </div>
     <main>
     
@@ -46,26 +47,40 @@
                     <button> <li>Logout</li></button>
                 </ul>
             </div>
-
         </div>
+
+        <div class="name-and-search" id="name-and-search-id">
+            <strong id="dashboard-txt-id">Dashboard</strong>
+            <form action="">
+                <input type="text" name="" id="" placeholder="Search">
+                <i class="fas fa-search"></i>
+            </form>
+        </div>
+
+       
+        
     </main>
+
 
     <script type="text/javascript">
         // LIVE CLOCK
-        var clockElement = document.getElementById('reg-date-time');
+        let clockElement = document.getElementById('reg-date-time');
     
         function clock() {
             clockElement.textContent = new Date().toLocaleTimeString();
-            clockElement.textContent += ", " + new Date().toLocaleDateString();
+            clockElement.textContent += " - " + new Date().toLocaleDateString();
         }
-    
         setInterval(clock, 1000);   
-
 
         // LOADER FUNCTION
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
+
+
+        // Changing of Panels
+        let name_and_search_text = document.getElementById('dashboard-txt-id');
+        
     </script>
 </body>
 </html>

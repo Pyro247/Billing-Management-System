@@ -24,11 +24,12 @@
     </div>
     <!-- LOADER -->
 
-    <main id="register-main-id">
+
     <!-- Validator -->
+    <main id="register-main-id">
     <div class="register-validate">
         <div class="nav-bar">
-        <img src="/images/logo_example.png" alt="">
+        <img src="/images/logo.png" alt="">
         <h3>Billing Management System</h3>
     </div>
      
@@ -39,10 +40,12 @@
             <input type="text" placeholder="Enter Student Number" required class="register-input-text" id="student-num-input">
             <button class="register-btn" id="student-num-btn" onclick="validate_function()">Submit</button>
        
-        <p>Already have an account? <a href="/html/login.html" onclick="validate_student_num()">Login here</a></p>
+        <p>Already have an account? <a href="/index.html" onclick="validate_student_num()">Login here</a></p>
     </div>
     </div>
     </main>
+
+    <!-- POPUP WHEN NO STUDENT ID WAS FOUND -->
     <div class="invalid-student-number">
         <img src="/images/binoculars.png" alt="">
         <h3>No records found !</h3>
@@ -50,109 +53,7 @@
         <button onclick="back_to_home_registration()">Back to home</button>
     </div>
     
-   
-    <!-- REGISTRATION 2nd PAGE -->
-    <section id="sectId" class>
-    <div class="l-form">
-        
-        <form action="" class="form">
-            <h1 class="form-title">Register - Default</h1>
-          
 
-            <!-- PERSONAL INFORMATION -->
-            <div class="register-left-div">
-                <h3 class="info-title">Personal Information</h3>
-           
-            <div class="personal_info_div">
-                <!-- FIRSTNAME -->
-                <div class="form-div">
-                    <input type="text" name="" id="" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">First name</label>
-                </div>
-
-                <!-- MIDDLENAME -->
-                <div class="form-div">
-                    <input type="text" name="" id="" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Middle name</label>
-                </div>
-
-                <!-- LASTNAME -->
-                <div class="form-div">
-                    <input type="text" name="" id="" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Last name</label>
-                </div>
-
-                <div class="form-div">
-                    <input type="text" name="" id="" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Civil Status</label>
-                </div>
-
-                <div class="form-div">
-                    <input type="text" name="" id="" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Citezenship</label>
-                </div>
-
-                <div class="form-div">
-                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Contact number</label>
-                </div>
-            </div>
-
-            
-            
-            <!-- <div class="personal_info_div3">
-
-                <div class="form-div">
-                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Sex</label>
-                </div>
-                
-                <div class="form-div">
-                    <input type="date" name="" id="dateId" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Birth date </label>
-                </div>
-                
-            </div> -->
-            <h3 class="info-title">College Information</h3>
-            <div class="college_div">
-                
-                <div class="form-div">
-                    <label for="" class="form-label selectlbl">College</label>
-                    <select name="" id="" class="form-input selectdrp">
-                    <option value="CCS">College of Computer Studies (CCS)</option>
-                    <option value="CCS">College of Business Administration (CBA)</option>
-                    <option value="CCS">College of Law (COL)</option>
-                </select>
-                </div>
-
-                <div class="form-div">
-                    <label for="" class="form-label selectlbl">Major</label>
-                    <select name="" id="" class="form-input selectdrp">
-                    <option value="CCS">Web and Mobile Application</option>
-                    <option value="CCS">Computer Science</option>
-                    <option value="CCS">Network Administrator</option>
-                </select>
-                </div>
-
-                <div class="form-div">
-                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Year</label>
-                </div>
-                
-                <div class="form-div">
-                    <input type="text" name="" id="dateId" class="form-input" placeholder=" ">
-                    <label for="" class="form-label">Section</label>
-                </div>
-
-            </div>
-        </div>
-            
-
-            
-        
-        </form>
-    </div> 
-    </section>
     <script type="text/javascript">
      $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');

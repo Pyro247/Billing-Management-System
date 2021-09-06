@@ -385,9 +385,6 @@ main.active{
 
 
 /* REGISTER FORMMMMMMMMMMMMMMM */
-#sect.active{
-
-}
 .info-title{
     margin: 18px 10px;
     color: #99ee99;
@@ -420,8 +417,6 @@ main.active{
 }
 
 
-
-
 .form-title{
     position: absolute;
     font-weight: 400;
@@ -437,19 +432,18 @@ main.active{
 }
 
 
-
 .form-input{
     position: relative;
     width: 100%;
     height: 100%;
-    border: 1px solid rgb(47, 133, 219);
-    border-radius: 10px;
+    border: none;
+    border-bottom: 1px solid white;
+    background: none;
     outline: none;
     padding: 1rem;
-    background: none;
     z-index: 1;
     color: white;
-
+    transition: 300ms ease;
 }
 
 .form-label{
@@ -457,7 +451,7 @@ main.active{
     left: 1rem;
     top: .7rem;
     padding: 0 .25rem;
-    background-color: #1e1e1e;
+    background-color: none;
     color: white;
     transition: 300ms;
 }
@@ -470,7 +464,7 @@ main.active{
 }
 
 .form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label{
-    top: -.7rem;
+    top: -1rem;
     left: .9rem;
     z-index: 10;
     color: #08c;
@@ -478,7 +472,7 @@ main.active{
 }
 
 .form-input:focus{
-    border: 1px solid rgb(11, 108, 218);
+    background: lightgray;
     box-shadow: 1px 2px 3px #08c;
     
 }

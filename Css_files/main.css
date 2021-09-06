@@ -9,6 +9,8 @@
     --white-color: #FFFFFF;
     --blue-color: #56A8CBFF;
     --green-color: #3fd4b7;
+    --font-school-name: 'Zilla Slab', serif;
+    --font-tagline: 'Overpass', sans-serif;
 }
 *{
     font-family: 'Poppins', sans-serif;
@@ -146,14 +148,14 @@ nav .nav2{
 
 nav .nav2 .nav2-text span{
     display: block;
-    font-family: 'Zilla Slab', serif;
+    font-family: var(--font-school-name);
     font-size: 2rem;
     margin-bottom: 2px;
     font-weight: bold;
 }
 
 nav .nav2 .nav2-text p{
-    font-family: 'Overpass', sans-serif;
+    font-family: var(--font-tagline);
     letter-spacing: 1px;
     color: var(--blue-color);
     font-weight: bold;   
@@ -202,7 +204,7 @@ main form .login__{
 }
 
 main form .login__ i{
-    color: var(--blue-color);
+    color: var(--green-color);
     margin: 0px 15px;
     font-size: 1.3rem;
 }
@@ -211,11 +213,13 @@ main form .login__ input{
     font-size: 1.2rem;
     width: 80%;
     padding: 0 15px;
-    background-color: lightgray;
+    background-color: var(--white-color);
     border-radius: 10px;
     outline: none;
     border: 1px solid var(--blue-color);
+    margin: 10px auto;
 }
+
 
 main form button{
     width: 50%;
@@ -240,10 +244,12 @@ main form .form_p.forgot-pass{
     margin: 0 auto;
 }
 
-main form p span{
+main form p a{
     cursor: pointer;
     margin-top: auto;
     color: var(--white-color);
+    cursor: pointer;
+    text-decoration: none;
 }
 
 main form p .span_login{
