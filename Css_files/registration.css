@@ -1,10 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&family=Zilla+Slab&display=swap');
 
 /* Note|| Font stle is 'Poppins' 16px */
 
 :root{
     font-size: 16px;
-    
+    --black-color: rgb(31, 29, 28);
+    --white-color: #FFFFFF;
+    --blue-color: #56A8CBFF;
+    --green-color: #3fd4b7;
+    --input-background-color: rgb(194, 207, 219);
+    --font-school-name: 'Zilla Slab', serif;
+    --font-tagline: 'Overpass', sans-serif;
+
 }
 *{
     font-family: 'Poppins', sans-serif;
@@ -12,17 +20,19 @@
     padding: 0;
     box-sizing: border-box;
 }
-::before, ::after{
-    box-sizing: border-box;
+
+html, body{
+    background-color: var(--black-color);
 }
 
-/* LOADER */
+
+/* LOADERRRR */
 .loader-wrapper{
     position: absolute;
     width: 100%;
     height: 100%;
     background: #1e1e1e;
-    z-index: 999;
+    z-index: 1000;
 }
 .wrapper{
     width:200px;
@@ -108,407 +118,146 @@
     position: absolute;
     top:75px;
     font-family: 'Lato';
-    font-size: 20px;
+    font-size: 25px;
     color: #fff;
-    left:15%;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
     }
 
 
-/* LOADER */
-
-section{
-    background-color: #1e1e1e;
+/* NAVBARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
+nav{
     width: 100%;
-    height: 100vh;
-}
-
-.parent-container.active{
-    filter: blur(20px);
-    pointer-events: none;
-    user-select: none;
-}
-
-.parent-container{
-    width: 100%;
-    height: 80vh;
-    background-color: #1e1e1e;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: column;
-}
-
-.login-title{
-    color: #2091ce;
-    font-size: 2rem;
-}
-
-.user-types{
-    display: flex;
-}
-
-.user{
-    margin: 0 60px;
-    background-color: #C4C4C4;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 2px 5px 15px #06c;
-    cursor: pointer;
-    transition: 300ms ease-in;
-}
-
-.user:hover{
-    transform: scale(1.1);
-}
-
-.user img{
-    width: 200px;
-    height: 200px;
-}
-
-.user p{
-    text-align: center;
-    color: #1e1e1e;
-    font-weight: bold;
-    font-size: 1.3rem
-}
-/* LOADER */
-
-body{
-    background-color: #1e1e1e;
+    height: 120px;
+    background: var(--black-color);
     color: white;
-}
-section{
-    visibility: hidden;
-    opacity: 0;
-    transition: 500ms;
-}
-
-section.active{
-    visibility: visible;
-    opacity: 1;
-}
-
-main{
-    transition: 500ms;
-    
-}
-
-main.active{
-    filter: blur(100px) brightness(20%);   
-    user-select: none;
-    pointer-events: none;
-}
-
-/* FIRST PAGE */
-.register-validate{
-    position: absolute;
-    width: 100%;
-    height: 100vh;
-    background-image: url(/images/Daco_5526449.png);   
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: 980px;
-}
-
-.register-validate.active{
-    filter: blur(50px);
-    user-select: none;
-    pointer-events: none;
-}
-
-
-
-.nav-bar{
-    display: flex;
-    align-items: center;
     padding: 10px;
-    position: absolute;
-}
-.nav-bar img{
-    width: 80px;
-    height: 80px;
-}
-
-.nav-bar h3{
-    font-size: 1.5rem;
-    margin: 0px 15px;
-}
-
-/* NOT NAVBAR */
- 
-.register-validate-input{
-    position: absolute;
-    top: 40%;
-    left: 20%;
-    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    margin: 30px 30px 30px 60px;
-    width: 550px;
-    display: inline;
-}
-.register-validate-input h1{
-    font-size: 4rem;
-    color: rgb(18, 121, 224);
-    line-height: 60px;
-    margin-bottom: 10px;
-    letter-spacing: 3px;
+    border-bottom: 2px solid var(--white-color);
 }
 
-.register-validate-input h3{
-    font-size: 2.2rem;
-    margin: 20px 0;
-    font-weight: 200;
+nav .nav2 img{
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
 }
-.register-validate-input .register-input-text{
-    width: 60%;
-    padding: 8px;
-    font-size: 1.1rem;
-    text-align: center;
-    outline-color: rgb(36, 130, 224);
-    border: none;
-    background-color: rgb(194, 207, 219);
+
+nav .nav2{
+    display: flex;
+    align-items: center;
+}
+
+nav .nav2 .nav2-text span{
+    display: block;
+    font-family: var(--font-school-name);
+    font-size: 2rem;
+    margin-bottom: 2px;
     font-weight: bold;
-    margin-right: 2px;
-    border-radius: 5px;
 }
 
-.register-validate-input .register-btn{
-    width: 25%;
-    padding: 8px;
-    font-size: 1.1rem;
-    text-align: center;
-    border: none;
-    background: rgb(23, 230, 133);
-    font-weight: bold;
-    cursor: pointer;
-    transition: 300ms;
-    border-radius: 5px;
+nav .nav2 .nav2-text p{
+    font-family: var(--font-tagline);
+    letter-spacing: 1px;
+    color: var(--blue-color);
+    font-weight: bold;   
 }
 
-.register-validate-input .register-btn:hover{
-    transform: translateY(-5px);
-}
-
-.register-validate-input p{
-    margin-top: 20px;
-    font-size: 1.1rem;
-}
-
-.register-validate-input a{
-    text-decoration: underline;
-
-    color: rgb(23, 230, 133);
-}
+/* POPUP VALIDATORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
 
 
-/* INVALID POPUP */
-
-.invalid-student-number.active{
-    visibility: visible;
-    opacity: 1;
-    top: 40%;
-}
-.invalid-student-number{
-    position: absolute;
+.popup-validator.active{
     top: 5%;
+    user-select: none;
+    opacity: 0;
+}
+
+.popup-validator{
+    position: absolute;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 350px;
-    height: 350px;
-    padding: 10px;
-    background-image: linear-gradient(to right, #2d3436, #000000);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 30px;
-    box-shadow: 2px 2px 15px rgb(63, 143, 223);
-    visibility: hidden;
-    opacity: 0;
+    height: 250px;
+    box-shadow: 1px 2px 15px var(--blue-color);
+    border-radius: 15px;
     transition: 300ms ease;
+    animation: popupAnimate 500ms ease;
 }
-
-.invalid-student-number h3{
-    color: rgb(236, 44, 82);
-    margin: 10px 0;
-    font-size: 1.9rem;
-}
-
-.invalid-student-number img{
-    width: 120px;
-    height: 120px;
-}
-
-.invalid-student-number p{
-    text-align: center;
-    font-size: 1.2rem;
-    margin: 10px auto;
-}
-
-.invalid-student-number button{
-    width: 90%;
-    padding: 5px 10px;
-    margin: 10px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    background: #fff;
-    border: none;
-    color: #2d3436;
-    border-radius: 5px;
-    transition: 300ms ease;
-}
-
-.invalid-student-number button:hover{
-    transform: translateY(-5px)
+@keyframes popupAnimate {
+    0%{
+        top: 10%;
+    }
 }
 
 
-/* LOGINNNNNNNNNNNNNNNNNNNNNNNNNNN */
-.second-nav-bar{
-    display: flex;
-    align-items: center;
-    padding: 10px;
+.popup-validator img{
     position: absolute;
-}
-.second-nav-bar img{
-    width: 80px;
-    height: 80px;
-}
-
-.second-nav-bar p{
-    font-size: 1.5rem;
-    margin: 0px 15px;
-}
-
-
-/* REGISTER FORMMMMMMMMMMMMMMM */
-.info-title{
-    margin: 18px 10px;
-    color: #99ee99;
-    font-weight: 400;
-}
-
-.l-form{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background: #1e1e1e;
-}
-
-.form{
-    width: 80vw;
-    height: 600px;
-    padding: 4px 2px;
-    border-radius: 2rem;
-    box-shadow: 0 15px 25px rgba(54, 54, 54, 0.95);
-    filter: brightness(100%);
-    display: flex;
-    justify-content: center;
-}
-
-.form .register-left-div{
-    margin-top: 20px;
-    width: 100%;
-    
-}
-
-
-.form-title{
-    position: absolute;
-    font-weight: 400;
-    margin-bottom: 30px;
-    color: #99ee99;
-    text-align: center;
-}
-
-.form-div, .college_div .form-div{
-    position: relative;
-    height: 48px;
-    margin-bottom: 20px;
-}
-
-
-.form-input{
-    position: relative;
     width: 100%;
     height: 100%;
-    border: none;
-    border-bottom: 1px solid white;
-    background: none;
+    filter: brightness(50%) blur(5px);
+}
+
+.popup-validator form{
+   filter: brightness(100%);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.popup-validator form h3{
+    text-align: center;
+    color: var(--white-color);
+    font-size: 1.5rem;
+}
+
+.popup-validator form input[type=text]{
+    background: transparent;
+    padding: 10px;
+    color: var(--white-color);
+    text-align: center;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    border: 2px solid var(--blue-color);
     outline: none;
-    padding: 1rem;
-    z-index: 1;
-    color: white;
+    font-weight: bold;
+   
+    margin-bottom: 10px;
+}
+
+.popup-validator form input[type=button]{
+    background: var(--blue-color);
+    padding: 10px;
+    color: var(--black-color);
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-weight: 500;
+    cursor: pointer;
+    width: 50%;
+    display: block;
+    margin: 10px auto;
     transition: 300ms ease;
 }
 
-.form-label{
+.popup-validator form input[type=button]:hover{
+    transform: translateY(-5px);
+}
+
+.popup-validator form p{
     position: absolute;
-    left: 1rem;
-    top: .7rem;
-    padding: 0 .25rem;
-    background-color: none;
-    color: white;
-    transition: 300ms;
+    bottom: 10px;
+    text-align: center;
+    color: var(--white-color);
 }
 
-.form-input:focus + .form-label{
-    top: -.7rem;
-    left: .9rem;
-    color: #08c;
-    z-index: 10;
+.popup-validator form a{
+    text-decoration: underline;
+    color: var(--green-color);
 }
-
-.form-input:not(:placeholder-shown).form-input:not(:focus) + .form-label{
-    top: -1rem;
-    left: .9rem;
-    z-index: 10;
-    color: #08c;
-    
-}
-
-.form-input:focus{
-    background: lightgray;
-    box-shadow: 1px 2px 3px #08c;
-    
-}
-
-
-.personal_info_div{
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.college_div{
-    display: flex;
-}
-
-
-.college_div .form-div .form-input.selectdrp{
-    padding: 0 2rem 0 1rem;
-    margin-bottom: 200px;
-    margin-right: 20px;
-}
-
-
-
-
-.personal_info_div3 .form-label.selectlbl, .college_div .form-label.selectlbl{
-    top: -.7rem;
-    left: .9rem;
-    z-index: 10;
-    color: #08c;
-}
-
-option{
-    background: #1e1e1e;
-}
-
-
-
-/* RIGHTTTTTTTTT */

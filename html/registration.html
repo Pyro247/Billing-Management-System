@@ -19,46 +19,52 @@
             <div class="shadow"></div>
             <div class="shadow"></div>
             <div class="shadow"></div>
-            <span>Billing Management System</span>
+            <span>Pyro Colleges Inc.</span>
         </div>
     </div>
     <!-- LOADER -->
 
+    <main id="main_id">
+    <!-- NAVBARRRRRRRRRRR -->
+   
+    <nav>
+        <div class="nav2">
+        <img src="/images/logo.png" alt="">
+            <div class="nav2-text">
+                <span>Pyro Colleges Inc.</span>
+                <p>Excellence at its finest.</p>
+            </div>
+        </div>
+    </nav>
 
     <!-- Validator -->
-    <main id="register-main-id">
-    <div class="register-validate">
-        <div class="nav-bar">
-        <img src="/images/logo.png" alt="">
-        <h3>Billing Management System</h3>
-    </div>
-     
-    <div class="register-validate-input">
-        <h1>Don't have an account yet?</h1>
-        <h3>Keep track on your payments and submitted requirements!</h3>
-        
-            <input type="text" placeholder="Enter Student Number" required class="register-input-text" id="student-num-input">
-            <button class="register-btn" id="student-num-btn" onclick="validate_function()">Submit</button>
-       
-        <p>Already have an account? <a href="/index.html" onclick="validate_student_num()">Login here</a></p>
-    </div>
-    </div>
-    </main>
 
-    <!-- POPUP WHEN NO STUDENT ID WAS FOUND -->
-    <div class="invalid-student-number">
-        <img src="/images/binoculars.png" alt="">
-        <h3>No records found !</h3>
-        <p>Please contact the registrar and try again.</p>
-        <button onclick="back_to_home_registration()">Back to home</button>
+    <div class="popup-validator" id="popup-id">
+        <img src="/images/logo.png" alt="">
+        <form action="/html/registration.html">
+            <h3>Please enter ID number</h3>
+            <input type="text" name="" id="" placeholder="ID number">
+            <input type="button" value="Submit">
+            <p onclick="valid_id_num()">Already have an account? <a href="/index.html">Login Here</a></p>
+        </form>
+        
     </div>
-    
+
+ 
 
     <script type="text/javascript">
+    const popupbox = document.getElementById('popup-id');
+    
+    function valid_id_num(){
+        popupbox.classList.toggle('active');
+    }
+
+ 
      $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
         </script>
-    <script src="/Javascript_files/registration.js"></script>
+    
+        
 </body>
 </html>
