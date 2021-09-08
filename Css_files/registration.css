@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&family=Zilla+Slab&display=swap');
+@import url("font-awesome/css/fontawesome-all.min.css"); 
 
 /* Note|| Font stle is 'Poppins' 16px */
 
@@ -12,6 +13,7 @@
     --input-background-color: rgb(194, 207, 219);
     --font-school-name: 'Zilla Slab', serif;
     --font-tagline: 'Overpass', sans-serif;
+    --fontawsome: 'Font Awesome 5 Free';
 
 }
 *{
@@ -22,7 +24,7 @@
 }
 
 html, body{
-    background-color: var(--black-color);
+    background-color: var(--white-color);
 }
 
 
@@ -129,7 +131,7 @@ html, body{
 /* NAVBARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
 nav{
     width: 100%;
-    height: 120px;
+    height: 100px;
     background: var(--black-color);
     color: white;
     padding: 10px;
@@ -171,6 +173,8 @@ nav .nav2 .nav2-text p{
     top: 5%;
     user-select: none;
     opacity: 0;
+    user-select: none;
+    pointer-events: none;
 }
 
 .popup-validator{
@@ -184,6 +188,8 @@ nav .nav2 .nav2-text p{
     border-radius: 15px;
     transition: 300ms ease;
     animation: popupAnimate 500ms ease;
+    z-index: 999;
+    background-color: var(--black-color);
 }
 @keyframes popupAnimate {
     0%{
@@ -192,15 +198,10 @@ nav .nav2 .nav2-text p{
 }
 
 
-.popup-validator img{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    filter: brightness(50%) blur(5px);
-}
+
 
 .popup-validator form{
-   filter: brightness(100%);
+    filter: brightness(100%);
     padding: 15px;
     display: flex;
     flex-direction: column;
@@ -225,7 +226,6 @@ nav .nav2 .nav2-text p{
     border: 2px solid var(--blue-color);
     outline: none;
     font-weight: bold;
-   
     margin-bottom: 10px;
 }
 
@@ -260,4 +260,73 @@ nav .nav2 .nav2-text p{
 .popup-validator form a{
     text-decoration: underline;
     color: var(--green-color);
+}
+
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+.container.hide{
+    opacity: 0;
+
+}
+.container{
+    width: 80%;
+    background-color: white;
+    height: 400px;
+    position: relative;
+    padding: 10px;
+}
+
+.container h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.col-sm-4.mb-3.s__ {
+    display: flex;
+    align-items: center;
+}
+
+.col-sm-4.mb-3.s__ label{
+    margin: 0 3px 0 10px;
+}
+
+
+
+
+/* Account text  INDEPENDENT */
+
+.account__text{
+    text-align: center;
+}
+
+.btn.btn-outline-danger.btn_nxt_prv:focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.btn.btn-outline-success.btn_nxt_prv:focus{
+    box-shadow: none;
+    outline: none;
+}
+    
+/* PROGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */
+
+.progress_container ul{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.progress_container ul li{
+    list-style: none;
+    font-size: 2rem;
+    width: 60px;
+    height: 3rem;
+    text-align: center;
+    border-radius: 50%;
+}
+
+.progress{
+    width: 80%;
+    margin: 20px auto;
+    height: 20px;
 }
