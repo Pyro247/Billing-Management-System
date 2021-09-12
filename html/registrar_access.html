@@ -1,65 +1,169 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Css_files/registrar.css">
+  <head>
+   
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <title>Registrar | University Example</title>
-</head>
-<body>
 
-      <!-- LOADER! -->
-      <div class="loader-wrapper" id="loader-wrapperID">
-        <div class="wrapper">
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <div class="shadow"></div>
-            <span>Billing Management System</span>
+
+    <link rel="stylesheet" href="/Css_files/registrar.css">
+
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+
+
+
+
+    <div class="row">
+        <div class="col-3 left-tab">
+
+        <div class="upper-left-tab">
+            <img src="/images/sample_registrar_pic.png" alt="">
+            <p class="reg__name">Juan A. Dela Cruz</p>
+            <p class="reg__name">Registrar | 900283</p>
+            <p class="reg__name" id="reg-date-time"></p>
         </div>
-    </div>
-    <!-- LOADER -->
-    <div class="nav-bar">
-        <img src="/images/logo.png" alt="">
-        <h3>Pyro Colleges Inc. | Registrar</h3>
-    </div>
-    <main>
-    
 
-        <div class="left-section">
-            <img src="/images/sample_registrar_pic.png" alt="Registar's Image">
-            <h3 class="reg-name">Juan A. Dela Cruz</h3>
-            <h4 class="reg-position">Registrar</h4>
-            <p id="reg-date-time"></p>
-
-            <div class="left-section-lower">
-                <ul>
-                    <button autofocus> <li>Dashboard</li></button>
-                    <button> <li>Manage Users</li></button>
-                    <button> <li>Manage School</li></button>
-                    <button> <li>Archives</li></button>
-                    <button> <li>Logout</li></button>
-                </ul>
+            <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
+                <a class="nav-link " id="v-pills-manage--users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Users</a>
+                <a class="nav-link" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-messages" aria-selected="false">Archives</a>
+                <a class="nav-link" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
+                <q>Version 1.0.0.0</q>
             </div>
         </div>
 
-        <div class="name-and-search" id="name-and-search-id">
-            <strong id="dashboard-txt-id">Dashboard</strong>
-            <form action="">
-                <input type="text" name="" id="" placeholder="Search">
-                <i class="fas fa-search"></i>
-            </form>
-        </div>
+        <div class="col">
+          <div class="tab-content" id="v-pills-tabContent">
+              <!-- DASHBOARD -->
+            <div class="tab-pane fade show active dashboard" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+                <p class="__reg-unreg">Unregistered Students</p>
+                <form action="">
+                    <input type="text" name="" id="" placeholder="Search">
+                    <button type="button" class="btn btn-primary">Search</button>
+                </form>
+                
+                
+                    <div class="col unreg_students_div">
+                        <select class="form-select select__" aria-label="Default select example">
+                            <option hidden>Choose Course</option>
+                            <option disabled>Choose Course</option>
+                            <option value="1">Bachelor of Science in Information Technology</option>
+                            <option value="2">Bachelor of Science in Hotel and Management</option>
+                            <option value="3">Bachelor of Science in Mechanical Engineering</option>
+                        </select>
 
-       
-        
-    </main>
+                        <div class="table__" style="overflow-x: auto;">
+                        <table class="table">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Student ID</th>
+                                <th scope="col">First name</th>
+                                <th scope="col">Last name</th>
+                                <th scope="col">Major</th>
+                                <th scope="col">Year & Section</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">LRN</th>
+                                <th scope="col">Action</th> 
+                           
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">2018300366</th>
+                                <td>Justine Dave</td>
+                                <td>DelosReyes</td>
+                                <td>WMA</td>
+                                <td>4A</td>
+                                <td>delosreyes366@gmail.com</td>
+                                <td>971490737154</td>
+                                <td>
+                                    <button type="button" class="btn btn-success app_del">Approve</button>
+                                    <button type="button" class="btn btn-danger app_del">Delete</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2018300478</th>
+                                <td>Michael</td>
+                                <td>Isla</td>
+                                <td>WMA</td>
+                                <td>4A</td>
+                                <td>isla478@gmail.com</td>
+                                <td>135248434268</td>
+                                <td>
+                                    <button type="button" class="btn btn-success app_del">Approve</button>
+                                    <button type="button" class="btn btn-danger app_del">Delete</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2018300902</th>
+                                <td>Denver</td>
+                                <td>Pulido</td>
+                                <td>WMA</td>
+                                <td>4A</td>
+                                <td>pulido902@gmail.com</td>
+                                <td>635313927363</td>
+                                <td>
+                                    <button type="button" class="btn btn-success app_del">Approve</button>
+                                    <button type="button" class="btn btn-danger app_del">Delete</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2018300612</th>
+                                <td>Mery Anne</td>
+                                <td>Villano</td>
+                                <td>WMA</td>
+                                <td>4A</td>
+                                <td>villano612@gmail.com</td>
+                                <td>518220545235</td>
+                                <td>
+                                    <button type="button" class="btn btn-success app_del">Approve</button>
+                                    <button type="button" class="btn btn-danger app_del">Delete</button>
+                                </td>
+                              </tr>
+
+
+                           
+                            </tbody>
+                          </table>
+                        </div>
+            </div>
+            </div>
+
+
+
+            <!-- MANAGE USERS -->
+            <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
+
+
+            </div>
+
+            <!-- ARCHIVES -->
+            <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
+
+
+            </div>
+
+
+            <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">LOGOUT</div>
+          </div>
+        </div>
+    </div>
+
+
+
+ 
+
+
+
+
+
 
 
     <script type="text/javascript">
@@ -72,15 +176,18 @@
         }
         setInterval(clock, 1000);   
 
-        // LOADER FUNCTION
-        $(window).on("load", function(){
-            $(".loader-wrapper").fadeOut('xslow');
-        });
+     
 
-
-        // Changing of Panels
-        let name_and_search_text = document.getElementById('dashboard-txt-id');
         
-    </script>
-</body>
+     </script>
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
 </html>
