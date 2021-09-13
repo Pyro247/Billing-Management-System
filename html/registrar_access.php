@@ -9,9 +9,8 @@
     
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-
-    <link rel="stylesheet" href="/Css_files/registrar.css">
-
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="../Css_files/registrar.css?<?php echo time(); ?>" />
 
     <title>Hello, world!</title>
   </head>
@@ -24,7 +23,7 @@
         <div class="col-3 left-tab">
 
         <div class="upper-left-tab">
-            <img src="/images/sample_registrar_pic.png" alt="">
+            <img src="../images/sample_registrar_pic.png" alt="">
             <p class="reg__name">Juan A. Dela Cruz</p>
             <p class="reg__name">Registrar | 900283</p>
             <p class="reg__name" id="reg-date-time"></p>

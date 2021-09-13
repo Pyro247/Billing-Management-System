@@ -11,9 +11,8 @@
     
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
-    
-    <link rel="stylesheet" href="/Css_files/registration.css">
-    
+
+    <link rel="stylesheet" type="text/css" href="../Css_files/registration.css?<?php echo time(); ?>" />
     <title>Registration | University Example</title>
 </head>
 <body>
@@ -35,7 +34,7 @@
     <!-- NAVBARRRRRRRRRRR -->
     <nav>
         <div class="nav2">
-        <img src="/images/logo.png" alt="">
+        <img src="../images/logo.png" alt="">
             <div class="nav2-text">
                 <span>Pyro Colleges Inc.</span>
                 <p>Excellence at its finest.</p>
