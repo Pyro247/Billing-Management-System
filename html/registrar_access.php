@@ -5,21 +5,17 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
-<<<<<<< HEAD:html/registrar_access.html
+    <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
+    <!-- Fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-    
-    <link rel="stylesheet" href="/Css_files/registrar.css">
-
    
-=======
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../Css_files/registrar.css?<?php echo time(); ?>" />
->>>>>>> 53f022586e2569e7c8b2c1caef7c21381d8ad399:html/registrar_access.php
 
-    <title>Hello, world!</title>
+    <title>Registrar</title>
   </head>
   <body>
 
@@ -50,7 +46,7 @@
         <div class="col-sm right-tab">
            <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade  dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+            <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                 <p class="__reg-unreg">Unregistered Students</p>
                 <form action="">
                   <input type="text" name="" id="" placeholder="Search">
@@ -126,7 +122,6 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">LRN</th>
                                 
-                           
                               </tr>
                             </thead>
                             <tbody>
@@ -178,8 +173,8 @@
 
 
             <!-- MANAGE USERS -->
-            <div class="tab-pane fade manage-users-tab show active" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
-              <p class="__manage-users-p">Student's Records</p>
+            <div class="tab-pane fade manage-users-tab show" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
+              <p class="__manage-users-p" id="student_employee_all_id_text">Student's Records</p>
               <form action="">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
@@ -203,39 +198,39 @@
                 <div class="tab-pane fade show active mt-2 stud__tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
-                      <div class="manage_users_students_tab_lmr_parent">
+                      <div class="manage_users_universal_tab_lmr_parent">
 
-                          <div class="manage_users_students_left_tab">
+                          <div class="manage_users_universal_left_tab">
                           <img src="/images/sample_registrar_pic.png" class="rounded float-start" alt="...">
                           <button type="button" class="btn btn-primary my-2">Change Image</button>
                           </div>
 
-                          <div class="manage_users_students_mid_tab px-1">
+                          <div class="manage_users_universal_mid_tab px-1">
                             <div class="row g-2 mb-1">
                             <div class="col-md">
                               <div class="form-floating">
-                                <input type="number" class="form-control slim" id="floatingInputGrid" placeholder=" " value="2018300366" readonly disabled>
+                                <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="2018300366" readonly disabled>
                                 <label for="floatingInputGrid">Student Number</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Justine Dave">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Justine Dave">
                                   <label for="floatingInputGrid">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Molato">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Molato">
                                   <label for="floatingInputGrid">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Delos reyes">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Delos reyes">
                                   <label for="floatingInputGrid">Last name</label>
                                 </div>
                               </div>
@@ -255,21 +250,21 @@
 
                               <div class="col-md-3">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control slim" id="floatingInputGrid" placeholder=" ">
+                                  <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
                                   <label for="floatingInputGrid">Birthdate</label>
                                 </div>
                               </div>
 
                               <div class="col-md-2">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control slim" id="floatingInputGrid" placeholder=" " value="21">
+                                  <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="21">
                                   <label for="floatingInputGrid">Age</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="109 Rang Ayan Paniqui, Tarlac">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="109 Rang Ayan Paniqui, Tarlac">
                                   <label for="floatingInputGrid">Address</label>
                                 </div>
                               </div>
@@ -279,21 +274,21 @@
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Born Again">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Born Again">
                                   <label for="floatingInputGrid">Religion</label>
                                 </div>
                               </div>
             
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Filipino">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Filipino">
                                     <label for="floatingInputGrid">Citizenship</label>
                                   </div>
                                 </div>
             
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="Single">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Single">
                                     <label for="floatingInputGrid">Civil Status</label>
                                   </div>
                                 </div>
@@ -328,7 +323,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control slim" id="floatingInputGrid" placeholder=" " value="4A">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="4A">
                                     <label for="floatingInputGrid">Year & Section</label>
                                   </div>
                                 </div>
@@ -337,14 +332,14 @@
                               <div class="row g-2 mb-1">
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="email" class="form-control slim" id="floatingInputGrid" placeholder=" " value="djustine247@gmail.com">
+                                    <input type="email" class="form-control" id="floatingInputGrid" placeholder=" " value="djustine247@gmail.com">
                                     <label for="floatingInputGrid">Email</label>
                                   </div>
                                 </div>
     
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <input type="tel" class="form-control slim" id="floatingInputGrid" placeholder=" " value="09096431629">
+                                      <input type="tel" class="form-control" id="floatingInputGrid" placeholder=" " value="09096431629">
                                       <label for="floatingInputGrid">Contact number</label>
                                     </div>
                                   </div>
@@ -388,7 +383,7 @@
 
                       </div> 
                       
-                      <div class="buttons_manage_students">
+                      <div class="buttons_manage_universal">
                       <button type="button" class="btn btn-info">Add</button>
                       <button type="button" class="btn btn-warning">Edit</button>
                       <button type="button" class="btn btn-danger">Delete</button>
@@ -457,11 +452,307 @@
                       </table>
                     </div>
                     </div>
-
                 </div>
 
-                <div class="tab-pane fade" id="employees" role="tabpanel" aria-labelledby="employees-tab">...</div>
-                <div class="tab-pane fade" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">...</div>
+
+
+
+
+                <!-- Employees Tab -->
+                <div class="tab-pane fade mt-2 employee__tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
+                  <p class="role_information text-primary">Employee's Information</p>
+                        
+                  <div class="manage_users_universal_tab_lmr_parent">
+
+                      <div class="manage_users_universal_left_tab">
+                      <img src="/images/example_employee.png" class="rounded float-start" alt="...">
+                      <button type="button" class="btn btn-primary my-2">Change Image</button>
+                      </div>
+
+                      <div class="manage_users_universal_mid_tab px-1">
+                        <div class="row g-2 mb-1">
+                        <div class="col-md">
+                          <div class="form-floating">
+                            <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Juan">
+                            <label for="floatingInputGrid">First name</label>
+                          </div>
+                        </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Abuelos">
+                              <label for="floatingInputGrid">Middle name</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Dela Cruz">
+                              <label for="floatingInputGrid">Last name</label>
+                            </div>
+                          </div>
+
+                          
+                        </div>
+
+                        <div class="row g-2 mb-1">
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                <option value="male" selected>Male</option>
+                                <option value="female">Female</option>
+                
+                              </select>
+                              <label for="floatingSelect">Sex</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
+                              <label for="floatingInputGrid">Birthdate</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="21">
+                              <label for="floatingInputGrid">Age</label>
+                            </div>
+                          </div>
+
+                          
+                        </div>
+
+                        <div class="row g-2 mb-1">
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="900283">
+                              <label for="floatingInputGrid">ID Number</label>
+                            </div>
+                          </div>
+        
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingInputGrid" placeholder=" " value="Juandc@gmail.com">
+                                <label for="floatingInputGrid">Email</label>
+                              </div>
+                            </div>
+        
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="09098890122">
+                                <label for="floatingInputGrid">Contact number</label>
+                              </div>
+                            </div>
+        
+                          </div>
+
+                          
+                      </div>
+
+
+                  </div> 
+                  
+                  <div class="buttons_manage_universal">
+                  <button type="button" class="btn btn-info">Add</button>
+                  <button type="button" class="btn btn-warning">Edit</button>
+                  <button type="button" class="btn btn-danger">Delete</button>
+                  <button type="button" class="btn btn-success">Save</button>
+                  </div> 
+                  <hr>
+                  <div class="manage_student_tab_below mt-4">
+                    <p class="role_information text-success">All Employee's list and Filtering</p>
+
+
+                    <div class="row g-2">
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="BSIT_WMA" selected>All</option>
+                          <option value="Registrar">Registrar</option>
+                          <option value="Cashier">Cashier</option>
+                          
+          
+                        </select>
+                        <label for="floatingSelect">Role</label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="table__" style="overflow-x: auto;">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">ID Number</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Start date</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">900283</th>
+                        <td>Juan</td>
+                        <td>Dela Cruz</td>
+                        <td>Registrar</td>
+                        <td>4/10/2021</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                </div>
+
+
+                </div>
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- All user's Tab -->
+                <div class="tab-pane fade mt-2 all_user__tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
+                  <p class="role_information text-primary">Choose Account to Filter</p>
+
+                  
+
+                  <div class="row g-2">
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="BSIT_WMA" selected>None</option>
+                          <option value="BSIT_WMA">First name</option>
+                          <option value="Registrar">Last name</option>
+                          <option value="Cashier">Role</option>
+                          
+          
+                        </select>
+                        <label for="floatingSelect">Sort By</label>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="BSIT_WMA" selected>All</option>
+                          <option value="BSIT_WMA">Student</option>
+                          <option value="Registrar">Registrar</option>
+                          <option value="Cashier">Cashier</option>
+                          
+          
+                        </select>
+                        <label for="floatingSelect">Role</label>
+                      </div>
+                    </div>
+                    
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
+                        <label for="floatingInputGrid">Reg date From</label>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
+                        <label for="floatingInputGrid">Reg date To</label>
+                      </div>
+                    </div>
+
+                    <div class="row g-2 mb-2">
+                      <div class="col-md-2">  
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                      </div>
+
+                      <div class="col-md-2">  
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Clear Filter</button>
+                      </div>
+
+                    <div class="col-md">  
+                      <button type="button" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
+                    </div>
+                  </div>
+
+                  <hr>
+                  <div class="table__" style="overflow-x: auto;">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">ID number</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">2018300366</th>
+                            <td>Justine Dave</td>
+                            <td>DelosReyes</td>
+                            <td>Student</td>
+                            <td>delosreyes366@gmail.com</td>
+                            <td>Enrolled</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300478</th>
+                            <td>Michael</td>
+                            <td>Isla</td>
+                            <td>Student</td>
+                            <td>isla478@gmail.com</td>
+                            <td>Not Enrolled</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300902</th>
+                            <td>Denver</td>
+                            <td>Pulido</td>
+                            <td>Student</td>
+                            <td>pulido902@gmail.com</td>
+                            <td>Dropped</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300612</th>
+                            <td>Mery Anne</td>
+                            <td>Villano</td>
+                            <td>Student</td>
+                            <td>villano612@gmail.com</td>
+                            <td>Graduate</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+
+
+                  
+                </div>
+
+
+
+
+
               </div>
             </div>
 
@@ -499,10 +790,40 @@
         }
         setInterval(clock, 1000);   
 
-     
+        // Function To change Title
+        let tab_count_manage_users = 1;
+        let student_employee_all_id_text = document.getElementById('student_employee_all_id_text');
 
-        
-     </script>
+        function change_tab(){
+          if(tab_count_manage_users === 1){
+            student_employee_all_id_text.textContent = "Student Records"
+          }else if(tab_count_manage_users === 2){
+            student_employee_all_id_text.textContent = "Employee Records"
+          }else{
+            student_employee_all_id_text.textContent = "All User Records"
+          }
+        }
+          let employee_tab = document.getElementById('employees-tab');
+          let student_tab = document.getElementById('student-tab');
+          let all_users_tab = document.getElementById('all-users-tab');
+
+          student_tab.addEventListener("click", function(){
+            tab_count_manage_users = 1;
+            change_tab();
+          });
+
+          employee_tab.addEventListener("click", function(){
+            tab_count_manage_users = 2;
+            change_tab();
+          });
+
+          all_users_tab.addEventListener("click", function(){
+            tab_count_manage_users = 3;
+            change_tab();
+          });
+
+
+      </script>
 
 
 

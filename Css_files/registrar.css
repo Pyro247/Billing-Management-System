@@ -147,11 +147,10 @@ q{
     height: 50px;
 }
 
-.stud__tab{
+.stud__tab, .employee__tab, .all_user__tab{
     padding: 5px;
     width: 100%;
     background-color: lightgray;
-    border: 1px solid rgb(226, 226, 33);
 }
 
 
@@ -200,12 +199,12 @@ q{
 font-weight: bold;
 }
 
-.manage_users_students_tab_lmr_parent{
+.manage_users_universal_tab_lmr_parent{
     display: flex;
 }
 
 @media (max-width: 768px) {
-    .manage_users_students_tab_lmr_parent{
+    .manage_users_universal_tab_lmr_parent{
         flex-wrap: wrap;
         
     } 
@@ -213,7 +212,7 @@ font-weight: bold;
 
 
 
-.manage_users_students_left_tab{
+.manage_users_universal_left_tab{
     width: 180px;
     height: 250px;
     display: flex;
@@ -222,12 +221,12 @@ font-weight: bold;
     flex-direction: column;
 }
 
-.manage_users_students_left_tab img{
+.manage_users_universal_left_tab img{
     max-width: 180px;
     max-height: 180px;
 }
 
-.manage_users_students_mid_tab{
+.manage_users_universal_mid_tab{
     display: flex;
     flex-direction: column;
     
@@ -238,18 +237,17 @@ font-weight: bold;
 .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{
     opacity: .65;
     transform: scale(.85) translateY(-.70rem) translateX(.15rem);
-    color: #0d6efd;
 }
 
 
-.buttons_manage_students{
+.buttons_manage_universal{
     margin-top: 10px;
     display: flex;
     justify-content: center;
     
 }
 
-.buttons_manage_students button{
+.buttons_manage_universal button{
     margin: 10px 5px;
     width: 200px;
 }
@@ -258,3 +256,9 @@ font-weight: bold;
 hr{
     border: 2px solid #0d6efd;
 }
+
+.s_c__{
+    width: 150px;
+ 
+}
+
