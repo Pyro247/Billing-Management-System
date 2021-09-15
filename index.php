@@ -1,3 +1,6 @@
+<?php
+    include_once 'init.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,8 +9,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- css -->
+<<<<<<< HEAD
     <link rel="stylesheet" type="text/css" href="./css/main.css?<?php echo time(); ?>" />
     
+=======
+    <link rel="stylesheet" type="text/css" href="./Css_files/main.css?<?php echo time(); ?>" />
+
+>>>>>>> 30d7a98c837ca576b5a1962bbbaf3ff8450e009c
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
