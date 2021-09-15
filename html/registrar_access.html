@@ -19,6 +19,15 @@
   </head>
   <body>
 
+    <div class="nav__bar">
+      <div class="nav__bar_two">
+      <img src="/images/logo.png" alt="">
+          <div class="nav__bar_two_text">
+              <span>Pyro Colleges Inc.</span>
+              <p>Excellence at its finest.</p>
+          </div>
+      </div>
+  </div>
 
 
 
@@ -27,7 +36,7 @@
 
         <div class="upper-left-tab">
             <img src="../images/sample_registrar_pic.png" alt="">
-            <p class="reg__name">Juan A. Dela Cruz</p>
+            <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz</p>
             <p class="reg__name">Registrar | 900283</p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
@@ -37,7 +46,7 @@
                 <a class="nav-link main__" id="v-pills-manage--users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Users</a>
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-messages" aria-selected="false">Archives</a>
                 <a class="nav-link main__" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
-                <q>Version 1.0.0.0</q>
+                <q class="mt-2">Version 1.0.0.0</q>
             </div>
         </div>
         
@@ -387,7 +396,7 @@
                       <button type="button" class="btn btn-info">Add</button>
                       <button type="button" class="btn btn-warning">Edit</button>
                       <button type="button" class="btn btn-danger">Delete</button>
-                      <button type="button" class="btn btn-success">Save</button>
+                      <button type="button" class="btn btn-success" disabled>Save</button>
                       </div> 
                       <hr>
                       <div class="manage_student_tab_below mt-4">
@@ -759,13 +768,169 @@
 
 
             <!-- ARCHIVES -->
-            <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
+            <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
+              <p class="__manage-users-p" id="student_employee_all_id_text">Archives</p>
 
+              <form action="">
+                <input type="text" name="" id="" placeholder="Search">
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+              
+              <div class="all_user__tab mt-3">
+              <p class="role_information text-primary mt-2">Choose Account to Filter</p>
+
+                  <div class="row g-2">
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="BSIT_WMA" selected>None</option>
+                          <option value="BSIT_WMA">First name</option>
+                          <option value="Registrar">Last name</option>
+                          <option value="Cashier">Role</option>
+                          
+          
+                        </select>
+                        <label for="floatingSelect">Status</label>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="BSIT_WMA" selected>All</option>
+                          <option value="BSIT_WMA">Student</option>
+                          <option value="Registrar">Registrar</option>
+                          <option value="Cashier">Cashier</option>
+                          
+          
+                        </select>
+                        <label for="floatingSelect">Role</label>
+                      </div>
+                    </div>
+                    
+
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
+                        <label for="floatingInputGrid">Date archived From</label>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
+                        <label for="floatingInputGrid">Date archived To</label>
+                      </div>
+                    </div>
+
+                    <div class="row g-2 mb-2">
+                      <div class="col-md-2">  
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                      </div>
+
+                      <div class="col-md-2">  
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Clear Filter</button>
+                      </div>
+
+                    <div class="col-md">  
+                      <button type="button" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
+                    </div>
+                  </div>
+
+                  <hr>
+                  <div class="table__" style="overflow-x: auto;">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">ID number</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Role</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Status</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">2018300366</th>
+                            <td>Justine Dave</td>
+                            <td>DelosReyes</td>
+                            <td>Student</td>
+                            <td>delosreyes366@gmail.com</td>
+                            <td>Enrolled</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300478</th>
+                            <td>Michael</td>
+                            <td>Isla</td>
+                            <td>Student</td>
+                            <td>isla478@gmail.com</td>
+                            <td>Not Enrolled</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300902</th>
+                            <td>Denver</td>
+                            <td>Pulido</td>
+                            <td>Student</td>
+                            <td>pulido902@gmail.com</td>
+                            <td>Dropped</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300612</th>
+                            <td>Mery Anne</td>
+                            <td>Villano</td>
+                            <td>Student</td>
+                            <td>villano612@gmail.com</td>
+                            <td>Graduate</td>
+                            
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+                  
+                
 
             </div>
 
 
-            <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">LOGOUT</div>
+            <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">
+              <div class="table__" style="overflow-x: auto;">
+                <p class="__manage-users-p" id="student_employee_all_id_text">CHANGES MADE</p>
+                <table class="table">
+                    <thead class="thead-light">
+                      <tr>
+                        <th scope="col">Student ID</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Changes Made</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">2018300366</th>
+                        <td>Justine Dave</td>
+                        <td>DelosReyes</td>
+                        <td>BSIT</td>
+                        <td>Changed Last name</td>
+                        
+                        
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+                </div>
+            </div>
           </div>
         </div>
     </div>
