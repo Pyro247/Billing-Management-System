@@ -14,7 +14,7 @@
         $row_stud = $result_stud->fetch_assoc();
         $count_stud = $result_stud->num_rows;
   
-        if($count === 1){
+        if($count_stud === 1){
           $fname = $row_stud['stud_firstname'];
           $lname = $row_stud['stud_lastname'];
           $midIni = $row_stud['stud_midInitial'];
@@ -22,21 +22,6 @@
           return false;
         }
         
-        $sql_emp = "SELECT * FROM tbl_employee_registration WHERE employee_id = ?";
-        $stmt_emp = $con->prepare($sql_emp);
-        $stmt_emp->bind_param('s', $this->user_id);
-        $stmt_emp->execute();
-        $result_emp = $stmt_emp->get_result();
-        $row_emp = $result_emp->fetch_assoc();
-        $count_emp = $result_emp->num_rows;
-  
-        if($count_emp === 1){
-            $fname = $row_emp['firstname'];
-            $lname = $row_emp['lastname'];
-           
-          } else {
-            return false;
-          }
     }
 
 ?>

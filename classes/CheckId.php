@@ -24,20 +24,7 @@
       } else {
         return false;
       }
-       //Empoloyee Registration Table 
-      $sql_checkId = "SELECT * FROM tbl_employee_registration WHERE employee_id = ?";
-      $stmt_checkId = $con->prepare($sql_checkId);
-      $stmt_checkId->bind_param('s', $this->user_id);
-      $stmt_checkId->execute();
-      $result_checkId = $stmt_checkId->get_result();
-      $row_checkId = $result_checkId->fetch_assoc();
-      $count_checkId = $result_checkId->num_rows;
 
-      if($count_checkId === 1){
-        return true;
-      } else {
-        return false;
-      }
     }
   }
 ?>
