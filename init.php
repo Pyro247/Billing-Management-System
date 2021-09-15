@@ -1,5 +1,5 @@
 <?php
-  include_once './includes/functions.php';
+
 
   spl_autoload_register(function($classname){
     $path = "classes/";
