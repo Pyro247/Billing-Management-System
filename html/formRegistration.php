@@ -6,22 +6,37 @@
         $config = new Config();
         $con = $config->connection();
         //Student Registration Table 
-        $sql = "SELECT * FROM tbl_student_registration WHERE stud_id = ?";
-        $stmt= $con->prepare($sql);
-        $stmt->bind_param('s', $user_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $count = $result->num_rows;
+        $sql_stud = "SELECT * FROM tbl_student_registration WHERE stud_id = ?";
+        $stmt_stud= $con->prepare($sql_stud);
+        $stmt_stud->bind_param('s', $user_id);
+        $stmt_stud->execute();
+        $result_stud = $stmt_stud->get_result();
+        $row_stud = $result_stud->fetch_assoc();
+        $count_stud = $result_stud->num_rows;
   
         if($count === 1){
-          $fname = $row['stud_firstname'];
-          $lname = $row['stud_lastname'];
-          $midIni = $row['stud_midInitial'];
+          $fname = $row_stud['stud_firstname'];
+          $lname = $row_stud['stud_lastname'];
+          $midIni = $row_stud['stud_midInitial'];
         } else {
           return false;
         }
         
+        $sql_emp = "SELECT * FROM tbl_employee_registration WHERE employee_id = ?";
+        $stmt_emp = $con->prepare($sql_emp);
+        $stmt_emp->bind_param('s', $this->user_id);
+        $stmt_emp->execute();
+        $result_emp = $stmt_emp->get_result();
+        $row_emp = $result_emp->fetch_assoc();
+        $count_emp = $result_emp->num_rows;
+  
+        if($count_emp === 1){
+            $fname = $row_emp['firstname'];
+            $lname = $row_emp['lastname'];
+           
+          } else {
+            return false;
+          }
     }
 
 ?>
