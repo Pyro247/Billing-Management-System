@@ -66,7 +66,7 @@
                 </div>
                 <button type="submit">Login</button>
 
-                <p class="form_p log-reg"><a class="span_login">Login</a> | <a href="./html/registration.php"
+                <p class="form_p log-reg"><a class="span_login">Login</a> | <a href="./html/registrationCheckID.php"
                         class="span_register">Register</a></p>
 
                 <a href="./html/registrar_access.php" class="form_p forgot-pass">Forgot Password?</a>
