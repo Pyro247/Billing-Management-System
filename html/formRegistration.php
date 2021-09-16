@@ -70,7 +70,8 @@
 </nav>
 
 <div class="container active" id="container__id">
-    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" method="get">
+
+    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
         <h3>Register - <?= $_COOKIE['user_id'];?> - Student</h3>
         
         <div class="progress_container">
@@ -102,7 +103,7 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" "
+                        <input type="text" class="form-control" name="middlename" id="floatingInput" placeholder=" "
                         value="<?= $midIni;?>">
                         <label for="floatingInput">Middle name</label>
                     </div>
@@ -110,7 +111,7 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" "
+                        <input type="text" class="form-control" name="lastname" id="floatingInput" placeholder=" "
                         value="<?= $lname;?>">
                         <label for="floatingInput">Last name</label>
                     </div>
@@ -122,21 +123,21 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" " required>
+                        <input type="text" class="form-control" name="citizen" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">Citizenship</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                        <input type="text" class="form-control" name="civil" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">Civil Status</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                        <input type="text" class="form-control" name="phone" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">Contact number</label>
                     </div>
                 </div>
@@ -147,10 +148,10 @@
             <div class="row mb-3">
                 <div class="col-sm-4 s__ ">
                     <span>Sex: &nbsp;</span>
-                    <input type="radio" class="btn-check" name="options-outlined" id="male_id" autocomplete="off" >
+                    <input type="radio" class="btn-check" name="sex" id="male_id" value="male" autocomplete="off" >
                     <label class="btn btn-outline-success" for="male_id">Male</label>
                     
-                    <input type="radio" class="btn-check" name="options-outlined" id="female_id" autocomplete="off">
+                    <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
                     <label class="btn btn-outline-success" for="female_id">Female</label>
                 </div>
             <!-- RADIO BUTTON -->
@@ -158,14 +159,14 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInput" placeholder=" ">
+                        <input type="date" class="form-control" name="birthdate" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">Birthdate</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" " readonly>
+                        <input type="text" class="form-control" name="age" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">Age</label>
                     </div>
                 </div>
@@ -186,17 +187,17 @@
         <div class="row mb-3">
             <div class="col-sm-4 mb-3 s__ ">
                 <span>College Type: &nbsp;</span>
-                <input type="radio" class="btn-check" name="options-outlined" id="private_id" autocomplete="off">
+                <input type="radio" class="btn-check" name="prevCollege" id="private_id" autocomplete="off" name="private">
                 <label class="btn btn-outline-success" for="private_id">Private</label>
                 
-                <input type="radio" class="btn-check" name="options-outlined" id="public_id" autocomplete="off">
+                <input type="radio" class="btn-check" name="prevCollege" id="public_id" autocomplete="off" value="public">
                 <label class="btn btn-outline-success" for="public_id">Public</label>
             </div>
                 
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" " required>
+                        <input type="text" class="form-control" name="prevCollegeName" id="floatingInput" placeholder=" " >
                         <label for="floatingInput">College name</label>
                     </div>  
                 </div>
@@ -204,14 +205,14 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                        <input type="text" class="form-control" name ="prevCollegeAdd"id="floatingInput" placeholder=" ">
                         <label for="floatingInput">College Address</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                        <input type="text" class="form-control" name="prevZipCode" id="floatingInput" placeholder=" ">
                         <label for="floatingInput">Zip Code</label>
                     </div>
                 </div>
@@ -220,33 +221,33 @@
             <!-- 2NDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD -->
             <div class="row mb-3">
                 <div class="col-sm-4">
-                        <select class="form-select form-control" id="floatingInput">
+                        <select class="form-select form-control" name="prevSchoolYr" id="floatingInput">
                             <option hidden >School Year</option>
-                            <option value="" disabled>School Year</option>
-                            <option value="1">2016 - 2017</option>
-                            <option value="2">2017 - 2018</option>
-                            <option value="3">2018 - 2019</option>
-                            <option value="3">2019 - 2020</option>
-                            <option value="3">2020 - 2021</option>
+                            <option value="" disabled >School Year</option>
+                            <option value="2016-2017">2016 - 2017</option>
+                            <option value="2017-2018">2017 - 2018</option>
+                            <option value="2018-2019">2018 - 2019</option>
+                            <option value="2019-2020">2019 - 2020</option>
+                            <option value="2020-2021">2020 - 2021</option>
                         </select>
                 </div>
 
                 <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="prevSem" aria-label="Default select example">
                         <option hidden>Semester</option>
                         <option value="" disabled>Semester</option>
-                        <option value="1">Midterms</option>
-                        <option value="2">Finals</option>
+                        <option value="Midterm">Midterms</option>
+                        <option value="Final">Finals</option>
                     </select>
                 </div>
 
                 <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="prevScholar" aria-label="Default select example">
                         <option hidden>Scholarship</option>
                         <option value="" disabled>Scholarship</option>
-                        <option value="1">Not Available</option>
-                        <option value="1">Partial</option>
-                        <option value="2">Full</option>
+                        <option value="Not Available">Not Available</option>
+                        <option value="Patial">Partial</option>
+                        <option value="Full">Full</option>
                         
                     </select>
                 </div>
@@ -256,34 +257,34 @@
             <!-- 3RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRD -->
             <div class="row mb-3">
                 <div class="col-sm-4">
-                        <select class="form-select form-control" id="floatingInput">
+                        <select class="form-select form-control" name="prevCourse"id="floatingInput">
                             <option hidden >Course</option>
                             <option value="" disabled>Course</option>
-                            <option value="1">BSIT </option>
-                            <option value="2">BSED</option>
-                            <option value="3">BSA</option>
+                            <option value="BSIT">BSIT </option>
+                            <option value="BSED">BSED</option>
+                            <option value="BSA">BSA</option>
                         </select>
                 </div>
 
                 <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="prevMajor" aria-label="Default select example">
                         <option hidden>Major</option>
                         <option value="" disabled>Major</option>
-                        <option value="1">Web and Mobile Application</option>
-                        <option value="2">Computer Science</option>
+                        <option value="Web and Mobile Application">Web and Mobile Application</option>
+                        <option value="Computer Science">Computer Science</option>
                     </select>
                 </div>
 
                 
                 <div class="col-sm-4">
-                    <select class="form-select" aria-label="Default select example">
+                    <select class="form-select" name="prevYear" aria-label="Default select example">
                         <option hidden>Year</option>
                         <option value="" disabled>Year</option>
-                        <option value="1">1st</option>
-                        <option value="2">2nd</option>
-                        <option value="2">3rd</option>
-                        <option value="2">4th</option>
-                        <option value="2">5th</option>
+                        <option value="1st Year">1st</option>
+                        <option value="2nd Year">2nd</option>
+                        <option value="3rd Year">3rd</option>
+                        <option value="4th Year">4th</option>
+                        <option value="5th Year">5th</option>
                     </select>
                 </div>
             </div>
@@ -295,33 +296,33 @@
            <h4>Current School Information</h4>
            <div class="row mb-3">
             <div class="col-sm-4">
-                    <select class="form-select form-control" id="floatingInput">
+                    <select class="form-select form-control" name="currSchoolYear" id="floatingInput">
                         <option hidden >School Year</option>
                         <option value="" disabled>School Year</option>
-                        <option value="1">2016 - 2017</option>
-                        <option value="2">2017 - 2018</option>
-                        <option value="3">2018 - 2019</option>
-                        <option value="3">2019 - 2020</option>
-                        <option value="3">2020 - 2021</option>
+                        <option value="2016-2017">2016 - 2017</option>
+                        <option value="2017-2018">2017 - 2018</option>
+                        <option value="2018-2019">2018 - 2019</option>
+                        <option value="2019-2020">2019 - 2020</option>
+                        <option value="2020-2021">2020 - 2021</option>
                     </select>
             </div>
 
             <div class="col-sm-4">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="currSem" aria-label="Default select example">
                     <option hidden>Semester</option>
                     <option value="" disabled>Semester</option>
-                    <option value="1">Midterms</option>
-                    <option value="2">Finals</option>
+                    <option value="Midterm">Midterms</option>
+                    <option value="Final">Finals</option>
                 </select>
             </div>
 
             <div class="col-sm-4">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="currScholar" aria-label="Default select example">
                     <option hidden>Scholarship</option>
                     <option value="" disabled>Scholarship</option>
-                    <option value="1">Not Available</option>
-                    <option value="1">Partial</option>
-                    <option value="2">Full</option>
+                    <option value="Not Available">Not Available</option>
+                    <option value="Partial">Partial</option>
+                    <option value="Full">Full</option>
                     
                 </select>
             </div>
@@ -332,34 +333,34 @@
         
         <div class="row mb-3">
             <div class="col-sm-4">
-                    <select class="form-select form-control" id="floatingInput">
+                    <select class="form-select form-control" name="currCourse" id="floatingInput">
                         <option hidden >Course</option>
                         <option value="" disabled>Course</option>
-                        <option value="1">BSIT </option>
-                        <option value="2">BSED</option>
-                        <option value="3">BSA</option>
+                        <option value="BSIT">BSIT </option>
+                        <option value="BSED">BSED</option>
+                        <option value="BSA">BSA</option>
                     </select>
             </div>
 
             <div class="col-sm-4">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="currMajor" aria-label="Default select example">
                     <option hidden>Major</option>
                     <option value="" disabled>Major</option>
-                    <option value="1">Web and Mobile Application</option>
-                    <option value="2">Computer Science</option>
+                    <option value="Web and Mobile Application">Web and Mobile Application</option>
+                    <option value="Computer Science">Computer Science</option>
                 </select>
             </div>
 
             
             <div class="col-sm-4">
-                <select class="form-select" aria-label="Default select example">
+                <select class="form-select" name="currYear" aria-label="Default select example">
                     <option hidden>Year</option>
                     <option value="" disabled>Year</option>
-                    <option value="1">1st</option>
-                    <option value="2">2nd</option>
-                    <option value="2">3rd</option>
-                    <option value="2">4th</option>
-                    <option value="2">5th</option>
+                    <option value="1st Yeart">1st</option>
+                    <option value="2nd Year">2nd</option>
+                    <option value="3rd Year">3rd</option>
+                    <option value="4th Year">4th</option>
+                    <option value="th Year">5th</option>
                 </select>
             </div>
         </div>
@@ -375,18 +376,18 @@
 
             <div class="col-sm-4 mt-2">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname">
-                    <label for="floatingInput">Email Address</label>
+                    <input type="text" class="form-control " id="email" placeholder=" " name="email">
+                    <label for="email">Email Address</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname">
-                    <label for="floatingInput">Password</label>
+                    <input type="text" class="form-control" id="password" placeholder=" " name="password">
+                    <label for="password">Password</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname">
-                    <label for="floatingInput">Confirm Password</label>
+                    <input type="text" class="form-control" id="confirm_pass" placeholder=" " name="con_pass">
+                    <label for="confirm_pass">Confirm Password</label>
                 </div>
 
                 <div class="form-check">
@@ -415,11 +416,12 @@
             
         </div>
 
-   
+
 
         
 
-
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript">
         let prevBtn = document.getElementById('previous_id');
         let nextBtn = document.getElementById('next_id');
@@ -439,14 +441,29 @@
         let step_three = document.getElementById('step_three_id')
 
 
-        let submit = document.querySelector('#step_three_id')
+        let email = document.querySelector('#email');
+        let pass = document.querySelector('#password');
+        let confirm_pas = document.querySelector('#confirm_pass');
 
 
         let step_counter = 1;
         choose_step_1();
         check_if_firststep()
-        
+        $(document).ready(function(){
+                    $('#next_id').click(function(e){
+                        $.ajax({
+                        type: "POST",
+                        url: "process.php",
+                        data: $('form').serialize(),
+                        success: function(data){
+                            console.log(data)
+                        }
+                        })
 
+                        e.preventDefault();
+                        
+                    });
+                });
         function choose_step_1(){
             step_one.style.display = "block"
             step_two.style.display = "none"
@@ -512,12 +529,14 @@
             }
         }
 
-
+       
+        
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
 
     </script>
+    
 </div>
 </body>
 </html>
