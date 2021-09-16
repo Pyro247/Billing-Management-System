@@ -13,11 +13,40 @@
 
    
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="../Css_files/registrar.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
+
+
 
     <title>Registrar</title>
   </head>
   <body>
+
+    
+<!-- LOADER! -->
+<div class="loader-wrapper" id="loader-wrapperID">
+  <div class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <span>Pyro Colleges Inc.</span>
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function(){
+       let loader = document.getElementById('loader-wrapperID')
+       loader.style.opacity = "0"
+       loader.style.visibility = "hidden"
+       loader.style.pointerEvents = "none"
+  }
+</script>
+
+
+<!-- LOADER -->
+    
 
     <div class="nav__bar">
       <div class="nav__bar_two">
