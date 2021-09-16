@@ -67,7 +67,7 @@
             <h3>Please enter ID number</h3>
             <input type="number" name="user_id" id="" placeholder="ID number">
             <input type="submit" name="checkID" value="Submit">
-            <p>Already have an account? <a href="../index.php">Login Here</a></p>
+            <p>Already have an account? <a href="../index.html">Login Here</a></p>
         </form>
     </div>
     <script type="text/javascript">

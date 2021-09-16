@@ -19,6 +19,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 
@@ -113,8 +114,7 @@
     }
     .wrapper span{
     position: absolute;
-    top:75px;
-    font-family: 'Lato';
+    top: 75px;
     font-size: 25px;
     color: #fff;
     left: 50%;
@@ -125,15 +125,40 @@
 
 /* Header */
 
+/* when sticky nav bar */
+
+.lp_nav.sticky{
+    background: var(--blue-color);
+    height: 100px;
+}
+
+.lp_nav_mid .hide{
+    transform: rotateX(-45deg);
+    transform: scale(4);
+    opacity: 0;
+    visibility: hidden;
+}
+
+.lp_nav_mid.shrink{
+    margin: auto 20px;
+    width: 60px;
+    height: 60px;
+}
+
+.lp_nav > *{
+    transition: 300ms;
+}
+
+
 .lp_nav{
     width: 100%;
-    height: 100px;
     background-color: none;
     position: fixed;
     display: flex;
     justify-content: center;
     padding: 5px;
     z-index: 999;
+    transition: 500ms;
 }
 
 
@@ -149,12 +174,16 @@
 }
 
 .lp_nav_left ul li a, .lp_nav_right ul li a{
-    
     text-decoration: none;
     color: #FFFFFF;
-    font-size: 1.7rem;
-    font-weight: 500;
-    border-bottom: 2px solid var(--white-color);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+
+
+.lp_nav_left ul li a:hover, .lp_nav_right ul li a:hover{
+  color: #0d6efd;
 }
 
 .lp_nav_mid{
@@ -167,12 +196,15 @@
 .lp_nav_mid img{
     width: 55px;
     height: 55px;
+    
 }
+
 .lp_nav_mid p{
     font-size: 3rem;
     font-family: var(--font-school-name);
     font-weight: 900;
     color: #FFFFFF;
+    transition: 250ms;
 }
 .lp_nav_mid span{
     font-size: 1.5rem;
@@ -181,11 +213,82 @@
     color: var(--white-color);
     
 }
+
+    /* Header Section || Home */
 .header{
     width: 100%;
     height: 100vh;
-    background-image: url(/images/COBZoom.jpg);
+    background-image: url(/images/ss.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.header_wrapper a{
+    margin-left: 50px;
+    text-align: center;
+    font-size: 5rem;
+}
+
+
+/* About Section */
+.about_section{
+    height: 100vh;
+    width: 100%;
+    padding: 100px 50px 0 50px;
+    background: #7f7fd5; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.about_section .about_wrapper{
+    border: 5px solid black;
+    display: flex;
+    margin-left: 100px;
+    padding: 20px 0;
+}
+
+
+.about_section .about_wrapper .about_wrapper_left img{
+    width: 600px;
+    height: 600px;
+    margin-left: -100px;
+    border: 2px solid #7f7fd5;
+}
+
+.about_section .about_wrapper .about_wrapper_right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    position: relative;
+}
+
+.about_section .about_wrapper .about_wrapper_right q{
+    font-size: 2rem;
+    color: #0d6efd;
+    font-weight: 700;
+}
+.about_section .about_wrapper .about_wrapper_right img{
+    height: 200px;
+}
+
+.about_wrapper_right p{
+    margin-left: 50px;
+    margin-right: 75px;
+    margin-bottom: 25px;
+    font-size: 1.2rem;
+}
+
+.about_wrapper_right a{
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--black-color);
+    border-bottom: 2px solid black;
+    position: absolute;
+    bottom: 10px;
+    
 }
