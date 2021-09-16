@@ -55,9 +55,15 @@
         
         <form action="" method="POST">
             <h3>Please enter ID number</h3>
+<<<<<<< HEAD
             <input type="number" name="userId" id="" placeholder="ID number">
             <input type="submit" name="checkID" id="checkID" value="Submit">
             <p>Already have an account? <a href="../index.php">Login Here</a></p>
+=======
+            <input type="number" name="user_id" id="" placeholder="ID number">
+            <input type="submit" name="checkID" value="Submit">
+            <p>Already have an account? <a href="../index.html">Login Here</a></p>
+>>>>>>> 74733aef90233ef185544c3b8479cdce3607b410
         </form>
     </div>
     <script type="text/javascript">
