@@ -1,22 +1,13 @@
 <?php
-  
-  class Config 
-  {
-    private $host = "localhost";
-    private $username = "root";
-    private $password = "";
-    private $dbname = "web-based_billing_management_system";
+  $host = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "web-based_billing_management_system";
 
-    public function connection()
-    {
       try{
-        $con = mysqli_connect( $this->host, $this->username, $this->password, $this->dbname );
+        $con = mysqli_connect( $host, $username, $password, $dbname );
       }catch ( \Exception $e ) {
         die( $e->getMessage() );
       }
       return $con;
-    }
-
-  }
-
 ?>

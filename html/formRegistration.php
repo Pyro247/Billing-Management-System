@@ -1,28 +1,5 @@
 <?php
-    include_once '../init.php';
-    include_once '../connection/Config.php';
-    if(isset($_COOKIE['user_id'])){
-        $user_id = $_COOKIE['user_id'];
-        $config = new Config();
-        $con = $config->connection();
-        //Student Registration Table 
-        $sql_stud = "SELECT * FROM tbl_student_registration WHERE stud_id = ?";
-        $stmt_stud= $con->prepare($sql_stud);
-        $stmt_stud->bind_param('s', $user_id);
-        $stmt_stud->execute();
-        $result_stud = $stmt_stud->get_result();
-        $row_stud = $result_stud->fetch_assoc();
-        $count_stud = $result_stud->num_rows;
-  
-        if($count_stud === 1){
-          $fname = $row_stud['stud_firstname'];
-          $lname = $row_stud['stud_lastname'];
-          $midIni = $row_stud['stud_midInitial'];
-        } else {
-          return false;
-        }
-        
-    }
+    
 
 ?>
 <!DOCTYPE html>
@@ -39,7 +16,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="../Css_files/registration.css?<?php echo time(); ?>" />
+    <link rel="stylesheet" type="text/css" href="../css/registration.css?<?php echo time(); ?>" />
 </head>
 <body>
      <!-- LOADER! -->
@@ -72,7 +49,7 @@
 <div class="container active" id="container__id">
 
     <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
-        <h3>Register - <?= $_COOKIE['user_id'];?> - Student</h3>
+        <h3>Register - <?= 2018301301 ?> - Student</h3>
         
         <div class="progress_container">
             <ul>
@@ -95,7 +72,7 @@
                 <h4>Personal Information</h4>
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname" value="<?= $fname;?>">
+                        <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname" value="">
                         <label for="floatingInput">First name</label>
                     </div>
                 </div>
@@ -104,7 +81,7 @@
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="middlename" id="floatingInput" placeholder=" "
-                        value="<?= $midIni;?>">
+                        value="">
                         <label for="floatingInput">Middle name</label>
                     </div>
                 </div>

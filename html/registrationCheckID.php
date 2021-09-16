@@ -1,16 +1,4 @@
-<?php
-    include_once '../init.php';
-    if(isset($_POST['checkID'])){
-        $user_id = $_POST['user_id'];
-        $checkID = new CheckId($user_id);
-        if($checkID->checkId()){
-            header('Location: ./formRegistration.php');
-            setcookie("user_id", $user_id);
-        } else {
-            echo 'Not Found';
-        }
-    }
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registration.css?<?php echo time(); ?>" />
     <title>Registration | University Example</title>
@@ -60,24 +48,29 @@
     </nav>
 
     <!-- Validator -->
-
+    <?php
+        include_once '../includes/checkId.php';
+    ?>
     <div class="popup-validator" id="popup-id">
         
         <form action="" method="POST">
             <h3>Please enter ID number</h3>
-            <input type="number" name="user_id" id="" placeholder="ID number">
-            <input type="submit" name="checkID" value="Submit">
+            <input type="number" name="userId" id="" placeholder="ID number">
+            <input type="submit" name="checkID" id="checkID" value="Submit">
             <p>Already have an account? <a href="../index.php">Login Here</a></p>
         </form>
     </div>
     <script type="text/javascript">
-    $(window).on("load", function(){
-            $(".loader-wrapper").fadeOut('xslow');
+        // Onload loader transition
+        $(window).on("load", function(){
+                $(".loader-wrapper").fadeOut('xslow');
         });
 
         
-        </script>
+    </script>
 
+
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
