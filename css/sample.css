@@ -123,13 +123,13 @@
     }
 
 
-/* Header */
 
 /* when sticky nav bar */
 
 .lp_nav.sticky{
     background: var(--blue-color);
     height: 100px;
+    
 }
 
 .lp_nav_mid .hide{
@@ -159,6 +159,7 @@
     padding: 5px;
     z-index: 999;
     transition: 500ms;
+    
 }
 
 
@@ -216,15 +217,16 @@
 
     /* Header Section || Home */
 .header{
-    width: 100%;
+    width: 100;
     height: 100vh;
-    background-image: url(/images/ss.jpg);
+    background-image: url(/images/index_img/index_bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    
 }
 .header_wrapper a{
     margin-left: 50px;
@@ -241,6 +243,7 @@
     background: #7f7fd5; /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #7f7fd5, #86a8e7, #91eae4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    overflow-x: hidden;
 }
 
 .about_section .about_wrapper{
@@ -252,10 +255,12 @@
 
 
 .about_section .about_wrapper .about_wrapper_left img{
-    width: 600px;
+    width: 550px;
     height: 600px;
     margin-left: -100px;
+    border-radius: 10px;
     border: 2px solid #7f7fd5;
+    box-shadow: 5px 5px 1px #1e1e1e;
 }
 
 .about_section .about_wrapper .about_wrapper_right{
@@ -290,5 +295,61 @@
     border-bottom: 2px solid black;
     position: absolute;
     bottom: 10px;
-    
+}
+
+/* Learning Section */
+.learning_section{
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    background-image: url(/images/index_img/learning_background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.learning_wrapper{
+    padding: 0 50px;
+}
+
+.learning_wrapper h3{
+    font-size: 3.5rem;
+    color: var(--white-color);
+}
+
+.learning_wrapper p{
+    font-size: 2.2rem;
+    color: var(--white-color);
+}
+.learning_o_m{
+    margin-top: 30px;
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.learning_o img, .learning_m img{
+    box-shadow: 5px 5px 10px;
+    border-radius: 5px;
+    width: 400px;
+    height: 250px;
+    transition: 500ms ease;
+}
+
+.learning_o img:hover, .learning_m img:hover{
+    transform: translate(-20px, -40px);
+    box-shadow: 15px 50px 10px rgb(58, 55, 55)
+}
+
+.learning_o, .learning_m{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.learning_o_m strong{
+    margin-left: 10px;
+    font-size: 2rem;
+    color: #0d6efd;
+    position: absolute;
+    bottom: -10px;
 }
