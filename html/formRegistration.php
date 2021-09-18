@@ -427,56 +427,6 @@
         check_if_firststep()
         
         
-        
-       $('#next_id').click(function(){
-           if ($('#email').val() != '' ){
-            if($('#password').val() === $('#confirm_pass').val()){
-                if ( $("input[name='agreePolicy']").is(":checked") ){
-                    console.log('I agree!')
-                }else{
-                    console.log('I\'m not agree!')
-                }
-                // $.ajax({
-                //     type: "POST",
-                //     url: "../includes/registerAccount.php",
-                //     data: $('form').serialize(),
-                //     success: function(data){
-                //         Swal.fire({
-                //         title: 'Successfully Registred',
-                //         text: 'You can now login',
-                //         icon: 'success',
-                //         confirmButtonText: 'OK'
-                //       }).then(function(){
-                //           window.location = './registrationCheckID.php';
-                //       });
-                //     },
-                //     error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                //         alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                //         Swal.fire({
-                //         title: 'Error',
-                //         text: 'Something went wrong',
-                //         icon: 'warning',
-                //         confirmButtonText: 'OK'
-                //       })
-                //     }            
-                // });
-                
-                // e.preventDefault();
-            }else{
-                
-            }
-           }else{
-            //    if(nextBtn.innerHTML == 'Submit'){
-            //     Swal.fire({
-            //         title: 'Please enter your email',
-            //         icon: 'warning',
-            //         confirmButtonText: 'OK'
-            //     })
-            //    }
-            
-           }
-       });
-        
         function choose_step_1(){
             step_one.style.display = "block"
             step_two.style.display = "none"
