@@ -1,7 +1,4 @@
-<?php
-    
 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Form Registration</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    
+
+    <!-- Bootsrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- AJAX JQUERY -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js" integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+    <!-- Fontawesome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registration.css?<?php echo time(); ?>" />
 </head>
@@ -38,7 +37,6 @@
         <div class="nav2-text">
             <span>Pyro Colleges Inc.</span>
             <p>Excellence at its finest.</p>
-            /div>
         </div>
         <div class="navright">
 
@@ -49,8 +47,8 @@
 <div class="container active" id="container__id">
 
     <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
-        <h3>Register - <?= 2018301301 ?> - Student</h3>
-        
+        <h3>Register - <?= $_COOKIE['userID']; ?> - Student</h3>
+        <input type="hidden" name="userID" value="<?php  echo $_COOKIE['userID']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>
@@ -72,24 +70,25 @@
                 <h4>Personal Information</h4>
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder=" " name="fname" value="">
-                        <label for="floatingInput">First name</label>
+                        
+                        <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $_COOKIE['userFirstName']; ?>">
+                        <label for="fname">First name</label>
                     </div>
                 </div>
                     
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="middlename" id="floatingInput" placeholder=" "
-                        value="">
-                        <label for="floatingInput">Middle name</label>
+                        <input type="text" class="form-control" name="middlename" id="midInitial" placeholder=" "
+                        value="<?= $_COOKIE['userMiddleName']; ?>">
+                        <label for="midInitial">Middle name</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="lastname" id="floatingInput" placeholder=" "
-                        value="<?= $lname;?>">
+                        <input type="text" class="form-control" name="lastname" id="lname" placeholder=" "
+                        value="<?= $_COOKIE['userLastName'];?>">
                         <label for="floatingInput">Last name</label>
                     </div>
                 </div>
@@ -100,22 +99,22 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="citizen" id="floatingInput" placeholder=" " >
-                        <label for="floatingInput">Citizenship</label>
+                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" " >
+                        <label for="citizen">Citizenship</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="civil" id="floatingInput" placeholder=" " >
-                        <label for="floatingInput">Civil Status</label>
+                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " >
+                        <label for="civilStatus">Civil Status</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="phone" id="floatingInput" placeholder=" " >
-                        <label for="floatingInput">Contact number</label>
+                        <input type="text" class="form-control" name="phone" id="phone" placeholder=" " >
+                        <label for="phone">Contact number</label>
                     </div>
                 </div>
             </div>
@@ -136,15 +135,15 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="date" class="form-control" name="birthdate" id="floatingInput" placeholder=" " >
-                        <label for="floatingInput">Birthdate</label>
+                        <input type="date" class="form-control" name="birthdate" id="birthdate" placeholder=" " >
+                        <label for="birthdate">Birthdate</label>
                     </div>
                 </div>
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="age" id="floatingInput" placeholder=" " >
-                        <label for="floatingInput">Age</label>
+                        <input type="text" class="form-control" name="age" id="age" placeholder=" " >
+                        <label for="age">Age</label>
                     </div>
                 </div>
             </div>
@@ -164,10 +163,10 @@
         <div class="row mb-3">
             <div class="col-sm-4 mb-3 s__ ">
                 <span>College Type: &nbsp;</span>
-                <input type="radio" class="btn-check" name="prevCollege" id="private_id" autocomplete="off" name="private">
+                <input type="radio" class="btn-check" name="prevCollege" id="private_id"  value="private" autocomplete="off">
                 <label class="btn btn-outline-success" for="private_id">Private</label>
                 
-                <input type="radio" class="btn-check" name="prevCollege" id="public_id" autocomplete="off" value="public">
+                <input type="radio" class="btn-check" name="prevCollege" id="public_id"  value="public" autocomplete="off">
                 <label class="btn btn-outline-success" for="public_id">Public</label>
             </div>
                 
@@ -273,14 +272,14 @@
            <h4>Current School Information</h4>
            <div class="row mb-3">
             <div class="col-sm-4">
-                    <select class="form-select form-control" name="currSchoolYear" id="floatingInput">
-                        <option hidden >School Year</option>
-                        <option value="" disabled>School Year</option>
-                        <option value="2016-2017">2016 - 2017</option>
-                        <option value="2017-2018">2017 - 2018</option>
-                        <option value="2018-2019">2018 - 2019</option>
-                        <option value="2019-2020">2019 - 2020</option>
-                        <option value="2020-2021">2020 - 2021</option>
+                    <select class="form-select form-control" name="currSchoolYr" id="floatingInput">
+                            <option hidden >School Year</option>
+                            <option value="" disabled >School Year</option>
+                            <option value="2016-2017">2016 - 2017</option>
+                            <option value="2017-2018">2017 - 2018</option>
+                            <option value="2018-2019">2018 - 2019</option>
+                            <option value="2019-2020">2019 - 2020</option>
+                            <option value="2020-2021">2020 - 2021</option>
                     </select>
             </div>
 
@@ -353,23 +352,23 @@
 
             <div class="col-sm-4 mt-2">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control " id="email" placeholder=" " name="email">
+                    <input type="email" class="form-control " id="email" placeholder=" " name="email">
                     <label for="email">Email Address</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="password" placeholder=" " name="password">
+                    <input type="password" class="form-control" id="password" placeholder=" " name="password">
                     <label for="password">Password</label>
                 </div>
 
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="confirm_pass" placeholder=" " name="con_pass">
+                    <input type="password" class="form-control" id="confirm_pass" placeholder=" " name="confirm_pass">
                     <label for="confirm_pass">Confirm Password</label>
                 </div>
 
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
-                    <label class="form-check-label" for="flexCheckIndeterminate">
+                    <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
+                    <label class="form-check-label" for="flexCheckIndeterminate" >
                       By checking this box, you agree to our Terms and that you have read our <a href="">Data Use Policy.</a>
                         
                     </label>
@@ -426,21 +425,58 @@
         let step_counter = 1;
         choose_step_1();
         check_if_firststep()
-        $(document).ready(function(){
-                    $('#next_id').click(function(e){
-                        $.ajax({
-                        type: "POST",
-                        url: "process.php",
-                        data: $('form').serialize(),
-                        success: function(data){
-                            console.log(data)
-                        }
-                        })
-
-                        e.preventDefault();
-                        
-                    });
-                });
+        
+        
+        
+       $('#next_id').click(function(){
+           if ($('#email').val() != '' ){
+            if($('#password').val() === $('#confirm_pass').val()){
+                if ( $("input[name='agreePolicy']").is(":checked") ){
+                    console.log('I agree!')
+                }else{
+                    console.log('I\'m not agree!')
+                }
+                // $.ajax({
+                //     type: "POST",
+                //     url: "../includes/registerAccount.php",
+                //     data: $('form').serialize(),
+                //     success: function(data){
+                //         Swal.fire({
+                //         title: 'Successfully Registred',
+                //         text: 'You can now login',
+                //         icon: 'success',
+                //         confirmButtonText: 'OK'
+                //       }).then(function(){
+                //           window.location = './registrationCheckID.php';
+                //       });
+                //     },
+                //     error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                //         alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                //         Swal.fire({
+                //         title: 'Error',
+                //         text: 'Something went wrong',
+                //         icon: 'warning',
+                //         confirmButtonText: 'OK'
+                //       })
+                //     }            
+                // });
+                
+                // e.preventDefault();
+            }else{
+                
+            }
+           }else{
+            //    if(nextBtn.innerHTML == 'Submit'){
+            //     Swal.fire({
+            //         title: 'Please enter your email',
+            //         icon: 'warning',
+            //         confirmButtonText: 'OK'
+            //     })
+            //    }
+            
+           }
+       });
+        
         function choose_step_1(){
             step_one.style.display = "block"
             step_two.style.display = "none"
@@ -463,16 +499,17 @@
 
         function next_tab(){
             if (step_counter === 1){
-                    choose_step_2();
-                    step_counter = 2;
-                    progress_bar.style.width = "66%"
-                    personal_info_icon.innerHTML = "&#xf058;";
-                    personal_info_icon.style.color = "green";
-                    
+                            choose_step_2();
+                            step_counter = 2;
+                            progress_bar.style.width = "66%"
+                            personal_info_icon.innerHTML = "&#xf058;";
+                            personal_info_icon.style.color = "green";
+
             }else if (step_counter === 2){
                     choose_step_3();
                     step_counter = 3;
                     nextBtn.textContent = "Submit"
+                    nextBtn.disabled = true;
                     progress_bar.style.width = "100%"
                     college_info_icon.innerHTML = "&#xf058;";
                     college_info_icon.style.color = "green";
@@ -492,6 +529,7 @@
                 step_counter = 2;
                 check_if_firststep();
                 nextBtn.textContent = "Next"
+                $("input[name='agreePolicy']").prop("checked", false);
                 progress_bar.style.width = "66%"
                 college_info_icon.innerHTML = "&#xf19c;";
                 college_info_icon.style.color = "black";
@@ -505,9 +543,65 @@
                 prevBtn.style.display = "block"
             }
         }
-
-       
+        // Agree Policy to create the account
+        $("input[name='agreePolicy']").click(function(){
+            if($("input[name='agreePolicy']").is(":checked")){
+                nextBtn.disabled = false;
+            }else if ($("input[name='agreePolicy']").is(":not(:checked)")) {
+                nextBtn.disabled = true;
+            }
+        });
         
+        $('#next_id').click(function(){
+            if($("input[name='agreePolicy']").is(":checked")){
+                if($('#email').val() == ''){
+                    Swal.fire({
+                        title: 'Please enter your email',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() == ''){
+                    Swal.fire({
+                        title: 'No password',
+                        text: 'Please type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() != $('#confirm_pass').val()){
+                    Swal.fire({
+                        title: 'Password not match',
+                        text: 'Please re-type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else{
+                    $.ajax({
+                    type: "POST",
+                    url: "../includes/registerAccount.php",
+                    data: $('form').serialize(),
+                    success: function(data){
+                        Swal.fire({
+                        title: 'Successfully Registred',
+                        text: 'You can now login',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                      }).then(function(){
+                          window.location = './registrationCheckID.php';
+                      });
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
+                        Swal.fire({
+                        title: 'Error',
+                        text: 'Something went wrong',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                      })
+                    }            
+                });
+                }
+            }
+        })
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });

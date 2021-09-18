@@ -16,6 +16,11 @@
 
       if ( $count_checkStudID === 1 ){
         header('Location: ./formRegistration.php');
+        setcookie('userID', $row_checkStudID['stud_id']);
+        setcookie('userFirstName', $row_checkStudID['stud_firstname']);
+        setcookie('userLastName', $row_checkStudID['stud_lastname']);
+        setcookie('userMiddleName', $row_checkStudID['stud_midInitial']);
+
       } else {
         echo "
               <script>
@@ -30,7 +35,7 @@
       }
 
       // Check employee ID if exist in database
-      $sql_checkEmpID = "SELECT * FROM tbl_employee_registration WHERE employee_id = ?";
+      $sql_checkEmpID = "SELECT * FROM tbl_employee_registration WHERE emp_id = ?";
       $stmt_checkEmpID = $con->prepare($sql_checkEmpID);
       $stmt_checkEmpID->bind_param('s', $userId);
       $stmt_checkEmpID->execute();
@@ -40,6 +45,10 @@
 
       if ( $count_checkEmpID === 1 ){
         header('Location: ./formRegistration.php');
+        setcookie('userID', $row_checkEmpID['emp_id']);
+        setcookie('userFirstName', $row_checkEmpID['emp_firstname']);
+        setcookie('userLastName', $row_checkEmpID['emp_lastname']);
+        setcookie('userMiddleName', $row_checkEmpID['emp_midInitial']);
       } else {
         echo "
               <script>
