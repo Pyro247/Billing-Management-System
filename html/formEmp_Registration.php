@@ -46,9 +46,10 @@
 
 <div class="container active" id="container__id">
 
-    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
+    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
         <h3>Register - <?= $_COOKIE['userID']; ?> - Employee</h3>
         <input type="hidden" name="userID" value="<?php  echo $_COOKIE['userID']; ?>">
+        <input type="hidden" name="role" value="<?php  echo $_COOKIE['role']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>

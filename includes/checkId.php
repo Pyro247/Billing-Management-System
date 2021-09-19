@@ -20,6 +20,7 @@
         setcookie('userFirstName', $row_checkStudID['stud_firstname']);
         setcookie('userLastName', $row_checkStudID['stud_lastname']);
         setcookie('userMiddleName', $row_checkStudID['stud_midInitial']);
+        setcookie('role','Student');
 
       } else {
         echo "
@@ -49,6 +50,7 @@
         setcookie('userFirstName', $row_checkEmpID['emp_firstname']);
         setcookie('userLastName', $row_checkEmpID['emp_lastname']);
         setcookie('userMiddleName', $row_checkEmpID['emp_midInitial']);
+        setcookie('role', $row_checkEmpID['emp_role']);
       } else {
         echo "
               <script>
