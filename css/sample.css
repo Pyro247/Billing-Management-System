@@ -183,8 +183,11 @@
 
 
 
+
+
+
 .lp_nav_left ul li a:hover, .lp_nav_right ul li a:hover{
-  color: #0d6efd;
+    color: #0d6efd;
 }
 
 .lp_nav_mid{
@@ -219,7 +222,7 @@
 .header{
     width: 100;
     height: 100vh;
-    background-image: url(/images/index_img/index_bg.jpg);
+    background-image: url(../images/index_img/index_bg.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -247,7 +250,6 @@
 }
 
 .about_section .about_wrapper{
-    border: 5px solid black;
     display: flex;
     margin-left: 100px;
     padding: 20px 0;
@@ -287,7 +289,7 @@
     font-size: 1.2rem;
 }
 
-.about_wrapper_right a{
+.about_wrapper_right .discover__link{
     font-size: 1.5rem;
     font-weight: 500;
     text-decoration: none;
@@ -302,14 +304,16 @@
     width: 100%;
     height: 100vh;
     padding-top: 100px;
-    background-image: url(/images/index_img/learning_background.png);
+    background-image: url(../images/index_img/learning_background.png);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
 }
 
 .learning_wrapper{
     padding: 0 50px;
 }
+
 
 .learning_wrapper h3{
     font-size: 3.5rem;
@@ -327,7 +331,7 @@
     justify-content: space-evenly;
 }
 
-.learning_o img, .learning_m img{
+.learning_o_m img{
     box-shadow: 5px 5px 10px;
     border-radius: 5px;
     width: 400px;
@@ -335,12 +339,11 @@
     transition: 500ms ease;
 }
 
-.learning_o img:hover, .learning_m img:hover{
+.learning_o_m img:hover{
     transform: translate(-20px, -40px);
     box-shadow: 15px 50px 10px rgb(58, 55, 55)
-}
-
-.learning_o, .learning_m{
+} 
+.learning_omb{
     display: flex;
     flex-direction: column;
     position: relative;
@@ -352,4 +355,14 @@
     color: #0d6efd;
     position: absolute;
     bottom: -10px;
+}
+
+.learn__link{
+    color: white;
+    display: block;
+    text-align: center;
+    margin-top: 100px;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white-color);
 }
