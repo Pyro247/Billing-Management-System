@@ -57,7 +57,7 @@
           </div>
       </div>
       <a href="../index.html" class="logout__">Logout</a>
-  </div>
+    </div>
 
 
 
@@ -66,16 +66,20 @@
 
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-            <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz</p>
+            <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+            <div class="profile_link" id="profile_link_id">
+              <a href="">My Email</a>
+              <a href="">Change Password</a>
+              <a href="">Logout</a>
+            </div>
             <p class="reg__name">Registrar | 900283</p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
             <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-home" aria-selected="true">Dashboard</a>
-                <a class="nav-link main__" id="v-pills-manage--users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Users</a>
-                <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-messages" aria-selected="false">Archives</a>
-                <a class="nav-link main__" id="v-pills-logout-tab" data-toggle="pill" href="#v-pills-logout" role="tab" aria-controls="v-pills-settings" aria-selected="false">Logout</a>
+                <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
+                <a class="nav-link main__" id="v-pills-manage--users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
+                <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
                 <q class="mt-2">Version 1.0.0.0</q>
             </div>
         </div>
@@ -86,7 +90,7 @@
            <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-                <p class="__reg-unreg">Unregistered Students</p>
+                <p class="title_tab_universal">Unregistered Students</p>
                 <form action="">
                   <input type="text" name="" id="" placeholder="Search">
                   <button type="button" class="btn btn-primary">Search</button>
@@ -213,7 +217,7 @@
 
             <!-- MANAGE USERS -->
             <div class="tab-pane fade manage-users-tab show" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
-              <p class="__manage-users-p" id="student_employee_all_id_text">Student's Records</p>
+              <p class="title_tab_universal" id="student_employee_all_id_text">Student's Records</p>
               <form action="">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
@@ -240,7 +244,7 @@
                       <div class="manage_users_universal_tab_lmr_parent">
 
                           <div class="manage_users_universal_left_tab">
-                          <img src="../images/registrar_img/sample_registrar_pic.png" class="rounded float-start" alt="...">
+                          <img src="../images/registrar_img/sample_student_pic.png" class="rounded float-start" alt="...">
                           <button type="button" class="btn btn-primary my-2">Change Image</button>
                           </div>
 
@@ -340,8 +344,8 @@
                                   <div class="form-floating">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                       <option value="BSIT" selected>Information Technology</option>
-                                      <option value="BSHTM" selected>Hotel Management and Tourism</option>
-                                      <option value="BSME" selected>Mechanical Engineering</option>
+                                      <option value="BSHTM">Hotel Management and Tourism</option>
+                                      <option value="BSME">Mechanical Engineering</option>
                       
                                     </select>
                                     <label for="floatingSelect">College | Bachelor of Science in</label>
@@ -352,8 +356,8 @@
                                   <div class="form-floating">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                       <option value="BSIT" selected>WMA</option>
-                                      <option value="BSHTM" selected>TSM</option>
-                                      <option value="BSME" selected>NA</option>
+                                      <option value="BSHTM">TSM</option>
+                                      <option value="BSME">NA</option>
                       
                                     </select>
                                     <label for="floatingSelect">Major</label>
@@ -395,7 +399,7 @@
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
                               <label class="form-check-label" for="flexCheckChecked">
                                 Form 138
                               </label>
@@ -515,7 +519,7 @@
                   <div class="manage_users_universal_tab_lmr_parent">
 
                       <div class="manage_users_universal_left_tab">
-                      <img src="../images/registrar_img/example_employee.png" class="rounded float-start" alt="...">
+                      <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="...">
                       <button type="button" class="btn btn-primary my-2">Change Image</button>
                       </div>
 
@@ -810,7 +814,7 @@
 
             <!-- ARCHIVES -->
             <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
-              <p class="__manage-users-p" id="student_employee_all_id_text">Archives</p>
+              <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
 
               <form action="">
                 <input type="text" name="" id="" placeholder="Search">
@@ -942,36 +946,7 @@
 
             </div>
 
-
-            <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab">
-              <div class="table__" style="overflow-x: auto;">
-                <p class="__manage-users-p" id="student_employee_all_id_text">CHANGES MADE</p>
-                <table class="table">
-                    <thead class="thead-light">
-                      <tr>
-                        <th scope="col">Student ID</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
-                        <th scope="col">Course</th>
-                        <th scope="col">Changes Made</th>
-                        
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">2018300366</th>
-                        <td>Justine Dave</td>
-                        <td>DelosReyes</td>
-                        <td>BSIT</td>
-                        <td>Changed Last name</td>
-                        
-                        
-                      </tr>
-                     
-                    </tbody>
-                  </table>
-                </div>
-            </div>
+          
           </div>
         </div>
     </div>
@@ -1028,6 +1003,11 @@
             change_tab();
           });
 
+          function profile_link_show(){
+            let profile_link = document.getElementById('profile_link_id');
+          profile_link.classList.toggle('show');
+          }
+          
 
       </script>
 

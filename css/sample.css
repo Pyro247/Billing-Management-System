@@ -254,8 +254,8 @@
 
 
 .about_section .about_wrapper .about_wrapper_left img{
-    width: 550px;
-    height: 600px;
+    width: 600px;
+    height: 500px;
     margin-left: -100px;
     border-radius: 10px;
     border: 2px solid #7f7fd5;
@@ -292,8 +292,6 @@
     text-decoration: none;
     color: var(--black-color);
     border-bottom: 2px solid black;
-    position: absolute;
-    bottom: 10px;
 }
 
 

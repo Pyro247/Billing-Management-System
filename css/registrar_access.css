@@ -133,7 +133,7 @@
     flex-direction: column;
     margin: 0;
     border-bottom: 2px solid black;
-    
+    transition: 300ms ease;
 }
 
 .logout__{
@@ -141,7 +141,12 @@
     right: 10px;
     color: var(--black-color);
     font-size: 1.2rem;
+    text-align: left;
 }
+
+
+
+
 
 .nav__bar .nav__bar_two img{
     width: 50px;
@@ -188,7 +193,12 @@
     
 }
 
-
+.upper-left-tab{
+    position: relative;
+}
+.upper-left-tab > *{
+    transition: 300ms ease;
+}
 
 
 .upper-left-tab img{
@@ -204,6 +214,44 @@
     margin: 0;
     font-weight: 500;
     margin-bottom: 5px;
+}
+
+.reg__name i{
+    cursor: pointer;
+}
+
+.profile_link{
+    padding: 5px;
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    border-radius: 5px;
+    width: 225px;
+    margin: -20px auto 10px;
+    transition: 300ms ease;
+    height: 0;
+    box-shadow: 8px 11px 14px 0px rgba(0,0,0,0.75);
+    user-select: none;
+    pointer-events: none;
+}
+
+.profile_link.show{
+    opacity: 1;
+    height: 80px;
+    margin: 5px auto 10px;
+    user-select: auto;
+    pointer-events: auto;
+}
+
+.profile_link a:hover{
+    color: #0d6efd;
+}
+
+.profile_link a{
+    display: block;
+    margin-left: 10px;
+    color: var(--black-color);
+    text-decoration: none;
 }
 
 .nav-link.main__{
@@ -225,7 +273,7 @@ q{
 }
 
 
-.__reg-unreg, .__manage-users-p{
+.title_tab_universal{
     font-size: 2rem;
 }
 
@@ -303,7 +351,6 @@ q{
 
 .role_information{
     font-size: 1.5rem;
-    
 }
 
 
