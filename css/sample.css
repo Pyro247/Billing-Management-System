@@ -183,9 +183,6 @@
 
 
 
-
-
-
 .lp_nav_left ul li a:hover, .lp_nav_right ul li a:hover{
     color: #0d6efd;
 }
@@ -298,6 +295,115 @@
     position: absolute;
     bottom: 10px;
 }
+
+
+
+/* Mission Vission Objectives */
+.mvo_section{
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    background-color: rgb(154, 211, 230);
+}
+
+.mvo_section img{
+    width: 200px;
+    height: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+.mvo_wrapper{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.mvo{
+    width: 25%;
+    height: calc(100vh - 320px);
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 0 5px;
+    box-shadow: -16px -5px 14px 0px rgba(0,0,0,0.75);
+    
+}
+
+.mvo > h3{
+    text-align: center;
+}
+
+.mvo.mission{
+    background-color: #151e3d;
+    color: var(--white-color);
+}
+
+.mvo.vission{
+    background-color: #3944bc;
+    color: var(--white-color);
+}
+
+.mvo.objectives{
+    background-color: #022d36;
+    color: var(--white-color);
+}
+
+.mvo.mission::before{
+    background-image: url('../images/index_img/mvo_mission.png');
+    background-size: 120px 120px;
+    display: block;
+    margin: 3px auto;
+    width: 120px; 
+    height: 120px;
+    content:" ";
+}
+
+.mvo.vission::before{
+    background-image: url('../images/index_img/mvo_vission.png');
+    background-size: 110px 110px;
+    display: block;
+    margin: 3px auto;
+    width: 110px; 
+    height: 110px;
+    content:" ";
+}
+
+.mvo.objectives::before{
+    background-image: url('../images/index_img/mvo_objectives.png');
+    background-size: 120px 120px;
+    display: block;
+    margin: 3px auto;
+    width: 120px; 
+    height: 120px;
+    content:" ";
+}
+
+.mvo.mission h3::after,
+.mvo.vission h3::after,
+.mvo.mvo.objectives h3::after{
+    content: '';
+    width: 100%;
+    height: 15px;
+    z-index: -1;
+    display: block;
+    -moz-border-radius:	 0 0 6px 6px; /* FF1+ */
+    -webkit-border-radius:	0 0 6px 6px; /* Saf3+, Chrome */
+    border-radius:	0 0 6px 6px; /* Opera 10.5, IE 9 */
+    -moz-box-shadow: 0px 5px 6px rgba(0,0,0,1); /* FF3.5+ */
+    -webkit-box-shadow: 0px 5px 6px rgba(0,0,0,1); /* Saf3.0+, Chrome */
+    box-shadow: 0px 5px 6px rgba(0,0,0, 1); /* Opera 10.5, IE 9.0 */
+    margin-bottom: 20px;
+}
+
+.mvo_wrapper p{
+    font-size: 1.3rem;
+    text-align: center;
+}
+
+
+
+
 
 /* Learning Section */
 .learning_section{
