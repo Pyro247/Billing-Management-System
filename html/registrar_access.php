@@ -50,7 +50,7 @@
 
     <div class="nav__bar">
       <div class="nav__bar_two">
-      <img src="/images/logo.png" alt="">
+      <img src="../images/logo.png" alt="">
           <div class="nav__bar_two_text">
               <span>Pyro Colleges Inc.</span>
               <p>Excellence at its finest.</p>
@@ -64,7 +64,7 @@
         <div class="col-3 left-tab">
 
         <div class="upper-left-tab">
-            <img src="../images/sample_registrar_pic.png" alt="">
+            <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
             <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz</p>
             <p class="reg__name">Registrar | 900283</p>
             <p class="reg__name" id="reg-date-time"></p>
@@ -95,7 +95,7 @@
                 <div class="col my-3 all_student_info">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="/images/all_students.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Total Students</span>
@@ -105,7 +105,7 @@
 
                 <div class="col-sm-2 mx-1 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="/images/transferee.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Transferee Students</span>
@@ -116,7 +116,7 @@
 
                 <div class="col-sm-2 mx-1 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="/images/registered_student.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/registered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Registered Students</span>
@@ -127,7 +127,7 @@
 
                 <div class="col-sm-2 mx-1 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="/images/unregistered_student.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Unregistered Students</span>
@@ -239,7 +239,7 @@
                       <div class="manage_users_universal_tab_lmr_parent">
 
                           <div class="manage_users_universal_left_tab">
-                          <img src="/images/sample_registrar_pic.png" class="rounded float-start" alt="...">
+                          <img src="../images/registrar_img/sample_registrar_pic.png" class="rounded float-start" alt="...">
                           <button type="button" class="btn btn-primary my-2">Change Image</button>
                           </div>
 
@@ -480,11 +480,22 @@
                             <th scope="row">2018300366</th>
                             <td>Justine Dave</td>
                             <td>Delos reyes</td>
-                            <td>✓</td>
+                            <td></td>
                             <td>✓</td>
                             <td> </td>
-                            <td>✓</td>
+                            <td></td>
                             <td>Submitted Form 138 <br> 9/14/2021</td>
+                          </tr>
+
+                          <tr>
+                            <th scope="row">2018300902</th>
+                            <td>John David</td>
+                            <td>Cruz</td>
+                            <td></td>
+                            <td></td>
+                            <td> </td>
+                            <td>✓</td>
+                            <td>Submitted Good moral <br> 3/21/2021</td>
                           </tr>
                         </tbody>
                       </table>
@@ -503,7 +514,7 @@
                   <div class="manage_users_universal_tab_lmr_parent">
 
                       <div class="manage_users_universal_left_tab">
-                      <img src="/images/example_employee.png" class="rounded float-start" alt="...">
+                      <img src="../images/registrar_img/example_employee.png" class="rounded float-start" alt="...">
                       <button type="button" class="btn btn-primary my-2">Change Image</button>
                       </div>
 
@@ -597,7 +608,7 @@
                   <button type="button" class="btn btn-info">Add</button>
                   <button type="button" class="btn btn-warning">Edit</button>
                   <button type="button" class="btn btn-danger">Delete</button>
-                  <button type="button" class="btn btn-success">Save</button>
+                  <button type="button" class="btn btn-success" disabled>Save</button>
                   </div> 
                   <hr>
                   <div class="manage_student_tab_below mt-4">
