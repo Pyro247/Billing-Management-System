@@ -15,7 +15,7 @@
       $count_checkStudID = $result_checkStudID->num_rows;
 
       if ( $count_checkStudID === 1 ){
-        header('Location: ./formRegistration.php');
+        header('Location: ../html/formStud_Registration.php');
         setcookie('userID', $row_checkStudID['stud_id']);
         setcookie('userFirstName', $row_checkStudID['stud_firstname']);
         setcookie('userLastName', $row_checkStudID['stud_lastname']);
@@ -44,7 +44,7 @@
       $count_checkEmpID = $result_checkEmpID->num_rows;
 
       if ( $count_checkEmpID === 1 ){
-        header('Location: ./formRegistration.php');
+        header('Location: ../html/formEmp_Registration.php');
         setcookie('userID', $row_checkEmpID['emp_id']);
         setcookie('userFirstName', $row_checkEmpID['emp_firstname']);
         setcookie('userLastName', $row_checkEmpID['emp_lastname']);
