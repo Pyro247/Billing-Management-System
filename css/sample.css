@@ -310,7 +310,7 @@
     width: 200px;
     height: 200px;
     display: block;
-    margin: 0 auto;
+    margin: 5px auto;
 }
 
 .mvo_wrapper{
@@ -471,4 +471,143 @@
     font-size: 2rem;
     font-weight: 500;
     color: var(--white-color);
+}
+
+
+/* Footer */
+.footer_section{
+    width: 100%;
+    height: 100vh;
+    padding-top: 100px;
+    padding: 5px;
+    background-image: linear-gradient(to right, #000428, #004e92, #000428 );
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.footer_wrapper{
+    width: 100%;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--white-color);
+    padding: 50px 100px;
+    
+}
+
+.footer_up{
+    margin-bottom: 50px;
+}
+
+.footer_up, .footer_down{
+    display: flex;
+}
+
+.footer_up .footer.fl{
+    margin-top: 50px;
+    text-align: right;
+    width: 30%;
+}
+
+.footer_up .footer.fm{
+    text-align: center;
+    width: 40%;
+}
+
+
+.footer_up .footer.fr{
+    margin-top: 50px;
+    width: 30%;
+}
+
+
+.footer_up .footer.fm p{
+    font-family: var(--font-school-name);
+    font-size: 3rem;
+}
+
+.footer_up .footer.fm span{
+    font-size: 1.5rem;
+    font-family: var(--font-tagline);
+}
+
+
+/* Footer down */
+.footer_down .footer.fl{
+    text-align: right;
+    margin-top: auto;
+    width: 30%;
+}
+
+.footer_down .footer.fl a, .footer_down .footer.fr i{
+    text-decoration: none;
+    color: var(--white-color);
+    margin: 0 5px;
+    font-size: 1.6rem;
+}
+
+.footer_down .footer.fl a:first-child{
+    color: #4267B2;
+}
+
+.footer_down .footer.fl a:nth-child(2){
+    color: #1DA1F2;
+}
+
+.footer_down .footer.fl a:nth-child(3){
+    color: #7289DA;
+}
+
+.footer_down .footer.fl a:last-child{
+    color: #34A853;
+}
+
+.footer_down .footer.fm a{
+    opacity: .9;
+    color: white;
+}
+
+.footer_down .footer.fm p{
+    font-size: 1.2rem;
+    opacity: .9;
+}
+
+.footer_down .footer.fm{
+    margin-top: auto;
+    text-align: center;
+    width: 40%;
+}
+
+.footer_down .footer.fr{
+    text-align: left;
+    margin-top: auto;
+    width: 30%;
+}
+
+.footer_down .footer.fr span{
+    font-size: 1.6rem;
+}
+
+/* Footer 2 */
+footer{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+footer a{
+    color: var(--white-color);
+    opacity: .9;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+footer span{
+    float: right;
+    color: white;
+    opacity: .8;
 }
