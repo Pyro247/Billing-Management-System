@@ -1,0 +1,252 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&family=Zilla+Slab&display=swap');
+@import "compass/css3";
+/* Note|| Font stle is 'Poppins' 16px */
+
+:root{
+    font-size: 16px;
+    --black-color: rgb(31, 29, 28);
+    --white-color: #FFFFFF;
+    --blue-color: #56A8CBFF;
+    --green-color: #3fd4b7;
+    --input-background-color: rgb(194, 207, 219);
+    --font-school-name: 'Zilla Slab', serif;
+    --font-tagline: 'Overpass', sans-serif;
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+
+/* Loader */
+.loader-wrapper{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1e1e1e;
+  z-index: 1000;
+  transition: 750ms ease;
+}
+.wrapper{
+  width:200px;
+  height:60px;
+  position: absolute;
+  left:50%;
+  top: 40%;
+  transform: translate(-50%, -50%);
+}
+.circle{
+  width:20px;
+  height:20px;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #fff;
+  left:15%;
+  transform-origin: 50%;
+  animation: circle .5s alternate infinite ease;
+}
+
+@keyframes circle{
+  0%{
+      top:60px;
+      height:5px;
+      border-radius: 50px 50px 25px 25px;
+      transform: scaleX(1.7);
+  }
+  40%{
+      height:20px;
+      border-radius: 50%;
+      transform: scaleX(1);
+  }
+  100%{
+      top:0%;
+  }
+  }
+  .circle:nth-child(2){
+  left:45%;
+  animation-delay: .2s;
+  }
+  .circle:nth-child(3){
+  left:auto;
+  right:15%;
+  animation-delay: .3s;
+  }
+  .shadow{
+  width:20px;
+  height:4px;
+  border-radius: 50%;
+  background-color: rgba(0,0,0,.5);
+  position: absolute;
+  top:62px;
+  transform-origin: 50%;
+  z-index: -1;
+  left:15%;
+  filter: blur(1px);
+  animation: shadow .5s alternate infinite ease;
+  }
+
+  @keyframes shadow{
+  0%{
+      transform: scaleX(1.5);
+  }
+  40%{
+      transform: scaleX(1);
+      opacity: .7;
+  }
+  100%{
+      transform: scaleX(.2);
+      opacity: .4;
+  }
+  }
+  .shadow:nth-child(4){
+  left: 45%;
+  animation-delay: .2s
+  }
+  .shadow:nth-child(5){
+  left:auto;
+  right:15%;
+  animation-delay: .3s;
+  }
+  .wrapper span{
+  position: absolute;
+  top: 75px;
+  font-size: 25px;
+  color: #fff;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  }
+
+
+/* Login Form */
+.back_link{
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  color: crimson;
+  font-size: 1.4rem;
+}
+
+.bg{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: brightness(25%)
+}
+.wrapper_l{
+  width: 100vw;
+  height: 100vh;
+}
+
+form{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 50px 50px 10px 50px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-shadow: 0px 8px 17px 2px #004e92;
+  box-shadow: 0px 8px 17px 2px #004e92;
+  /* background-image: linear-gradient(to right, #000428, #004e92, #000428 ); */
+  overflow-y: auto;
+}
+
+form img{
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 15px;
+  
+}
+
+form span{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white-color);
+  text-align: center;
+}
+
+form span:last-child{
+  color: var(--white-color);
+  font-size: 1rem;
+  text-transform: none;
+}
+
+.reg_link{
+  color: lightgreen;
+  transition: all 150ms linear;
+}
+
+.reg_link:hover{
+    color: rgb(38, 182, 38);
+}
+
+.inputs_wrapper{
+  margin-top: 25px;
+}
+
+.inputs{
+  margin: 20px 0;
+  display: flex;
+  flex-direction: column;
+}
+.inputs input{
+    border: none;
+    outline: none;
+    padding: 2px 5px 2px 15px;
+    font-size: 1.4rem;
+    background: none;
+    color: #FFFFFF;   
+}
+
+.inputs input::placeholder{
+    color: white;
+    opacity: .7;
+}
+
+.inputs_wrapper span{
+  display: block;
+    text-align: center;
+    font-weight: normal;
+    text-transform: uppercase;
+    font-size: 2rem;
+}
+
+.inputs i{
+  border-bottom: 2px solid #0d6efd;
+  font-size: 1.2rem;
+  width: 100%;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.fp{
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  color: white;
+  margin-bottom: 15px;
+}
+
+.fp:hover{
+  opacity: .7;
+  transition: all 150ms linear;
+}
+
+button{
+  margin-top: 20px;
+  padding: 5px;
+  font-size: 1.2rem;
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+  cursor: pointer;
+}
