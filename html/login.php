@@ -47,7 +47,7 @@
         <!-- LOADER -->
 
 
-    <img src="../images/index_img/index_bg.jpg" alt="" class="bg">
+    <img src="../images/login_bg.jpg" alt="" class="bg">
     <div class="wrapper_l">
         <?php include_once '../includes/login.php'?>
         <form action="login.php" method="POST">
