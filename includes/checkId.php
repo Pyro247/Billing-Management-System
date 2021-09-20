@@ -5,7 +5,28 @@
 
       $userId = $_POST['userId'];
 
-       // Check student ID if exist in database 
+      // Check if the User ID is already have an account
+      $sql_checkRegAcc = "SELECT * FROM `tbl_accounts` WHERE user_id = ?";
+      $stmt_checkRegAcc = $con->prepare($sql_checkRegAcc);
+      $stmt_checkRegAcc->bind_param('s', $userId);
+      $stmt_checkRegAcc->execute();
+      $result_checkRegAcc = $stmt_checkRegAcc->get_result();
+      $row_checkRegAcc= $result_checkRegAcc->fetch_assoc();
+      $count_checkRegAcc = $result_checkRegAcc->num_rows;
+
+      if ( $count_checkRegAcc === 1 ){
+        echo "
+              <script>
+              Swal.fire({
+                title: 'ID Notice',
+                text: 'This ID is already registered',
+                icon: 'info',
+                confirmButtonText: 'OK'
+              });
+              </script>
+        ";
+      }else{
+          // Check student ID if exist in database 
       $sql_checkStudID = "SELECT * FROM tbl_student_registration WHERE stud_id = ?";
       $stmt_checkStudID = $con->prepare($sql_checkStudID);
       $stmt_checkStudID->bind_param('s', $userId);
@@ -63,6 +84,8 @@
               </script>
         ";
       }
+      }
+     
   }
       
 ?>
