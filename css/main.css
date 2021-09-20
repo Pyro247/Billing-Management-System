@@ -245,10 +245,12 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
 }
 
 .learning_wrapper{
     padding: 0 50px;
+    
 }
 
 
@@ -371,6 +373,7 @@
     padding-top: 100px;
     display: grid;
     place-content: center;
+    overflow-x: hidden;
 }
 
 .mvo_section img{

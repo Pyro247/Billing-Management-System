@@ -56,7 +56,7 @@
               <p>Excellence at its finest.</p>
           </div>
       </div>
-      <a href="../index.html" class="logout__">Logout</a>
+      <a href="./login.php" class="logout__">Logout</a>
     </div>
 
 

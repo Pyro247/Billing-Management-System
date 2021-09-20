@@ -10,14 +10,15 @@
     <!-- FontAwsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
 
-      <!-- Javascript for Loader -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
+        <!-- Javascript for Loader -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- For Loader -->
-   <script type="text/javascript">
+    <script type="text/javascript">
         $(window).on("load", function () {
             $(".loader-wrapper").fadeOut('xslow');
         });
@@ -27,8 +28,6 @@
         }
 
     </script>
-
-
 
     <title>Login</title>
     </head>
@@ -63,7 +62,7 @@
                     <div class="inputs">
                         <div class="input-user">
                             <i class="fas fa-user-tie">
-                                <input type="text" name="email" id="email" placeholder="Email" required>
+                                <input type="text" name="email" id="email" placeholder="Email"  required>
                             </i>
                         </div>
 
@@ -84,5 +83,7 @@
             </div>
         </form>
     </div>
+
+    
 </body>
 </html>
