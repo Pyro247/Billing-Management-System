@@ -74,11 +74,11 @@
                         </div>
                         <button type="submit">Login</button>
                         
-                        <a href="" class="fp">Forgot Password?</a>
+                        <a href="../html/forgot-password.php" class="fp">Forgot Password?</a>
                     </div>
                     
                     
-                    <span>Dont have an account yet? <a href="#" class="reg_link">Register here</a></span>
+                    <span>Dont have an account yet? <a href="..\html\registrationCheckID.php" class="reg_link">Register here</a></span>
             </div>
         </form>
     </div>
