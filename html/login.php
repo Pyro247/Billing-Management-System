@@ -15,6 +15,7 @@
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- For Loader -->
    <script type="text/javascript">
         $(window).on("load", function () {
@@ -49,7 +50,8 @@
 
     <img src="../images/index_img/index_bg.jpg" alt="" class="bg">
     <div class="wrapper_l">
-        <form action="">
+        <?php include_once '../includes/login.php'?>
+        <form action="login.php" method="POST">
             <a href="../index.html" class="back_link"><i class="fas fa-arrow-circle-left"></i></a>
 
             <img src="../images/logo.png" alt="">
@@ -61,18 +63,18 @@
                     <div class="inputs">
                         <div class="input-user">
                             <i class="fas fa-user-tie">
-                                <input type="text" name="" id="" placeholder="Email" required>
+                                <input type="text" name="email" id="email" placeholder="Email" required>
                             </i>
                         </div>
 
                     
                         <div class="input-user">
                             <i class="fas fa-key">
-                                <input type="password" name="" id="" placeholder="Password" required>
+                                <input type="password" name="password" id="password" placeholder="Password" required>
                             </i>
                             
                         </div>
-                        <button type="submit">Login</button>
+                        <button type="submit" name="login" id="login">Login</button>
                         
                         <a href="../html/forgotPassword.php" class="fp">Forgot Password?</a>
                     </div>
@@ -82,7 +84,5 @@
             </div>
         </form>
     </div>
-
-
 </body>
 </html>
