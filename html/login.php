@@ -74,7 +74,7 @@
                         </div>
                         <button type="submit">Login</button>
                         
-                        <a href="../html/forgot-password.php" class="fp">Forgot Password?</a>
+                        <a href="../html/forgotPassword.php" class="fp">Forgot Password?</a>
                     </div>
                     
                     
