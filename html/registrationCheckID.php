@@ -33,19 +33,7 @@
 
     
     <!-- NAVBARRRRRRRRRRR -->
-    <nav>
-        <div class="nav2">
-        <img src="../images/logo.png" alt="">
-            <div class="nav2-text">
-                <span>Pyro Colleges Inc.</span>
-                <p>Excellence at its finest.</p>
-            </div>
-        </div>
-
-        <div class="navright">
-
-        </div>
-    </nav>
+    
 
     <!-- Validator -->
     <?php
@@ -58,7 +46,7 @@
 
             <input type="number" name="userId" id="" placeholder="ID number">
             <input type="submit" name="checkID" id="checkID" value="Submit">
-            <p>Already have an account? <a href="../index.php">Login Here</a></p>
+            <p>Already have an account? <a href="../html/login.php">Login Here</a></p>
 
           
         </form>
