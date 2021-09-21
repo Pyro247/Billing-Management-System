@@ -51,8 +51,8 @@
             <span class="fyp">Forgot your password?</span>
             <p>Don't worry! Resseting your password is easy. Just type in the email you used to register with us.</p>
 
-            <input type="email" name="" id="" placeholder="Email" required>
-            <button>Submit</button>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <button type="submit" name="submit">Submit</button>
 
             <span class="foot">Did you remember your password? <a href="./login.php">Try logging in</a></span>
         </form>

@@ -58,7 +58,7 @@
 
             <input type="number" name="userId" id="" placeholder="ID number">
             <input type="submit" name="checkID" id="checkID" value="Submit">
-            <p>Already have an account? <a href="../index.php">Login Here</a></p>
+            <p>Already have an account? <a href="./login.php">Login Here</a></p>
 
           
         </form>
