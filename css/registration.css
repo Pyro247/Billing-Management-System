@@ -23,8 +23,9 @@
 
 html,
 body {
-  background-color: var(--white-color);
+  background-color: var(--black-color);
 }
+
 
 /* LOADERRRR */
 .loader-wrapper {
@@ -125,43 +126,13 @@ body {
   text-align: center;
 }
 
-/* NAVBARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
-nav {
+.bg{
+  position: absolute;
   width: 100%;
-  height: 100px;
-  background: var(--black-color);
-  color: white;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  border-bottom: 2px solid var(--white-color);
+  height: 100%;
+  filter: brightness(25%)
 }
-
-nav .nav2 img {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-}
-
-nav .nav2 {
-  display: flex;
-  align-items: center;
-}
-
-nav .nav2 .nav2-text span {
-  display: block;
-  font-family: var(--font-school-name);
-  font-size: 2rem;
-  margin-bottom: 2px;
-  font-weight: bold;
-}
-
-nav .nav2 .nav2-text p {
-  font-family: var(--font-tagline);
-  letter-spacing: 1px;
-  color: var(--blue-color);
-  font-weight: bold;
-}
+/* NAVBARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
 
 /* POPUP VALIDATORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
 
@@ -175,27 +146,51 @@ nav .nav2 .nav2-text p {
 
 .popup-validator {
   position: absolute;
-  top: 40%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 350px;
-  height: 250px;
-  box-shadow: 1px 2px 15px var(--blue-color);
+  box-shadow: 1px 2px 15px #0d6efd;
   border-radius: 15px;
   transition: 300ms ease;
   animation: popupAnimate 500ms ease;
   z-index: 999;
-  background-color: var(--black-color);
 }
+
 @keyframes popupAnimate {
   0% {
-    top: 10%;
+    top: -10%;
   }
 }
+form img{
+  width: 80px;
+  height: 80px;
+  display: block;
+  margin: 0 auto 15px;
+}
+
+form .below_image{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white-color);
+  text-align: center;
+  border-bottom: 1px solid #dbdbd2;
+  margin-bottom: 25px;
+}
+
+form .below_image__{
+  color: var(--white-color);
+  display: block;
+  text-align: center;
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 2rem;
+  margin-bottom: 25px;
+}
+
 
 .popup-validator form {
   filter: brightness(100%);
-  padding: 15px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -211,51 +206,95 @@ nav .nav2 .nav2-text p {
 
 .popup-validator form input[type="number"] {
   background: transparent;
-  padding: 10px;
-  color: var(--white-color);
-  text-align: center;
-  font-size: 1.2rem;
-  border-radius: 10px;
-  border: 2px solid var(--blue-color);
-  outline: none;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.popup-validator form input[type="submit"] {
-  background: var(--blue-color);
-  padding: 10px;
-  color: var(--black-color);
-  text-align: center;
-  font-size: 1rem;
-  border-radius: 10px;
   border: none;
   outline: none;
-  font-weight: 500;
-  cursor: pointer;
-  width: 50%;
-  display: block;
-  margin: 10px auto;
-  transition: 300ms ease;
+  padding: 2px 5px 2px 15px;
+  font-size: 1.4rem;
+  background: none;
+  text-align: center;
+  color: #FFFFFF;   
+  border: 2px solid #0d6efd;
+  width: 100%;
+  margin-bottom: 15px;
+  margin-top: 2px;
+  border-radius: 5px;
 }
 
-.popup-validator form input[type="submit"]:hover {
-  transform: translateY(-5px);
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+{     
+-webkit-text-fill-color: var(--green-color);
+transition: background-color 5000s ease-in-out 0s;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.popup-validator form input[type="number"]::placeholder{
+  color: white;
+  opacity: .3;
+  
+}
+
+
+.popup-validator form input[type="submit"] {
+  padding: 5px;
+  font-size: 1.2rem;
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+  cursor: pointer;
+  transition: all 250ms ease;
+  width: 100px;
+  border-radius: 5px;
+  margin:0 auto 50px;
+  display: block;
+}
+
+.popup-validator form input[type="submit"]:hover{
+  background: #007bff;
+  color: var(--white-color);
 }
 
 .popup-validator form p {
-  position: absolute;
   bottom: 1px;
   text-align: center;
   color: var(--white-color);
+  
 }
 
-.popup-validator form a {
+.popup-validator form .login_link {
   text-decoration: underline;
   color: var(--green-color);
+  transition: all 150ms linear;
 }
 
-/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+.popup-validator form .login_link:hover{
+  opacity: .8;
+}
+
+.back_link{
+  position: absolute;
+  top: 20px;
+  left: 25px;
+  color: crimson;
+  font-size: 2rem;
+  z-index: 1000;
+  transition: all 150ms linear;
+}
+
+.back_link:hover{
+  color: crimson;
+  opacity: .8;
+}
+
+
+/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 .container.hide {
   opacity: 0;
   user-select: none;
@@ -285,7 +324,7 @@ nav .nav2 .nav2-text p {
 
 /* Account text  INDEPENDENT */
 
-.account__text {
+/* .account__text {
   text-align: center;
 }
 
@@ -297,10 +336,10 @@ nav .nav2 .nav2-text p {
 .btn.btn-outline-success.btn_nxt_prv:focus {
   box-shadow: none;
   outline: none;
-}
+} */
 
 /* PROGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */
-
+/* 
 .progress_container ul {
   display: flex;
   justify-content: space-evenly;
@@ -323,4 +362,5 @@ nav .nav2 .nav2-text p {
 
 .progress-bar.progress-bar-striped.progress-bar-animated {
   background-color: green;
-}
+} */ 
+

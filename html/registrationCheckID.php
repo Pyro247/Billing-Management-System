@@ -14,6 +14,18 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registration.css?<?php echo time(); ?>" />
+
+    <!-- JS LOADER -->
+    <script type="text/javascript">
+        // Onload loader transition
+        $(window).on("load", function(){
+                $(".loader-wrapper").fadeOut('xslow');
+        });
+
+        
+    </script>
+
+
     <title>Registration | University Example</title>
 </head>
 <body>
@@ -33,44 +45,37 @@
 
     
     <!-- NAVBARRRRRRRRRRR -->
-    <nav>
-        <div class="nav2">
-        <img src="../images/logo.png" alt="">
-            <div class="nav2-text">
-                <span>Pyro Colleges Inc.</span>
-                <p>Excellence at its finest.</p>
-            </div>
-        </div>
-
-        <div class="navright">
-
-        </div>
-    </nav>
+    
 
     <!-- Validator -->
     <?php
         include_once '../includes/checkId.php';
     ?>
+    <img src="../images/register_bg.jpg" alt="Pyro University" class="bg">
     <div class="popup-validator" id="popup-id">
-        
+    <a href="../index.html" class="back_link"><i class="fas fa-arrow-circle-left"></i></a>
         <form action="" method="POST">
-            <h3>Please enter ID number</h3>
 
+            
+
+            <img src="../images/logo.png" alt="">
+            <span class="below_image">Billing Management system</span>
+
+            <span class="below_image__">Register</span>
+            
+            <h3>Please enter ID number</h3>
             <input type="number" name="userId" id="" placeholder="ID number">
             <input type="submit" name="checkID" id="checkID" value="Submit">
+<<<<<<< HEAD
             <p>Already have an account? <a href="./login.php">Login Here</a></p>
+=======
+            <p>Already have an account? <a href="../html/login.php" class="login_link">Login Here</a></p>
+            
+>>>>>>> fbc931c86c79f90991d237ad00cd58baa70ca1d0
 
-          
         </form>
     </div>
-    <script type="text/javascript">
-        // Onload loader transition
-        $(window).on("load", function(){
-                $(".loader-wrapper").fadeOut('xslow');
-        });
-
-        
-    </script>
+    
 
 
     

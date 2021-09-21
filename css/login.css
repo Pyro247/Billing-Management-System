@@ -129,7 +129,7 @@
   top: 20px;
   left: 25px;
   color: crimson;
-  font-size: 1.4rem;
+  font-size: 2rem;
 }
 
 .bg{
@@ -152,10 +152,17 @@ form{
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  -webkit-box-shadow: 0px 8px 17px 2px #004e92;
-  box-shadow: 0px 8px 17px 2px #004e92;
+  -webkit-box-shadow: 1px 2px 15px #0d6efd;
+  box-shadow: 1px 2px 15px #0d6efd;
   /* background-image: linear-gradient(to right, #000428, #004e92, #000428 ); */
   overflow-y: auto;
+  animation: popupAnimate 500ms ease;
+}
+
+@keyframes popupAnimate {
+  0%{
+    top: 0%;
+  }
 }
 
 form img{
@@ -163,7 +170,6 @@ form img{
   height: 80px;
   display: block;
   margin: 0 auto 15px;
-  
 }
 
 form span{
@@ -180,12 +186,12 @@ form span:last-child{
 }
 
 .reg_link{
-  color: lightgreen;
+  color: var(--green-color);
   transition: all 150ms linear;
 }
 
 .reg_link:hover{
-    color: rgb(38, 182, 38);
+    opacity: .8;
 }
 
 .inputs_wrapper{
@@ -206,13 +212,21 @@ form span:last-child{
     color: #FFFFFF;   
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus
+{     
+  -webkit-text-fill-color: var(--green-color);
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 .inputs input::placeholder{
     color: white;
     opacity: .7;
 }
 
 .inputs_wrapper span{
-  display: block;
+    display: block;
     text-align: center;
     font-weight: normal;
     text-transform: uppercase;
@@ -249,4 +263,10 @@ button{
   background-image: none;
   border-color: #007bff;
   cursor: pointer;
+  transition: all 250ms ease;
+}
+
+button:hover{
+  background: #007bff;
+  color: var(--white-color);
 }

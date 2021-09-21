@@ -31,7 +31,7 @@
             Swal.fire({
               title: 'Login failed',
               text: 'This ID is already registered',
-              icon: 'info',
+              icon: 'error',
               confirmButtonText: 'OK'
             });
             </script>
