@@ -132,7 +132,7 @@ body {
   height: 100%;
   filter: brightness(25%)
 }
-/* NAVBARRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
+
 
 /* POPUP VALIDATORRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR */
 
@@ -161,6 +161,7 @@ body {
     top: -10%;
   }
 }
+
 form img{
   width: 80px;
   height: 80px;
@@ -295,11 +296,11 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-.container.hide {
+ .container.hide {
   opacity: 0;
   user-select: none;
   pointer-events: none;
-}
+} 
 .container {
   width: 80%;
   background-color: white;
@@ -338,8 +339,8 @@ input[type=number]::-webkit-outer-spin-button {
   outline: none;
 } */
 
-/* PROGRESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS */
-/* 
+
+
 .progress_container ul {
   display: flex;
   justify-content: space-evenly;
@@ -362,5 +363,5 @@ input[type=number]::-webkit-outer-spin-button {
 
 .progress-bar.progress-bar-striped.progress-bar-animated {
   background-color: green;
-} */ 
+} 
 

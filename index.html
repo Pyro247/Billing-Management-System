@@ -6,9 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Swiper -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
 
+    
+
+
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="./css/main.css">
-
+    
     <!-- Javascript for Loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
@@ -23,7 +29,6 @@
         window.FontAwesomeConfig = {
             searchPseudoElements: true
         }
-
     </script>
 
     <!-- Fontawsome -->
@@ -31,16 +36,21 @@
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 
 
-
     <!-- Data AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
 
+    </script>
+
+    
+     
     <title>Web-based Billing Management System</title>
+
 </head>
 
 <body>
 
-    <!-- LOADER! -->
+    <!-- LOADER! --> 
     <div class="loader-wrapper" id="loader-wrapperID">
         <div class="wrapper">
             <div class="circle"></div>
@@ -53,6 +63,7 @@
         </div>
     </div>
     <!-- LOADER -->
+
 
 
 
@@ -84,11 +95,34 @@
         </div>
     </div>
 
+    <!-- Homepage -->
     <div class="header" id="home">
-        <div class="header_wrapper">
+            
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
 
+            <!-- Slide 1 -->
+            <div class="swiper-slide first">
+                <span class="type">Mabuhay!</span>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="swiper-slide second">
+                <div class="second_wrapper">
+                    <h3>The battle between <br> <span class="covid_span">SARS-CoV-2</span></h3>
+                    <a href="">Check out what we've done! <i class="fas fa-arrow-alt-circle-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="swiper-slide third">
+                <h1>Billing Management System</h1>
+                <p>Keep track on your payments and submitted requirements!</p>
+                <a href="./html/login.php">Proceed <i class="fas fa-arrow-alt-circle-right"></i></a>
+            </div>
         </div>
-
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
 
 
@@ -172,10 +206,6 @@
 
 
 
-
-    
-
-
     <!-- Footer -->
     <div class="footer_section" id="footer" data-aos="fade">
         <div class="footer_wrapper">
@@ -240,7 +270,6 @@
     </div>
 
 
-    <!-- Footer_2 -->
 
 
 
@@ -264,13 +293,55 @@
 
     </script>
 
-
+    <!-- Data AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
 
 
+    <!-- Swiper -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            grabCursor: true,
+            slidesPerView: 1,
+            spaceBetween: 0,
+            delay: 2000,
+            loop: true,
+            speed: 1000,
+            autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+            
+        },
+
+            pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+    </script>
+
+
+    <!-- Typed.js -->
+    <!-- <script src="/js/typed.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var typed = new Typed('.type', {
+        strings: [
+         
+
+        ],
+
+        typeSpeed: 1000,
+        backSpeed: 1000,
+        loop: true
+        }); -->
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,19 @@
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.swiper{
+        height: 100vh;
+        width: 100%;    
+}
+
+.swiper-slide{
+    background: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

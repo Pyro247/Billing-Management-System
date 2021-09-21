@@ -31,18 +31,7 @@
     </div>
 </div>
     <!-- NAVBARRRRRRRRRRR -->
-<nav>
-    <div class="nav2">
-        <img src="../images/logo.png" alt="">
-        <div class="nav2-text">
-            <span>Pyro Colleges Inc.</span>
-            <p>Excellence at its finest.</p>
-        </div>
-        <div class="navright">
 
-        </div>
-    </div>
-</nav>
 
 <div class="container active" id="container__id">
 
@@ -153,7 +142,7 @@
         <!-- STEP THREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
     <div class="step_one" id="step_three_id">
         <div class="row mb-3 justify-content-center">
-            <h4 class="account__text">Account Information</h4>
+            <h4 class="account__text text-center">Account Information</h4>
 
             <div class="col-sm-4 mt-2">
                 <div class="form-floating mb-3">
