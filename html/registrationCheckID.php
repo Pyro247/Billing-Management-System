@@ -66,12 +66,10 @@
             <h3>Please enter ID number</h3>
             <input type="number" name="userId" id="" placeholder="ID number">
             <input type="submit" name="checkID" id="checkID" value="Submit">
-<<<<<<< HEAD
+
             <p>Already have an account? <a href="./login.php">Login Here</a></p>
-=======
-            <p>Already have an account? <a href="../html/login.php" class="login_link">Login Here</a></p>
-            
->>>>>>> fbc931c86c79f90991d237ad00cd58baa70ca1d0
+
+       
 
         </form>
     </div>
