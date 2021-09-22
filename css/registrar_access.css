@@ -134,6 +134,8 @@
     margin: 0;
     border-bottom: 2px solid black;
     transition: 300ms ease;
+    position: fixed;
+    z-index: 1000;
 }
 
 .logout__{
@@ -180,17 +182,22 @@
 
 
 .row{
-    
     width: 100%;
 }
 
 .left-tab{
-    height: 100vh;
+    height: 100%;
     border-right: 2px solid var(--blue-color);
     padding: 0;
-    height: 100vh;
     max-width: 300px;
+    position: fixed;
+    margin-top: 60px;
     
+}
+
+.right-tab{
+    margin-left: 300px;
+    margin-top: 60px;
 }
 
 .upper-left-tab{
@@ -277,12 +284,13 @@ q{
     font-size: 2rem;
 }
 
-.dashboard-tab form, .manage-users-tab form, .archive-tab form{
+.universalForm_one{
     display: flex;
 }
 
 
-.dashboard-tab form input, .manage-users-tab form input, .archive-tab form input{
+
+.dashboard-tab .universalForm_one input, .manage-users-tab .universalForm_one input, .archive-tab .universalForm_one input{
     width: 60%;
     margin: 0 2px;
     font-size: 1.1rem;

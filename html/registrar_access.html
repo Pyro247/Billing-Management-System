@@ -91,12 +91,13 @@
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                 <p class="title_tab_universal">Unregistered Students</p>
-                <form action="">
+                <form action="" class="universalForm_one">
                   <input type="text" name="" id="" placeholder="Search">
                   <button type="button" class="btn btn-primary">Search</button>
                     
                 </form>
 
+                
                 <div class="col my-3 all_student_info">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
@@ -143,6 +144,7 @@
 
                     <div class="col unreg_students_div">
                       <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
+                      
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option selected>All</option>
@@ -218,11 +220,13 @@
             <!-- MANAGE USERS -->
             <div class="tab-pane fade manage-users-tab show" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
               <p class="title_tab_universal" id="student_employee_all_id_text">Student's Records</p>
-              <form action="">
+              <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
 
+
+                
               <ul class="nav nav-tabs manage-users-tab__secondary" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
@@ -237,22 +241,30 @@
 
               <div class="tab-content" id="myTabContent">
 
+              
                 <!-- Students Tab -->
                 <div class="tab-pane fade show active mt-2 stud__tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
+                  <form action="" class="universalForm_two">
                       <div class="manage_users_universal_tab_lmr_parent">
-
+                        
+                        
                           <div class="manage_users_universal_left_tab">
                           <img src="../images/registrar_img/sample_student_pic.png" class="rounded float-start" alt="...">
                           <button type="button" class="btn btn-primary my-2">Change Image</button>
                           </div>
 
+
                           <div class="manage_users_universal_mid_tab px-1">
+                            
                             <div class="row g-2 mb-1">
                             <div class="col-md">
+
+                          
+
                               <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="2018300366" readonly disabled>
+                                <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="2018300366">
                                 <label for="floatingInputGrid">Student Number</label>
                               </div>
                             </div>
@@ -423,15 +435,20 @@
                             <button type="button" class="btn btn-primary font py-2 px-0">Add Requirements</button>
 
                           </div>
+                        
 
                       </div> 
+                    </form> 
                       
                       <div class="buttons_manage_universal">
                       <button type="button" class="btn btn-info">Add</button>
                       <button type="button" class="btn btn-warning">Edit</button>
                       <button type="button" class="btn btn-danger">Delete</button>
                       <button type="button" class="btn btn-success" disabled>Save</button>
-                      </div> 
+                      </div>
+
+                    
+
                       <hr>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
@@ -515,7 +532,7 @@
                 <!-- Employees Tab -->
                 <div class="tab-pane fade mt-2 employee__tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
                   <p class="role_information text-primary">Employee's Information</p>
-                        
+                  <form action="" class="universalForm_two">
                   <div class="manage_users_universal_tab_lmr_parent">
 
                       <div class="manage_users_universal_left_tab">
@@ -608,6 +625,7 @@
 
 
                   </div> 
+                </form>
                   
                   <div class="buttons_manage_universal">
                   <button type="button" class="btn btn-info">Add</button>
@@ -809,6 +827,7 @@
 
               </div>
             </div>
+            
 
 
 
@@ -816,7 +835,7 @@
             <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
               <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
 
-              <form action="">
+              <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
