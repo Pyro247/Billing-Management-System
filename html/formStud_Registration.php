@@ -31,19 +31,8 @@
     </div>
 </div>
     <!-- NAVBARRRRRRRRRRR -->
-<nav>
-    <div class="nav2">
-        <img src="../images/logo.png" alt="">
-        <div class="nav2-text">
-            <span>Pyro Colleges Inc.</span>
-            <p>Excellence at its finest.</p>
-        </div>
-        <div class="navright">
 
-        </div>
-    </div>
-</nav>
-
+<div class="parent_container__">
 <div class="container active" id="container__id">
 
     <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
@@ -382,9 +371,10 @@
     </div>
     
 </form>
+
 <div class="row">
             <div class="col-sm-1 offset-10 mb-5" >
-                <button type="button" class="btn btn-outline-danger btn_nxt_prv   " id="previous_id" onclick="prev_tab()">Previous</button>
+                <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
             </div>
             <div class="col-sm-1 ">
                 <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
@@ -392,7 +382,7 @@
         
             
         </div>
-
+        </div>
 
 
         

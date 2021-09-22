@@ -32,7 +32,7 @@
 </div>
     <!-- NAVBARRRRRRRRRRR -->
 
-
+    <div class="parent_container__">
 <div class="container active" id="container__id">
 
     <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
@@ -45,7 +45,7 @@
                 <!-- <li><i class="fa" id="ciID">&#xf19c;</i></li> -->
                 <li><i class="fa" id="aiID">&#xf502;</i></li>
             </ul>
-       
+
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress_id" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div>
@@ -177,13 +177,14 @@
 </form>
 <div class="row">
             <div class="col-sm-1 offset-10 mb-5" >
-                <button type="button" class="btn btn-outline-danger btn_nxt_prv   " id="previous_id" onclick="prev_tab()">Previous</button>
+                <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
             </div>
             <div class="col-sm-1 ">
                 <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
             </div>
         
             
+        </div>
         </div>
 
 

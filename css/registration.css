@@ -295,50 +295,13 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 
-/* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
- .container.hide {
-  opacity: 0;
-  user-select: none;
-  pointer-events: none;
-} 
-.container {
-  width: 80%;
-  background-color: white;
-  height: 400px;
-  position: relative;
-  padding: 10px;
+.parent_container__{
+  width: 100%;
+  height: 100vh;
+  background: var(--white-color);
+  display: grid;
+  place-content: center;
 }
-
-.container h3 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.col-sm-4.mb-3.s__ {
-  display: flex;
-  align-items: center;
-}
-
-.col-sm-4.mb-3.s__ label {
-  margin: 0 3px 0 10px;
-}
-
-/* Account text  INDEPENDENT */
-
-/* .account__text {
-  text-align: center;
-}
-
-.btn.btn-outline-danger.btn_nxt_prv:focus {
-  box-shadow: none;
-  outline: none;
-}
-
-.btn.btn-outline-success.btn_nxt_prv:focus {
-  box-shadow: none;
-  outline: none;
-} */
-
 
 
 .progress_container ul {
@@ -365,3 +328,6 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: green;
 } 
 
+.btn_nxt_prv{
+  margin: 0 20px;
+}

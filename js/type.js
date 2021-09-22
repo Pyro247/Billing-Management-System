@@ -10,9 +10,6 @@ let textArrayIndex = 0;
 let charIndex = 0;
 let first_slide = document.getElementById('first_slide_id');
 
-if(first_slide.classList.contains('swiper-slide-active')){
-    console.log('hehe')
-}
 
 
 
