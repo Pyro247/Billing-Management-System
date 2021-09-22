@@ -102,8 +102,12 @@
         <div class="swiper-wrapper">
 
             <!-- Slide 1 -->
-            <div class="swiper-slide first">
-                <span class="type">Mabuhay!</span>
+            <div class="swiper-slide first" id="first_slide_id">
+                <div class="first_container">
+                    <p class="typee_p"><span class="typed-text"></span> <span class="cursor">&nbsp; </span></p>
+                    <p class="new_p">New to <span>Pyro Colleges? </span></p>
+                    <a href="#">Let's take a tour! <i class="fas fa-arrow-alt-circle-right"></i></a>
+                </div>
             </div>
 
             <!-- Slide 2 -->
@@ -307,7 +311,6 @@
             grabCursor: true,
             slidesPerView: 1,
             spaceBetween: 0,
-            delay: 2000,
             loop: true,
             speed: 1000,
             autoplay: {
@@ -325,23 +328,10 @@
                 prevEl: ".swiper-button-prev",
             },
         });
-    </script>
 
-
-    <!-- Typed.js -->
-    <!-- <script src="/js/typed.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        var typed = new Typed('.type', {
-        strings: [
-         
-
-        ],
-
-        typeSpeed: 1000,
-        backSpeed: 1000,
-        loop: true
-        }); -->
-    </script>
+        </script>
+ 
+        <script src="./js/type.js"></script>
 </body>
 
 </html>

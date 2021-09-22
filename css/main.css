@@ -248,6 +248,69 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
+    
+}
+
+.first_container{
+    position: absolute;
+    top: 40%;;
+    left: 25%;
+    transform: translate(-50%, -50%);
+
+}
+
+.typee_p{
+    font-size: 4rem;
+    font-weight: 700;
+    color: var(--blue-color);
+    text-shadow: 0 1px 0 #004e92, 0 2px 0 #0c6dd4, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0,0,0,.1), 0 0 5px rgba(0,0,0,.1), 0 1px 3px rgba(0,0,0,.3), 0 3px 5px rgba(0,0,0,.2), 0 5px 10px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.2), 0 20px 20px rgba(0,0,0,.15);
+    letter-spacing: 0.1rem;
+    overflow: hidden; 
+}
+
+.new_p{
+    font-size: 3rem;
+    color: var(--white-color);
+}
+
+.first_container a{
+    color: var(--white-color);
+    font-size: 2rem;
+}
+
+
+.cursor.typing{
+    animation: none;
+}
+ .cursor{
+    display: inline-block;
+    width: 2px;
+    
+    background-color: #ccc;
+    margin-left: .5px;
+    animation: blink 1000ms infinite;
+    margin: 0;
+}
+
+
+
+@keyframes blink {
+    0%{
+        background-color: #ccc;
+    }
+    49%{
+        background-color: #ccc;
+    }
+    50%{
+        background: transparent;
+    }
+    99%{
+        background: transparent;
+    }
+    100%{
+        background-color: #ccc;
+    }
+    
 }
 
 .second{
@@ -287,7 +350,7 @@
 
 .second h3{
     font-size: 3rem;
-    color: rgb(231, 48, 85);
+    color: rgb(238, 18, 62);
 }
 
 .second a{
