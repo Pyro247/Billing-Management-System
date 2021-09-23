@@ -103,13 +103,13 @@
                   <div class="student__group_left">
                     <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
                   </div>
-                  <div class="student__group_right align-center">
+                  <div class="student__group_right align-center" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
                     <strong class="text-center d-block">1098</strong>
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -120,7 +120,7 @@
                 </div>
 
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/registered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -131,7 +131,7 @@
                 </div>
 
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -145,6 +145,8 @@
                     <div class="col unreg_students_div">
                       <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
                       
+                      <div class="row">
+                      <div class="col">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option selected>All</option>
@@ -152,10 +154,25 @@
                           <option value="2">Bachelor of Hospitality and Tourism</option>
                           <option value="3">Bachelor of Mechanical Engineering</option>
                         </select>
-                        <label for="floatingSelect">Choose Course</label>
+                        <label for="floatingSelect">Choose Program</label>
                       </div>
+                    </div>
+                    
+                  
+                  <div class="col">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option selected>All</option>
+                          <option value="1">...</option>
+                          <option value="2">...</option>
+                          <option value="3">...</option>
+                        </select>
+                        <label for="floatingSelect">Choose Filter</label>
+                      </div>
+                  </div>
+                  </div>
 
-                        <div class="table__" style="overflow-x: auto;">
+                        <div class="table__" style="overflow-x: auto;" id="table_dashboard_id">
                         <table class="table">
                             <thead class="thead-light">
                               <tr>
@@ -975,7 +992,13 @@
  
 
 
-
+  <!-- Function to appear table -->
+  <script type="text/javascript">
+    let table_ = document.getElementById('table_dashboard_id');
+    function dashboard_table_appear(){
+        table_.classList.toggle('active')
+    }
+  </script>
 
 
 

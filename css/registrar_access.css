@@ -464,3 +464,21 @@ hr{
  
 }
 
+
+.table__{
+    transition: 300ms ease;;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.table__.active{
+    opacity: 1;
+    visibility: visible;
+}
+
+
+
+
+
+
+

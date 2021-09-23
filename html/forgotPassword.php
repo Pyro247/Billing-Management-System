@@ -45,7 +45,7 @@
 
 
     <div class="forgot_wrapper">
-    
+
         <form action="">
         <img src="../images/logo.png" alt="">
             <span class="fyp">Forgot your password?</span>
@@ -53,7 +53,7 @@
 
             <input type="email" name="email" id="email" placeholder="Email" required>
             <button type="submit" name="submit">Submit</button>
-
+            
             <span class="foot">Did you remember your password? <a href="./login.php">Try logging in</a></span>
         </form>
     </div>
