@@ -56,7 +56,7 @@
               <p>Excellence at its finest.</p>
           </div>
       </div>
-      <a href="./login.php" class="logout__">Logout</a>
+    
     </div>
 
 
@@ -125,7 +125,7 @@
                     <img src="../images/registrar_img/registered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
-                    <span class="text-center d-block">Registered Students</span>
+                    <span class="text-center d-block">New Comer</span>
                     <strong class="text-center d-block">472</strong>
                   </div>
                 </div>
@@ -136,7 +136,7 @@
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
-                    <span class="text-center d-block">Unregistered Students</span>
+                    <span class="text-center d-block">Former Students</span>
                     <strong class="text-center d-block">349</strong>
                   </div>
                 </div>
