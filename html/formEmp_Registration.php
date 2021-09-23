@@ -89,14 +89,14 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" " >
-                        <label for="citizen">Citizenship</label>
+                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" ">
+                        <label for="citizen" >Citizenship</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " >
+                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " required="required">
                         <label for="civilStatus">Civil Status</label>
                     </div>
                 </div>
