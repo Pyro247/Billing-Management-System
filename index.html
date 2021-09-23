@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Swiper -->
-    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
 
-    
+
 
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="./css/main.css">
-    
+
     <!-- Javascript for Loader -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
@@ -38,19 +38,19 @@
 
     <!-- Data AOS -->
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    
+
 
     </script>
 
-    
-     
+
+
     <title>Web-based Billing Management System</title>
 
 </head>
 
 <body>
 
-    <!-- LOADER! --> 
+    <!-- LOADER! -->
     <div class="loader-wrapper" id="loader-wrapperID">
         <div class="wrapper">
             <div class="circle"></div>
@@ -89,7 +89,7 @@
         <div class="lp_nav_right">
             <ul>
                 <li><a href="#mvo">MVO</a></li>
-                <li><a href="./html/registrationCheckID.php">Register</a></li>
+                <li><a href="./html/idValidation.php">Register</a></li>
                 <li><a href="./html/login.php">Login</a></li>
             </ul>
         </div>
@@ -97,37 +97,37 @@
 
     <!-- Homepage -->
     <div class="header" id="home">
-            
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
 
-            <!-- Slide 1 -->
-            <div class="swiper-slide first" id="first_slide_id" onload="alertx()">
-                
-                <div class="first_container">
-                    <p class="typee_p"><span class="typed-text"></span> <span class="cursor">&nbsp; </span></p>
-                    <p class="new_p">New to <span>Pyro Colleges? </span></p>
-                    <a href="#">Let's take a tour! <i class="fas fa-arrow-alt-circle-right"></i></a>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+
+                <!-- Slide 1 -->
+                <div class="swiper-slide first" id="first_slide_id" onload="alertx()">
+
+                    <div class="first_container">
+                        <p class="typee_p"><span class="typed-text"></span> <span class="cursor">&nbsp; </span></p>
+                        <p class="new_p">New to <span>Pyro Colleges? </span></p>
+                        <a href="#">Let's take a tour! <i class="fas fa-arrow-alt-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="swiper-slide second">
+                    <div class="second_wrapper">
+                        <h3>The battle between <br> <span class="covid_span">SARS-CoV-2</span></h3>
+                        <a href="">Check out what we've done! <i class="fas fa-arrow-alt-circle-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide third">
+                    <h1>Billing Management System</h1>
+                    <p>Keep track on your payments and submitted requirements!</p>
+                    <a href="./html/login.php">Proceed <i class="fas fa-arrow-alt-circle-right"></i></a>
                 </div>
             </div>
-
-            <!-- Slide 2 -->
-            <div class="swiper-slide second">
-                <div class="second_wrapper">
-                    <h3>The battle between <br> <span class="covid_span">SARS-CoV-2</span></h3>
-                    <a href="">Check out what we've done! <i class="fas fa-arrow-alt-circle-right"></i></a>
-                </div>
-            </div>
-
-            <!-- Slide 3 -->
-            <div class="swiper-slide third">
-                <h1>Billing Management System</h1>
-                <p>Keep track on your payments and submitted requirements!</p>
-                <a href="./html/login.php">Proceed <i class="fas fa-arrow-alt-circle-right"></i></a>
-            </div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
-      </div>
     </div>
 
 
@@ -190,18 +190,22 @@
         <div class="mvo_wrapper">
             <div class="mvo mission" data-aos="fade-right">
                 <h3>Mission</h3>
-                <p>Our focus is to provide a stimulating early learning and child care experience which promotes each child’s social/emotional, 
+                <p>Our focus is to provide a stimulating early learning and child care experience which promotes each
+                    child’s social/emotional,
                     physical and cognitive development.</p>
             </div>
             <div class="mvo vission" data-aos="fade-down">
                 <h3>Vission</h3>
-                <p>Our vision is to empower students to acquire, demonstrate, articulate and value knowledge and skills that will support them to
-                    the global world and practise the core values of the school: respect, tolerance & inclusion, and excellence.</p>
+                <p>Our vision is to empower students to acquire, demonstrate, articulate and value knowledge and skills
+                    that will support them to
+                    the global world and practise the core values of the school: respect, tolerance & inclusion, and
+                    excellence.</p>
 
             </div>
             <div class="mvo objectives" data-aos="fade-left">
                 <h3>Objectives</h3>
-                <p>We strive to provide our graduates with an academic foundation that will enable them to gain admission to their 
+                <p>We strive to provide our graduates with an academic foundation that will enable them to gain
+                    admission to their
                     journeys and as well as to succeed in those paths.</p>
 
             </div>
@@ -315,14 +319,14 @@
             loop: true,
             speed: 1000,
             autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-            
-        },
+                delay: 5000,
+                disableOnInteraction: false,
+
+            },
 
             pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
+                el: ".swiper-pagination",
+                clickable: true,
             },
             navigation: {
                 nextEl: ".swiper-button-next",
@@ -330,9 +334,9 @@
             },
         });
 
-        </script>
- 
-        <script src="./js/type.js"></script>
+    </script>
+
+    <script src="./js/type.js"></script>
 
 
 </body>
