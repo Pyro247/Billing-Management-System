@@ -224,8 +224,8 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                         <select class="form-select form-control" name="prevCourse"id="floatingInput">
-                            <option hidden >Course</option>
-                            <option value="" disabled>Course</option>
+                            <option hidden >Program</option>
+                            <option value="" disabled>Program</option>
                             <option value="BSIT">BSIT </option>
                             <option value="BSED">BSED</option>
                             <option value="BSA">BSA</option>
@@ -234,8 +234,8 @@
 
                 <div class="col-sm-4">
                     <select class="form-select" name="prevMajor" aria-label="Default select example">
-                        <option hidden>Major</option>
-                        <option value="" disabled>Major</option>
+                        <option hidden>Specialization</option>
+                        <option value="" disabled>Specialization</option>
                         <option value="Web and Mobile Application">Web and Mobile Application</option>
                         <option value="Computer Science">Computer Science</option>
                     </select>
@@ -300,8 +300,8 @@
         <div class="row mb-3">
             <div class="col-sm-4">
                     <select class="form-select form-control" name="currCourse" id="floatingInput">
-                        <option hidden >Course</option>
-                        <option value="" disabled>Course</option>
+                        <option hidden >Program</option>
+                        <option value="" disabled>Program</option>
                         <option value="BSIT">BSIT </option>
                         <option value="BSED">BSED</option>
                         <option value="BSA">BSA</option>
@@ -310,8 +310,8 @@
 
             <div class="col-sm-4">
                 <select class="form-select" name="currMajor" aria-label="Default select example">
-                    <option hidden>Major</option>
-                    <option value="" disabled>Major</option>
+                    <option hidden>Specialization</option>
+                    <option value="" disabled>Specialization</option>
                     <option value="Web and Mobile Application">Web and Mobile Application</option>
                     <option value="Computer Science">Computer Science</option>
                 </select>

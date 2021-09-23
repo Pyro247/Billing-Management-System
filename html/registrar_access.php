@@ -179,7 +179,7 @@
                                 <th scope="col">Student ID</th>
                                 <th scope="col">First name</th>
                                 <th scope="col">Last name</th>
-                                <th scope="col">Major</th>
+                                <th scope="col">Specialization</th>
                                 <th scope="col">Year & Section</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">LRN</th>
@@ -389,7 +389,7 @@
                                       <option value="BSME">NA</option>
                       
                                     </select>
-                                    <label for="floatingSelect">Major</label>
+                                    <label for="floatingSelect">Specialization</label>
                                   </div>
                                 </div>
 
@@ -494,7 +494,7 @@
                               <option value="BSIT_NA">NA</option>
               
                             </select>
-                            <label for="floatingSelect">Major</label>
+                            <label for="floatingSelect">Specialization</label>
                           </div>
                         </div>
                       </div>
