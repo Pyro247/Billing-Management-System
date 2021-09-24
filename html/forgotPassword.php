@@ -46,7 +46,7 @@
 
     <div class="forgot_wrapper">
 
-        <form action="">
+        <form action="../html/reset_password.php">
         <img src="../images/logo.png" alt="">
             <span class="fyp">Forgot your password?</span>
             <p>Don't worry! Resseting your password is easy. Just type in the email you used to register with us.</p>
