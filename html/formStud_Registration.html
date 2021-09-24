@@ -32,21 +32,21 @@
 </div>
     <!-- NAVBARRRRRRRRRRR -->
 
-    <div class="parent_container__">
+<div class="parent_container__">
 <div class="container active" id="container__id">
 
-    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
-        <!-- <h3>Register - <?= $_COOKIE['userID']; ?> - Employee</h3> -->
-        <h3>Register - 2000000; ?> - Employee</h3>
+    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "regForm" method="POST">
+        <!-- <h3>Register - <?= $_COOKIE['userID']; ?> - Student</h3> -->
+        <h3 class="text-center text-primary">Register - 2000000 ?> - Student</h3>
         <input type="hidden" name="userID" value="<?php  echo $_COOKIE['userID']; ?>">
         <input type="hidden" name="role" value="<?php  echo $_COOKIE['role']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>
-                <!-- <li><i class="fa" id="ciID">&#xf19c;</i></li> -->
+                <li><i class="fa" id="ciID">&#xf19c;</i></li>
                 <li><i class="fa" id="aiID">&#xf502;</i></li>
             </ul>
-
+       
 
             <div class="progress">
                 <div class="progress-bar progress-bar-striped progress-bar-animated" id="progress_id" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 33%"></div>
@@ -56,7 +56,7 @@
 
 
         <!-- STEP ONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
-        <div class="step_one" id="step_one_id">
+        <div class="steps_reg" id="step_one_id">
             <div class="row mb-3">
                 <h4>Personal Information</h4>
                 <div class="col-sm-4">
@@ -90,14 +90,14 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" ">
-                        <label for="citizen" >Citizenship</label>
+                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" " >
+                        <label for="citizen">Citizenship</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " required="required">
+                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " >
                         <label for="civilStatus">Civil Status</label>
                     </div>
                 </div>
@@ -140,8 +140,188 @@
             </div>
         </div>
 
+
+
+
+
+
+
+
+
+    <!-- STEP TWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
+    <div class="steps_reg" id="step_two_id">
+        
+            <h4 class="text-center">I am:</h4>
+
+            <div class="col-sm mb-5 d-flex justify-content-center">
+                <input type="radio" class="btn-check"  name="sex" id="old_stud" value="old" autocomplete="off" >
+                <label class="btn btn-outline-success btn_old_transferee mx-2" for="old_stud">Old Student</label>
+            
+                <input type="radio" class="btn-check" name="sex" id="transferee_stud" autocomplete="off" value="transferee">
+                <label class="btn btn-outline-success btn_old_transferee mx-2" for="transferee_stud">Transferee Student</label>
+        
+            </div>
+
+            
+            <div class="row my-3">
+                <h4>Current College Information:</h4>
+                <div class="col-sm">
+                        <select class="form-select form-control" name="currSchoolYr" id="floatingInput">
+                                <option hidden >School Year</option>
+                                <option value="" disabled >School Year</option>
+                                <option value="2016-2017">2016 - 2017</option>
+                                <option value="2017-2018">2017 - 2018</option>
+                                <option value="2018-2019">2018 - 2019</option>
+                                <option value="2019-2020">2019 - 2020</option>
+                                <option value="2020-2021">2020 - 2021</option>
+                        </select>
+                </div>
+    
+                <div class="col-sm">
+                    <select class="form-select" name="currSem" aria-label="Default select example">
+                        <option hidden>Semester</option>
+                        <option value="" disabled>Semester</option>
+                        <option value="Midterm">Midterms</option>
+                        <option value="Final">Finals</option>
+                    </select>
+                </div>
+    
+                <div class="col-sm">
+                    <select class="form-select" name="currScholar" aria-label="Default select example">
+                        <option hidden>Scholarship</option>
+                        <option value="" disabled>Scholarship</option>
+                        <option value="Not Available">Not Available</option>
+                        <option value="Partial">Partial</option>
+                        <option value="Full">Full</option>
+                        
+                    </select>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-sm">
+                        <select class="form-select form-control" name="currCourse" id="floatingInput">
+                            <option hidden >Program</option>
+                            <option value="" disabled>Program</option>
+                            <option value="BSIT">BSIT </option>
+                            <option value="BSED">BSED</option>
+                            <option value="BSA">BSA</option>
+                        </select>
+                </div>
+    
+                <div class="col-sm">
+                    <select class="form-select" name="currMajor" aria-label="Default select example">
+                        <option hidden>Specialization</option>
+                        <option value="" disabled>Specialization</option>
+                        <option value="Web and Mobile Application">Web and Mobile Application</option>
+                        <option value="Computer Science">Computer Science</option>
+                    </select>
+                </div>
+    
+                
+                <div class="col-sm">
+                    <select class="form-select" name="currYear" aria-label="Default select example">
+                        <option hidden>Year</option>
+                        <option value="" disabled>Year</option>
+                        <option value="1st Yeart">1st</option>
+                        <option value="2nd Year">2nd</option>
+                        <option value="3rd Year">3rd</option>
+                        <option value="4th Year">4th</option>
+                        <option value="th Year">5th</option>
+                    </select>
+                </div>
+            </div>
+           
+      
+
+    </div>
+    <!-- <div class="steps_reg two " id="step_two_id">
+
+        <div class="row mt-3 mb-5">
+            <span class="text-center mb-3" style="font-size: 1.5rem;">I am:</span>
+        <div class="col d-flex justify-content-center">
+            
+            </div>
+    </div>
+            
+        
+
+            <h4>Current School Information</h4>
+            <div class="row mb-3">
+            <div class="col-sm-4">
+                    <select class="form-select form-control" name="currSchoolYr" id="floatingInput">
+                            <option hidden >School Year</option>
+                            <option value="" disabled >School Year</option>
+                            <option value="2016-2017">2016 - 2017</option>
+                            <option value="2017-2018">2017 - 2018</option>
+                            <option value="2018-2019">2018 - 2019</option>
+                            <option value="2019-2020">2019 - 2020</option>
+                            <option value="2020-2021">2020 - 2021</option>
+                    </select>
+            </div>
+
+            <div class="col-sm-4">
+                <select class="form-select" name="currSem" aria-label="Default select example">
+                    <option hidden>Semester</option>
+                    <option value="" disabled>Semester</option>
+                    <option value="Midterm">Midterms</option>
+                    <option value="Final">Finals</option>
+                </select>
+            </div>
+
+            <div class="col-sm-4">
+                <select class="form-select" name="currScholar" aria-label="Default select example">
+                    <option hidden>Scholarship</option>
+                    <option value="" disabled>Scholarship</option>
+                    <option value="Not Available">Not Available</option>
+                    <option value="Partial">Partial</option>
+                    <option value="Full">Full</option>
+                    
+                </select>
+            </div>
+        </div>
+        
+        <div class="row mb-3">
+            <div class="col-sm-4">
+                    <select class="form-select form-control" name="currCourse" id="floatingInput">
+                        <option hidden >Program</option>
+                        <option value="" disabled>Program</option>
+                        <option value="BSIT">BSIT </option>
+                        <option value="BSED">BSED</option>
+                        <option value="BSA">BSA</option>
+                    </select>
+            </div>
+
+            <div class="col-sm-4">
+                <select class="form-select" name="currMajor" aria-label="Default select example">
+                    <option hidden>Specialization</option>
+                    <option value="" disabled>Specialization</option>
+                    <option value="Web and Mobile Application">Web and Mobile Application</option>
+                    <option value="Computer Science">Computer Science</option>
+                </select>
+            </div>
+
+            
+            <div class="col-sm-4">
+                <select class="form-select" name="currYear" aria-label="Default select example">
+                    <option hidden>Year</option>
+                    <option value="" disabled>Year</option>
+                    <option value="1st Yeart">1st</option>
+                    <option value="2nd Year">2nd</option>
+                    <option value="3rd Year">3rd</option>
+                    <option value="4th Year">4th</option>
+                    <option value="th Year">5th</option>
+                </select>
+            </div>
+        </div>
+        </div>
+ -->
+
+
+        
         <!-- STEP THREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
-    <div class="step_one" id="step_three_id">
+    <div class="steps_reg" id="step_three_id">
+        
         <div class="row mb-3 justify-content-center">
             <h4 class="account__text text-center">Account Information</h4>
 
@@ -176,18 +356,16 @@
     </div>
     
 </form>
-<div class="row">
-            <div class="col-sm-1 offset-10 mb-5" >
+
+    <div class="row float-end">
+            <div class="col-auto" >
                 <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
-            </div>
-            <div class="col-sm-1 ">
                 <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
             </div>
         
             
         </div>
         </div>
-
 
 
         
@@ -225,12 +403,21 @@
         
         function choose_step_1(){
             step_one.style.display = "block"
+            step_two.style.display = "none"
             step_three.style.display = "none"
             
         }
 
         function choose_step_2(){
             step_one.style.display = "none"
+            step_two.style.display = "block"
+            step_three.style.display = "none" 
+        }
+
+        function choose_step_3(){
+            
+            step_one.style.display = "none"
+            step_two.style.display = "none"
             step_three.style.display = "block"
         }
 
@@ -238,11 +425,18 @@
             if (step_counter === 1){
                             choose_step_2();
                             step_counter = 2;
-                            progress_bar.style.width = "100%"
-                            nextBtn.textContent = "Submit"
-                            nextBtn.disabled = true;
+                            progress_bar.style.width = "66%"
                             personal_info_icon.innerHTML = "&#xf058;";
                             personal_info_icon.style.color = "green";
+
+            }else if (step_counter === 2){
+                    choose_step_3();
+                    step_counter = 3;
+                    nextBtn.textContent = "Submit"
+                    nextBtn.disabled = true;
+                    progress_bar.style.width = "100%"
+                    college_info_icon.innerHTML = "&#xf058;";
+                    college_info_icon.style.color = "green";
             }
         }
 
@@ -254,8 +448,15 @@
                 progress_bar.style.width = "33%"
                 personal_info_icon.innerHTML = "&#xf507;";
                 personal_info_icon.style.color = "black";
+            }else if(step_counter === 3){
+                choose_step_2();
+                step_counter = 2;
+                check_if_firststep();
                 nextBtn.textContent = "Next"
-                nextBtn.disabled = false;
+                $("input[name='agreePolicy']").prop("checked", false);
+                progress_bar.style.width = "66%"
+                college_info_icon.innerHTML = "&#xf19c;";
+                college_info_icon.style.color = "black";
             }
         }
 
@@ -263,7 +464,7 @@
             if (step_counter === 1){
                 prevBtn.style.display = "none"
             }else{
-                prevBtn.style.display = "block"
+                prevBtn.style.display = "inline"
             }
         }
         // Agree Policy to create the account

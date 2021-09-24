@@ -328,6 +328,14 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: green;
 } 
 
+.btn_old_transferee{
+  width: 250px;
+}
+
+.steps_reg.two{
+  width: 750px;
+}
+
 .btn_nxt_prv{
-  margin: 0 20px;
+  width: 120px;
 }
