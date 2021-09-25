@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +15,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- For Loader -->
    <script type="text/javascript">
         $(window).on("load", function () {
@@ -43,10 +46,20 @@
         </div>
         <!-- LOADER -->
 
-
+    <?php if(isset($_SESSION['status'])){?>
+        <script>
+            Swal.fire({
+                title: '<?= $_SESSION['msg']; ?>',
+                icon: '<?= $_SESSION['status']; ?>',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    <?php 
+    unset($_SESSION['status']);
+    }?>
     <div class="forgot_wrapper">
 
-        <form action="../html/reset_password.php">
+        <form action="../includes/resetPassword.inc.php" method="POST">
         <img src="../images/logo.png" alt="">
             <span class="fyp">Forgot your password?</span>
             <p>Don't worry! Resseting your password is easy. Just type in the email you used to register with us.</p>
