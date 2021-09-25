@@ -1,5 +1,12 @@
 <?php
     session_start();
+    // if(isset($_SESSION['userId'])){
+    //     if($_SESSION['role'] == "Student"){
+    //     header('Location: ../html/formStud_Registration.php');
+    // }else{
+    //     header('Location: ../html/formEmp_Registration.php');
+    //     }
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,7 +70,7 @@
             <span class="below_image">Billing Management system</span>
             <span class="below_image__">Register</span>
             <h3>Please enter ID number</h3>
-            <input type="number" name="userId" id="" placeholder="ID number">
+            <input type="number" name="userId" id="" placeholder="ID number" required>
             <input type="submit" name="checkID" id="checkID" value="Submit">
             <p>Already have an account? <a href="./login.php">Login Here</a></p>
         </form>
