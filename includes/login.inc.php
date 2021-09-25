@@ -19,6 +19,7 @@
       $_SESSION['msg'] = "Login success";
       header('Location: ../html/login.php');
     }else{
+      // need condtion for email is correc but password is incorrect
       $_SESSION['status'] = "info";
       $_SESSION['msg'] = "Not Registered";
       header('Location: ../html/login.php');

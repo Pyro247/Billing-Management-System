@@ -65,7 +65,7 @@
             </div>
         </div>
         <!-- LOADER -->
-        <?php if(isset($_SESSION['statusOtp']) == 'success'){?>
+        <?php if(isset($_SESSION['statusOtp']) && $_SESSION['statusOtp']== 'success'){?>
             <script>
                 $(document).ready(function() {
                     otp_page.classList.toggle('hide');
@@ -74,7 +74,17 @@
                 
             </script>
         <?php 
-        }else{?>
+        }else if(isset($_SESSION['statusOtp']) && $_SESSION['statusOtp'] == 'info'){?>
+            <script>
+                Swal.fire({
+                    title: '<?= $_SESSION['msgOtp']; ?>',
+                    icon: '<?= $_SESSION['statusOtp']; ?>',
+                    confirmButtonText: 'OK'
+                }).then(function() {
+                window.location = "./login.php";
+            });
+            </script>
+        <?php }else{?>
             <script>
                 Swal.fire({
                     title: '<?= $_SESSION['msgOtp']; ?>',
@@ -82,7 +92,7 @@
                     confirmButtonText: 'OK'
                 });
             </script>
-        <?php }?>
+        <?php }unset($_SESSION['statusOtp']);?>
         <?php if(isset($_SESSION['statuspass']) && $_SESSION['statuspass'] == 'success'){?>
             <script>
                 Swal.fire({
@@ -100,6 +110,10 @@
                     title: '<?= $_SESSION['msgpass']; ?>',
                     icon: '<?= $_SESSION['statuspass']; ?>',
                     confirmButtonText: 'OK'
+                });
+                $(document).ready(function() {
+                    otp_page.classList.toggle('hide');
+                    reset_page.classList.toggle('active');
                 });
             </script>
         <?php } unset($_SESSION['statuspass']);

@@ -34,15 +34,32 @@
   if (isset($_POST['verifiedOtp'])){
     $otp = $_POST['otp'];
     $email = $_POST['email'];
+
+    $time_stamp = date("H:i:s");
+
     $sqlVerfiyOtp = "SELECT * FROM `tbl_accounts` WHERE  email = ? AND otp_code = ? ";
     $stmtVerifyOtp = $con->prepare($sqlVerfiyOtp);
     $stmtVerifyOtp->bind_param('ss', $email,  $otp);
     $stmtVerifyOtp->execute();
     $resVerifyOtp = $stmtVerifyOtp->get_result();
-    
+    $rowVerifyOtp = $resVerifyOtp->fetch_assoc();
+
     if($resVerifyOtp->num_rows > 0){
-      $_SESSION['statusOtp'] = "success";
+      if($rowVerifyOtp['otp_expiration'] < $time_stamp){
+        $otp = "";
+        $otp_expiration = "";
+        $sqlOtp = "UPDATE `tbl_accounts` SET `otp_code`= ?,`otp_expiration`= ? WHERE  email = ?";
+        $stmtOtp = $con->prepare($sqlOtp);
+        $stmtOtp->bind_param('sss', $otp , $otp_expiration, $email);
+        $stmtOtp->execute();
+        $_SESSION['statusOtp'] = "info";
+        $_SESSION['msgOtp'] = "Otp expired";
+        header('Location: ../html/reset_password.php');
+      }else{
+        $_SESSION['statusOtp'] = "success";
       header('Location: ../html/reset_password.php');
+      }
+      
     }else{
       $_SESSION['statusOtp'] = "error";
       $_SESSION['msgOtp'] = "Otp Incorrect";
