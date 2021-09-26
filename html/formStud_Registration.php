@@ -58,8 +58,8 @@
     <form action="../includes/registration.inc.php" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "studForm" method="POST">
         <h3>Register - <?= $_SESSION['userId']; ?> - Student</h3>
       
-        <input type="text" name="userId" value=" <?= $_SESSION['userId']; ?>">
-        <input type="text" name="role" value=" <?= $_SESSION['role']; ?>">
+        <input type="hidden" name="userId" value=" <?= $_SESSION['userId']; ?>">
+        <input type="hidden" name="role" value=" <?= $_SESSION['role']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>
