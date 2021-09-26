@@ -173,6 +173,8 @@
                                 <th scope="col">Program</th>
                                 <th scope="col">Major</th>
                                 <th scope="col">Year Level</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Scholarship</th>
                                 <th scope="col">LRN</th>
                                 <th scope="col">Email</th>
                                 
@@ -186,6 +188,8 @@
                                 <td>BSCS</td>
                                 <td>Web and Mobile Application</td>
                                 <td>4th</td>
+                                <td>Transferee</td>
+                                <td>Full</td>
                                 <td>1011121314</td>
                                 <td>pulido@gmail.com</td>
                                
@@ -197,6 +201,8 @@
                                 <td>BSIT</td>
                                 <td>Web and Mobile Application</td>
                                 <td>4th</td>
+                                <td>Old Student</td>
+                                <td>Full</td>
                                 <td>1011121315</td>
                                 <td>mery@gmail.com</td>
                               </tr>
@@ -204,6 +210,8 @@
                                 <<th scope="row">2018301304</th>
                                 <td>Justine</td>
                                 <td>Delos Reyes</td>
+                                <td></td>
+                                <td></td>
                                 <td></td>
                                 <td></td>
                                 <td></td>
@@ -217,6 +225,8 @@
                                 <td>BSED</td>
                                 <td>English</td>
                                 <td>4th</td>
+                                <td>Transferee</td>
+                                <td>Half</td>
                                 <td>1011121317</td>
                                 <td>isla@gmail.com</td>
                               </tr>
