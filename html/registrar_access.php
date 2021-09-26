@@ -227,7 +227,7 @@
                                 <td>English</td>
                                 <td>4th</td>
                                 <td>Transferee</td>
-                                <td>Half</td>
+                                <td>Partial</td>
                                 <td>1011121317</td>
                                 <td>isla@gmail.com</td>
                               </tr>
