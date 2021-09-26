@@ -1,6 +1,6 @@
 <?php
   include_once '../connection/Config.php';
-
+  session_start();
   if(isset($_POST['login'])){
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -13,32 +13,16 @@
     $row_login = $result_login->fetch_assoc();
     $count_login = $result_login->num_rows;
 
-    if($count_login == 1){
+    if($count_login > 0){
       // Temporary notify it will modify when registrar,cashier, student page is finish
-      echo "
-            <script>
-            Swal.fire({
-              title: 'Login Successfully',
-              text: 'This ID is already registered',
-              icon: 'info',
-              confirmButtonText: 'OK'
-            });
-            </script>
-          ";
+      $_SESSION['status'] = "success";
+      $_SESSION['msg'] = "Login success";
+      header('Location: ../html/login.php');
     }else{
-      echo "
-            <script>
-            Swal.fire({
-              title: 'Login failed',
-              text: 'This ID is already registered',
-              icon: 'error',
-              confirmButtonText: 'OK'
-            });
-            </script>
-          ";
+      // need condtion for email is correc but password is incorrect
+      $_SESSION['status'] = "info";
+      $_SESSION['msg'] = "Not Registered";
+      header('Location: ../html/login.php');
     }
-  
-
   }
-
 ?>

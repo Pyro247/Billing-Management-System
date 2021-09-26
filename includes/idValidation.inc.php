@@ -30,10 +30,6 @@
         $_SESSION['midname'] = $rowCheckId['middlename'];
         $_SESSION['role'] = $rowCheckId['role'];
         header('Location: ../html/formEmp_Registration.php');
-      } else {
-        $_SESSION['status'] = "error";
-        $_SESSION['msg'] = "ID Not Found";
-        header('Location: ../html/idValidation.php');
       }
 
      $sql_checkStudID = "SELECT * FROM `tbl_student_info` WHERE stud_id = ?";
@@ -50,6 +46,10 @@
         $_SESSION['midname'] = $row_checkStudID['middlename'];
         $_SESSION['role'] = "Student";
         header('Location: ../html/formStud_Registration.php');
+      } else {
+        $_SESSION['status'] = "error";
+        $_SESSION['msg'] = "ID Not Found";
+        header('Location: ../html/idValidation.php');
       }
     }
   }

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +18,7 @@
         integrity="sha512-AFwxAkWdvxRd9qhYYp1qbeRZj6/iTNmJ2GFwcxsMOzwwTaRwz2a/2TX225Ebcj3whXte1WGQb38cXE5j7ZQw3g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- For Loader -->
     <script type="text/javascript">
@@ -45,12 +48,22 @@
             </div>
         </div>
         <!-- LOADER -->
-
+    
+    <?php if(isset($_SESSION['status'])){?>
+        <script>
+            Swal.fire({
+                title: '<?= $_SESSION['msg']; ?>',
+                icon: '<?= $_SESSION['status']; ?>',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    <?php 
+    unset($_SESSION['status']);
+    }?>
 
     <img src="../images/login_bg.jpg" alt="" class="bg">
     <div class="wrapper_l">
-        <?php include_once '../includes/login.php'?>
-        <form action="login.php" method="POST">
+        <form action="../includes/login.inc.php" method="POST">
             <a href="../index.html" class="back_link"><i class="fas fa-arrow-circle-left"></i></a>
 
             <img src="../images/logo.png" alt="">

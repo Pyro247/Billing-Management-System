@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,16 +32,32 @@
         <span>Pyro Colleges Inc.</span>
     </div>
 </div>
-    <!-- NAVBARRRRRRRRRRR -->
-
+<?php if(isset($_SESSION['status']) == 'success'){?>
+        <script>
+            Swal.fire({
+                title: '<?= $_SESSION['msg']; ?>',
+                icon: '<?= $_SESSION['status']; ?>',
+                confirmButtonText: 'OK'
+            }).then(function() {
+                window.location = "./login.php";
+            });
+        </script>
+    <?php }else{?>
+        <script>
+            Swal.fire({
+                title: '<?= $_SESSION['msg']; ?>',
+                icon: '<?= $_SESSION['status']; ?>',
+                confirmButtonText: 'OK'
+            });
+        </script>
+    <?php } unset($_SESSION['status']);?>
     <div class="parent_container__">
 <div class="container active" id="container__id">
 
-    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
-        <!-- <h3>Register - <?= $_COOKIE['userID']; ?> - Employee</h3> -->
-        <h3 class="text-primary text-center">Register - 2000000; ?> - Employee</h3>
-        <input type="hidden" name="userID" value="<?php  echo $_COOKIE['userID']; ?>">
-        <input type="hidden" name="role" value="<?php  echo $_COOKIE['role']; ?>">
+    <form action="../includes/registration.inc.php" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
+        <h3>Register - <?=$_SESSION['userId']; ?> - Employee</h3>
+        <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+        <input type="hidden" name="role" value="<?=  $_SESSION['role']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>
@@ -86,7 +104,7 @@
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         
-                        <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $_COOKIE['userFirstName']; ?>">
+                        <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $_SESSION['fname']; ?>">
                         <label for="fname">First name</label>
                     </div>
                 </div>
@@ -95,7 +113,7 @@
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="middlename" id="midInitial" placeholder=" "
-                        value="<?= $_COOKIE['userMiddleName']; ?>">
+                        value="<?= $_SESSION['midname']; ?>">
                         <label for="midInitial">Middle name</label>
                     </div>
                 </div>
@@ -103,7 +121,7 @@
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="lastname" id="lname" placeholder=" "
-                        value="<?= $_COOKIE['userLastName'];?>">
+                        value="<?= $_SESSION['lname'];?>">
                         <label for="floatingInput">Last name</label>
                     </div>
                 </div>
@@ -273,7 +291,7 @@
             }
         });
         
-        $('#next_id').click(function(){
+        $('#next_id').click(function(event){
             if($("input[name='agreePolicy']").is(":checked")){
                 if($('#email').val() == ''){
                     Swal.fire({
@@ -296,32 +314,10 @@
                         confirmButtonText: 'OK'
                     })
                 }else{
-                    $.ajax({
-                    type: "POST",
-                    url: "../includes/registerAccount.php",
-                    data: $('form').serialize(),
-                    success: function(data){
-                        Swal.fire({
-                        title: 'Successfully Registred',
-                        text: 'You can now login',
-                        icon: 'success',
-                        confirmButtonText: 'OK'
-                      }).then(function(){
-                          window.location = './registrationCheckID.php';
-                      });
-                    },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                        alert("Status: " + textStatus); alert("Error: " + errorThrown);
-                        Swal.fire({
-                        title: 'Error',
-                        text: 'Something went wrong',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                      })
-                    }            
-                });
+                    $('#empReg').submit();
                 }
             }
+            event.preventDefault();
         })
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
