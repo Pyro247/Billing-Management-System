@@ -17,14 +17,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- For Loader -->
-   <script type="text/javascript">
+    <script type="text/javascript">
         $(window).on("load", function () {
             $(".loader-wrapper").fadeOut('xslow');
-        });
-
-        window.FontAwesomeConfig = {
-            searchPseudoElements: true
-        }
+        }); 
 
     </script>
 
