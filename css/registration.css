@@ -307,7 +307,10 @@ input[type=number]::-webkit-outer-spin-button {
 .progress_container ul {
   display: flex;
   justify-content: space-evenly;
+  
 }
+
+
 
 .progress_container ul li {
   list-style: none;
@@ -332,8 +335,17 @@ input[type=number]::-webkit-outer-spin-button {
   width: 250px;
 }
 
-.steps_reg.two{
-  width: 750px;
+.steps_reg{
+  animation: reg_tab_animate 250ms linear;
+}
+
+@keyframes reg_tab_animate {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
 }
 
 .btn_nxt_prv{

@@ -14,14 +14,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- For Loader -->
-   <script type="text/javascript">
+    <script type="text/javascript">
         $(window).on("load", function () {
             $(".loader-wrapper").fadeOut('xslow');
-        });
-
-        window.FontAwesomeConfig = {
-            searchPseudoElements: true
-        }
+        }); 
 
     </script>
 

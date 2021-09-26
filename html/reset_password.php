@@ -79,7 +79,7 @@
 
     
     <div class="reset_pass_wrapper change__" id="reset_page_id">
-        <form action="./html/login.php">
+        <form action="../html/login.php">
             <img src="../images/change_pass.png" alt="">
             <span class="fyp">Enter your new password</span>
             <input type="password" name="" id="" required autocomplete="off" placeholder="New Password">

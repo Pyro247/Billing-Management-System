@@ -37,10 +37,10 @@
 
 <script type="text/javascript">
   window.onload = function(){
-       let loader = document.getElementById('loader-wrapperID')
-       loader.style.opacity = "0"
-       loader.style.visibility = "hidden"
-       loader.style.pointerEvents = "none"
+        let loader = document.getElementById('loader-wrapperID')
+        loader.style.opacity = "0"
+        loader.style.visibility = "hidden"
+        loader.style.pointerEvents = "none"
   }
 </script>
 
@@ -62,6 +62,7 @@
 
 
     <div class="row">
+      
         <div class="col-3 left-tab">
 
         <div class="upper-left-tab">

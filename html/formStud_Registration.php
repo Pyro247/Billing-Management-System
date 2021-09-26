@@ -54,9 +54,39 @@
         
         </div>
 
-
-        <!-- STEP ONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
+        <!-- Step One - Account info -->
         <div class="steps_reg" id="step_one_id">
+        
+        <div class="row mb-3 justify-content-center">
+            <h4 class="account__text text-center">Account Information</h4>
+
+            <div class="col-sm-6 mt-2">
+                <div class="form-floating mb-3">
+                    <input type="email" class="form-control " id="email" placeholder=" " name="email">
+                    <label for="email">Email Address</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="password" placeholder=" " name="password">
+                    <label for="password">Password</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input type="password" class="form-control" id="confirm_pass" placeholder=" " name="confirm_pass">
+                    <label for="confirm_pass">Confirm Password</label>
+                </div>
+
+    
+            </div>
+
+           
+        </div>
+    </div>
+
+
+
+        <!-- Step 2 - Personal info -->
+        <div class="steps_reg" id="step_two_id">
             <div class="row mb-3">
                 <h4>Personal Information</h4>
                 <div class="col-sm-4">
@@ -148,8 +178,8 @@
 
 
 
-    <!-- STEP TWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO -->
-    <div class="steps_reg" id="step_two_id">
+    <!-- Step three - College info -->
+    <div class="steps_reg" id="step_three_id">
         
             <h4 class="text-center">I am:</h4>
 
@@ -231,46 +261,19 @@
                     </select>
                 </div>
             </div>
-        </div>
-
-
-
-        
-        <!-- STEP THREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE -->
-    <div class="steps_reg" id="step_three_id">
-        
-        <div class="row mb-3 justify-content-center">
-            <h4 class="account__text text-center">Account Information</h4>
-
-            <div class="col-sm-4 mt-2">
-                <div class="form-floating mb-3">
-                    <input type="email" class="form-control " id="email" placeholder=" " name="email">
-                    <label for="email">Email Address</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="password" placeholder=" " name="password">
-                    <label for="password">Password</label>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="confirm_pass" placeholder=" " name="confirm_pass">
-                    <label for="confirm_pass">Confirm Password</label>
-                </div>
-
-                <div class="form-check">
+            
+            <div class="form-check mt-5">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
-                    <label class="form-check-label" for="flexCheckIndeterminate" >
-                      By checking this box, you agree to our Terms and that you have read our <a href="">Data Use Policy.</a>
-                        
+                    <label class="form-check-label" for="flexCheckIndeterminate" style="font-size: 1.2rem">
+                        By checking this box, you agree to our <a href="">Terms </a>and that you have read our <a href="">Data Use Policy.</a>
                     </label>
-                  </div>
-    
-            </div>
-
-           
+                </div>
         </div>
-    </div>
+
+
+
+        
+        
     
 </form>
 
@@ -319,6 +322,7 @@
         
         
         function choose_step_1(){
+            
             step_one.style.display = "block"
             step_two.style.display = "none"
             step_three.style.display = "none"
@@ -332,7 +336,6 @@
         }
 
         function choose_step_3(){
-            
             step_one.style.display = "none"
             step_two.style.display = "none"
             step_three.style.display = "block"
@@ -370,6 +373,7 @@
                 step_counter = 2;
                 check_if_firststep();
                 nextBtn.textContent = "Next"
+                nextBtn.disabled = false;
                 $("input[name='agreePolicy']").prop("checked", false);
                 progress_bar.style.width = "66%"
                 college_info_icon.innerHTML = "&#xf19c;";
@@ -384,6 +388,7 @@
                 prevBtn.style.display = "inline"
             }
         }
+
         // Agree Policy to create the account
         $("input[name='agreePolicy']").click(function(){
             if($("input[name='agreePolicy']").is(":checked")){
