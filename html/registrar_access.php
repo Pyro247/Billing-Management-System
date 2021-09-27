@@ -259,11 +259,11 @@
               <div class="tab-content" id="myTabContent">
 
               
-                <!-- Students Tab -->
+<!----------------------------- Students Tab ---------------------------->
                 <div class="tab-pane fade show active mt-2 stud__tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
-                  <form action="" class="universalForm_two">
+                  <form action="managestudent.php" method="post" class="universalForm_two" >
                       <div class="manage_users_universal_tab_lmr_parent">
                         
                         
@@ -281,28 +281,28 @@
                           
 
                               <div class="form-floating">
-                                <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="2018300366">
+                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                 <label for="floatingInputGrid">Student Number</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Justine Dave">
+                                  <input type="text" name="firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Molato">
+                                  <input type="text" name="middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Delos reyes">
+                                  <input type="text" name="lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Last name</label>
                                 </div>
                               </div>
@@ -311,7 +311,7 @@
                             <div class="row g-2 mb-1">
                               <div class="col-md-2">
                                 <div class="form-floating">
-                                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                  <select class="form-select" name="sex" id="floatingSelect" aria-label="Floating label select example">
                                     <option value="male" selected>Male</option>
                                     <option value="female">Female</option>
                     
@@ -322,21 +322,21 @@
 
                               <div class="col-md-3">
                                 <div class="form-floating">
-                                  <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
+                                  <input type="date" name="birthdate" class="form-control" id="floatingInputGrid" placeholder=" ">
                                   <label for="floatingInputGrid">Birthdate</label>
                                 </div>
                               </div>
 
                               <div class="col-md-2">
                                 <div class="form-floating">
-                                  <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="21">
+                                  <input type="number" name="age" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Age</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="109 Rang Ayan Paniqui, Tarlac">
+                                  <input type="text" name="address" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Address</label>
                                 </div>
                               </div>
@@ -346,21 +346,21 @@
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Born Again">
+                                  <input type="text" name="religion" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Religion</label>
                                 </div>
                               </div>
             
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Filipino">
+                                    <input type="text" name="citizenship" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Citizenship</label>
                                   </div>
                                 </div>
             
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Single">
+                                    <input type="text" name="civil_status" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Civil Status</label>
                                   </div>
                                 </div>
@@ -371,8 +371,8 @@
 
                                 <div class="col-md-6">
                                   <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option value="BSIT" selected>Information Technology</option>
+                                    <select class="form-select" name="college" id="floatingSelect" aria-label="Floating label select example">
+                                      <option value="BSIT" >Information Technology</option>
                                       <option value="BSHTM">Hotel Management and Tourism</option>
                                       <option value="BSME">Mechanical Engineering</option>
                       
@@ -383,8 +383,8 @@
               
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option value="BSIT" selected>WMA</option>
+                                    <select class="form-select" name="major" id="floatingSelect" aria-label="Floating label select example">
+                                      <option value="BSIT" >WMA</option>
                                       <option value="BSHTM">TSM</option>
                                       <option value="BSME">NA</option>
                       
@@ -395,7 +395,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="4A">
+                                    <input type="text" name="year_section" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Year & Section</label>
                                   </div>
                                 </div>
@@ -404,14 +404,14 @@
                               <div class="row g-2 mb-1">
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="email" class="form-control" id="floatingInputGrid" placeholder=" " value="djustine247@gmail.com">
+                                    <input type="email" name="email" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Email</label>
                                   </div>
                                 </div>
     
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <input type="tel" class="form-control" id="floatingInputGrid" placeholder=" " value="09096431629">
+                                      <input type="tel" name="contact_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                       <label for="floatingInputGrid">Contact number</label>
                                     </div>
                                   </div>
@@ -421,14 +421,14 @@
                           <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                              <input class="form-check-input" type="checkbox" name="form137" value="✓" id="flexCheckDefault">
                               <label class="form-check-label" for="flexCheckDefault">
                                 Form 137
                               </label>
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                              <input class="form-check-input" type="checkbox" name="form138" value="✓" id="flexCheckChecked" >
                               <label class="form-check-label" for="flexCheckChecked">
                                 Form 138
                               </label>
@@ -436,34 +436,33 @@
 
                             
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" name="psa" value="✓" id="flexCheckChecked">
                               <label class="form-check-label" for="flexCheckChecked">
                                 PSA Birth Certificate
                               </label>
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" name="good_moral" value="✓" id="flexCheckChecked">
                               <label class="form-check-label" for="flexCheckChecked">
                                 Good Moral
                               </label>
                             </div>
 
-                            <button type="button" class="btn btn-primary font py-2 px-0">Add Requirements</button>
+                            <button type="submit" class="btn btn-primary font py-2 px-0">Add Requirements</button>
 
                           </div>
-                        
 
-                      </div> 
-                    </form> 
-                      
+                          </div>
+                  
                       <div class="buttons_manage_universal">
-                      <button type="button" class="btn btn-info">Add</button>
-                      <button type="button" class="btn btn-warning">Edit</button>
-                      <button type="button" class="btn btn-danger">Delete</button>
-                      <button type="button" class="btn btn-success" disabled>Save</button>
+                      <button type="submit" name="add" class="btn btn-info">Add</button>
+                      <button type="submit" name="update" class="btn btn-warning">Edit</button>
+                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                      <button type="submit" class="btn btn-success" disabled>Save</button>
                       </div>
-
+                    
+                      </form> 
                     
 
                       <hr>
