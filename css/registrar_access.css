@@ -465,13 +465,13 @@ hr{
 }
 
 
-.table__{
+.table__dashboard{
     transition: 300ms ease;;
     opacity: 0;
     visibility: hidden;
 }
 
-.table__.active{
+.table__dashboard.active{
     opacity: 1;
     visibility: visible;
 }

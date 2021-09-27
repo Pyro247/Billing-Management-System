@@ -164,7 +164,7 @@
                   </div>
                   </div>
 
-                        <div class="table__" style="overflow-x: auto;" id="table_dashboard_id">
+                        <div class="table__dashboard" style="overflow-x: auto;" id="table_dashboard_id">
                         <table class="table">
                             <thead class="thead-light">
                               <tr>
@@ -208,7 +208,7 @@
                                 <td>mery@gmail.com</td>
                               </tr>
                               <tr>
-                                <<th scope="row">2018301304</th>
+                                <th scope="row">2018301304</th>
                                 <td>Justine</td>
                                 <td>Delos Reyes</td>
                                 <td></td>
@@ -706,7 +706,7 @@
                     </div>
                   </div>
 
-                  <div class="table__" style="overflow-x: auto;">
+                <div class="table__" style="overflow-x: auto;">
                   <table class="table">
                     <thead>
                       <tr>
@@ -728,8 +728,9 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
-                </div>
+                  </div>
+
+                  </div>
 
 
                 </div>
