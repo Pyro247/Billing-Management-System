@@ -727,7 +727,7 @@
                           <option value="BSIT_WMA" selected>None</option>
                           <option value="BSIT_WMA">First name</option>
                           <option value="Registrar">Last name</option>
-                          <option value="Cashier">Role</option>
+                         
                           
           
                         </select>
@@ -767,7 +767,7 @@
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
@@ -866,14 +866,15 @@
                     <div class="col-md">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option value="BSIT_WMA" selected>None</option>
-                          <option value="BSIT_WMA">First name</option>
-                          <option value="Registrar">Last name</option>
-                          <option value="Cashier">Role</option>
-                          
+                        <option value="BSIT_WMA" selected>All</option>
+                          <option value="Graduated" selected>Graduate</option>
+                          <option value="Dropout">Dropout</option>
+                          <option value="Transfer">Transfer</option>
+                          <option value="Resign">Resign</option>
+                          <option value="Resign">Terminate</option>
           
                         </select>
-                        <label for="floatingSelect">Status</label>
+                        <label for="floatingSelect">Reason</label>
                       </div>
                     </div>
 
@@ -909,7 +910,7 @@
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
