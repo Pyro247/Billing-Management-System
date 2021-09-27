@@ -558,6 +558,30 @@
 
                       <div class="manage_users_universal_mid_tab px-1">
                         <div class="row g-2 mb-1">
+
+                        
+
+                           <div class="col-md-3">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Cashier">
+                              <label for="floatingInputGrid">Role</label>
+                            </div>
+                          </div>
+                         
+                      </div>
+
+
+
+
+                      <div class="row g-2 mb-1">
+
+                     
+                      <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="900283">
+                              <label for="floatingInputGrid">ID Number</label>
+                            </div>
+                          </div>
                         <div class="col-md">
                           <div class="form-floating">
                             <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Juan">
@@ -594,7 +618,7 @@
                             </div>
                           </div>
 
-                          <div class="col-md">
+                          <div class="col-md-4">
                             <div class="form-floating">
                               <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
                               <label for="floatingInputGrid">Birthdate</label>
@@ -607,18 +631,18 @@
                               <label for="floatingInputGrid">Age</label>
                             </div>
                           </div>
+                          <div class="col-md-4">
+                                <div class="form-floating">
+                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="109 Rang Ayan Paniqui, Tarlac">
+                                  <label for="floatingInputGrid">Address</label>
+                                </div>
+                              </div>
 
                           
                         </div>
 
                         <div class="row g-2 mb-1">
 
-                          <div class="col-md">
-                            <div class="form-floating">
-                              <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="900283">
-                              <label for="floatingInputGrid">ID Number</label>
-                            </div>
-                          </div>
         
                             <div class="col-md">
                               <div class="form-floating">
@@ -631,6 +655,19 @@
                               <div class="form-floating">
                                 <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="09098890122">
                                 <label for="floatingInputGrid">Contact number</label>
+                              </div>
+                            </div>
+
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Filipino">
+                                <label for="floatingInputGrid">Citizenship</label>
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingInputGrid" placeholder=" " value="Single">
+                                <label for="floatingInputGrid">Civil Status</label>
                               </div>
                             </div>
         
