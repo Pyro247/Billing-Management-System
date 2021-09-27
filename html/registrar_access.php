@@ -349,12 +349,7 @@
 
                             <div class="row g-2 mb-1">
 
-                              <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Born Again">
-                                  <label for="floatingInputGrid">Religion</label>
-                                </div>
-                              </div>
+                              
             
                                 <div class="col-md">
                                   <div class="form-floating">
@@ -377,12 +372,12 @@
                                 <div class="col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option value="BSIT" selected>Information Technology</option>
-                                      <option value="BSHTM">Hotel Management and Tourism</option>
-                                      <option value="BSME">Mechanical Engineering</option>
+                                      <option value="BSIT" selected>Bachelor of Science in Information Technology</option>
+                                      <option value="BSHTM">Bachelor of Science in Computer Science </option>
+                                      <option value="BSME">Bachelor of Science in Education</option>
                       
                                     </select>
-                                    <label for="floatingSelect">College | Bachelor of Science in</label>
+                                    <label for="floatingSelect">Program</label>
                                   </div>
                                 </div>
               
@@ -394,7 +389,7 @@
                                       <option value="BSME">NA</option>
                       
                                     </select>
-                                    <label for="floatingSelect">Specialization</label>
+                                    <label for="floatingSelect">Major</label>
                                   </div>
                                 </div>
 
@@ -481,12 +476,12 @@
                           <div class="form-floating">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                               <option selected>All</option>
-                              <option value="BSIT">Information Technology</option>
-                              <option value="BSHTM">Hotel Management and Tourism</option>
-                              <option value="BSME">Mechanical Engineering</option>
+                              <option value="BSIT">Bachelor of Science in Information Technology</option>
+                              <option value="BSHTM">Bachelor of Science in Computer Science</option>
+                              <option value="BSME">Bachelor of Science in dDucation</option>
               
                             </select>
-                            <label for="floatingSelect">College | Bachelor of Science in</label>
+                            <label for="floatingSelect">Program</label>
                           </div>
                         </div>
                         
@@ -494,12 +489,12 @@
                           <div class="form-floating">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                               <option value="BSIT_WMA" selected>All</option>
-                              <option value="BSIT_WMA">WMA</option>
-                              <option value="BSIT_TSM">TSM</option>
-                              <option value="BSIT_NA">NA</option>
+                              <option value="BSIT_WMA">Web and Mobile Application</option>
+                              <option value="BSIT_TSM">Technical Service Managements</option>
+                              <option value="BSIT_NA">Network and Administration</option>
               
                             </select>
-                            <label for="floatingSelect">Specialization</label>
+                            <label for="floatingSelect">Major</label>
                           </div>
                         </div>
                       </div>
