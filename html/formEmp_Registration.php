@@ -77,15 +77,22 @@
         <div class="row mb-3 justify-content-center">
             <h4 class="account__text text-center">Account Information</h4>
 
-            <div class="col-sm-6 mt-2">
+            <div class="col-sm-10 mt-2">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control " id="email" placeholder=" " name="email">
                     <label for="email">Email Address</label>
                 </div>
 
-                <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="password" placeholder=" " name="password">
+                <div class="form-floating mb-3 password-container">
+                    <input type="password" class="form-control pass-input" id="password" placeholder=" " name="password">
                     <label for="password">Password</label>
+                    <div class="password-validate px-2">
+                        <p class="m-0">Password must contain:</p>
+                        <span class="pass-req one" id="pass-validation-one-id" style="color: crimson"><i class="fa" id="logovOne">&#xf057;</i>&nbsp;8 or more characters</span>
+                        <span class="pass-req two" id="pass-validation-two-id" style="color: crimson"><i class="fa" id="logovTwo">&#xf057;</i>&nbsp;UPPER and lower case (e.g. Aa)</span>
+                        <span class="pass-req three" id="pass-validation-three-id" style="color: crimson"><i class="fa" id="logovThree">&#xf057;</i>&nbsp;a number (e.g. 1234)</span>
+                        <span class="pass-req four" id="pass-validation-four-id" style="color: crimson"><i class="fa" id="logovFour">&#xf057;</i>&nbsp;a symbol (e.g. !@#$)</span>
+                    </div>
                 </div>
 
                 <div class="form-floating mb-3">
@@ -196,7 +203,7 @@
     
     
 </form>
-        <div class="row float-end">
+        <div class="row float-end mb-5">
             <div class="col-auto" >
                 <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
                 <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
@@ -322,6 +329,71 @@
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
+
+    </script>
+
+    <script type="text/javascript">
+    let vOne = document.getElementById('pass-validation-one-id');
+    let vTwo = document.getElementById('pass-validation-two-id');
+    let vThree = document.getElementById('pass-validation-three-id');
+    let vFour = document.getElementById('pass-validation-four-id');
+    
+    let logo_vOne = document.getElementById('logovOne')
+    let logo_vTwo = document.getElementById('logovTwo')
+    let logo_vThree = document.getElementById('logovThree')
+    let logo_vFour = document.getElementById('logovFour')
+
+
+    let password_requirement = document.getElementById('password')
+
+    password_requirement.oninput = function(){
+        check_one();
+        check_two();
+        check_three();
+        check_four();
+    }
+
+    function check_one(){
+        if (password_requirement.value.length < 8){
+            vOne.style.color = "crimson";
+            logo_vOne.innerHTML = "&#xf057;"
+        }else{
+            logo_vOne.innerHTML = "&#xf058;"
+            vOne.style.color = "green"
+        }
+    }
+    function check_two(){
+            if (!(password_requirement.value.match(/[a-z]/)) || !(password_requirement.value.match(/[A-Z]/)) ){
+                vTwo.style.color = "crimson";
+                logo_vTwo.innerHTML = "&#xf057;"
+            }else{
+                logo_vTwo.innerHTML = "&#xf058;"
+                vTwo.style.color = "green"
+            }
+        }
+
+        function check_three(){
+            var letterNumber = /[0-9]/;
+            if(password_requirement.value.match(letterNumber)){
+                logo_vThree.innerHTML = "&#xf058;"
+                vThree.style.color = "green"
+            }else{
+                vThree.style.color = "crimson";
+                logo_vThree.innerHTML = "&#xf057;"
+            }
+        }
+
+        function check_four(){
+            if (password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)){
+                logo_vFour.innerHTML = "&#xf058;"
+                vFour.style.color = "green"
+            }else{
+                logo_vFour.innerHTML = "&#xf057;"
+                vFour.style.color = "crimson"
+            }
+        }
+
+
 
     </script>
     

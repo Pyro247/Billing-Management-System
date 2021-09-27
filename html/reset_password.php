@@ -132,7 +132,7 @@
         </form>
         <!-- <button onclick="change_view()">temporary to view change pass</button> -->
     </div>
-
+                
     
     <div class="reset_pass_wrapper change__" id="reset_page_id">
         <form action="../includes/resetPassword.inc.php" method="POST">

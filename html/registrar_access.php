@@ -422,35 +422,34 @@
                           <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                              <label class="form-check-label" for="flexCheckDefault">
+                              <input class="form-check-input" type="checkbox" value="" id="form137">
+                              <label class="form-check-label" for="form137">
                                 Form 137
                               </label>
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-                              <label class="form-check-label" for="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" value="" id="form138" checked>
+                              <label class="form-check-label" for="form138">
                                 Form 138
                               </label>
                             </div>
 
                             
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                              <label class="form-check-label" for="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" value="" id="psa-bc">
+                              <label class="form-check-label" for="psa-bc">
                                 PSA Birth Certificate
                               </label>
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-                              <label class="form-check-label" for="flexCheckChecked">
+                              <input class="form-check-input" type="checkbox" value="" id="good-moral">
+                              <label class="form-check-label" for="good-moral">
                                 Good Moral
                               </label>
                             </div>
 
-                            <button type="button" class="btn btn-primary font py-2 px-0">Add Requirements</button>
 
                           </div>
                         

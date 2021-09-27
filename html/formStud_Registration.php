@@ -80,7 +80,7 @@
         <div class="row mb-3 justify-content-center">
             <h4 class="account__text text-center">Account Information</h4>
 
-            <div class="col-sm-6 mt-2">
+            <div class="col-sm-10 mt-2">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control " id="email" placeholder=" " name="email">
                     <label for="email">Email Address</label>

@@ -23,7 +23,7 @@
 
 html,
 body {
-  background-color: var(--black-color);
+  background-color: var(--white-color);
 }
 
 
@@ -297,7 +297,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .parent_container__{
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background: var(--white-color);
   display: grid;
   place-content: center;
@@ -350,4 +350,20 @@ input[type=number]::-webkit-outer-spin-button {
 
 .btn_nxt_prv{
   width: 120px;
+}
+
+.pass-req{
+  display: block;
+}
+.pass-input:focus ~ .password-validate{
+  height: 125px;
+  visibility: visible;
+  opacity: 1;
+}
+
+.password-validate{
+  height: 0px;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 150ms linear;
 }
