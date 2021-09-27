@@ -158,6 +158,8 @@
                         <label for="phone">Contact number</label>
                     </div>
                 </div>
+
+               
             </div>
 
 
@@ -183,8 +185,8 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="age" id="age" placeholder=" " >
-                        <label for="age">Age</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder=" " >
+                        <label for="address">Address</label>
                     </div>
                 </div>
             </div>
@@ -261,8 +263,8 @@
     
                 <div class="col-sm">
                     <select class="form-select" name="currMajor" aria-label="Default select example">
-                        <option hidden>Specialization</option>
-                        <option value="" disabled>Specialization</option>
+                        <option hidden>Major</option>
+                        <option value="" disabled>Major</option>
                         <option value="Web and Mobile Application">Web and Mobile Application</option>
                         <option value="Computer Science">Computer Science</option>
                     </select>

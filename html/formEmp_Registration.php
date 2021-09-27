@@ -182,8 +182,8 @@
 
                 <div class="col-sm-4">
                     <div class="form-floating">
-                        <input type="text" class="form-control" name="age" id="age" placeholder=" " >
-                        <label for="age">Age</label>
+                        <input type="text" class="form-control" name="address" id="address" placeholder=" " >
+                        <label for="address">Address</label>
                     </div>
                 </div>
             </div>

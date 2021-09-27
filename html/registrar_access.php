@@ -90,8 +90,8 @@
         <div class="col-sm right-tab">
            <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
-            <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-                <p class="title_tab_universal">Unregistered Students</p>
+            <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><br>
+                <p class="title_tab_universal">Dashboard</p>
                 <form action="" class="universalForm_one">
                   <input type="text" name="" id="" placeholder="Search">
                   <button type="button" class="btn btn-primary">Search</button>
@@ -106,7 +106,7 @@
                   </div>
                   <div class="student__group_right align-center" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
-                    <strong class="text-center d-block">1098</strong>
+                    <strong class="text-center d-block">626</strong>
                   </div>
                 </div>
 
@@ -121,15 +121,7 @@
                 </div>
 
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
-                  <div class="student__group_left">
-                    <img src="../images/registrar_img/registered_student.png" alt="" class="rounded mx-auto d-block">
-                  </div>
-                  <div class="student__group_right align-center">
-                    <span class="text-center d-block">New Comer</span>
-                    <strong class="text-center d-block">472</strong>
-                  </div>
-                </div>
+                
 
 
                 <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
@@ -137,7 +129,7 @@
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
-                    <span class="text-center d-block">Former Students</span>
+                    <span class="text-center d-block">Old Students</span>
                     <strong class="text-center d-block">349</strong>
                   </div>
                 </div>
@@ -151,9 +143,9 @@
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option selected>All</option>
-                          <option value="1">Bachelor of Information Technology</option>
-                          <option value="2">Bachelor of Hospitality and Tourism</option>
-                          <option value="3">Bachelor of Mechanical Engineering</option>
+                          <option value="1">Bachelor of Science in Information Technology</option>
+                          <option value="2">Bachelor of Science in Computer Science </option>
+                          <option value="3">Bachelor of Science in Education</option>
                         </select>
                         <label for="floatingSelect">Choose Program</label>
                       </div>
@@ -164,9 +156,8 @@
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option selected>All</option>
-                          <option value="1">...</option>
-                          <option value="2">...</option>
-                          <option value="3">...</option>
+                          <option value="1">Unregister Students</option>
+                          <option value="2">Scholar Students</option>
                         </select>
                         <label for="floatingSelect">Choose Filter</label>
                       </div>
@@ -180,52 +171,65 @@
                                 <th scope="col">Student ID</th>
                                 <th scope="col">First name</th>
                                 <th scope="col">Last name</th>
-                                <th scope="col">Specialization</th>
-                                <th scope="col">Year & Section</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">Program</th>
+                                <th scope="col">Major</th>
+                                <th scope="col">Year Level</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Scholarship</th>
                                 <th scope="col">LRN</th>
+                                <th scope="col">Email</th>
                                 
                               </tr>
                             </thead>
                             <tbody>
                               <tr>
-                                <th scope="row">2018300366</th>
-                                <td>Justine Dave</td>
-                                <td>DelosReyes</td>
-                                <td>WMA</td>
-                                <td>4A</td>
-                                <td>delosreyes366@gmail.com</td>
-                                <td>971490737154</td>
-                                
-                              </tr>
-                              <tr>
-                                <th scope="row">2018300478</th>
-                                <td>Michael</td>
-                                <td>Isla</td>
-                                <td>WMA</td>
-                                <td>4A</td>
-                                <td>isla478@gmail.com</td>
-                                <td>135248434268</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2018300902</th>
+                                <th scope="row">2018301302</th>
                                 <td>Denver</td>
                                 <td>Pulido</td>
-                                <td>WMA</td>
-                                <td>4A</td>
-                                <td>pulido902@gmail.com</td>
-                                <td>635313927363</td>
+                                <td>BSCS</td>
+                                <td>Web and Mobile Application</td>
+                                <td>4th</td>
+                                <td>Transferee</td>
+                                <td>Full</td>
+                                <td>1011121314</td>
+                                <td>pulido@gmail.com</td>
+                               
+                              </tr>
+                              <tr>
+                              <th scope="row">2018301303</th>
+                                <td>Mery Anne</td>
+                                <td>Villano</td>
+                                <td>BSIT</td>
+                                <td>Web and Mobile Application</td>
+                                <td>4th</td>
+                                <td>Old Student</td>
+                                <td>Full</td>
+                                <td>1011121315</td>
+                                <td>mery@gmail.com</td>
+                              </tr>
+                              <tr>
+                                <<th scope="row">2018301304</th>
+                                <td>Justine</td>
+                                <td>Delos Reyes</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
                                 
                               </tr>
                               <tr>
-                                <th scope="row">2018300612</th>
-                                <td>Mery Anne</td>
-                                <td>Villano</td>
-                                <td>WMA</td>
-                                <td>4A</td>
-                                <td>villano612@gmail.com</td>
-                                <td>518220545235</td>
-                                
+                                <th scope="row">2018301305</th>
+                                <td>Michael</td>
+                                <td>Isla</td>
+                                <td>BSED</td>
+                                <td>English</td>
+                                <td>4th</td>
+                                <td>Transferee</td>
+                                <td>Partial</td>
+                                <td>1011121317</td>
+                                <td>isla@gmail.com</td>
                               </tr>
                             </tbody>
                           </table>
@@ -345,12 +349,7 @@
 
                             <div class="row g-2 mb-1">
 
-                              <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=" " value="Born Again">
-                                  <label for="floatingInputGrid">Religion</label>
-                                </div>
-                              </div>
+                              
             
                                 <div class="col-md">
                                   <div class="form-floating">
@@ -373,12 +372,12 @@
                                 <div class="col-md-6">
                                   <div class="form-floating">
                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                      <option value="BSIT" selected>Information Technology</option>
-                                      <option value="BSHTM">Hotel Management and Tourism</option>
-                                      <option value="BSME">Mechanical Engineering</option>
+                                      <option value="BSIT" selected>Bachelor of Science in Information Technology</option>
+                                      <option value="BSHTM">Bachelor of Science in Computer Science </option>
+                                      <option value="BSME">Bachelor of Science in Education</option>
                       
                                     </select>
-                                    <label for="floatingSelect">College | Bachelor of Science in</label>
+                                    <label for="floatingSelect">Program</label>
                                   </div>
                                 </div>
               
@@ -390,7 +389,7 @@
                                       <option value="BSME">NA</option>
                       
                                     </select>
-                                    <label for="floatingSelect">Specialization</label>
+                                    <label for="floatingSelect">Major</label>
                                   </div>
                                 </div>
 
@@ -476,12 +475,12 @@
                           <div class="form-floating">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                               <option selected>All</option>
-                              <option value="BSIT">Information Technology</option>
-                              <option value="BSHTM">Hotel Management and Tourism</option>
-                              <option value="BSME">Mechanical Engineering</option>
+                              <option value="BSIT">Bachelor of Science in Information Technology</option>
+                              <option value="BSHTM">Bachelor of Science in Computer Science</option>
+                              <option value="BSME">Bachelor of Science in dDucation</option>
               
                             </select>
-                            <label for="floatingSelect">College | Bachelor of Science in</label>
+                            <label for="floatingSelect">Program</label>
                           </div>
                         </div>
                         
@@ -489,12 +488,12 @@
                           <div class="form-floating">
                             <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                               <option value="BSIT_WMA" selected>All</option>
-                              <option value="BSIT_WMA">WMA</option>
-                              <option value="BSIT_TSM">TSM</option>
-                              <option value="BSIT_NA">NA</option>
+                              <option value="BSIT_WMA">Web and Mobile Application</option>
+                              <option value="BSIT_TSM">Technical Service Managements</option>
+                              <option value="BSIT_NA">Network and Administration</option>
               
                             </select>
-                            <label for="floatingSelect">Specialization</label>
+                            <label for="floatingSelect">Major</label>
                           </div>
                         </div>
                       </div>
@@ -727,7 +726,7 @@
                           <option value="BSIT_WMA" selected>None</option>
                           <option value="BSIT_WMA">First name</option>
                           <option value="Registrar">Last name</option>
-                          <option value="Cashier">Role</option>
+                         
                           
           
                         </select>
@@ -767,7 +766,7 @@
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
@@ -866,14 +865,15 @@
                     <div class="col-md">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option value="BSIT_WMA" selected>None</option>
-                          <option value="BSIT_WMA">First name</option>
-                          <option value="Registrar">Last name</option>
-                          <option value="Cashier">Role</option>
-                          
+                        <option value="BSIT_WMA" selected>All</option>
+                          <option value="Graduated" selected>Graduate</option>
+                          <option value="Dropout">Dropout</option>
+                          <option value="Transfer">Transfer</option>
+                          <option value="Resign">Resign</option>
+                          <option value="Resign">Terminate</option>
           
                         </select>
-                        <label for="floatingSelect">Status</label>
+                        <label for="floatingSelect">Reason</label>
                       </div>
                     </div>
 
@@ -909,7 +909,7 @@
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Search</button>
+                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
