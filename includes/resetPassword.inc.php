@@ -1,7 +1,15 @@
 <?php
   include_once '../connection/Config.php';
   session_start();
+  $error = null;
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+  require '../phpmailer/src/Exception.php';
+  require '../phpmailer/src/PHPMailer.php';
+  require '../phpmailer/src/SMTP.php';
 
+  // Email Verification
   if(isset($_POST['submit'])){
     $user_email = mysqli_real_escape_string($con, $_POST['email']);
   
@@ -10,6 +18,9 @@
     $stmtCheckEmail->bind_param('s', $user_email);
     $stmtCheckEmail->execute();
     $resCheckEmail = $stmtCheckEmail->get_result();
+    $rowCheckEmail = $resCheckEmail->fetch_assoc();
+
+   
   
     if($resCheckEmail->num_rows > 0){
       $otp_expiration = date("H:i:s",strtotime('+3 minutes')); 
@@ -19,12 +30,32 @@
       $stmtOtp = $con->prepare($sqlOtp);
       $stmtOtp->bind_param('sss', $generated_otp , $otp_expiration, $user_email);
       $stmtOtp->execute();
-      echo"Hello";
+      // echo"Hello";
       // phpmailer object
       // $mail = new email_otp_send();
       // $mail->send_email($user_email,$generated_otp);
-      $_SESSION['email'] = $user_email;
-      header('Location: ../html/reset_password.php');
+      $mail = new PHPMailer(true);
+      $mail->smtpClose();
+      $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+      $mail->isSMTP();                                           
+      $mail->Host       = 'smtp.gmail.com';                     
+      $mail->SMTPAuth   = true;                                   
+      $mail->Username   = 'phptest1301@gmail.com';                     
+      $mail->Password   = 'fprqtcaljwxcnvie';                               
+      $mail->SMTPSecure = 'ssl';            
+      $mail->Port       = 465;   
+
+      $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
+      $mail->addAddress($user_email,  $rowCheckEmail['fullname']);                                        
+      $mail->Subject = 'Reset Password OTP';
+      $mail->Body    = $generated_otp;
+  
+      if($mail->send()){
+        $_SESSION['email'] = $user_email;
+        header('Location: ../html/reset_password.php');
+      }else{
+          echo 'Something went wrong';
+      }
     }else{
       $_SESSION['status'] = "error";
       $_SESSION['msg'] = "Email not found";

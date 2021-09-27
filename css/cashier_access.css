@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&family=Zilla+Slab&display=swap');
+
+/* Note|| Font stle is 'Poppins' 16px */
+
+:root{
+    font-size: 16px;
+    --black-color: rgb(31, 29, 28);
+    --white-color: #FFFFFF;
+    --blue-color: #56A8CBFF;
+    --green-color: #3fd4b7;
+    --input-background-color: rgb(194, 207, 219);
+    --font-school-name: 'Zilla Slab', serif;
+    --font-tagline: 'Overpass', sans-serif;
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* LOADER */
+.loader-wrapper{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #1e1e1e;
+    z-index: 1000;
+    transition: 500ms ease;
+  }
+  .wrapper{
+    width:200px;
+    height:60px;
+    position: absolute;
+    left:50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+  }
+  .circle{
+    width:20px;
+    height:20px;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #fff;
+    left:15%;
+    transform-origin: 50%;
+    animation: circle .5s alternate infinite ease;
+  }
+  
+  @keyframes circle{
+    0%{
+        top:60px;
+        height:5px;
+        border-radius: 50px 50px 25px 25px;
+        transform: scaleX(1.7);
+    }
+    40%{
+        height:20px;
+        border-radius: 50%;
+        transform: scaleX(1);
+    }
+    100%{
+        top:0%;
+    }
+    }
+    .circle:nth-child(2){
+    left:45%;
+    animation-delay: .2s;
+    }
+    .circle:nth-child(3){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+    }
+    .shadow{
+    width:20px;
+    height:4px;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top:62px;
+    transform-origin: 50%;
+    z-index: -1;
+    left:15%;
+    filter: blur(1px);
+    animation: shadow .5s alternate infinite ease;
+    }
+  
+    @keyframes shadow{
+    0%{
+        transform: scaleX(1.5);
+    }
+    40%{
+        transform: scaleX(1);
+        opacity: .7;
+    }
+    100%{
+        transform: scaleX(.2);
+        opacity: .4;
+    }
+    }
+    .shadow:nth-child(4){
+    left: 45%;
+    animation-delay: .2s
+    }
+    .shadow:nth-child(5){
+    left:auto;
+    right:15%;
+    animation-delay: .3s;
+    }
+    .wrapper span{
+    position: absolute;
+    top:75px;
+    font-family: 'Lato';
+    font-size: 25px;
+    color: #fff;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    }
+/* LOADER */
+
+
+.nav__bar{
+    width: 100%;
+    height: 60px;
+    background: var(--blue-color);
+    color: white;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0;
+    border-bottom: 2px solid black;
+    transition: 300ms ease;
+    position: fixed;
+    z-index: 1000;
+}
+
+.logout__{
+    position: absolute;
+    right: 10px;
+    color: var(--black-color);
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+
+
+
+
+.nav__bar .nav__bar_two img{
+    width: 50px;
+    height: 50px;
+    margin: 0 10px;
+}
+
+.nav__bar .nav__bar_two{
+    display: flex;
+    align-items: center;
+}
+
+
+.nav__bar .nav__bar_two .nav__bar_two_text span{
+    display: block;
+    font-family: var(--font-school-name);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--white-color);
+    margin-top: 10px;
+}
+
+.nav__bar .nav__bar_two .nav__bar_two_text p{
+    font-family: var(--font-tagline);   
+    color: var(--white-color);
+    font-weight: bold;   
+    margin-bottom: 10px;
+}

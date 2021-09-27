@@ -237,7 +237,7 @@
     margin: -20px auto 10px;
     transition: 300ms ease;
     height: 0;
-    box-shadow: 8px 11px 14px 0px rgba(0,0,0,0.75);
+    box-shadow: -2px 11px 14px 0px rgba(0,0,0,0.20);
     user-select: none;
     pointer-events: none;
 }
@@ -465,13 +465,13 @@ hr{
 }
 
 
-.table__{
+.table__dashboard{
     transition: 300ms ease;;
     opacity: 0;
     visibility: hidden;
 }
 
-.table__.active{
+.table__dashboard.active{
     opacity: 1;
     visibility: visible;
 }
