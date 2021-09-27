@@ -541,9 +541,10 @@
                       <table class="table">
                         <thead>
                           <tr>
-                            <th scope="col">Student Number</th>
+                            <th scope="col">Student ID</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
+                            <th scope="col">Payments Status</th>
                             <th scope="col">Form 137</th>
                             <th scope="col">Form 138</th>
                             <th scope="col">PSA Birth Certificate</th>
@@ -618,7 +619,7 @@
                       <div class="col-md">
                             <div class="form-floating">
                               <input type="number" class="form-control" id="floatingInputGrid" placeholder=" " value="900283">
-                              <label for="floatingInputGrid">ID Number</label>
+                              <label for="floatingInputGrid">Employee ID</label>
                             </div>
                           </div>
                         <div class="col-md">
@@ -749,11 +750,11 @@
                   <table class="table">
                     <thead>
                       <tr>
-                        <th scope="col">ID Number</th>
+                        <th scope="col">Employee ID</th>
                         <th scope="col">First name</th>
                         <th scope="col">Last name</th>
                         <th scope="col">Role</th>
-                        <th scope="col">Start date</th>
+                        <th scope="col">Hire Date</th>
                         
                       </tr>
                     </thead>
