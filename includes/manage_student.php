@@ -28,7 +28,7 @@
 
 //----------------------STUDENT'S TAB BUTTON CONDITION----------------------------------------
 
-if(isset($_POST['stud_add'] , $_POST['req_form137'] , $_POST['req_form138'] , $_POST['req_psa'] , $_POST['req_good_moral'] )){
+if(isset($_POST['stud_add'])){
   $sql = "INSERT INTO `tbl_student_info`(`student_number`, `firstname`, `lastname`, `middlename`, `sex`,
   `birthdate`, `age`, `address`, `religion`, `citizenship`, `civil_status`, `college`, `major`, `year_section`, `email`, `contact_number`) 
  VALUES ('$student_number','$stud_firstname','$stud_lastname','$stud_middlename','$stud_sex','$stud_birthdate','$stud_age','$stud_address','$stud_religion',
@@ -36,8 +36,6 @@ if(isset($_POST['stud_add'] , $_POST['req_form137'] , $_POST['req_form138'] , $_
  
  $sql1 = "INSERT INTO `tbl_student_requirements`(`student_number`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) 
  VALUES ('$student_number','$req_form_137','$req_form_138','$req_psa_birth_cert','$req_good_moral')";
-
-$_SESSION['msg'] = "Successfully Added!";
  
  
 } else if(isset($_POST['stud_update'])){
