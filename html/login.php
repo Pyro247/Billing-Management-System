@@ -1,5 +1,8 @@
 <?php
     session_start();
+    if(isset($_SESSION['employeeId'])){
+        header('Location: registrar_access.php');
+      }
 ?>
 <!DOCTYPE html>
 <html lang="en">

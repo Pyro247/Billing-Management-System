@@ -1,27 +1,25 @@
+<?php
+  session_start();
+  if(!isset($_SESSION['employeeId'])){
+    header('Location: login.php');
+  }
+?>
 <!doctype html>
 <html lang="en">
   <head>
    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-
-   
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
-
-
 
     <title>Registrar</title>
   </head>
   <body>
-
-    
 <!-- LOADER! -->
 <div class="loader-wrapper" id="loader-wrapperID">
   <div class="wrapper">
@@ -43,11 +41,7 @@
         loader.style.pointerEvents = "none"
   }
 </script>
-
-
 <!-- LOADER -->
-    
-
     <div class="nav__bar">
       <div class="nav__bar_two">
       <img src="../images/logo.png" alt="">
@@ -56,24 +50,19 @@
               <p>Excellence at its finest.</p>
           </div>
       </div>
-    
     </div>
 
-
-
     <div class="row">
-      
-        <div class="col-3 left-tab">
-
+      <div class="col-3 left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-            <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
               <a href="">Change Password</a>
-              <a href="">Logout</a>
+              <a href="../includes/logout.inc.php">Logout</a>
             </div>
-            <p class="reg__name">Registrar | 900283</p>
+            <p class="reg__name">Registrar | <?= $_SESSION['employeeId'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 

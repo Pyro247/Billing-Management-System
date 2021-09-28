@@ -23,12 +23,22 @@
       $stmtLogin->bind_param('ss', $email, $password);
       $stmtLogin->execute();
       $resLogin = $stmtLogin->get_result();
-      $row_login = $resLogin->fetch_assoc();
+      $rowLogin = $resLogin->fetch_assoc();
 
       if($resLogin->num_rows > 0){
-        $_SESSION['status'] = "success";
-        $_SESSION['msg'] = "Login success";
-        header('Location: ../html/login.php');
+        if($rowLogin['role'] == 'Registrar'){
+          
+          header('Location: ../html/registrar_access.php');
+          $_SESSION['fullname'] =$rowLogin['fullname'];
+          $_SESSION['employeeId'] =$rowLogin['user_id'];
+          $_SESSION['role'] =$rowLogin['role'];
+        }else{
+          // Temporary
+          $_SESSION['status'] = "success";
+          $_SESSION['msg'] = "Login success";
+          header('Location: ../html/login.php');
+        }
+      
       }else{
         $_SESSION['status'] = "info";
         $_SESSION['msg'] = "Incorrect password";
