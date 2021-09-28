@@ -272,13 +272,36 @@
         });
         function next_tab(){
             if (step_counter === 1){
-                            choose_step_2();
-                            step_counter = 2;
-                            progress_bar.style.width = "100%"
-                            nextBtn.textContent = "Submit"
-                            nextBtn.disabled = true;
-                            personal_info_icon.innerHTML = "&#xf058;";
-                            personal_info_icon.style.color = "green";
+                if($('#email').val() == ''){
+                    Swal.fire({
+                        title: 'Please enter your email',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() == ''){
+                    Swal.fire({
+                        title: 'No password',
+                        text: 'Please type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() != $('#confirm_pass').val()){
+                    Swal.fire({
+                        title: 'Password not match',
+                        text: 'Please re-type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else{
+                    step_counter = 2;
+                    progress_bar.style.width = "100%"
+                    nextBtn.textContent = "Submit"
+                    nextBtn.disabled = true;
+                    personal_info_icon.innerHTML = "&#xf058;";
+                    personal_info_icon.style.color = "green";
+                    choose_step_2();
+                }
+                
             }
         }
 
@@ -313,29 +336,7 @@
         
         $('#next_id').click(function(event){
             if($("input[name='agreePolicy']").is(":checked")){
-                if($('#email').val() == ''){
-                    Swal.fire({
-                        title: 'Please enter your email',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else if ($('#password').val() == ''){
-                    Swal.fire({
-                        title: 'No password',
-                        text: 'Please type your password',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else if ($('#password').val() != $('#confirm_pass').val()){
-                    Swal.fire({
-                        title: 'Password not match',
-                        text: 'Please re-type your password',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else{
-                    $('#empReg').submit();
-                }
+                $('#empReg').submit();
             }
             event.preventDefault();
         })

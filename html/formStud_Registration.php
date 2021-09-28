@@ -352,13 +352,10 @@
         
         
         function choose_step_1(){
-            
             step_one.style.display = "block"
             step_two.style.display = "none"
             step_three.style.display = "none"
-            
         }
-
         function choose_step_2(){
             step_one.style.display = "none"
             step_two.style.display = "block"
@@ -373,12 +370,33 @@
 
         function next_tab(){
             if (step_counter === 1){
-                            choose_step_2();
-                            step_counter = 2;
-                            progress_bar.style.width = "66%"
-                            personal_info_icon.innerHTML = "&#xf058;";
-                            personal_info_icon.style.color = "green";
-
+                if($('#email').val() == ''){
+                    Swal.fire({
+                        title: 'Please enter your email',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() == ''){
+                    Swal.fire({
+                        title: 'No password',
+                        text: 'Please type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if ($('#password').val() != $('#confirm_pass').val()){
+                    Swal.fire({
+                        title: 'Password not match',
+                        text: 'Please re-type your password',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else{
+                    choose_step_2();
+                    step_counter = 2;
+                    progress_bar.style.width = "66%"
+                    personal_info_icon.innerHTML = "&#xf058;";
+                    personal_info_icon.style.color = "green";
+                }
             }else if (step_counter === 2){
                     choose_step_3();
                     step_counter = 3;
@@ -389,7 +407,20 @@
                     college_info_icon.style.color = "green";
             }
         }
-
+        $('.check-email').blur(function (e) { 
+            let email = $('.check-email').val();
+                $.ajax({
+                type: "POST",
+                url: "../includes/registration.inc.php",
+                data: {
+                    "checking_email": 1,
+                    "email": email,
+                },
+                success: function (response) {
+                    $('#msg').text(response);
+                }
+            });
+        });
         function prev_tab(){
             if (step_counter === 2){
                 choose_step_1();
@@ -430,29 +461,7 @@
         
         $('#next_id').click(function(event){
             if($("input[name='agreePolicy']").is(":checked")){
-                if($('#email').val() == ''){
-                    Swal.fire({
-                        title: 'Please enter your email',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else if ($('#password').val() == ''){
-                    Swal.fire({
-                        title: 'No password',
-                        text: 'Please type your password',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else if ($('#password').val() != $('#confirm_pass').val()){
-                    Swal.fire({
-                        title: 'Password not match',
-                        text: 'Please re-type your password',
-                        icon: 'warning',
-                        confirmButtonText: 'OK'
-                    })
-                }else{
                     $('#studForm').submit();
-                }
             }
             // event.preventDefault();
         })
@@ -496,20 +505,7 @@
             vOne.style.color = "green"
         }
     }
-    $('.check-email').blur(function (e) { 
-            let email = $('.check-email').val();
-                $.ajax({
-                type: "POST",
-                url: "../includes/registration.inc.php",
-                data: {
-                    "checking_email": 1,
-                    "email": email,
-                },
-                success: function (response) {
-                    $('#msg').text(response);
-                }
-            });
-        });
+    
     function check_two(){
             if (!(password_requirement.value.match(/[a-z]/)) || !(password_requirement.value.match(/[A-Z]/)) ){
                 vTwo.style.color = "crimson";
