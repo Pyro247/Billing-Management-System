@@ -313,21 +313,21 @@
                                 </div>
                               </div> -->
 
-                              <!-- Birthdate -->
-                              <!-- <div class="col-md-3">
+                             
+                               <div class="col-md-3">
                                 <div class="form-floating">
                                   <input type="date" name="stud_birthdate" class="form-control" id="floatingInputGrid" placeholder=" ">
                                   <label for="floatingInputGrid">Birthdate</label>
                                 </div>
-                              </div> -->
+                              </div> 
 
-                              <!-- Age -->
-                              <!-- <div class="col-md-2">
+                              
+                               <div class="col-md-2">
                                 <div class="form-floating">
                                   <input type="number" name="stud_age" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Age</label>
                                 </div>
-                              </div> -->
+                              </div> 
 
                               <div class="col-md mb-1">
                                 <div class="form-floating">
