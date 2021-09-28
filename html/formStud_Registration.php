@@ -148,24 +148,19 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" " >
-                        <label for="citizen">Citizenship</label>
+                        <input type="text" class="form-control" name="LRN" id="LRN" placeholder=" " >
+                        <label for="LRN">Contact Number</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " >
-                        <label for="civilStatus">Civil Status</label>
+                        <label for="civilStatus">Address</label>
                     </div>
                 </div>
 
-                <div class="col-sm-4">
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="phone" id="phone" placeholder=" " >
-                        <label for="phone">Contact number</label>
-                    </div>
-                </div>
+              
 
                
             </div>
@@ -181,22 +176,6 @@
                     <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
                     <label class="btn btn-outline-success" for="female_id">Female</label>
                 </div>
-            <!-- RADIO BUTTON -->
-                
-
-                <div class="col-sm-4">
-                    <div class="form-floating">
-                        <input type="date" class="form-control" name="birthdate" id="birthdate" placeholder=" " >
-                        <label for="birthdate">Birthdate</label>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="form-floating">
-                        <input type="text" class="form-control" name="address" id="address" placeholder=" " >
-                        <label for="address">Address</label>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -208,9 +187,9 @@
 
 
 
-    <!-- Step three - College info -->
+    
     <div class="steps_reg" id="step_three_id">
-        
+      <!-- Step three - College info - 
             <h4 class="text-center">I am:</h4>
 
             <div class="col-sm mb-5 d-flex justify-content-center">
@@ -221,8 +200,8 @@
                 <label class="btn btn-outline-success btn_old_transferee mx-2" for="transferee_stud">Transferee Student</label>
         
             </div>
-
-            
+        --> 
+            <!--------
             <div class="row my-3">
                 <h4>Current College Information:</h4>
                 <div class="col-sm">
@@ -291,6 +270,7 @@
                     </select>
                 </div>
             </div>
+            --->
             
             <div class="form-check mt-5">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
