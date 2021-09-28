@@ -29,29 +29,29 @@
 //----------------------STUDENT'S TAB BUTTON CONDITION----------------------------------------
 
 if(isset($_POST['stud_add'])){
-  $sql = "INSERT INTO `tbl_student_info`(`student_number`, `firstname`, `lastname`, `middlename`, `sex`,
+  $sql = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`, `sex`,
   `birthdate`, `age`, `address`, `religion`, `citizenship`, `civil_status`, `college`, `major`, `year_section`, `email`, `contact_number`) 
  VALUES ('$student_number','$stud_firstname','$stud_lastname','$stud_middlename','$stud_sex','$stud_birthdate','$stud_age','$stud_address','$stud_religion',
  '$stud_citizenship','$stud_civil_status','$stud_college','$stud_major','$stud_year_section','$stud_email','$stud_contact_number')";
  
- $sql1 = "INSERT INTO `tbl_student_requirements`(`student_number`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) 
+ $sql1 = "INSERT INTO `tbl_student_requirements`(`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) 
  VALUES ('$student_number','$req_form_137','$req_form_138','$req_psa_birth_cert','$req_good_moral')";
  
  
 } else if(isset($_POST['stud_update'])){
-  $sql = "UPDATE `tbl_student_info` SET `student_number`='$student_number',`firstname`='$stud_firstname',
+  $sql = "UPDATE `tbl_student_info` SET `stud_id`='$student_number',`firstname`='$stud_firstname',
   `lastname`='$stud_lastname',`middlename`='$stud_middlename',`sex`='$stud_sex',`birthdate`='$stud_birthdate',`age`='$stud_age',`address`='$stud_address',
   `religion`='$stud_religion',`citizenship`='$stud_citizenship',`civil_status`='$stud_civil_status',`college`='$stud_ollege',`major`='$stud_major',
   `year_section`='$stud_year_section',`email`='$stud_email',`contact_number`='$stud_contact_number' WHERE `student_number` = '$student_number'";
 
-  $sql1 = "UPDATE `tbl_student_requirements` SET `student_number`='$student_number',`form_137`='$req_form_137',`form_138`='$req_form_138',
+  $sql1 = "UPDATE `tbl_student_requirements` SET `stud_id`='$student_number',`form_137`='$req_form_137',`form_138`='$req_form_138',
   `psa_birth_cert`='$req_psa_birth_cert',`good_moral`='$req_good_moral' WHERE `student_number` = '$student_number'";
     
 
 } else if(isset($_POST['stud_delete'])){
-  $sql = "DELETE FROM `tbl_student_info` WHERE `student_number`= '$student_number'";
+  $sql = "DELETE FROM `tbl_student_info` WHERE `stud_id`= '$student_number'";
 
-  $sql1 = "DELETE FROM `tbl_student_requirements` WHERE `student_number`= '$student_number'";
+  $sql1 = "DELETE FROM `tbl_student_requirements` WHERE `stud_id`= '$student_number'";
 }
 
         if(mysqli_query($conn, $sql)){
