@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 05:45 AM
+-- Generation Time: Sep 28, 2021 at 07:10 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -37,6 +37,29 @@ CREATE TABLE `tbl_accounts` (
   `otp_expiration` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_accounts`
+--
+
+INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
+(1, '', 'anne@gmail.com', 'anne', 'Registrar', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_fee`
+--
+
+CREATE TABLE `tbl_course_fee` (
+  `course_id` int(11) NOT NULL,
+  `stud_id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `csi_program&major` varchar(100) NOT NULL,
+  `csi_year_level` varchar(100) NOT NULL,
+  `tuition_fee` int(11) NOT NULL,
+  `discount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 -- --------------------------------------------------------
 
 --
@@ -50,11 +73,7 @@ CREATE TABLE `tbl_employee_info` (
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
-  `citizenship` varchar(100) NOT NULL,
-  `civil_status` varchar(100) NOT NULL,
   `sex` varchar(20) NOT NULL,
-  `birthdate` varchar(100) NOT NULL,
-  `age` int(100) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(15) NOT NULL,
   `reg_date` varchar(100) NOT NULL
@@ -63,18 +82,23 @@ CREATE TABLE `tbl_employee_info` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_student_fee`
+-- Table structure for table `tbl_payments`
 --
 
-CREATE TABLE `tbl_student_fee` (
+CREATE TABLE `tbl_payments` (
+  `transaction_no.` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `stud_program&major` varchar(100) NOT NULL,
-  `csi_year` varchar(100) NOT NULL,
-  `tuition_fee` int(11) NOT NULL,
-  `total_amount_paid` int(11) NOT NULL,
-  `balace` int(11) NOT NULL,
-  `payment_status` varchar(100) NOT NULL
+  `payable_fee` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `payment_method` varchar(100) NOT NULL,
+  `total_paid` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `transaction_date` date NOT NULL,
+  `payment_status` varchar(100) NOT NULL,
+  `cashier_id` int(11) NOT NULL,
+  `cashier_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -90,18 +114,23 @@ CREATE TABLE `tbl_student_info` (
   `lastname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
   `sex` varchar(50) NOT NULL,
-  `birthdate` varchar(100) NOT NULL,
-  `age` int(100) NOT NULL,
   `address` longtext NOT NULL,
-  `citizenship` varchar(100) NOT NULL,
-  `civil_status` varchar(100) NOT NULL,
   `college` longtext NOT NULL,
   `major` longtext NOT NULL,
-  `year_section` varchar(255) NOT NULL,
+  `year_level` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(12) NOT NULL,
   `reg_date` varchar(100) NOT NULL DEFAULT 'N/A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_info`
+--
+
+INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `college`, `major`, `year_level`, `email`, `contact_number`, `reg_date`) VALUES
+('', 1, '', '', '', '', '', '', '', '', '', '', 'N/A'),
+('', 2, '', '', '', '', '', '', '', '', '', '', 'N/A'),
+('', 2021000002, 'christian', 'Villano', 'Corto', 'male', '', 'BSIT', 'WMA', '', '', '', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -114,9 +143,16 @@ CREATE TABLE `tbl_student_requirements` (
   `form_137` varchar(100) NOT NULL,
   `form_138` varchar(100) NOT NULL,
   `psa_birth_cert` varchar(100) NOT NULL,
-  `good_moral` varchar(100) NOT NULL,
-  `date_pass` date NOT NULL
+  `good_moral` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_requirements`
+--
+
+INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
+(2021000001, '', '', '', ''),
+(2021000002, '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -131,29 +167,9 @@ CREATE TABLE `tbl_student_school_details` (
   `csi_school_year` varchar(100) NOT NULL,
   `csi_semester` varchar(100) NOT NULL,
   `csi_scholarship` varchar(100) NOT NULL,
-  `csi_course` varchar(255) NOT NULL,
+  `csi_program` varchar(255) NOT NULL,
   `csi_major` longtext NOT NULL,
-  `csi_year` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_transaction`
---
-
-CREATE TABLE `tbl_transaction` (
-  `transaction_no.` int(11) NOT NULL,
-  `stud_id` int(11) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
-  `tuition_fee` int(11) NOT NULL,
-  `payment_method` varchar(100) NOT NULL,
-  `total_amount_paid` int(11) NOT NULL,
-  `balance` int(11) NOT NULL,
-  `transaction_date` date NOT NULL,
-  `payment_status` varchar(100) NOT NULL,
-  `cashier_id` int(11) NOT NULL,
-  `cashier_name` varchar(100) NOT NULL
+  `csi_year_level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -167,10 +183,22 @@ ALTER TABLE `tbl_accounts`
   ADD PRIMARY KEY (`user_id`);
 
 --
+-- Indexes for table `tbl_course_fee`
+--
+ALTER TABLE `tbl_course_fee`
+  ADD PRIMARY KEY (`course_id`);
+
+--
 -- Indexes for table `tbl_employee_info`
 --
 ALTER TABLE `tbl_employee_info`
   ADD PRIMARY KEY (`reg_no`);
+
+--
+-- Indexes for table `tbl_payments`
+--
+ALTER TABLE `tbl_payments`
+  ADD PRIMARY KEY (`transaction_no.`);
 
 --
 -- Indexes for table `tbl_student_info`
@@ -191,19 +219,19 @@ ALTER TABLE `tbl_student_school_details`
   ADD PRIMARY KEY (`stud_id`);
 
 --
--- Indexes for table `tbl_transaction`
---
-ALTER TABLE `tbl_transaction`
-  ADD PRIMARY KEY (`transaction_no.`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `tbl_transaction`
+-- AUTO_INCREMENT for table `tbl_course_fee`
 --
-ALTER TABLE `tbl_transaction`
+ALTER TABLE `tbl_course_fee`
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_payments`
+--
+ALTER TABLE `tbl_payments`
   MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
