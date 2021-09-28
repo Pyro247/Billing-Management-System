@@ -1,10 +1,10 @@
 <?php
- $conn = mysqli_connect("localhost", "root", "", "web-based-billing-management-system");       
- if($conn === false){
-     die("ERROR: Could not connect. " 
-         . mysqli_connect_error());
- }
- 
+  $conn = mysqli_connect("localhost", "root", "", "web-based-billing-management-system");       
+  if($conn === false){
+    die("ERROR: Could not connect. " 
+      . mysqli_connect_error());
+  }
+
   $student_number =$_POST['student_number'];
   $stud_firstname =$_POST['stud_firstname'];
   $stud_lastname =$_POST['stud_lastname'];
@@ -30,8 +30,8 @@
 
 if(isset($_POST['stud_add'])){
   $sql = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`, `sex`,
-  `birthdate`, `age`, `address`, `religion`, `citizenship`, `civil_status`, `college`, `major`, `year_section`, `email`, `contact_number`) 
- VALUES ('$student_number','$stud_firstname','$stud_lastname','$stud_middlename','$stud_sex','$stud_birthdate','$stud_age','$stud_address','$stud_religion',
+  `birthdate`, `age`, `address`, `citizenship`, `civil_status`, `college`, `major`, `year_section`, `email`, `contact_number`) 
+ VALUES ('$student_number','$stud_firstname','$stud_lastname','$stud_middlename','$stud_sex','$stud_birthdate','$stud_age','$stud_address',
  '$stud_citizenship','$stud_civil_status','$stud_college','$stud_major','$stud_year_section','$stud_email','$stud_contact_number')";
  
  $sql1 = "INSERT INTO `tbl_student_requirements`(`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) 
