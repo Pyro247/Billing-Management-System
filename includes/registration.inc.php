@@ -2,7 +2,20 @@
   include_once '../connection/Config.php';
   session_start();
 
+  // Check if email is already taken
+  if(isset($_POST['checking_email'])){
+    $email = $_POST['email'];
+    $sql = "SELECT * FROM `tbl_accounts` WHERE email = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $res = $stmt->get_result();
+    if($res->num_rows > 0){
+      echo "Email is already taken";
+    }else{
 
+    }
+  }
   // Update Info and Create Account
   if( isset( $_POST['agreePolicy'] ) ){
     if(isset($_POST['role']) && ($_POST['role'] == 'Cashier' || $_POST['role'] == 'Registrar' ) ){

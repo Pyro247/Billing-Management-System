@@ -61,7 +61,6 @@
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>
-                <!-- <li><i class="fa" id="ciID">&#xf19c;</i></li> -->
                 <li><i class="fa" id="aiID">&#xf502;</i></li>
             </ul>
 
@@ -79,8 +78,9 @@
 
             <div class="col-sm-5 mt-2">
                 <div class="form-floating mb-3">
-                    <input type="email" class="form-control " id="email" placeholder=" " name="email">
+                    <input type="email" class="form-control check-email" id="email" placeholder=" " name="email">
                     <label for="email">Email Address</label>
+                    <p class="text-danger" id="msg"></p>
                 </div>
 
                 <div class="form-floating mb-3 password-container">
@@ -256,7 +256,20 @@
             step_one.style.display = "none"
             step_two.style.display = "block"
         }
-
+        $('.check-email').blur(function (e) { 
+            let email = $('.check-email').val();
+                $.ajax({
+                type: "POST",
+                url: "../includes/registration.inc.php",
+                data: {
+                    "checking_email": 1,
+                    "email": email,
+                },
+                success: function (response) {
+                    $('#msg').text(response);
+                }
+            });
+        });
         function next_tab(){
             if (step_counter === 1){
                             choose_step_2();
