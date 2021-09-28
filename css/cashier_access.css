@@ -268,4 +268,72 @@ q{
 }
 
 
-/* Right Tab */
+/* Right Tab ********************************************************************/
+.row{
+    width: 100%;
+}
+
+.right-tab{
+    margin-top: 100px;
+    margin-left: 300px;
+    
+}
+
+
+.title_tab_universal{
+    font-size: 2rem;
+}
+
+.universalForm_one{
+    display: flex;
+}
+
+.universalForm_one input{
+    width: 60%;
+    margin: 0 2px;
+    font-size: 1.1rem;
+    padding: 5px;
+    text-align: center;
+    outline-color: black;
+    border-radius: 5px;
+}
+
+.universal_bg_gray_table{
+    background-color: lightgray;
+    padding: 10px;
+    margin-top: 10px;
+    width: 100%;
+    overflow: auto;
+    height: 500px;
+}
+
+/* Payment Transactions ******************************************/
+.payment_transactions_left_tab{
+    max-width: 650px;
+    border: 2px solid black;
+    height: 100%;
+    padding: 10px;
+    
+}
+.payment_transactions_left_tab_secondary_left_parent{
+    display: flex;
+}
+
+
+.payment_transactions_left_tab_secondary_left img{
+    max-width: 180px;
+    max-height: 180px;
+    display: block;
+    margin: 10px auto;
+}
+
+.payment_transactions_left_tab_secondary_left{
+    width: 30%;
+}
+
+.payment_transactions_left_tab_secondary_left{
+    width: 30%;
+}
+
+
+

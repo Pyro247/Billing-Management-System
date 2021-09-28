@@ -289,8 +289,6 @@ q{
     display: flex;
 }
 
-
-
 .universalForm_one input{
     width: 60%;
     margin: 0 2px;
@@ -351,7 +349,7 @@ q{
     height: 50px;
 }
 
-.manage__stud-emp-all-tab, .manage__all-users-tab{
+.manage__stud-emp-all-tab{
     padding: 5px;
     width: 100%;
     background-color: lightgray;

@@ -56,7 +56,7 @@
       <div class="col-3 left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down mx-2" onclick="profile_link_show()"></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
               <a href="">Change Password</a>
@@ -271,9 +271,6 @@
                             
                             <div class="row g-2 mb-1">
                             <div class="col-md">
-
-                          
-
                               <div class="form-floating">
                                 <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                 <label for="floatingInputGrid">Student Number</label>
@@ -303,7 +300,9 @@
                             </div>
 
                             <div class="row g-2 mb-1">
-                              <div class="col-md-2">
+
+                              <!-- Sex -->
+                              <!-- <div class="col-md-2">
                                 <div class="form-floating">
                                   <select class="form-select" name="stud_sex" id="floatingSelect" aria-label="Floating label select example">
                                     <option value="male" selected>Male</option>
@@ -312,23 +311,25 @@
                                   </select>
                                   <label for="floatingSelect">Sex</label>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-3">
+                              <!-- Birthdate -->
+                              <!-- <div class="col-md-3">
                                 <div class="form-floating">
                                   <input type="date" name="stud_birthdate" class="form-control" id="floatingInputGrid" placeholder=" ">
                                   <label for="floatingInputGrid">Birthdate</label>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-md-2">
+                              <!-- Age -->
+                              <!-- <div class="col-md-2">
                                 <div class="form-floating">
                                   <input type="number" name="stud_age" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Age</label>
                                 </div>
-                              </div>
+                              </div> -->
 
-                              <div class="col-md">
+                              <div class="col-md mb-1">
                                 <div class="form-floating">
                                   <input type="text" name="stud_address" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Address</label>
@@ -338,22 +339,21 @@
 
                             <div class="row g-2 mb-1">
 
-
-
-            
-                                <div class="col-md">
+                              <!-- Citizenship -->
+                                <!-- <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_citizenship" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Citizenship</label>
                                   </div>
-                                </div>
+                                </div> -->
             
-                                <div class="col-md">
+                                <!-- Civil Status -->
+                                <!-- <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_civil_status" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Civil Status</label>
                                   </div>
-                                </div>
+                                </div> -->
             
                               </div>
 
@@ -387,12 +387,15 @@
                                   </div>
                                 </div>
 
+                                <!-- Year & section -->
+                              <!-- 
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_year_section" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                     <label for="floatingInputGrid">Year & Section</label>
                                   </div>
-                                </div>
+                                </div> -->
+
                               </div>
 
                               <div class="row g-2 mb-1">
@@ -644,7 +647,7 @@
                               <label for="floatingInputGrid">Age</label>
                             </div>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" name="emp_address" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Address</label>
