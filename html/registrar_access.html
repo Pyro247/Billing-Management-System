@@ -79,6 +79,7 @@
         <div class="col-sm right-tab">
            <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
+
             <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><br>
                 <p class="title_tab_universal">Dashboard</p>
                 <form action="" class="universalForm_one">
@@ -250,14 +251,16 @@
                 </li>
               </ul>
 
-              <div class="tab-content" id="myTabContent">
 
-              
+
+
+              <div class="tab-content" id="myTabContent">
 <!----------------------------------------------- Students Tab ---------------------------------------------------------->
                 <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
-                  <form action="../includes/manage_student.php" method="post" class="universalForm_two" >
+                  <form action="../includes/manage_student.php" method="post" class="universalForm_two">
+
                       <div class="manage_users_universal_tab_lmr_parent">
                         
                         
@@ -312,33 +315,66 @@
                                   <label for="floatingSelect">Sex</label>
                                 </div>
                               </div> -->
-
-                             
-                               <div class="col-md-3">
+                            
+                              
+                                <!-- <div class="col-md-3">
                                 <div class="form-floating">
                                   <input type="date" name="stud_birthdate" class="form-control" id="floatingInputGrid" placeholder=" ">
                                   <label for="floatingInputGrid">Birthdate</label>
                                 </div>
-                              </div> 
+                              </div>   -->
 
                               
-                               <div class="col-md-2">
+                               <!-- <div class="col-md-2">
                                 <div class="form-floating">
                                   <input type="number" name="stud_age" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Age</label>
                                 </div>
-                              </div> 
+                              </div>   -->
 
-                              <div class="col-md mb-1">
+
+                              <!-- <div class="col-md mb-1">
                                 <div class="form-floating">
                                   <input type="text" name="stud_address" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                   <label for="floatingInputGrid">Address</label>
                                 </div>
+                              </div> -->
+
+                              <div class="col-md mb-1">
+                                <div class="form-floating">
+                                  <input type="text" name="stud_address" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                  <label for="floatingInputGrid">School year</label>
+                                </div>
                               </div>
+
+                              <div class="col-md">
+                                <div class="form-floating">
+                                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                    <option>Wala laman</option>
+                                    <option>Wala laman</option>
+                                    <option>Wala laman</option>
+                                    
+                    
+                                  </select>
+                                  <label for="floatingSelect">Semester</label>
+                                </div>
+                              </div>
+
+                              <div class="col-md">
+                                <div class="form-floating">
+                                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                    <option>Wala laman</option>
+                                    <option>Wala laman</option>
+                                    <option>Wala laman</option>
+                                    
+                    
+                                  </select>
+                                  <label for="floatingSelect">Year</label>
+                                </div>
+                              </div>
+
                             </div>
-
-                            <div class="row g-2 mb-1">
-
+                          <div class="row g-2 mb-1"> 
                               <!-- Citizenship -->
                                 <!-- <div class="col-md">
                                   <div class="form-floating">
@@ -357,9 +393,9 @@
             
                               </div>
 
-                              <div class="row g-2 mb-1">
-
-                                <div class="col-md-6">
+                              
+                              <div class="row g-2 mb-1"> <!-- PROGRAM MAJOR FEE----->
+                                <div class="col-md">
                                   <div class="form-floating">
 
                                     <select class="form-select" name="stud_college" id="floatingSelect" aria-label="Floating label select example">
@@ -374,7 +410,10 @@
                                     <label for="floatingSelect">Program</label>
                                   </div>
                                 </div>
-              
+                              
+                                
+
+                                <!--Temporary--> 
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example">
@@ -387,6 +426,17 @@
                                   </div>
                                 </div>
 
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="email" name="stud_email" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="">
+                                    <label for="floatingInputGrid">Fee</label>
+                                  </div>
+                                </div>
+
+
+                              </div>
+                              
+
                                 <!-- Year & section -->
                               <!-- 
                                 <div class="col-md">
@@ -396,26 +446,65 @@
                                   </div>
                                 </div> -->
 
-                              </div>
+                             
                               
-
-                              <div class="row g-2 mb-1">
-                                <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="email" name="stud_email" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                    <label for="floatingInputGrid">Fee</label>
-                                  </div>
-                                </div>
+                              
+                              <div class="row g-2 mb-1"> <!--Scholar discount status-->
+                                
                                 
     
-                                  <div class="col-md">
+                                  <!-- <div class="col-md">
                                     <div class="form-floating">
                                       <input type="tel" name="stud_contact_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
                                       <label for="floatingInputGrid">Contact number</label>
                                     </div>
+                                  </div> -->
+
+                                  
+                                  <div class="col-md">
+                                    <div class="form-floating">
+                                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        
+                        
+                                      </select>
+                                      <label for="floatingSelect">Scolar</label>
+                                    </div>
                                   </div>
-                                </div>
-                          </div>
+
+                                  
+                                  <div class="col-md">
+                                    <div class="form-floating">
+                                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        
+                        
+                                      </select>
+                                      <label for="floatingSelect">Discount</label>
+                                    </div>
+                                  </div>
+
+                                  
+                                  <div class="col-md">
+                                    <div class="form-floating">
+                                      <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        <option>Wala laman</option>
+                                        
+                        
+                                      </select>
+                                      <label for="floatingSelect">Status</label>
+                                    </div>
+                                  </div>
+
+                                </div> 
+                            </div>
+                         
 
                           <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
@@ -470,7 +559,9 @@
 
                           </div>
 
-                          </div>
+                        </div>
+                        
+                      
                   
                       <div class="buttons_manage_universal">
                       <button type="submit" name="stud_add" class="btn btn-info">Enroll</button>
@@ -478,8 +569,10 @@
                       <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
                       <button type="submit" name="stud_save" class="btn btn-success" disabled>Save</button>
                       </div>
+                    </form> 
                     
-                      </form> 
+
+                      
                     
 
                       <hr>
@@ -558,7 +651,7 @@
                     </div>
                     </div>
                 </div>
-
+              
 
 
 
@@ -882,9 +975,9 @@
 
 
 
-
               </div>
-            </div>
+              </div>
+        
             
 
 
