@@ -124,7 +124,7 @@
                 </div>
               </div>
 
-                    <div class="col unreg_students_div">
+                    <div class="col universal_bg_gray_table">
                       <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
                       
                       <div class="row">
@@ -254,7 +254,7 @@
 
               
 <!----------------------------------------------- Students Tab ---------------------------------------------------------->
-                <div class="tab-pane fade show active mt-2 stud__tab" id="student" role="tabpanel" aria-labelledby="student-tab">
+                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
                   <form action="../includes/manage_student.php" method="post" class="universalForm_two" >
@@ -339,12 +339,6 @@
                             <div class="row g-2 mb-1">
 
 
-                              <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" name="stud_religion" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                  <label for="floatingInputGrid">Religion</label>
-                                </div>
-                              </div>
 
             
                                 <div class="col-md">
@@ -564,8 +558,8 @@
 
 
 
-<!-------------------------------------------- Employees Tab -------------------------------------->
-                <div class="tab-pane fade mt-2 employee__tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
+    <!-------------------------------------------- Employees Tab -------------------------------------->
+                <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
                   <p class="role_information text-primary">Employee's Information</p>
                   <form action="../includes/manage_employee.php" method="post" class="universalForm_two">
                   <div class="manage_users_universal_tab_lmr_parent">
@@ -755,23 +749,8 @@
 
                 </div>
                 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- All user's Tab -->
-                <div class="tab-pane fade mt-2 all_user__tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
+                <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
                   <p class="role_information text-primary">Choose Account to Filter</p>
 
                   
@@ -915,7 +894,7 @@
               </form>
 
               
-              <div class="all_user__tab mt-3">
+              <div class="universal_bg_gray_table mt-3">
               <p class="role_information text-primary mt-2">Choose Account to Filter</p>
 
                   <div class="row g-2">
