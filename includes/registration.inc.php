@@ -89,7 +89,11 @@
       $phoneNumber = $_POST['phone'];
       $sex = $_POST['sex'];
       $birthdate = $_POST['birthdate'];
-      $age = $_POST['age'];
+      $address = $_POST['address'];
+      // Calculate age
+      $currentDate = date("Y-m-d");
+      $age = date_diff(date_create($birthdate), date_create($currentDate));
+      $age = $age->format("%y");
 
       $stud_status = $_POST['stud_status'];
       $csi_school_year = $_POST['currSchoolYr'];
@@ -124,9 +128,9 @@
         $newRegNo = intval($newRegNo);
         $newRegNo = $yearNow.($newRegNo + 1); 
       }
-      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`birthdate`= ? ,`age`= ?,`citizenship`= ? ,`civil_status`= ?,`contact_number`= ?, `email`= ?, `reg_date` = ?  WHERE stud_id = ?";
+      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`birthdate`= ? ,`age`= ?,`citizenship`= ? ,`civil_status`= ?,`contact_number`= ?, `email`= ?,`address` = ?, `reg_date` = ?  WHERE stud_id = ?";
       $stmtStduReg = $con->prepare($sqlStudReg);
-      $stmtStduReg->bind_param('sssssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $birthdate, $age, $citizenship, $civilStatus, $phoneNumber, $email, $today,$userId);
+      $stmtStduReg->bind_param('ssssssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $birthdate, $age, $citizenship, $civilStatus, $phoneNumber, $email, $address,$today,$userId);
       if($stmtStduReg->execute()){
         // Saving School Details
         $slqDetails = "INSERT INTO `tbl_student_school_details`(`stud_id`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_scholarship`, `csi_course`, `csi_major`, `csi_year`) VALUES (?,?,?,?,?,?,?,?)";
