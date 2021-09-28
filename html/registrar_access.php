@@ -397,14 +397,16 @@
                                 </div> -->
 
                               </div>
+                              
 
                               <div class="row g-2 mb-1">
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <input type="email" name="stud_email" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                    <label for="floatingInputGrid">Email</label>
+                                    <label for="floatingInputGrid">Fee</label>
                                   </div>
                                 </div>
+                                
     
                                   <div class="col-md">
                                     <div class="form-floating">
@@ -471,7 +473,7 @@
                           </div>
                   
                       <div class="buttons_manage_universal">
-                      <button type="submit" name="stud_add" class="btn btn-info">Add</button>
+                      <button type="submit" name="stud_add" class="btn btn-info">Enroll</button>
                       <button type="submit" name="stud_update" class="btn btn-warning">Edit</button>
                       <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
                       <button type="submit" name="stud_save" class="btn btn-success" disabled>Save</button>
@@ -696,7 +698,7 @@
                   </div> 
                   
                   <div class="buttons_manage_universal">
-                  <button type="submit" name="emp_add" class="btn btn-info">Add</button>
+                  <button type="submit" name="emp_add" class="btn btn-info">Enroll</button>
                   <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
                   <button type="submit" name="emp_save" class="btn btn-success" disabled>Save</button>
