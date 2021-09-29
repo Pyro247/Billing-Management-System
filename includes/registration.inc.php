@@ -54,9 +54,9 @@
         $newRegNo = intval($newRegNo);
         $newRegNo = $yearNow.($newRegNo + 1); 
       }
-      $sqlEmpReg = "UPDATE `tbl_employee_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ? ,`middlename`= ? ,`citizenship`= ? ,`civil_status`= ? ,`sex`= ? ,`birthdate`= ? ,`age`= ? ,`email`= ? ,`contact_number`= ?, reg_date = ?  WHERE employee_id = ? ";
+      $sqlEmpReg = "UPDATE `tbl_employee_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ?,`email`= ? ,`contact_number`= ?, reg_date = ?  WHERE employee_id = ? ";
       $stmtEmpReg = $con->prepare($sqlEmpReg);
-      $stmtEmpReg->bind_param('sssssssssssss', $newRegNo ,$firstname, $lastname, $midInitial, $citizenship, $civilStatus, $sex, $birthdate, $age, $email, $phoneNumber, $today, $userId);
+      $stmtEmpReg->bind_param('sssssssss', $newRegNo ,$firstname, $lastname, $midInitial, $sex, $email, $phoneNumber, $today, $userId);
 
       if ( $stmtEmpReg->execute() ){
         // Save Account
@@ -128,12 +128,12 @@
         $newRegNo = intval($newRegNo);
         $newRegNo = $yearNow.($newRegNo + 1); 
       }
-      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`birthdate`= ? ,`age`= ?,`citizenship`= ? ,`civil_status`= ?,`contact_number`= ?, `email`= ?,`address` = ?, `reg_date` = ?  WHERE stud_id = ?";
+      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`contact_number`= ?,`address` = ?, `reg_date` = ?  WHERE stud_id = ?";
       $stmtStduReg = $con->prepare($sqlStudReg);
-      $stmtStduReg->bind_param('ssssssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $birthdate, $age, $citizenship, $civilStatus, $phoneNumber, $email, $address,$today,$userId);
+      $stmtStduReg->bind_param('sssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $phoneNumber, $address,$today,$userId);
       if($stmtStduReg->execute()){
         // Saving School Details
-        $slqDetails = "INSERT INTO `tbl_student_school_details`(`stud_id`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_scholarship`, `csi_course`, `csi_major`, `csi_year`) VALUES (?,?,?,?,?,?,?,?)";
+        $slqDetails = "INSERT INTO `tbl_student_school_details`(`stud_id`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_scholarship`, `csi_program`, `csi_major`, `csi_year`) VALUES (?,?,?,?,?,?,?,?)";
         $stmtDetails = $con->prepare($slqDetails);
         $stmtDetails->bind_param('ssssssss', $userId, $stud_status, $csi_school_year, $csi_semester, $csi_scholarship, $csi_course, $csi_major, $csi_year);
         $stmtDetails->execute();
