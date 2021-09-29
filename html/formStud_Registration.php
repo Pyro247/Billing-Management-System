@@ -361,19 +361,18 @@
         }
     }
     function check_two(){
-            if ((password_requirement.value.match(/[a-z]/)) && (password_requirement.value.match(/[A-Z]/)) ){
-                logo_vTwo.innerHTML = "&#xf058;"
-                vTwo.style.color = "green"
-            
-            }else{
+            if (!(password_requirement.value.match(/[a-z]/)) || !(password_requirement.value.match(/[A-Z]/)) ){
                 vTwo.style.color = "crimson";
                 logo_vTwo.innerHTML = "&#xf057;"
+            }else{
+                logo_vTwo.innerHTML = "&#xf058;"
+                vTwo.style.color = "green"
             }
         }
 
         function check_three(){
-            var letterNumber = /[0-9]/;
-            if(password_requirement.value.match(letterNumber)){
+            
+            if(password_requirement.value.match(/[0-9]/)){
                 logo_vThree.innerHTML = "&#xf058;"
                 vThree.style.color = "green"
                 
@@ -435,6 +434,21 @@
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
+                }else if 
+                    ((password_requirement.value.length < 8) || 
+                    !(password_requirement.value.match(/[a-z]/)) ||
+                    !(password_requirement.value.match(/[A-Z]/)) || 
+                    !(password_requirement.value.match(/[0-9]/)) ||
+                    !(password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/))){
+                    password_requirement.focus();
+                    Swal.fire({
+                        title: 'Password does not meet the conditions.',
+                        text: 'All conditions must be satisfied',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                        
+                    })
+    
                 }else if ($('#password').val() != $('#confirm_pass').val()){
                     Swal.fire({
                         title: 'Password not match',

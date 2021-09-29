@@ -305,6 +305,20 @@
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
+                }else if 
+                    ((password_requirement.value.length < 8) || 
+                    !(password_requirement.value.match(/[a-z]/)) ||
+                    !(password_requirement.value.match(/[A-Z]/)) || 
+                    !(password_requirement.value.match(/[0-9]/)) ||
+                    !(password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/))){
+                    password_requirement.focus();
+                    Swal.fire({
+                        title: 'Password does not meet the conditions.',
+                        text: 'All conditions must be satisfied',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                        
+                    })
                 }else if ($('#password').val() != $('#confirm_pass').val()){
                     Swal.fire({
                         title: 'Password not match',
@@ -364,9 +378,7 @@
             $(".loader-wrapper").fadeOut('xslow');
         });
 
-    </script>
-
-    <script type="text/javascript">
+   
     let vOne = document.getElementById('pass-validation-one-id');
     let vTwo = document.getElementById('pass-validation-two-id');
     let vThree = document.getElementById('pass-validation-three-id');
