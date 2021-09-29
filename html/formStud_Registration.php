@@ -160,13 +160,21 @@
                     </div>
                 </div>
 
+                <div class="col-sm-4 s__ ">
+                    <span>Sex: &nbsp;</span>
+                    <input type="radio" class="btn-check" name="sex" id="male_id" value="male" autocomplete="off" >
+                    <label class="btn btn-outline-success" for="male_id">Male</label>
+                    
+                    <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
+                    <label class="btn btn-outline-success" for="female_id">Female</label>
+                </div>
               
 
                
             </div>
 
 
-            <!-- RADIO BUTTON -->
+            <!-- RADIO BUTTON 
             <div class="row mb-3">
                 <div class="col-sm-4 s__ ">
                     <span>Sex: &nbsp;</span>
@@ -176,7 +184,7 @@
                     <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
                     <label class="btn btn-outline-success" for="female_id">Female</label>
                 </div>
-            </div>
+            </div>-->
         </div>
 
 

@@ -137,6 +137,7 @@
 
 
             <div class="row mb-3">
+                <!---
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="citizen" id="citizen" placeholder=" ">
@@ -150,6 +151,7 @@
                         <label for="civilStatus">Civil Status</label>
                     </div>
                 </div>
+        -->
 
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
@@ -157,10 +159,28 @@
                         <label for="phone">Contact number</label>
                     </div>
                 </div>
+
+                <div class="col-sm-4">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="address" id="address" placeholder=" " >
+                        <label for="address">Address</label>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 s__ ">
+                    <span>Sex: &nbsp;</span>
+                    <input type="radio" class="btn-check" name="sex" id="male_id" value="male" autocomplete="off" >
+                    <label class="btn btn-outline-success" for="male_id">Male</label>
+                    
+                    <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
+                    <label class="btn btn-outline-success" for="female_id">Female</label>
+                </div>
+
+                
             </div>
 
 
-            <!-- RADIO BUTTON -->
+            <!-- RADIO BUTTON 
             <div class="row mb-3">
                 <div class="col-sm-4 s__ ">
                     <span>Sex: &nbsp;</span>
@@ -170,7 +190,7 @@
                     <input type="radio" class="btn-check" name="sex" id="female_id" autocomplete="off" value="female">
                     <label class="btn btn-outline-success" for="female_id">Female</label>
                 </div>
-            <!-- RADIO BUTTON -->
+    
                 
 
                 <div class="col-sm-4">
@@ -187,7 +207,7 @@
                     </div>
                 </div>
             </div>
-
+-->
             
             <div class="form-check mt-5">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
