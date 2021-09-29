@@ -75,19 +75,19 @@
   }
 
   if(mysqli_query($conn, $sql1)){
-    header('Location: ../html/registrar_access.html'); 
+    header('Location: ../html/registrar_access.php'); 
   } else{
       echo "ERROR: Hush! Sorry $sql1. "
           . mysqli_error($conn);
   }
   if(mysqli_query($conn, $sql2)){
-    header('Location: ../html/registrar_access.html'); 
+    header('Location: ../html/registrar_access.php'); 
   } else{
       echo "ERROR: Hush! Sorry $sql2. "
           . mysqli_error($conn);
   }
   if(mysqli_query($conn, $sql3)){
-    header('Location: ../html/registrar_access.html'); 
+    header('Location: ../html/registrar_access.php'); 
   } else{
       echo "ERROR: Hush! Sorry $sql3. "
           . mysqli_error($conn);
