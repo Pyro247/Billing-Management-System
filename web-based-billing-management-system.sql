@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 28, 2021 at 07:10 PM
+-- Generation Time: Sep 29, 2021 at 06:47 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -78,6 +78,13 @@ CREATE TABLE `tbl_employee_info` (
   `contact_number` varchar(15) NOT NULL,
   `reg_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_employee_info`
+--
+
+INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `contact_number`, `reg_date`) VALUES
+('', 4, '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
