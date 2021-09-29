@@ -304,36 +304,27 @@ q{
     margin-top: 10px;
     width: 100%;
     overflow: auto;
-    height: 500px;
+    
 }
 
 /* Payment Transactions ******************************************/
-.payment_transactions_left_tab{
-    max-width: 650px;
-    border: 2px solid black;
+.payments_tab{
+    display: flex;
     height: 100%;
-    padding: 10px;
     
 }
-.payment_transactions_left_tab_secondary_left_parent{
-    display: flex;
+.payments_tab_right{
+    border-left: 2px solid black;
+    padding: 25px;
+    
 }
 
-
-.payment_transactions_left_tab_secondary_left img{
-    max-width: 180px;
-    max-height: 180px;
-    display: block;
-    margin: 10px auto;
+.beforeInput{
+    min-width: 120px;
 }
 
-.payment_transactions_left_tab_secondary_left{
-    width: 30%;
+.payVoid{
+    width: 200px;
+    height: 50px;
 }
-
-.payment_transactions_left_tab_secondary_left{
-    width: 30%;
-}
-
-
 

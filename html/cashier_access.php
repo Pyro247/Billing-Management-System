@@ -106,41 +106,126 @@
               <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
+                
+
               </form>
 
 
-              <!-- Table ------------------------------------------------------------------------------->
-              <div class="col universal_bg_gray_table">
-                
-                  <div class="payment_transactions_left_tab">
-                    <p style="font-size: 1.5rem" class="text-primary">Student's Information</p>
 
-                    <div class="payment_transactions_left_tab_secondary_left_parent">
+    
+              <div class="col universal_bg_gray_table payments_tab" style="overflow-x: hidden;">
 
-                    <div class="payment_transactions_left_tab_secondary_left">
-                      <img src="../images/registrar_img/sample_student_pic.png" alt="">
-                      <h5 class="text-primary text-center mb-0">Justine Dave M. DelosReyes</h5>
-                      <h6 class="text-primary text-center d-block">2018300366</h6>
-                    </div>
-
-                    <div class="payment_transactions_left_tab_secondary_right">
-                     
-                        <div class="col-md">
-                          <div class="form-floating">
-                            <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                            <label for="floatingInputGrid">First name</label>
-                          </div>
-                        </div>
-                      
-                      
-                    </div>
-                  </div>
-
+                <div class="payments_tab_left mx-2 my-auto">
+                  <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
+                  <span class="d-block text-primary text-center" style="font-size: 1.2rem; font-weight: bold;">Justine Dave Delos reyes</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1.3rem;">2018300366</span>
+                  <button type="button" class="btn btn-primary d-block mx-auto my-2">View Payment History</button> 
                 </div>
 
+                <div class="payments_tab_right">
+                  <form action="">
+                    <div class="col">
+                      <label class="sr-only" for="inlineFormInputGroup">Course ID</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text beforeInput">Course ID</div>
+                            </div>
+                          <input type="text" class="form-control w-auto" id="inlineFormInputGroup" placeholder="Course ID">
+                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Tuition Fee</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Balance</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Amount</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
+                      </div>  
+                    </div>
+                  <div class="col-12 mt-3 mb-2">
+                    <button type="button" class="btn btn-success payVoid">Pay</button>
+                    <button type="button" class="btn btn-danger payVoid">Void</button>  
+                    <button type="button" class="btn btn-primary payVoid">Calculator</button>  
+                    
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Table for student's history -->
+
+            <!-- Table -->
+            <div class="col universal_bg_gray_table p-3">
+              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">All Student's Transaction</span>
+              <hr style="margin-top: 5px; height: 2px;" class="text-primary">
+
+              <div class="col-md">
+                <div class="form-floating">
+                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option value="BSIT_WMA" selected>All</option>
+                    <option value="Graduated" selected>BSIT</option>
+                    <option value="Dropout">BSIT</option>
+                    <option value="Transfer">BSIT</option>
+                    <option value="Resign">BSIT</option>
+                    <option value="Resign">BSIT</option>
+    
+                  </select>
+                  <label for="floatingSelect">Program</label>
+                </div>
               </div>
 
+              <div class="row">
+              <div class="table__" style="overflow-x: auto;">
+                <table class="table">
+                    <thead class="thead-ligh text-center">
+                      <tr>
+                        <th scope="col">ID number</th>
+                        <th scope="col">First name</th>
+                        <th scope="col">Last name</th>
+                        <th scope="col">Total Amount Due</th>
+                        <th scope="col">Total Amount Paid</th>
+                        <th scope="col">Balance Remaining</th>
+                        <th scope="col">Last Amount Paid</th>
+                        <th scope="col">Payment Method</th>
+                        <th scope="col">Payment Status</th>
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="text-center">
+                        <th scope="row">2018300366</th>
+                        <td>Justine Dave</td>
+                        <td>DelosReyes</td>
+                        <td>16000</td>
+                        <td>9000</td>
+                        <td>7000</td>
+                        <td>3500</td>
+                        <td>Cash</td>
+                        <td>Approved</td>
+                        
+                      </tr>
+                     
+                    </tbody>
+                  </table>
+
+
             </div>
+          </div>
+
+          </div>
             
 
 
@@ -153,6 +238,7 @@
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
+             
 
               
               <div class="all_user__tab mt-3">
