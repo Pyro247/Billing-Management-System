@@ -148,15 +148,15 @@
             <div class="row mb-3">
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="LRN" id="LRN" placeholder=" " >
-                        <label for="LRN">Contact Number</label>
+                        <input type="text" class="form-control" name="contact" id="contact" placeholder=" " >
+                        <label for="contact">Contact Number</label>
                     </div>  
                 </div>
                     
                 <div class="col-sm-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="civil" id="civilStatus" placeholder=" " >
-                        <label for="civilStatus">Address</label>
+                        <input type="text" class="form-control" name="civil" id="address" placeholder=" " >
+                        <label for="address">Address</label>
                     </div>
                 </div>
 
@@ -187,9 +187,9 @@
 
 
 
-    
+       <!-- Step three - College info -->
     <div class="steps_reg" id="step_three_id">
-      <!-- Step three - College info - 
+   
             <h4 class="text-center">I am:</h4>
 
             <div class="col-sm mb-5 d-flex justify-content-center">
@@ -200,8 +200,8 @@
                 <label class="btn btn-outline-success btn_old_transferee mx-2" for="transferee_stud">Transferee Student</label>
         
             </div>
-        --> 
-            <!--------
+        
+            
             <div class="row my-3">
                 <h4>Current College Information:</h4>
                 <div class="col-sm">
@@ -219,22 +219,16 @@
                 <div class="col-sm">
                     <select class="form-select" name="currSem" aria-label="Default select example">
                         <option hidden>Semester</option>
-                        <option value="" disabled>Semester</option>
-                        <option value="Midterm">Midterms</option>
-                        <option value="Final">Finals</option>
+                        <option value="1Sem">1st Semester</option>
                     </select>
                 </div>
-    
+
+                
                 <div class="col-sm">
-                    <select class="form-select" name="currScholar" aria-label="Default select example">
-                        <option hidden>Scholarship</option>
-                        <option value="" disabled>Scholarship</option>
-                        <option value="Not Available">Not Available</option>
-                        <option value="Partial">Partial</option>
-                        <option value="Full">Full</option>
-                        
-                    </select>
-                </div>
+                        <input type="text" class="form-control" name="LRN" id="civilStatus" placeholder=" " >
+                        <label for="LRN">LRN</label>
+                    </div>
+            
             </div>
             
             <div class="row mb-3">
@@ -260,8 +254,8 @@
                 
                 <div class="col-sm">
                     <select class="form-select" name="currYear" aria-label="Default select example">
-                        <option hidden>Year</option>
-                        <option value="" disabled>Year</option>
+                        <option hidden>Year Level</option>
+                        <option value="" disabled>Year Level</option>
                         <option value="1st Yeart">1st</option>
                         <option value="2nd Year">2nd</option>
                         <option value="3rd Year">3rd</option>
@@ -270,7 +264,7 @@
                     </select>
                 </div>
             </div>
-            --->
+            
             
             <div class="form-check mt-5">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
