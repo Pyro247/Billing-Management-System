@@ -504,19 +504,12 @@
                                   </div>
 
                                   
-                                  
                                   <div class="col-md">
-                                    <div class="form-floating">
-                                      <select class="form-select" name="stud_lrn" id="floatingSelect" aria-label="Floating label select example">
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
-                                        
-                        
-                                      </select>
-                                      <label for="floatingSelect">LRN</label>
-                                    </div>
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                    <label for="floatingInputGrid">LRN</label>
                                   </div>
+                                </div>
 
                                 </div> 
                             </div>
