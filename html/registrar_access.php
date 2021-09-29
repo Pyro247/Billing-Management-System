@@ -683,8 +683,12 @@
 
                            <div class="col-md-3">
                             <div class="form-floating">
-                              <input type="text" class="form-control" name="emp_role" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Role</label>
+                            <select class="form-select" name="emp_role" id="floatingSelect" aria-label="Floating label select example">
+                            <option value="" selected></option>
+                                <option value="Registrar">Registrar</option>
+                                <option value="Cashier">Cashier</option>
+                              </select>
+                              <label for="floatingSelect">Role</label>
                             </div>
                           </div>
                          
@@ -886,8 +890,6 @@
                           <option value="BSIT_WMA">Student</option>
                           <option value="Registrar">Registrar</option>
                           <option value="Cashier">Cashier</option>
-                          
-          
                         </select>
                         <label for="floatingSelect">Role</label>
                       </div>
@@ -1029,8 +1031,6 @@
                           <option value="BSIT_WMA">Student</option>
                           <option value="Registrar">Registrar</option>
                           <option value="Cashier">Cashier</option>
-                          
-          
                         </select>
                         <label for="floatingSelect">Role</label>
                       </div>
