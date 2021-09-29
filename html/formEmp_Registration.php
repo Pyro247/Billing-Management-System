@@ -237,7 +237,10 @@
 
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        
+            <script src="../js/registration.js"></script>
     <script type="text/javascript">
+    
         let prevBtn = document.getElementById('previous_id');
         let nextBtn = document.getElementById('next_id');
 
@@ -310,7 +313,7 @@
                     !(password_requirement.value.match(/[a-z]/)) ||
                     !(password_requirement.value.match(/[A-Z]/)) || 
                     !(password_requirement.value.match(/[0-9]/)) ||
-                    !(password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/))){
+                    !(password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<script>\/?]+/))){
                     password_requirement.focus();
                     Swal.fire({
                         title: 'Password does not meet the conditions.',
@@ -377,69 +380,6 @@
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
-
-   
-    let vOne = document.getElementById('pass-validation-one-id');
-    let vTwo = document.getElementById('pass-validation-two-id');
-    let vThree = document.getElementById('pass-validation-three-id');
-    let vFour = document.getElementById('pass-validation-four-id');
-    
-    let logo_vOne = document.getElementById('logovOne')
-    let logo_vTwo = document.getElementById('logovTwo')
-    let logo_vThree = document.getElementById('logovThree')
-    let logo_vFour = document.getElementById('logovFour')
-
-
-    let password_requirement = document.getElementById('password')
-
-    password_requirement.oninput = function(){
-        check_one();
-        check_two();
-        check_three();
-        check_four();
-    }
-
-    function check_one(){
-        if (password_requirement.value.length < 8){
-            vOne.style.color = "crimson";
-            logo_vOne.innerHTML = "&#xf057;"
-        }else{
-            logo_vOne.innerHTML = "&#xf058;"
-            vOne.style.color = "green"
-        }
-    }
-    function check_two(){
-            if (!(password_requirement.value.match(/[a-z]/)) || !(password_requirement.value.match(/[A-Z]/)) ){
-                vTwo.style.color = "crimson";
-                logo_vTwo.innerHTML = "&#xf057;"
-            }else{
-                logo_vTwo.innerHTML = "&#xf058;"
-                vTwo.style.color = "green"
-            }
-        }
-
-        function check_three(){
-            var letterNumber = /[0-9]/;
-            if(password_requirement.value.match(letterNumber)){
-                logo_vThree.innerHTML = "&#xf058;"
-                vThree.style.color = "green"
-            }else{
-                vThree.style.color = "crimson";
-                logo_vThree.innerHTML = "&#xf057;"
-            }
-        }
-
-        function check_four(){
-            if (password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)){
-                logo_vFour.innerHTML = "&#xf058;"
-                vFour.style.color = "green"
-            }else{
-                logo_vFour.innerHTML = "&#xf057;"
-                vFour.style.color = "crimson"
-            }
-        }
-
-
 
     </script>
     

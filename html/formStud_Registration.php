@@ -231,35 +231,6 @@
                     </select>
                 </div>
 
-                
-                <div class="col-sm">
-                        <input type="text" class="form-control" name="LRN" id="civilStatus" placeholder=" " >
-                        <label for="LRN">LRN</label>
-                    </div>
-            
-            </div>
-            
-            <div class="row mb-3">
-                <div class="col-sm">
-                        <select class="form-select form-control" name="currCourse" id="floatingInput">
-                            <option hidden >Program</option>
-                            <option value="" disabled>Program</option>
-                            <option value="BSIT">BSIT </option>
-                            <option value="BSED">BSED</option>
-                            <option value="BSA">BSA</option>
-                        </select>
-                </div>
-    
-                <div class="col-sm">
-                    <select class="form-select" name="currMajor" aria-label="Default select example">
-                        <option hidden>Major</option>
-                        <option value="" disabled>Major</option>
-                        <option value="Web and Mobile Application">Web and Mobile Application</option>
-                        <option value="Computer Science">Computer Science</option>
-                    </select>
-                </div>
-    
-                
                 <div class="col-sm">
                     <select class="form-select" name="currYear" aria-label="Default select example">
                         <option hidden>Year Level</option>
@@ -273,6 +244,39 @@
                 </div>
             </div>
             
+
+            
+            
+            
+            <div class="row mb-3">
+                <div class="col-sm d-block my-auto">
+                        <select class="form-select form-control" name="currCourse" id="floatingInput">
+                            <option hidden >Program</option>
+                            <option value="" disabled>Program</option>
+                            <option value="BSIT">BSIT </option>
+                            <option value="BSED">BSED</option>
+                            <option value="BSA">BSA</option>
+                        </select>
+                </div>
+    
+                <div class="col-sm d-block my-auto">
+                    <select class="form-select" name="currMajor" aria-label="Default select example">
+                        <option hidden>Major</option>
+                        <option value="" disabled>Major</option>
+                        <option value="Web and Mobile Application">Web and Mobile Application</option>
+                        <option value="Computer Science">Computer Science</option>
+                    </select>
+                </div>
+    
+                     
+            <div class="col-sm">
+                    <div class="form-floating mb-3" >
+                        <input type="text" class="form-control"  name="civil" id="lrn" placeholder=" " autocomplete="off">
+                        <label for="lrn">LRN</label>
+                    </div>
+                </div>
+                
+       
             
             <div class="form-check mt-5">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
@@ -283,7 +287,7 @@
         </div>
 
 
-
+</div>
         
         
     
@@ -298,13 +302,15 @@
             
         </div>
         </div>
+        </div>
 
 
         
 
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        
+        <script src="../js/registration.js"></script>
+
         <script type="text/javascript">
         let prevBtn = document.getElementById('previous_id');
         let nextBtn = document.getElementById('next_id');
@@ -324,78 +330,8 @@
         let step_three = document.getElementById('step_three_id')
 
 
-        let email = document.querySelector('#email');
-        let pass = document.querySelector('#password');
-        let confirm_pas = document.querySelector('#confirm_pass');
-
-
- 
-        let vOne = document.getElementById('pass-validation-one-id');
-    let vTwo = document.getElementById('pass-validation-two-id');
-    let vThree = document.getElementById('pass-validation-three-id');
-    let vFour = document.getElementById('pass-validation-four-id');
-    
-    let logo_vOne = document.getElementById('logovOne')
-    let logo_vTwo = document.getElementById('logovTwo')
-    let logo_vThree = document.getElementById('logovThree')
-    let logo_vFour = document.getElementById('logovFour')
-
-
-    let password_requirement = document.getElementById('password')
-
-    password_requirement.oninput = function(){
-        check_one();
-        check_two();
-        check_three();
-        check_four();
-    }
-
-    function check_one(){
-        if (password_requirement.value.length < 8){
-            vOne.style.color = "crimson";
-            logo_vOne.innerHTML = "&#xf057;"
-        }else{
-            logo_vOne.innerHTML = "&#xf058;"
-            vOne.style.color = "green"
-            
-        }
-    }
-    function check_two(){
-            if (!(password_requirement.value.match(/[a-z]/)) || !(password_requirement.value.match(/[A-Z]/)) ){
-                vTwo.style.color = "crimson";
-                logo_vTwo.innerHTML = "&#xf057;"
-            }else{
-                logo_vTwo.innerHTML = "&#xf058;"
-                vTwo.style.color = "green"
-            }
-        }
-
-        function check_three(){
-            
-            if(password_requirement.value.match(/[0-9]/)){
-                logo_vThree.innerHTML = "&#xf058;"
-                vThree.style.color = "green"
-                
-            }else{
-                vThree.style.color = "crimson";
-                logo_vThree.innerHTML = "&#xf057;"
-                
-            }
-        }
-
-        function check_four(){
-            if (password_requirement.value.match (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]+/)){
-                logo_vFour.innerHTML = "&#xf058;"
-                vFour.style.color = "green"
-            }else{
-                logo_vFour.innerHTML = "&#xf057;"
-                vFour.style.color = "crimson"
-                
-            }
-        }
-
-
-
+        
+       
 
         let step_counter = 1;
         choose_step_1();
@@ -474,20 +410,9 @@
                     college_info_icon.style.color = "green";
             }
         }
-        $('.check-email').blur(function (e) { 
-            let email = $('.check-email').val();
-                $.ajax({
-                type: "POST",
-                url: "../includes/registration.inc.php",
-                data: {
-                    "checking_email": 1,
-                    "email": email,
-                },
-                success: function (response) {
-                    $('#msg').text(response);
-                }
-            });
-        });
+
+   
+
         function prev_tab(){
             if (step_counter === 2){
                 choose_step_1();
@@ -517,25 +442,7 @@
             }
         }
 
-        // Agree Policy to create the account
-        $("input[name='agreePolicy']").click(function(){
-            if($("input[name='agreePolicy']").is(":checked")){
-                nextBtn.disabled = false;
-            }else if ($("input[name='agreePolicy']").is(":not(:checked)")) {
-                nextBtn.disabled = true;
-            }
-        });
         
-        $('#next_id').click(function(event){
-            if($("input[name='agreePolicy']").is(":checked")){
-                    $('#studForm').submit();
-            }
-            // event.preventDefault();
-        })
-        $(window).on("load", function(){
-            $(".loader-wrapper").fadeOut('xslow');
-        });
-
 
     </script>
 
