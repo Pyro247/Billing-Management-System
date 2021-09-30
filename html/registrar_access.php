@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
-
+    <!-- Sweet Alert 2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Registrar</title>
   </head>
   <body>
@@ -259,7 +260,7 @@
                 <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
-                  <form action="../includes/manage_student.php" method="post" class="universalForm_two">
+                  <form action="../includes/manage_student.php" method="post" class="universalForm_two" id="studForm">
 
                       <div class="manage_users_universal_tab_lmr_parent">
                         
@@ -275,28 +276,28 @@
                             <div class="row g-2 mb-1">
                             <div class="col-md">
                               <div class="form-floating">
-                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                 <label for="floatingInputGrid">Student ID</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                  <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                   <label for="floatingInputGrid">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                  <input type="text" name="stud_middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                   <label for="floatingInputGrid">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                  <input type="text" name="stud_lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                   <label for="floatingInputGrid">Last name</label>
                                 </div>
                               </div>
@@ -519,7 +520,7 @@
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
 
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="flexCheckDefault">
+                              <input class="form-check-input" type="checkbox" name="req_form137" value="" id="flexCheckDefault">
                               <label class="form-check-label" for="flexCheckDefault">
 
                               <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137">
@@ -573,10 +574,10 @@
                       
                   
                       <div class="buttons_manage_universal">
-                      <button type="submit" name="stud_add" class="btn btn-info">Enroll</button>
+                      <button type="" name="stud_add" class="btn btn-info">Enroll</button>
                       <button type="submit" name="stud_update" class="btn btn-warning">Edit</button>
                       <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
-                      <button type="submit" name="stud_save" class="btn btn-success" >Save</button>
+                      <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
                       </div>
                     </form> 
                     
@@ -804,7 +805,7 @@
                   </div> 
                   
                   <div class="buttons_manage_universal">
-                  <button type="submit" name="emp_add" class="btn btn-info">Enroll</button>
+                  <button type="button" name="" class="btn btn-info">Enroll</button>
                   <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
                   <button type="submit" name="emp_save" class="btn btn-success" disabled>Save</button>
@@ -1131,11 +1132,13 @@
         </div>
     </div>
 
-
-
- 
-
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <!-- Function to appear table -->
   <script type="text/javascript">
     let table_ = document.getElementById('table_dashboard_id');
@@ -1143,11 +1146,7 @@
         table_.classList.toggle('active')
     }
   </script>
-
-
-
-
-    <script type="text/javascript">
+  <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
     
@@ -1193,17 +1192,39 @@
             let profile_link = document.getElementById('profile_link_id');
           profile_link.classList.toggle('show');
           }
-          
-
+      </script>
+      <script>
+        $(document).ready(function () {
+          // SAVE BUTTON AJAX 
+          $('#stud_save').click(function (event) { 
+            
+            $.ajax({
+                url:'../includes/manage_student.php',
+                method: "POST",
+                data: $('#studForm').serialize() + '&stud_save=stud_save',
+                // dataType: 'JSON',
+              }).done(function(response){
+                console.log(response);
+                Swal.fire({
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+                if(response.status == 'success'){
+                  $('#studForm').trigger('reset');
+                }
+              })
+              .fail(function(){
+                Swal.fire({
+                  icon: 'error',
+                  text: 'Somthing wrong with ajax.....',
+                })
+              })
+              event.preventDefault();
+          });
+        });
       </script>
 
 
-
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>
 </html>
