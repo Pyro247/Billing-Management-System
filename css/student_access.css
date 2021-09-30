@@ -141,6 +141,7 @@
 
 
 
+
 .nav__bar .nav__bar_two img{
     width: 50px;
     height: 50px;
@@ -171,11 +172,7 @@
 
 
 
-
-.row{
-    width: 100%;
-}
-
+/* Left Tab! */
 .left-tab{
     height: 100%;
     border-right: 2px solid var(--blue-color);
@@ -185,12 +182,6 @@
     margin-top: 60px;
     
 }
-
-.right-tab{
-    margin-left: 300px;
-    margin-top: 60px;
-}
-
 .upper-left-tab{
     position: relative;
 }
@@ -251,8 +242,6 @@
     color: var(--black-color);
     text-decoration: none;
 }
-
-
 .nav-link.main__{
     border-bottom: 2px solid var(--black-color);
     background-color: lightgrey;
@@ -272,203 +261,67 @@ q{
 }
 
 
-.title_tab_universal{
-    font-size: 2rem;
-}
-
-.universalForm_one{
-    display: flex;
-}
-
-.universalForm_one input{
-    width: 60%;
-    margin: 0 2px;
-    font-size: 1.1rem;
-    padding: 5px;
-    text-align: center;
-    outline-color: black;
-    border-radius: 5px;
-}
-
-
-
-.universal_bg_gray_table{
-    background-color: lightgray;
-    padding: 10px;
-    margin-top: 10px;
+/* Right Tab */
+.row{
     width: 100%;
-    overflow: auto;
-    height: 500px;
 }
 
-.select__{
+.right-tab{
+    margin-top: 100px;
+    margin-left: 300px;
+    
+}
+
+
+/* Payment Application */
+.payApp_miniDashboard{
+    width: 100%;
+    padding: 25px 75px;
     display: block;
-    margin: 0 auto;
-    padding: 5px 10px;
+    margin: 10px 0;
+    border: 2px solid #0d6efd;
+    background: rgb(185, 184, 184);
 }
 
-.notice__{
-    background-color: rgb(238, 63, 98);
-    text-align: center;
-    padding: 2px;
-    color: black;
-    text-transform: uppercase;
-}
-
-.notice__ span{
-    text-transform: none;
-    color: var(--white-color);
-}
-
-.table{
-    margin-top: 10px;
-    text-align: center;
+.miniDashboardh3{
+    color: #1e1e1e;
     font-weight: 500;
 }
 
-.app_del{
-    margin: 2px 0;
+/* Form in payment Application */
+.payApp_createPaymentForm{
+    background: lightgray;
+}
+.payAppFormWrapper{
+    display: flex;
+    justify-content: space-around;
+    
     width: 100%;
+    padding: 50px 25px;
 }
 
-.manage-users-tab__secondary{
-    margin-top: 15px;
-    
-}
-
-.manage-users-tab__secondary__nav{
-    height: 50px;
-}
-
-.manage__stud-emp-all-tab{
-    padding: 5px;
-    width: 100%;
-    background-color: lightgray;
+.leftForm .input-group input{
+    min-width: 300px;
 }
 
 
-.role_information{
-    font-size: 1.5rem;
+.rightFormInner{
+    width: 350px;
+    height: 100%;
+    border: 2px dashed #0d6efd;
+    border-radius: 20px;
+    padding: 10px;
+    text-align: center;
+    display: grid;
+    margin-bottom: 10px;
+    place-items: center;
 }
 
-
-
-.student__group{
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    max-height: 80px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px #28a745;
-    padding: 2px 5px;
-    
+.rightForm_text{
+    max-width: 75%;
+    font-weight: 500;
+    text-align: center;
 }
-
-.student__group_left{
-    display: flex;
-    align-items: center;
-}
-
-
-.student__group_left img{
-    width: 45px;
-    height: 45px;
-}
-
-.student__group_right strong{
-    font-size: 1.3rem;
-    
-}
-
-.all_student_info{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    
-}
-
-.input-group-text{
-font-weight: bold;
-}
-
-.manage_users_universal_tab_lmr_parent{
-    display: flex;
-}
-
-@media (max-width: 768px) {
-    .manage_users_universal_tab_lmr_parent{
-        flex-wrap: wrap;
-        
-    } 
-}
-
-
-
-.manage_users_universal_left_tab{
-    width: 180px;
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.manage_users_universal_left_tab img{
-    max-width: 180px;
-    max-height: 180px;
-}
-
-.manage_users_universal_mid_tab{
-    display: flex;
-    flex-direction: column;
-    
-}
-
-
-
-.form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label{
-    opacity: .65;
-    transform: scale(.85) translateY(-.70rem) translateX(.15rem);
-}
-
-
-.buttons_manage_universal{
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    
-}
-
-.buttons_manage_universal button{
-    margin: 10px 5px;
-    width: 200px;
-}
-
-
-hr{
-    border: 2px solid #0d6efd;
-}
-
-.s_c__{
-    width: 150px;
- 
-}
-
-
-.table__dashboard{
-    transition: 300ms ease;;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.table__dashboard.active{
-    opacity: 1;
-    visibility: visible;
-}
-
-
-
-
 
 
 

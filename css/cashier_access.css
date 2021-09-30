@@ -138,18 +138,6 @@
     z-index: 1000;
 }
 
-.logout__{
-    position: absolute;
-    right: 10px;
-    color: var(--black-color);
-    font-size: 1.2rem;
-    text-align: left;
-}
-
-
-
-
-
 .nav__bar .nav__bar_two img{
     width: 50px;
     height: 50px;

@@ -100,7 +100,7 @@
 
 
             <!-- PAYMENT TRANSACTIONS -->
-            <div class="tab-pane fade" id="v-pills-payment-transactions" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
+            <div class="tab-pane fade" id="v-pills-payment-transactions" role="tabpanel" aria-labelledby="v-pills-payment-transaction">
               <p class="title_tab_universal">Student's Fees</p>
 
               <form action="" class="universalForm_one">
@@ -238,7 +238,6 @@
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
-             
 
               
               <div class="all_user__tab mt-3">
@@ -369,6 +368,7 @@
           
           </div>
         </div>
+      </div>
       </div>
 
     <script type="text/javascript">
