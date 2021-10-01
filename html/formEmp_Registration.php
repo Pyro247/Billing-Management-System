@@ -57,7 +57,9 @@
     <form action="../includes/registration.inc.php" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
         <img src="../images/logo.png" alt="" style="filter: invert(43%) sepia(73%) saturate(6840%) hue-rotate(212deg) brightness(99%) contrast(104%);">
         <h3 class="text-center my-2 text-success">Register | <?=$_SESSION['userId']; ?> | <?=  $_SESSION['role']; ?></h3>
-      
+       <!-- Dont Remove this input hiddens  -->
+       <input type="hidden" name="userId" value="<?= $_SESSION['userId']; ?>">
+        <input type="hidden" name="role" value="<?=  $_SESSION['role']; ?>">
         <div class="progress_container">
             <ul>
                 <li><i class="fa" id="piID">&#xf507;</i></li>

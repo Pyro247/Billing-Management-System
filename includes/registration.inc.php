@@ -93,18 +93,18 @@
       }
     }
     if(isset($_POST['role']) && ($_POST['role'] == 'Cashier' || $_POST['role'] == 'Registrar' ) ){
-      $userId = $_POST['userId']; 
-      $role = $_POST['role'];
-      $firstname = $_POST['fname']; 
-      $midInitial = $_POST['middlename'];
-      $lastname = $_POST['lastname'];
-      $address = $_POST['address'];
-      $phoneNumber = $_POST['phone'];
-      $sex = $_POST['sex'];
+      echo $userId = $_POST['userId']; 
+      echo $role = $_POST['role'];
+      echo $firstname = $_POST['fname']; 
+      echo $midInitial = $_POST['middlename'];
+      echo $lastname = $_POST['lastname'];
+      echo $address = $_POST['address'];
+      echo $phoneNumber = $_POST['phone'];
+      echo $sex = $_POST['sex'];
     
-      $email = $_POST['email'];
-      $password = $_POST['password'];
-      $confirm_pass = $_POST['confirm_pass'];
+      echo $email = $_POST['email'];
+      echo $password = $_POST['password'];
+      echo $confirm_pass = $_POST['confirm_pass'];
 
       if (empty($sex)){
         $sex = "N/A"; 
@@ -127,7 +127,7 @@
       }
       $sqlEmpReg = "UPDATE `tbl_employee_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ?,`email`= ? ,`contact_number`= ?, `address`= ?,reg_date = ?  WHERE employee_id = ? ";
       $stmtEmpReg = $con->prepare($sqlEmpReg);
-      $stmtEmpReg->bind_param('sssssssss', $newRegNo ,$firstname, $lastname, $midInitial, $sex, $email, $phoneNumber,$address, $today, $userId);
+      $stmtEmpReg->bind_param('ssssssssss', $newRegNo ,$firstname, $lastname, $midInitial, $sex, $email, $phoneNumber,$address, $today, $userId);
 
       if ( $stmtEmpReg->execute() ){
         // Save Account
@@ -141,7 +141,7 @@
           header('Location: ../html/formEmp_Registration.php');
         }else {
           $_SESSION['status'] = "error";
-          $_SESSION['msg'] = "Registration Failed";
+          $_SESSION['msg'] = "Registration Failed ";
           header('Location: ../html/formEmp_Registration.php');
         }
       } else {
