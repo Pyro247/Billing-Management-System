@@ -233,10 +233,10 @@
             <!-- MANAGE USERS -->
             <div class="tab-pane fade manage-users-tab show" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
               <p class="title_tab_universal" id="student_employee_all_id_text">Student's Records</p>
-              <form action="" class="universalForm_one">
+              <!-- <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
-              </form>
+              </form> -->
 
 
                 
@@ -575,7 +575,7 @@
                   
                       <div class="buttons_manage_universal">
                       <button type="" name="stud_add" class="btn btn-info">Enroll</button>
-                      <button type="submit" name="stud_update" class="btn btn-warning">Edit</button>
+                      <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
                       <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
                       </div>
@@ -586,6 +586,10 @@
                     
 
                       <hr>
+                      <form action="" class="universalForm_one w-100">
+                        <input type="text" name="" id="" placeholder="Search">
+                        <button type="button" class="btn btn-primary">Search</button>
+                      </form>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
 
@@ -617,7 +621,7 @@
                           </div>
                         </div>
                       </div>
-
+                     
                       <div class="table__" style="overflow-x: auto;">
                       <table class="table">
                         <thead>
@@ -631,6 +635,7 @@
                             <th scope="col">PSA Birth Certificate</th>
                             <th scope="col">Good Moral</th>
                             <th scope="col">History</th>
+                            <th scope="col">Action</th>
                             
                           </tr>
                         </thead>
@@ -1128,6 +1133,7 @@
     }
     $(document).ready(function () {
       display();
+
     });
     function display(){
             $.ajax({
@@ -1192,12 +1198,35 @@
           // SAVE BUTTON AJAX 
          
           $('#stud_save').click(function (event) { 
-            
-            $.ajax({
+            if($('#stud_save').text() == 'Update'){
+              $.ajax({
+                type: "POST",
+                url: "../includes/manage_student.php",
+                data: {
+                  "update": 1,
+                  "stud_id": $("[name='student_number']").val(),
+                  "firstname": $("[name='stud_firstname']").val(),
+                  "lastname": $("[name='stud_lastname']").val(),
+                  "middlename": $("[name='stud_middlename']").val(),
+                },
+                success: function (response) {
+                  Swal.fire({
+                    icon: response.status,
+                    text: response.message,
+                    confirmButtonText: 'Ok'
+                  })
+                  if(response.status == 'success'){
+                    $('#studForm').trigger('reset');
+                  }
+                  display();
+                }
+              });
+            }else{
+              $.ajax({
                 url:'../includes/manage_student.php',
                 method: "POST",
                 data: $('#studForm').serialize() + '&stud_save=stud_save',
-                // dataType: 'JSON',
+                // dataType: 'json',
               }).done(function(response){
                 console.log(response);
                 Swal.fire({
@@ -1216,9 +1245,33 @@
                   text: 'Somthing wrong with ajax.....',
                 })
               })
+            }
+            
               event.preventDefault();
           });
-         
+          $(document).on('click', '#edit', function(){
+            // e.preventDefault();
+            let id = $(this).attr("data-id");
+            // alert(id);
+            $.ajax({
+              type: "POST",
+              url: "../includes/manage_student.php",
+              data: {
+                "edit": 1,
+                "id": id
+              },
+              // dataType: "json",
+              success: function (data) {
+                // console.log(data);
+                $("[name='student_number']").val(data.stud_id);
+                $("[name='stud_firstname']").val(data.firstname);
+                $("[name='stud_lastname']").val(data.lastname);
+                $("[name='stud_middlename']").val(data.middlename);
+                $("#stud_save").text('Update');
+              }
+            });
+            
+          });
         });
 
         

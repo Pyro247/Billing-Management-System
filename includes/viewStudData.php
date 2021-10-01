@@ -24,6 +24,9 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['psa_birth_cert'];?></td>
     <td><?=$data['good_moral'];?></td>
     <td></td>
+    <td>
+      <a href="#" class="btn btn-success "id="edit" data-id="<?=$data['stud_id'];?>">Edit</a>
+    </td>
   </tr>
 <?php }?>
 <?php }else{?>

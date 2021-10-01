@@ -4,9 +4,7 @@
   header('Content-type: application/json');
   session_start();
   $response = array();
-  if(isset($_POST)){
-
-  }
+ 
   if(isset($_POST['stud_save'])){
      //  student info table---------------
     $student_number =$_POST['student_number'];
@@ -67,8 +65,44 @@
   // VALUES (?,?,?,?,?,?,?,?,?)";
   //   $stmtDetails = $con->prepare($sqlDetials);
   //   $stmtDetails->bind_param('sssssssss',$student_number,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_scholarship,$stud_program,$stud_major,$stud_year_level);
+
   echo json_encode($response);
 }
+if(isset($_POST['edit'])){
+  $id = $_POST['id'];
+  $data = array();
+  $slqEdit = "SELECT * FROM `tbl_student_info` WHERE stud_id = ?";
+  $stmtEdit = $con->prepare($slqEdit);
+  $stmtEdit->bind_param('s', $id);
+  $stmtEdit->execute();
+  $res = $stmtEdit->get_result();
+  $row = $res->fetch_assoc();
+  if($res->num_rows > 0){
+    $data['stud_id'] = $row['stud_id'];
+    $data['firstname'] = $row['firstname'];
+    $data['lastname'] = $row['lastname'];
+    $data['middlename'] = $row['middlename'];
+  }
+  echo json_encode($data);
+}
+if(isset($_POST['update'])){
+  $stud_id = $_POST['stud_id'];
+  $firstname = $_POST['firstname'];
+  $lastname = $_POST['lastname'];
+  $middlename = $_POST['middlename'];
+  $sqlUpdate = "UPDATE `tbl_student_info` SET `firstname`= ? ,`lastname`= ?,`middlename`= ? WHERE stud_id = ?";
+  $stmtUpdate = $con->prepare($sqlUpdate);
+  $stmtUpdate->bind_param('ssss', $firstname, $lastname, $middlename, $stud_id);
+  if($stmtUpdate->execute()){
+    $response['status'] = 'success';
+    $response['message'] = 'Successfully Updated';
+  } else{
+    $response['status'] = 'error';
+    $response['message'] = 'Failed to update!';
+  }
+  echo json_encode($response);
+}
+
   
   
 //   $conn = mysqli_connect("localhost", "root", "", "web-based-billing-management-system");       
