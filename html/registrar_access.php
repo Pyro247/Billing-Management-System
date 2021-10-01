@@ -60,7 +60,7 @@
             <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down mx-2" onclick="profile_link_show()"></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
-              <a href="">Change Password</a>
+              <a href="../html/forgotPassword.php">Change Password</a>
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
             <p class="reg__name">Registrar | <?= $_SESSION['employeeId'];?></p>
@@ -81,16 +81,15 @@
            <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
 
-            <div class="tab-pane fade show active dashboard-tab" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><br>
-                <p class="title_tab_universal">Dashboard</p>
-                <form action="" class="universalForm_one">
-                  <input type="text" name="" id="" placeholder="Search">
-                  <button type="button" class="btn btn-primary">Search</button>
-                    
-                </form>
+            <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+              <p class="title_tab_universal" id="student_employee_all_id_text">Dashboard</p>
 
-                
-                <div class="col my-3 all_student_info">
+              <form action="" class="universalForm_one">
+                <input type="text" name="" id="" placeholder="Search">
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+              <div class="col my-3 all_student_info">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
@@ -111,10 +110,6 @@
                   </div>
                 </div>
 
-
-                
-
-
                 <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
@@ -126,120 +121,129 @@
                 </div>
               </div>
 
-                    <div class="col universal_bg_gray_table">
-                      <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
-                      
-                      <div class="row">
-                      <div class="col">
-                      <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option selected>All</option>
-                          <option value="1">Bachelor of Science in Information Technology</option>
-                          <option value="2">Bachelor of Science in Computer Science </option>
-                          <option value="3">Bachelor of Science in Education</option>
-                        </select>
-                        <label for="floatingSelect">Choose Program</label>
-                      </div>
-                    </div>
-                    
-                  
-                  <div class="col">
-                      <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option selected>All</option>
-                          <option value="1">Unregister Students</option>
-                          <option value="2">Scholar Students</option>
-                        </select>
-                        <label for="floatingSelect">Choose Filter</label>
-                      </div>
-                  </div>
-                  </div>
 
-                        <div class="table__dashboard" style="overflow-x: auto;" id="table_dashboard_id">
-                        <table class="table">
-                            <thead class="thead-light">
-                              <tr>
-                                <th scope="col">Student ID</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col">Program</th>
-                                <th scope="col">Major</th>
-                                <th scope="col">Year Level</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Scholarship</th>
-                                <th scope="col">LRN</th>
-                                <th scope="col">Email</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <th scope="row">2018301302</th>
-                                <td>Denver</td>
-                                <td>Pulido</td>
-                                <td>BSCS</td>
-                                <td>Web and Mobile Application</td>
-                                <td>4th</td>
-                                <td>Transferee</td>
-                                <td>Full</td>
-                                <td>1011121314</td>
-                                <td>pulido@gmail.com</td>
-                               
-                              </tr>
-                              <tr>
-                              <th scope="row">2018301303</th>
-                                <td>Mery Anne</td>
-                                <td>Villano</td>
-                                <td>BSIT</td>
-                                <td>Web and Mobile Application</td>
-                                <td>4th</td>
-                                <td>Old Student</td>
-                                <td>Full</td>
-                                <td>1011121315</td>
-                                <td>mery@gmail.com</td>
-                              </tr>
-                              <tr>
-                                <th scope="row">2018301304</th>
-                                <td>Justine</td>
-                                <td>Delos Reyes</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                
-                              </tr>
-                              <tr>
-                                <th scope="row">2018301305</th>
-                                <td>Michael</td>
-                                <td>Isla</td>
-                                <td>BSED</td>
-                                <td>English</td>
-                                <td>4th</td>
-                                <td>Transferee</td>
-                                <td>Partial</td>
-                                <td>1011121317</td>
-                                <td>isla@gmail.com</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+
+                <div class="col universal_bg_gray_table">
+                  <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
+                  
+                  <div class="row">
+                  <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>All</option>
+                      <option value="1">Bachelor of Science in Information Technology</option>
+                      <option value="2">Bachelor of Science in Computer Science </option>
+                      <option value="3">Bachelor of Science in Education</option>
+                    </select>
+                    <label for="floatingSelect">Choose Program</label>
+                  </div>
+                </div>
+                
+              
+              <div class="col">
+                  <div class="form-floating">
+                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <option selected>All</option>
+                      <option value="1">Unregister Students</option>
+                      <option value="2">Scholar Students</option>
+                    </select>
+                    <label for="floatingSelect">Choose Filter</label>
+                  </div>
+              </div>
+              </div>
+
+                    <div class="table__dashboard" style="overflow-x: auto;" id="table_dashboard_id">
+                    <table class="table">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">Student ID</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Program</th>
+                            <th scope="col">Major</th>
+                            <th scope="col">Year Level</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Scholarship</th>
+                            <th scope="col">LRN</th>
+                            <th scope="col">Email</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <th scope="row">2018301302</th>
+                            <td>Denver</td>
+                            <td>Pulido</td>
+                            <td>BSCS</td>
+                            <td>Web and Mobile Application</td>
+                            <td>4th</td>
+                            <td>Transferee</td>
+                            <td>Full</td>
+                            <td>1011121314</td>
+                            <td>pulido@gmail.com</td>
+                           
+                          </tr>
+                          <tr>
+                          <th scope="row">2018301303</th>
+                            <td>Mery Anne</td>
+                            <td>Villano</td>
+                            <td>BSIT</td>
+                            <td>Web and Mobile Application</td>
+                            <td>4th</td>
+                            <td>Old Student</td>
+                            <td>Full</td>
+                            <td>1011121315</td>
+                            <td>mery@gmail.com</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2018301304</th>
+                            <td>Justine</td>
+                            <td>Delos Reyes</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018301305</th>
+                            <td>Michael</td>
+                            <td>Isla</td>
+                            <td>BSED</td>
+                            <td>English</td>
+                            <td>4th</td>
+                            <td>Transferee</td>
+                            <td>Partial</td>
+                            <td>1011121317</td>
+                            <td>isla@gmail.com</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+        </div>
+    
+
+                  
+                
+
+            
             </div>
-            </div>
+
+
+
+
+
+
+
 
 
 
             <!-- MANAGE USERS -->
-            <div class="tab-pane fade manage-users-tab show" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
+            <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
               <p class="title_tab_universal" id="student_employee_all_id_text">Student's Records</p>
-              <!-- <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
-              </form> -->
-
-
-                
+              
               <ul class="nav nav-tabs manage-users-tab__secondary" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
@@ -980,7 +984,7 @@
 
 
             <!-- ARCHIVES -->
-            <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
+            <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
               <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
 
               <form action="" class="universalForm_one">
