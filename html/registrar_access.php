@@ -343,14 +343,14 @@
 
                               <div class="col-md mb-1">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                  <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                   <label for="floatingInputGrid">School year</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example">
+                                  <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" >
                                     <option>1st Semester</option>
                                     <option>2nd Semester</option>
                             
@@ -363,7 +363,7 @@
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example">
+                                  <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" >
                                     <option>1st Year</option>
                                     <option>2nd Year</option>
                                     <option>3rd Year</option>
@@ -400,7 +400,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
 
-                                    <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example">
+                                    <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" >
                                     <option value="BSIT">Bachelor of Science in Information Technology</option>
                                       <option value="BSHM">Bachelor of Science in Hotel Management</option>
                                       <option value="BSME">Bachelor of Science in Mechanical Engineering</option>
@@ -418,7 +418,7 @@
                                 <!--Temporary--> 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example">
+                                    <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" >
                                       <option value="WMA">WMA</option>
                                       <option value="TSM">TSM</option>
                                       <option value="NA">NA</option>
@@ -430,7 +430,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="">
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="" >
                                     <label for="floatingInputGrid">Fee</label>
                                   </div>
                                 </div>
@@ -465,7 +465,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example">
+                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" >
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -479,7 +479,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example">
+                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" >
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -493,7 +493,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example">
+                                      <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" >
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -507,7 +507,7 @@
                                   
                                   <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="">
+                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
                                     <label for="floatingInputGrid">LRN</label>
                                   </div>
                                 </div>
@@ -520,10 +520,10 @@
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
 
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="" id="flexCheckDefault">
+                              <input class="form-check-input" type="checkbox" name="req_form137" value="" id="flexCheckDefault" >
                               <label class="form-check-label" for="flexCheckDefault">
 
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137">
+                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" >
                               <label class="form-check-label" for="form137">
 
                                 Form 137
@@ -574,7 +574,7 @@
                       
                   
                       <div class="buttons_manage_universal">
-                      <button type="" name="stud_add" class="btn btn-info">Enroll</button>
+                      <button type="button"  name="" class="btn btn-info">Add</button>
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
                       <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
@@ -587,7 +587,7 @@
 
                       <hr>
                       <form action="" class="universalForm_one w-100">
-                        <input type="text" name="" id="" placeholder="Search">
+                        <input type="search" name="searchStud" id="searchStud" placeholder="Search">
                         <button type="button" class="btn btn-primary">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
@@ -793,7 +793,7 @@
                   <button type="button" name="" class="btn btn-info">Enroll</button>
                   <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
-                  <button type="submit" name="emp_save" class="btn btn-success" disabled>Save</button>
+                  <button type="submit" name="emp_save" class="btn btn-success" >Save</button>
                   </div> 
 
                   </form>
@@ -1131,20 +1131,6 @@
     function dashboard_table_appear(){
         table_.classList.toggle('active')
     }
-    $(document).ready(function () {
-      display();
-
-    });
-    function display(){
-            $.ajax({
-              type: "GET",
-              url: "../includes/viewStudData.php",
-              dataType: "html",
-              success: function (data) {
-                $('#viewStud').html(data);
-              }
-            });
-          }
   </script>
   <script type="text/javascript">
         // LIVE CLOCK
@@ -1196,7 +1182,7 @@
       <script>
         $(document).ready(function () {
           // SAVE BUTTON AJAX 
-         
+          display();
           $('#stud_save').click(function (event) { 
             if($('#stud_save').text() == 'Update'){
               $.ajax({
@@ -1272,9 +1258,31 @@
             });
             
           });
+          $("#searchStud").keypress(function(){
+            $.ajax({
+              type:'POST',
+              url:'../includes/searchStudData.php',
+              data:{
+                "search": 1,
+                "query":$("#searchStud").val(),
+              },
+              success:function(data){
+                $("#viewStud").html(data);
+                
+              }
+            });
+          });
         });
-
-        
+        function display(){
+            $.ajax({
+              type: "GET",
+              url: "../includes/viewStudData.php",
+              dataType: "html",
+              success: function (data) {
+                $('#viewStud').html(data);
+              }
+            });
+          }
       </script>
 
 
