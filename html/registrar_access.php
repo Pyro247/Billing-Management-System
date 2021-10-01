@@ -634,28 +634,8 @@
                             
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">2018300366</th>
-                            <td>Justine Dave</td>
-                            <td>Delos reyes</td>
-                            <td></td>
-                            <td>✓</td>
-                            <td> </td>
-                            <td></td>
-                            <td>Submitted Form 138 <br> 9/14/2021</td>
-                          </tr>
-
-                          <tr>
-                            <th scope="row">2018300902</th>
-                            <td>John David</td>
-                            <td>Cruz</td>
-                            <td></td>
-                            <td></td>
-                            <td> </td>
-                            <td>✓</td>
-                            <td>Submitted Good moral <br> 3/21/2021</td>
-                          </tr>
+                        <tbody id="viewStud">
+                             
                         </tbody>
                       </table>
                     </div>
@@ -1140,11 +1120,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <!-- Function to appear table -->
+
   <script type="text/javascript">
     let table_ = document.getElementById('table_dashboard_id');
     function dashboard_table_appear(){
         table_.classList.toggle('active')
     }
+    $(document).ready(function () {
+      display();
+    });
+    function display(){
+            $.ajax({
+              type: "GET",
+              url: "../includes/viewStudData.php",
+              dataType: "html",
+              success: function (data) {
+                $('#viewStud').html(data);
+              }
+            });
+          }
   </script>
   <script type="text/javascript">
         // LIVE CLOCK
@@ -1196,6 +1190,7 @@
       <script>
         $(document).ready(function () {
           // SAVE BUTTON AJAX 
+         
           $('#stud_save').click(function (event) { 
             
             $.ajax({
@@ -1213,6 +1208,7 @@
                 if(response.status == 'success'){
                   $('#studForm').trigger('reset');
                 }
+                display();
               })
               .fail(function(){
                 Swal.fire({
@@ -1222,7 +1218,10 @@
               })
               event.preventDefault();
           });
+         
         });
+
+        
       </script>
 
 

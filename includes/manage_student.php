@@ -1,10 +1,12 @@
+
 <?php
-
-
   include_once '../connection/Config.php';
   header('Content-type: application/json');
   session_start();
   $response = array();
+  if(isset($_POST)){
+
+  }
   if(isset($_POST['stud_save'])){
      //  student info table---------------
     $student_number =$_POST['student_number'];
@@ -26,24 +28,15 @@
   $stud_discount =$_POST['stud_discount'];
   $stud_fee =$_POST['stud_fee'];
    //student requirement table---------------------
-  if(!isset($_POST['req_form137'])){
+  if(!isset($_POST['req_form137']) && !isset($_POST['req_form138']) && !isset($_POST['req_psa']) && !isset($_POST['req_good_moral'])){
     $req_form_137 = 'x';
-  }else{
-    $req_form_137 =$_POST['req_form137'];
-  }
-  if(!isset($_POST['req_form138'])){
     $req_form_138 = 'x';
-  }else{
-      $req_form_138 =$_POST['req_form138'];
-  }
-  if(!isset($_POST['req_psa'])){
     $req_psa_birth_cert = 'x';
-  }else{
-    $req_psa_birth_cert =$_POST['req_psa'];
-  }
-  if(!isset($_POST['req_good_moral'])){
     $req_good_moral = 'x';
   }else{
+    $req_form_137 =$_POST['req_form137'];
+    $req_form_138 =$_POST['req_form138'];
+    $req_psa_birth_cert =$_POST['req_psa'];
     $req_good_moral =$_POST['req_good_moral'];
   }
     // Studen Info
