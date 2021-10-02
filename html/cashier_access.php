@@ -79,7 +79,7 @@
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false">Payment Transactions</a>
-            <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
+            <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
             <q class="mt-2">Version 1.0.0.0</q>
       </div>
       </div>
@@ -93,17 +93,15 @@
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
               <p class="title_tab_universal">Approve Payments</p>
 
-              
               <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
-           <!-- Table -->
-           <div class="col universal_bg_gray_table p-3">
+            <!-- Table -->
+            <div class="col universal_bg_gray_table p-3">
             <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">Fund Transfers (Online)</span>
 
-         
-             <div class="col-md-6 my-1">
+            <div class="col-md-6 my-1">
               <div class="form-floating">
                 <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                 <option value="" selected>None</option>
@@ -115,10 +113,9 @@
                 </select>
                 <label for="floatingSelect">Sort By:</label>
               </div>
-             </div>
+            </div>
 
-     
-         
+
 
             <div class="row">
             <div class="table__" style="overflow-x: auto;">
@@ -168,20 +165,12 @@
                       
                       
                     </tr>
-                   
                   </tbody>
                 </table>
-
-
           </div>
         </div>
-
         </div>
-
-
-
-
-              </div>
+      </div>
               
 
 
@@ -311,142 +300,75 @@
 
 
             <!-- ARCHIVES -->
-            <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
-              <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
+            <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
+              <p class="title_tab_universal">Generated Reports</p>
 
-              <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
-              </form>
-
+              <div class="col universal_bg_gray_table p-3">
+                <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">View Transactions:</span>
+                
+                <button class="btn btn-outline-primary float-end mx-1">Annually</button>
+                  <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
+                  <button class="btn btn-outline-primary float-end mx-1">Daily</button>
+                </div>
               
-              <div class="all_user__tab mt-3">
-              <p class="role_information text-primary mt-2">Choose Account to Filter</p>
+                
+              <div class="col universal_bg_gray_table p-3">
 
-                  <div class="row g-2">
+                <!-- THIS IS TEMPO, IF YOU NEED 2 FORMS FOR THIS, CHAT LANG -->
 
-                    <div class="col-md">
-                      <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option value="BSIT_WMA" selected>All</option>
-                          <option value="Graduated" selected>Graduate</option>
-                          <option value="Dropout">Dropout</option>
-                          <option value="Transfer">Transfer</option>
-                          <option value="Resign">Resign</option>
-                          <option value="Resign">Terminate</option>
-          
-                        </select>
-                        <label for="floatingSelect">Reason</label>
-                      </div>
-                    </div>
+                <form action="" class="d-flex justify-content-between">
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select col-2" id="floatingSelect" aria-label="Floating label select example">
+                    <option value="" selected>All</option>
+                      <option value="" selected>Cash</option>
+                      <option value="">Fund Transfer</option>
+                    </select>
+                    <label for="floatingSelect">Payment Method</label>
 
-
-                    <div class="col-md">
-                      <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option value="BSIT_WMA" selected>All</option>
-                          <option value="BSIT_WMA">Student</option>
-                          <option value="Registrar">Registrar</option>
-                          <option value="Cashier">Cashier</option>
-                          
-          
-                        </select>
-                        <label for="floatingSelect">Role</label>
-                      </div>
-                    </div>
-                    
-
-                    <div class="col-md">
-                      <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
-                        <label for="floatingInputGrid">Date archived From</label>
-                      </div>
-                    </div>
-                    
-                    <div class="col-md">
-                      <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
-                        <label for="floatingInputGrid">Date archived To</label>
-                      </div>
-                    </div>
-
-                    <div class="row g-2 mb-2">
-                      <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
-                      </div>
-
-                      <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Clear Filter</button>
-                      </div>
-
-                    <div class="col-md">  
-                      <button type="button" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
-                    </div>
                   </div>
-
-                  <hr>
-                  <div class="table__" style="overflow-x: auto;">
-                    <table class="table">
-                        <thead class="thead-light">
-                          <tr>
-                            <th scope="col">ID number</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Status</th>
-                            
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">2018300366</th>
-                            <td>Justine Dave</td>
-                            <td>DelosReyes</td>
-                            <td>Student</td>
-                            <td>delosreyes366@gmail.com</td>
-                            <td>Enrolled</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300478</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>Student</td>
-                            <td>isla478@gmail.com</td>
-                            <td>Not Enrolled</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300902</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>Student</td>
-                            <td>pulido902@gmail.com</td>
-                            <td>Dropped</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300612</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>Student</td>
-                            <td>villano612@gmail.com</td>
-                            <td>Graduate</td>
-                            
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
+                  <div class="col-md mt-1">
+                    <button class="btn btn-primary ">Apply</button>
+                    <button class="btn btn-primary ">Clear</button>
                   </div>
                 </div>
 
-                  
+
+                
+            
+                 
+                
+
+                  <!-- <div class="col-md mx-3">
+                    <div class="form-floating">
+                      <input type="date" class="form-control" id="floatingInput" placeholder="Date From">
+                      <label for="floatingInput">Date From</label>
+                    </div>
+                    <div class="form-floating">
+                      <input type="date" class="form-control" id="floatingInput" placeholder="Date To">
+                      <label for="floatingInput">Date To</label>
+                    </div>
+                  </div> -->
+               
+                
+
+<!-- 
+              <div class="col-md">
+                <button class="btn btn-primary">Export to Excel</button>
+              </div> -->
+
+                
+              </form>
+              </div>
+      
                 
 
             </div>
 
           
           
+
+
         </div>
       </div>
       </div>
