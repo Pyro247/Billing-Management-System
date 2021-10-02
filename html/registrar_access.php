@@ -502,8 +502,8 @@
                       <div class="buttons_manage_universal">
                       <button type="button"  name="" class="btn btn-info">Add</button>
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
-                      <button type="submit" name="stud_delete" class="btn btn-danger">Delete</button>
                       <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
+                      <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button>
                       </div>
                     </form> 
                     
@@ -1098,7 +1098,7 @@
       </script>
       <script>
         $(document).ready(function () {
-          // SAVE BUTTON AJAX 
+          // Save and Update AJAX Request
           display();
           $('#stud_save').click(function (event) { 
             if($('#stud_save').text() == 'Update'){
@@ -1122,9 +1122,12 @@
                     $('#studForm').trigger('reset');
                   }
                   display();
+                  $("#stud_save").text('Save');
+                  $("#stud_delete").prop("disabled", true);
                 }
               });
             }else{
+              // Modify it and have condtion if some required fields are empty
               $.ajax({
                 url:'../includes/manage_student.php',
                 method: "POST",
@@ -1152,6 +1155,7 @@
             
               event.preventDefault();
           });
+          // Edit Ajax Request
           $(document).on('click', '#edit', function(){
             // e.preventDefault();
             let id = $(this).attr("data-id");
@@ -1171,10 +1175,12 @@
                 $("[name='stud_lastname']").val(data.lastname);
                 $("[name='stud_middlename']").val(data.middlename);
                 $("#stud_save").text('Update');
+                $("#stud_delete").removeAttr('disabled');
               }
             });
             
           });
+          // Search Ajax Request
           $("#searchStud").keypress(function(){
             $.ajax({
               type:'POST',
@@ -1188,6 +1194,45 @@
                 
               }
             });
+          });
+          // Delete AJAX Request
+          $('#stud_delete').click(function (e) { 
+            e.preventDefault();
+            let id = $("[name='student_number']").val();
+            console.log(id);
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Student Record will be delete",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                  type: "POST",
+                  url: "../includes/manage_student.php",
+                  data: {
+                    "delete": 1,
+                    "id": id
+                  },
+                  success: function (response) {
+                    Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+                    if(response.status == 'success'){
+                      $('#studForm').trigger('reset');
+                    }
+                    display();
+                    $("#stud_delete").prop("disabled", true);
+                    $("#stud_save").text('Save');
+                  }
+                });
+              }
+            })
           });
         });
         function display(){
