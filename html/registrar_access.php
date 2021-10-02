@@ -69,27 +69,27 @@
 
             <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
-                <a class="nav-link main__" id="v-pills-manage--users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
+                <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
                 <q class="mt-2">Version 1.0.0.0</q>
             </div>
         </div>
         
 
-       
         <div class="col-sm right-tab">
-           <!-- Dashboard -->
+
+
+        <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
-
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-              <p class="title_tab_universal" id="student_employee_all_id_text">Dashboard</p>
+              <p class="title_tab_universal" >Dashboard</p>
 
-              <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
-              </form>
+                <form action="" class="universal_search_form">
+                  <input type="text" name="" id="" placeholder="Search">
+                  <button type="button" class="btn btn-primary">Search</button>
+                </form>
 
-              <div class="col my-3 all_student_info">
+              <div class="col my-3 d-flex justify-content-evenly">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
@@ -242,7 +242,7 @@
 
             <!-- MANAGE USERS -->
             <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
-              <p class="title_tab_universal" id="student_employee_all_id_text">Student's Records</p>
+              <p class="title_tab_universal">Manage User's Records</p>
               
               <ul class="nav nav-tabs manage-users-tab__secondary" id="myTab" role="tablist">
                 <li class="nav-item">
@@ -308,43 +308,6 @@
                             </div>
 
                             <div class="row g-2 mb-1">
-
-                              <!-- Sex -->
-                              <!-- <div class="col-md-2">
-                                <div class="form-floating">
-                                  <select class="form-select" name="stud_sex" id="floatingSelect" aria-label="Floating label select example">
-                                    <option value="male" selected>Male</option>
-                                    <option value="female">Female</option>
-                    
-                                  </select>
-                                  <label for="floatingSelect">Sex</label>
-                                </div>
-                              </div> -->
-                            
-                              
-                                <!-- <div class="col-md-3">
-                                <div class="form-floating">
-                                  <input type="date" name="stud_birthdate" class="form-control" id="floatingInputGrid" placeholder=" ">
-                                  <label for="floatingInputGrid">Birthdate</label>
-                                </div>
-                              </div>   -->
-
-                              
-                               <!-- <div class="col-md-2">
-                                <div class="form-floating">
-                                  <input type="number" name="stud_age" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                  <label for="floatingInputGrid">Age</label>
-                                </div>
-                              </div>   -->
-
-
-                              <!-- <div class="col-md mb-1">
-                                <div class="form-floating">
-                                  <input type="text" name="stud_address" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                  <label for="floatingInputGrid">Address</label>
-                                </div>
-                              </div> -->
-
                               <div class="col-md mb-1">
                                 <div class="form-floating">
                                   <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
@@ -380,27 +343,7 @@
                               </div>
 
                             </div>
-                          <div class="row g-2 mb-1"> 
-                              <!-- Citizenship -->
-                                <!-- <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="text" name="stud_citizenship" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                    <label for="floatingInputGrid">Citizenship</label>
-                                  </div>
-                                </div> -->
-            
-                                <!-- Civil Status -->
-                                <!-- <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="text" name="stud_civil_status" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                    <label for="floatingInputGrid">Civil Status</label>
-                                  </div>
-                                </div> -->
-            
-                              </div>
-
-                              
-                              <div class="row g-2 mb-1"> <!-- PROGRAM MAJOR FEE----->
+                              <div class="row g-2 mb-1">
                                 <div class="col-md">
                                   <div class="form-floating">
 
@@ -419,7 +362,7 @@
                               
                                 
 
-                                <!--Temporary--> 
+                          
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" >
@@ -443,30 +386,9 @@
                               </div>
                               
 
-                                <!-- Year & section -->
-                              <!-- 
-                                <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="text" name="stud_year_section" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                    <label for="floatingInputGrid">Year & Section</label>
-                                  </div>
-                                </div> -->
-
-                             
                               
                               
-                              <div class="row g-2 mb-1"> <!--Scholar discount status-->
-                                
-                                
-    
-                                  <!-- <div class="col-md">
-                                    <div class="form-floating">
-                                      <input type="tel" name="stud_contact_number" class="form-control" id="floatingInputGrid" placeholder=" " value="">
-                                      <label for="floatingInputGrid">Contact number</label>
-                                    </div>
-                                  </div> -->
-
-                                  
+                              <div class="row g-2 mb-1"> 
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" >
@@ -590,7 +512,7 @@
                     
 
                       <hr>
-                      <form action="" class="universalForm_one w-100">
+                      <form action="" class="universal_search_form w-100">
                         <input type="search" name="searchStud" id="searchStud" placeholder="Search">
                         <button type="button" class="btn btn-primary">Search</button>
                       </form>
@@ -642,9 +564,10 @@
                             <th scope="col">Action</th>
                             
                           </tr>
+
                         </thead>
                         <tbody id="viewStud">
-                             
+                              
                         </tbody>
                       </table>
                     </div>
@@ -985,9 +908,9 @@
 
             <!-- ARCHIVES -->
             <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
-              <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
+              <p class="title_tab_universal">Archives</p>
 
-              <form action="" class="universalForm_one">
+              <form action="" class="universal_search_form">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
@@ -1148,17 +1071,7 @@
 
         // Function To change Title
         let tab_count_manage_users = 1;
-        let student_employee_all_id_text = document.getElementById('student_employee_all_id_text');
-
-        function change_tab(){
-          if(tab_count_manage_users === 1){
-            student_employee_all_id_text.textContent = "Student Records"
-          }else if(tab_count_manage_users === 2){
-            student_employee_all_id_text.textContent = "Employee Records"
-          }else{
-            student_employee_all_id_text.textContent = "All User Records"
-          }
-        }
+     
           let employee_tab = document.getElementById('employees-tab');
           let student_tab = document.getElementById('student-tab');
           let all_users_tab = document.getElementById('all-users-tab');

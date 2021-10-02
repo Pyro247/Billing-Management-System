@@ -262,9 +262,8 @@ q{
 }
 
 .right-tab{
-    margin-top: 100px;
     margin-left: 300px;
-    
+    margin-top: 60px;
 }
 
 
@@ -316,3 +315,11 @@ q{
     height: 50px;
 }
 
+/* Button for dashboard :approve deny */
+.paymentTransaction_actionBtn{
+    width: 100px;
+}
+
+td, th{
+    vertical-align: middle;
+}

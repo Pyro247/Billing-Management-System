@@ -276,11 +276,11 @@ q{
     font-size: 2rem;
 }
 
-.universalForm_one{
+.universal_search_form{
     display: flex;
 }
 
-.universalForm_one input{
+.universal_search_form input{
     width: 60%;
     margin: 0 2px;
     font-size: 1.1rem;
@@ -380,12 +380,7 @@ q{
     
 }
 
-.all_student_info{
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    
-}
+
 
 .input-group-text{
 font-weight: bold;
