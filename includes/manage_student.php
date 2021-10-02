@@ -102,6 +102,28 @@ if(isset($_POST['update'])){
   }
   echo json_encode($response);
 }
+if(isset($_POST['delete'])){
+  
+  $id = $_POST['id'];
+  // $sqlDel = "DELETE FROM `tbl_student_info` WHERE stud_id = ?";
+  $sqlDel = "DELETE s.*, r.* 
+              FROM tbl_student_info s 
+              LEFT JOIN tbl_student_requirements r 
+              ON s.stud_id = r.stud_id 
+              WHERE s.stud_id = ?";
+  $stmtDel = $con->prepare($sqlDel);
+  $stmtDel->bind_param('s', $id );
+  if( $stmtDel->execute()){
+    $response['status'] = 'success';
+    $response['message'] = 'Successfully Added';
+  }else{
+    $response['status'] = 'error';
+    $response['message'] = 'Failed Added';
+  }
+
+  echo json_encode($response);
+}
+
 
   
   
