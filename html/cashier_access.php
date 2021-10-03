@@ -80,6 +80,8 @@
             <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false">Payment Transactions</a>
             <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
+            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+            
             <q class="mt-2">Version 1.0.0.0</q>
       </div>
       </div>
@@ -97,6 +99,7 @@
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
+
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
             <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">Fund Transfers (Online)</span>
@@ -106,6 +109,7 @@
                 <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                 <option value="" selected>None</option>
                   <option value="" selected>Student ID</option>
+                  <option value="">Transaction ID</option>
                   <option value="">Date of Payment</option>
                   <option value="">Year Level</option>
                   
@@ -117,10 +121,10 @@
 
 
 
-            <div class="row">
+            
             <div class="table__" style="overflow-x: auto;">
               <table class="table">
-                  <thead class="thead-ligh text-center">
+                  <thead class="text-center">
                     <tr>
                       <th scope="col">Transaction ID</th>
                       <th scope="col">Student ID</th>
@@ -168,7 +172,7 @@
                   </tbody>
                 </table>
           </div>
-        </div>
+        
         </div>
       </div>
               
@@ -258,7 +262,7 @@
               <div class="row">
               <div class="table__" style="overflow-x: auto;">
                 <table class="table">
-                    <thead class="thead-ligh text-center">
+                    <thead class="text-center">
                       <tr>
                         <th scope="col">ID number</th>
                         <th scope="col">First name</th>
@@ -299,7 +303,7 @@
 
 
 
-            <!-- ARCHIVES -->
+            <!-- REPORTS -->
             <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
               <p class="title_tab_universal">Generated Reports</p>
 
@@ -310,12 +314,9 @@
                   <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
                   <button class="btn btn-outline-primary float-end mx-1">Daily</button>
                 </div>
-              
+                
                 
               <div class="col universal_bg_gray_table p-3">
-
-                <!-- THIS IS TEMPO, IF YOU NEED 2 FORMS FOR THIS, CHAT LANG -->
-
                 <form action="" class="d-flex justify-content-between">
                 <div class="col-md-3">
                   <div class="form-floating">
@@ -332,36 +333,126 @@
                     <button class="btn btn-primary ">Clear</button>
                   </div>
                 </div>
-
-
-                
-            
-                 
-                
-
-                  <!-- <div class="col-md mx-3">
-                    <div class="form-floating">
-                      <input type="date" class="form-control" id="floatingInput" placeholder="Date From">
-                      <label for="floatingInput">Date From</label>
-                    </div>
-                    <div class="form-floating">
-                      <input type="date" class="form-control" id="floatingInput" placeholder="Date To">
-                      <label for="floatingInput">Date To</label>
-                    </div>
-                  </div> -->
-               
-                
-
-<!-- 
-              <div class="col-md">
-                <button class="btn btn-primary">Export to Excel</button>
-              </div> -->
-
                 
               </form>
               </div>
-      
+            </div>
+
+
+
+
+
+            <!-- HISTORY -->
+            <div class="tab-pane fade history-tab" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+              <p class="title_tab_universal">Transaction History</p>
+
+              <form action="" class="universalForm_one">
+                <input type="text" name="" id="" placeholder="Search">
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+
                 
+              <div class="col universal_bg_gray_table p-3">
+                <p class="text-primary text-center" style="font-size: 1.3rem; font-weight: 500;">Filter:</p>
+
+                <form action="" class="my-1">
+
+                <div class="row">
+                    <div class="col-md">
+                      <div class="form-floating">
+                        <select class="form-select col-2" id="floatingSelectMethod" aria-label="Floating label select example">
+                        <option value="" selected>All</option>
+                          <option value="">Cash</option>
+                          <option value="">Fund Transfer</option>
+                        </select>
+                        <label for="floatingSelectMethod">Payment Method</label>
+                      </div>
+                  </div>
+                  <div class="col-md">
+                    <div class="form-floating">
+                      <select class="form-select col-2" id="floatingSelectStatus" aria-label="Floating label select example">
+                        <option value="" selected>All</option>
+                          <option value="">Approved</option>
+                          <option value="">Denied</option>
+                          <option value="">Pending</option>
+                        </select>
+                        <label for="floatingSelectStatus">Payment Status</label>
+                    </div>
+                  </div>
+
+                  <div class="col-md">
+                    <div class="form-floating">
+                        <input type="date" class="form-control" name="lastname" id="lname" placeholder=" ">
+                        <label for="floatingInput">Select Date:</label>
+                    </div>
+                </div>
+
+
+
+
+                </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="col-md mt-1">
+                    <button class="btn btn-primary ">Apply</button>
+                    <button class="btn btn-primary ">Clear</button>
+                  </div>
+                </div>
+              </div>
+              </form>
+              </div>
+
+              <div class="col universal_bg_gray_table p-3">
+                <div class="table__" style="overflow-x: auto;">
+                  <table class="table table-success table-striped">
+                      <thead class="text-center">
+                        <tr>
+                          <th scope="col">Transaction ID</th>
+                          <th scope="col">Student ID</th>
+                          <th scope="col">First name</th>
+                          <th scope="col">Last name</th>
+                          <th scope="col">Amount</th>
+                          <th scope="col">Payment Status</th>
+                          <th scope="col">Payment Method</th>
+                          <th scope="col">Date</th>
+                      
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="text-center">
+                          <th scope="row">FT-001</th>
+                          <td>2018300366</td>
+                          <td>Justine Dave</td>
+                          <td>Delos reyes</td>
+                          <td>9000</td>
+                          <td>Approved</td>
+                          <td>Cash</td>
+                          <td>08/21/2021</td>
+                          
+                        
+                          
+                        </tr>
+    
+                        <tr class="text-center">
+                          <th scope="row">FT-002</th>
+                          <td>2018300726</td>
+                          <td>John</td>
+                          <td>Doe</td>
+                          <td>7500</td>
+                          <td>Approved</td>
+                          <td>Fund Transfer</td>
+                          <td>08/26/2021</td>
+                          
+                          
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+
+              </div>
 
             </div>
 
