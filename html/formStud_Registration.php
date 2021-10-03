@@ -81,7 +81,7 @@
         <div class="row mb-3 justify-content-center">
             <h4 class="account__text text-center">Account Information</h4>
 
-            <div class="col-sm-9 mt-2">
+            <div class="col-md-9 mt-2">
                 <div class="form-floating mb-3">
                     <input type="email" class="form-control check-email" id="email" placeholder=" " name="email">
                     <label for="email">Email Address</label>
@@ -118,7 +118,7 @@
         <div class="steps_reg" id="step_two_id">
             <div class="row mb-3">
                 <h4>Personal Information</h4>
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         
                         <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $_SESSION['fname']; ?>">
@@ -127,7 +127,7 @@
                 </div>
                     
 
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="middlename" id="midInitial" placeholder=" "
                         value="<?= $_SESSION['midname']; ?>">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="lastname" id="lname" placeholder=" "
                         value="<?= $_SESSION['lname'];;?>">
@@ -147,21 +147,21 @@
 
 
             <div class="row mb-3">
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="contact" id="contact" placeholder=" " >
                         <label for="contact">Contact Number</label>
                     </div>  
                 </div>
                     
-                <div class="col-sm-4">
+                <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="address" id="address" placeholder=" " >
                         <label for="address">Address</label>
                     </div>
                 </div>
 
-                <div class="col-sm-4 s__ ">
+                <div class="col-md-4 s__ ">
                     <span>Sex: &nbsp;</span>
                     <input type="radio" class="btn-check" name="sex" id="male_id" value="male" autocomplete="off" >
                     <label class="btn btn-outline-success" for="male_id">Male</label>
@@ -184,48 +184,56 @@
    
             <h4 class="text-center">I am:</h4>
 
-            <div class="col-sm mb-5 d-flex justify-content-center">
+            <div class="col-md mb-3 d-flex justify-content-center">
                 <input type="radio" class="btn-check"  name="stud_status" id="old_stud" value="old" autocomplete="off" >
                 <label class="btn btn-outline-success btn_old_transferee mx-2" for="old_stud">Old Student</label>
             
                 <input type="radio" class="btn-check" name="stud_status" id="transferee_stud" autocomplete="off" value="transferee">
                 <label class="btn btn-outline-success btn_old_transferee mx-2" for="transferee_stud">Transferee Student</label>
-        
             </div>
         
             
-            <div class="row my-3">
+            <div class="row mb-3">
                 <h4>Current College Information:</h4>
-                <div class="col-sm">
-                        <select class="form-select form-control" name="currSchoolYr" id="floatingInput">
-                                <option hidden >School Year</option>
-                                <option value="" disabled >School Year</option>
-                                <option value="2016-2017">2016 - 2017</option>
-                                <option value="2017-2018">2017 - 2018</option>
-                                <option value="2018-2019">2018 - 2019</option>
-                                <option value="2019-2020">2019 - 2020</option>
-                                <option value="2020-2021">2020 - 2021</option>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select col-2" id="floatingSelect" name="currSchoolYr">
+                            <option hidden>School Year</option>
+                            <option value="2016-2017">2016 - 2017</option>
+                            <option value="2017-2018">2017 - 2018</option>
+                            <option value="2018-2019">2018 - 2019</option>
+                            <option value="2019-2020">2019 - 2020</option>
+                            <option value="2020-2021">2020 - 2021</option>
                         </select>
-                </div>
-    
-                <div class="col-sm">
-                    <select class="form-select" name="currSem" aria-label="Default select example">
-                        <option hidden>Semester</option>
-                        <option value="1Sem">1st Semester</option>
-                    </select>
+                            <label for="floatingSelect">School Year</label>
+                    </div>
                 </div>
 
-                <div class="col-sm">
-                    <select class="form-select" name="currYear" aria-label="Default select example">
-                        <option hidden>Year Level</option>
-                        <option value="" disabled>Year Level</option>
-                        <option value="1st Yeart">1st</option>
-                        <option value="2nd Year">2nd</option>
-                        <option value="3rd Year">3rd</option>
-                        <option value="4th Year">4th</option>
-                        <option value="th Year">5th</option>
-                    </select>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select col-2" id="floatingSelect" name="currSem">
+                            <option hidden>Semester</option>
+                            <option value="1Sem">1st Semester</option>
+                        </select>
+                            <label for="floatingSelect">Semester</label>
+                    </div>
                 </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select col-2" id="floatingSelect" name="currYear">
+                            <option hidden>Year Level</option>
+                            <option value="1st Yeart">1st</option>
+                            <option value="2nd Year">2nd</option>
+                            <option value="3rd Year">3rd</option>
+                            <option value="4th Year">4th</option>
+                            <option value="th Year">5th</option>
+                        </select>
+                            <label for="floatingSelect">Year Level</label>
+                    </div>
+                </div>
+
             </div>
             
 
@@ -233,58 +241,58 @@
             
             
             <div class="row mb-3">
-                <div class="col-sm d-block my-auto">
+                <div class="col-md">
+                    <div class="form-floating">
                         <select class="form-select form-control" name="currCourse" id="floatingInput">
                             <option hidden >Program</option>
-                            <option value="" disabled>Program</option>
                             <option value="BSIT">BSIT </option>
                             <option value="BSED">BSED</option>
                             <option value="BSA">BSA</option>
                         </select>
+                            <label for="floatingSelect">Program</label>
+                    </div>
                 </div>
-    
-                <div class="col-sm d-block my-auto">
-                    <select class="form-select" name="currMajor" aria-label="Default select example">
-                        <option hidden>Major</option>
-                        <option value="" disabled>Major</option>
-                        <option value="Web and Mobile Application">Web and Mobile Application</option>
-                        <option value="Computer Science">Computer Science</option>
-                    </select>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" name="currMajor" aria-label="Default select example">
+                            <option hidden>Major</option>
+                            <option value="Web and Mobile Application">Web and Mobile Application</option>
+                            <option value="Computer Science">Computer Science</option>
+                        </select>
+                            <label for="floatingSelect">Specialization</label>
+                    </div>
                 </div>
-    
-                     
-            <div class="col-sm">
-                    <div class="form-floating mb-3" >
+
+            <div class="col-md">
+                    <div class="form-floating" >
                         <input type="text" class="form-control"  name="LRN" id="lrn" placeholder=" " autocomplete="off">
                         <label for="lrn">LRN</label>
                     </div>
                 </div>
                 
-       
             
-            <div class="form-check mt-5">
+            </div>
+                <div class="form-check mt-3">
                     <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
                     <label class="form-check-label" for="flexCheckIndeterminate" style="font-size: 1.2rem">
                         By checking this box, you agree to our <a href="">Terms </a>and that you have read our <a href="">Data Use Policy.</a>
                     </label>
                 </div>
+        
         </div>
-
-
-</div>
         
         
     
 </form>
 
-    <div class="row float-end">
+    <div class="row float-end mb-5">
             <div class="col-auto" >
                 <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
                 <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
             </div>
-        
-            
         </div>
+
         </div>
         </div>
 

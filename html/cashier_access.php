@@ -361,7 +361,7 @@
                 <div class="row">
                     <div class="col-md">
                       <div class="form-floating">
-                        <select class="form-select col-2" id="floatingSelectMethod" aria-label="Floating label select example">
+                        <select class="form-select" id="floatingSelectMethod" aria-label="Floating label select example">
                         <option value="" selected>All</option>
                           <option value="">Cash</option>
                           <option value="">Fund Transfer</option>
@@ -369,9 +369,10 @@
                         <label for="floatingSelectMethod">Payment Method</label>
                       </div>
                   </div>
+
                   <div class="col-md">
                     <div class="form-floating">
-                      <select class="form-select col-2" id="floatingSelectStatus" aria-label="Floating label select example">
+                      <select class="form-select " id="floatingSelectStatus" aria-label="Floating label select example">
                         <option value="" selected>All</option>
                           <option value="">Approved</option>
                           <option value="">Denied</option>
