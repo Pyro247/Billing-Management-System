@@ -6,6 +6,8 @@
   $response = array();
  
   if(isset($_POST['stud_save'])){
+    
+    
      //  student info table---------------
     $student_number =$_POST['student_number'];
     $stud_firstname =$_POST['stud_firstname'];
@@ -13,19 +15,40 @@
     $stud_lastname =$_POST['stud_lastname'];
 
 //  student school details table---------------
-  $stud_school_year =$_POST['stud_school_year'];
-  $stud_semester =$_POST['stud_semester'];
-  $stud_year_level =$_POST['stud_year_level'];
-  $stud_program =$_POST['stud_program'];
-  $stud_major =$_POST['stud_major'];
-  $stud_status =$_POST['stud_status'];
-  $stud_lrn =$_POST['stud_lrn'];
-  $stud_scholarship =$_POST['stud_scholarship'];
+if(!isset($_POST['stud_school_year'])){
+  $stud_school_year = '';
+}else{
+  $stud_school_year = $_POST['stud_school_year'];
+}
+if(!isset($_POST['stud_semester'])){
+  $stud_semester = '';
+}else{
+  $stud_semester = $_POST['stud_semester'];
+}
+if(!isset($_POST['stud_year_level'])){
+  $stud_year_level = '';
+}else{
+  $stud_year_level = $_POST['stud_year_level'];
+}
+if(!isset($_POST['stud_status'])){
+  $stud_status = '';
+}else{
+  $stud_status = $_POST['stud_status'];
+}
+if(!isset($_POST['stud_lrn'])){
+  $stud_lrn = '';
+}else{
+  $stud_lrn = $_POST['stud_lrn'];
+}
+  
+$stud_program =$_POST['stud_program'];
+$stud_major =$_POST['stud_major'];
+$stud_scholarship =$_POST['stud_scholarship'];
 
  //student fee table---------------------
-  $stud_discount =$_POST['stud_discount'];
-  $stud_fee =$_POST['stud_fee'];
-   //student requirement table---------------------
+$stud_discount =$_POST['stud_discount'];
+ $stud_fee =$_POST['stud_fee'];
+//    //student requirement table---------------------
   if(!isset($_POST['req_form137']) && !isset($_POST['req_form138']) && !isset($_POST['req_psa']) && !isset($_POST['req_good_moral'])){
     $req_form_137 = 'x';
     $req_form_138 = 'x';
@@ -45,28 +68,28 @@
     // Course Fee
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
-    $sqlCourseFee = "INSERT INTO `tbl_course_fee`(`stud_id`, `fullname`, `csi_program&major`, `csi_year_level`, `tuition_fee`, `discount`) VALUES (?,?,?,?,?,?)";
+    $sqlCourseFee = "INSERT INTO `tbl_course_fee`(`stud_id`, `fullname`, `csi_program&major`, `tuition_fee`, `discount`) VALUES (?,?,?,?,?)";
     $stmtCourseFee = $con->prepare($sqlCourseFee);
-    $stmtCourseFee->bind_param('ssssss',$student_number,$fullname,$program_major,$stud_year_level,$stud_fee,$stud_discount);
+    $stmtCourseFee->bind_param('sssss',$student_number,$fullname,$program_major,$stud_fee,$stud_discount);
     // Student Requirements
     $slqRequirements = "INSERT INTO `tbl_student_requirements`(`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES (?,?,?,?,?)";
     $stmtRequirements = $con->prepare($slqRequirements);
     $stmtRequirements->bind_param('sssss',$student_number,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral);
 
-  if($stmtStudInfo->execute() && $stmtCourseFee->execute() && $stmtRequirements->execute()){
+  if($stmtStudInfo->execute() && $stmtRequirements->execute() && $stmtCourseFee->execute()) {
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
   } else{
     $response['status'] = 'error';
     $response['message'] = 'Failed to save!';
   }
-  // School Details to be follow
-  // $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `LRN`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_scholarship`, `csi_program`, `csi_major`, `csi_year_level`) 
-  // VALUES (?,?,?,?,?,?,?,?,?)";
-  //   $stmtDetails = $con->prepare($sqlDetials);
-  //   $stmtDetails->bind_param('sssssssss',$student_number,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_scholarship,$stud_program,$stud_major,$stud_year_level);
+//   // School Details to be follow 
+//   // $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `LRN`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_scholarship`, `csi_program`, `csi_major`, `csi_year_level`) 
+//   // VALUES (?,?,?,?,?,?,?,?,?)";
+//   //   $stmtDetails = $con->prepare($sqlDetials);
+//   //   $stmtDetails->bind_param('sssssssss',$student_number,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_scholarship,$stud_program,$stud_major,$stud_year_level);
 
-  echo json_encode($response);
+echo  json_encode($response);
 }
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
@@ -115,7 +138,7 @@ if(isset($_POST['delete'])){
   $stmtDel->bind_param('s', $id );
   if( $stmtDel->execute()){
     $response['status'] = 'success';
-    $response['message'] = 'Successfully Added';
+    $response['message'] = 'Successfully Deleted';
   }else{
     $response['status'] = 'error';
     $response['message'] = 'Failed Added';

@@ -280,28 +280,28 @@
                             <div class="row g-2 mb-1">
                             <div class="col-md">
                               <div class="form-floating">
-                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
                                 <label for="floatingInputGrid">Student ID</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                  <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
                                   <label for="floatingInputGrid">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                  <input type="text" name="stud_middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
                                   <label for="floatingInputGrid">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                  <input type="text" name="stud_lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
                                   <label for="floatingInputGrid">Last name</label>
                                 </div>
                               </div>
@@ -310,14 +310,14 @@
                             <div class="row g-2 mb-1">
                               <div class="col-md mb-1">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                  <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
                                   <label for="floatingInputGrid">School year</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" >
+                                  <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" disabled>
                                     <option>1st Semester</option>
                                     <option>2nd Semester</option>
                             
@@ -330,7 +330,7 @@
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" >
+                                  <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" disabled>
                                     <option>1st Year</option>
                                     <option>2nd Year</option>
                                     <option>3rd Year</option>
@@ -347,7 +347,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
 
-                                    <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" >
+                                    <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" disabled>
                                     <option value="BSIT">Bachelor of Science in Information Technology</option>
                                       <option value="BSHM">Bachelor of Science in Hotel Management</option>
                                       <option value="BSME">Bachelor of Science in Mechanical Engineering</option>
@@ -365,7 +365,7 @@
                           
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" >
+                                    <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" disabled>
                                       <option value="WMA">WMA</option>
                                       <option value="TSM">TSM</option>
                                       <option value="NA">NA</option>
@@ -377,7 +377,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="" >
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="" disabled >
                                     <label for="floatingInputGrid">Fee</label>
                                   </div>
                                 </div>
@@ -391,7 +391,7 @@
                               <div class="row g-2 mb-1"> 
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" >
+                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -405,7 +405,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" >
+                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -419,7 +419,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" >
+                                      <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" disabled>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -433,7 +433,7 @@
                                   
                                   <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="" >
+                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled >
                                     <label for="floatingInputGrid">LRN</label>
                                   </div>
                                 </div>
@@ -445,62 +445,40 @@
                           <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
-
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="" id="flexCheckDefault" >
-                              <label class="form-check-label" for="flexCheckDefault">
-
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" >
+                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" disabled >
                               <label class="form-check-label" for="form137">
-
                                 Form 137
                               </label>
                             </div>
 
                             <div class="form-check">
-
-                              <input class="form-check-input" type="checkbox" name="req_form138" value="✓" id="flexCheckChecked" >
-                              <label class="form-check-label" for="flexCheckChecked">
-
-                              <input class="form-check-input" type="checkbox" name="req_form138" value="✓" id="form138">
+                              <input class="form-check-input" type="checkbox" name="req_form138" value="✓" id="form138" disabled>
                               <label class="form-check-label" for="form138">
-
                                 Form 138
                               </label>
                             </div>
 
                             
                             <div class="form-check">
-
-                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="flexCheckChecked">
-                              <label class="form-check-label" for="flexCheckChecked">
-
-                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa-bc">
+                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa-bc" disabled>
                               <label class="form-check-label" for="psa-bc">
-
                                 PSA Birth Certificate
                               </label>
                             </div>
 
                             <div class="form-check">
-
-                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="flexCheckChecked">
-                              <label class="form-check-label" for="flexCheckChecked">
-
-                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="good-moral">
+                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="good-moral" disabled>
                               <label class="form-check-label" for="good-moral">
-
                                 Good Moral
                               </label>
                             </div>
-
                           </div>
-
                         </div>
                         
                       
                   
                       <div class="buttons_manage_universal">
-                      <button type="button"  name="" class="btn btn-info">Add</button>
+                      <button type="button" name="" id="add" class="btn btn-info">Add</button>
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
                       <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button>
@@ -512,8 +490,8 @@
                     
 
                       <hr>
-                      <form action="" class="universal_search_form w-100">
-                        <input type="search" name="searchStud" id="searchStud" placeholder="Search">
+                      <form action="" class="universal_search_form">
+                        <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
                         <button type="button" class="btn btn-primary">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
@@ -1098,6 +1076,9 @@
       </script>
       <script>
         $(document).ready(function () {
+          $('#add').click(function (e) { 
+            enablePartial();
+          });
           // Save and Update AJAX Request
           display();
           $('#stud_save').click(function (event) { 
@@ -1122,8 +1103,12 @@
                     $('#studForm').trigger('reset');
                   }
                   display();
+                  disableAllFields();
                   $("#stud_save").text('Save');
                   $("#stud_delete").prop("disabled", true);
+                  $("#add").removeAttr('disabled');
+
+    
                 }
               });
             }else{
@@ -1132,31 +1117,29 @@
                 url:'../includes/manage_student.php',
                 method: "POST",
                 data: $('#studForm').serialize() + '&stud_save=stud_save',
-                // dataType: 'json',
-              }).done(function(response){
-                console.log(response);
-                Swal.fire({
-                  icon: response.status,
-                  text: response.message,
-                  confirmButtonText: 'Ok'
-                })
-                if(response.status == 'success'){
-                  $('#studForm').trigger('reset');
+                success: function (response) {
+                  console.log(response);
+                  Swal.fire({
+                    icon: response.status,
+                    text: response.message,
+                    confirmButtonText: 'Ok'
+                  })
+                  if(response.status == 'success'){
+                    $('#studForm').trigger('reset');
+                  }
+                  display();
+                  disablePartial();
+                },
+                error: function (error) {
+                  alert('error; ' + error);
                 }
-                display();
-              })
-              .fail(function(){
-                Swal.fire({
-                  icon: 'error',
-                  text: 'Somthing wrong with ajax.....',
-                })
               })
             }
-            
               event.preventDefault();
           });
           // Edit Ajax Request
           $(document).on('click', '#edit', function(){
+            $("#add").prop("disabled", true);
             // e.preventDefault();
             let id = $(this).attr("data-id");
             // alert(id);
@@ -1170,10 +1153,14 @@
               // dataType: "json",
               success: function (data) {
                 // console.log(data);
+                // Setting data fields
                 $("[name='student_number']").val(data.stud_id);
                 $("[name='stud_firstname']").val(data.firstname);
                 $("[name='stud_lastname']").val(data.lastname);
                 $("[name='stud_middlename']").val(data.middlename);
+
+                // Enabline fields
+                enableAll();
                 $("#stud_save").text('Update');
                 $("#stud_delete").removeAttr('disabled');
               }
@@ -1227,8 +1214,10 @@
                       $('#studForm').trigger('reset');
                     }
                     display();
+                    disableAllFields();
                     $("#stud_delete").prop("disabled", true);
                     $("#stud_save").text('Save');
+                    $("#add").removeAttr('disabled');
                   }
                 });
               }
@@ -1244,7 +1233,77 @@
                 $('#viewStud').html(data);
               }
             });
-          }
+        }
+        function enableAll(){
+          $("[name='student_number']").removeAttr('disabled');
+          $("[name='stud_firstname']").removeAttr('disabled');
+          $("[name='stud_lastname']").removeAttr('disabled');
+          $("[name='stud_school_year']").removeAttr('disabled');
+          $("[name='stud_semester']").removeAttr('disabled');
+          $("[name='stud_year_level']").removeAttr('disabled');
+          $("[name='stud_program']").removeAttr('disabled');
+          $("[name='stud_major']").removeAttr('disabled');
+          $("[name='stud_fee']").removeAttr('disabled');
+          $("[name='stud_scholarship']").removeAttr('disabled');
+          $("[name='stud_discount']").removeAttr('disabled');
+          $("[name='stud_status']").removeAttr('disabled');
+          $("[name='stud_lrn']").removeAttr('disabled');
+          $("[name='req_form137']").removeAttr('disabled');
+          $("[name='req_form138']").removeAttr('disabled');
+          $("[name='req_psa']").removeAttr('disabled');
+          $("[name='req_good_moral']").removeAttr('disabled');
+          $("[name='stud_middlename']").removeAttr('disabled');
+        }
+        function disableAllFields(){
+          $("[name='student_number']").prop("disabled", true);
+          $("[name='stud_firstname']").prop("disabled", true);
+          $("[name='stud_lastname']").prop("disabled", true);
+          $("[name='stud_school_year']").prop("disabled", true);
+          $("[name='stud_semester']").prop("disabled", true);
+          $("[name='stud_year_level']").prop("disabled", true);
+          $("[name='stud_program']").prop("disabled", true);
+          $("[name='stud_major']").prop("disabled", true);
+          $("[name='stud_fee']").prop("disabled", true);
+          $("[name='stud_scholarship']").prop("disabled", true);
+          $("[name='stud_discount']").prop("disabled", true);
+          $("[name='stud_status']").prop("disabled", true);
+          $("[name='stud_lrn']").prop("disabled", true);
+          $("[name='req_form137']").prop("disabled", true);
+          $("[name='req_form138']").prop("disabled", true);
+          $("[name='req_psa']").prop("disabled", true);
+          $("[name='req_good_moral']").prop("disabled", true);
+          $("[name='stud_middlename']").prop("disabled", true);
+        }
+        function disablePartial(){
+          $("[name='student_number']").prop("disabled", true);
+          $("[name='stud_middlename']").prop("disabled", true);
+          $("[name='stud_lastname']").prop("disabled", true);
+          $("[name='stud_program']").prop("disabled", true);
+          $("[name='stud_major']").prop("disabled", true);
+          $("[name='stud_fee']").prop("disabled", true);
+          $("[name='stud_scholarship']").prop("disabled", true);
+          $("[name='stud_discount']").prop("disabled", true);
+          $("[name='req_form137']").prop("disabled", true);
+          $("[name='req_form138']").prop("disabled", true);
+          $("[name='req_psa']").prop("disabled", true);
+          $("[name='req_good_moral']").prop("disabled", true); 
+          $("[name='stud_firstname']").prop("disabled", true);
+        }
+        function enablePartial(){
+          $("[name='student_number']").removeAttr('disabled');
+          $("[name='stud_middlename']").removeAttr('disabled');
+          $("[name='stud_lastname']").removeAttr('disabled');
+          $("[name='stud_program']").removeAttr('disabled');
+          $("[name='stud_major']").removeAttr('disabled');
+          $("[name='stud_fee']").removeAttr('disabled');
+          $("[name='stud_scholarship']").removeAttr('disabled');
+          $("[name='stud_discount']").removeAttr('disabled');
+          $("[name='req_form137']").removeAttr('disabled');
+          $("[name='req_form138']").removeAttr('disabled');
+          $("[name='req_psa']").removeAttr('disabled');
+          $("[name='req_good_moral']").removeAttr('disabled');
+          $("[name='stud_firstname']").removeAttr('disabled');
+        }
       </script>
 
 
