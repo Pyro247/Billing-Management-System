@@ -152,7 +152,7 @@
                                         </div>
                                         <input type="number" class="form-control" placeholder="0.00">
                                         
-                                        <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong onclick="xxxx()">Online</strong></span>
+                                        <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
                                         
                                     </div>
 
@@ -162,42 +162,6 @@
                                         </div>
                                         <input type="date" class="form-control" placeholder="">
                                     </div>
-
-
-                                    
-                                    <!-- <div class="input-group mb-3">
-
-                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
-                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Gcash</label> 
-
-                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
-                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Paymaya</label> 
-
-                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
-                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Coins.ph</label> 
-
-                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
-                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">BDO</label> 
-                                    </div>   -->
-
-                                    <!-- <div class="col-md">
-                                        <div class="form-floating">
-                                        <select class="form-select" id="floatingSelect">
-                                            <option disabled>Commonly used:</option>
-                                            <option value="" selected>Gcash</option>
-                                            <option value="">Paymaya</option>
-                                            <option value="">Coins ph</option>
-                                            <option value="">BDO</option>
-                                            <option value="">PNB</option>
-                                            <option value="">Union Bank</option>
-                                            <option value="">Security Bank</option>
-                                            <option value="">Others: 
-                                                <input type="text" name="" id="">
-                                            </option>
-                                        </select>
-                                        <label for="floatingSelect">Choose Payment Platform</label>
-                                        </div>
-                                    </div> -->
                                     
                                 <div class="col-md">
                                     <div class="form-floating">
@@ -206,10 +170,7 @@
                                     </div>
                                 </div>
 
-                                   
-
                                 </div>
-
                                     <div class="rightForm">
                                         <div class="rightFormInner">
                                         <div class="rightForm_text text-secondary">
