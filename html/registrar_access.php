@@ -318,6 +318,7 @@
                               <div class="col-md">
                                 <div class="form-floating">
                                   <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                    <option value="" selected disabled></option>
                                     <option>1st Semester</option>
                                     <option>2nd Semester</option>
                             
@@ -331,6 +332,7 @@
                               <div class="col-md">
                                 <div class="form-floating">
                                   <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                    <option value="" selected disabled></option>
                                     <option>1st Year</option>
                                     <option>2nd Year</option>
                                     <option>3rd Year</option>
@@ -348,6 +350,7 @@
                                   <div class="form-floating">
 
                                     <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                    <option value="empty" selected></option>
                                     <option value="BSIT">Bachelor of Science in Information Technology</option>
                                       <option value="BSHM">Bachelor of Science in Hotel Management</option>
                                       <option value="BSME">Bachelor of Science in Mechanical Engineering</option>
@@ -366,6 +369,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                      <option value="empty" selected ></option>
                                       <option value="WMA">WMA</option>
                                       <option value="TSM">TSM</option>
                                       <option value="NA">NA</option>
@@ -392,6 +396,7 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                        <option value="empty" selected ></option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -406,6 +411,7 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                      <option value="empty" selected ></option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -420,6 +426,7 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                      <option value="" selected disabled></option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -1111,29 +1118,52 @@
     
                 }
               });
-            }else{
+            }
+            if($('#stud_save').text() == 'Save'){
               // Modify it and have condtion if some required fields are empty
-              $.ajax({
-                url:'../includes/manage_student.php',
-                method: "POST",
-                data: $('#studForm').serialize() + '&stud_save=stud_save',
-                success: function (response) {
-                  console.log(response);
-                  Swal.fire({
-                    icon: response.status,
-                    text: response.message,
-                    confirmButtonText: 'Ok'
-                  })
-                  if(response.status == 'success'){
-                    $('#studForm').trigger('reset');
+              if ($("[name='student_number']").val() == 0){
+                $("[name='student_number']").focus()
+              }else if ($("[name='stud_firstname']").val() == ""){
+                $("[name='stud_firstname']").focus()
+              }else if ($("[name='stud_middlename']").val() == ""){
+                $("[name='stud_middlename']").focus()
+              }else if ($("[name='stud_lastname']").val() == ""){
+                $("[name='stud_lastname']").focus()
+              }else if ($("[name='stud_fee']").val() == ""){
+                $("[name='stud_fee']").focus()
+              }else if ($("[name='stud_program']").val() == "empty"){
+                $("[name='stud_program']").focus()
+              }else if ($("[name='stud_major']").val() == "empty"){
+                $("[name='stud_major']").focus()
+              }else if ($("[name='stud_scholarship']").val() == "empty"){
+                $("[name='stud_scholarship']").focus()
+              }else if ($("[name='stud_discount']").val() == "empty"){
+                $("[name='stud_discount']").focus()
+              }
+              else{
+                $.ajax({
+                  url:'../includes/manage_student.php',
+                  method: "POST",
+                  data: $('#studForm').serialize() + '&stud_save=stud_save',
+                  success: function (response) {
+                    console.log(response);
+                    Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+                    if(response.status == 'success'){
+                      $('#studForm').trigger('reset');
+                    }
+                    display();
+                    disablePartial();
+                  },
+                  error: function (error) {
+                    alert('error; ' + error);
                   }
-                  display();
-                  disablePartial();
-                },
-                error: function (error) {
-                  alert('error; ' + error);
-                }
-              })
+                })
+              
+              }
             }
               event.preventDefault();
           });
