@@ -260,6 +260,9 @@ q{
    margin-top: 50px;
 }
 
+.title_tab_universal{
+    font-size: 2rem;
+}
 
 /* Right Tab */
 .row{
@@ -267,7 +270,7 @@ q{
 }
 
 .right-tab{
-    margin-top: 100px;
+    margin-top: 60px;
     margin-left: 300px;
     
 }
@@ -279,7 +282,7 @@ q{
     padding: 25px 75px;
     display: block;
     margin: 10px 0;
-    border: 2px solid #0d6efd;
+    border: 2px solid #3fd4b7;
     background: rgb(185, 184, 184);
 }
 
@@ -295,9 +298,8 @@ q{
 .payAppFormWrapper{
     display: flex;
     justify-content: space-around;
-    
     width: 100%;
-    padding: 50px 25px;
+    padding: 25px;
 }
 
 .leftForm .input-group input{

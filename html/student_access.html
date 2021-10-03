@@ -65,7 +65,7 @@
                 <a href="">Change Password</a>
                 <a href="">Logout</a>
             </div>
-            <p class="reg__name"> BSIT | 2018300366</p>
+            <p class="reg__name">BSIT | 2018300366</p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -95,7 +95,7 @@
 
             <!-- PAYMENT application -->
             <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
-                <p class="title_tab_universal text-primary">Payment Application</p>
+                <p class="title_tab_universal">Payment Application</p>
 
                     <div class="payApp_miniDashboard mb-3">
                         <div class="col d-flex mb-2">
@@ -111,9 +111,11 @@
                     
 
                     <div class="payApp_createPayment mt-2">
-                        <p class="title_tab_universal text-primary">Create Payment Application Form</p>
+                        
                             <form action="" class="payApp_createPaymentForm mb-3 p-2">
+                            <p class="title_tab_universal text-primary m-0">Create Payment Application Form</p>
                                 <div class="payAppFormWrapper">
+                            
                                 <div class="leftForm">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
@@ -148,8 +150,10 @@
                                             
                                             <span class="input-group-text d-inline-block">₱</span>
                                         </div>
-                                        <input type="text" class="form-control">
-                                        <span class="input-group-text text-success"><i class="fas fa-credit-card">&nbsp;</i>Online</span>
+                                        <input type="number" class="form-control" placeholder="0.00">
+                                        
+                                        <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong onclick="xxxx()">Online</strong></span>
+                                        
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -158,6 +162,53 @@
                                         </div>
                                         <input type="date" class="form-control" placeholder="">
                                     </div>
+
+
+                                    
+                                    <!-- <div class="input-group mb-3">
+
+                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
+                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Gcash</label> 
+
+                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
+                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Paymaya</label> 
+
+                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
+                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">Coins.ph</label> 
+
+                                        <input type="radio" class="btn-check" name="options-outlined" id="gcash" autocomplete="off">
+                                        <label class="btn btn-outline-primary" style="margin-right: 10px;" for="gcash">BDO</label> 
+                                    </div>   -->
+
+                                    <!-- <div class="col-md">
+                                        <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect">
+                                            <option disabled>Commonly used:</option>
+                                            <option value="" selected>Gcash</option>
+                                            <option value="">Paymaya</option>
+                                            <option value="">Coins ph</option>
+                                            <option value="">BDO</option>
+                                            <option value="">PNB</option>
+                                            <option value="">Union Bank</option>
+                                            <option value="">Security Bank</option>
+                                            <option value="">Others: 
+                                                <input type="text" name="" id="">
+                                            </option>
+                                        </select>
+                                        <label for="floatingSelect">Choose Payment Platform</label>
+                                        </div>
+                                    </div> -->
+                                    
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                    <input type="text" class="form-control" id="paymentGateway_Id" value="Gcash" placeholder=""> 
+                                    <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) </label>
+                                    </div>
+                                </div>
+
+                                
+
+                             
                                     
 
                                 </div>
@@ -166,13 +217,13 @@
                                         <div class="rightFormInner">
                                         <div class="rightForm_text text-secondary">
                                             <i class="fas fa-file-invoice text-primary" style="font-size: 4rem;"></i>
-                                            <p>Attach Payment Sales Invoice from your chosen local payment gateway.</p>
+                                            <p>Attach Sales Invoice from your chosen local payment gateway.</p>
                                         </div>
                                     </div>
                                     <input type="file" name="" id="">
                                     </div>
                                 </div>
-                                <button type="button" class="btn btn-success d-block mx-auto">Submit</button>
+                                <button type="submit" class="btn btn-success d-block mx-auto mt-5 mb-3">Submit</button>
                             </form> 
                     </div>
             </div>
