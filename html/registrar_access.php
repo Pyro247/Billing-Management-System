@@ -318,7 +318,6 @@
                               <div class="col-md">
                                 <div class="form-floating">
                                   <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option value="" selected disabled></option>
                                     <option>1st Semester</option>
                                     <option>2nd Semester</option>
                             
@@ -332,7 +331,6 @@
                               <div class="col-md">
                                 <div class="form-floating">
                                   <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option value="" selected disabled></option>
                                     <option>1st Year</option>
                                     <option>2nd Year</option>
                                     <option>3rd Year</option>
@@ -350,7 +348,6 @@
                                   <div class="form-floating">
 
                                     <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option value="empty" selected></option>
                                     <option value="BSIT">Bachelor of Science in Information Technology</option>
                                       <option value="BSHM">Bachelor of Science in Hotel Management</option>
                                       <option value="BSME">Bachelor of Science in Mechanical Engineering</option>
@@ -369,7 +366,6 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                      <option value="empty" selected ></option>
                                       <option value="WMA">WMA</option>
                                       <option value="TSM">TSM</option>
                                       <option value="NA">NA</option>
@@ -396,7 +392,6 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option value="empty" selected ></option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
                                         <option>Wala laman</option>
@@ -1093,14 +1088,9 @@
               $.ajax({
                 type: "POST",
                 url: "../includes/manage_student.php",
-                data: {
-                  "update": 1,
-                  "stud_id": $("[name='student_number']").val(),
-                  "firstname": $("[name='stud_firstname']").val(),
-                  "lastname": $("[name='stud_lastname']").val(),
-                  "middlename": $("[name='stud_middlename']").val(),
-                },
+                data: $('#studForm').serialize() + '&update=update',
                 success: function (response) {
+                  console.log(response);
                   Swal.fire({
                     icon: response.status,
                     text: response.message,
@@ -1114,9 +1104,10 @@
                   $("#stud_save").text('Save');
                   $("#stud_delete").prop("disabled", true);
                   $("#add").removeAttr('disabled');
-
-    
-                }
+                },
+                error: function (error) {
+                    alert('error; ' + error);
+                  }
               });
             }
             if($('#stud_save').text() == 'Save'){
@@ -1131,14 +1122,6 @@
                 $("[name='stud_lastname']").focus()
               }else if ($("[name='stud_fee']").val() == ""){
                 $("[name='stud_fee']").focus()
-              }else if ($("[name='stud_program']").val() == "empty"){
-                $("[name='stud_program']").focus()
-              }else if ($("[name='stud_major']").val() == "empty"){
-                $("[name='stud_major']").focus()
-              }else if ($("[name='stud_scholarship']").val() == "empty"){
-                $("[name='stud_scholarship']").focus()
-              }else if ($("[name='stud_discount']").val() == "empty"){
-                $("[name='stud_discount']").focus()
               }
               else{
                 $.ajax({
@@ -1188,6 +1171,28 @@
                 $("[name='stud_firstname']").val(data.firstname);
                 $("[name='stud_lastname']").val(data.lastname);
                 $("[name='stud_middlename']").val(data.middlename);
+                $("[name='stud_year_level']").val(data.year_level);
+                $("[name='stud_program']").val(data.program);
+                $("[name='stud_major']").val(data.major);
+                $("[name='stud_fee']").val(data.tuition_fee);
+                $("[name='stud_discount']").val(data.discount);
+                $("[name='stud_school_year']").val(data.csi_school_year);
+                $("[name='stud_semester']").val(data.csi_semester);
+                $("[name='stud_scholarship']").val(data.csi_scholarship);
+                $("[name='stud_status']").val(data.stud_status);
+                $("[name='stud_lrn']").val(data.stud_lrn);
+                if(data.form_137 == '✓'){
+                  $("[name='req_form137']").prop('checked', true);
+                }
+                if(data.form_138 == '✓'){
+                  $("[name='req_form138']").prop('checked', true);
+                }
+                if(data.psa_birth_cert == '✓'){
+                  $("[name='req_psa']").prop('checked', true);
+                }
+                if(data.good_moral == '✓'){
+                  $("[name='req_good_moral']").prop('checked', true);
+                }
 
                 // Enabline fields
                 enableAll();
@@ -1309,6 +1314,7 @@
           $("[name='stud_middlename']").prop("disabled", true);
           $("[name='stud_lastname']").prop("disabled", true);
           $("[name='stud_program']").prop("disabled", true);
+          $("[name='stud_year_level']").prop("disabled", true);
           $("[name='stud_major']").prop("disabled", true);
           $("[name='stud_fee']").prop("disabled", true);
           $("[name='stud_scholarship']").prop("disabled", true);
@@ -1323,6 +1329,7 @@
           $("[name='student_number']").removeAttr('disabled');
           $("[name='stud_middlename']").removeAttr('disabled');
           $("[name='stud_lastname']").removeAttr('disabled');
+          $("[name='stud_year_level']").removeAttr('disabled');
           $("[name='stud_program']").removeAttr('disabled');
           $("[name='stud_major']").removeAttr('disabled');
           $("[name='stud_fee']").removeAttr('disabled');

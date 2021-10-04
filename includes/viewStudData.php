@@ -3,7 +3,7 @@
 
   $sql ="SELECT s.stud_id, s.firstname, s.lastname,r.form_137,r.form_138,r.psa_birth_cert,r.good_moral
         FROM tbl_student_info as s
-        RIGHT JOIN tbl_student_requirements as r
+        LEFT JOIN tbl_student_requirements as r
         ON s.stud_id = r.stud_id";
   $stmt = $con->prepare($sql);
   $stmt->execute();
