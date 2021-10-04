@@ -19,13 +19,13 @@
   // Update Info and Create Account
   if( isset( $_POST['agreePolicy'] ) ){
     if(isset($_SESSION['role']) && $_SESSION['role'] == 'Student'  ){
-      echo $_POST['role'];
       $userId = $_POST['userId']; 
       $role = $_POST['role'];
       $firstname = $_POST['fname']; 
       $midInitial = $_POST['middlename'];
       $lastname = $_POST['lastname'];
       $address = $_POST['address'];
+      $phoneNumber = $_POST['contact'];
       $sex = $_POST['sex'];
   
       $stud_status = $_POST['stud_status'];
@@ -61,15 +61,14 @@
         $newRegNo = intval($newRegNo);
         $newRegNo = $yearNow.($newRegNo + 1); 
       }
-      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`contact_number`= ?,`address` = ?, `reg_date` = ?  WHERE stud_id = ?";
+      $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`contact_number`= ?,`address` = ?,email = ? , `reg_date` = ?  WHERE stud_id = ?";
       $stmtStduReg = $con->prepare($sqlStudReg);
-      $stmtStduReg->bind_param('sssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $phoneNumber, $address,$today,$userId);
+      $stmtStduReg->bind_param('ssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $phoneNumber, $address,$email,$today,$userId);
       if($stmtStduReg->execute()){
         // Saving School Details
-        // Modify to update
-        $slqDetails = "INSERT INTO `tbl_student_school_details`(`stud_id`, `stud_status`, `csi_school_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`,`LRN`) VALUES (?,?,?,?,?,?,?,?)"; 
+        $slqDetails = "UPDATE `tbl_student_school_details` SET `LRN` = ?,`stud_status` = ?,`csi_school_year`= ? ,`csi_semester` = ?,`csi_program` = ? ,`csi_major` = ?,`csi_year_level` = ? WHERE stud_id = ?"; 
         $stmtDetails = $con->prepare($slqDetails);
-        $stmtDetails->bind_param('ssssssss', $userId, $stud_status, $csi_school_year, $csi_semester, $csi_program, $csi_major, $csi_year,$LRN);
+        $stmtDetails->bind_param('ssssssss',$LRN,$stud_status, $csi_school_year, $csi_semester, $csi_program, $csi_major, $csi_year,$userId);
         $stmtDetails->execute();
         // Creating Account to the databse
         $fullname = $firstname.' '.$lastname;
@@ -93,18 +92,18 @@
       }
     }
     if(isset($_POST['role']) && ($_POST['role'] == 'Cashier' || $_POST['role'] == 'Registrar' ) ){
-      echo $userId = $_POST['userId']; 
-      echo $role = $_POST['role'];
-      echo $firstname = $_POST['fname']; 
-      echo $midInitial = $_POST['middlename'];
-      echo $lastname = $_POST['lastname'];
-      echo $address = $_POST['address'];
-      echo $phoneNumber = $_POST['phone'];
-      echo $sex = $_POST['sex'];
+      $userId = $_POST['userId']; 
+      $role = $_POST['role'];
+      $firstname = $_POST['fname']; 
+      $midInitial = $_POST['middlename'];
+      $lastname = $_POST['lastname'];
+      $address = $_POST['address'];
+      $phoneNumber = $_POST['phone'];
+      $sex = $_POST['sex'];
     
-      echo $email = $_POST['email'];
-      echo $password = $_POST['password'];
-      echo $confirm_pass = $_POST['confirm_pass'];
+      $email = $_POST['email'];
+      $password = $_POST['password'];
+      $confirm_pass = $_POST['confirm_pass'];
 
       if (empty($sex)){
         $sex = "N/A"; 
