@@ -129,10 +129,14 @@ if(isset($_POST['delete'])){
   
   $id = $_POST['id'];
   // $sqlDel = "DELETE FROM `tbl_student_info` WHERE stud_id = ?";
-  $sqlDel = "DELETE s.*, r.* 
+  $sqlDel = "DELETE s.*, r.*, c.*, d.*
               FROM tbl_student_info s 
               LEFT JOIN tbl_student_requirements r 
-              ON s.stud_id = r.stud_id 
+              ON s.stud_id = r.stud_id
+              LEFT JOIN tbl_course_fee c 
+              ON s.stud_id = c.stud_id
+              LEFT JOIN tbl_student_school_details d 
+              ON s.stud_id = d.stud_id
               WHERE s.stud_id = ?";
   $stmtDel = $con->prepare($sqlDel);
   $stmtDel->bind_param('s', $id );
