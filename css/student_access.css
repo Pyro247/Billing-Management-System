@@ -275,15 +275,60 @@ q{
     
 }
 
+/* Dashboard */
+.dashboardImages img{
+    width: 75px;
+    height: 75px;
+    border-radius: 25px;
+}
+
+.miniDashboardInner img{
+    width: 150px;
+    height: 150px;
+}
+
+.paymentPlatform span{
+    display: block;
+    text-align: center;
+    line-height: 0;
+    color: var(--blue-color);
+    font-size: 1.3rem;
+}
+
+.paymentPlatform{
+    cursor: pointer;
+    transition: 300ms ease;
+}
+
+.paymentPlatform:hover{
+    transform: scale(1.1);
+}
+
+/* POPUP *****************************************************************/
+.popUpPaymentPlaftform{
+    position: absolute;
+    z-index: 1001;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid black;
+    background: darkgray;
+    padding: 10px 25px;
+    visibility: hidden;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+}
+
 
 /* Payment Application */
-.payApp_miniDashboard{
+.miniDashboard{
     width: 100%;
     padding: 25px 75px;
     display: block;
     margin: 10px 0;
-    border: 2px solid #3fd4b7;
-    background: rgb(185, 184, 184);
+    border: 2px solid var(--blue-color);
+    
 }
 
 .miniDashboardh3{
@@ -292,7 +337,7 @@ q{
 }
 
 /* Form in payment Application */
-.payApp_createPaymentForm{
+.universalLightGrayBg{
     background: lightgray;
 }
 .payAppFormWrapper{
@@ -324,6 +369,7 @@ q{
     font-weight: 500;
     text-align: center;
 }
+
 
 
 

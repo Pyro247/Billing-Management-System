@@ -15,6 +15,9 @@
         <!-- CSS Local -->
         <link rel="stylesheet" href="../css/student_access.css">
 
+         <!-- Sweet Alert 2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
         <title>Student</title>
     </head>
     <body>
@@ -55,7 +58,7 @@
     
 
 
-    <div class="row">
+    <div class="row parentContainerClass" id="parent_ID">
         <div class="col-3 left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
@@ -83,21 +86,168 @@
             <!-- Dashboard -->
             <div class="tab-content" id="v-pills-tabContent">
 
-            <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><br>
-                <p class="title_tab_universal">Approve Payments</p>
+                <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
+                    <p class="title_tab_universal mb-3">Dashboard</p>
 
-                    <form action="" class="universalForm_one">
-                    <input type="text" name="" id="" placeholder="Search">
-                    <button type="button" class="btn btn-primary">Search</button>
-                    </form>
-            </div>
+                    <span class="d-block text-primary" style="font-size: 1.4rem;">Paying Bills? - It's easy and simple! - Click the Platforms to see instructions</span>
+                    <div class="miniDashboard mb-3">
+                        <span class="d-block text-primary text-center" style="font-size: 1.7rem;">You can use:</span>
+                        <div class="miniDashboardInner d-flex justify-content-around">
+                            <div class="paymentPlatform" onclick="paymentGcash()">
+                            <img src="../images/student_pics/gcash.png" alt="">
+                            <span>Gcash</span>
+                            
+                            </div>
 
+                            <div class="paymentPlatform" onclick="paymentPayMaya()">
+                            <img src="../images/student_pics/paymaya.png" alt="">
+                            <span>PayMaya</span>
+                            </div>
+
+                            <div class="paymentPlatform" onclick="paymentRemittance()">
+                            <img src="../images/student_pics/remittance.png" alt="">
+                            <span>Remittance</span>
+                            </div>
+
+                            <div class="paymentPlatform" onclick="paymentBankTransfer()">
+                            <img src="../images/student_pics/bankTransfer.png" alt="">
+                            <span>Bank Transfer</span>
+                            </div>
+
+                            <!-- Sweet Alert For clicking the Payment Gateway -->
+                            <script type="text/javascript">
+                            let oList = document.getElementById('olID');
+                            let popUpImageID = document.getElementById('popUpImageID')
+                            
+                            let parent_container = document.getElementById('parent_ID')
+                                function paymentGcash(){
+                                    Swal.fire({
+                                    title: '<span style="color: #2832c2">GCASH Payment</span>',
+                                    html: 
+                                        '<strong style="font-size: 1.2rem;">' +
+                                        '1. Open your Gcash App <br><br>' +
+                                        '2. Send payment to: Juan A. Dela Cruz, Paniqui, Tarlac (0908) 5522 020 <br><br>' +
+                                        '3. Take a Screenshot of the Gcash transaction <br><br>' +
+                                        '4. Go to Payment Application and Fill out the necessary inputs and click Submit<br> <br>' +
+                                        '5. <span class="text-success"> Done! Just wait for the cashier for approval.</span>' +
+                                        '</strong>',
+                                    imageUrl: "../images/student_pics/gcash.png",
+                                    imageWidth: "150px",
+                                    imageHeight: "150px",
+                                    confirmButtonText: 'OK'
+                                })
+                                }
+
+                                function paymentPayMaya(){
+                                    Swal.fire({
+                                    title: '<span style="color: #151e3d">PAYMAYA Payment</span>',
+                                    html: 
+                                        '<strong style="font-size: 1.2rem;">' +
+                                        '1. Open your PayMaya App <br><br>' +
+                                        '2. Send payment to: Juan A. Dela Cruz, Paniqui, Tarlac (0908) 5522 020 <br><br>' +
+                                        '3. Take a Screenshot of the PayMaya transaction <br><br>' +
+                                        '4. Go to Payment Application and Fill out the necessary inputs and click Submit <br> <br>' +
+                                        '5. <span class="text-success"> Done! Just wait for the cashier for approval.</span>' +
+                                        '</strong>',
+                                    imageUrl: "../images/student_pics/paymaya.png",
+                                    imageWidth: "150px",
+                                    imageHeight: "150px",
+                                    confirmButtonText: 'OK'
+                                })
+                                }
+
+                                function paymentRemittance(){
+                                    Swal.fire({
+                                    title: '<span style="color: #28a745">MONEY REMITTANCE Payment</span>',
+                                    html: 
+                                        '<strong style="font-size: 1.2rem;">' +
+                                        '1. Go to your nearest Money Remittance Center (Palawan Express, Cebuana Lhuillier, M Lhuillier or Western Union) <br><br>' +
+                                        '2. Send payment to: Juan A. Dela Cruz, Paniqui, Tarlac (0908) 5522 020 <br><br>' +
+                                        '3. Take a snapshot of the remittance form with code <br><br>' +
+                                        '4. Go to Payment Application and Fill out the necessary inputs and click Submit <br> <br>' +
+                                        '5. <span class="text-success"> Done! Just wait for the cashier for approval.</span>' +
+                                        '</strong>',
+                                    imageUrl: "../images/student_pics/remittance.png",
+                                    imageWidth: "150px",
+                                    imageHeight: "150px",
+                                    confirmButtonText: 'OK'
+                                })
+                                }
+
+
+                                function paymentBankTransfer(){
+                                    Swal.fire({
+                                    title: '<span style="color: #56A8CBFF">BANK TRANSFER Payment</span>',
+                                    html: 
+                                        '<strong style="font-size: 1.2rem;">' +
+                                        '1. Choose your preferred Banking Platform<br><br>' +
+                                        '2. Transfer Funds to: Juan A. Dela Cruz, Paniqui, Tarlac (0908) 5522 020 <br><br>' +
+                                        '3. Take a Screenshot of the Bank Transaction<br><br>' +
+                                        '4. Go to Payment Application and Fill out the necessary inputs and click Submit <br> <br>' +
+                                        '5. <span class="text-success"> Done! Just wait for the cashier for approval.</span>' +
+                                        '</strong>',
+                                    imageUrl: "../images/student_pics/bankTransfer.png",
+                                    imageWidth: "150px",
+                                    imageHeight: "150px",
+                                    confirmButtonText: 'OK'
+                                })
+                                }
+                            </script>
+                        </div>
+                    </div> 
+
+                    <div class="universalLightGrayBg">
+                        <span class="text-primary d-block mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
+                            <table class="table">
+                                <thead class="thead-light text-center">
+                                <tr>
+                                    <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Cashier</th>
+                                    
+                                    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="text-center">
+                                    <th scope="row">FT-001</th>
+                                    <td>₱3000</td>
+                                    <td>Online - Gcash</td>
+                                    <td>02/11/2021</td>
+                                    <td class="text-success">Approved</td>
+                                    <td>Juan A. DelaCruz</td>
+                                </tr>
+
+                                <tr class="text-center">
+                                    <th scope="row">FT-006</th>
+                                    <td>₱650</td>
+                                    <td>Cash</td>
+                                    <td>02/21/2021</td>
+                                    <td class="text-success">Approved</td>
+                                    <td>Juan A. DelaCruz</td>
+                   
+                                
+                                </tr>
+                                </tbody>
+                              </table>
+                           
+                        
+                    </div>
+
+                    
+                    
+                    </div>
+
+         
 
             <!-- PAYMENT application -->
             <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
                 <p class="title_tab_universal">Payment Application</p>
 
-                    <div class="payApp_miniDashboard mb-3">
+                    <div class="miniDashboard mb-3">
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50 ">Email <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Tuition Fee <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
@@ -112,7 +262,7 @@
 
                     <div class="payApp_createPayment mt-2">
                         
-                            <form action="" class="payApp_createPaymentForm mb-3 p-2">
+                            <form action="" class="universalLightGrayBg mb-3 p-2">
                             <p class="title_tab_universal text-primary m-0">Create Payment Application Form</p>
                                 <div class="payAppFormWrapper">
                             
@@ -165,8 +315,8 @@
                                     
                                 <div class="col-md">
                                     <div class="form-floating">
-                                    <input type="text" class="form-control" id="paymentGateway_Id" value="Gcash" placeholder=""> 
-                                    <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) </label>
+                                    <input type="text" class="form-control" id="paymentGateway_Id" value="Gcash" placeholder="" style="border:2px solid #56A8CBFF"> 
+                                    <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) <span style="font-weight: bold; color: crimson;">*</span></label>
                                     </div>
                                 </div>
 
