@@ -180,7 +180,7 @@
     max-width: 300px;
     position: fixed;
     margin-top: 60px;
-    
+
 }
 .upper-left-tab{
     position: relative;
@@ -302,22 +302,6 @@ q{
 
 .paymentPlatform:hover{
     transform: scale(1.1);
-}
-
-/* POPUP *****************************************************************/
-.popUpPaymentPlaftform{
-    position: absolute;
-    z-index: 1001;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border: 2px solid black;
-    background: darkgray;
-    padding: 10px 25px;
-    visibility: hidden;
-    opacity: 0;
-    user-select: none;
-    pointer-events: none;
 }
 
 

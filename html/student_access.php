@@ -58,14 +58,14 @@
     
 
 
-    <div class="row parentContainerClass" id="parent_ID">
+    <div class="row parentContainerClass">
         <div class="col-3 left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
             <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
                 <a href="">My Email</a>
-                <a href="">Change Password</a>
+                <a href="../html/forgotPassword.php">Change Password</a>
                 <a href="">Logout</a>
             </div>
             <p class="reg__name">BSIT | 2018300366</p>
@@ -89,8 +89,21 @@
                 <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
                     <p class="title_tab_universal mb-3">Dashboard</p>
 
-                    <span class="d-block text-primary" style="font-size: 1.4rem;">Paying Bills? - It's easy and simple! - Click the Platforms to see instructions</span>
-                    <div class="miniDashboard mb-3">
+                    <div class="miniDashboard mb-5">
+                        <div class="col d-flex mb-2">
+                            <span class="miniDashboardh3 mx-3 w-50 ">Email <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
+                        </div>
+                        <div class="col d-flex">
+                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱14,750.00</span></span>
+                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱3,250.00</span></span>
+
+                        </div>
+                    </div>
+
+
+                    <span class="d-block text-primary" style="font-size: 1.4rem;">Paying Bills? - It's easy and simple! - <strong>Click the Platforms to see instructions</strong></span>
+                    <div class="miniDashboard mb-5">
                         <span class="d-block text-primary text-center" style="font-size: 1.7rem;">You can use:</span>
                         <div class="miniDashboardInner d-flex justify-content-around">
                             <div class="paymentPlatform" onclick="paymentGcash()">
@@ -118,7 +131,6 @@
                             <script type="text/javascript">
                             let oList = document.getElementById('olID');
                             let popUpImageID = document.getElementById('popUpImageID')
-                            
                             let parent_container = document.getElementById('parent_ID')
                                 function paymentGcash(){
                                     Swal.fire({
@@ -163,7 +175,7 @@
                                         '<strong style="font-size: 1.2rem;">' +
                                         '1. Go to your nearest Money Remittance Center (Palawan Express, Cebuana Lhuillier, M Lhuillier or Western Union) <br><br>' +
                                         '2. Send payment to: Juan A. Dela Cruz, Paniqui, Tarlac (0908) 5522 020 <br><br>' +
-                                        '3. Take a snapshot of the remittance form with code <br><br>' +
+                                        '3. Take a snapshot of the remittance receipt<br><br>' +
                                         '4. Go to Payment Application and Fill out the necessary inputs and click Submit <br> <br>' +
                                         '5. <span class="text-success"> Done! Just wait for the cashier for approval.</span>' +
                                         '</strong>',
@@ -214,7 +226,7 @@
                                 <tbody>
                                 <tr class="text-center">
                                     <th scope="row">FT-001</th>
-                                    <td>₱3000</td>
+                                    <td>₱2000</td>
                                     <td>Online - Gcash</td>
                                     <td>02/11/2021</td>
                                     <td class="text-success">Approved</td>
@@ -223,7 +235,7 @@
 
                                 <tr class="text-center">
                                     <th scope="row">FT-006</th>
-                                    <td>₱650</td>
+                                    <td>₱3250</td>
                                     <td>Cash</td>
                                     <td>02/21/2021</td>
                                     <td class="text-success">Approved</td>
@@ -489,5 +501,11 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
+        <script type="text/javascript">
+            function profile_link_show(){
+                let profile_link = document.getElementById('profile_link_id');
+                profile_link.classList.toggle('show');
+            }
+        </script>
     </body>
     </html>

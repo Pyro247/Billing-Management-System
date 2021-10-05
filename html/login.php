@@ -95,7 +95,7 @@
                     </div>
                     
                     
-                    <span>Dont have an account yet? <a href=" ../html/idValidation.php  " class="reg_link">Register here</a></span>
+                    <span>Dont have an account yet? <a href=" ../html/idValidation.php" class="reg_link">Register here</a></span>
             </div>
         </form>
     </div>

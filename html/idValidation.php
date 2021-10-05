@@ -35,7 +35,7 @@
     </script>
 
 
-    <title>Registration | University Example</title>
+    <title>Registration | Pyro Colleges</title>
 </head>
 <body>
 
@@ -72,7 +72,8 @@
             <h3>Please enter ID number</h3>
             <input type="number" name="userId" id="" placeholder="ID number" required>
             <input type="submit" name="checkID" id="checkID" value="Submit">
-            <p>Already have an account? <a href="./login.php">Login Here</a></p>
+
+            <span style="color: white; display: block; margin: 0 auto">Already have an account? <a href=" ../html/login.php" class="login_link">Login here</a></span>
         </form>
     </div>
     
