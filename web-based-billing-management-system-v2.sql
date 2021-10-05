@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2021 at 06:47 AM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Oct 05, 2021 at 04:46 PM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `web-based-billing-management-system`
+-- Database: `web-based-billing-management-system-v2`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_academic_year`
+--
+
+CREATE TABLE `tbl_academic_year` (
+  `academic_year` varchar(100) NOT NULL,
+  `stud_id` int(11) NOT NULL,
+  `course_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -42,22 +54,34 @@ CREATE TABLE `tbl_accounts` (
 --
 
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
-(1, '', 'anne@gmail.com', 'anne', 'Registrar', '', '');
+(1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
+(1301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', ''),
+(2018301301, 'Michael Isla', 'michael.estrechoisla@gmail.com', 'Mike@1301', ' Student', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_course_fee`
+-- Table structure for table `tbl_course_fees`
 --
 
-CREATE TABLE `tbl_course_fee` (
+CREATE TABLE `tbl_course_fees` (
   `course_id` int(11) NOT NULL,
-  `stud_id` int(11) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
-  `csi_program&major` varchar(100) NOT NULL,
-  `csi_year_level` varchar(100) NOT NULL,
-  `tuition_fee` int(11) NOT NULL,
-  `discount` int(11) NOT NULL
+  `semester` varchar(100) NOT NULL,
+  `course_year_level` varchar(100) NOT NULL,
+  `tuition_fee` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_list`
+--
+
+CREATE TABLE `tbl_course_list` (
+  `course_id` int(11) NOT NULL,
+  `course_program` varchar(100) NOT NULL,
+  `course_major` varchar(100) NOT NULL,
+  `course_duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -76,15 +100,8 @@ CREATE TABLE `tbl_employee_info` (
   `sex` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(15) NOT NULL,
-  `reg_date` varchar(100) NOT NULL
+  `joined_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_employee_info`
---
-
-INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `contact_number`, `reg_date`) VALUES
-('', 4, '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -97,15 +114,47 @@ CREATE TABLE `tbl_payments` (
   `course_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `payable_fee` int(11) NOT NULL,
+  `tuition_fee` int(100) NOT NULL,
   `amount` int(11) NOT NULL,
   `payment_method` varchar(100) NOT NULL,
   `total_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `transaction_date` date NOT NULL,
   `payment_status` varchar(100) NOT NULL,
+  `Remarks` varchar(100) NOT NULL,
   `cashier_id` int(11) NOT NULL,
   `cashier_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_student_discount`
+--
+
+CREATE TABLE `tbl_student_discount` (
+  `stud_id` int(11) NOT NULL,
+  `discount_description` varchar(100) NOT NULL,
+  `discount_percent` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_student_fees`
+--
+
+CREATE TABLE `tbl_student_fees` (
+  `course_id` int(11) NOT NULL,
+  `stud_id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `csi_year_level` varchar(100) NOT NULL,
+  `scholar_type` varchar(100) NOT NULL,
+  `discount_percent` int(11) NOT NULL,
+  `tuition_fee` int(100) NOT NULL,
+  `total_amount_paid` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `Remarks` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -122,22 +171,10 @@ CREATE TABLE `tbl_student_info` (
   `middlename` varchar(100) NOT NULL,
   `sex` varchar(50) NOT NULL,
   `address` longtext NOT NULL,
-  `college` longtext NOT NULL,
-  `major` longtext NOT NULL,
-  `year_level` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact_number` varchar(12) NOT NULL,
-  `reg_date` varchar(100) NOT NULL DEFAULT 'N/A'
+  `joined_date` varchar(100) NOT NULL DEFAULT 'N/A'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_student_info`
---
-
-INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `college`, `major`, `year_level`, `email`, `contact_number`, `reg_date`) VALUES
-('', 1, '', '', '', '', '', '', '', '', '', '', 'N/A'),
-('', 2, '', '', '', '', '', '', '', '', '', '', 'N/A'),
-('', 2021000002, 'christian', 'Villano', 'Corto', 'male', '', 'BSIT', 'WMA', '', '', '', 'N/A');
 
 -- --------------------------------------------------------
 
@@ -146,20 +183,24 @@ INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `m
 --
 
 CREATE TABLE `tbl_student_requirements` (
-  `stud_id` int(20) NOT NULL,
+  `stud_id` int(11) NOT NULL,
   `form_137` varchar(100) NOT NULL,
   `form_138` varchar(100) NOT NULL,
   `psa_birth_cert` varchar(100) NOT NULL,
   `good_moral` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tbl_student_requirements`
+-- Table structure for table `tbl_student_scholarship`
 --
 
-INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2021000001, '', '', '', ''),
-(2021000002, '', '', '', '');
+CREATE TABLE `tbl_student_scholarship` (
+  `stud_id` int(11) NOT NULL,
+  `scholar_description` int(100) NOT NULL,
+  `scholar_type` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -168,12 +209,11 @@ INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_
 --
 
 CREATE TABLE `tbl_student_school_details` (
-  `stud_id` int(20) NOT NULL,
+  `stud_id` int(11) NOT NULL,
   `LRN` varchar(100) NOT NULL,
-  `stud_status` varchar(100) NOT NULL,
+  `stud_type` varchar(100) NOT NULL,
   `csi_school_year` varchar(100) NOT NULL,
   `csi_semester` varchar(100) NOT NULL,
-  `csi_scholarship` varchar(100) NOT NULL,
   `csi_program` varchar(255) NOT NULL,
   `csi_major` longtext NOT NULL,
   `csi_year_level` varchar(100) NOT NULL
@@ -190,22 +230,34 @@ ALTER TABLE `tbl_accounts`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `tbl_course_fee`
+-- Indexes for table `tbl_course_fees`
 --
-ALTER TABLE `tbl_course_fee`
+ALTER TABLE `tbl_course_fees`
+  ADD PRIMARY KEY (`course_id`);
+
+--
+-- Indexes for table `tbl_course_list`
+--
+ALTER TABLE `tbl_course_list`
   ADD PRIMARY KEY (`course_id`);
 
 --
 -- Indexes for table `tbl_employee_info`
 --
 ALTER TABLE `tbl_employee_info`
-  ADD PRIMARY KEY (`reg_no`);
+  ADD PRIMARY KEY (`employee_id`);
 
 --
 -- Indexes for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
   ADD PRIMARY KEY (`transaction_no.`);
+
+--
+-- Indexes for table `tbl_student_fees`
+--
+ALTER TABLE `tbl_student_fees`
+  ADD PRIMARY KEY (`stud_id`);
 
 --
 -- Indexes for table `tbl_student_info`
@@ -230,9 +282,9 @@ ALTER TABLE `tbl_student_school_details`
 --
 
 --
--- AUTO_INCREMENT for table `tbl_course_fee`
+-- AUTO_INCREMENT for table `tbl_course_list`
 --
-ALTER TABLE `tbl_course_fee`
+ALTER TABLE `tbl_course_list`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --

@@ -72,25 +72,28 @@
 
   if(isset($_POST['stud_save'])){
     // Studen Info
-    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`,`program`,`major`,`year_level`)
-    VALUES (?,?,?,?,?,?,?)";
+    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`) VALUES (?,?,?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
-    $stmtStudInfo->bind_param('sssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$stud_program,$stud_major,$stud_year_level);
-    // Course Fee
+    $stmtStudInfo->bind_param('ssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename);
+    // Student Fee
+    // Temprary Variable 
+    $course_id = 0;
+    $total_amount_paid = 0;
+    $balance = 0;
+    $Remarks = '';
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
-    $sqlCourseFee = "INSERT INTO `tbl_course_fee`(`stud_id`, `fullname`, `csi_program_major`,`csi_year_level`, `tuition_fee`, `discount`) VALUES (?,?,?,?,?,?)";
-    $stmtCourseFee = $con->prepare($sqlCourseFee);
-    $stmtCourseFee->bind_param('ssssss',$student_number,$fullname,$program_major,$stud_year_level,$stud_fee,$stud_discount);
+    $sqlStudFee = "INSERT INTO `tbl_student_fees`(`course_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `Remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $stmtStudFee = $con->prepare($sqlStudFee);
+    $stmtStudFee->bind_param('ssssssssss',$course_id,$student_number,$fullname,$stud_year_level,$stud_scholarship,$stud_discount,$stud_fee,$total_amount_paid,$balance,$Remarks);
     // Student Requirements
     $slqRequirements = "INSERT INTO `tbl_student_requirements`(`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES (?,?,?,?,?)";
     $stmtRequirements = $con->prepare($slqRequirements);
     $stmtRequirements->bind_param('sssss',$student_number,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral);
-    // School Details to be follow 
-    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_scholarship`, `csi_program`, `csi_major`, `csi_year_level`) 
-    VALUES (?,?,?,?,?)";
+    // School Details 
+    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?)";
       $stmtDetails = $con->prepare($sqlDetials);
-      $stmtDetails->bind_param('sssss',$student_number,$stud_scholarship,$stud_program,$stud_major,$stud_year_level);
+      $stmtDetails->bind_param('ssss',$student_number,$stud_program,$stud_major,$stud_year_level);
 
   if($stmtStudInfo->execute()   ) {
     if($stmtRequirements->execute()){
@@ -100,7 +103,7 @@
       $response['status'] = 'error';
       $response['message'] = 'Failed to save Requirements! ';
     }
-    if( $stmtCourseFee->execute()){
+    if( $stmtStudFee->execute()){
       $response['status'] = 'success';
       $response['message'] = 'Successfully saved';
     }else{
@@ -126,11 +129,11 @@ echo  json_encode($response);
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,s.program,s.major,s.year_level,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, c.course_id, c.csi_program_major,c.csi_year_level,c.tuition_fee,c.discount,d.LRN,d.stud_status,d.csi_school_year,d.csi_semester,d.csi_scholarship
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.course_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_school_year,d.csi_semester,d.csi_program,d.csi_major
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
-              RIGHT JOIN tbl_course_fee as c ON r.stud_id = c.stud_id
-              RIGHT JOIN tbl_student_school_details as d ON c.stud_id = d.stud_id
+              RIGHT JOIN tbl_student_fees as f ON r.stud_id = f.stud_id
+              RIGHT JOIN tbl_student_school_details as d ON f.stud_id = d.stud_id
               WHERE s.stud_id = ?";
   $stmtEdit = $con->prepare($slqEdit);
   $stmtEdit->bind_param('s', $id);
@@ -142,39 +145,39 @@ if(isset($_POST['edit'])){
     $data['firstname'] = $row['firstname'];
     $data['lastname'] = $row['lastname'];
     $data['middlename'] = $row['middlename'];
-    $data['program'] = $row['program'];
-    $data['major'] = $row['major'];
-    $data['year_level'] = $row['year_level'];
     $data['form_137'] = $row['form_137'];
     $data['form_138'] = $row['form_138'];
     $data['psa_birth_cert'] = $row['psa_birth_cert'];
     $data['good_moral'] = $row['good_moral'];
+    $data['program'] = $row['csi_program'];
+    $data['major'] = $row['csi_major'];
+    $data['year_level'] = $row['csi_year_level'];
+    
     $data['tuition_fee'] = $row['tuition_fee'];
-    $data['discount'] = $row['discount'];
+    $data['discount'] = $row['discount_percent'];
     $data['stud_lrn'] = $row['LRN'];
-    $data['stud_status'] = $row['stud_status'];
+    $data['stud_type'] = $row['stud_type'];
     $data['csi_school_year'] = $row['csi_school_year'];
     $data['csi_semester'] = $row['csi_semester'];
-    $data['csi_scholarship'] = $row['csi_scholarship'];
+    $data['scholar_type'] = $row['scholar_type'];
   }
   echo json_encode($data);
 }
 if(isset($_POST['update'])){
-
-$fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
-$program_major = $stud_program.'-'.$stud_major;
-$sqlUpdateAll = "UPDATE `tbl_student_info` AS info
+  $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
+  $program_major = $stud_program.'-'.$stud_major;
+$sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
                 INNER JOIN `tbl_student_requirements` AS req ON info.stud_id = req.stud_id
-                INNER JOIN `tbl_course_fee` AS fee ON info.stud_id = fee.stud_id
+                INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
                 INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
-                SET 
-                info.firstname = ?,info.lastname = ?,info.middlename = ?,info.program = ?,info.major = ?, info.year_level = ?, 
-                req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
-                fee.fullname = ?,fee.csi_program_major = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount = ?,
-                det.LRN = ?,det.stud_status = ?,det.csi_school_year = ?,det.csi_semester = ?,det.csi_scholarship = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
-                WHERE info.stud_id = ?";
+                  SET 
+                  info.firstname = ?,info.lastname = ?,info.middlename = ?,
+                  req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
+                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_percent = ?,fee.scholar_type = ?,
+                  det.LRN = ?,det.stud_type = ?,det.csi_school_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
+                  WHERE info.stud_id = ?";
 $stmtUpdateAll = $con->prepare($sqlUpdateAll);
-$stmtUpdateAll->bind_param('ssssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$stud_program,$stud_major,$stud_year_level, $req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$program_major,$stud_year_level,$stud_fee,$stud_discount,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_scholarship, $stud_program, $stud_major, $stud_year_level,$student_number);
+$stmtUpdateAll->bind_param('ssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);
 
 if($stmtUpdateAll->execute()) {
   $response['status'] = 'success';
@@ -182,17 +185,17 @@ if($stmtUpdateAll->execute()) {
 } else{
   $response['status'] = 'error';
   $response['message'] = 'Failed to update!';
+  
 }
 echo json_encode($response);
 }
-
 if(isset($_POST['delete'])){
   $id = $_POST['id'];
 
-  $sqlDel = "DELETE s.*, r.* ,c.*,d.*
+  $sqlDel = "DELETE s.*, r.* ,fee.*,d.*
               FROM tbl_student_info AS s 
               LEFT JOIN tbl_student_requirements AS r ON s.stud_id = r.stud_id 
-              LEFT JOIN tbl_course_fee AS c ON s.stud_id = c.stud_id 
+              LEFT JOIN tbl_student_fees AS fee ON s.stud_id = fee.stud_id 
               LEFT JOIN tbl_student_school_details AS d ON s.stud_id = d.stud_id 
               WHERE s.stud_id = ?";
   $stmtDel = $con->prepare($sqlDel);

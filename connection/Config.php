@@ -2,7 +2,7 @@
   $host = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "web-based-billing-management-system";
+  $dbname = "web-based-billing-management-system-v2";
   
   date_default_timezone_set('Asia/Manila');
       try{
