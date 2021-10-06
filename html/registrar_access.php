@@ -1217,8 +1217,8 @@
                 $("[name='stud_discount']").val(data.discount);
                 $("[name='stud_school_year']").val(data.csi_school_year);
                 $("[name='stud_semester']").val(data.csi_semester);
-                $("[name='stud_scholarship']").val(data.csi_scholarship);
-                $("[name='stud_status']").val(data.stud_status);
+                $("[name='stud_scholarship']").val(data.scholar_type);
+                $("[name='stud_status']").val(data.stud_type);
                 $("[name='stud_lrn']").val(data.stud_lrn);
                 if(data.form_137 == '✓'){
                   $("[name='req_form137']").prop('checked', true);
