@@ -7,7 +7,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-   
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap -->
@@ -63,7 +63,8 @@
               <a href="../html/forgotPassword.php">Change Password</a>
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
-            <p class="reg__name">Registrar | <?= $_SESSION['employeeId'];?></p>
+          
+            <p class="reg__name" id="roleId">Registrar | <?= $_SESSION['employeeId'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -71,6 +72,8 @@
                 <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
                 <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false">Manage Users</a>
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
+                <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false">Fees Management</a>
+                
                 <q class="mt-2">Version 1.0.0.0</q>
             </div>
         </div>
@@ -181,7 +184,7 @@
                             <td>Full</td>
                             <td>1011121314</td>
                             <td>pulido@gmail.com</td>
-                           
+                          
                           </tr>
                           <tr>
                           <th scope="row">2018301303</th>
@@ -222,13 +225,7 @@
                         </tbody>
                       </table>
                     </div>
-        </div>
-    
-
-                  
-                
-
-            
+              </div>
             </div>
 
 
@@ -248,14 +245,19 @@
                 <li class="nav-item">
                   <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
                 </li>
-                <!-- <li class="nav-item">
+                
+               
+                <!-- For Admin -->
+                <li class="nav-item" id="employee_ForAdmin">
                   <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab" aria-controls="employees" aria-selected="false">Employees</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" id="alluser_ForAdmin">
                   <a class="nav-link" id="all-users-tab" data-toggle="tab" href="#all-users" role="tab" aria-controls="all-users" aria-selected="false">All users</a>
-                </li> -->
+                </li>
+
               </ul>
 
+            
 
 
 
@@ -559,7 +561,7 @@
 
 
     <!-------------------------------------------- Employees Tab -------------------------------------->
-                <!-- <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
+                <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
                   <p class="role_information text-primary">Employee's Information</p>
                   <form action="../includes/manage_employee.php" method="post" class="universalForm_two">
                   <div class="manage_users_universal_tab_lmr_parent">
@@ -751,10 +753,10 @@
                   </div>
 
 
-                </div> -->
+                </div>
                 
                 <!-- All user's Tab -->
-                <!-- <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
+                <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
                   <p class="role_information text-primary">Choose Account to Filter</p>
 
                   
@@ -874,7 +876,7 @@
 
 
                   
-                </div> -->
+                </div>
 
 
 
@@ -1018,6 +1020,43 @@
                 
 
             </div>
+
+            <div class="tab-pane fade" id="v-pills-fees" role="tabpanel" aria-labelledby="v-pills-fees-tab">
+              <p class="title_tab_universal">Manage Fees</p>
+
+              
+              <form action="" class="universal_search_form">
+                <input type="text" name="" id="" placeholder="Search">
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+              <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
+                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add School Year</button>
+                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
+                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Scholarship</button>
+                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
+              </div>
+
+              <div class="col universal_bg_gray_table">
+                <table class="table">
+                  <thead class="thead-light">
+                    <tr>
+                      <th scope="col">Course ID</th>
+                      <th scope="col">Program</th>
+                      <th scope="col">Major</th>
+                      <th scope="col">Year Level</th>
+                      <th scope="col">Major</th>
+                      <th scope="col">Semester</th>
+                      <th scope="col">Tuition Fee</th>
+                      <th scope="col">Action</th>
+                      
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+              
+
+              </div>
 
           
           </div>
@@ -1341,6 +1380,18 @@
           $("[name='req_good_moral']").removeAttr('disabled');
           $("[name='stud_firstname']").removeAttr('disabled');
         }
+
+        // Limited access for Registrar
+            let roleId = document.getElementById('roleId').innerHTML
+            let employeeTabForAdmin = document.getElementById('employee_ForAdmin');
+            let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
+            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
+            
+            if (roleId.includes('Registrar')){
+              employeeTabForAdmin.style.display = "none";
+              allUserTabForAdmin.style.display = "none";
+              feesManagementForAdmin.style.display = "none";
+            } 
       </script>
 
 

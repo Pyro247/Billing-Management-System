@@ -298,7 +298,7 @@ q{
     margin-top: 10px;
     width: 100%;
     overflow: auto;
-    height: 500px;
+    
 }
 
 .select__{
@@ -462,7 +462,10 @@ hr{
 }
 
 
-
+/* For fees management */
+.feesManagement_miniDashboard{
+    border: 2px solid black;
+}
 
 
 
