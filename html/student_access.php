@@ -281,40 +281,37 @@
                     
 
                     <div class="payApp_createPayment mt-2">
-                        
-                            <form action="" class="universalLightGrayBg mb-3 p-2">
-                            <p class="title_tab_universal text-primary m-0">Create Payment Application Form</p>
-                                <div class="payAppFormWrapper">
-                            
-                                <div class="leftForm">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Student ID</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Student ID" readonly>
+                        <form  class="universalLightGrayBg mb-3 p-2" id="payReqForm" enctype="multipart/form-data">
+                        <p class="title_tab_universal text-primary m-0">Create Payment Application Form</p>
+                        <div class="payAppFormWrapper">
+                            <div class="leftForm">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="min-width: 110px;" id="basic-addon1" >Student ID</span>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Full name</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Firstname" readonly>
+                                        <input type="text" class="form-control" placeholder="Student ID" readonly name="stud_id" value="<?=$rowStud['stud_id'];?>">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Full name</span>
                                     </div>
+                                        <input type="text" class="form-control" placeholder="Firstname" readonly  name="fullname"
+                                        value="<?=$rowStud['fullname'];?>">
+                                </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Email</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Email" readonly>
+                                        <input type="text" class="form-control" placeholder="Email" readonly  name="email"
+                                        value="<?=$_SESSION['email'];?>">
                                     </div>
 
                                     <span>Amount:</span>
                                     <div class="input-group mb-3">
-                                        
                                         <div class="input-group-prepend">
-                                            
                                             <span class="input-group-text d-inline-block">₱</span>
                                         </div>
-                                        <input type="number" class="form-control" placeholder="0.00">
-                                        
+                                        <input type="number" class="form-control" name="amount" id="amount" idplaceholder="0.00">
                                         <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
                                         
                                     </div>
@@ -323,28 +320,31 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Date</span>
                                         </div>
-                                        <input type="date" class="form-control" placeholder="">
+                                        <input type="date" class="form-control" name= "date" id="date" placeholder="" >
                                     </div>
                                     
                                 <div class="col-md">
                                     <div class="form-floating">
-                                    <input type="text" class="form-control" id="paymentGateway_Id" value="Gcash" placeholder="" style="border:2px solid #56A8CBFF"> 
+                                    <input type="text" class="form-control" id="paymentGateway_Id" name="paymentGateway"  placeholder="" style="border:2px solid #56A8CBFF"> 
                                     <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) <span style="font-weight: bold; color: crimson;">*</span></label>
                                     </div>
                                 </div>
 
                                 </div>
-                                    <div class="rightForm">
+                                    <div class="rightForm" id="dispalyInvoice">
                                         <div class="rightFormInner">
-                                        <div class="rightForm_text text-secondary">
+                                        <div class="rightForm_text text-secondary" id="imageText">
                                             <i class="fas fa-file-invoice text-primary" style="font-size: 4rem;"></i>
+                                            
                                             <p>Attach Sales Invoice from your chosen local payment gateway.</p>
+                                            
                                         </div>
+                                        <img style="width:100%;height:100%;border-radius: 20px;display:none" id="preview">
                                     </div>
-                                    <input type="file" name="" id="">
+                                    <input id="image" type="file" accept="image/*" name="image" onchange="previewImage();"/>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success d-block mx-auto mt-5 mb-3">Submit</button>
+                                <button type="submit" class="btn btn-success d-block mx-auto mt-5 mb-3" id="submitPayReq">Submit</button>
                             </form> 
                     </div>
             </div>
@@ -438,15 +438,72 @@
                 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     
         <script type="text/javascript">
+        let image = document.getElementById('image');
             function profile_link_show(){
                 let profile_link = document.getElementById('profile_link_id');
                 profile_link.classList.toggle('show');
             }
+            function previewImage() {
+                let file = document.getElementById("image").files;
+                if (file.length > 0) {
+                    var fileReader = new FileReader();
+        
+                    fileReader.onload = function (event) {
+                        document.getElementById("preview").setAttribute("src", event.target.result);
+                        document.getElementById("preview").style.display = "block";
+                        document.getElementById("imageText").style.display = "none";
+                    };
+        
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+            // Submit Payment Request AJAX
+            $(document).ready(function (e) {
+                let amount = document.getElementById('amount');
+                let date = document.getElementById('date');
+                let paymentGateway = document.getElementById('paymentGateway_Id');
+                let image = document.getElementById("image");
+                $('#payReqForm').submit(function (e) { 
+                    e.preventDefault();
+                    let formData = new FormData(this)
+                   
+                    if(amount.value == ''){
+                        amount.focus();
+                    }else if(date.value == ''){
+                        date.focus();
+                    }else if(paymentGateway.value == ''){
+                        paymentGateway.focus();
+                    }else if(image.files.length == 0){
+                        Swal.fire(
+                            'No Attachment',
+                            'Please attach image for as proof',
+                            'warning'
+                        )
+                    }else{
+                        $.ajax({
+                        type: "POST",
+                        url: "../includes/studPaymentRequest.php",
+                        data: formData,
+                        contentType: false,
+                        processData:false,
+                        success: function (response) {
+                            console.log(response)
+                            Swal.fire({
+                                icon: response.status,
+                                text: response.message,
+                                confirmButtonText: 'Ok'
+                            })
+                        }
+                    });
+                    }
+                    
+                });
+            });
         </script>
     </body>
     </html>
