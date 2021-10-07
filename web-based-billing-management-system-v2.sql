@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 09:38 AM
+-- Generation Time: Oct 07, 2021 at 04:36 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -137,22 +137,13 @@ CREATE TABLE `tbl_payments` (
 --
 
 CREATE TABLE `tbl_pending_payments` (
-  `transaction_no.` int(11) NOT NULL,
-  `program_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `school_year` varchar(100) NOT NULL,
-  `semester` varchar(100) NOT NULL,
-  `tuition_fee` int(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `amount` int(11) NOT NULL,
-  `payment_method` varchar(100) NOT NULL,
   `payment_gateway` varchar(100) NOT NULL,
   `sales_invoice` longtext NOT NULL,
-  `total_paid` int(11) NOT NULL,
-  `balance` int(11) NOT NULL,
-  `transaction_date` date NOT NULL,
-  `payment_status` varchar(100) NOT NULL,
-  `remarks` varchar(100) NOT NULL
+  `transaction_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -279,12 +270,6 @@ ALTER TABLE `tbl_payments`
   ADD PRIMARY KEY (`transaction_no.`);
 
 --
--- Indexes for table `tbl_pending_payments`
---
-ALTER TABLE `tbl_pending_payments`
-  ADD PRIMARY KEY (`transaction_no.`);
-
---
 -- Indexes for table `tbl_student_info`
 --
 ALTER TABLE `tbl_student_info`
@@ -304,12 +289,6 @@ ALTER TABLE `tbl_course_list`
 -- AUTO_INCREMENT for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
-  MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `tbl_pending_payments`
---
-ALTER TABLE `tbl_pending_payments`
   MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
