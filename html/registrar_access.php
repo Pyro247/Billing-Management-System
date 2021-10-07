@@ -1126,7 +1126,10 @@
               $.ajax({
                 type: "POST",
                 url: "../includes/manage_student.php",
-                data: $('#studForm').serialize() + '&update=update',
+                data: $('#studForm').serialize() + 
+                '&update=update' + 
+                '&empId=<?=$_SESSION['employeeId'];?>' + 
+                '&empName=<?=$_SESSION['fullname'];?>',
                 success: function (response) {
                   console.log(response);
                   Swal.fire({

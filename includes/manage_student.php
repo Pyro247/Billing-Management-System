@@ -112,7 +112,7 @@ echo  json_encode($response);
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.program_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_school_year,d.csi_semester,d.csi_program,d.csi_major
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.program_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
               RIGHT JOIN tbl_student_fees as f ON r.stud_id = f.stud_id
@@ -140,7 +140,7 @@ if(isset($_POST['edit'])){
     $data['discount'] = $row['discount_percent'];
     $data['stud_lrn'] = $row['LRN'];
     $data['stud_type'] = $row['stud_type'];
-    $data['csi_school_year'] = $row['csi_school_year'];
+    $data['csi_school_year'] = $row['csi_academic_year'];
     $data['csi_semester'] = $row['csi_semester'];
     $data['scholar_type'] = $row['scholar_type'];
   }
@@ -157,7 +157,7 @@ $sqlUpdateAll = "UPDATE `tbl_student_info` AS info
                   info.firstname = ?,info.lastname = ?,info.middlename = ?,
                   req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
                   fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_percent = ?,fee.scholar_type = ?,
-                  det.LRN = ?,det.stud_type = ?,det.csi_school_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
+                  det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
                   WHERE info.stud_id = ?";
 $stmtUpdateAll = $con->prepare($sqlUpdateAll);
 $stmtUpdateAll->bind_param('ssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);

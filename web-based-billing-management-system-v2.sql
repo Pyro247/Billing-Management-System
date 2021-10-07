@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 07, 2021 at 06:10 AM
+-- Generation Time: Oct 07, 2021 at 09:38 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -54,6 +54,7 @@ CREATE TABLE `tbl_accounts` (
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
 (1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
 (1301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', ''),
+(20181301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', ''),
 (2018301301, 'Michael Isla', 'michael.estrechoisla@gmail.com', 'Mike@1301', ' Student', '', ''),
 (2018301302, 'Michael Isla', 'phptest1301@gmail.com', 'Test@php1', ' Student', '', '');
 
@@ -113,7 +114,7 @@ CREATE TABLE `tbl_payments` (
   `program_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
-  `school_year` varchar(100) NOT NULL,
+  `academic_year` varchar(100) NOT NULL,
   `semester` varchar(100) NOT NULL,
   `tuition_fee` int(100) NOT NULL,
   `amount` int(11) NOT NULL,
@@ -127,6 +128,31 @@ CREATE TABLE `tbl_payments` (
   `remarks` varchar(100) NOT NULL,
   `cashier_id` int(11) NOT NULL,
   `cashier_name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_pending_payments`
+--
+
+CREATE TABLE `tbl_pending_payments` (
+  `transaction_no.` int(11) NOT NULL,
+  `program_id` int(11) NOT NULL,
+  `stud_id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `school_year` varchar(100) NOT NULL,
+  `semester` varchar(100) NOT NULL,
+  `tuition_fee` int(100) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `payment_method` varchar(100) NOT NULL,
+  `payment_gateway` varchar(100) NOT NULL,
+  `sales_invoice` longtext NOT NULL,
+  `total_paid` int(11) NOT NULL,
+  `balance` int(11) NOT NULL,
+  `transaction_date` date NOT NULL,
+  `payment_status` varchar(100) NOT NULL,
+  `remarks` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -217,7 +243,7 @@ CREATE TABLE `tbl_student_school_details` (
   `stud_id` int(11) NOT NULL,
   `LRN` varchar(100) NOT NULL,
   `stud_type` varchar(100) NOT NULL,
-  `csi_school_year` varchar(100) NOT NULL,
+  `csi_academic_year` varchar(100) NOT NULL,
   `csi_semester` varchar(100) NOT NULL,
   `csi_program` varchar(255) NOT NULL,
   `csi_major` longtext NOT NULL,
@@ -253,6 +279,12 @@ ALTER TABLE `tbl_payments`
   ADD PRIMARY KEY (`transaction_no.`);
 
 --
+-- Indexes for table `tbl_pending_payments`
+--
+ALTER TABLE `tbl_pending_payments`
+  ADD PRIMARY KEY (`transaction_no.`);
+
+--
 -- Indexes for table `tbl_student_info`
 --
 ALTER TABLE `tbl_student_info`
@@ -272,6 +304,12 @@ ALTER TABLE `tbl_course_list`
 -- AUTO_INCREMENT for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
+  MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_pending_payments`
+--
+ALTER TABLE `tbl_pending_payments`
   MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
