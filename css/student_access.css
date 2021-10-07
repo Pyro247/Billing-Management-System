@@ -132,7 +132,6 @@
     justify-content: center;
     flex-direction: column;
     margin: 0;
-    border-bottom: 2px solid black;
     transition: 300ms ease;
     position: fixed;
     z-index: 1000;
@@ -175,11 +174,12 @@
 /* Left Tab! */
 .left-tab{
     height: 100%;
-    border-right: 2px solid var(--blue-color);
     padding: 0;
     max-width: 300px;
     position: fixed;
     margin-top: 60px;
+    background-color: var(--blue-color)
+    
 
 }
 .upper-left-tab{
@@ -219,7 +219,7 @@
     margin: -20px auto 10px;
     transition: 300ms ease;
     height: 0;
-    box-shadow: -2px 11px 14px 0px rgba(0,0,0,0.20);
+    box-shadow: -2px 11px 14px 0px rgba(248, 247, 247, 0.2);
     user-select: none;
     pointer-events: none;
 }
@@ -233,7 +233,7 @@
 }
 
 .profile_link a:hover{
-    color: #0d6efd;
+    color: #1056be;
 }
 
 .profile_link a{
@@ -243,15 +243,24 @@
     text-decoration: none;
 }
 .nav-link.main__{
-    border-bottom: 2px solid var(--black-color);
-    background-color: lightgrey;
-    color: black;
+    color: var(--black-color);
     font-size: 1.2rem;
-    padding: 25px;
+    padding: 10px 25px;
     line-height: 25px;
     width: 100%;
     text-align: center;
     transition: 250ms;
+    border-bottom: 1px solid #424242;
+}
+.nav-link.main__:first-child{
+    border-top: 1px solid #424242;
+}
+
+.nav-link.main__.active{
+    background-color: white;
+    color: black;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
 

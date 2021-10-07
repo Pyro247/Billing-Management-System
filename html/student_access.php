@@ -69,14 +69,14 @@
                 <a href="">Logout</a>
             </div>
             <p class="reg__name">BSIT | 2018300366</p>
+            <p class="reg__name">Web and Mobile Application</p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
-            <a class="nav-link main__" id="v-pills-payment-application-tab" data-toggle="pill" href="#v-pills-payment-application" role="tab" aria-controls="v-pills-payment-application" aria-selected="false">Payment Application</a>
-            
-            <q class="mt-2">Version 1.0.0.0</q>
+            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
+            <a class="nav-link main__" id="v-pills-payment-application-tab" data-toggle="pill" href="#v-pills-payment-application" role="tab" aria-controls="v-pills-payment-application" aria-selected="false"><img src="../images/icons/stud_payment_form.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Payment Application</a>
+            <a class="nav-link main__" id="v-pills-transaction-history-tab" data-toggle="pill" href="#v-pills-transaction-history" role="tab" aria-controls="v-pills-transaction-history" aria-selected="false"><img src="../images/icons/transaction_history.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Transaction History</a>
         </div>
         </div>
         
@@ -138,12 +138,11 @@
                                     <td>02/21/2021</td>
                                     <td class="text-success text-uppercase fw-bold">Approved</td>
                                     <td>Juan A. DelaCruz</td>
-                   
                                 
                                 </tr>
                                 </tbody>
-                              </table>
-                           
+                            </table>
+
                         
                     </div>
 
@@ -337,146 +336,86 @@
 
 
 
-            <!-- ARCHIVES -->
-            <div class="tab-pane fade archive-tab" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
-                <p class="title_tab_universal" id="student_employee_all_id_text">Archives</p>
-
-                <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
-                </form>
-
+            <!-- Transaction History -->
+            <div class="tab-pane fade" id="v-pills-transaction-history" role="tabpanel" aria-labelledby="v-pills-transaction-history-tab">
+                <p class="title_tab_universal">Transaction History</p>
                 
-                <div class="all_user__tab mt-3">
-                <p class="role_information text-primary mt-2">Choose Account to Filter</p>
+                <div class="miniDashboard mb-5">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="form-floating">
+                                <select class="form-select col-2" id="floatingSelect" name="currSchoolY">
+                                    <option hidden>Academic Year</option>
+                                    <option value="2016-2017">2016 - 2017</option>
+                                    <option value="2017-2018">2017 - 2018</option>
+                                    <option value="2018-2019">2018 - 2019</option>
+                                    <option value="2019-2020">2019 - 2020</option>
+                                    <option value="2020-2021">2020 - 2021</option>
+                                </select>
+                                    <label for="floatingSelect">Select Academic Year</label>
+                            </div>
+                        </div>
 
-                    <div class="row g-2">
-
-                    <div class="col-md">
-                        <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                        <option value="BSIT_WMA" selected>All</option>
-                            <option value="Graduated" selected>Graduate</option>
-                            <option value="Dropout">Dropout</option>
-                            <option value="Transfer">Transfer</option>
-                            <option value="Resign">Resign</option>
-                            <option value="Resign">Terminate</option>
-            
-                        </select>
-                        <label for="floatingSelect">Reason</label>
+                        <div class="col">
+                            <div class="form-floating">
+                                <select class="form-select col-2" id="floatingSelect" name="currSchoolY">
+                                    <option hidden>All</option>
+                                    <option value="2016-2017">Approved</option>
+                                    <option value="2017-2018">Denied</option>
+                                    <option value="2018-2019">Pending</option>
+                                </select>
+                                    <label for="floatingSelect">Filter by Payment Status:</label>
+                            </div>
                         </div>
                     </div>
 
-
-                    <div class="col-md">
-                        <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                            <option value="BSIT_WMA" selected>All</option>
-                            <option value="BSIT_WMA">Student</option>
-                            <option value="Registrar">Registrar</option>
-                            <option value="Cashier">Cashier</option>
-                            
-            
-                        </select>
-                        <label for="floatingSelect">Role</label>
-                        </div>
-                    </div>
-                    
-
-                    <div class="col-md">
-                        <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
-                        <label for="floatingInputGrid">Date archived From</label>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md">
-                        <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
-                        <label for="floatingInputGrid">Date archived To</label>
-                        </div>
-                    </div>
-
-                    <div class="row g-2 mb-2">
-                        <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
-                        </div>
-
-                        <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Clear Filter</button>
-                        </div>
-
-                    <div class="col-md">  
-                        <button type="button" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
-                    </div>
-                    </div>
-
-                    <hr>
-                    <div class="table__" style="overflow-x: auto;">
+                <div class="universalLightGrayBg rounded-2">
                     <table class="table">
-                        <thead class="thead-light">
-                            <tr>
-                            <th scope="col">ID number</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Email</th>
+                        <thead class="thead-light text-center">
+                        <tr>
+                            <th scope="col">Transaction ID</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Payment Method</th>
+                            <th scope="col">Date</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Cashier</th>
                             
-                            </tr>
+                            
+                        </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            <th scope="row">2018300366</th>
-                            <td>Justine Dave</td>
-                            <td>DelosReyes</td>
-                            <td>Student</td>
-                            <td>delosreyes366@gmail.com</td>
-                            <td>Enrolled</td>
-                            
-                            </tr>
-                            <tr>
-                            <th scope="row">2018300478</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>Student</td>
-                            <td>isla478@gmail.com</td>
-                            <td>Not Enrolled</td>
-                            </tr>
-                            <tr>
-                            <th scope="row">2018300902</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>Student</td>
-                            <td>pulido902@gmail.com</td>
-                            <td>Dropped</td>
-                            
-                            </tr>
-                            <tr>
-                            <th scope="row">2018300612</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>Student</td>
-                            <td>villano612@gmail.com</td>
-                            <td>Graduate</td>
-                            
-                            </tr>
-                        </tbody>
-                        </table>
-                    </div>
-                    </div>
-                </div>
+                        <tr class="text-center">
+                            <th scope="row">FT-001</th>
+                            <td>₱2000</td>
+                            <td>Online - Gcash</td>
+                            <td>02/11/2021</td>
+                            <td class="text-success text-uppercase fw-bold">Approved</td>
+                            <td>Juan A. DelaCruz</td>
+                        </tr>
 
-                    
-                
+                        <tr class="text-center">
+                            <th scope="row">FT-006</th>
+                            <td>₱3250</td>
+                            <td>Cash</td>
+                            <td>02/21/2021</td>
+                            <td class="text-success text-uppercase fw-bold">Approved</td>
+                            <td>Juan A. DelaCruz</td>
+                        
+                        </tr>
+                        </tbody>
+                    </table>
+                   
+                    </div>
+                <button class="btn btn-outline-primary">Export to Excel</button>
+            </div>
 
             </div>
 
             
             </div>
         </div>
-        </div>
-        </div>
+    </div>
+</div>
 
         
                 
