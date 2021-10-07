@@ -66,7 +66,7 @@
       $stmtStduReg->bind_param('ssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $phoneNumber, $address,$email,$today,$userId);
       if($stmtStduReg->execute()){
         // Saving School Details
-        $slqDetails = "UPDATE `tbl_student_school_details` SET `LRN` = ?,`stud_type` = ?,`csi_school_year`= ? ,`csi_semester` = ?,`csi_program` = ? ,`csi_major` = ?,`csi_year_level` = ? WHERE stud_id = ?"; 
+        $slqDetails = "UPDATE `tbl_student_school_details` SET `LRN` = ?,`stud_type` = ?,`csi_academic_year`= ? ,`csi_semester` = ?,`csi_program` = ? ,`csi_major` = ?,`csi_year_level` = ? WHERE stud_id = ?"; 
         $stmtDetails = $con->prepare($slqDetails);
         $stmtDetails->bind_param('ssssssss',$LRN,$stud_status, $csi_school_year, $csi_semester, $csi_program, $csi_major, $csi_year,$userId);
         $stmtDetails->execute();

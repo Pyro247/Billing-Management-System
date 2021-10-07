@@ -2,6 +2,17 @@
         session_start();
         if(!isset($_SESSION['stud_id']) && $_SESSION['role'] != 'Student'){
             header('Location: login.php');
+        }else{
+            include_once '../connection/Config.php';
+            $sqlStud ="SELECT det.*,fees.*
+                        FROM tbl_student_school_details AS det
+                        INNER JOIN tbl_student_fees AS fees 
+                        WHERE det.stud_id = ?";
+            $stmtStud = $con->prepare($sqlStud);
+            $stmtStud->bind_param('s', $_SESSION['stud_id']);
+            $stmtStud->execute();
+            $resStud = $stmtStud->get_result(); 
+            $rowStud = $resStud->fetch_assoc();
         }
     ?>
     <!DOCTYPE html>
@@ -74,8 +85,8 @@
                 <a href="../html/forgotPassword.php">Change Password</a>
                 <a href="../includes/logout.inc.php">Logout</a>
             </div>
-            <p class="reg__name">BSIT | <?= $_SESSION['fullname'];?></p>
-            <p class="reg__name">Web and Mobile Application</p>
+            <p class="reg__name"> <?=$rowStud['csi_program'];?> | <?= $_SESSION['fullname'];?></p>
+            <p class="reg__name"><?=$rowStud['csi_major'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -97,17 +108,17 @@
 
                     <div class="miniDashboard mb-5">
                         <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
+                            <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;"><?= $_SESSION['email'];?></span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; "><?=$rowStud['tuition_fee'];?></span></span>
                            
                         </div>
                         <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱14,750.00</span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱3,250.00</span></span>
+                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;"><?=$rowStud['balance'];?></span></span>
+                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;"><?=$rowStud['total_amount_paid'];?></span></span>
 
                         </div>
                         <div class="col d-flex">
-                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; ">N/A</span></span>
+                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_type'];?></span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <span class="text-success" style="font-weight: bold; ">2/21/2021</span></span>
                         </div>
                     </div>

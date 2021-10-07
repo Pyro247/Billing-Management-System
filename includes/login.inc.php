@@ -41,6 +41,7 @@
           header('Location: ../html/student_access.php');
           $_SESSION['fullname'] =$rowLogin['fullname'];
           $_SESSION['stud_id'] =$rowLogin['user_id'];
+          $_SESSION['email'] =$rowLogin['email'];
           $_SESSION['role'] = 'Student';
         }
       
