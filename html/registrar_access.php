@@ -127,7 +127,6 @@
 
 
                 <div class="col universal_bg_gray_table">
-                  <p class="notice__">Note * Only students listed below can procced to the online registration. Also, students that has been registered is out of this list.<span> To add students, go to Manage Users tab.</span></p>
                   
                   <div class="row">
                   <div class="col">
@@ -147,8 +146,8 @@
                   <div class="form-floating">
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                       <option selected>All</option>
-                      <option value="1">Unregister Students</option>
-                      <option value="2">Scholar Students</option>
+                      <option value="1"></option>
+                      <option value="2"></option>
                     </select>
                     <label for="floatingSelect">Choose Filter</label>
                   </div>
@@ -246,7 +245,7 @@
                   <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
                 </li>
                 
-               
+
                 <!-- For Admin -->
                 <li class="nav-item" id="employee_ForAdmin">
                   <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab" aria-controls="employees" aria-selected="false">Employees</a>
@@ -394,9 +393,9 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
+                                        <option>Full Scholarship</option>
+                                        <option></option>
+                                        <option></option>
                                         
                         
                                       </select>
@@ -409,9 +408,9 @@
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
                                       <option value="empty" selected ></option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
+                                        <option></option>
+                                        <option></option>
+                                        <option></option>
                                         
                         
                                       </select>
@@ -444,7 +443,7 @@
 
                                 </div> 
                             </div>
-                         
+
 
                           <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
@@ -529,7 +528,7 @@
                           </div>
                         </div>
                       </div>
-                     
+
                       <div class="table__" style="overflow-x: auto;">
                       <table class="table">
                         <thead>

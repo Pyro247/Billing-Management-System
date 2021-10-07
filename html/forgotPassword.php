@@ -24,7 +24,7 @@
 
     </script>
 
-    <title>Document</title>
+    <title>Forgot Password</title>
 </head>
 <body>
 

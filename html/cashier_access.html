@@ -17,6 +17,10 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/cashier_access.css?<?php echo time(); ?>" />
 
+     <!-- Sweet Alert 2 -->
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 
     <title>Cahsier</title>
@@ -99,6 +103,7 @@
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
+              
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
@@ -198,12 +203,12 @@
                 <div class="payments_tab_right">
                   <form action="">
                     <div class="col">
-                      <label class="sr-only" for="inlineFormInputGroup">Course ID</label>
+                      <label class="sr-only" for="inlineFormInputGroup">Program</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                              <div class="input-group-text beforeInput">Course ID</div>
+                              <div class="input-group-text beforeInput">Program</div>
                             </div>
-                          <input type="text" class="form-control w-auto" id="inlineFormInputGroup" placeholder="Course ID">
+                          <input type="text" class="form-control w-auto" id="inlineFormInputGroup" placeholder="Program">
                         </div>
                     </div>
                     <div class="col">
@@ -228,10 +233,49 @@
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
                       </div>  
                     </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Change</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        
+                      </div>  
+                    </div>
+
                   <div class="col-12 mt-3 mb-2">
-                    <button type="button" class="btn btn-success payVoid">Pay</button>
-                    <button type="button" class="btn btn-danger payVoid">Void</button>  
-                    <button type="button" class="btn btn-primary payVoid">Calculator</button>  
+                    <button type="button" class="btn btn-success payVoid" id="payBtn">Pay</button>
+                    <!-- <script type="text/javascript">
+                      let payBtn = document.getElementById('payBtn');
+
+                        payBtn.addEventListener("click", function(){
+                          
+                          const ipAPI = '//api.ipify.org?format=json'
+                          const inputValue = fetch(ipAPI)
+                            .then(response => response.json())
+                            .then(data => data.ip)
+
+                          const { value: amountByPayer } = Swal.fire({
+                            title: 'Enter Pera ni Student',
+                            input: 'text',
+                            inputLabel: 'Magkano?',
+                            inputValue: inputValue,
+                            showCancelButton: true,
+                            inputValidator: (value) => {
+                              if (!value) {
+                                return 'You need to write something!'
+                              }else{
+                                Swal.fire('Thank you!')
+                              }
+                            }
+                          })
+
+                          if (amountByPayer) {
+                            Swal.fire(`Your IP address is ${ipAddress}`)
+                          }
+                        })
+                    </script>
+                      -->
+
                     
                   </div>
                 </form>
@@ -407,7 +451,7 @@
 
               <div class="col universal_bg_gray_table p-3">
                 <div class="table__" style="overflow-x: auto;">
-                  <table class="table table-success table-striped">
+                  <table class="table">
                       <thead class="text-center">
                         <tr>
                           <th scope="col">Transaction ID</th>

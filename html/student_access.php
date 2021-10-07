@@ -91,19 +91,74 @@
 
                     <div class="miniDashboard mb-5">
                         <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50 ">Email <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
+                            <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
+                           
                         </div>
-                        <div class="col d-flex">
+                        <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱14,750.00</span></span>
                             <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱3,250.00</span></span>
 
                         </div>
+                        <div class="col d-flex">
+                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; ">N/A</span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <span class="text-success" style="font-weight: bold; ">2/21/2021</span></span>
+                        </div>
                     </div>
 
+                    <div class="universalLightGrayBg">
+                        <span class="text-primary d-block mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
+                            <table class="table">
+                                <thead class="thead-light text-center">
+                                <tr>
+                                    <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Cashier</th>
+                                    
+                                    
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="text-center">
+                                    <th scope="row">FT-001</th>
+                                    <td>₱2000</td>
+                                    <td>Online - Gcash</td>
+                                    <td>02/11/2021</td>
+                                    <td class="text-success text-uppercase fw-bold">Approved</td>
+                                    <td>Juan A. DelaCruz</td>
+                                </tr>
+
+                                <tr class="text-center">
+                                    <th scope="row">FT-006</th>
+                                    <td>₱3250</td>
+                                    <td>Cash</td>
+                                    <td>02/21/2021</td>
+                                    <td class="text-success text-uppercase fw-bold">Approved</td>
+                                    <td>Juan A. DelaCruz</td>
+                   
+                                
+                                </tr>
+                                </tbody>
+                              </table>
+                           
+                        
+                    </div>
+
+                    
+                    
+                    </div>
+
+         
+
+            <!-- PAYMENT application -->
+            <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
+                <p class="title_tab_universal">Payment Application</p>
 
                     <span class="d-block text-primary" style="font-size: 1.4rem;">Paying Bills? - It's easy and simple! - <strong>Click the Platforms to see instructions</strong></span>
-                    <div class="miniDashboard mb-5">
+                    <div class="miniDashboard mb-4">
                         <span class="d-block text-primary text-center" style="font-size: 1.7rem;">You can use:</span>
                         <div class="miniDashboardInner d-flex justify-content-around">
                             <div class="paymentPlatform" onclick="paymentGcash()">
@@ -207,69 +262,6 @@
                             </script>
                         </div>
                     </div> 
-
-                    <div class="universalLightGrayBg">
-                        <span class="text-primary d-block mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
-                            <table class="table">
-                                <thead class="thead-light text-center">
-                                <tr>
-                                    <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Payment Method</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Cashier</th>
-                                    
-                                    
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr class="text-center">
-                                    <th scope="row">FT-001</th>
-                                    <td>₱2000</td>
-                                    <td>Online - Gcash</td>
-                                    <td>02/11/2021</td>
-                                    <td class="text-success">Approved</td>
-                                    <td>Juan A. DelaCruz</td>
-                                </tr>
-
-                                <tr class="text-center">
-                                    <th scope="row">FT-006</th>
-                                    <td>₱3250</td>
-                                    <td>Cash</td>
-                                    <td>02/21/2021</td>
-                                    <td class="text-success">Approved</td>
-                                    <td>Juan A. DelaCruz</td>
-                   
-                                
-                                </tr>
-                                </tbody>
-                              </table>
-                           
-                        
-                    </div>
-
-                    
-                    
-                    </div>
-
-         
-
-            <!-- PAYMENT application -->
-            <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
-                <p class="title_tab_universal">Payment Application</p>
-
-                    <div class="miniDashboard mb-3">
-                        <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50 ">Email <span class="text-primary" style="font-weight: bold;">jd.delosreyes0366@student.tsu.edu.ph</span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee <span class="text-success" style="font-weight: bold; ">₱20,000.00</span></span>
-                        </div>
-                        <div class="col d-flex">
-                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱20,000.00</span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱0.00</span></span>
-                        
-                        </div>
-                    </div>
                     
 
                     <div class="payApp_createPayment mt-2">
@@ -283,26 +275,19 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Student ID</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Student ID">
+                                        <input type="text" class="form-control" placeholder="Student ID" readonly>
                                     </div>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">First name</span>
+                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Full name</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Firstname">
+                                        <input type="text" class="form-control" placeholder="Firstname" readonly>
                                     </div>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"  style="min-width: 110px;" id="basic-addon1">Last name</span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Last name">
-                                    </div>
-
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Email</span>
                                         </div>
-                                        <input type="text" class="form-control" placeholder="Email">
+                                        <input type="text" class="form-control" placeholder="Email" readonly>
                                     </div>
 
                                     <span>Amount:</span>

@@ -149,7 +149,6 @@
     transition: 300ms;
 }
 
-
 .lp_nav{
     width: 100%;
     background-color: none;
@@ -318,7 +317,6 @@
     background-size: cover;
     background-position: center;
     
-   
     
 }
 
@@ -367,7 +365,7 @@
 .third{
     background-image: url("../images/slider_pics/slider_bg_2.png");
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 750px;
     background-position: right;
     display: flex;
     justify-content: center;
