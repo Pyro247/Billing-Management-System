@@ -32,11 +32,16 @@
           $_SESSION['fullname'] =$rowLogin['fullname'];
           $_SESSION['employeeId'] =$rowLogin['user_id'];
           $_SESSION['role'] =$rowLogin['role'];
-        }else{
+        }else if ($rowLogin['role'] == 'Cashier'){
           // Temporary
           $_SESSION['status'] = "success";
           $_SESSION['msg'] = "Login success";
           header('Location: ../html/login.php');
+        }else{
+          header('Location: ../html/student_access.php');
+          $_SESSION['fullname'] =$rowLogin['fullname'];
+          $_SESSION['stud_id'] =$rowLogin['user_id'];
+          $_SESSION['role'] = 'Student';
         }
       
       }else{

@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if(!isset($_SESSION['employeeId'])){
+  if(!isset($_SESSION['employeeId']) && $_SESSION['role'] != 'Registrar'){
     header('Location: login.php');
   }
 ?>
