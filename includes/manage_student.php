@@ -15,6 +15,9 @@
     $stud_major =$_POST['stud_major'];
     $stud_scholarship =$_POST['stud_scholarship'];
     $stud_fee =$_POST['stud_fee'];
+    $empId = $_POST['empId'];
+    $empName = $_POST['empName'];
+    
   }
   //  student school details table
   if(!isset($_POST['stud_school_year'])){
@@ -72,9 +75,9 @@
 
   if(isset($_POST['stud_save'])){
     // Studen Info
-    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`) VALUES (?,?,?,?)";
+    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`,`registrar_id`, `registrar_name`) VALUES (?,?,?,?,?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
-    $stmtStudInfo->bind_param('ssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename);
+    $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
     // Student Fee
     // Temprary Variable 
     $course_id = 0;
@@ -83,7 +86,7 @@
     $Remarks = '';
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
-    $sqlStudFee = "INSERT INTO `tbl_student_fees`(`course_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `Remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $sqlStudFee = "INSERT INTO `tbl_student_fees`(`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmtStudFee = $con->prepare($sqlStudFee);
     $stmtStudFee->bind_param('ssssssssss',$course_id,$student_number,$fullname,$stud_year_level,$stud_scholarship,$stud_discount,$stud_fee,$total_amount_paid,$balance,$Remarks);
     // Student Requirements
@@ -95,29 +98,9 @@
       $stmtDetails = $con->prepare($sqlDetials);
       $stmtDetails->bind_param('ssss',$student_number,$stud_program,$stud_major,$stud_year_level);
 
-  if($stmtStudInfo->execute()   ) {
-    if($stmtRequirements->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Successfully saved';
-    }else{
-      $response['status'] = 'error';
-      $response['message'] = 'Failed to save Requirements! ';
-    }
-    if( $stmtStudFee->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Successfully saved';
-    }else{
-      $response['status'] = 'error';
-      $response['message'] = 'Failed to save Course Fee! ';
-    }
-    if(  $stmtDetails->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Successfully saved';
-    }else{
-      $response['status'] = 'error';
-      $response['message'] = 'Failed to save Course Fee! ';
-    }
-    
+  if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
+    $response['status'] = 'success';
+    $response['message'] = 'Successfully saved';
   } else{
     $response['status'] = 'error';
     $response['message'] = 'Failed to save!';
@@ -129,7 +112,7 @@ echo  json_encode($response);
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.course_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_school_year,d.csi_semester,d.csi_program,d.csi_major
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.program_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_school_year,d.csi_semester,d.csi_program,d.csi_major
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
               RIGHT JOIN tbl_student_fees as f ON r.stud_id = f.stud_id

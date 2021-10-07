@@ -1165,7 +1165,10 @@
                 $.ajax({
                   url:'../includes/manage_student.php',
                   method: "POST",
-                  data: $('#studForm').serialize() + '&stud_save=stud_save',
+                  data: 
+                  $('#studForm').serialize() + 
+                  '&stud_save=stud_save' + 
+                  '&empId=<?=$_SESSION['employeeId'];?>' + '&empName=<?=$_SESSION['fullname'];?>',
                   success: function (response) {
                     console.log(response);
                     Swal.fire({
@@ -1179,9 +1182,9 @@
                     display();
                     disablePartial();
                   },
-                  error: function (error) {
-                    alert('error; ' + error);
-                  }
+                  error: function(xhr, ajaxOptions, thrownError){
+                    alert(xhr.status);
+                  },
                 })
               
               }
