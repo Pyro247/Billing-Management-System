@@ -1225,16 +1225,16 @@
                 $("[name='stud_scholarship']").val(data.scholar_type);
                 $("[name='stud_status']").val(data.stud_type);
                 $("[name='stud_lrn']").val(data.stud_lrn);
-                if(data.form_137 == '✓'){
+                if(data.form_137 != ''){
                   $("[name='req_form137']").prop('checked', true);
                 }
-                if(data.form_138 == '✓'){
+                if(data.form_138 != ''){
                   $("[name='req_form138']").prop('checked', true);
                 }
-                if(data.psa_birth_cert == '✓'){
+                if(data.psa_birth_cert != ''){
                   $("[name='req_psa']").prop('checked', true);
                 }
-                if(data.good_moral == '✓'){
+                if(data.good_moral != ''){
                   $("[name='req_good_moral']").prop('checked', true);
                 }
 

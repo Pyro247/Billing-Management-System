@@ -53,24 +53,24 @@
   }
     //student requirement table
   if(!isset($_POST['req_form137']) ){
-    $req_form_137 = 'x';
+    $req_form_137 = '';
   }else{
-    $req_form_137 =$_POST['req_form137'];
+    $req_form_137 = date("m.d.y");
   }
   if(!isset($_POST['req_form138'])){
-    $req_form_138 = 'x';
+    $req_form_138 = '';
   }else{
-    $req_form_138 =$_POST['req_form138'];
+    $req_form_138 = date("m.d.y");
   }
   if(!isset($_POST['req_psa'])){
-    $req_psa_birth_cert = 'x';
+    $req_psa_birth_cert = '';
   }else{
-    $req_psa_birth_cert =$_POST['req_psa'];
+    $req_psa_birth_cert = date("m.d.y");
   }
   if(!isset($_POST['req_good_moral'])){
-    $req_good_moral = 'x';
+    $req_good_moral = '';
   }else{
-    $req_good_moral =$_POST['req_good_moral'];
+    $req_good_moral = date("m.d.y");
   }
 
   if(isset($_POST['stud_save'])){
@@ -79,7 +79,7 @@
     $stmtStudInfo = $con->prepare($sqlStudInfo);
     $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
     // Student Fee
-    // Temprary Variable 
+    // Temprary Variable it will update if dorpdown box a values like course id,discount
     $course_id = 0;
     $total_amount_paid = 0;
     $balance = 0;
@@ -97,7 +97,11 @@
     $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?)";
       $stmtDetails = $con->prepare($sqlDetials);
       $stmtDetails->bind_param('ssss',$student_number,$stud_program,$stud_major,$stud_year_level);
-
+      // It will be available after scholar has desc 
+      // $sqlScholar = "INSERT INTO `tbl_student_scholarship`(`stud_id`, `scholar_description`, `scholar_type`) VALUES (?,?,?)";
+      // $stmtScholar = $con->prepare($sqlScholar);
+      // $stmtScholar->bind_param('sss',$student_number,$scholarDisc,$stud_scholarship);
+      
   if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
