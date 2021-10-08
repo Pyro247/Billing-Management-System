@@ -11,9 +11,24 @@
   $transaction_date = $_POST['date'];
   $payment_gateway = $_POST['paymentGateway'];
   $target_dir = '../saleInvoiceImg/';
-  $slq ="INSERT INTO `tbl_pending_payments`(`stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`) VALUES (?,?,?,?,?,?,?)";
+  $status = 'Pending';
+  $sqlTransNo = "SELECT * FROM `tbl_pending_payments` ORDER BY transaction_no DESC LIMIT 1 ";
+  $stmtTransNo = $con->prepare($sqlTransNo);
+  $stmtTransNo->execute();
+  $resTransNo = $stmtTransNo->get_result();
+  $rowTransNo = $resTransNo->fetch_assoc();
+  $lastTransNo = $rowTransNo['transaction_no'];
+  if ($rowTransNo['transaction_no'] == "") {
+    $newTransNo = sprintf("FT%s%03d", "-", "1");
+  }else {
+    $newTransNo = substr($lastTransNo, 3);
+    $newTransNo = intval($newTransNo);
+    $newTransNo = sprintf("FT%s%03d", "-", ($newTransNo + 1)); 
+  }
+
+  $slq ="INSERT INTO `tbl_pending_payments`(`transaction_no`,`stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`) VALUES (?,?,?,?,?,?,?,?,?)";
   $stmt = $con->prepare($slq);
-  $stmt->bind_param('sssssss', $stud_id,$fullname,$email,$amount,$payment_gateway,$file,$transaction_date );
+  $stmt->bind_param('sssssssss',$newTransNo ,$stud_id,$fullname,$email,$amount,$payment_gateway,$file,$transaction_date,$status);
   if($stmt->execute()){
     move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$file);
     $response['status'] = 'success';

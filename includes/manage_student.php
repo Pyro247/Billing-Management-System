@@ -82,7 +82,7 @@
     // Temprary Variable it will update if dorpdown box a values like course id,discount
     $course_id = 0;
     $total_amount_paid = 0;
-    $balance = 0;
+    $balance = $stud_fee;
     $Remarks = '';
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
