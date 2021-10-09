@@ -214,7 +214,8 @@
                     <div class="form-floating">
                         <select class="form-select col-2" id="floatingSelect" name="currSem">
                             <option hidden>Semester</option>
-                            <option value="1Sem">1st Semester</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
                         </select>
                             <label for="floatingSelect">Semester</label>
                     </div>
@@ -224,11 +225,11 @@
                     <div class="form-floating">
                         <select class="form-select col-2" id="floatingSelect" name="currYear">
                             <option hidden>Year Level</option>
-                            <option value="1st Yeart">1st</option>
-                            <option value="2nd Year">2nd</option>
-                            <option value="3rd Year">3rd</option>
-                            <option value="4th Year">4th</option>
-                            <option value="th Year">5th</option>
+                            <option value="1">1st</option>
+                            <option value="2">2nd</option>
+                            <option value="3">3rd</option>
+                            <option value="4">4th</option>
+                            <option value="5">5th</option>
                         </select>
                             <label for="floatingSelect">Year Level</label>
                     </div>
@@ -246,7 +247,7 @@
                         <select class="form-select form-control" name="currCourse" id="floatingInput">
                             <option hidden >Program</option>
                             <option value="BSIT">BSIT </option>
-                            <option value="BSED">BSED</option>
+                            <option value="BSCS">BSCS</option>
                             <option value="BSA">BSA</option>
                         </select>
                             <label for="floatingSelect">Program</label>
@@ -257,8 +258,8 @@
                     <div class="form-floating">
                         <select class="form-select" name="currMajor" aria-label="Default select example">
                             <option hidden>Major</option>
-                            <option value="Web and Mobile Application">Web and Mobile Application</option>
-                            <option value="Computer Science">Computer Science</option>
+                            <option value="WMA">Web and Mobile Application</option>
+                            <option value="TSM">TSM</option>
                         </select>
                             <label for="floatingSelect">Specialization</label>
                     </div>

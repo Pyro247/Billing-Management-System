@@ -1,4 +1,5 @@
 <?php
+  require_once '../connection/Config.php';
   session_start();
   if(!isset($_SESSION['employeeId']) && $_SESSION['role'] != 'Registrar'){
     header('Location: login.php');
@@ -132,6 +133,7 @@
                   <div class="col">
                   <div class="form-floating">
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                      <?php ?>
                       <option selected>All</option>
                       <option value="1">Bachelor of Science in Information Technology</option>
                       <option value="2">Bachelor of Science in Computer Science </option>
@@ -318,28 +320,28 @@
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_semester" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option>1st Semester</option>
-                                    <option>2nd Semester</option>
+                                  <select class="form-select" name="stud_semester" id="studSemester" aria-label="Floating label select example" disabled>
+                                    <option value="1">1st Semester</option>
+                                    <option value="2">2nd Semester</option>
                             
                                     
                     
                                   </select>
-                                  <label for="floatingSelect">Semester</label>
+                                  <label for="studSemester">Semester</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <select class="form-select" name="stud_year_level" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option>1st Year</option>
-                                    <option>2nd Year</option>
-                                    <option>3rd Year</option>
-                                    <option>4th Year</option>
+                                  <select class="form-select" name="stud_year_level" id="studYearLevel" aria-label="Floating label select example" disabled>
+                                    <option value="1">1st Year</option>
+                                    <option value="2">2nd Year</option>
+                                    <option value="3">3rd Year</option>
+                                    <option value="4" Selected>4th Year</option>
                                     
                     
                                   </select>
-                                  <label for="floatingSelect">Year Level</label>
+                                  <label for="studYearLevel">Year Level</label>
                                 </div>
                               </div>
 
@@ -348,16 +350,18 @@
                                 <div class="col-md">
                                   <div class="form-floating">
 
-                                    <select class="form-select" name="stud_program" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                    <option value="BSIT">Bachelor of Science in Information Technology</option>
-                                      <option value="BSHM">Bachelor of Science in Hotel Management</option>
-                                      <option value="BSME">Bachelor of Science in Mechanical Engineering</option>
-                                      <option value="BSCS">Bachelor of Science in Computer Science </option>
-                                      <option value="BSE">Bachelor of Science in Education</option>
-
-                      
+                                    <select class="form-select" name="stud_program" id="studProgram" aria-label="Floating label select example" disabled>
+                                    <?php 
+                                      $sqlProg = "SELECT DISTINCT course_program FROM `tbl_course_list`";
+                                      $stmtProg = $con->prepare($sqlProg);
+                                      $stmtProg->execute();
+                                      $resProg = $stmtProg->get_result();
+                                      while($rowProg = $resProg->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowProg['course_program'];?>"><?= $rowProg['course_program'];?></option>
+                                    <?php }; ?>
                                     </select>
-                                    <label for="floatingSelect">Program</label>
+                                    <label for="studProgram">Program</label>
                                   </div>
                                 </div>
                               
@@ -366,20 +370,26 @@
                           
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <select class="form-select" name="stud_major" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                      <option value="WMA">WMA</option>
-                                      <option value="TSM">TSM</option>
-                                      <option value="NA">NA</option>
+                                    <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
+                                    <?php 
+                                      $sqlMajor = "SELECT DISTINCT course_major FROM `tbl_course_list`";
+                                      $stmtMajor = $con->prepare($sqlMajor);
+                                      $stmtMajor->execute();
+                                      $resMajor = $stmtMajor->get_result();
+                                      while($rowMajor = $resMajor->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowMajor['course_major'];?>"><?= $rowMajor['course_major'];?></option>
+                                    <?php }; ?>
                       
                                     </select>
-                                    <label for="floatingSelect">Major</label>
+                                    <label for="studMajor">Major</label>
                                   </div>
                                 </div>
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="floatingInputGrid" placeholder=" " value="" disabled >
-                                    <label for="floatingInputGrid">Fee</label>
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
+                                    <label for="studFee">Fee</label>
                                   </div>
                                 </div>
 
@@ -393,11 +403,8 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option>Full Scholarship</option>
-                                        <option></option>
-                                        <option></option>
-                                        
-                        
+                                        <option value="Half">Half</option>
+                                        <option value="Full">Full</option>
                                       </select>
                                       <label for="floatingSelect">Scholarship</label>
                                     </div>
@@ -407,12 +414,17 @@
                                   <div class="col-md">
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                      <option value="empty" selected ></option>
-                                        <option></option>
-                                        <option></option>
-                                        <option></option>
-                                        
-                        
+                                        <option value="0">0%</option>
+                                        <option value="10">10%</option>
+                                        <option value="20">20%</option>
+                                        <option value="30">30%</option>
+                                        <option value="40">40%</option>
+                                        <option value="50">50%</option>
+                                        <option value="60">60%</option>
+                                        <option value="70">70%</option>
+                                        <option value="80">80%</option>
+                                        <option value="90">90%</option>
+                                        <option value="100">100%</option>
                                       </select>
                                       <label for="floatingSelect">Discount</label>
                                     </div>
@@ -423,9 +435,9 @@
                                     <div class="form-floating">
                                       <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" disabled>
                                       <option value="" selected disabled></option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
-                                        <option>Wala laman</option>
+                                        <option value="old">Old</option>
+                                        <option value="transferee">Transferee</option>
+                                        
                                         
                         
                                       </select>
@@ -1116,11 +1128,62 @@
       </script>
       <script>
         $(document).ready(function () {
+          display();
           $('#add').click(function (e) { 
             enablePartial();
+              let program = $("#studProgram").val();
+              onChangeProg(program);
+
           });
+          $("#studProgram").change(function(){
+            let program = $(this).val();
+            onChangeProg(program);
+          });
+          $("#studMajor").change(function(){
+            let major = $(this).val();
+            let sem = $('#studSemester').val();
+            let yearLevel = $('#studYearLevel').val();
+            onChangeMajor(major,sem,yearLevel)
+          });
+        function onChangeMajor(major,sem,yearLevel){
+          $.ajax({
+              type: "POST",
+              url: "../includes/comboBoxData.php",
+              data: {
+                "majorOnChange": 1,
+                "major": major,
+                "sem":sem,
+                "yearLevel": yearLevel
+              },
+              success: function (response) {
+                $("#studFee").val(response);
+              }
+            });
+        }
+        function onChangeProg(program){
+          $.ajax({
+                url: '../includes/comboBoxData.php',
+                type: 'post',
+                data: {
+                  "programOnChange": 1,
+                  "program": program
+                },
+                success:function(response){
+                    let len = response.length;
+                    $("#studMajor").empty();
+                      for( let i = 0; i<len; i++){
+                        let major = response[i]['major'];
+                        $("#studMajor").append("<option value='"+major+"'>"+major+"</option>");
+                      }
+                      let major = $('#studMajor').val();
+                      let sem = $('#studSemester').val();
+                      let yearLevel = $('#studYearLevel').val();
+                      onChangeMajor(major,sem,yearLevel)
+                }
+            });
+        }
           // Save and Update AJAX Request
-          display();
+          
           $('#stud_save').click(function (event) { 
             if($('#stud_save').text() == 'Update'){
               $.ajax({
@@ -1211,6 +1274,7 @@
               success: function (data) {
                 // console.log(data);
                 // Setting data fields
+                
                 $("[name='student_number']").val(data.stud_id);
                 $("[name='stud_firstname']").val(data.firstname);
                 $("[name='stud_lastname']").val(data.lastname);
@@ -1237,7 +1301,8 @@
                 if(data.good_moral != ''){
                   $("[name='req_good_moral']").prop('checked', true);
                 }
-
+                
+               
                 // Enabline fields
                 enableAll();
                 $("#stud_save").text('Update');
@@ -1357,6 +1422,7 @@
           $("[name='student_number']").prop("disabled", true);
           $("[name='stud_middlename']").prop("disabled", true);
           $("[name='stud_lastname']").prop("disabled", true);
+          $("[name='stud_semester']").prop("disabled", true);
           $("[name='stud_program']").prop("disabled", true);
           $("[name='stud_year_level']").prop("disabled", true);
           $("[name='stud_major']").prop("disabled", true);
@@ -1373,6 +1439,7 @@
           $("[name='student_number']").removeAttr('disabled');
           $("[name='stud_middlename']").removeAttr('disabled');
           $("[name='stud_lastname']").removeAttr('disabled');
+          $("[name='stud_semester']").removeAttr('disabled');
           $("[name='stud_year_level']").removeAttr('disabled');
           $("[name='stud_program']").removeAttr('disabled');
           $("[name='stud_major']").removeAttr('disabled');

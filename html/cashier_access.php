@@ -533,6 +533,21 @@
   <script>
     $(document).ready(function () {
       display();
+      $(document).on('click', '#approve', function(){
+        let transactionNo = $(this).attr("data-id");
+        alert(transactionNo);
+        $.ajax({
+          type: "POST",
+          url: "../includes/managPayments.php",
+          data: {
+            "approve": 1,
+            "transactionNo": transactionNo,
+          },
+          success: function (response) {
+            console.log(response)
+          }
+        });
+      });
     });
     function display(){
             $.ajax({

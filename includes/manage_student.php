@@ -74,21 +74,37 @@
   }
 
   if(isset($_POST['stud_save'])){
-    // Studen Info
+    // Getting Program ID 
+    $sqlGetProgId = "SELECT * FROM `tbl_course_list` WHERE course_major = ?";
+    $stmtGetProgId = $con->prepare($sqlGetProgId);
+    $stmtGetProgId->bind_param('s',$stud_major);
+    $stmtGetProgId->execute();
+    $resGetProgId = $stmtGetProgId->get_result();
+    $rowGetProgId = $resGetProgId->fetch_assoc();
+    $course_id = $rowGetProgId['program_id'];
+    //Inserting Data to Student Info
     $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`,`registrar_id`, `registrar_name`) VALUES (?,?,?,?,?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
     $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
     // Student Fee
     // Temprary Variable it will update if dorpdown box a values like course id,discount
-    $course_id = 0;
-    $total_amount_paid = 0;
-    $balance = $stud_fee;
-    $Remarks = '';
+    
+    if($stud_scholarship == 'Half'){
+      $balance = $stud_fee/2;
+      $balance = (($balance * (100 - $stud_discount)/  100));
+      $remarks = 'not fully paid';
+    }else if($stud_scholarship == 'Full'){
+      $balance = 0;
+      $remarks = 'Full scholar';
+    }
+    
+    
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
+    $total_amount_paid = 0;
     $sqlStudFee = "INSERT INTO `tbl_student_fees`(`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmtStudFee = $con->prepare($sqlStudFee);
-    $stmtStudFee->bind_param('ssssssssss',$course_id,$student_number,$fullname,$stud_year_level,$stud_scholarship,$stud_discount,$stud_fee,$total_amount_paid,$balance,$Remarks);
+    $stmtStudFee->bind_param('ssssssssss',$course_id,$student_number,$fullname,$stud_year_level,$stud_scholarship,$stud_discount,$stud_fee,$total_amount_paid,$balance,$remarks);
     // Student Requirements
     $slqRequirements = "INSERT INTO `tbl_student_requirements`(`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES (?,?,?,?,?)";
     $stmtRequirements = $con->prepare($slqRequirements);
@@ -97,10 +113,7 @@
     $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?)";
       $stmtDetails = $con->prepare($sqlDetials);
       $stmtDetails->bind_param('ssss',$student_number,$stud_program,$stud_major,$stud_year_level);
-      // It will be available after scholar has desc 
-      // $sqlScholar = "INSERT INTO `tbl_student_scholarship`(`stud_id`, `scholar_description`, `scholar_type`) VALUES (?,?,?)";
-      // $stmtScholar = $con->prepare($sqlScholar);
-      // $stmtScholar->bind_param('sss',$student_number,$scholarDisc,$stud_scholarship);
+    
       
   if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
     $response['status'] = 'success';
@@ -151,6 +164,24 @@ if(isset($_POST['edit'])){
   echo json_encode($data);
 }
 if(isset($_POST['update'])){
+  // Getting Program ID 
+  $sqlGetProgId = "SELECT * FROM `tbl_course_list` WHERE course_major = ?";
+  $stmtGetProgId = $con->prepare($sqlGetProgId);
+  $stmtGetProgId->bind_param('s',$stud_major);
+  $stmtGetProgId->execute();
+  $resGetProgId = $stmtGetProgId->get_result();
+  $rowGetProgId = $resGetProgId->fetch_assoc();
+  $course_id = $rowGetProgId['program_id'];
+
+  if($stud_scholarship == 'Half'){
+    $balance = $stud_fee/2;
+    $balance = (($balance * (100 - $stud_discount)/  100));
+    $remarks = 'not fully paid';
+  }else if($stud_scholarship == 'Full'){
+    $balance = 0;
+    $remarks = 'Full scholar';
+  }
+
   $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
   $program_major = $stud_program.'-'.$stud_major;
 $sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
@@ -160,11 +191,11 @@ $sqlUpdateAll = "UPDATE `tbl_student_info` AS info
                   SET 
                   info.firstname = ?,info.lastname = ?,info.middlename = ?,
                   req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
-                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_percent = ?,fee.scholar_type = ?,
+                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_percent = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
                   det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
                   WHERE info.stud_id = ?";
 $stmtUpdateAll = $con->prepare($sqlUpdateAll);
-$stmtUpdateAll->bind_param('ssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);
+$stmtUpdateAll->bind_param('ssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);
 
 if($stmtUpdateAll->execute()) {
   $response['status'] = 'success';
