@@ -110,7 +110,7 @@
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;"><?= $_SESSION['email'];?></span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; "><?=$rowStud['tuition_fee'];?></span></span>
-                           
+                        
                         </div>
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;"><?=$rowStud['balance'];?></span></span>

@@ -380,7 +380,12 @@
                 
               </form>
               </div>
+
+ 
+              
+
             </div>
+
 
 
 
@@ -508,7 +513,7 @@
         </div>
       </div>
       </div>
-
+      <!-- JS -->
     <script type="text/javascript">
             function profile_link_show(){
             let profile_link = document.getElementById('profile_link_id');
@@ -560,6 +565,6 @@
             });
         }
   </script>
-
+</script>
 </body>
 </html>

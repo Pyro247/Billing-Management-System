@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
     <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Registrar</title>
   </head>
   <body>
@@ -36,8 +38,8 @@
 </div>
 
 <script type="text/javascript">
-  window.onload = function(){
-        let loader = document.getElementById('loader-wrapperID')
+        window.onload = function(){
+        const loader = document.getElementById('loader-wrapperID')
         loader.style.opacity = "0"
         loader.style.visibility = "hidden"
         loader.style.pointerEvents = "none"
@@ -53,6 +55,32 @@
           </div>
       </div>
     </div>
+
+    <div class="popUpArchive" style="visibility: hidden; opacity: 0; transition: all 150ms;"> 
+      <div class="popUpArchiveinner">
+      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end"></i>
+      <p class="text-primary d-block text-center mt-5" >Choose Archive Reason</p>
+      
+        <form action="">
+          <div class="innerFormArchive">
+            <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
+            <label class="btn btn-outline-primary" for="graduate">Graduate</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
+            <label class="btn btn-outline-primary" for="drop">Dropped</label>
+
+            <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
+            <label class="btn btn-outline-primary" for="discontinued">Discontinued</label>
+          </div>
+          <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+
+
+        </form>
+      </div>
+      </div>
+
+    
+
 
     <div class="row">
       <div class="col-3 left-tab">
@@ -580,7 +608,7 @@
 
                         
 
-                           <div class="col-md-3">
+                           <div class="col-md">
                             <div class="form-floating">
                             <select class="form-select" name="emp_role" id="floatingSelect" aria-label="Floating label select example">
                             <option value="" selected></option>
@@ -588,6 +616,13 @@
                                 <option value="Cashier">Cashier</option>
                               </select>
                               <label for="floatingSelect">Role</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
+                              <label for="floatingInputGrid">Employee ID</label>
                             </div>
                           </div>
                          
@@ -598,13 +633,6 @@
 
                       <div class="row g-2 mb-1">
 
-                     
-                      <div class="col-md">
-                            <div class="form-floating">
-                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Employee ID</label>
-                            </div>
-                          </div>
                         <div class="col-md">
                           <div class="form-floating">
                             <input type="text" class="form-control" name="emp_firstname" id="floatingInputGrid" placeholder=" " value="">
@@ -630,7 +658,7 @@
                         </div>
 
                         <div class="row g-2 mb-1">
-                          <div class="col-md">
+                          <div class="col-md-3">
                             <div class="form-floating">
                               <select class="form-select" name="emp_sex" id="floatingSelect" aria-label="Floating label select example">
                                 <option value="Male" selected>Male</option>
@@ -641,19 +669,6 @@
                             </div>
                           </div>
 
-                          <div class="col-md-4">
-                            <div class="form-floating">
-                              <input type="date" class="form-control" name="emp_birthdate" id="floatingInputGrid" placeholder="">
-                              <label for="floatingInputGrid">Birthdate</label>
-                            </div>
-                          </div>
-
-                          <div class="col-md">
-                            <div class="form-floating">
-                              <input type="number" class="form-control" name="emp_age" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Age</label>
-                            </div>
-                          </div>
                           <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" name="emp_address" id="floatingInputGrid" placeholder=" " value="">
@@ -680,20 +695,6 @@
                                 <label for="floatingInputGrid">Contact number</label>
                               </div>
                             </div>
-
-                            <div class="col-md">
-                              <div class="form-floating">
-                                <input type="text" class="form-control" name="emp_citizenship" id="floatingInputGrid" placeholder=" " value="">
-                                <label for="floatingInputGrid">Citizenship</label>
-                              </div>
-                            </div>
-                            <div class="col-md">
-                              <div class="form-floating">
-                                <input type="text" class="form-control" name="emp_civil_status" id="floatingInputGrid" placeholder=" " value="">
-                                <label for="floatingInputGrid">Civil Status</label>
-                              </div>
-                            </div>
-        
                           </div>
 
                           
@@ -703,8 +704,8 @@
                   </div> 
                   
                   <div class="buttons_manage_universal">
-                  <button type="button" name="" class="btn btn-info">Enroll</button>
-                  <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
+                  <!-- <button type="button" name="" class="btn btn-info">Add</button> -->
+                  <button type="submit" name="emp_edit" class="btn btn-info">Add</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
                   <button type="submit" name="emp_save" class="btn btn-success" >Save</button>
                   </div> 
@@ -761,7 +762,8 @@
                 
                 <!-- All user's Tab -->
                 <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
-                  <p class="role_information text-primary">Choose Account to Filter</p>
+                <p class="role_information text-primary">All user's Information</p>
+                
 
                   
 
@@ -829,11 +831,10 @@
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID number</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
+                            <th scope="col">Full name</th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Action</th>
                             
                           </tr>
                         </thead>
@@ -841,38 +842,35 @@
                           <tr>
                             <th scope="row">2018300366</th>
                             <td>Justine Dave</td>
-                            <td>DelosReyes</td>
                             <td>Student</td>
                             <td>delosreyes366@gmail.com</td>
-                            <td>Enrolled</td>
+                            <td><button class="btn btn-outline-primary archiveBtn">Archive</button></td>
+
+                      
+
+                            <script type="text/javascript">
+                              const btnArchive = document.querySelector('.archiveBtn')
+                              const popUpArchive = document.querySelector('.popUpArchive')
+                              const closeBtn = document.querySelector('.closeBtnPopUp')
+
+                              let popUpinner = document.querySelector('.popUpArchiveinner')
+                              btnArchive.addEventListener("click", function(){
+                                popUpArchive.style.visibility = "visible"
+                                popUpArchive.style.opacity = "1"
+                                popUpinner.classList.toggle('animate__animated')
+                                popUpinner.classList.toggle('animate__bounceIn')
+                              })
+
+                              closeBtn.addEventListener("click", function(){
+                                popUpArchive.style.visibility = "hidden"
+                                popUpArchive.style.opacity = "0"
+                                popUpinner.classList.toggle('animate__animated')
+                                popUpinner.classList.toggle('animate__bounceIn')
+                              })
+                            </script>
                             
                           </tr>
-                          <tr>
-                            <th scope="row">2018300478</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>Student</td>
-                            <td>isla478@gmail.com</td>
-                            <td>Not Enrolled</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300902</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>Student</td>
-                            <td>pulido902@gmail.com</td>
-                            <td>Dropped</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300612</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>Student</td>
-                            <td>villano612@gmail.com</td>
-                            <td>Graduate</td>
-                            
-                          </tr>
+                        
                         </tbody>
                       </table>
                     </div>
@@ -974,27 +972,19 @@
                             <th scope="col">Last name</th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Condition</th>
                             
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">2018300366</th>
-                            <td>Justine Dave</td>
-                            <td>DelosReyes</td>
-                            <td>Student</td>
-                            <td>delosreyes366@gmail.com</td>
-                            <td>Enrolled</td>
-                            
-                          </tr>
+                         
                           <tr>
                             <th scope="row">2018300478</th>
                             <td>Michael</td>
                             <td>Isla</td>
                             <td>Student</td>
                             <td>isla478@gmail.com</td>
-                            <td>Not Enrolled</td>
+                            <td>Discontinued</td>
                           </tr>
                           <tr>
                             <th scope="row">2018300902</th>
@@ -1069,7 +1059,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></>
   -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -1478,7 +1468,7 @@
             let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-            if (roleId.includes('Registrar')){
+            if (roleId.includes('Registxrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";

@@ -56,6 +56,7 @@ INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, 
 (1301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', ''),
 (2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', '');
 
+
 -- --------------------------------------------------------
 
 --
