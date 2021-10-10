@@ -124,15 +124,15 @@
               <div class="col my-3 d-flex justify-content-evenly">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/all_students.png" alt=""  class="rounded mx-auto d-block">
                   </div>
-                  <div class="student__group_right align-center" onclick="dashboard_table_appear()">
+                  <div class="student__group_right align-center" id="totalStud" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
                     <strong class="text-center d-block">626</strong>
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -142,9 +142,9 @@
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
-                    <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/unregistered_student.png" alt=""  class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Old Students</span>
@@ -201,56 +201,8 @@
                             
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">2018301302</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>BSCS</td>
-                            <td>Web and Mobile Application</td>
-                            <td>4th</td>
-                            <td>Transferee</td>
-                            <td>Full</td>
-                            <td>1011121314</td>
-                            <td>pulido@gmail.com</td>
+                        <tbody id="viewStudDash">
                           
-                          </tr>
-                          <tr>
-                          <th scope="row">2018301303</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>BSIT</td>
-                            <td>Web and Mobile Application</td>
-                            <td>4th</td>
-                            <td>Old Student</td>
-                            <td>Full</td>
-                            <td>1011121315</td>
-                            <td>mery@gmail.com</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2018301304</th>
-                            <td>Justine</td>
-                            <td>Delos Reyes</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018301305</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>BSED</td>
-                            <td>English</td>
-                            <td>4th</td>
-                            <td>Transferee</td>
-                            <td>Partial</td>
-                            <td>1011121317</td>
-                            <td>isla@gmail.com</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -1072,6 +1024,26 @@
         table_.classList.toggle('active')
     }
   </script>
+  <script>
+    //total student
+  $(document).ready(function() {
+    $("#totalStud").click(function(e) {
+    sortDisplay();
+  });
+
+    //old student
+  $("#oldStud").click(function(e) {
+    let stud_type = 'old'
+    sortDisplay(stud_type);
+  });
+
+    //transferee student
+  $("#transferStud").click(function(e) {
+    let stud_type = 'transferee'
+    sortDisplay(stud_type);
+  });
+  });
+  </script>
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1335,6 +1307,7 @@
               }
             });
           });
+          
           // Delete AJAX Request
           $('#stud_delete').click(function (e) { 
             e.preventDefault();
@@ -1385,6 +1358,19 @@
               success: function (data) {
                 $('#viewStud').html(data);
               }
+            });
+        }
+        //-----------OLD/TRANSFER STUDENT------------
+        function sortDisplay(stud_type){
+            $.ajax({
+              type: "POST",
+              url: "../includes/viewStudDash.php",
+              dataType: "html",
+              data: {"stud_type" : stud_type},
+              success: function (data) {
+                $('#viewStudDash').html(data);
+              }
+              
             });
         }
         function enableAll(){
