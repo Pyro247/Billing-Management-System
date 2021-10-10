@@ -371,16 +371,9 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-                                    <?php 
-                                      $sqlMajor = "SELECT DISTINCT course_major FROM `tbl_course_list`";
-                                      $stmtMajor = $con->prepare($sqlMajor);
-                                      $stmtMajor->execute();
-                                      $resMajor = $stmtMajor->get_result();
-                                      while($rowMajor = $resMajor->fetch_assoc()){
-                                    ?>
-                                      <option value="<?= $rowMajor['course_major'];?>"><?= $rowMajor['course_major'];?></option>
-                                    <?php }; ?>
-                      
+                                   
+
+
                                     </select>
                                     <label for="studMajor">Major</label>
                                   </div>
@@ -1168,8 +1161,8 @@
                   "programOnChange": 1,
                   "program": program
                 },
-                success:function(response){
-                    let len = response.length;
+                success:function(response){ 
+                  let len = response.length;
                     $("#studMajor").empty();
                       for( let i = 0; i<len; i++){
                         let major = response[i]['major'];
@@ -1179,6 +1172,7 @@
                       let sem = $('#studSemester').val();
                       let yearLevel = $('#studYearLevel').val();
                       onChangeMajor(major,sem,yearLevel)
+                    
                 }
             });
         }
@@ -1259,6 +1253,7 @@
           });
           // Edit Ajax Request
           $(document).on('click', '#edit', function(){
+            
             $("#add").prop("disabled", true);
             // e.preventDefault();
             let id = $(this).attr("data-id");
@@ -1274,14 +1269,13 @@
               success: function (data) {
                 // console.log(data);
                 // Setting data fields
-                
+            
                 $("[name='student_number']").val(data.stud_id);
                 $("[name='stud_firstname']").val(data.firstname);
                 $("[name='stud_lastname']").val(data.lastname);
                 $("[name='stud_middlename']").val(data.middlename);
                 $("[name='stud_year_level']").val(data.year_level);
-                $("[name='stud_program']").val(data.program);
-                $("[name='stud_major']").val(data.major);
+                
                 $("[name='stud_fee']").val(data.tuition_fee);
                 $("[name='stud_discount']").val(data.discount);
                 $("[name='stud_school_year']").val(data.csi_school_year);
@@ -1301,8 +1295,32 @@
                 if(data.good_moral != ''){
                   $("[name='req_good_moral']").prop('checked', true);
                 }
+                $("[name='stud_program']").val(data.program);
+               let program = data.program
+                //to be update  
+                      $.ajax({
+                      url: '../includes/comboBoxData.php',
+                      type: 'post',
+                      data: {
+                        "programOnChange": 1,
+                        "program": program
+                      },
+                      success:function(response){ 
+                        let len = response.length;
+                          $("#studMajor").empty();
+                            for( let i = 0; i<len; i++){
+                              let major = response[i]['major'];
+                              $("#studMajor").append("<option value='"+major+"'>"+major+"</option>");
+                            }
+                            let major = $('#studMajor').val();
+                            let sem = $('#studSemester').val();
+                            let yearLevel = $('#studYearLevel').val();
+                            onChangeMajor(major,sem,yearLevel)
+                            $("[name='stud_major']").val(data.major);
+                      }
+                  });
                 
-               
+                
                 // Enabline fields
                 enableAll();
                 $("#stud_save").text('Update');
@@ -1311,6 +1329,7 @@
             });
             
           });
+          
           // Search Ajax Request
           $("#searchStud").keypress(function(){
             $.ajax({
