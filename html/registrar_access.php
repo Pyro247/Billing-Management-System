@@ -353,8 +353,6 @@
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
                                   
-
-
                                     </select>
                                     <label for="studMajor">Major</label>
                                   </div>
@@ -376,31 +374,39 @@
                               <div class="row g-2 mb-1"> 
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option value="Half">Half</option>
-                                        <option value="Full">Full</option>
+                                      <select class="form-select" name="stud_scholarship" id="studScholarship" aria-label="Floating label select example" disabled>
+                                      <option value="N/A">N/A</option>
+                                      <?php 
+                                      $slqScholar = "SELECT DISTINCT scholar_type FROM `tbl_scholarship`";
+                                      $stmtScholar = $con->prepare($slqScholar);
+                                      $stmtScholar->execute();
+                                      $resScholar = $stmtScholar->get_result();
+                                      while($rowScholar = $resScholar->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowScholar['scholar_type'];?>"><?= $rowScholar['scholar_type'];?></option>
+                                    <?php }; ?>
+                                      <!--  -->
                                       </select>
-                                      <label for="floatingSelect">Scholarship</label>
+                                      <label for="studScholarship">Scholarship</label>
                                     </div>
                                   </div>
 
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option value="0">0%</option>
-                                        <option value="10">10%</option>
-                                        <option value="20">20%</option>
-                                        <option value="30">30%</option>
-                                        <option value="40">40%</option>
-                                        <option value="50">50%</option>
-                                        <option value="60">60%</option>
-                                        <option value="70">70%</option>
-                                        <option value="80">80%</option>
-                                        <option value="90">90%</option>
-                                        <option value="100">100%</option>
+                                      <select class="form-select" name="stud_discount" id="studDiscount" aria-label="Floating label select example" disabled>
+                                      <option value="N/A">N/A</option>
+                                      <?php 
+                                      $slqDiscount = "SELECT * FROM `tbl_discount`";
+                                      $stmtDiscount = $con->prepare($slqDiscount);
+                                      $stmtDiscount->execute();
+                                      $resDiscount = $stmtDiscount->get_result();
+                                      while($rowDiscount = $resDiscount->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowDiscount['discount_type'];?>"><?= $rowDiscount['discount_type'];?></option>
+                                    <?php }; ?>
                                       </select>
-                                      <label for="floatingSelect">Discount</label>
+                                      <label for="studDiscount">Discount</label>
                                     </div>
                                   </div>
 
