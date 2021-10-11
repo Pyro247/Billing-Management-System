@@ -32,11 +32,10 @@
   if($stmt->execute()){
     move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$file);
     $response['status'] = 'success';
-    $response['message'] = 'Successfully Updated';
+    $response['message'] = 'Successfully Send Payment Request';
   }else{
   $response['status'] = 'error';
-  $response['message'] = 'Failed to update!';
-  
-}
+  $response['message'] = 'Failed to Send Payment Request!';
+  }
 echo json_encode($response);
 ?>

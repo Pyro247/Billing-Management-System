@@ -20,6 +20,9 @@
      <!-- Sweet Alert 2 -->
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
 
 
 
@@ -67,13 +70,13 @@
 
 
     <div class="row">
-      <div class="col-3 left-tab">
+      <div class="col left-tab">
         <div class="upper-left-tab">
           <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
           <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
-              <a href="">Change Password</a>
+              <a href="../html/forgotPassword.php">Change Password</a>
               <a href="">Logout</a>
             </div>
           <p class="reg__name">Cashier | C-2021003</p>
@@ -85,8 +88,9 @@
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false">Payment Transactions</a>
             <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
             <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false">Student Fees</a>
             
-            <q class="mt-2">Version 1.0.0.0</q>
+            
       </div>
       </div>
       
@@ -140,7 +144,7 @@
                       <th scope="col">Date</th>
                       <th scope="col">Email</th>
                       <th scope="col">Sales Invoice</th>
-                      <th scope="col">Action</th>
+                      <!-- <th scope="col">Action</th> -->
                       
                     </tr>
                   </thead>
@@ -180,7 +184,23 @@
         
         </div>
       </div>
-              
+      <!-- Modal -->
+      <div class="modal fade" id="salesInvoice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Proof of Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img id="invoiceImg" style="width: 100%;" src="">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>    
 
 
             <!-- PAYMENT TRANSACTIONS -->
@@ -380,7 +400,12 @@
                 
               </form>
               </div>
+
+ 
+              
+
             </div>
+
 
 
 
@@ -501,6 +526,12 @@
 
             </div>
 
+
+            <!-- Student Fees -->
+            <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
+              <p class="title_tab_universal">Student Fee</p>
+            </div>
+
           
           
 
@@ -508,7 +539,7 @@
         </div>
       </div>
       </div>
-
+      <!-- JS -->
     <script type="text/javascript">
             function profile_link_show(){
             let profile_link = document.getElementById('profile_link_id');
@@ -535,19 +566,45 @@
       display();
       $(document).on('click', '#approve', function(){
         let transactionNo = $(this).attr("data-id");
-        alert(transactionNo);
-        $.ajax({
-          type: "POST",
-          url: "../includes/managPayments.php",
-          data: {
-            "approve": 1,
-            "transactionNo": transactionNo,
-          },
-          success: function (response) {
-            console.log(response)
+        let name = $(this).attr("data-name");
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Approving Students Payment for" + name,
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Approve It!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type: "POST",
+              url: "../includes/managPayments.php",
+              data: {
+                "approve": 1,
+                "transactionNo": transactionNo,
+              },
+              success: function (response) {
+                console.log(response)
+                Swal.fire(
+                'Approve!',
+                'Payment Proccessed Complete',
+                'Success'
+                )
+                display();
+              }
+            });
           }
-        });
+        })
+        
       });
+      $(document).on('click', '#viewInvoice', function(){
+        let invoiceImg = $(this).attr("data-id");
+        let dir = '../saleInvoiceImg/'
+        document.getElementById("invoiceImg").src = dir + invoiceImg;
+      });
+      
+
     });
     function display(){
             $.ajax({
@@ -560,6 +617,6 @@
             });
         }
   </script>
-
+</script>
 </body>
 </html>

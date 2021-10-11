@@ -169,14 +169,18 @@
 
 /* Left Tab! */
 .left-tab{
-    height: 100%;
-    border-right: 2px solid var(--blue-color);
     padding: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
     max-width: 300px;
     position: fixed;
     margin-top: 60px;
-    
 }
+
+
+
+
 .upper-left-tab{
     position: relative;
 }
@@ -249,11 +253,6 @@
     transition: 250ms;
 }
 
-
-q{
-    text-align: center;
-   margin-top: 50px;
-}
 
 
 /* Right Tab ********************************************************************/
