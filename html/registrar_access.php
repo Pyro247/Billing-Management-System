@@ -89,8 +89,8 @@
               <p class="title_tab_universal" >Dashboard</p>
 
                 <form action="" class="universal_search_form">
-                  <input type="text" name="" id="" placeholder="Search">
-                  <button type="button" class="btn btn-primary">Search</button>
+                  <input type="text" name="searchDash" id="searchDash" placeholder="Search">
+                  <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
                 </form>
 
               <div class="col my-3 d-flex justify-content-evenly">
@@ -100,7 +100,7 @@
                   </div>
                   <div class="student__group_right align-center" id="totalStud" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
-                    <strong class="text-center d-block">626</strong>
+                    <strong class="text-center d-block" id = "countTotal"></strong>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Transferee Students</span>
-                    <strong class="text-center d-block">277</strong>
+                    <strong class="text-center d-block" id = "countTransfer"></strong>
                   </div>
                 </div>
 
@@ -120,7 +120,7 @@
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Old Students</span>
-                    <strong class="text-center d-block">349</strong>
+                    <strong class="text-center d-block" id = "countOld"></strong>
                   </div>
                 </div>
               </div>
@@ -173,7 +173,7 @@
                             
                           </tr>
                         </thead>
-                        <tbody id="viewStudDash">
+                        <tbody id="registrarDash">
                           
                         </tbody>
                       </table>
@@ -452,7 +452,7 @@
                       <hr>
                       <form action="" class="universal_search_form">
                         <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
-                        <button type="button" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn btn-primary" id="searchStud_btn">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
@@ -1034,19 +1034,29 @@
         table_.classList.toggle('active')
     }
   </script>
+
+  <script>
+ $.ajax({
+    type:'GET',
+    url:"../includes/countStud.php",
+    data:'',
+    success: function(data){
+            $('#countTotal').html(data);
+    }
+});
+</script>
+
   <script>
     //total student
   $(document).ready(function() {
     $("#totalStud").click(function(e) {
     sortDisplay();
   });
-
     //old student
   $("#oldStud").click(function(e) {
     let stud_type = 'old'
     sortDisplay(stud_type);
   });
-
     //transferee student
   $("#transferStud").click(function(e) {
     let stud_type = 'transferee'
@@ -1054,6 +1064,7 @@
   });
   });
   </script>
+
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1303,7 +1314,7 @@
           });
           
           // Search Ajax Request
-          $("#searchStud").keypress(function(){
+          $("#searchStud_btn").click(function(){
             $.ajax({
               type:'POST',
               url:'../includes/searchStudData.php',
@@ -1313,6 +1324,20 @@
               },
               success:function(data){
                 $("#viewStud").html(data);
+                
+              }
+            });
+          });
+          $("#searchDash_btn").click(function(){
+            $.ajax({
+              type:'POST',
+              url:'../includes/searchDash.php',
+              data:{
+                "search": 1,
+                "query":$("#searchDash").val(),
+              },
+              success:function(data){
+                $("#viewStudDash").html(data);
                 
               }
             });
@@ -1374,11 +1399,11 @@
         function sortDisplay(stud_type){
             $.ajax({
               type: "POST",
-              url: "../includes/viewStudDash.php",
+              url: "../includes/registrarDash.php",
               dataType: "html",
               data: {"stud_type" : stud_type},
               success: function (data) {
-                $('#viewStudDash').html(data);
+                $('#registrarDash').html(data);
               }
               
             });
