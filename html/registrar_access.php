@@ -1309,7 +1309,7 @@
                 "query":$("#searchDash").val(),
               },
               success:function(data){
-                $("#viewStudDash").html(data);
+                $("#registrarDash").html(data);
                 
               }
             });
