@@ -1464,7 +1464,7 @@
             const stud_tabForAdmin = document.querySelector('.stud_tabForAdmin')
             const employeeTabContent = document.getElementById('employees')
             
-            if (roleId.includes('Registrxar')){
+            if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
