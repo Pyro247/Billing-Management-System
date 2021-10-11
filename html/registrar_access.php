@@ -19,8 +19,6 @@
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
     <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <!-- Animation -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Registrar</title>
   </head>
   <body>
@@ -38,8 +36,8 @@
 </div>
 
 <script type="text/javascript">
-        window.onload = function(){
-        const loader = document.getElementById('loader-wrapperID')
+  window.onload = function(){
+        let loader = document.getElementById('loader-wrapperID')
         loader.style.opacity = "0"
         loader.style.visibility = "hidden"
         loader.style.pointerEvents = "none"
@@ -55,33 +53,6 @@
           </div>
       </div>
     </div>
-
-    <!-- PopUp for Archive -->
-    <div class="popUpArchive" style="visibility: hidden; opacity: 0; transition: all 150ms;"> 
-      <div class="popUpArchiveinner">
-        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end"></i>
-        <p class="text-primary d-block text-center mt-5" >Choose Archive Reason</p>
-        
-          <form action="">
-            <div class="innerFormArchive">
-              <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
-              <label class="btn btn-outline-primary" for="graduate">Graduate</label>
-
-              <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
-              <label class="btn btn-outline-primary" for="drop">Dropped</label>
-
-              <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
-              <label class="btn btn-outline-primary" for="discontinued">Discontinued</label>
-            </div>
-              <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
-          </form>
-        </div>
-      </div>
-
-    
-
-    
-
 
     <div class="row">
       <div class="col-3 left-tab">
@@ -104,7 +75,7 @@
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false">Fees Management</a>
                 
-                
+                <q class="mt-2">Version 1.0.0.0</q>
             </div>
         </div>
         
@@ -125,15 +96,15 @@
               <div class="col my-3 d-flex justify-content-evenly">
                 <div class="col-sm-2 bg-success text-white student__group">
                   <div class="student__group_left">
-                    <img src="../images/registrar_img/all_students.png" alt=""  class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
                   </div>
-                  <div class="student__group_right align-center" id="totalStud" onclick="dashboard_table_appear()">
+                  <div class="student__group_right align-center" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
                     <strong class="text-center d-block">626</strong>
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -143,9 +114,9 @@
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
-                    <img src="../images/registrar_img/unregistered_student.png" alt=""  class="rounded mx-auto d-block">
+                    <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Old Students</span>
@@ -202,8 +173,56 @@
                             
                           </tr>
                         </thead>
-                        <tbody id="viewStudDash">
+                        <tbody>
+                          <tr>
+                            <th scope="row">2018301302</th>
+                            <td>Denver</td>
+                            <td>Pulido</td>
+                            <td>BSCS</td>
+                            <td>Web and Mobile Application</td>
+                            <td>4th</td>
+                            <td>Transferee</td>
+                            <td>Full</td>
+                            <td>1011121314</td>
+                            <td>pulido@gmail.com</td>
                           
+                          </tr>
+                          <tr>
+                          <th scope="row">2018301303</th>
+                            <td>Mery Anne</td>
+                            <td>Villano</td>
+                            <td>BSIT</td>
+                            <td>Web and Mobile Application</td>
+                            <td>4th</td>
+                            <td>Old Student</td>
+                            <td>Full</td>
+                            <td>1011121315</td>
+                            <td>mery@gmail.com</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2018301304</th>
+                            <td>Justine</td>
+                            <td>Delos Reyes</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018301305</th>
+                            <td>Michael</td>
+                            <td>Isla</td>
+                            <td>BSED</td>
+                            <td>English</td>
+                            <td>4th</td>
+                            <td>Transferee</td>
+                            <td>Partial</td>
+                            <td>1011121317</td>
+                            <td>isla@gmail.com</td>
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -245,7 +264,7 @@
 
               <div class="tab-content" id="myTabContent">
 <!----------------------------------------------- Students Tab ---------------------------------------------------------->
-                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab stud_tabForAdmin" id="student" role="tabpanel" aria-labelledby="student-tab">
+                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
                   <form action="../includes/manage_student.php" method="post" class="universalForm_two" id="studForm">
@@ -352,7 +371,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-                                  
+                                   
 
 
                                     </select>
@@ -481,7 +500,7 @@
                       <hr>
                       <form action="" class="universal_search_form">
                         <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
-                        <button type="button" class="btn btn-primary" id="searchStud_btn">Search</button>
+                        <button type="button" class="btn btn-primary">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
@@ -561,7 +580,7 @@
 
                         
 
-                           <div class="col-md">
+                           <div class="col-md-3">
                             <div class="form-floating">
                             <select class="form-select" name="emp_role" id="floatingSelect" aria-label="Floating label select example">
                             <option value="" selected></option>
@@ -569,13 +588,6 @@
                                 <option value="Cashier">Cashier</option>
                               </select>
                               <label for="floatingSelect">Role</label>
-                            </div>
-                          </div>
-
-                          <div class="col-md">
-                            <div class="form-floating">
-                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Employee ID</label>
                             </div>
                           </div>
                          
@@ -586,6 +598,13 @@
 
                       <div class="row g-2 mb-1">
 
+                     
+                      <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
+                              <label for="floatingInputGrid">Employee ID</label>
+                            </div>
+                          </div>
                         <div class="col-md">
                           <div class="form-floating">
                             <input type="text" class="form-control" name="emp_firstname" id="floatingInputGrid" placeholder=" " value="">
@@ -611,7 +630,7 @@
                         </div>
 
                         <div class="row g-2 mb-1">
-                          <div class="col-md-3">
+                          <div class="col-md">
                             <div class="form-floating">
                               <select class="form-select" name="emp_sex" id="floatingSelect" aria-label="Floating label select example">
                                 <option value="Male" selected>Male</option>
@@ -622,6 +641,19 @@
                             </div>
                           </div>
 
+                          <div class="col-md-4">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" name="emp_birthdate" id="floatingInputGrid" placeholder="">
+                              <label for="floatingInputGrid">Birthdate</label>
+                            </div>
+                          </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="emp_age" id="floatingInputGrid" placeholder=" " value="">
+                              <label for="floatingInputGrid">Age</label>
+                            </div>
+                          </div>
                           <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" name="emp_address" id="floatingInputGrid" placeholder=" " value="">
@@ -648,6 +680,20 @@
                                 <label for="floatingInputGrid">Contact number</label>
                               </div>
                             </div>
+
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="text" class="form-control" name="emp_citizenship" id="floatingInputGrid" placeholder=" " value="">
+                                <label for="floatingInputGrid">Citizenship</label>
+                              </div>
+                            </div>
+                            <div class="col-md">
+                              <div class="form-floating">
+                                <input type="text" class="form-control" name="emp_civil_status" id="floatingInputGrid" placeholder=" " value="">
+                                <label for="floatingInputGrid">Civil Status</label>
+                              </div>
+                            </div>
+        
                           </div>
 
                           
@@ -657,8 +703,8 @@
                   </div> 
                   
                   <div class="buttons_manage_universal">
-                  <!-- <button type="button" name="" class="btn btn-info">Add</button> -->
-                  <button type="submit" name="emp_edit" class="btn btn-info">Add</button>
+                  <button type="button" name="" class="btn btn-info">Enroll</button>
+                  <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
                   <button type="submit" name="emp_save" class="btn btn-success" >Save</button>
                   </div> 
@@ -715,8 +761,7 @@
                 
                 <!-- All user's Tab -->
                 <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
-                <p class="role_information text-primary">All user's Information</p>
-                
+                  <p class="role_information text-primary">Choose Account to Filter</p>
 
                   
 
@@ -784,10 +829,11 @@
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID number</th>
-                            <th scope="col">Full name</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Status</th>
                             
                           </tr>
                         </thead>
@@ -795,37 +841,38 @@
                           <tr>
                             <th scope="row">2018300366</th>
                             <td>Justine Dave</td>
+                            <td>DelosReyes</td>
                             <td>Student</td>
                             <td>delosreyes366@gmail.com</td>
-                            <td><button class="btn btn-outline-primary archiveBtn">Archive</button></td>
-
-                      
-
-                            <script type="text/javascript">
-                              const btnArchive = document.querySelector('.archiveBtn')
-                              const popUpArchive = document.querySelector('.popUpArchive')
-                              const closeBtn = document.querySelector('.closeBtnPopUp')
-
-                              let popUpinner = document.querySelector('.popUpArchiveinner')
-                              btnArchive.addEventListener("click", function(){
-                                popUpArchive.style.visibility = "visible"
-                                popUpArchive.style.opacity = "1"
-                                popUpinner.classList.toggle('animate__animated')
-                                popUpinner.classList.toggle('animate__bounceIn')
-                              })
-
-                              closeBtn.addEventListener("click", function(){
-                                popUpArchive.style.visibility = "hidden"
-                                popUpArchive.style.opacity = "0"
-                                popUpinner.classList.toggle('animate__animated')
-                                popUpinner.classList.toggle('animate__bounceIn')
-                              })
-                            </script>
-
-
+                            <td>Enrolled</td>
                             
                           </tr>
-                        
+                          <tr>
+                            <th scope="row">2018300478</th>
+                            <td>Michael</td>
+                            <td>Isla</td>
+                            <td>Student</td>
+                            <td>isla478@gmail.com</td>
+                            <td>Not Enrolled</td>
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300902</th>
+                            <td>Denver</td>
+                            <td>Pulido</td>
+                            <td>Student</td>
+                            <td>pulido902@gmail.com</td>
+                            <td>Dropped</td>
+                            
+                          </tr>
+                          <tr>
+                            <th scope="row">2018300612</th>
+                            <td>Mery Anne</td>
+                            <td>Villano</td>
+                            <td>Student</td>
+                            <td>villano612@gmail.com</td>
+                            <td>Graduate</td>
+                            
+                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -840,6 +887,9 @@
 
               </div>
               </div>
+        
+            
+
 
 
             <!-- ARCHIVES -->
@@ -924,19 +974,27 @@
                             <th scope="col">Last name</th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Condition</th>
+                            <th scope="col">Status</th>
                             
                           </tr>
                         </thead>
                         <tbody>
-                         
+                          <tr>
+                            <th scope="row">2018300366</th>
+                            <td>Justine Dave</td>
+                            <td>DelosReyes</td>
+                            <td>Student</td>
+                            <td>delosreyes366@gmail.com</td>
+                            <td>Enrolled</td>
+                            
+                          </tr>
                           <tr>
                             <th scope="row">2018300478</th>
                             <td>Michael</td>
                             <td>Isla</td>
                             <td>Student</td>
                             <td>isla478@gmail.com</td>
-                            <td>Discontinued</td>
+                            <td>Not Enrolled</td>
                           </tr>
                           <tr>
                             <th scope="row">2018300902</th>
@@ -991,6 +1049,7 @@
                       <th scope="col">Program</th>
                       <th scope="col">Major</th>
                       <th scope="col">Year Level</th>
+                      <th scope="col">Major</th>
                       <th scope="col">Semester</th>
                       <th scope="col">Tuition Fee</th>
                       <th scope="col">Action</th>
@@ -1010,7 +1069,7 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   -->
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -1023,26 +1082,6 @@
         table_.classList.toggle('active')
     }
   </script>
-  <script>
-    //total student
-  $(document).ready(function() {
-    $("#totalStud").click(function(e) {
-    sortDisplay();
-  });
-
-    //old student
-  $("#oldStud").click(function(e) {
-    let stud_type = 'old'
-    sortDisplay(stud_type);
-  });
-
-    //transferee student
-  $("#transferStud").click(function(e) {
-    let stud_type = 'transferee'
-    sortDisplay(stud_type);
-  });
-  });
-  </script>
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1054,12 +1093,29 @@
         setInterval(clock, 1000);   
 
         // Function To change Title
-        const tab_count_manage_users = 1;
+        let tab_count_manage_users = 1;
+     
+          let employee_tab = document.getElementById('employees-tab');
+          let student_tab = document.getElementById('student-tab');
+          let all_users_tab = document.getElementById('all-users-tab');
 
+          student_tab.addEventListener("click", function(){
+            tab_count_manage_users = 1;
+            change_tab();
+          });
 
+          employee_tab.addEventListener("click", function(){
+            tab_count_manage_users = 2;
+            change_tab();
+          });
+
+          all_users_tab.addEventListener("click", function(){
+            tab_count_manage_users = 3;
+            change_tab();
+          });
 
           function profile_link_show(){
-            const profile_link = document.getElementById('profile_link_id');
+            let profile_link = document.getElementById('profile_link_id');
           profile_link.classList.toggle('show');
           }
       </script>
@@ -1275,7 +1331,7 @@
           });
           
           // Search Ajax Request
-          $("#searchStud_btn").click(function(){
+          $("#searchStud").keypress(function(){
             $.ajax({
               type:'POST',
               url:'../includes/searchStudData.php',
@@ -1289,7 +1345,6 @@
               }
             });
           });
-          
           // Delete AJAX Request
           $('#stud_delete').click(function (e) { 
             e.preventDefault();
@@ -1340,19 +1395,6 @@
               success: function (data) {
                 $('#viewStud').html(data);
               }
-            });
-        }
-        //-----------OLD/TRANSFER STUDENT------------
-        function sortDisplay(stud_type){
-            $.ajax({
-              type: "POST",
-              url: "../includes/viewStudDash.php",
-              dataType: "html",
-              data: {"stud_type" : stud_type},
-              success: function (data) {
-                $('#viewStudDash').html(data);
-              }
-              
             });
         }
         function enableAll(){
@@ -1431,39 +1473,16 @@
         }
 
         // Limited access for Registrar
-            const roleId = document.getElementById('roleId').innerHTML
-            const employeeTabForAdmin = document.getElementById('employee_ForAdmin');
-            const allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
-            const feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
-            const studetntTabForAdmin = document.getElementById('student-tab')
-            const stud_tabForAdmin = document.querySelector('.stud_tabForAdmin')
-            const employeeTabContent = document.getElementById('employees')
+            let roleId = document.getElementById('roleId').innerHTML
+            let employeeTabForAdmin = document.getElementById('employee_ForAdmin');
+            let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
+            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-            if (roleId.includes('Registrxar')){
+            if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
-            }else{
-              studetntTabForAdmin.style.display = "none"
-              stud_tabForAdmin.style.display="none"
-              employeeTabForAdmin.classList.toggle('show')
-              employeeTabForAdmin.classList.toggle('active')
-
-              employeeTabContent.classList.toggle('show')
-              employeeTabContent.classList.toggle('active')
-            }
-
-            allUserTabForAdmin.addEventListener("click", function(){
-              employeeTabForAdmin.classList.remove('show')
-              employeeTabForAdmin.classList.remove('active')
-              employeeTabContent.classList.remove('show')
-              employeeTabContent.classList.remove('active')
-            })
-
-
-            
-
-            
+            } 
       </script>
 
 
