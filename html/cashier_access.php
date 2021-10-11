@@ -559,24 +559,45 @@
       display();
       $(document).on('click', '#approve', function(){
         let transactionNo = $(this).attr("data-id");
-        alert(transactionNo);
-        $.ajax({
-          type: "POST",
-          url: "../includes/managPayments.php",
-          data: {
-            "approve": 1,
-            "transactionNo": transactionNo,
-          },
-          success: function (response) {
-            console.log(response)
+        let name = $(this).attr("data-name");
+        Swal.fire({
+          title: 'Are you sure?',
+          text: "Approving Students Payment for" + name,
+          icon: 'info',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: 'Yes, Approve It!'
+        }).then((result) => {
+          if (result.isConfirmed) {
+            $.ajax({
+              type: "POST",
+              url: "../includes/managPayments.php",
+              data: {
+                "approve": 1,
+                "transactionNo": transactionNo,
+              },
+              success: function (response) {
+                console.log(response)
+                Swal.fire(
+                'Approve!',
+                'Payment Proccessed Complete',
+                'success'
+                )
+                display();
+              }
+            });
           }
-        });
+        })
+        
       });
       $(document).on('click', '#viewInvoice', function(){
         let invoiceImg = $(this).attr("data-id");
         let dir = '../saleInvoiceImg/'
         document.getElementById("invoiceImg").src = dir + invoiceImg;
       });
+      
+
     });
     function display(){
             $.ajax({

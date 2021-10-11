@@ -25,7 +25,11 @@ while($data = $res->fetch_assoc()){?>
     </button>
     </td>
     <td>
-      <a href="#" class="btn btn-success" id="approve" data-id="<?=$data['transaction_no'];?>">Approve</a>
+      <a href="#" class="btn btn-success" 
+        id="approve" 
+        data-id="<?=$data['transaction_no'];?>"
+        data-name="<?=$data['fullname'];?>"
+        >Approve</a>
       <a href="#" class="btn btn-danger">Deny</a>
     </td>
   </tr>

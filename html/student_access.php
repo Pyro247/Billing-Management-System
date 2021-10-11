@@ -494,10 +494,11 @@
                         success: function (response) {
                             console.log(response)
                             Swal.fire({
-                                icon: response.status,
+                                icon: 'success',
                                 text: response.message,
                                 confirmButtonText: 'Ok'
                             })
+                            // $("#payReqForm").trigger('reset');
                         }
                     });
                     }

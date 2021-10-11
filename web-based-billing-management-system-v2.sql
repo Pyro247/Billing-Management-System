@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 10, 2021 at 09:01 AM
+-- Generation Time: Oct 11, 2021 at 08:44 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -53,9 +53,8 @@ CREATE TABLE `tbl_accounts` (
 
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
 (1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
-(1301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', ''),
-(2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', '');
-
+(1301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Admin', '', ''),
+(2018301301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', '');
 
 -- --------------------------------------------------------
 
@@ -126,7 +125,7 @@ CREATE TABLE `tbl_employee_info` (
 --
 
 CREATE TABLE `tbl_payments` (
-  `transaction_no.` int(11) NOT NULL,
+  `transaction_no.` varchar(100) NOT NULL,
   `program_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
@@ -137,7 +136,6 @@ CREATE TABLE `tbl_payments` (
   `payment_method` varchar(100) NOT NULL,
   `payment_gateway` varchar(100) NOT NULL,
   `sales_invoice` longtext NOT NULL,
-  `total_amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `transaction_date` date NOT NULL,
   `payment_status` varchar(100) NOT NULL,
@@ -163,14 +161,6 @@ CREATE TABLE `tbl_pending_payments` (
   `transaction_date` date NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_pending_payments`
---
-
-INSERT INTO `tbl_pending_payments` (`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`) VALUES
-('FT-001', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 5000, 'Paymaya', '7448.png', '2021-10-07', 'Pending'),
-('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 100, 'Paymaya', '832186.jpg', '2021-10-08', 'Pending');
 
 -- --------------------------------------------------------
 
@@ -203,13 +193,6 @@ CREATE TABLE `tbl_student_fees` (
   `remarks` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_student_fees`
---
-
-INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(3, 2018301, 'Michael Estrecho Isla', '4', 'Full', 0, 10000, 0, 0, 'Full scholar');
-
 -- --------------------------------------------------------
 
 --
@@ -231,13 +214,6 @@ CREATE TABLE `tbl_student_info` (
   `registrar_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tbl_student_info`
---
-
-INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('', 2018301, 'Michael', 'Isla', 'Estrecho', '', '', '', '', 'N/A', 1301, 'Michael Isla');
-
 -- --------------------------------------------------------
 
 --
@@ -251,13 +227,6 @@ CREATE TABLE `tbl_student_requirements` (
   `psa_birth_cert` varchar(100) NOT NULL,
   `good_moral` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_student_requirements`
---
-
-INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2018301, '10.09.21', '10.09.21', '10.09.21', '10.09.21');
 
 -- --------------------------------------------------------
 
@@ -287,13 +256,6 @@ CREATE TABLE `tbl_student_school_details` (
   `csi_major` longtext NOT NULL,
   `csi_year_level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_student_school_details`
---
-
-INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301, '', 'old', '2021-2022', '1', 'BSIT', 'WMA', '4');
 
 --
 -- Indexes for dumped tables
@@ -338,12 +300,6 @@ ALTER TABLE `tbl_student_info`
 --
 ALTER TABLE `tbl_course_list`
   MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tbl_payments`
---
-ALTER TABLE `tbl_payments`
-  MODIFY `transaction_no.` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
