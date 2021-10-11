@@ -86,23 +86,44 @@
     $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`,`registrar_id`, `registrar_name`) VALUES (?,?,?,?,?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
     $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
-    // Student Fee
-    // Temprary Variable it will update if dorpdown box a values like course id,discount
-    
-    if($stud_scholarship == 'Half'){
-      $balance = $stud_fee/2;
-      $balance = (($balance * (100 - $stud_discount)/  100));
+    // Computing Student Fee base on Scholarship and Discount
+    // Getting scholar desc
+    if($stud_scholarship != 'N/A'){
+      $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_type = ?";
+      $stmtGetScholar = $con->prepare($slqGetScholar);
+      $stmtGetScholar->bind_param('s',$stud_scholarship);
+      $stmtGetScholar->execute();
+      $resGetScholar = $stmtGetScholar->get_result();
+      $rowGetScholar = $resGetScholar->fetch_assoc();
+
+      $scholarType = $rowGetScholar['scholar_description'];
+      if($scholarType == 'Half'){
+        $balance = $stud_fee/2;
+        if($stud_discount != 'N/A'){
+          $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+          $stmtGetDisc = $con->prepare($sqlGetDisc);
+          $stmtGetDisc->bind_param('s',$stud_discount);
+          $stmtGetDisc->execute();
+          $resGetDisc = $stmtGetDisc->get_result();
+          $rowGetDisc  = $resGetDisc->fetch_assoc();
+          $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
+        }
+        $remarks = 'not fully paid';
+      }else if($scholarType == 'Full'){
+        $balance = 0;
+        $remarks = 'Full scholar';
+      }
+    }else{
+      $balance = $stud_fee;
       $remarks = 'not fully paid';
-    }else if($stud_scholarship == 'Full'){
-      $balance = 0;
-      $remarks = 'Full scholar';
     }
+    
     
     
     $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
     $program_major = $stud_program.'-'.$stud_major;
     $total_amount_paid = 0;
-    $sqlStudFee = "INSERT INTO `tbl_student_fees`(`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_percent`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $sqlStudFee = "INSERT INTO `tbl_student_fees`(`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES (?,?,?,?,?,?,?,?,?,?)";
     $stmtStudFee = $con->prepare($sqlStudFee);
     $stmtStudFee->bind_param('ssssssssss',$course_id,$student_number,$fullname,$stud_year_level,$stud_scholarship,$stud_discount,$stud_fee,$total_amount_paid,$balance,$remarks);
     // Student Requirements
@@ -129,7 +150,7 @@ echo  json_encode($response);
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.program_id,f.csi_year_level,f.tuition_fee,f.discount_percent,f.scholar_type,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,r.form_137,r.form_138,r.psa_birth_cert, r.good_moral, f.program_id,f.csi_year_level,f.tuition_fee,f.discount_type,f.scholar_type,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
               RIGHT JOIN tbl_student_fees as f ON r.stud_id = f.stud_id
@@ -154,7 +175,7 @@ if(isset($_POST['edit'])){
     $data['year_level'] = $row['csi_year_level'];
     
     $data['tuition_fee'] = $row['tuition_fee'];
-    $data['discount'] = $row['discount_percent'];
+    $data['discount'] = $row['discount_type'];
     $data['stud_lrn'] = $row['LRN'];
     $data['stud_type'] = $row['stud_type'];
     $data['csi_school_year'] = $row['csi_academic_year'];
@@ -173,13 +194,34 @@ if(isset($_POST['update'])){
   $rowGetProgId = $resGetProgId->fetch_assoc();
   $course_id = $rowGetProgId['program_id'];
 
-  if($stud_scholarship == 'Half'){
-    $balance = $stud_fee/2;
-    $balance = (($balance * (100 - $stud_discount)/  100));
+  if($stud_scholarship != 'N/A'){
+    $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_type = ?";
+    $stmtGetScholar = $con->prepare($slqGetScholar);
+    $stmtGetScholar->bind_param('s',$stud_scholarship);
+    $stmtGetScholar->execute();
+    $resGetScholar = $stmtGetScholar->get_result();
+    $rowGetScholar = $resGetScholar->fetch_assoc();
+
+    $scholarType = $rowGetScholar['scholar_description'];
+    if($scholarType == 'Half'){
+      $balance = $stud_fee/2;
+      if($stud_discount != 'N/A'){
+        $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+        $stmtGetDisc = $con->prepare($sqlGetDisc);
+        $stmtGetDisc->bind_param('s',$stud_discount);
+        $stmtGetDisc->execute();
+        $resGetDisc = $stmtGetDisc->get_result();
+        $rowGetDisc  = $resGetDisc->fetch_assoc();
+        $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
+      }
+      $remarks = 'not fully paid';
+    }else if($scholarType == 'Full'){
+      $balance = 0;
+      $remarks = 'Full scholar';
+    }
+  }else{
+    $balance = $stud_fee;
     $remarks = 'not fully paid';
-  }else if($stud_scholarship == 'Full'){
-    $balance = 0;
-    $remarks = 'Full scholar';
   }
 
   $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
@@ -191,7 +233,7 @@ $sqlUpdateAll = "UPDATE `tbl_student_info` AS info
                   SET 
                   info.firstname = ?,info.lastname = ?,info.middlename = ?,
                   req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
-                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_percent = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
+                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
                   det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
                   WHERE info.stud_id = ?";
 $stmtUpdateAll = $con->prepare($sqlUpdateAll);

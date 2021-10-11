@@ -7,7 +7,7 @@
          FROM tbl_student_info as s
          LEFT JOIN tbl_student_school_details as d
          ON s.stud_id = d.stud_id
-         LEFT JOIN tbl_student_scholarship as i
+         LEFT JOIN tbl_student_fees as i
          ON s.stud_id = i.stud_id
          WHERE d.stud_type = ?";
   $stmt = $con->prepare($sql);
@@ -43,7 +43,7 @@ $sql = "SELECT s.stud_id, s.firstname, s.lastname, s.email, d.LRN, d.stud_type,
          FROM tbl_student_info as s
          LEFT JOIN tbl_student_school_details as d
          ON s.stud_id = d.stud_id
-         LEFT JOIN tbl_student_scholarship as i
+         LEFT JOIN tbl_student_fees as i
          ON s.stud_id = i.stud_id";
   $stmt = $con->prepare($sql);
   $stmt->execute();
