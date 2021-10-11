@@ -19,6 +19,8 @@
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
     <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--Animation-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>Registrar</title>
   </head>
   <body>
@@ -54,7 +56,6 @@
       </div>
     </div>
 
-<<<<<<< HEAD
     <!-- PopUp for Archive -->
     <div class="popUpArchive" style="visibility: hidden; opacity: 0; transition: all 150ms;"> 
       <div class="popUpArchiveinner">
@@ -152,8 +153,6 @@
     
 
 
-=======
->>>>>>> a74681845873bb844d57caca76e09302ae5ba7a2
     <div class="row">
       <div class="col-3 left-tab">
         <div class="upper-left-tab">
@@ -273,7 +272,6 @@
                             
                           </tr>
                         </thead>
-<<<<<<< HEAD
                         <tbody>
                           <tr>
                             <th scope="row">2018301302</th>
@@ -286,9 +284,7 @@
                             <td>Full</td>
                             <td>1011121314</td>
                             <td>pulido@gmail.com</td>
-=======
                         <tbody id="registrarDash">
->>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
                           
                           </tr>
                           <tr>
@@ -475,13 +471,10 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-<<<<<<< HEAD
                                    
 
 
-=======
                                   
->>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
                                     </select>
                                     <label for="studMajor">Major</label>
                                   </div>
@@ -960,7 +953,6 @@
                             <td>DelosReyes</td>
                             <td>Student</td>
                             <td>delosreyes366@gmail.com</td>
-<<<<<<< HEAD
                             <td><button class="btn btn-outline-primary archiveBtn">Archive</button></td>
 
                       
@@ -986,7 +978,6 @@
                             </script>
 
 
-=======
                             <td>Enrolled</td>
                             
                           </tr>
@@ -1014,7 +1005,6 @@
                             <td>Student</td>
                             <td>villano612@gmail.com</td>
                             <td>Graduate</td>
->>>>>>> a74681845873bb844d57caca76e09302ae5ba7a2
                             
                           </tr>
                         </tbody>
@@ -1123,9 +1113,7 @@
                           </tr>
                         </thead>
                         <tbody>
-<<<<<<< HEAD
                         
-=======
                           <tr>
                             <th scope="row">2018300366</th>
                             <td>Justine Dave</td>
@@ -1135,7 +1123,6 @@
                             <td>Enrolled</td>
                             
                           </tr>
->>>>>>> a74681845873bb844d57caca76e09302ae5ba7a2
                           <tr>
                             <th scope="row">2018300478</th>
                             <td>Michael</td>
@@ -1257,11 +1244,9 @@
         table_.classList.toggle('active')
     }
   </script>
-<<<<<<< HEAD
-=======
 
   <script>
- $.ajax({
+  $.ajax({
     type:'GET',
     url:"../includes/countStud.php",
     data:'',
@@ -1290,7 +1275,6 @@
   });
   </script>
 
->>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1554,8 +1538,6 @@
               }
             });
           });
-<<<<<<< HEAD
-=======
           $("#searchDash_btn").click(function(){
             $.ajax({
               type:'POST',
@@ -1571,7 +1553,6 @@
             });
           });
           
->>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
           // Delete AJAX Request
           $('#stud_delete').click(function (e) { 
             e.preventDefault();
@@ -1624,8 +1605,6 @@
               }
             });
         }
-<<<<<<< HEAD
-=======
         //-----------OLD/TRANSFER STUDENT------------
         function sortDisplay(stud_type){
             $.ajax({
@@ -1639,7 +1618,6 @@
               
             });
         }
->>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
         function enableAll(){
           $("[name='student_number']").removeAttr('disabled');
           $("[name='stud_firstname']").removeAttr('disabled');
@@ -1721,7 +1699,6 @@
             let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-<<<<<<< HEAD
             if (roleId.includes('Registrarx')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
@@ -1743,13 +1720,11 @@
               employeeTabContent.classList.remove('active')
             })
             
-=======
             if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
             } 
->>>>>>> a74681845873bb844d57caca76e09302ae5ba7a2
       </script>
 
 
