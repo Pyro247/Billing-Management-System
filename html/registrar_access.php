@@ -245,7 +245,7 @@
 
               <div class="tab-content" id="myTabContent">
 <!----------------------------------------------- Students Tab ---------------------------------------------------------->
-                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
+                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab stud_tabForAdmin" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
                   <form action="../includes/manage_student.php" method="post" class="universalForm_two" id="studForm">
@@ -352,7 +352,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-                                   
+                                  
 
 
                                     </select>
@@ -1056,9 +1056,6 @@
         // Function To change Title
         const tab_count_manage_users = 1;
 
-          const employee_tab = document.getElementById('employees-tab');
-          const student_tab = document.getElementById('student-tab');
-          const all_users_tab = document.getElementById('all-users-tab');
 
 
           function profile_link_show(){
@@ -1439,24 +1436,31 @@
             const allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             const feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             const studetntTabForAdmin = document.getElementById('student-tab')
-
-            if (roleId.includes('Registrar')){
+            const stud_tabForAdmin = document.querySelector('.stud_tabForAdmin')
+            const employeeTabContent = document.getElementById('employees')
+            
+            if (roleId.includes('Registrxar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
             }else{
               studetntTabForAdmin.style.display = "none"
-              employeeTabForAdmin.classList.toggle('active')
+              stud_tabForAdmin.style.display="none"
               employeeTabForAdmin.classList.toggle('show')
-             
+              employeeTabForAdmin.classList.toggle('active')
 
+              employeeTabContent.classList.toggle('show')
+              employeeTabContent.classList.toggle('active')
             }
 
-            
-              allUserTabForAdmin.addEventListener('click', function(){
-              employeeTabForAdmin.classList.toggle('active')
-              employeeTabForAdmin.classList.toggle('show')
-              })
+            allUserTabForAdmin.addEventListener("click", function(){
+              employeeTabForAdmin.classList.remove('show')
+              employeeTabForAdmin.classList.remove('active')
+              employeeTabContent.classList.remove('show')
+              employeeTabContent.classList.remove('active')
+            })
+
+
             
 
             
