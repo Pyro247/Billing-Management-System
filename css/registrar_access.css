@@ -463,7 +463,7 @@ hr{
 
 
 /* Archive POPUP */
-.popUpArchive{
+.popUpArchive, .popUpAdmin_FeesManagement{
     width: 100%;
     height: 100vh;
     position: absolute;
@@ -474,8 +474,8 @@ hr{
     justify-content: center;
 }
 
-.popUpArchiveinner{
-    width: 500px;
+.popUpArchiveinner, .popUpFeesMgmtinner{
+    width: auto;
     background: var(--white-color);
     border-radius: 25px;
     padding: 25px;
@@ -485,9 +485,7 @@ hr{
 
 }
 
-
-
-.popUpArchiveinner i{
+.popUpArchiveinner i, .popUpFeesMgmtinner i{
     font-size: 2rem;
     cursor: pointer;
     transition: all 300ms;
@@ -506,6 +504,50 @@ hr{
     justify-content: space-around;
 }
 .innerFormArchive label{
-    width: 15   0px;
+    width: 150px;
+}
+
+
+/* Fees management POPUP */
+
+.PopUpFeesMgmt_Title{
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #0d6efd;
+}
+
+.addAY input{
+    background-color: #d6e6f7;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    border-bottom: 2px solid #1e1e1e;
+    text-align: center;
+}
+
+
+.popUpFeesMgmtinner form input, select{
+    background-color: #d6e6f7;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    border-bottom: 2px solid #1e1e1e;
+    text-align: center;
+    width: 100%;
+}
+
+.popUpFeesMgmtinner .addAY input{
+    background-color: #d6e6f7;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    border-bottom: 2px solid #1e1e1e;
+    text-align: center;
+    width: auto;
+}
+
+
+.popUpFeesMgmtinner form input::placeholder{
+    color: #1d1f20;
 }
 

@@ -65,18 +65,88 @@
           <form action="">
             <div class="innerFormArchive">
               <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
-              <label class="btn btn-outline-primary" for="graduate">Graduate</label>
+              <label class="btn btn-outline-primary mx-1" for="graduate">Graduate</label>
 
               <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
-              <label class="btn btn-outline-primary" for="drop">Dropped</label>
+              <label class="btn btn-outline-primary mx-1" for="drop">Dropped</label>
 
               <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
-              <label class="btn btn-outline-primary" for="discontinued">Discontinued</label>
+              <label class="btn btn-outline-primary mx-1" for="discontinued">Discontinued</label>
             </div>
               <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
         </div>
       </div>
+
+    <!-- Add School Year -->
+    <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
+      <div class="popUpFeesMgmtinner">
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(0)"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Add Academic Year</p>
+          <hr class="mt-0 mb-3">
+            <form action="" class="addAY">
+                
+                <input type="text" placeholder="Academic Year">
+                <span class="mx-2">To</span>
+                <input type="text"  placeholder="Academic Year">
+
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+            </form>
+      </div>
+    </div>
+
+    <!-- Add Bachelor's Program -->
+    <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
+      <div class="popUpFeesMgmtinner">
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1)"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
+          <hr class="mt-0 mb-3">
+            <form action="">
+            
+                
+
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+            </form>
+      </div>
+    </div>
+
+    <!-- Add Scholarship -->
+    <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
+      <div class="popUpFeesMgmtinner">
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(2)"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
+          <hr class="mt-0 mb-3">
+            <form action="">
+
+              <p>Description &nbsp;<input type="text" placeholder="Description"></p>
+              <p>Type &nbsp;
+                <select name="" id="">
+                  <option value="">Full</option>
+                  <option value="">Partial</option>
+                </select>
+              </p>
+
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+            </form>
+      </div>
+    </div>
+
+
+    <!-- Add Discount -->
+    <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
+      <div class="popUpFeesMgmtinner">
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(3)"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Discount</p>
+          <hr class="mt-0 mb-3">
+            <form action="" class="popUpAdminBP">
+            
+              <p>Description &nbsp;<input type="text" placeholder="Description"></p>
+              <p>Percentage &nbsp;<input type="text" placeholder="0.00%"></p>
+
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+            </form>
+      </div>
+    </div>
 
     
 
@@ -802,23 +872,22 @@
                       
 
                             <script type="text/javascript">
-                              const btnArchive = document.querySelector('.archiveBtn')
+                              
                               const popUpArchive = document.querySelector('.popUpArchive')
-                              const closeBtn = document.querySelector('.closeBtnPopUp')
+                              const popUpinner = document.querySelector('.popUpArchiveinner')
 
-                              let popUpinner = document.querySelector('.popUpArchiveinner')
-                              btnArchive.addEventListener("click", function(){
+                                document.querySelector('.archiveBtn').addEventListener("click", function(){
                                 popUpArchive.style.visibility = "visible"
                                 popUpArchive.style.opacity = "1"
                                 popUpinner.classList.toggle('animate__animated')
                                 popUpinner.classList.toggle('animate__bounceIn')
                               })
 
-                              closeBtn.addEventListener("click", function(){
-                                popUpArchive.style.visibility = "hidden"
-                                popUpArchive.style.opacity = "0"
-                                popUpinner.classList.toggle('animate__animated')
-                                popUpinner.classList.toggle('animate__bounceIn')
+                                document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
+                                  popUpArchive.style.visibility = "hidden"
+                                  popUpArchive.style.opacity = "0"
+                                  popUpinner.classList.toggle('animate__animated')
+                                  popUpinner.classList.toggle('animate__bounceIn')
                               })
                             </script>
 
@@ -929,7 +998,7 @@
                           </tr>
                         </thead>
                         <tbody>
-                         
+                        
                           <tr>
                             <th scope="row">2018300478</th>
                             <td>Michael</td>
@@ -967,22 +1036,20 @@
 
             </div>
 
+            
+            <!-- Fees Management -->
             <div class="tab-pane fade" id="v-pills-fees" role="tabpanel" aria-labelledby="v-pills-fees-tab">
               <p class="title_tab_universal">Manage Fees</p>
-
-              
               <form action="" class="universal_search_form">
                 <input type="text" name="" id="" placeholder="Search">
                 <button type="button" class="btn btn-primary">Search</button>
               </form>
-
               <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
-                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add School Year</button>
-                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
-                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Scholarship</button>
-                  <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add School Year</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(1)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)"><i class="fas fa-plus"></i>&nbsp;Add Scholarship</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
               </div>
-
               <div class="col universal_bg_gray_table">
                 <table class="table">
                   <thead class="thead-light">
@@ -999,14 +1066,43 @@
                   </thead>
                 </table>
               </div>
-              
+            </div>
 
-              </div>
+            <!-- For POPUPS ADMIN -->
+            <script type="text/javascript">
+                const parentContainerPopUpForAdmin = document.getElementsByClassName('popUpAdmin_FeesManagement')
+                const childContainerPopUpForAdmin = document.getElementsByClassName('popUpFeesMgmtinner')
+                const buttonsAdmin = document.getElementsByClassName('feesMgmt_btn')
+                const closeBtnPopUp = document.getElementsByClassName('closeBtnPopUp')
+
+                function popUpAdmin_SchoolFees(counter){
+                  parentContainerPopUpForAdmin[counter].style.visibility = "visible"
+                  parentContainerPopUpForAdmin[counter].style.opacity = "1"
+                  childContainerPopUpForAdmin[counter].classList.toggle('animate__animated')
+                  childContainerPopUpForAdmin[counter].classList.toggle('animate__bounceIn')
+                }
+
+                function closePopUp(index){
+                  parentContainerPopUpForAdmin[index].style.visibility = "hidden"
+                  parentContainerPopUpForAdmin[index].style.opacity = "0"
+                  childContainerPopUpForAdmin[index].classList.toggle('animate__animated')
+                  childContainerPopUpForAdmin[index].classList.toggle('animate__bounceIn')
+                }
+                
+
+
+
+
+
+
+            </script>
+        
 
           
           </div>
         </div>
     </div>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -1439,7 +1535,7 @@
             const stud_tabForAdmin = document.querySelector('.stud_tabForAdmin')
             const employeeTabContent = document.getElementById('employees')
             
-            if (roleId.includes('Registrxar')){
+            if (roleId.includes('Registrarx')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
@@ -1459,10 +1555,6 @@
               employeeTabContent.classList.remove('show')
               employeeTabContent.classList.remove('active')
             })
-
-
-            
-
             
       </script>
 
