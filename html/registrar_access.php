@@ -104,7 +104,7 @@
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false">Fees Management</a>
                 
-                <q class="mt-2">Version 1.0.0.0</q>
+                
             </div>
         </div>
         
@@ -1054,29 +1054,15 @@
         setInterval(clock, 1000);   
 
         // Function To change Title
-        let tab_count_manage_users = 1;
-     
-          let employee_tab = document.getElementById('employees-tab');
-          let student_tab = document.getElementById('student-tab');
-          let all_users_tab = document.getElementById('all-users-tab');
+        const tab_count_manage_users = 1;
 
-          student_tab.addEventListener("click", function(){
-            tab_count_manage_users = 1;
-            change_tab();
-          });
+          const employee_tab = document.getElementById('employees-tab');
+          const student_tab = document.getElementById('student-tab');
+          const all_users_tab = document.getElementById('all-users-tab');
 
-          employee_tab.addEventListener("click", function(){
-            tab_count_manage_users = 2;
-            change_tab();
-          });
-
-          all_users_tab.addEventListener("click", function(){
-            tab_count_manage_users = 3;
-            change_tab();
-          });
 
           function profile_link_show(){
-            let profile_link = document.getElementById('profile_link_id');
+            const profile_link = document.getElementById('profile_link_id');
           profile_link.classList.toggle('show');
           }
       </script>
@@ -1448,16 +1434,32 @@
         }
 
         // Limited access for Registrar
-            let roleId = document.getElementById('roleId').innerHTML
-            let employeeTabForAdmin = document.getElementById('employee_ForAdmin');
-            let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
-            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
-            
-            if (roleId.includes('Registxrar')){
+            const roleId = document.getElementById('roleId').innerHTML
+            const employeeTabForAdmin = document.getElementById('employee_ForAdmin');
+            const allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
+            const feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
+            const studetntTabForAdmin = document.getElementById('student-tab')
+
+            if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
-            } 
+            }else{
+              studetntTabForAdmin.style.display = "none"
+              employeeTabForAdmin.classList.toggle('active')
+              employeeTabForAdmin.classList.toggle('show')
+             
+
+            }
+
+            
+              allUserTabForAdmin.addEventListener('click', function(){
+              employeeTabForAdmin.classList.toggle('active')
+              employeeTabForAdmin.classList.toggle('show')
+              })
+            
+
+            
       </script>
 
 
