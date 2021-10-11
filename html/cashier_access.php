@@ -20,6 +20,9 @@
      <!-- Sweet Alert 2 -->
      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+
 
 
 
@@ -180,7 +183,23 @@
         
         </div>
       </div>
-              
+      <!-- Modal -->
+      <div class="modal fade" id="salesInvoice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Proof of Payment</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <img id="invoiceImg" style="width: 100%;" src="">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>    
 
 
             <!-- PAYMENT TRANSACTIONS -->
@@ -552,6 +571,11 @@
             console.log(response)
           }
         });
+      });
+      $(document).on('click', '#viewInvoice', function(){
+        let invoiceImg = $(this).attr("data-id");
+        let dir = '../saleInvoiceImg/'
+        document.getElementById("invoiceImg").src = dir + invoiceImg;
       });
     });
     function display(){

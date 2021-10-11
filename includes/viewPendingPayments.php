@@ -20,7 +20,9 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['transaction_date'];?></td>
     <td><?=$data['email'];?></td>
     <td>
-      <a href="#" class="btn btn-primary">View</a>
+    <button type="button" class="btn btn-primary" id="viewInvoice" data-bs-toggle="modal" data-bs-target="#salesInvoice" data-id="<?=$data['sales_invoice'];?>">
+      View
+    </button>
     </td>
     <td>
       <a href="#" class="btn btn-success" id="approve" data-id="<?=$data['transaction_no'];?>">Approve</a>
