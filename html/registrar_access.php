@@ -480,7 +480,7 @@
                       <hr>
                       <form action="" class="universal_search_form">
                         <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
-                        <button type="button" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn btn-primary" id="searchStud_btn">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
@@ -1293,7 +1293,7 @@
           });
           
           // Search Ajax Request
-          $("#searchStud").keypress(function(){
+          $("#searchStud_btn").click(function(){
             $.ajax({
               type:'POST',
               url:'../includes/searchStudData.php',
