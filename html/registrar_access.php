@@ -89,8 +89,8 @@
               <p class="title_tab_universal" >Dashboard</p>
 
                 <form action="" class="universal_search_form">
-                  <input type="text" name="" id="" placeholder="Search">
-                  <button type="button" class="btn btn-primary">Search</button>
+                  <input type="text" name="searchDash" id="searchDash" placeholder="Search">
+                  <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
                 </form>
 
               <div class="col my-3 d-flex justify-content-evenly">
@@ -100,7 +100,7 @@
                   </div>
                   <div class="student__group_right align-center" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
-                    <strong class="text-center d-block">626</strong>
+                    <strong class="text-center d-block" id = "countTotal"></strong>
                   </div>
                 </div>
 
@@ -110,7 +110,7 @@
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Transferee Students</span>
-                    <strong class="text-center d-block">277</strong>
+                    <strong class="text-center d-block" id = "countTransfer"></strong>
                   </div>
                 </div>
 
@@ -120,7 +120,7 @@
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Old Students</span>
-                    <strong class="text-center d-block">349</strong>
+                    <strong class="text-center d-block" id = "countOld"></strong>
                   </div>
                 </div>
               </div>
@@ -173,6 +173,7 @@
                             
                           </tr>
                         </thead>
+<<<<<<< HEAD
                         <tbody>
                           <tr>
                             <th scope="row">2018301302</th>
@@ -185,6 +186,9 @@
                             <td>Full</td>
                             <td>1011121314</td>
                             <td>pulido@gmail.com</td>
+=======
+                        <tbody id="registrarDash">
+>>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
                           
                           </tr>
                           <tr>
@@ -371,9 +375,13 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
+<<<<<<< HEAD
                                    
 
 
+=======
+                                  
+>>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
                                     </select>
                                     <label for="studMajor">Major</label>
                                   </div>
@@ -395,31 +403,39 @@
                               <div class="row g-2 mb-1"> 
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_scholarship" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option value="Half">Half</option>
-                                        <option value="Full">Full</option>
+                                      <select class="form-select" name="stud_scholarship" id="studScholarship" aria-label="Floating label select example" disabled>
+                                      <option value="N/A">N/A</option>
+                                      <?php 
+                                      $slqScholar = "SELECT DISTINCT scholar_type FROM `tbl_scholarship`";
+                                      $stmtScholar = $con->prepare($slqScholar);
+                                      $stmtScholar->execute();
+                                      $resScholar = $stmtScholar->get_result();
+                                      while($rowScholar = $resScholar->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowScholar['scholar_type'];?>"><?= $rowScholar['scholar_type'];?></option>
+                                    <?php }; ?>
+                                      <!--  -->
                                       </select>
-                                      <label for="floatingSelect">Scholarship</label>
+                                      <label for="studScholarship">Scholarship</label>
                                     </div>
                                   </div>
 
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_discount" id="floatingSelect" aria-label="Floating label select example" disabled>
-                                        <option value="0">0%</option>
-                                        <option value="10">10%</option>
-                                        <option value="20">20%</option>
-                                        <option value="30">30%</option>
-                                        <option value="40">40%</option>
-                                        <option value="50">50%</option>
-                                        <option value="60">60%</option>
-                                        <option value="70">70%</option>
-                                        <option value="80">80%</option>
-                                        <option value="90">90%</option>
-                                        <option value="100">100%</option>
+                                      <select class="form-select" name="stud_discount" id="studDiscount" aria-label="Floating label select example" disabled>
+                                      <option value="N/A">N/A</option>
+                                      <?php 
+                                      $slqDiscount = "SELECT * FROM `tbl_discount`";
+                                      $stmtDiscount = $con->prepare($slqDiscount);
+                                      $stmtDiscount->execute();
+                                      $resDiscount = $stmtDiscount->get_result();
+                                      while($rowDiscount = $resDiscount->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowDiscount['discount_type'];?>"><?= $rowDiscount['discount_type'];?></option>
+                                    <?php }; ?>
                                       </select>
-                                      <label for="floatingSelect">Discount</label>
+                                      <label for="studDiscount">Discount</label>
                                     </div>
                                   </div>
 
@@ -1082,6 +1098,40 @@
         table_.classList.toggle('active')
     }
   </script>
+<<<<<<< HEAD
+=======
+
+  <script>
+ $.ajax({
+    type:'GET',
+    url:"../includes/countStud.php",
+    data:'',
+    success: function(data){
+            $('#countTotal').html(data);
+    }
+});
+</script>
+
+  <script>
+    //total student
+  $(document).ready(function() {
+    $("#totalStud").click(function(e) {
+    sortDisplay();
+  });
+    //old student
+  $("#oldStud").click(function(e) {
+    let stud_type = 'old'
+    sortDisplay(stud_type);
+  });
+    //transferee student
+  $("#transferStud").click(function(e) {
+    let stud_type = 'transferee'
+    sortDisplay(stud_type);
+  });
+  });
+  </script>
+
+>>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1345,6 +1395,24 @@
               }
             });
           });
+<<<<<<< HEAD
+=======
+          $("#searchDash_btn").click(function(){
+            $.ajax({
+              type:'POST',
+              url:'../includes/searchDash.php',
+              data:{
+                "search": 1,
+                "query":$("#searchDash").val(),
+              },
+              success:function(data){
+                $("#registrarDash").html(data);
+                
+              }
+            });
+          });
+          
+>>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
           // Delete AJAX Request
           $('#stud_delete').click(function (e) { 
             e.preventDefault();
@@ -1397,6 +1465,22 @@
               }
             });
         }
+<<<<<<< HEAD
+=======
+        //-----------OLD/TRANSFER STUDENT------------
+        function sortDisplay(stud_type){
+            $.ajax({
+              type: "POST",
+              url: "../includes/registrarDash.php",
+              dataType: "html",
+              data: {"stud_type" : stud_type},
+              success: function (data) {
+                $('#registrarDash').html(data);
+              }
+              
+            });
+        }
+>>>>>>> 2373e7719489bc2e0652e425a55d30b61fa5ae94
         function enableAll(){
           $("[name='student_number']").removeAttr('disabled');
           $("[name='stud_firstname']").removeAttr('disabled');
