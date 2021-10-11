@@ -56,28 +56,29 @@
       </div>
     </div>
 
+    <!-- PopUp for Archive -->
     <div class="popUpArchive" style="visibility: hidden; opacity: 0; transition: all 150ms;"> 
       <div class="popUpArchiveinner">
-      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end"></i>
-      <p class="text-primary d-block text-center mt-5" >Choose Archive Reason</p>
-      
-        <form action="">
-          <div class="innerFormArchive">
-            <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
-            <label class="btn btn-outline-primary" for="graduate">Graduate</label>
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end"></i>
+        <p class="text-primary d-block text-center mt-5" >Choose Archive Reason</p>
+        
+          <form action="">
+            <div class="innerFormArchive">
+              <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
+              <label class="btn btn-outline-primary" for="graduate">Graduate</label>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
-            <label class="btn btn-outline-primary" for="drop">Dropped</label>
+              <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
+              <label class="btn btn-outline-primary" for="drop">Dropped</label>
 
-            <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
-            <label class="btn btn-outline-primary" for="discontinued">Discontinued</label>
-          </div>
-          <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
-
-
-        </form>
+              <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
+              <label class="btn btn-outline-primary" for="discontinued">Discontinued</label>
+            </div>
+              <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+          </form>
+        </div>
       </div>
-      </div>
+
+    
 
     
 
@@ -820,6 +821,8 @@
                                 popUpinner.classList.toggle('animate__bounceIn')
                               })
                             </script>
+
+
                             
                           </tr>
                         
@@ -837,9 +840,6 @@
 
               </div>
               </div>
-        
-            
-
 
 
             <!-- ARCHIVES -->
@@ -991,7 +991,6 @@
                       <th scope="col">Program</th>
                       <th scope="col">Major</th>
                       <th scope="col">Year Level</th>
-                      <th scope="col">Major</th>
                       <th scope="col">Semester</th>
                       <th scope="col">Tuition Fee</th>
                       <th scope="col">Action</th>

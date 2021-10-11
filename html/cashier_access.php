@@ -70,13 +70,13 @@
 
 
     <div class="row">
-      <div class="col-3 left-tab">
+      <div class="col left-tab">
         <div class="upper-left-tab">
           <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
           <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
-              <a href="">Change Password</a>
+              <a href="../html/forgotPassword.php">Change Password</a>
               <a href="">Logout</a>
             </div>
           <p class="reg__name">Cashier | C-2021003</p>
@@ -88,8 +88,9 @@
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false">Payment Transactions</a>
             <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
             <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
+            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false">Student Fees</a>
             
-            <q class="mt-2">Version 1.0.0.0</q>
+            
       </div>
       </div>
       
@@ -143,7 +144,7 @@
                       <th scope="col">Date</th>
                       <th scope="col">Email</th>
                       <th scope="col">Sales Invoice</th>
-                      <th scope="col">Action</th>
+                      <!-- <th scope="col">Action</th> -->
                       
                     </tr>
                   </thead>
@@ -525,6 +526,12 @@
 
             </div>
 
+
+            <!-- Student Fees -->
+            <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
+              <p class="title_tab_universal">Student Fee</p>
+            </div>
+
           
           
 
@@ -582,7 +589,7 @@
                 Swal.fire(
                 'Approve!',
                 'Payment Proccessed Complete',
-                'success'
+                'Success'
                 )
                 display();
               }
