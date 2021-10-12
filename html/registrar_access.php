@@ -1691,12 +1691,12 @@
 
       <script type="text/javascript">
            // Limited access for Registrar
-           const roleId = document.getElementById('roleId').innerHTML
+          const roleId = document.getElementById('roleId').innerHTML
             
-            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
 
-            if (roleId.includes('Registrarx')){
+            if (roleId.includes('Registrar')){
               document.querySelector('#employees-tab').style.display = "none"
+              document.getElementById('v-pills-fees-tab').style.display = "none"
             }else{
               document.querySelector('#student-tab').style.display = "none"
               document.querySelector('#student').style.display = "none"
