@@ -107,6 +107,7 @@
             <p>Program &nbsp;<input type="text" placeholder="Program"></p>
             <p>Major &nbsp;<input type="text" placeholder="Major"></p>
             <p>Duration &nbsp;<input type="text" placeholder="Duration"></p>
+            <p>Year Level &nbsp;<input type="text" placeholder="Year Level"></p>
             <p>Semester &nbsp;<input type="text" placeholder="Semester"></p>
             <p>Fee &nbsp;<input type="text" placeholder="Fee"></p>
 
@@ -1693,7 +1694,7 @@
           const roleId = document.getElementById('roleId').innerHTML
             
 
-            if (roleId.includes('Registrar')){
+            if (roleId.includes('Registrarx')){
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
             }else{
