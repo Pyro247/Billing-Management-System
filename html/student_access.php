@@ -139,8 +139,6 @@
                                 </thead>
                                 <tbody >
                                 <?php
-
-
                                 $sql ="SELECT transaction_no, amount, payment_method, transaction_date, payment_status, cashier_name
                                         FROM tbl_payments WHERE stud_id = ?
                                         UNION ALL
@@ -419,24 +417,38 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="text-center">
-                            <th scope="row">FT-001</th>
-                            <td>₱2000</td>
-                            <td>Online - Gcash</td>
-                            <td>02/11/2021</td>
-                            <td class="text-success text-uppercase fw-bold">Approved</td>
-                            <td>Juan A. DelaCruz</td>
-                        </tr>
+                        <?php
 
-                        <tr class="text-center">
-                            <th scope="row">FT-006</th>
-                            <td>₱3250</td>
-                            <td>Cash</td>
-                            <td>02/21/2021</td>
-                            <td class="text-success text-uppercase fw-bold">Approved</td>
-                            <td>Juan A. DelaCruz</td>
+                                $sql ="SELECT transaction_no, amount, CONCAT(payment_method,'-',payment_gateway) 
+                                AS payment, transaction_date, payment_status, cashier_name
+                                FROM tbl_payments WHERE stud_id = ?";
+                                $stmt = $con->prepare($sql);
+                                $stmt->bind_param('s', $_SESSION['stud_id']);
+                                $stmt->execute();
+                                $res = $stmt->get_result();
+                                $count = $res->num_rows;
+
+                        ?>
+                        <?php 
+                                if($count > 0){
+                                while($data = $res->fetch_assoc()){?>
+                                <tr class="text-center">
+                                    <td><?=$data['transaction_no'];?></td>
+                                    <td><?=$data['amount'];?></td>
+                                    <td><?=$data['payment'];?></td>
+                                    <td><?=$data['transaction_date'];?></td>
+                                    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                    <td><?=$data['cashier_name'];?></td>
+                                </tr>
+                        <?php }?>
+                        <?php }else{?>
+                                <tr>
+                                    <td><?php echo "No Records"?></td>
+                                </tr>
+                        <?php } 
+                                                        
+                        ?>
                         
-                        </tr>
                         </tbody>
                     </table>
                    
