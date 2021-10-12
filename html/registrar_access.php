@@ -696,7 +696,7 @@
 
                         
 
-                           <div class="col-md-3">
+                           <div class="col-md">
                             <div class="form-floating">
                             <select class="form-select" name="emp_role" id="floatingSelect" aria-label="Floating label select example">
                             <option value="" selected></option>
@@ -706,6 +706,13 @@
                               <label for="floatingSelect">Role</label>
                             </div>
                           </div>
+
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
+                              <label for="floatingInputGrid">Employee ID</label>
+                            </div>
+                          </div>
                          
                       </div>
 
@@ -713,14 +720,6 @@
 
 
                       <div class="row g-2 mb-1">
-
-                     
-                      <div class="col-md">
-                            <div class="form-floating">
-                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Employee ID</label>
-                            </div>
-                          </div>
                         <div class="col-md">
                           <div class="form-floating">
                             <input type="text" class="form-control" name="emp_firstname" id="floatingInputGrid" placeholder=" " value="">
@@ -746,7 +745,7 @@
                         </div>
 
                         <div class="row g-2 mb-1">
-                          <div class="col-md">
+                          <div class="col-md-3">
                             <div class="form-floating">
                               <select class="form-select" name="emp_sex" id="floatingSelect" aria-label="Floating label select example">
                                 <option value="Male" selected>Male</option>
@@ -756,20 +755,21 @@
                               <label for="floatingSelect">Sex</label>
                             </div>
                           </div>
-
+<!-- 
                           <div class="col-md-4">
                             <div class="form-floating">
                               <input type="date" class="form-control" name="emp_birthdate" id="floatingInputGrid" placeholder="">
                               <label for="floatingInputGrid">Birthdate</label>
                             </div>
-                          </div>
+                          </div> -->
 
-                          <div class="col-md">
+                          <!-- <div class="col-md">
                             <div class="form-floating">
                               <input type="number" class="form-control" name="emp_age" id="floatingInputGrid" placeholder=" " value="">
                               <label for="floatingInputGrid">Age</label>
                             </div>
-                          </div>
+                          </div> -->
+
                           <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" class="form-control" name="emp_address" id="floatingInputGrid" placeholder=" " value="">
@@ -796,19 +796,20 @@
                                 <label for="floatingInputGrid">Contact number</label>
                               </div>
                             </div>
-
+<!-- 
                             <div class="col-md">
                               <div class="form-floating">
                                 <input type="text" class="form-control" name="emp_citizenship" id="floatingInputGrid" placeholder=" " value="">
                                 <label for="floatingInputGrid">Citizenship</label>
                               </div>
-                            </div>
-                            <div class="col-md">
+                            </div> -->
+
+                            <!-- <div class="col-md">
                               <div class="form-floating">
                                 <input type="text" class="form-control" name="emp_civil_status" id="floatingInputGrid" placeholder=" " value="">
                                 <label for="floatingInputGrid">Civil Status</label>
                               </div>
-                            </div>
+                            </div> -->
         
                           </div>
 
@@ -819,7 +820,7 @@
                   </div> 
                   
                   <div class="buttons_manage_universal">
-                  <button type="button" name="" class="btn btn-info">Enroll</button>
+                  <!-- <button type="button" name="" class="btn btn-info">Enroll</button> -->
                   <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
                   <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
                   <button type="submit" name="emp_save" class="btn btn-success" >Save</button>
@@ -1707,15 +1708,17 @@
             let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-            if (roleId.includes('Registraxr')){
+            if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
-            }else{
-              studetntTabForAdmin.style.display = "none"
-              stud_tabForAdmin.style.display="none"
+
+            }else{ 
+
               employeeTabForAdmin.classList.toggle('show')
               employeeTabForAdmin.classList.toggle('active')
+
+              // allUserTabForAdmin.style.display = "none";
 
               employeeTabContent.classList.toggle('show')
               employeeTabContent.classList.toggle('active')
