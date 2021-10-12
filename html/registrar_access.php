@@ -174,7 +174,7 @@
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false">Archives</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false">Fees Management</a>
                 
-                <q class="mt-2">Version 1.0.0.0</q>
+                
             </div>
         </div>
         
@@ -1699,7 +1699,7 @@
             let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-            if (roleId.includes('Registrarx')){
+            if (roleId.includes('Registrar')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";
@@ -1720,11 +1720,7 @@
               employeeTabContent.classList.remove('active')
             })
             
-            if (roleId.includes('Registrar')){
-              employeeTabForAdmin.style.display = "none";
-              allUserTabForAdmin.style.display = "none";
-              feesManagementForAdmin.style.display = "none";
-            } 
+            
       </script>
 
 
