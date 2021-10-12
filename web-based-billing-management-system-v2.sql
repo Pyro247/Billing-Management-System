@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 11, 2021 at 03:23 PM
+-- Generation Time: Oct 12, 2021 at 11:19 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -53,7 +53,8 @@ CREATE TABLE `tbl_accounts` (
 
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
 (1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
-(2018301301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', '');
+(2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', ''),
+(2018301301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', '');
 
 -- --------------------------------------------------------
 
@@ -101,6 +102,25 @@ INSERT INTO `tbl_course_list` (`program_id`, `course_program`, `course_major`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_denied_payments`
+--
+
+CREATE TABLE `tbl_denied_payments` (
+  `transaction_no` varchar(255) NOT NULL,
+  `stud_id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `amount` int(11) NOT NULL,
+  `payment_gateway` varchar(100) NOT NULL,
+  `sales_invoice` longtext NOT NULL,
+  `transaction_date` date NOT NULL,
+  `status` varchar(100) NOT NULL,
+  `reason` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_discount`
 --
 
@@ -143,7 +163,7 @@ CREATE TABLE `tbl_employee_info` (
 --
 
 CREATE TABLE `tbl_payments` (
-  `transaction_no.` varchar(100) NOT NULL,
+  `transaction_no` varchar(100) NOT NULL,
   `program_id` int(11) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
@@ -224,7 +244,7 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301, 'Michael Estrecho Isla', '4', 'Athlete', 'N/A', 10000, 0, 5000, 'not fully paid');
+(1, 2018301, 'Michael Estrecho Isla', '4', 'Athlete', 'Disabilities', 10000, 0, 3500, 'not fully paid');
 
 -- --------------------------------------------------------
 
@@ -252,7 +272,7 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('', 2018301, 'Michael', 'Isla', 'Estrecho', '', '', '', '', 'N/A', 1301, 'Michael Isla');
+('20211', 2018301, 'Michael', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'm.isla1301@student.tsu.edu.ph', '09307078204', 'October 12, 2021, 4:39 pm', 2018301301, 'Michael Isla');
 
 -- --------------------------------------------------------
 
@@ -273,7 +293,7 @@ CREATE TABLE `tbl_student_requirements` (
 --
 
 INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2018301, '10.11.21', '10.11.21', '10.11.21', '10.11.21');
+(2018301, '10.12.21', '10.12.21', '10.12.21', '10.12.21');
 
 -- --------------------------------------------------------
 
@@ -297,7 +317,7 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301, '', '', '', '', 'BSIT', 'WMA', '4');
+(2018301, '12345', 'old', '2020-2021', '2', 'BSIT', 'WMA', '4');
 
 --
 -- Indexes for dumped tables
@@ -331,7 +351,7 @@ ALTER TABLE `tbl_employee_info`
 -- Indexes for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
-  ADD PRIMARY KEY (`transaction_no.`);
+  ADD PRIMARY KEY (`transaction_no`);
 
 --
 -- Indexes for table `tbl_student_info`
