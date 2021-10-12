@@ -205,29 +205,59 @@
                   <div class="student__group_left">
                     <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
                   </div>
-                  <div class="student__group_right align-center" onclick="dashboard_table_appear()">
+                  <div class="student__group_right align-center" id="totalStud" onclick="dashboard_table_appear()">
                     <span class="text-center d-block">Total Students</span>
-                    <strong class="text-center d-block" id = "countTotal"></strong>
+                    <strong class="text-center d-block">
+                    <?php
+                    $sql = "SELECT * FROM tbl_student_info";
+                    $statement = $con->prepare($sql);
+                    $statement->execute();
+                    $result = $statement->get_result();
+                    $row = $result->fetch_row();
+                    $count = mysqli_num_rows($result);
+                    echo $count;
+                    ?>
+                    </strong>
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud"onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Transferee Students</span>
-                    <strong class="text-center d-block" id = "countTransfer"></strong>
+                    <strong class="text-center d-block">
+                    <?php
+                    $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'transferee'";
+                    $statement = $con->prepare($sql);
+                    $statement->execute();
+                    $result = $statement->get_result();
+                    $row = $result->fetch_row();
+                    $count = mysqli_num_rows($result);
+                    echo $count;
+                    ?>
+                    </strong>
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
                   <div class="student__group_right align-center">
                     <span class="text-center d-block">Old Students</span>
-                    <strong class="text-center d-block" id = "countOld"></strong>
+                    <strong class="text-center d-block">
+                    <?php
+                    $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'old'";
+                    $statement = $con->prepare($sql);
+                    $statement->execute();
+                    $result = $statement->get_result();
+                    $row = $result->fetch_row();
+                    $count = mysqli_num_rows($result);
+                    echo $count;
+                    ?>
+                    </strong>
                   </div>
                 </div>
               </div>
@@ -280,57 +310,7 @@
                             
                           </tr>
                         </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">2018301302</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>BSCS</td>
-                            <td>Web and Mobile Application</td>
-                            <td>4th</td>
-                            <td>Transferee</td>
-                            <td>Full</td>
-                            <td>1011121314</td>
-                            <td>pulido@gmail.com</td>
                         <tbody id="registrarDash">
-                          
-                          </tr>
-                          <tr>
-                          <th scope="row">2018301303</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>BSIT</td>
-                            <td>Web and Mobile Application</td>
-                            <td>4th</td>
-                            <td>Old Student</td>
-                            <td>Full</td>
-                            <td>1011121315</td>
-                            <td>mery@gmail.com</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2018301304</th>
-                            <td>Justine</td>
-                            <td>Delos Reyes</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018301305</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>BSED</td>
-                            <td>English</td>
-                            <td>4th</td>
-                            <td>Transferee</td>
-                            <td>Partial</td>
-                            <td>1011121317</td>
-                            <td>isla@gmail.com</td>
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -642,7 +622,7 @@
                       <hr>
                       <form action="" class="universal_search_form">
                         <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
-                        <button type="button" class="btn btn-primary">Search</button>
+                        <button type="button" class="btn btn-primary" id="searchStud_btn">Search</button>
                       </form>
                       <div class="manage_student_tab_below mt-4">
                         <p class="role_information text-success">All Student's list and Filtering</p>
@@ -1036,13 +1016,14 @@
 
 
 
-            <!-- ARCHIVES -->
+<!------------------------ ARCHIVES --------------------------------->
+
             <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
               <p class="title_tab_universal">Archives</p>
 
               <form action="" class="universal_search_form">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <input type="text" name="searchArchive" id="searchArchive" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="searchArchive_btn">Search</button>
               </form>
 
               
@@ -1122,43 +1103,8 @@
                             
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="registrarArchive">
                         
-                          <tr>
-                            <th scope="row">2018300366</th>
-                            <td>Justine Dave</td>
-                            <td>DelosReyes</td>
-                            <td>Student</td>
-                            <td>delosreyes366@gmail.com</td>
-                            <td>Enrolled</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300478</th>
-                            <td>Michael</td>
-                            <td>Isla</td>
-                            <td>Student</td>
-                            <td>isla478@gmail.com</td>
-                            <td>Not Enrolled</td>
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300902</th>
-                            <td>Denver</td>
-                            <td>Pulido</td>
-                            <td>Student</td>
-                            <td>pulido902@gmail.com</td>
-                            <td>Dropped</td>
-                            
-                          </tr>
-                          <tr>
-                            <th scope="row">2018300612</th>
-                            <td>Mery Anne</td>
-                            <td>Villano</td>
-                            <td>Student</td>
-                            <td>villano612@gmail.com</td>
-                            <td>Graduate</td>
-                            
-                          </tr>
                         </tbody>
                       </table>
                     </div>
@@ -1255,17 +1201,6 @@
         
     }
   </script>
-
-  <script>
-  $.ajax({
-    type:'GET',
-    url:"../includes/countStud.php",
-    data:'',
-    success: function(data){
-            $('#countTotal').html(data);
-    }
-});
-</script>
 
   <script>
     //total student
@@ -1514,7 +1449,7 @@
           });
           
           // Search Ajax Request
-          $("#searchStud").keypress(function(){
+          $("#searchStud_btn").click(function(){
             $.ajax({
               type:'POST',
               url:'../includes/searchStudData.php',
@@ -1542,7 +1477,20 @@
               }
             });
           });
-          
+          $("#searchArchive_btn").click(function(){
+            $.ajax({
+              type:'POST',
+              url:'../includes/searchArchive.php',
+              data:{
+                "search": 1,
+                "query":$("#searchArchive").val(),
+              },
+              success:function(data){
+                $("#registrarArchive").html(data);
+                
+              }
+            });
+          });
           // Delete AJAX Request
           $('#stud_delete').click(function (e) { 
             e.preventDefault();
@@ -1682,11 +1630,19 @@
           $("[name='req_good_moral']").removeAttr('disabled');
           $("[name='stud_firstname']").removeAttr('disabled');
         }
-
-        
-                         
-                        
-       
+     
+      </script>
+      <script>
+          function display(){
+              $.ajax({
+                type: "POST",
+                url: "../includes/registrarArchive.php",
+                dataType: "html",
+                success: function (data) {
+                  $('#registrarArchive').html(data);
+                }
+              });
+          }
       </script>
 
       <script type="text/javascript">
@@ -1694,7 +1650,7 @@
           const roleId = document.getElementById('roleId').innerHTML
             
 
-            if (roleId.includes('Registrarx')){
+            if (roleId.includes('Registrar')){
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
             }else{
@@ -1707,7 +1663,6 @@
             }
 
       </script>
-
 
   </body>
 </html>
