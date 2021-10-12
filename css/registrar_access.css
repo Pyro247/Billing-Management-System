@@ -428,7 +428,7 @@ font-weight: bold;
     
 }
 
-.buttons_manage_universal button{
+.buttons_manage_universal button, .buttons_manage_universal a{
     margin: 10px 5px;
     width: 200px;
 }
@@ -440,7 +440,7 @@ hr{
 
 .s_c__{
     width: 150px;
- 
+
 }
 
 

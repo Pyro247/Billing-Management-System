@@ -608,6 +608,29 @@
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
                       <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button>
+
+                      <a class="btn btn-primary" id="stud_archive">Archive</a>
+                      <script type="text/javascript">
+                              
+                              const popUpArchive = document.querySelector('.popUpArchive')
+                              const popUpinner = document.querySelector('.popUpArchiveinner')
+
+                                document.querySelector('#stud_archive').addEventListener("click", function(){
+                                popUpArchive.style.visibility = "visible"
+                                popUpArchive.style.opacity = "1"
+                                popUpinner.classList.toggle('animate__animated')
+                                popUpinner.classList.toggle('animate__bounceIn')
+                              })
+
+                                document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
+                                  popUpArchive.style.visibility = "hidden"
+                                  popUpArchive.style.opacity = "0"
+                                  popUpinner.classList.toggle('animate__animated')
+                                  popUpinner.classList.toggle('animate__bounceIn')
+                              })
+                            </script>
+
+
                       </div>
                     </form> 
                     
@@ -947,9 +970,7 @@
                     <table class="table">
                         <thead class="thead-light">
                           <tr>
-                            <th scope="col">ID number</th>
-                            <th scope="col">First name</th>
-                            <th scope="col">Last name</th>
+                            <th scope="col">Student ID</th>
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
                             <th scope="col">Status</th>
@@ -960,33 +981,11 @@
                           <tr>
                             <th scope="row">2018300366</th>
                             <td>Justine Dave</td>
-                            <td>DelosReyes</td>
                             <td>Student</td>
                             <td>delosreyes366@gmail.com</td>
                             <td><button class="btn btn-outline-primary archiveBtn">Archive</button></td>
 
                       
-
-                            <script type="text/javascript">
-                              
-                              const popUpArchive = document.querySelector('.popUpArchive')
-                              const popUpinner = document.querySelector('.popUpArchiveinner')
-
-                                document.querySelector('.archiveBtn').addEventListener("click", function(){
-                                popUpArchive.style.visibility = "visible"
-                                popUpArchive.style.opacity = "1"
-                                popUpinner.classList.toggle('animate__animated')
-                                popUpinner.classList.toggle('animate__bounceIn')
-                              })
-
-                                document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
-                                  popUpArchive.style.visibility = "hidden"
-                                  popUpArchive.style.opacity = "0"
-                                  popUpinner.classList.toggle('animate__animated')
-                                  popUpinner.classList.toggle('animate__bounceIn')
-                              })
-                            </script>
-
 
                             <td>Enrolled</td>
                             
