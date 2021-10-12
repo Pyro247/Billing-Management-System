@@ -81,6 +81,48 @@
 
     echo json_encode( $response );
   }
+if(isset($_POST['deny'])){
+  $transactionNo = $_POST['transactionNo'];
+  $reasonToDeny = $_POST['reasonToDeny'];
+  $slq = "SELECT *
+          FROM tbl_pending_payments
+          WHERE transaction_no = ?";
+  $stmt = $con->prepare( $slq );
+  $stmt->bind_param( 's', $transactionNo );
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $row = $res->fetch_assoc();
+  if( $res->num_rows > 0 ) {
+    $transaction_no = $row['transaction_no'];
+    $stud_id = $row['stud_id'];
+    $fullname = $row['fullname'];
+    $email = $row['email'];
+    $amount = $row['amount'];
+    $payment_gateway = $row['payment_gateway'];
+    $sales_invoice = $row['sales_invoice'];
+    $transaction_date = $row['transaction_date'];
+    $status = "Denied";
 
+    $sqlDeny = "INSERT INTO `tbl_denied_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+    $stmtDeny = $con->prepare($sqlDeny);
+    $stmtDeny->bind_param('ssssssssss', $transaction_no,$stud_id,$fullname,$email,$amount,$payment_gateway,$sales_invoice,$transaction_date,$status,$reasonToDeny);
+
+    if($stmtDeny->execute()){
+
+      $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
+      $stmtPendingPay = $con->prepare($sqlPendingPay);
+      $stmtPendingPay->bind_param('s',$transaction_no);
+      $stmtPendingPay->execute();
+
+      $response['status'] = 'success';
+          $response['message'] = 'Successfully Denied Payment';
+    }else{
+      $response['status'] = 'error';
+      $response['message'] = 'Failed to Denied Payment!';
+    }
+  }
+
+  echo json_encode( $response );
+}
 
 ?>

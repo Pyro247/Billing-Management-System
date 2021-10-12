@@ -210,14 +210,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
+                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="transactionNo">
+              </div>
               <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                <label for="floatingTextarea2">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
+                <label for="reasonToDeny">Comments</label>
               </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Send Deny</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="sendDeny">Send Deny</button>
               </div>
             </div>
           </div>
@@ -618,6 +622,36 @@
           }
         })
         
+      });
+      $(document).on('click', '#deny', function(){
+        let transactionNo = $(this).attr("data-id");
+        let name = $(this).attr("data-name");
+        $('#transactionNo').val(transactionNo);
+        
+      });
+      $('#sendDeny').click(function (e) { 
+        e.preventDefault();
+        let transactionNo = $('#transactionNo').val();
+        let reasonToDeny = $('#reasonToDeny').val();
+        $.ajax({
+          type: "POST",
+          url: "../includes/managPayments.php",
+          data: {
+            "deny": 1,
+            "transactionNo": transactionNo,
+            "reasonToDeny": reasonToDeny
+          },
+          success: function (response) {
+            console.log(response)
+            Swal.fire(
+                'Denied!',
+                'Payment Denied Complete',
+                'info'
+                )
+            display();
+
+          }
+        });
       });
       $(document).on('click', '#viewInvoice', function(){
         let invoiceImg = $(this).attr("data-id");
