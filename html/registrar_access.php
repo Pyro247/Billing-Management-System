@@ -103,6 +103,13 @@
           <hr class="mt-0 mb-3">
             <form action="">
             
+            <p>Course ID &nbsp;<input type="text" placeholder="Course ID"></p>
+            <p>Program &nbsp;<input type="text" placeholder="Program"></p>
+            <p>Major &nbsp;<input type="text" placeholder="Major"></p>
+            <p>Duration &nbsp;<input type="text" placeholder="Duration"></p>
+            <p>Semester &nbsp;<input type="text" placeholder="Semester"></p>
+            <p>Fee &nbsp;<input type="text" placeholder="Fee"></p>
+
                 
 
                 <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
