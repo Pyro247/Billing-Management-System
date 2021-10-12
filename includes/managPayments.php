@@ -81,6 +81,6 @@
 
     echo json_encode( $response );
   }
-  // if( isset( $_POST['approve'] ) ){}
+
 
 ?>

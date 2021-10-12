@@ -124,7 +124,7 @@
         $newRegNo = intval($newRegNo);
         $newRegNo = $yearNow.($newRegNo + 1); 
       }
-      $sqlEmpReg = "UPDATE `tbl_employee_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ?,`email`= ? ,`contact_number`= ?, `address`= ?,reg_date = ?  WHERE employee_id = ? ";
+      $sqlEmpReg = "UPDATE `tbl_employee_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ?,`email`= ? ,`contact_number`= ?, `address`= ?,joined_date = ?  WHERE employee_id = ? ";
       $stmtEmpReg = $con->prepare($sqlEmpReg);
       $stmtEmpReg->bind_param('ssssssssss', $newRegNo ,$firstname, $lastname, $midInitial, $sex, $email, $phoneNumber,$address, $today, $userId);
 

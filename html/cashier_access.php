@@ -184,7 +184,7 @@
         
         </div>
       </div>
-      <!-- Modal -->
+      <!-- Modal View Invoice -->
       <div class="modal fade" id="salesInvoice" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog  modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -200,7 +200,28 @@
               </div>
             </div>
           </div>
-        </div>    
+        </div> 
+        <!-- Modal Deny  -->
+        <div class="modal fade" id="denyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div class="modal-dialog  modal-dialog-centered modal-lg">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Reason to Deny Payment Request</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+              <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+              </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Send Deny</button>
+              </div>
+            </div>
+          </div>
+        </div>       
 
 
             <!-- PAYMENT TRANSACTIONS -->
