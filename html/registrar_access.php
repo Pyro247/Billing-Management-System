@@ -1249,6 +1249,7 @@
     let table_ = document.getElementById('table_dashboard_id');
     function dashboard_table_appear(){
         table_.classList.toggle('active')
+        
     }
   </script>
 
@@ -1706,7 +1707,7 @@
             let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
             let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
             
-            if (roleId.includes('Registrar')){
+            if (roleId.includes('Registraxr')){
               employeeTabForAdmin.style.display = "none";
               allUserTabForAdmin.style.display = "none";
               feesManagementForAdmin.style.display = "none";

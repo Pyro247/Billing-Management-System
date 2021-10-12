@@ -445,14 +445,17 @@ hr{
 
 
 .table__dashboard{
-    transition: 300ms ease;;
+    transition: 150ms ease;
     opacity: 0;
     visibility: hidden;
+    height: 0;
+    
 }
 
 .table__dashboard.active{
     opacity: 1;
     visibility: visible;
+    height: auto;
 }
 
 
@@ -526,7 +529,7 @@ hr{
 }
 
 
-.popUpFeesMgmtinner form input, select{
+.popUpFeesMgmtinner form input, .popUpFeesMgmtinner form select{
     background-color: #d6e6f7;
     border: none;
     padding: 5px 10px;
