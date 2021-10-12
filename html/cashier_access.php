@@ -210,18 +210,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-              <div class="input-group input-group-sm mb-3">
-                <span class="input-group-text" id="inputGroup-sizing-sm">Small</span>
-                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="transactionNo">
-              </div>
               <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
-                <label for="reasonToDeny">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
               </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="sendDeny">Send Deny</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Send Deny</button>
               </div>
             </div>
           </div>
@@ -289,39 +285,6 @@
 
                   <div class="col-12 mt-3 mb-2">
                     <button type="button" class="btn btn-success payVoid" id="payBtn">Pay</button>
-                    <!-- <script type="text/javascript">
-                      let payBtn = document.getElementById('payBtn');
-
-                        payBtn.addEventListener("click", function(){
-                          
-                          const ipAPI = '//api.ipify.org?format=json'
-                          const inputValue = fetch(ipAPI)
-                            .then(response => response.json())
-                            .then(data => data.ip)
-
-                          const { value: amountByPayer } = Swal.fire({
-                            title: 'Enter Pera ni Student',
-                            input: 'text',
-                            inputLabel: 'Magkano?',
-                            inputValue: inputValue,
-                            showCancelButton: true,
-                            inputValidator: (value) => {
-                              if (!value) {
-                                return 'You need to write something!'
-                              }else{
-                                Swal.fire('Thank you!')
-                              }
-                            }
-                          })
-
-                          if (amountByPayer) {
-                            Swal.fire(`Your IP address is ${ipAddress}`)
-                          }
-                        })
-                    </script>
-                      -->
-
-                    
                   </div>
                 </form>
               </div>
@@ -330,10 +293,10 @@
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
-              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">All Student's Transaction</span>
+              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">Justine Dave's All Transaction</span>
               <hr style="margin-top: 5px; height: 2px;" class="text-primary">
 
-              <div class="col-md">
+              <!-- <div class="col-md">
                 <div class="form-floating">
                   <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                   <option value="BSIT_WMA" selected>All</option>
@@ -346,47 +309,31 @@
                   </select>
                   <label for="floatingSelect">Program</label>
                 </div>
-              </div>
+
+              </div> -->
 
               <div class="row">
               <div class="table__" style="overflow-x: auto;">
                 <table class="table">
                     <thead class="text-center">
                       <tr>
-                        <th scope="col">ID number</th>
-                        <th scope="col">First name</th>
-                        <th scope="col">Last name</th>
                         <th scope="col">Total Amount Due</th>
                         <th scope="col">Total Amount Paid</th>
                         <th scope="col">Balance Remaining</th>
-                        <th scope="col">Last Amount Paid</th>
+                        <th scope="col">Amount Paid</th>
                         <th scope="col">Payment Method</th>
                         <th scope="col">Payment Status</th>
+                        <th scope="col">Date</th>
                         
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr class="text-center">
-                        <th scope="row">2018300366</th>
-                        <td>Justine Dave</td>
-                        <td>DelosReyes</td>
-                        <td>16000</td>
-                        <td>9000</td>
-                        <td>7000</td>
-                        <td>3500</td>
-                        <td>Cash</td>
-                        <td>Approved</td>
-                        
-                      </tr>
-                     
-                    </tbody>
                   </table>
 
 
             </div>
           </div>
-
           </div>
+          
         </div>
             
 
@@ -506,11 +453,10 @@
                         <tr>
                           <th scope="col">Transaction ID</th>
                           <th scope="col">Student ID</th>
-                          <th scope="col">First name</th>
-                          <th scope="col">Last name</th>
+                          <th scope="col">Full name</th>
                           <th scope="col">Amount</th>
-                          <th scope="col">Payment Status</th>
                           <th scope="col">Payment Method</th>
+                          <th scope="col">Payment Status</th>
                           <th scope="col">Date</th>
                       
                           
@@ -521,27 +467,11 @@
                           <th scope="row">FT-001</th>
                           <td>2018300366</td>
                           <td>Justine Dave</td>
-                          <td>Delos reyes</td>
                           <td>9000</td>
-                          <td>Approved</td>
                           <td>Cash</td>
-                          <td>08/21/2021</td>
-                          
-                        
-                          
-                        </tr>
-    
-                        <tr class="text-center">
-                          <th scope="row">FT-002</th>
-                          <td>2018300726</td>
-                          <td>John</td>
-                          <td>Doe</td>
-                          <td>7500</td>
                           <td>Approved</td>
-                          <td>Fund Transfer</td>
-                          <td>08/26/2021</td>
-                          
-                          
+                          <td>08/21/2021</td>
+
                         </tr>
                       </tbody>
                     </table>
@@ -622,36 +552,6 @@
           }
         })
         
-      });
-      $(document).on('click', '#deny', function(){
-        let transactionNo = $(this).attr("data-id");
-        let name = $(this).attr("data-name");
-        $('#transactionNo').val(transactionNo);
-        
-      });
-      $('#sendDeny').click(function (e) { 
-        e.preventDefault();
-        let transactionNo = $('#transactionNo').val();
-        let reasonToDeny = $('#reasonToDeny').val();
-        $.ajax({
-          type: "POST",
-          url: "../includes/managPayments.php",
-          data: {
-            "deny": 1,
-            "transactionNo": transactionNo,
-            "reasonToDeny": reasonToDeny
-          },
-          success: function (response) {
-            console.log(response)
-            Swal.fire(
-                'Denied!',
-                'Payment Denied Complete',
-                'info'
-                )
-            display();
-
-          }
-        });
       });
       $(document).on('click', '#viewInvoice', function(){
         let invoiceImg = $(this).attr("data-id");
