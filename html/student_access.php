@@ -330,7 +330,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text d-inline-block">₱</span>
                                         </div>
-                                        <input type="number" class="form-control" name="amount" id="amount" idplaceholder="0.00">
+                                        <input type="number" class="form-control" name="amount" id="requestAmount" idplaceholder="0.00">
                                         <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
                                         
                                     </div>
@@ -339,7 +339,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Date</span>
                                         </div>
-                                        <input type="date" class="form-control" name= "date" id="date" placeholder="" >
+                                        <input type="date" class="form-control" name= "date" id="requestDate" placeholder="" >
                                     </div>
                                     
                                 <div class="col-md">
@@ -483,13 +483,13 @@
             }
             // Submit Payment Request AJAX
             $(document).ready(function (e) {
-                let amount = document.getElementById('amount');
-                let date = document.getElementById('date');
+                let amount = document.getElementById('requestAmount');
+                let date = document.getElementById('requestDate');
                 let paymentGateway = document.getElementById('paymentGateway_Id');
                 let image = document.getElementById("image");
                 $('#payReqForm').submit(function (e) { 
                     e.preventDefault();
-                    let formData = new FormData(this)
+                    let formData = new FormData(this) 
                    
                     if(amount.value == ''){
                         amount.focus();
@@ -507,17 +507,22 @@
                         $.ajax({
                         type: "POST",
                         url: "../includes/studPaymentRequest.php",
-                        data: formData,
+                        data: formData ,
                         contentType: false,
                         processData:false,
                         success: function (response) {
-                            console.log(response)
+                            // console.log(response)
                             Swal.fire({
                                 icon: 'success',
                                 text: response.message,
                                 confirmButtonText: 'Ok'
                             })
-                            // $("#payReqForm").trigger('reset');
+                            $('#requestAmount').val('');
+                            $('#requestDate').val('');
+                            $('#paymentGateway_Id').val('');
+                            document.getElementById("preview").style.display = "none";
+                            document.getElementById("imageText").style.display = "block";
+                            document.getElementById("image").value = null;
                         }
                     });
                     }

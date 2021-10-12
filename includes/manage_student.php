@@ -131,9 +131,9 @@
     $stmtRequirements = $con->prepare($slqRequirements);
     $stmtRequirements->bind_param('sssss',$student_number,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral);
     // School Details 
-    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?)";
+    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_semester`,`csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?,?)";
       $stmtDetails = $con->prepare($sqlDetials);
-      $stmtDetails->bind_param('ssss',$student_number,$stud_program,$stud_major,$stud_year_level);
+      $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
     
       
   if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
