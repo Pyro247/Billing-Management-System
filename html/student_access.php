@@ -4,9 +4,10 @@
             header('Location: login.php');
         }else{
             include_once '../connection/Config.php';
-            $sqlStud ="SELECT det.*,fees.*
+            $sqlStud ="SELECT det.*,fees.*,pay.amount,pay.transaction_date
                         FROM tbl_student_school_details AS det
-                        INNER JOIN tbl_student_fees AS fees 
+                        INNER JOIN tbl_student_fees AS fees ON det.stud_id =fees.stud_id
+                        INNER JOIN tbl_payments as pay ON fees.stud_id = pay.stud_id
                         WHERE det.stud_id = ?";
             $stmtStud = $con->prepare($sqlStud);
             $stmtStud->bind_param('s', $_SESSION['stud_id']);
@@ -114,12 +115,12 @@
                         </div>
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;"><?=$rowStud['balance'];?></span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;"><?=$rowStud['total_amount_paid'];?></span></span>
+                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;"><?=$rowStud['amount'];?></span></span>
 
                         </div>
                         <div class="col d-flex">
                             <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_type'];?></span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <span class="text-success" style="font-weight: bold; ">2/21/2021</span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <span class="text-success" style="font-weight: bold; "><?= $rowStud['transaction_date']?></span></span>
                         </div>
                     </div>
 
@@ -513,7 +514,7 @@
                         success: function (response) {
                             // console.log(response)
                             Swal.fire({
-                                icon: 'success',
+                                icon: response.status,
                                 text: response.message,
                                 confirmButtonText: 'Ok'
                             })

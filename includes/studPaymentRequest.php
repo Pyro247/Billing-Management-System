@@ -13,19 +13,32 @@
     $payment_gateway = $_POST['paymentGateway'];
     $target_dir = '../saleInvoiceImg/';
     $status = 'Pending';
+    
     $sqlTransNo = "SELECT * FROM `tbl_pending_payments` ORDER BY transaction_no DESC LIMIT 1 ";
     $stmtTransNo = $con->prepare($sqlTransNo);
     $stmtTransNo->execute();
     $resTransNo = $stmtTransNo->get_result();
     $rowTransNo = $resTransNo->fetch_assoc();
     $lastTransNo = $rowTransNo['transaction_no'];
-    if ($rowTransNo['transaction_no'] == "") {
-      $newTransNo = sprintf("FT%s%03d", "-", "1");
-    }else {
+    $newTransNo = "FT-001";
+    if ($rowTransNo['transaction_no'] != "") {
       $newTransNo = substr($lastTransNo, 3);
       $newTransNo = intval($newTransNo);
       $newTransNo = sprintf("FT%s%03d", "-", ($newTransNo + 1)); 
     }
+    $slqRegNo = "SELECT * FROM `tbl_student_info` ORDER BY reg_no DESC LIMIT 1 ";
+      $stmtRegNo = $con->prepare($slqRegNo);
+      $stmtRegNo->execute();
+      $resRegNo = $stmtRegNo->get_result();
+      $rowRegNo = $resRegNo->fetch_assoc();
+      $lastRegNo = $rowRegNo['reg_no'];
+      if ($rowRegNo['reg_no'] == "") {
+        $newRegNo = $yearNow."1";
+      }else {
+        $newRegNo = substr($lastRegNo, 3);
+        $newRegNo = intval($newRegNo);
+        $newRegNo = $yearNow.($newRegNo + 1); 
+      }
   
     $slq ="INSERT INTO `tbl_pending_payments`(`transaction_no`,`stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`) VALUES (?,?,?,?,?,?,?,?,?)";
     $stmt = $con->prepare($slq);

@@ -140,11 +140,11 @@
                       <th scope="col">Fullname</th>
                       <!-- <th scope="col">Last name</th> -->
                       <th scope="col">Amount</th>
-                      <th scope="col">Remaining Balance</th>
+                      <!-- <th scope="col">Remaining Balance</th> -->
                       <th scope="col">Date</th>
                       <th scope="col">Email</th>
                       <th scope="col">Sales Invoice</th>
-                      <!-- <th scope="col">Action</th> -->
+                      <th scope="col">Action</th>
                       
                     </tr>
                   </thead>

@@ -16,9 +16,9 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['fullname'];?></td>
     <td><span style="font-size 1.5rem; font-weight: bold;">P</span><?=$data['amount'];?></td>
-    <td></td>
+    <!-- <td></td> -->
     <td><?=$data['transaction_date'];?></td>
-    <!--<td><?=$data['email'];?></td>-->
+    <td><?=$data['email'];?></td>
     <td>
     <button type="button" class="btn btn-primary" id="viewInvoice" data-bs-toggle="modal" data-bs-target="#salesInvoice" data-id="<?=$data['sales_invoice'];?>">
       View

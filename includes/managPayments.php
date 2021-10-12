@@ -53,7 +53,7 @@
       // Temporary
       $cashier_id = 11;
       $cashier_name = 'Unknown';
-      $slqApprove = "INSERT INTO `tbl_payments`(`transaction_no.`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+      $slqApprove = "INSERT INTO `tbl_payments`(`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmtApprove = $con->prepare($slqApprove);
       $stmtApprove->bind_param('sssssssssssssssss', $transaction_no,$program_id,$stud_id,$fullname,$csi_academic_year,$csi_semester,$tuition_fee,$amount,$payment_method,$payment_gateway,$sales_invoice,$balance,$transaction_date,$payment_status,$remarks,$cashier_id,$cashier_name);
       
@@ -81,4 +81,6 @@
 
     echo json_encode( $response );
   }
+  // if( isset( $_POST['approve'] ) ){}
+
 ?>
