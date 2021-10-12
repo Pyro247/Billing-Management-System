@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2021 at 11:19 AM
+-- Generation Time: Oct 12, 2021 at 05:17 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -54,6 +54,7 @@ CREATE TABLE `tbl_accounts` (
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
 (1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
 (2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', ''),
+(10121314, 'Mike Isla', 'michael.estrechoisla@gmail.com', 'Mike@1301', 'Registrar', '', ''),
 (2018301301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', '');
 
 -- --------------------------------------------------------
@@ -118,6 +119,15 @@ CREATE TABLE `tbl_denied_payments` (
   `reason` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_denied_payments`
+--
+
+INSERT INTO `tbl_denied_payments` (`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES
+('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 500, 'Paymaya', 'Pay.png', '2021-10-12', 'Denied', 'Not Readable'),
+('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 500, 'Paymaya', '7448.png', '2021-10-12', 'Denied', 'Not match amount'),
+('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 1000, 'Gcash', '832186.jpg', '2021-10-12', 'Denied', 'Testing');
+
 -- --------------------------------------------------------
 
 --
@@ -152,9 +162,17 @@ CREATE TABLE `tbl_employee_info` (
   `middlename` varchar(100) NOT NULL,
   `sex` varchar(20) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `address` longtext NOT NULL,
   `contact_number` varchar(15) NOT NULL,
   `joined_date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_employee_info`
+--
+
+INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `joined_date`) VALUES
+('20211', 10121314, 'Registrar', 'Mike', 'Isla', 'E', 'male', 'michael.estrechoisla@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', 'October 12, 2021, 10:19 pm');
 
 -- --------------------------------------------------------
 
@@ -181,6 +199,13 @@ CREATE TABLE `tbl_payments` (
   `cashier_id` int(11) NOT NULL,
   `cashier_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_payments`
+--
+
+INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
+('FT-001', 1, 2018301, 'Michael Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Paymaya', 'Pay.png', 1000, '2021-10-12', 'Approved', 'Not Fully Paid', 11, 'Unknown');
 
 -- --------------------------------------------------------
 
@@ -244,7 +269,7 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301, 'Michael Estrecho Isla', '4', 'Athlete', 'Disabilities', 10000, 0, 3500, 'not fully paid');
+(1, 2018301, 'Michael Estrecho Isla', '4', 'Athlete', 'Disabilities', 10000, 2500, 3500, 'not fully paid');
 
 -- --------------------------------------------------------
 
@@ -351,6 +376,12 @@ ALTER TABLE `tbl_employee_info`
 -- Indexes for table `tbl_payments`
 --
 ALTER TABLE `tbl_payments`
+  ADD PRIMARY KEY (`transaction_no`);
+
+--
+-- Indexes for table `tbl_pending_payments`
+--
+ALTER TABLE `tbl_pending_payments`
   ADD PRIMARY KEY (`transaction_no`);
 
 --
