@@ -356,14 +356,16 @@
                 
 
                 <!-- For Admin -->
-                <li class="nav-item" id="employee_ForAdmin">
+                <li class="nav-item">
                   <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab" aria-controls="employees" aria-selected="false">Employees</a>
                 </li>
-                <li class="nav-item" id="alluser_ForAdmin">
+                <!-- <li class="nav-item" id="alluser_ForAdmin">
                   <a class="nav-link" id="all-users-tab" data-toggle="tab" href="#all-users" role="tab" aria-controls="all-users" aria-selected="false">All users</a>
-                </li>
+                </li> -->
 
               </ul>
+
+            
 
             
 
@@ -377,7 +379,7 @@
                   <form action="../includes/manage_student.php" method="post" class="universalForm_two" id="studForm">
 
                       <div class="manage_users_universal_tab_lmr_parent">
-                        
+                          
                         
                           <div class="manage_users_universal_left_tab">
                           <img src="../images/registrar_img/sample_student_pic.png" class="rounded float-start" alt="...">
@@ -1294,28 +1296,7 @@
         }
         setInterval(clock, 1000);   
 
-        // Function To change Title
-        let tab_count_manage_users = 1;
-     
-          let employee_tab = document.getElementById('employees-tab');
-          let student_tab = document.getElementById('student-tab');
-          let all_users_tab = document.getElementById('all-users-tab');
-
-          student_tab.addEventListener("click", function(){
-            tab_count_manage_users = 1;
-            change_tab();
-          });
-
-          employee_tab.addEventListener("click", function(){
-            tab_count_manage_users = 2;
-            change_tab();
-          });
-
-          all_users_tab.addEventListener("click", function(){
-            tab_count_manage_users = 3;
-            change_tab();
-          });
-
+    
           function profile_link_show(){
             let profile_link = document.getElementById('profile_link_id');
           profile_link.classList.toggle('show');
@@ -1702,36 +1683,29 @@
           $("[name='stud_firstname']").removeAttr('disabled');
         }
 
-        // Limited access for Registrar
-            let roleId = document.getElementById('roleId').innerHTML
-            let employeeTabForAdmin = document.getElementById('employee_ForAdmin');
-            let allUserTabForAdmin = document.getElementById('alluser_ForAdmin');
-            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
+        
+                         
+                        
+       
+      </script>
+
+      <script type="text/javascript">
+           // Limited access for Registrar
+           const roleId = document.getElementById('roleId').innerHTML
             
-            if (roleId.includes('Registrar')){
-              employeeTabForAdmin.style.display = "none";
-              allUserTabForAdmin.style.display = "none";
-              feesManagementForAdmin.style.display = "none";
+            let feesManagementForAdmin = document.getElementById('v-pills-fees-tab');
 
-            }else{ 
-
-              employeeTabForAdmin.classList.toggle('show')
-              employeeTabForAdmin.classList.toggle('active')
-
-              // allUserTabForAdmin.style.display = "none";
-
-              employeeTabContent.classList.toggle('show')
-              employeeTabContent.classList.toggle('active')
+            if (roleId.includes('Registrarx')){
+              document.querySelector('#employees-tab').style.display = "none"
+            }else{
+              document.querySelector('#student-tab').style.display = "none"
+              document.querySelector('#student').style.display = "none"
+              document.querySelector('#employees-tab').classList.toggle('active')
+              document.querySelector('#employees').classList.toggle('active')
+              document.querySelector('#employees').classList.toggle('show')
+              
             }
 
-            allUserTabForAdmin.addEventListener("click", function(){
-              employeeTabForAdmin.classList.remove('show')
-              employeeTabForAdmin.classList.remove('active')
-              employeeTabContent.classList.remove('show')
-              employeeTabContent.classList.remove('active')
-            })
-            
-            
       </script>
 
 
