@@ -85,8 +85,7 @@
                 <a href="../html/forgotPassword.php">Change Password</a>
                 <a href="../includes/logout.inc.php">Logout</a>
             </div>
-            <p class="reg__name"> <?=$rowStud['csi_program'];?> | <?= $_SESSION['fullname'];?></p>
-            <p class="reg__name"><?=$rowStud['csi_major'];?></p>
+            <p class="reg__name"> <?=$rowStud['csi_program'];?> | <?=$rowStud['csi_major'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
