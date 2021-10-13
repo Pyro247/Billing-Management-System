@@ -475,10 +475,15 @@ hr{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: fixed;
+    
 }
 
 .popUpArchiveinner, .popUpFeesMgmtinner{
     width: auto;
+    position: fixed;
+    max-height: calc(100vh - 50px);
+    overflow-y: auto;
     background: var(--white-color);
     border-radius: 25px;
     padding: 25px;

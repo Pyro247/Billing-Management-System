@@ -67,6 +67,9 @@
               <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="graduate">Graduate</label>
 
+              <input type="radio" class="btn-check" name="options-outlined" id="transfer" autocomplete="off">
+              <label class="btn btn-outline-primary mx-1" for="transfer">Transfer</label>
+
               <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="drop">Dropped</label>
 
@@ -130,6 +133,7 @@
                   <optio value="3">3rd Semester</optio>
                 </select>
             <p>Fee &nbsp;<input type="text" name="fee" placeholder="Fee"></p>
+          
 
                 
 
