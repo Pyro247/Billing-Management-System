@@ -1633,16 +1633,16 @@
      
       </script>
       <script>
-          function display(){
-              $.ajax({
-                type: "POST",
-                url: "../includes/registrarArchive.php",
-                dataType: "html",
-                success: function (data) {
-                  $('#registrarArchive').html(data);
-                }
-              });
-          }
+          // function display(){
+          //     $.ajax({
+          //       type: "POST",
+          //       url: "../includes/registrarArchive.php",
+          //       dataType: "html",
+          //       success: function (data) {
+          //         $('#registrarArchive').html(data);
+          //       }
+          //     });
+          // }
       </script>
 
       <script type="text/javascript">

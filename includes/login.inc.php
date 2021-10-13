@@ -43,7 +43,8 @@
           $_SESSION['fullname'] =$rowLogin['fullname'];
           $_SESSION['employeeId'] =$rowLogin['user_id'];
           $_SESSION['role'] =$rowLogin['role'];
-        }else{
+        }else
+        if($rowLogin['role'] == 'Student'){
           header('Location: ../html/student_access.php');
           $_SESSION['fullname'] =$rowLogin['fullname'];
           $_SESSION['stud_id'] =$rowLogin['user_id'];

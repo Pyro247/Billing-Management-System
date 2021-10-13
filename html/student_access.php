@@ -5,8 +5,8 @@
         }else{
             include_once '../connection/Config.php';
             $sqlStud ="SELECT det.*,fees.*
-                        FROM tbl_student_school_details AS det
-                        INNER JOIN tbl_student_fees AS fees
+                        FROM tbl_student_school_details AS det 
+                        INNER JOIN tbl_student_fees AS fees ON det.stud_id = fees.stud_id
                         WHERE det.stud_id = ?";
             $stmtStud = $con->prepare($sqlStud);
             $stmtStud->bind_param('s', $_SESSION['stud_id']);
