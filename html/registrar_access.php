@@ -1164,13 +1164,15 @@
                       <th scope="col">Program</th>
                       <th scope="col">Major</th>
                       <th scope="col">Year Level</th>
-                      <th scope="col">Major</th>
+                      <th scope="col">Duration</th>
                       <th scope="col">Semester</th>
                       <th scope="col">Tuition Fee</th>
                       <th scope="col">Action</th>
-                      
                     </tr>
                   </thead>
+                  <tbody id="viewAvaibleProgram">
+
+                  </tbody>
                 </table>
               </div>
             </div>
@@ -1672,7 +1674,10 @@
       </script>
       <!-- Script For Manage Fees Admin Access -->
       <script>
-        
+        $('#v-pills-fees-tab').click(function (e) { 
+          e.preventDefault();
+          availablePrograms();
+        });
         $('#addNewSY').click(function (e) { 
           e.preventDefault();
           let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
@@ -1693,6 +1698,11 @@
           let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
           manageFees(newDiscount,3);
         });
+        $(document).on('click', '#editProgram', function(){ 
+          let id = $(this).attr("data-id");
+          // To be continue
+          alert(id)
+        });
         function manageFees(newData,close){
           $.ajax({
             type: "POST",
@@ -1706,6 +1716,19 @@
                       confirmButtonText: 'Ok'
                     })
               closePopUp(close)
+            }
+          });
+        }
+        function availablePrograms(){
+          $.ajax({
+            type: "POST",
+            url: "../includes/manageFess.php",
+            data: {
+              'showProgram': 1
+            },
+            dataType: "html",
+            success: function (data) {
+              $('#viewAvaibleProgram').html(data);
             }
           });
         }

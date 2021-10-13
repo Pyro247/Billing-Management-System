@@ -74,3 +74,37 @@
     echo json_encode($response);
   }
 ?>
+<?php
+
+  if(isset($_POST['showProgram'])){
+  $sql ="SELECT list.program_id,list.course_program,list.course_major,fees.course_year_level,list.course_duration,fees.semester,fees.tuition_fee
+        FROM tbl_course_list AS list
+        INNER JOIN tbl_course_fees as fees 
+        ON list.program_id = fees.program_id";
+  $stmt = $con->prepare($sql);
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $count = $res->num_rows;
+
+?>
+<?php 
+if($count > 0){
+while($data = $res->fetch_assoc()){?>
+  <tr>
+    <td><?=$data['program_id'];?></td>
+    <td><?=$data['course_program'];?></td>
+    <td><?=$data['course_major'];?></td>
+    <td><?=$data['course_year_level'];?></td>
+    <td><?=$data['course_duration'];?></td>
+    <td><?=$data['semester'];?></td>
+    <td><?=$data['tuition_fee'];?></td>
+    <td>
+      <a href="#" class="btn btn-success "id="editProgram" data-id="<?=$data['program_id'];?>">Edit</a>
+    </td>
+  </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php } }?>
