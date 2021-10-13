@@ -79,16 +79,16 @@
               <a href="../html/forgotPassword.php">Change Password</a>
               <a href="">Logout</a>
             </div>
-          <p class="reg__name">Cashier | C-2021003</p>
+          <p class="reg__name" id="roleId">Cashier | C-2021003</p>
           <p class="reg__name" id="reg-date-time"></p>
         </div>
 
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true">Dashboard</a>
-            <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false">Payment Transactions</a>
-            <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false">Reports</a>
-            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false">History</a>
-            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false">Student Fees</a>
+            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
+            <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><img src="../images/icons/payment_transaction.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Payment Transactions</a>
+            <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><img src="../images/icons/reports.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Reports</a>
+            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><img src="../images/icons/history.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;History</a>
+            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Student Fees</a>
             
             
       </div>
@@ -571,6 +571,15 @@
               }
             });
         }
+  </script>
+
+  <script type="text/javascript">
+    const roleId = document.querySelector('#roleId').innerHTML
+
+    if (roleId.includes("Cashier")){
+      document.querySelector('#v-pills-studFee-tab').style.display = "none"
+      document.querySelector('#v-pills-reports-tab').style.display = "none"
+    }
   </script>
 </script>
 </body>
