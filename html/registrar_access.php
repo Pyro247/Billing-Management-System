@@ -84,13 +84,11 @@
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(0)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Add Academic Year</p>
           <hr class="mt-0 mb-3">
-            <form action="" class="addAY">
-                
-                <input type="text" placeholder="Academic Year">
+            <form action="" class="addAY" id="newSY">
+                <input type="text" name="SYstart" placeholder="Academic Year">
                 <span class="mx-2">To</span>
-                <input type="text"  placeholder="Academic Year">
-
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+                <input type="text" name="SYend" placeholder="Academic Year">
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewSY" >Submit</button>
             </form>
       </div>
     </div>
@@ -101,19 +99,41 @@
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
           <hr class="mt-0 mb-3">
-            <form action="">
+            <form action="" id="newProgram">
             
-            <p>Course ID &nbsp;<input type="text" placeholder="Course ID"></p>
-            <p>Program &nbsp;<input type="text" placeholder="Program"></p>
-            <p>Major &nbsp;<input type="text" placeholder="Major"></p>
-            <p>Duration &nbsp;<input type="text" placeholder="Duration"></p>
-            <p>Year Level &nbsp;<input type="text" placeholder="Year Level"></p>
-            <p>Semester &nbsp;<input type="text" placeholder="Semester"></p>
-            <p>Fee &nbsp;<input type="text" placeholder="Fee"></p>
+            <p>Course ID &nbsp;<input type="text" name="programId" placeholder="Course ID"></p>
+            <p>Program &nbsp;<input type="text" name="program" placeholder="Program"></p>
+            <p>Major &nbsp;<input type="text" name="major" placeholder="Major"></p>
+            <!-- <p>Duration &nbsp;<input type="text" name="duration" placeholder="Duration"></p> -->
+            <p>Duration &nbsp;
+                <select name="duration">
+                  <option value="1">1 Year</option>
+                  <option value="2">2 Years</option>
+                  <option value="3">3 Years</option>
+                  <option value="4">4 Years</option>
+                  <option value="5">5 Years</option>
+                </select>
+            <!-- <p>Year Level &nbsp;<input type="text" name="yearLevel" placeholder="Year Level"></p> -->
+            <p>Year Level &nbsp;
+                <select name="yearLevel">
+                  <option value="1">1st Year</option>
+                  <option value="2">2nd Year</option>
+                  <option value="3">3rd Year</option>
+                  <option value="4">4th Year</option>
+                  <option value="5">5th Year</option>
+                </select>
+            <!-- <p>Semester &nbsp;<input type="text" name="semester" placeholder="Semester"></p> -->
+            <p>Semester &nbsp;
+                <select name="semester">
+                  <option value="1">1st Semester</option>
+                  <option value="2">2nd Semester</option>
+                  <optio value="3">3rd Semester</optio>
+                </select>
+            <p>Fee &nbsp;<input type="text" name="fee" placeholder="Fee"></p>
 
                 
 
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewProgram">Submit</button>
             </form>
       </div>
     </div>
@@ -124,17 +144,17 @@
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(2)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
           <hr class="mt-0 mb-3">
-            <form action="">
+            <form action="" id="newScholarship">
 
-              <p>Description &nbsp;<input type="text" placeholder="Description"></p>
+              <p>Description &nbsp;<input type="text"  name="scholarDesc" placeholder="Description"></p>
               <p>Type &nbsp;
-                <select name="" id="">
-                  <option value="">Full</option>
-                  <option value="">Partial</option>
+                <select name="scholarType" id="">
+                  <option value="Full">Full</option>
+                  <option value="Half">Partial</option>
                 </select>
               </p>
 
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewScholarship">Submit</button>
             </form>
       </div>
     </div>
@@ -146,13 +166,15 @@
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(3)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Discount</p>
           <hr class="mt-0 mb-3">
-            <form action="" class="popUpAdminBP">
+          <form action="" class="popUpAdminBP" id="newDiscount">
             
-              <p>Description &nbsp;<input type="text" placeholder="Description"></p>
-              <p>Percentage &nbsp;<input type="text" placeholder="0.00%"></p>
+            <p>Description &nbsp;<input type="text" name="discountDesc" placeholder="Description"></p>
+            <p>Percentage &nbsp;<input type="text" name="discountPer" placeholder="0.00%"></p>
 
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;">Submit</button>
-            </form>
+              <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewDiscount">Submit</button>
+          </form>
+            
+      
       </div>
     </div>
 
@@ -172,7 +194,7 @@
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
           
-            <p class="reg__name" id="roleId">Registrar | <?= $_SESSION['employeeId'];?></p>
+            <p class="reg__name" id="roleId"><?= $_SESSION['role'];?> | <?= $_SESSION['employeeId'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -489,13 +511,13 @@
                                       <select class="form-select" name="stud_scholarship" id="studScholarship" aria-label="Floating label select example" disabled>
                                       <option value="N/A">N/A</option>
                                       <?php 
-                                      $slqScholar = "SELECT DISTINCT scholar_type FROM `tbl_scholarship`";
+                                      $slqScholar = "SELECT DISTINCT scholar_description FROM `tbl_scholarship`";
                                       $stmtScholar = $con->prepare($slqScholar);
                                       $stmtScholar->execute();
                                       $resScholar = $stmtScholar->get_result();
                                       while($rowScholar = $resScholar->fetch_assoc()){
                                     ?>
-                                      <option value="<?= $rowScholar['scholar_type'];?>"><?= $rowScholar['scholar_type'];?></option>
+                                      <option value="<?= $rowScholar['scholar_description'];?>"><?= $rowScholar['scholar_description'];?></option>
                                     <?php }; ?>
                                       <!--  -->
                                       </select>
@@ -1644,7 +1666,46 @@
           //     });
           // }
       </script>
-
+      <!-- Script For Manage Fees Admin Access -->
+      <script>
+        
+        $('#addNewSY').click(function (e) { 
+          e.preventDefault();
+          let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
+          manageFees(newSY,0);
+        });
+        $('#addNewProgram').click(function (e) { 
+          e.preventDefault();
+          let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
+          manageFees(newProgram,1);
+        });
+        $('#addNewScholarship').click(function (e) { 
+          e.preventDefault();
+          let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
+          manageFees(newScholarship,2);
+        });
+        $('#addNewDiscount').click(function (e) { 
+          e.preventDefault();
+          let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
+          manageFees(newDiscount,3);
+        });
+        function manageFees(newData,close){
+          $.ajax({
+            type: "POST",
+            url: "../includes/manageFess.php",
+            data: newData,
+            success: function (response) {
+              console.log(response)
+              Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+              closePopUp(close)
+            }
+          });
+        }
+      </script>
       <script type="text/javascript">
            // Limited access for Registrar
           const roleId = document.getElementById('roleId').innerHTML

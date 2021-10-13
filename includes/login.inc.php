@@ -37,9 +37,9 @@
           $_SESSION['status'] = "success";
           $_SESSION['msg'] = "Login success";
           header('Location: ../html/login.php');
-        }else if ($rowLogin['role'] == 'Admin'){
-            // Temporary
-            header('Location: ../html/registrar_access.php');
+        }
+        if ($rowLogin['role'] == 'Admin'){
+          header('Location: ../html/registrar_access.php');
           $_SESSION['fullname'] =$rowLogin['fullname'];
           $_SESSION['employeeId'] =$rowLogin['user_id'];
           $_SESSION['role'] =$rowLogin['role'];

@@ -89,14 +89,14 @@
     // Computing Student Fee base on Scholarship and Discount
     // Getting scholar desc
     if($stud_scholarship != 'N/A'){
-      $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_type = ?";
+      $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_description = ?";
       $stmtGetScholar = $con->prepare($slqGetScholar);
       $stmtGetScholar->bind_param('s',$stud_scholarship);
       $stmtGetScholar->execute();
       $resGetScholar = $stmtGetScholar->get_result();
       $rowGetScholar = $resGetScholar->fetch_assoc();
 
-      $scholarType = $rowGetScholar['scholar_description'];
+      $scholarType = $rowGetScholar['scholar_type'];
       if($scholarType == 'Half'){
         $balance = $stud_fee/2;
         if($stud_discount != 'N/A'){
@@ -195,14 +195,14 @@ if(isset($_POST['update'])){
   $course_id = $rowGetProgId['program_id'];
 
   if($stud_scholarship != 'N/A'){
-    $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_type = ?";
+    $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_description = ?";
     $stmtGetScholar = $con->prepare($slqGetScholar);
     $stmtGetScholar->bind_param('s',$stud_scholarship);
     $stmtGetScholar->execute();
     $resGetScholar = $stmtGetScholar->get_result();
     $rowGetScholar = $resGetScholar->fetch_assoc();
 
-    $scholarType = $rowGetScholar['scholar_description'];
+    $scholarType = $rowGetScholar['scholar_type'];
     if($scholarType == 'Half'){
       $balance = $stud_fee/2;
       if($stud_discount != 'N/A'){
