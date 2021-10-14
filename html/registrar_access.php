@@ -1680,13 +1680,23 @@
         });
         $('#addNewSY').click(function (e) { 
           e.preventDefault();
-          let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
-          manageFees(newSY,0);
+            let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
+            manageFees(newSY,0);
+          
         });
         $('#addNewProgram').click(function (e) { 
           e.preventDefault();
-          let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
-          manageFees(newProgram,1);
+          if($('addNewProgram').text('Update')){
+           
+            let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
+            manageFees(newProgram,1);
+            // alert(id);
+          }else{
+            let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
+            manageFees(newProgram,1);
+          }
+         
+          
         });
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
@@ -1700,8 +1710,27 @@
         });
         $(document).on('click', '#editProgram', function(){ 
           let id = $(this).attr("data-id");
-          // To be continue
-          alert(id)
+          let course_program = $('#'+id).children('td[data-target=course_program]').text();
+          let course_major = $('#'+id).children('td[data-target=course_major]').text();
+          let course_year_level = $('#'+id).children('td[data-target=course_year_level]').text();
+          let course_duration = $('#'+id).children('td[data-target=course_duration]').text();
+          let semester = $('#'+id).children('td[data-target=semester]').text();
+          let tuition_fee = $('#'+id).children('td[data-target=tuition_fee]').text();
+          
+          popUpAdmin_SchoolFees(1);
+          
+          $("[name='programId']").val(id);
+          $("[name='programId']").prop('readonly', true);
+          $("[name='program']").val(course_program);
+          $("[name='major']").val(course_major);
+          $("[name='yearLevel']").val(course_year_level);
+          $("[name='duration']").val(course_duration);
+          $("[name='semester']").val(semester);
+          $("[name='fee']").val(tuition_fee);
+
+          $('#addNewProgram').text('Update');
+    
+          
         });
         function manageFees(newData,close){
           $.ajax({

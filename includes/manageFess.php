@@ -73,6 +73,30 @@
     }
     echo json_encode($response);
   }
+  if(isset($_POST['updateProgram'])){
+    $programId = $_POST['programId'];
+    $program = $_POST['program'];
+    $major = $_POST['major'];
+    $duration = $_POST['duration'];
+    $yearLevel = $_POST['yearLevel'];
+    $semester = $_POST['semester'];
+    $fee = $_POST['fee'];
+    $sqlProgram = "UPDATE `tbl_course_list` SET `course_program`= ?,`course_major`= ?,`course_duration`= ? WHERE program_id = ?";
+    $stmtProgram = $con->prepare($sqlProgram);
+    $stmtProgram->bind_param('ssss',$program,$major,$duration,$programId);
+
+    $sqlProgram2 = "UPDATE `tbl_course_fees` SET `semester`= ?,`course_year_level`= ?,`tuition_fee`= ? WHERE program_id = ?";
+    $stmtProgram2 = $con->prepare($sqlProgram2);
+    $stmtProgram2->bind_param('ssss',$semester,$yearLevel,$fee,$programId);
+    if($stmtProgram->execute() && $stmtProgram2->execute()){
+      $response['status'] = 'success';
+      $response['message'] = 'Successfully Update Program';
+    }else{
+      $response['status'] = 'error';
+      $response['message'] = 'Failed to Update Program';
+    }
+    echo json_encode($response);
+  }
 ?>
 <?php
 
@@ -90,14 +114,15 @@
 <?php 
 if($count > 0){
 while($data = $res->fetch_assoc()){?>
-  <tr>
-    <td><?=$data['program_id'];?></td>
-    <td><?=$data['course_program'];?></td>
-    <td><?=$data['course_major'];?></td>
-    <td><?=$data['course_year_level'];?></td>
-    <td><?=$data['course_duration'];?></td>
-    <td><?=$data['semester'];?></td>
-    <td><?=$data['tuition_fee'];?></td>
+  <tr id="<?=$data['program_id'];?>">
+  <!-- Data-Target Will be used to edit -->
+    <td ><?=$data['program_id'];?></td>
+    <td data-target="course_program"><?=$data['course_program'];?></td>
+    <td data-target="course_major"><?=$data['course_major'];?></td>
+    <td data-target="course_year_level"><?=$data['course_year_level'];?></td>
+    <td data-target="course_duration"><?=$data['course_duration'];?></td>
+    <td  data-target="semester"><?=$data['semester'];?></td>
+    <td  data-target="tuition_fee"><?=$data['tuition_fee'];?></td>
     <td>
       <a href="#" class="btn btn-success "id="editProgram" data-id="<?=$data['program_id'];?>">Edit</a>
     </td>
