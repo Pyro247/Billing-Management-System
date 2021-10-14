@@ -207,7 +207,7 @@
                 <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false"><img src="../images/icons/manage_users.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Manage Users</a>
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false"><img src="../images/icons/archive.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Archives</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Fees Management</a>
-                
+                <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><img src="../images/icons/reports.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Reports</a>
                 
             </div>
         </div>
@@ -909,7 +909,7 @@
                 </div>
                 
                 <!-- All user's Tab -->
-                <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
+                <!-- <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
                   <p class="role_information text-primary">Choose Account to Filter</p>
 
                   
@@ -1030,7 +1030,7 @@
 
 
                   
-                </div>
+                </div> -->
 
 
 
@@ -1136,11 +1136,44 @@
                     </div>
                   </div>
                 </div>
-
-                  
-                
-
             </div>
+
+             <!-- REPORTS -->
+             <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
+              <p class="title_tab_universal">Generated Reports</p>
+
+              <div class="col universal_bg_gray_table p-3">
+                <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">View Transactions:</span>
+                
+                <button class="btn btn-outline-primary float-end mx-1">Annually</button>
+                  <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
+                  <button class="btn btn-outline-primary float-end mx-1">Daily</button>
+                </div>
+                
+                
+              <div class="col universal_bg_gray_table p-3">
+                <form action="" class="d-flex justify-content-between">
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select col-2" id="floatingSelect" aria-label="Floating label select example">
+                    <option value="" selected>All</option>
+                      <option value="" selected>Cash</option>
+                      <option value="">Fund Transfer</option>
+                    </select>
+                    <label for="floatingSelect">Payment Method</label>
+
+                  </div>
+                  <div class="col-md mt-1">
+                    <button class="btn btn-primary ">Apply</button>
+                    <button class="btn btn-primary ">Clear</button>
+                  </div>
+                </div>
+                
+              </form>
+              </div>
+            </div>
+
+
 
             
             <!-- Fees Management -->
@@ -1777,12 +1810,14 @@
             if (roleId.includes('Registrar')){
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
+              document.getElementById('v-pills-reports-tab').style.display="none"
             }else{
               document.querySelector('#student-tab').style.display = "none"
               document.querySelector('#student').style.display = "none"
               document.querySelector('#employees-tab').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('show')
+              document.getElementById('v-pills-fees-tab').style.display = "none"
               
             }
 

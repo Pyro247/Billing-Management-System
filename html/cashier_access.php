@@ -86,7 +86,6 @@
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><img src="../images/icons/payment_transaction.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Payment Transactions</a>
-            <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><img src="../images/icons/reports.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Reports</a>
             <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><img src="../images/icons/history.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;History</a>
             <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Student Fees</a>
             
@@ -243,7 +242,6 @@
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
                   <span class="d-block text-primary text-center" style="font-size: 1.2rem; font-weight: bold;">Justine Dave Delos reyes</span>
                   <span class="d-block text-primary text-center" style="font-size: 1.3rem;">2018300366</span>
-                  <button type="button" class="btn btn-primary d-block mx-auto my-2">View Payment History</button> 
                 </div>
                 <div class="payments_tab_right">
                   <form action="">
@@ -340,50 +338,6 @@
           
         </div>
             
-
-
-
-            <!-- REPORTS -->
-            <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
-              <p class="title_tab_universal">Generated Reports</p>
-
-              <div class="col universal_bg_gray_table p-3">
-                <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">View Transactions:</span>
-                
-                <button class="btn btn-outline-primary float-end mx-1">Annually</button>
-                  <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
-                  <button class="btn btn-outline-primary float-end mx-1">Daily</button>
-                </div>
-                
-                
-              <div class="col universal_bg_gray_table p-3">
-                <form action="" class="d-flex justify-content-between">
-                <div class="col-md-3">
-                  <div class="form-floating">
-                    <select class="form-select col-2" id="floatingSelect" aria-label="Floating label select example">
-                    <option value="" selected>All</option>
-                      <option value="" selected>Cash</option>
-                      <option value="">Fund Transfer</option>
-                    </select>
-                    <label for="floatingSelect">Payment Method</label>
-
-                  </div>
-                  <div class="col-md mt-1">
-                    <button class="btn btn-primary ">Apply</button>
-                    <button class="btn btn-primary ">Clear</button>
-                  </div>
-                </div>
-                
-              </form>
-              </div>
-
- 
-              
-
-            </div>
-
-
-
 
 
 
@@ -627,14 +581,7 @@
         }
   </script>
 
-  <script type="text/javascript">
-    const roleId = document.querySelector('#roleId').innerHTML
 
-    if (roleId.includes("Cashier")){
-      document.querySelector('#v-pills-studFee-tab').style.display = "none"
-      document.querySelector('#v-pills-reports-tab').style.display = "none"
-    }
-  </script>
 </script>
 </body>
 </html>
