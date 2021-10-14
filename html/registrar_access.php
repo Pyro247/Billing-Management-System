@@ -1147,8 +1147,8 @@
             <div class="tab-pane fade" id="v-pills-fees" role="tabpanel" aria-labelledby="v-pills-fees-tab">
               <p class="title_tab_universal">Manage Fees</p>
               <form action="" class="universal_search_form">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <input type="text" name="searhProgram" id="searhProgram" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="searchProgram-btn">Search</button>
               </form>
               <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add School Year</button>
@@ -1676,38 +1676,44 @@
       <script>
         $('#v-pills-fees-tab').click(function (e) { 
           e.preventDefault();
-          availablePrograms();
+          availablePrograms('%');
         });
+        $("#searchProgram-btn").click(function (e) { 
+          e.preventDefault();
+          let query = $('#searhProgram').val()
+          availablePrograms(query);
+        });
+        // New School Year
         $('#addNewSY').click(function (e) { 
           e.preventDefault();
             let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
             manageFees(newSY,0);
           
         });
+        // Sumbit and Update New Program
         $('#addNewProgram').click(function (e) { 
           e.preventDefault();
           if($('addNewProgram').text('Update')){
-           
             let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
             manageFees(newProgram,1);
-            // alert(id);
           }else{
             let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
             manageFees(newProgram,1);
           }
-         
-          
         });
+        // New Scholarship
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
           let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
           manageFees(newScholarship,2);
         });
+        // New Discount
         $('#addNewDiscount').click(function (e) { 
           e.preventDefault();
           let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
           manageFees(newDiscount,3);
         });
+        // Edit Program
         $(document).on('click', '#editProgram', function(){ 
           let id = $(this).attr("data-id");
           let course_program = $('#'+id).children('td[data-target=course_program]').text();
@@ -1729,9 +1735,8 @@
           $("[name='fee']").val(tuition_fee);
 
           $('#addNewProgram').text('Update');
-    
-          
         });
+        // Function Ajax Request Manage Fess
         function manageFees(newData,close){
           $.ajax({
             type: "POST",
@@ -1748,12 +1753,14 @@
             }
           });
         }
-        function availablePrograms(){
+        // Function Displaying the table of Available Programs
+        function availablePrograms(query){
           $.ajax({
             type: "POST",
             url: "../includes/manageFess.php",
             data: {
-              'showProgram': 1
+              'showProgram': 1,
+              'query': query
             },
             dataType: "html",
             success: function (data) {

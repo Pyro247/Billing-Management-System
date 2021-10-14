@@ -101,11 +101,14 @@
 <?php
 
   if(isset($_POST['showProgram'])){
+  $query = $_POST['query'];
   $sql ="SELECT list.program_id,list.course_program,list.course_major,fees.course_year_level,list.course_duration,fees.semester,fees.tuition_fee
         FROM tbl_course_list AS list
         INNER JOIN tbl_course_fees as fees 
-        ON list.program_id = fees.program_id";
+        ON list.program_id = fees.program_id
+        WHERE list.course_program LIKE ?";
   $stmt = $con->prepare($sql);
+  $stmt->bind_param('s',$query);
   $stmt->execute();
   $res = $stmt->get_result();
   $count = $res->num_rows;
