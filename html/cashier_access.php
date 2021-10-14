@@ -104,8 +104,8 @@
               <p class="title_tab_universal">Approve Payments</p>
 
               <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <input type="text" name="searchDashBar" id="searchDashBar" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="searchDashBar-btn">Search</button>
               </form>
               
 
@@ -115,16 +115,16 @@
 
             <div class="col-md-6 my-1">
               <div class="form-floating">
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
                 <option value="" selected>None</option>
-                  <option value="" selected>Student ID</option>
-                  <option value="">Transaction ID</option>
-                  <option value="">Date of Payment</option>
-                  <option value="">Year Level</option>
+                  <option value="stud_id" selected>Student ID</option>
+                  <option value="transaction_no">Transaction ID</option>
+                  <option value="transaction_date">Date of Payment</option>
+                  <option value="csi_year_level">Year Level</option>
                   
   
                 </select>
-                <label for="floatingSelect">Sort By:</label>
+                <label for="sortByDashData">Sort By:</label>
               </div>
             </div>
 
@@ -210,14 +210,18 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
+              <div class="input-group input-group-sm mb-3">
+                
+                <input type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="transactionNo">
+              </div>
               <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-                <label for="floatingTextarea2">Comments</label>
+                <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
+                <label for="reasonToDeny">Comments</label>
               </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Send Deny</button>
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="sendDeny">Send Deny</button>
               </div>
             </div>
           </div>
@@ -516,9 +520,24 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <!-- Dashboard Script -->
   <script>
     $(document).ready(function () {
-      display();
+      
+      let allData = '%'
+      let generalSort = 'stud_id'
+      viewPending(allData,generalSort);
+
+      $('#searchDashBar-btn').click(function (e) { 
+        e.preventDefault();
+        let searchData = document.getElementById('searchDashBar').value
+        viewPending(searchData,generalSort);
+      });
+      $( "#sortByDashData" ).change(function() {
+       
+        let sortBy =  $("select#sortByDashData option").filter(":selected").val();
+        viewPending(allData,sortBy);
+      });
       $(document).on('click', '#approve', function(){
         let transactionNo = $(this).attr("data-id");
         let name = $(this).attr("data-name");
@@ -546,12 +565,42 @@
                 'Payment Proccessed Complete',
                 'Success'
                 )
-                display();
+                viewPending(allData,generalSort);
               }
             });
           }
         })
         
+      });
+      $(document).on('click', '#deny', function(){
+        let transactionNo = $(this).attr("data-id");
+        let name = $(this).attr("data-name");
+        $('#transactionNo').val(transactionNo);
+
+      });
+      $('#sendDeny').click(function (e) { 
+        e.preventDefault();
+        let transactionNo = $('#transactionNo').val();
+        let reasonToDeny = $('#reasonToDeny').val();
+        $.ajax({
+          type: "POST",
+          url: "../includes/managPayments.php",
+          data: {
+            "deny": 1,
+            "transactionNo": transactionNo,
+            "reasonToDeny": reasonToDeny
+          },
+          success: function (response) {
+            console.log(response)
+            Swal.fire(
+                'Denied!',
+                'Payment Denied Complete',
+                'info'
+                )
+                viewPending(allData,generalSort);
+
+          }
+        });
       });
       $(document).on('click', '#viewInvoice', function(){
         let invoiceImg = $(this).attr("data-id");
@@ -561,10 +610,15 @@
       
 
     });
-    function display(){
+    function viewPending(query,sort){
             $.ajax({
-              type: "GET",
-              url: "../includes/viewPendingPayments.php",
+              type: "POST",
+              url: "../includes/managPayments.php",
+              data:{
+                "viewPending": 1,
+                "query": query,
+                "sort": sort
+              },
               dataType: "html",
               success: function (data) {
                 $('#viewPendingPayments').html(data);

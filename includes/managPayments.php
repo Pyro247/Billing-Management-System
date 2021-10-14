@@ -81,48 +81,101 @@
 
     echo json_encode( $response );
   }
-if(isset($_POST['deny'])){
-  $transactionNo = $_POST['transactionNo'];
-  $reasonToDeny = $_POST['reasonToDeny'];
-  $slq = "SELECT *
-          FROM tbl_pending_payments
-          WHERE transaction_no = ?";
-  $stmt = $con->prepare( $slq );
-  $stmt->bind_param( 's', $transactionNo );
+  if(isset($_POST['deny'])){
+    $transactionNo = $_POST['transactionNo'];
+    $reasonToDeny = $_POST['reasonToDeny'];
+    $slq = "SELECT *
+            FROM tbl_pending_payments
+            WHERE transaction_no = ?";
+    $stmt = $con->prepare( $slq );
+    $stmt->bind_param( 's', $transactionNo );
+    $stmt->execute();
+    $res = $stmt->get_result();
+    $row = $res->fetch_assoc();
+    if( $res->num_rows > 0 ) {
+      $transaction_no = $row['transaction_no'];
+      $stud_id = $row['stud_id'];
+      $fullname = $row['fullname'];
+      $email = $row['email'];
+      $amount = $row['amount'];
+      $payment_gateway = $row['payment_gateway'];
+      $sales_invoice = $row['sales_invoice'];
+      $transaction_date = $row['transaction_date'];
+      $status = "Denied";
+  
+      $sqlDeny = "INSERT INTO `tbl_denied_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES (?,?,?,?,?,?,?,?,?,?)";
+      $stmtDeny = $con->prepare($sqlDeny);
+      $stmtDeny->bind_param('ssssssssss', $transaction_no,$stud_id,$fullname,$email,$amount,$payment_gateway,$sales_invoice,$transaction_date,$status,$reasonToDeny);
+  
+      if($stmtDeny->execute()){
+  
+        $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
+        $stmtPendingPay = $con->prepare($sqlPendingPay);
+        $stmtPendingPay->bind_param('s',$transaction_no);
+        $stmtPendingPay->execute();
+  
+        $response['status'] = 'success';
+            $response['message'] = 'Successfully Denied Payment';
+      }else{
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to Denied Payment!';
+      }
+    }
+  
+    echo json_encode( $response );
+  }
+?>
+
+<?php
+// <!-- Display Data Tabeles -->
+// include_once '../connection/Config.php';
+if(isset($_POST['viewPending'])){
+  $query = $_POST['query'];
+  $sort = $_POST['sort'].' '.'ASC';
+  $sql ="SELECT pay.*,fees.csi_year_level
+          FROM `tbl_pending_payments` as pay
+          INNER JOIN tbl_student_fees as fees ON pay.stud_id = fees.stud_id
+          WHERE pay.fullname LIKE CONCAT('%',?,'%') OR pay.stud_id  LIKE CONCAT('%',?)
+          ORDER BY ".$sort;
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param('ss',$query,$query);
   $stmt->execute();
   $res = $stmt->get_result();
-  $row = $res->fetch_assoc();
-  if( $res->num_rows > 0 ) {
-    $transaction_no = $row['transaction_no'];
-    $stud_id = $row['stud_id'];
-    $fullname = $row['fullname'];
-    $email = $row['email'];
-    $amount = $row['amount'];
-    $payment_gateway = $row['payment_gateway'];
-    $sales_invoice = $row['sales_invoice'];
-    $transaction_date = $row['transaction_date'];
-    $status = "Denied";
-
-    $sqlDeny = "INSERT INTO `tbl_denied_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES (?,?,?,?,?,?,?,?,?,?)";
-    $stmtDeny = $con->prepare($sqlDeny);
-    $stmtDeny->bind_param('ssssssssss', $transaction_no,$stud_id,$fullname,$email,$amount,$payment_gateway,$sales_invoice,$transaction_date,$status,$reasonToDeny);
-
-    if($stmtDeny->execute()){
-
-      $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
-      $stmtPendingPay = $con->prepare($sqlPendingPay);
-      $stmtPendingPay->bind_param('s',$transaction_no);
-      $stmtPendingPay->execute();
-
-      $response['status'] = 'success';
-          $response['message'] = 'Successfully Denied Payment';
-    }else{
-      $response['status'] = 'error';
-      $response['message'] = 'Failed to Denied Payment!';
-    }
-  }
-
-  echo json_encode( $response );
-}
+  $count = $res->num_rows;
 
 ?>
+<?php 
+if($count > 0){
+while($data = $res->fetch_assoc()){?>
+  <tr class="text-center">
+    <td style="font-weight: bold;"><?=$data['transaction_no'];?></td>
+    <td><?=$data['stud_id'];?></td>
+    <td><?=$data['fullname'];?></td>
+    <td><span style="font-size 1.5rem; font-weight: bold;">P</span><?=$data['amount'];?></td>
+    <td><?=$data['transaction_date'];?></td>
+    <td><?=$data['email'];?></td>
+    <td>
+    <button type="button" class="btn btn-primary" id="viewInvoice" data-bs-toggle="modal" data-bs-target="#salesInvoice" data-id="<?=$data['sales_invoice'];?>">
+      View
+    </button>
+    </td>
+    <td>
+      <a href="#" class="btn btn-success paymentTransaction_actionBtn mb-1 d-block"
+        id="approve" 
+        data-id="<?=$data['transaction_no'];?>"
+        data-name="<?=$data['fullname'];?>"
+        >Approve</a>
+        <a href="#" class="btn btn-danger paymentTransaction_actionBtn mb-1 d-block"
+        id="deny" 
+        data-bs-toggle="modal" data-bs-target="#denyModal"
+        data-id="<?=$data['transaction_no'];?>"
+        data-name="<?=$data['fullname'];?>"
+        >Deny</a>
+    </td>
+  </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php }}   ?>
