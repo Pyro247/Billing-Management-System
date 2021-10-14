@@ -13,6 +13,23 @@
             $stmtStud->execute();
             $resStud = $stmtStud->get_result(); 
             $rowStud = $resStud->fetch_assoc();
+
+            $sqlLatestPaidDate ="SELECT  amount, transaction_date
+                                FROM tbl_payments WHERE stud_id = ? 
+                                ORDER BY transaction_date DESC";
+            $stmtLatestPaidDate = $con->prepare($sqlLatestPaidDate);
+            $stmtLatestPaidDate->bind_param('s', $_SESSION['stud_id']);
+            $stmtLatestPaidDate->execute();
+            $resLatestPaidDate = $stmtLatestPaidDate->get_result(); 
+            $rowLatestPaidDate = $resLatestPaidDate->fetch_assoc();
+            if($resLatestPaidDate->num_rows > 0){
+                $amount = $rowLatestPaidDate['amount'];
+                $date = $rowLatestPaidDate['transaction_date'];
+            }else{
+                $amount = 'N/A';
+                $date = 'N/A';
+            }
+
         }
     ?>
     <!DOCTYPE html>
@@ -113,12 +130,12 @@
                         </div>
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;"><?=$rowStud['balance'];?></span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;"></span></span>
+                            <span class="miniDashboardh3 text-end w-50">Last Amount paid:<?= $amount?> <span class="text-success" style="font-weight: bold;"></span></span>
 
                         </div>
                         <div class="col d-flex">
                             <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_type'];?></span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <span class="text-success" style="font-weight: bold; "></span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <?= $date?> <span class="text-success" style="font-weight: bold; "></span></span>
                         </div>
                     </div>
 
