@@ -115,7 +115,7 @@
             <div class="col-md-6 my-1">
               <div class="form-floating">
                 <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
-                <option value="" selected>None</option>
+                <option value="transaction_no" selected>None</option>
                   <option value="stud_id" selected>Student ID</option>
                   <option value="transaction_no">Transaction ID</option>
                   <option value="transaction_date">Date of Payment</option>
@@ -479,22 +479,23 @@
     $(document).ready(function () {
       
       let allData = '%'
-      let generalSort = 'stud_id'
-      viewPending(allData,generalSort);
-
+      let generalSort = 'transaction_no'
+      viewPending(allData,generalSort); //Onload Display Table Data
+      // SEARCH
       $('#searchDashBar-btn').click(function (e) { 
         e.preventDefault();
         let searchData = document.getElementById('searchDashBar').value
         viewPending(searchData,generalSort);
       });
+      // SORTBY
       $( "#sortByDashData" ).change(function() {
-       
-        let sortBy =  $("select#sortByDashData option").filter(":selected").val();
+        let sortBy =  $("select#sortByDashData option").filter(":selected").val();//Get Dropdown Selected Value
         viewPending(allData,sortBy);
       });
+      // Approve 
       $(document).on('click', '#approve', function(){
-        let transactionNo = $(this).attr("data-id");
-        let name = $(this).attr("data-name");
+        let transactionNo = $(this).attr("data-id"); //Get data- attribute containing Transaction No.
+        let name = $(this).attr("data-name");//Get data- attribute containing Name
         Swal.fire({
           title: 'Are you sure?',
           text: "Approving Students Payment for" + name,
@@ -504,7 +505,7 @@
           cancelButtonColor: '#d33',
           confirmButtonText: 'Yes, Approve It!'
         }).then((result) => {
-          if (result.isConfirmed) {
+          if (result.isConfirmed) { //Approve Clicked
             $.ajax({
               type: "POST",
               url: "../includes/managPayments.php",
@@ -524,14 +525,15 @@
             });
           }
         })
-        
       });
+      // Deny Button in table Trigger Modal to pop
       $(document).on('click', '#deny', function(){
         let transactionNo = $(this).attr("data-id");
         let name = $(this).attr("data-name");
         $('#transactionNo').val(transactionNo);
 
       });
+      // Send Deny madal button
       $('#sendDeny').click(function (e) { 
         e.preventDefault();
         let transactionNo = $('#transactionNo').val();
@@ -551,34 +553,33 @@
                 'Payment Denied Complete',
                 'info'
                 )
-                viewPending(allData,generalSort);
-
+            viewPending(allData,generalSort);
           }
         });
       });
+      // Show Invoice Modal
       $(document).on('click', '#viewInvoice', function(){
         let invoiceImg = $(this).attr("data-id");
         let dir = '../saleInvoiceImg/'
         document.getElementById("invoiceImg").src = dir + invoiceImg;
       });
-      
-
     });
+    // View Pending Payments AJAX request include search,sortBy,view all data
     function viewPending(query,sort){
-            $.ajax({
-              type: "POST",
-              url: "../includes/managPayments.php",
-              data:{
-                "viewPending": 1,
-                "query": query,
-                "sort": sort
-              },
-              dataType: "html",
-              success: function (data) {
-                $('#viewPendingPayments').html(data);
-              }
-            });
+      $.ajax({
+        type: "POST",
+        url: "../includes/managPayments.php",
+        data:{
+          "viewPending": 1,
+          "query": query,
+          "sort": sort
+        },
+        dataType: "html",
+          success: function (data) {
+          $('#viewPendingPayments').html(data);
         }
+      });
+    }
   </script>
 
 

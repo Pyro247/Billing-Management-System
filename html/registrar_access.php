@@ -39,11 +39,9 @@
 
 <script type="text/javascript">
   window.onload = function(){
-        let loader = document.getElementById('loader-wrapperID')
-        loader.style.opacity = "0"
-        loader.style.visibility = "hidden"
-        loader.style.pointerEvents = "none"
+    loaderClose()
   }
+  
 </script>
 <!-- LOADER -->
     <div class="nav__bar">
@@ -715,76 +713,71 @@
     <!-------------------------------------------- Employees Tab -------------------------------------->
                 <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
                   <p class="role_information text-primary">Employee's Information</p>
-                  <form action="../includes/manage_employee.php" method="post" class="universalForm_two">
-                  <div class="manage_users_universal_tab_lmr_parent">
 
+                  <form method="post" class="universalForm_two" id="empForm">
+                    <div class="manage_users_universal_tab_lmr_parent">
+                      <!-- Profile Picture -->
                       <div class="manage_users_universal_left_tab">
-                      <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="...">
-                      <button type="button" class="btn btn-primary my-2">Change Image</button>
+                        <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="...">
+                        <button type="button" class="btn btn-primary my-2">Change Image</button>
                       </div>
-
+                      <!-- Emoployee Details -->
                       <div class="manage_users_universal_mid_tab px-1">
                         <div class="row g-2 mb-1">
-
-                        
-
-                           <div class="col-md">
+                          <!-- Employee Role -->
+                          <div class="col-md">
                             <div class="form-floating">
-                            <select class="form-select" name="emp_role" id="floatingSelect" aria-label="Floating label select example">
-                            <option value="" selected></option>
+                              <select class="form-select" name="emp_role" id="empRole" aria-label="Floating label select example" disabled>
+                                <option value="N/A">N/A</option>
                                 <option value="Registrar">Registrar</option>
                                 <option value="Cashier">Cashier</option>
                               </select>
-                              <label for="floatingSelect">Role</label>
+                              <label for="empRole">Role</label>
                             </div>
                           </div>
-
+                          <!-- Employee ID -->
                           <div class="col-md">
                             <div class="form-floating">
-                              <input type="number" class="form-control" name="emp_id" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Employee ID</label>
+                              <input type="number" class="form-control" name="emp_id" id="empId" placeholder=" " value="" disabled>
+                              <label for="empId">Employee ID</label>
                             </div>
                           </div>
-                         
-                      </div>
-
-
-
-
-                      <div class="row g-2 mb-1">
-                        <div class="col-md">
-                          <div class="form-floating">
-                            <input type="text" class="form-control" name="emp_firstname" id="floatingInputGrid" placeholder=" " value="">
-                            <label for="floatingInputGrid">First name</label>
-                          </div>
-                        </div>
-
-                          <div class="col-md">
-                            <div class="form-floating">
-                              <input type="text" class="form-control" name="emp_middlename" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Middle name</label>
-                            </div>
-                          </div>
-
-                          <div class="col-md">
-                            <div class="form-floating">
-                              <input type="text" class="form-control" name="emp_lastname" id="floatingInputGrid" placeholder=" " value="">
-                              <label for="floatingInputGrid">Last name</label>
-                            </div>
-                          </div>
-
-                          
                         </div>
 
                         <div class="row g-2 mb-1">
+                          <!-- Employee Firsname -->
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="emp_firstname" id="empFirstname" placeholder=" " value="" disabled>
+                              <label for="empFirstname">First name</label>
+                            </div>
+                          </div>
+                          <!-- Employee Middlename -->
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="emp_middlename" id="empMiddlename" placeholder=" " value="" disabled>
+                              <label for="empMiddlename">Middle name</label>
+                            </div>
+                          </div>
+                          <!-- Employee Lastname -->
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="emp_lastname" id="empLastname" placeholder=" " value="" disabled>
+                              <label for="empLastname">Last name</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="row g-2 mb-1">
+                          <!-- Employee Gender -->
                           <div class="col-md-3">
                             <div class="form-floating">
-                              <select class="form-select" name="emp_sex" id="floatingSelect" aria-label="Floating label select example">
-                                <option value="Male" selected>Male</option>
-                                <option value="Female">Female</option>
-                
+                              <select class="form-select" name="emp_sex" id="empSex" aria-label="Floating label select example" disabled>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                
                               </select>
-                              <label for="floatingSelect">Sex</label>
+                              <label for="empGender">Sex</label>
                             </div>
                           </div>
 <!-- 
@@ -801,33 +794,30 @@
                               <label for="floatingInputGrid">Age</label>
                             </div>
                           </div> -->
-
+                          <!-- Employee Address -->
                           <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" class="form-control" name="emp_address" id="floatingInputGrid" placeholder=" " value="">
-                                  <label for="floatingInputGrid">Address</label>
-                                </div>
-                              </div>
-
-                          
+                            <div class="form-floating">
+                              <input type="text" class="form-control" name="emp_address" id="empAddress" placeholder=" " value="" disabled>
+                              <label for="empAddress">Address</label>
+                            </div>
+                          </div>
                         </div>
 
                         <div class="row g-2 mb-1">
-
-        
-                            <div class="col-md">
-                              <div class="form-floating">
-                                <input type="email" class="form-control" name="emp_email" id="floatingInputGrid" placeholder=" " value="">
-                                <label for="floatingInputGrid">Email</label>
-                              </div>
+                          <!-- Employee Email Address -->
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="email" class="form-control" name="emp_email" id="empEmail" placeholder=" " value="" disabled>
+                              <label for="empEmail">Email</label>
                             </div>
-        
-                            <div class="col-md">
+                          </div>
+                          <!-- Employee Contact Nunmber -->
+                          <div class="col-md">
                               <div class="form-floating">
-                                <input type="number" class="form-control" name="emp_contact_number" id="floatingInputGrid" placeholder=" " value="">
-                                <label for="floatingInputGrid">Contact number</label>
+                                <input type="number" class="form-control" name="emp_contact_number" id="empContactNo" placeholder=" " value="" disabled>
+                                <label for="empContactNo">Contact number</label>
                               </div>
-                            </div>
+                          </div>
 <!-- 
                             <div class="col-md">
                               <div class="form-floating">
@@ -842,22 +832,16 @@
                                 <label for="floatingInputGrid">Civil Status</label>
                               </div>
                             </div> -->
-        
-                          </div>
-
-                          
+                        </div>
                       </div>
-
-
-                  </div> 
+                    </div> 
                   
-                  <div class="buttons_manage_universal">
-                  <!-- <button type="button" name="" class="btn btn-info">Enroll</button> -->
-                  <button type="submit" name="emp_edit" class="btn btn-warning">Edit</button>
-                  <button type="submit" name="emp_delete" class="btn btn-danger">Delete</button>
-                  <button type="submit" name="emp_save" class="btn btn-success" >Save</button>
-                  </div> 
-
+                    <div class="buttons_manage_universal">
+                      <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
+                      <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
+                      <button type="submit" name="emp_delete" class="btn btn-danger" id="empDel" disabled>Delete</button>
+                      
+                    </div> 
                   </form>
                   <hr>
                   <div class="manage_student_tab_below mt-4">
@@ -867,14 +851,14 @@
                     <div class="row g-2">
                     <div class="col-md">
                       <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option value="BSIT_WMA" selected>All</option>
+                        <select class="form-select" id="filterBy" aria-label="Floating label select example">
+                          <option value="%" selected>All</option>
                           <option value="Registrar">Registrar</option>
                           <option value="Cashier">Cashier</option>
                           
           
                         </select>
-                        <label for="floatingSelect">Role</label>
+                        <label for="filterBy">Role</label>
                       </div>
                     </div>
                   </div>
@@ -888,17 +872,12 @@
                         <th scope="col">Last name</th>
                         <th scope="col">Role</th>
                         <th scope="col">Hire Date</th>
+                        <th scope="col">Actions</th>
                         
                       </tr>
                     </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row">900283</th>
-                        <td>Juan</td>
-                        <td>Dela Cruz</td>
-                        <td>Registrar</td>
-                        <td>4/10/2021</td>
-                      </tr>
+                    <tbody id="viewEmployee">
+                      
                     </tbody>
                   </table>
                   </div>
@@ -1705,6 +1684,146 @@
           //     });
           // }
       </script>
+      <!-- Script For Manage User-Employee Admin Access -->
+      <script>
+        let allData = '%'
+        let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname']
+        let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo']
+        $('#v-pills-manage-users-tab').click(function (e) { 
+          e.preventDefault();
+          
+          viewEmployee(allData)
+          
+
+        });
+        // ADD
+        $('#empAdd').click(function (e) { 
+          e.preventDefault();
+          empFieldsAttr(partialfields,false);
+          $("#empAdd").prop("disabled", true);
+          $("#empSave").prop("disabled", false);
+        });
+        // SAVE
+        $("#empSave").click(function (e) { 
+          e.preventDefault();
+          if($('#empSave').text() == 'Update'){
+            
+            let updateEmp = $('#empForm').serialize() + '&updateEmp=updateEmp';
+            empActions(updateEmp);
+            $('#empSave').text('Save');
+            empFieldsAttr(allfields,true)
+            $("#empAdd").prop("disabled", false);
+            $("#empSave").prop("disabled", true);
+            $("#empDel").prop("disabled", true);
+          }else{
+            let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
+            empActions(newEmp);
+            empFieldsAttr(partialfields,true)
+            $("#empAdd").prop("disabled", false);
+            $("#empSave").prop("disabled", true);
+          }
+        });
+        $(document).on('click', '#empEdit', function(){
+          let id = $(this).attr("data-id");
+
+          empFieldsAttr(allfields,false)
+          $('#empSave').text('Update');
+          $("#empAdd").prop("disabled", true);
+          $("#empSave").prop("disabled", false);
+          $("#empDel").prop("disabled", false);
+
+          $.ajax({    
+              type: "GET",
+              url: "../includes/manage_employee.php", 
+              data:{empEdit:id},
+              beforeSend: function () {
+                loaderOpen() // Before we send the request, remove the .hidden class from the 
+              },                             
+              success: function(data){   
+                $("#empRole").val(data.role);               
+                $("input[name='emp_id']").val(data.empId);
+                $("input[name='emp_firstname']").val(data.firstname);
+                $("input[name='emp_middlename']").val(data.middlename);
+                $("input[name='emp_lastname']").val(data.lastname);
+                $("#empSex").val(data.sex);
+                $("input[name='emp_address']").val(data.address);
+                $("input[name='emp_email']").val(data.email);
+                $("input[name='emp_contact_number']").val(data.contact_number);
+                
+              },
+              complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+                loaderClose() 
+              },
+          });
+        })
+        $('#empDel').click(function (e) { 
+          e.preventDefault();
+          let delEmp = $('#empForm').serialize() + '&delEmp=delEmp';
+          empActions(delEmp);
+          $('#empSave').text('Save');
+            empFieldsAttr(allfields,true)
+            $("#empAdd").prop("disabled", false);
+            $("#empSave").prop("disabled", true);
+            $("#empDel").prop("disabled", true);
+        });
+        $('#filterBy').change(function (e) { 
+          e.preventDefault();
+          let filterBy =  $("select#filterBy option").filter(":selected").val();
+          viewEmployee(filterBy)
+        });
+        // Enable/Disabled Employee Fields
+        function empFieldsAttr(fields,bol){
+          
+          for(let i = 0; i < fields.length; i++) {
+            $("#"+fields[i]).prop('disabled', bol);
+          }
+        }
+        function empActions(formData){
+          $.ajax({
+            type: "POST",
+            url: "../includes/manage_employee.php",
+            data: formData,
+            beforeSend: function () {
+              loaderOpen() // Before we send the request, remove the .hidden class from the 
+            },
+            success: function (response) {
+              console.log(response)
+              Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+              })
+              if(response.status == 'success'){
+                $('#empForm').trigger('reset');
+                viewEmployee(allData)
+              }
+            },
+            complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+              loaderClose() 
+            },
+          });
+        }
+        function viewEmployee(filterBy){
+          $.ajax({
+            type: "POST",
+            url: "../includes/manage_employee.php",
+            data: {
+              "showEmp": 1,
+              "filterBy":filterBy
+            },
+            dataType: "html",
+            beforeSend: function () {
+                loaderOpen() // Before we send the request, remove the .hidden class from the 
+            }, 
+            success: function (data) {
+              $('#viewEmployee').html(data);
+            },
+            complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+                loaderClose() 
+            },
+          });
+        }
+      </script>
       <!-- Script For Manage Fees Admin Access -->
       <script>
         $('#v-pills-fees-tab').click(function (e) { 
@@ -1721,7 +1840,6 @@
           e.preventDefault();
             let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
             manageFees(newSY,0);
-          
         });
         // Sumbit and Update New Program
         $('#addNewProgram').click(function (e) { 
@@ -1820,8 +1938,20 @@
               document.getElementById('v-pills-fees-tab').style.display = "none"
               
             }
-
+            function loaderClose(){
+              let loader = document.getElementById('loader-wrapperID')
+                  loader.style.opacity = "0"
+                  loader.style.visibility = "hidden"
+                  loader.style.pointerEvents = "none"
+            }
+            function loaderOpen(){
+              let loader = document.getElementById('loader-wrapperID')
+                  loader.style.opacity = "1"
+                  loader.style.visibility = "visible"
+                  // loader.style.pointerEvents = "none"
+            }
       </script>
+
 
   </body>
 </html>
