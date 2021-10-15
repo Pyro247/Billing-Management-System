@@ -77,7 +77,7 @@
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
               <a href="../html/forgotPassword.php">Change Password</a>
-              <a href="">Logout</a>
+              <a href="../includes/logout.inc.php">Logout</a>
             </div>
           <p class="reg__name" id="roleId">Cashier | C-2021003</p>
           <p class="reg__name" id="reg-date-time"></p>
