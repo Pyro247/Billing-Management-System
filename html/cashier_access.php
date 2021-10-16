@@ -329,6 +329,40 @@
                         
                       </tr>
                     </thead>
+                    <tbody>
+                    <?php
+                          include_once '../connection/Config.php';
+
+                              $sqlPT ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                              FROM `tbl_payments`
+                              WHERE transaction_date >=CURRENT_DATE()";
+                              $stmtPT = $con->prepare($sqlPT);
+                              $stmtPT->execute();
+                              $resPT = $stmtPT->get_result();
+                              $countPT = $resPT->num_rows;
+
+                      ?>
+                          <?php 
+                              if($countPT > 0){
+                                  while($dataPT = $resPT->fetch_assoc()){?>
+                                      <tr class="text-center">
+                                          <td><?=$dataPT['transaction_no'];?></td>
+                                          <td><?=$dataPT['stud_id'];?></td>
+                                          <td><?=$dataPT['fullname'];?></td>
+                                          <td><?=$dataPT['amount'];?></td>
+                                          <td><?=$dataPT['payment_method'];?></td>
+                                          <td class="text-success text-uppercase fw-bold"><?=$dataPT['payment_status'];?></td>
+                                          <td><?=$dataPT['transaction_date'];?></td>
+                                      </tr>
+                          <?php }?>
+                          <?php }else{?>
+                                      <tr>
+                                          <td><?php echo "No Records"?></td>
+                                      </tr>
+                          <?php } 
+                                                      
+                      ?>
+                </tbody> 
                   </table>
 
 
@@ -422,36 +456,36 @@
                       </thead>
                       <tbody>
                       <?php
-    include_once '../connection/Config.php';
-    
-        $sqlHistory ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-        FROM `tbl_payments`";
-        $stmtHistory = $con->prepare($sqlHistory);
-        $stmtHistory->execute();
-        $resHistory = $stmtHistory->get_result();
-        $countHistory = $resHistory->num_rows;
+                          include_once '../connection/Config.php';
+                          
+                              $sqlHistory ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                              FROM `tbl_payments`";
+                              $stmtHistory = $con->prepare($sqlHistory);
+                              $stmtHistory->execute();
+                              $resHistory = $stmtHistory->get_result();
+                              $countHistory = $resHistory->num_rows;
 
-?>
-    <?php 
-        if($countHistory > 0){
-            while($dataHistory = $resHistory->fetch_assoc()){?>
-                <tr class="text-center">
-                    <td><?=$dataHistory['transaction_no'];?></td>
-                    <td><?=$dataHistory['stud_id'];?></td>
-                    <td><?=$dataHistory['fullname'];?></td>
-                    <td><?=$dataHistory['amount'];?></td>
-                    <td><?=$dataHistory['payment_method'];?></td>
-                    <td class="text-success text-uppercase fw-bold"><?=$dataHistory['payment_status'];?></td>
-                    <td><?=$dataHistory['transaction_date'];?></td>
-                </tr>
-    <?php }?>
-    <?php }else{?>
-                <tr>
-                    <td><?php echo "No Records"?></td>
-                </tr>
-    <?php } 
-                                
-?>
+                      ?>
+                          <?php 
+                              if($countHistory > 0){
+                                  while($dataHistory = $resHistory->fetch_assoc()){?>
+                                      <tr class="text-center">
+                                          <td><?=$dataHistory['transaction_no'];?></td>
+                                          <td><?=$dataHistory['stud_id'];?></td>
+                                          <td><?=$dataHistory['fullname'];?></td>
+                                          <td><?=$dataHistory['amount'];?></td>
+                                          <td><?=$dataHistory['payment_method'];?></td>
+                                          <td class="text-success text-uppercase fw-bold"><?=$dataHistory['payment_status'];?></td>
+                                          <td><?=$dataHistory['transaction_date'];?></td>
+                                      </tr>
+                          <?php }?>
+                          <?php }else{?>
+                                      <tr>
+                                          <td><?php echo "No Records"?></td>
+                                      </tr>
+                          <?php } 
+                                                      
+                      ?>
                        <!-- <tr class="text-center">
                           <th scope="row">FT-001</th>
                           <td>2018300366</td>
