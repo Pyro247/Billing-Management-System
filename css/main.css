@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Overpass:wght@100&family=Zilla+Slab&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap');
 /* Note|| Font stle is 'Poppins' 16px */
 
 :root{
@@ -21,6 +21,8 @@
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
+
+
 
 
 .loader-wrapper{
@@ -125,7 +127,7 @@
 
 /* when sticky nav bar */
 
-.lp_nav.sticky{
+/* .lp_nav.sticky{
     background: var(--blue-color);
     height: 100px;
     
@@ -212,19 +214,144 @@
     font-family: var(--font-tagline);
     color: var(--white-color);
     
-}
+} */
 
     /* Header Section || Home */
 
+.absolute{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    place-content: center;
+    z-index: 999;
+    position: fixed;
+}
+
+.absolute img{
+    width: 400px;
+    height: 400px;
+}
+
+
+.nav{
+    width: 100%;
+    display: flex;
+    padding: 25px 125px;
+    position: fixed;
+    justify-content: space-between;
+    
+}
+
+.nav ul{
+    display: flex;
+    align-items: center;
+    
+    
+}
+
+.nav ul li{
+    list-style: none;
+}
+
+.nav ul li a{
+    text-decoration: none;
+    color: var(--white-color);
+    font-size: 1.4rem;
+    margin: 0 10px;
+    padding-bottom: 2px;
+    transition: all 150ms;
+}
+
+.nav ul li a i{
+    transition: 150ms;
+}
+.nav ul li a:hover{
+    border-bottom: 2px solid var(--green-color);
+    color: var(--green-color);
+}
+
+.nav ul li a:hover i{
+    color: var(--green-color);
+}
+
+.linksIntro{
+    visibility: hidden;
+}
+
+
 .header{
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    flex-wrap: wrap;
+    background: linear-gradient(#1e1e1e, #153760);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .pyroColleges{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.header .pyroColleges span{
+    font-size: 7rem;
+    font-family: var(--font-tagline-name);
+    font-weight: bold;
+    color: #0d6efd;
+    margin: 0 5px;
+    font-family: 'Balsamiq Sans', cursive;
+    visibility: hidden;
+}
+
+.header  p{
+    font-size: 5rem;
+    font-family: 'Balsamiq Sans', cursive;
+    color: #0d6efd;
+    text-align: center;
+    margin-bottom: 0;
+    visibility: hidden;
+}
+
+
+
+
+
+.header a{
+    padding: 10px 15px;
+    border: 2px solid beige;
+    font-size: 2rem;
+    text-decoration: none;
+    color: beige;
+    border-radius: 5px;
+    transition: all 300ms ease;
+    margin-top: 50px;
+    visibility: hidden;
+}
+
+
+.header a:hover{
+    background-color: #0d6efd;
+}
+
+
+
+
+/* .header{
     background: #151e3d;
     padding: 25px;
     width: 100%;
     height: 100vh;
-}
+    background-position: right;
+    background-repeat: no-repeat;
+
+} */
 
 
-.header{
+/* .header{
     background-image: url("../images/slider_pics/slider_bg_2.png");
     background-repeat: no-repeat;
     background-size: 750px;
@@ -232,8 +359,7 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    animation: pulse; /* referring directly to the animation's @keyframe declaration */
-    animation-duration: 2s; /* don't forget to set a duration! */
+
 }
 
 .header h1{
@@ -271,7 +397,7 @@
     -moz-box-shadow: none;
     box-shadow: none;
 }
-
+ */
 
 
 /* Learning Section */
@@ -520,7 +646,7 @@
 
 
 /* Footer */
-.footer_section{
+/* .footer_section{
     width: 100%;
     height: 100vh;
     padding-top: 100px;
@@ -576,11 +702,11 @@
 .footer_up .footer.fm span{
     font-size: 1.5rem;
     font-family: var(--font-tagline);
-}
+} */
 
 
 /* Footer down */
-.footer_down .footer.fl{
+/* .footer_down .footer.fl{
     text-align: right;
     margin-top: auto;
     width: 30%;
@@ -633,7 +759,7 @@
 
 .footer_down .footer.fr span{
     font-size: 1.6rem;
-}
+} */
 
 /* Footer 2 */
 footer{

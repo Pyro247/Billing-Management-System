@@ -65,10 +65,13 @@
 
 
 
+    <div class="absolute">
+        <img src="./images/x.gif" alt="" class="imgIntro">
+    </div>
 
 
     <!-- Navigation -->
-    <div class="lp_nav" id="nav_id">
+    <!-- <div class="lp_nav" id="nav_id">
         <div class="lp_nav_left">
             <ul class="nav-ul">
                 <li><a href="#home">Home</a></li>
@@ -90,16 +93,108 @@
                 <li><a href="./html/login.php">Login</a></li>
             </ul>
         </div>
+    </div> -->
+
+    <!-- Navigation -->
+
+    <!-- Navigation -->
+    <div class="nav">
+            <img src="./images/logo.png" alt="" width="75px" height="75px" id="logoIntro" style="visibility: hidden;">
+            <ul class="linksIntro">
+                <li><a href="./html/login.php"><i class="fas fa-user-circle"></i>&nbsp;Login</a></li>
+                <li><a href="./html/idValidation.php" ><i class="far fa-user-circle"></i>&nbsp;Register</a></li>
+            </ul>
     </div>
 
     <!-- Homepage -->
-    <div class="header" id="home">
-                
+    <div class="header">
+        
+            <div class="pyroColleges">
+                <span id="pIntro" class="animate__animated">P</span>
+                <span id="yIntro" class="animate__animated">Y</span>
+                <span id="rIntro" class="animate__animated">R</span>
+                <span id="oIntro" class="animate__animated">O</span>
 
-                    <h1>Billing Management System</h1>
-                    <p>Keep track on your payments and submitted requirements!</p>
-                    <a href="./html/login.php">Proceed <i class="fas fa-arrow-alt-circle-right"></i></a>
+            </div>
+            <p id="collegesIntro" class="animate__animated">Colleges</p>
+            
+        
+            <a href="./html/cashier_access.php" class="animate__animated" id="linkIntro">Billing Management System&nbsp;<i class="fas fa-coins"></i></a>
+        
     </div>
+
+
+    <script type="text/javascript">
+        const imageIntro = document.querySelector('.imgIntro')
+        const logoIntro = document.querySelector('#logoIntro')
+        const navLinks = document.querySelector('.linksIntro')
+        const absolute = document.querySelector('.absolute')
+
+        const pIntro = document.getElementById('pIntro')
+            setTimeout(function(){
+                pIntro.classList.toggle('animate__bounceInLeft')
+                pIntro.style.visibility = "visible"
+            }, 2800 );
+
+        const yIntro = document.getElementById('yIntro')
+            setTimeout(function(){
+                    yIntro.classList.toggle('animate__bounceInLeft')
+                    yIntro.style.visibility = "visible"
+                }, 3000 )
+
+        const rIntro = document.getElementById('rIntro')
+            setTimeout(function(){
+                        rIntro.classList.toggle('animate__bounceInLeft')
+                        rIntro.style.visibility = "visible"
+                    }, 3200 )
+        const oIntro = document.getElementById('oIntro')
+            setTimeout(function(){
+                        
+                        oIntro.classList.toggle('animate__bounce')
+                        oIntro.style.visibility = "visible"
+                    }, 4000 )
+        
+        const collegesIntro = document.getElementById('collegesIntro')
+            setTimeout(function(){
+                        collegesIntro.classList.toggle('animate__flipInX')
+                        collegesIntro.style.visibility = "visible"
+                    }, 3600 )
+        
+        const linkIntro = document.getElementById('linkIntro')
+            setTimeout(function(){
+                        linkIntro.classList.toggle('animate__rubberBand')
+                        linkIntro.style.visibility = "visible"
+                    }, 3800 )
+
+
+
+
+        setTimeout(function(){
+            logoIntro.classList.toggle('animate__animated')
+            logoIntro.classList.toggle('animate__jackInTheBox')
+            logoIntro.style.visibility = "visible"
+            navLinks.classList.toggle('animate__animated')
+            navLinks.classList.toggle('animate__lightSpeedInLeft')
+            navLinks.style.visibility = "visible"
+        }, 2800 );
+
+
+        setTimeout(function(){
+
+            imageIntro.classList.toggle('animate__animated')
+            imageIntro.classList.toggle('animate__zoomOutUp')
+            setTimeout(function(){
+                imageIntro.style.visibility = "hidden"
+                imageIntro.style.opacity = "0"
+                absolute.style.zIndex = "-1"
+                absolute.style.userEvents = "none"
+
+               
+            }, 1000)
+
+        }, 2000)
+
+    </script>
 
 
     <!-- Learning -->
@@ -216,7 +311,7 @@
             </div> -->
 
             <!-- Footer Down -->
-            <div class="footer_down" data-aos="fade-down">
+            <!-- <div class="footer_down" data-aos="fade-down">
                 <div class="footer fl">
                     <a href=""><i class="fab fa-facebook-f"></i></a>
                     <a href=""><i class="fab fa-twitter"></i></a>
@@ -238,7 +333,7 @@
                     <span>(045) 6060 702</span>
                 </div>
             </div>
-        </div>
+        </div> -->
         <footer>
             <a href="">Privacy Policy</a>
             <a href="">Work With Us</a>
@@ -253,7 +348,7 @@
 
 
     <!-- Js for sticky navbar -->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         window.addEventListener("scroll", function () {
             let nav_ = document.getElementById('nav_id');
             let school_name = document.getElementById("school_n_id");
@@ -269,7 +364,7 @@
 
 
 
-    </script>
+    </script> -->
 
     <!-- Data AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -277,33 +372,6 @@
         AOS.init();
     </script>
 
-
-    <!-- Swiper -->
-    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            grabCursor: true,
-            slidesPerView: 1,
-            spaceBetween: 0,
-            loop: true,
-            speed: 1000,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-
-            },
-
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
-
-    </script>
 
     <script src="./js/type.js"></script>
 
