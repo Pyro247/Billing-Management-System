@@ -403,17 +403,6 @@
                       </div>
                   </div>
 
-                  <div class="col-md">
-                    <div class="form-floating">
-                      <select class="form-select " id="floatingSelectStatus" aria-label="Floating label select example">
-                        <option value="" selected>All</option>
-                          <option value="">Approved</option>
-                          <option value="">Denied</option>
-                          <option value="">Pending</option>
-                        </select>
-                        <label for="floatingSelectStatus">Payment Status</label>
-                    </div>
-                  </div>
 
                   <div class="col-md">
                     <div class="form-floating">

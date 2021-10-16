@@ -263,6 +263,7 @@
     text-align: center;
     transition: 250ms;
     border-bottom: 1px solid var(--white-color);
+    border-radius: 0;
     
 }
 .nav-link.main__:first-child{
@@ -272,8 +273,6 @@
 .nav-link.main__.active{
     background-color: var(--white-color);
     color: var(--black-color);
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
 }
 
 

@@ -513,17 +513,7 @@
                             </div>
                         </div>
 
-                        <div class="col">
-                            <div class="form-floating">
-                                <select class="form-select col-2" id="floatingSelect" name="currSchoolY">
-                                    <option hidden>All</option>
-                                    <option value="2016-2017">Approved</option>
-                                    <option value="2017-2018">Denied</option>
-                                    <option value="2018-2019">Pending</option>
-                                </select>
-                                    <label for="floatingSelect">Filter by Payment Status:</label>
-                            </div>
-                        </div>
+
                     </div>
 
                 <div class="universalLightGrayBg rounded-2">
@@ -534,7 +524,6 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Status</th>
                             <th scope="col">Cashier</th>
                             
                             
