@@ -250,7 +250,7 @@ html,body{
 /* About */
 .about{
     width: 100%;
-    background: linear-gradient(#153760, #1e1e1e)
+    background: linear-gradient(#153760, #1e1e1e, #1e1e1e, #153760, #1e1e1e)
 }
 
 .about img{
@@ -298,15 +298,14 @@ html,body{
     display: flex;
     justify-content: center;
     align-items: center;
-
+    margin-bottom: 0;
 }
 .getInTouchInner{
     display: flex;
     flex-direction: column;
-    padding: 0 0 0 30px;
+    padding: 0 0 0 50px;
     
 }
-
 
 
 .getInTouchInner strong{
@@ -352,6 +351,7 @@ footer{
     width: 100%;
     padding-left: 25px;
     padding-right: 25px;
+    margin-bottom: 20px;
 }
 
 footer a{
