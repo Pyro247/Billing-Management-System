@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 12, 2021 at 05:17 PM
+-- Generation Time: Oct 16, 2021 at 09:01 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -31,6 +31,13 @@ CREATE TABLE `tbl_academic_year` (
   `academic_year` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_academic_year`
+--
+
+INSERT INTO `tbl_academic_year` (`academic_year`) VALUES
+('2021-2022');
+
 -- --------------------------------------------------------
 
 --
@@ -52,10 +59,10 @@ CREATE TABLE `tbl_accounts` (
 --
 
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
-(1, '', 'anne@gmail.com', 'anne', 'Registrar', '', ''),
-(2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', ' Student', '', ''),
+(2018301, 'Michael Isla', 'm.isla1301@student.tsu.edu.ph', 'Mike@1301', 'Student', '', ''),
+(2018302, 'Denver Pulido\r\n', 'pulido@gmail.com', 'Pulido@1', 'Student', '', ''),
 (10121314, 'Mike Isla', 'michael.estrechoisla@gmail.com', 'Mike@1301', 'Registrar', '', ''),
-(2018301301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Registrar', '', '');
+(2018301301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', 'Mike@1301', 'Admin', '', '');
 
 -- --------------------------------------------------------
 
@@ -76,7 +83,9 @@ CREATE TABLE `tbl_course_fees` (
 
 INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `tuition_fee`) VALUES
 (1, '1', '4', 10000),
-(2, '1', '4', 12000);
+(2, '1', '4', 12000),
+(10, '2', '4', 8500),
+(11, '1', '4', 7000);
 
 -- --------------------------------------------------------
 
@@ -98,35 +107,9 @@ CREATE TABLE `tbl_course_list` (
 INSERT INTO `tbl_course_list` (`program_id`, `course_program`, `course_major`, `course_duration`) VALUES
 (1, 'BSIT', 'WMA', 4),
 (2, 'BSIT', 'TSM', 4),
-(3, 'BSCS', 'N/A', 4);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_denied_payments`
---
-
-CREATE TABLE `tbl_denied_payments` (
-  `transaction_no` varchar(255) NOT NULL,
-  `stud_id` int(11) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `payment_gateway` varchar(100) NOT NULL,
-  `sales_invoice` longtext NOT NULL,
-  `transaction_date` date NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `reason` longtext NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_denied_payments`
---
-
-INSERT INTO `tbl_denied_payments` (`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES
-('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 500, 'Paymaya', 'Pay.png', '2021-10-12', 'Denied', 'Not Readable'),
-('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 500, 'Paymaya', '7448.png', '2021-10-12', 'Denied', 'Not match amount'),
-('FT-002', 2018301, 'Michael Estrecho Isla', 'm.isla1301@student.tsu.edu.ph', 1000, 'Gcash', '832186.jpg', '2021-10-12', 'Denied', 'Testing');
+(3, 'BSCS', 'N/A', 4),
+(10, 'BSIT', 'NA', 4),
+(11, 'BSED', 'English', 4);
 
 -- --------------------------------------------------------
 
@@ -144,8 +127,8 @@ CREATE TABLE `tbl_discount` (
 --
 
 INSERT INTO `tbl_discount` (`discount_type`, `discount_percent`) VALUES
-('Disabilities', 30),
-('Siblings Discount', 15);
+('	 Disabilities', 30),
+('Sibling Discount', 15);
 
 -- --------------------------------------------------------
 
@@ -172,6 +155,7 @@ CREATE TABLE `tbl_employee_info` (
 --
 
 INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `joined_date`) VALUES
+('', 101521, 'Cashier', 'Michael', 'Isla', 'Estrecho', '', '', '', '', ''),
 ('20211', 10121314, 'Registrar', 'Mike', 'Isla', 'E', 'male', 'michael.estrechoisla@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', 'October 12, 2021, 10:19 pm');
 
 -- --------------------------------------------------------
@@ -205,7 +189,11 @@ CREATE TABLE `tbl_payments` (
 --
 
 INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
-('FT-001', 1, 2018301, 'Michael Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Paymaya', 'Pay.png', 1000, '2021-10-12', 'Approved', 'Not Fully Paid', 11, 'Unknown');
+('FT-001', 1, 2018302, 'Denver Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Gcash', 'Pay.png', 4500, '2021-10-13', 'Approved', 'Not Fully Paid', 11, 'Unknown'),
+('FT-002', 1, 2018302, 'Denver Estrecho Isla', '2020-2021', '2', 10000, 1000, 'Online', 'Gcash', 'Pay.png', 3500, '2021-10-14', 'Approved', 'Not Fully Paid', 11, 'Unknown'),
+('FT-003', 1, 2018302, 'Denver Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Paymaya', 'Pay.png', 3000, '2021-10-14', 'Approved', 'Not Fully Paid', 11, 'Unknown'),
+('FT-014', 1, 2018302, 'Denver Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Paymaya', 'Pay.png', 2500, '2021-10-14', 'Approved', 'Not Fully Paid', 11, 'Unknown'),
+('FT-016', 1, 2018302, 'Denver Estrecho Isla', '2020-2021', '2', 10000, 500, 'Online', 'Gcash', 'Pay.png', 9500, '2021-10-15', 'Approved', 'Not Fully Paid', 11, 'Unknown');
 
 -- --------------------------------------------------------
 
@@ -214,7 +202,7 @@ INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname
 --
 
 CREATE TABLE `tbl_pending_payments` (
-  `transaction_no` varchar(255) NOT NULL,
+  `transaction_no` varchar(50) NOT NULL,
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -222,8 +210,19 @@ CREATE TABLE `tbl_pending_payments` (
   `payment_gateway` varchar(100) NOT NULL,
   `sales_invoice` longtext NOT NULL,
   `transaction_date` date NOT NULL,
-  `status` varchar(100) NOT NULL
+  `status` varchar(100) NOT NULL,
+  `reasonToDeny` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pending_payments`
+--
+
+INSERT INTO `tbl_pending_payments` (`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reasonToDeny`) VALUES
+('FT-017', 2018302, 'Denver Estrecho Isla', 'pulido@gmail.com', 500, 'Gcash', 'Pay.png', '2021-10-15', 'Pending', ''),
+('FT-018', 2018302, 'Denver Estrecho Isla', 'pulido@gmail.com', 12, 'Paymaya', 'Pay.png', '2021-10-16', 'Pending', ''),
+('FT-019', 2018302, 'Denver Estrecho Isla', 'pulido@gmail.com', 13, 'Paymaya', 'Assassin\'s Greed.jpg', '2021-10-16', 'Pending', ''),
+('FT-020', 2018302, 'Denver Estrecho Isla', 'pulido@gmail.com', 14, 'Paymaya', 'benny-rotlevy-I2EpqyPym78-unsplash.jpg', '2021-10-16', 'Pending', '');
 
 -- --------------------------------------------------------
 
@@ -241,9 +240,8 @@ CREATE TABLE `tbl_scholarship` (
 --
 
 INSERT INTO `tbl_scholarship` (`scholar_type`, `scholar_description`) VALUES
-('Athlete', 'Half'),
-('Academic', 'Half'),
-('Journalist', 'Full');
+('Half', 'Academic'),
+('Half', 'Athletes');
 
 -- --------------------------------------------------------
 
@@ -269,7 +267,9 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301, 'Michael Estrecho Isla', '4', 'Athlete', 'Disabilities', 10000, 2500, 3500, 'not fully paid');
+(1, 2018301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 10000, 2500, 10000, 'not fully paid'),
+(1, 2018302, 'Denver Estrecho Isla', '4', 'N/A', 'N/A', 10000, 8000, 9500, 'Not Fully Paid'),
+(1, 33219931, 'Wiya M Isla', '4', 'N/A', 'N/A', 10000, 2500, 7500, 'Not Fully Paid');
 
 -- --------------------------------------------------------
 
@@ -297,7 +297,9 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('20211', 2018301, 'Michael', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'm.isla1301@student.tsu.edu.ph', '09307078204', 'October 12, 2021, 4:39 pm', 2018301301, 'Michael Isla');
+('20211', 2018301, 'Michael', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'm.isla1301@student.tsu.edu.ph', '09307078204', 'October 12, 2021, 4:39 pm', 2018301301, 'Michael Isla'),
+('202112', 2018302, 'Denver', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'pulido@gmail.com', '09307078204', 'October 13, 2021, 9:01 am', 2018301301, 'Michael Isla'),
+('2021113', 33219931, 'Wiya', 'Isla', 'M', 'male', 'Villa Socoroo Poblacion Norte, Paniqui, Tarlac', 'wiyaelias@gmail.com', '09307078204', 'October 13, 2021, 9:33 am', 2018301301, 'Michael Isla');
 
 -- --------------------------------------------------------
 
@@ -318,7 +320,9 @@ CREATE TABLE `tbl_student_requirements` (
 --
 
 INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2018301, '10.12.21', '10.12.21', '10.12.21', '10.12.21');
+(2018301, '10.14.21', '10.14.21', '10.14.21', '10.14.21'),
+(2018302, '10.14.21', '10.14.21', '10.14.21', '10.14.21'),
+(33219931, '10.13.21', '10.13.21', '10.13.21', '10.13.21');
 
 -- --------------------------------------------------------
 
@@ -342,7 +346,9 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301, '12345', 'old', '2020-2021', '2', 'BSIT', 'WMA', '4');
+(2018301, '12345', 'old', '2020-2021', '2', 'BSIT', 'WMA', '4'),
+(2018302, '12345', 'old', '2020-2021', '2', 'BSIT', 'WMA', '4'),
+(33219931, '12345', 'old', '2020-2021', '2', 'BSIT', 'WMA', '4');
 
 --
 -- Indexes for dumped tables
@@ -389,16 +395,6 @@ ALTER TABLE `tbl_pending_payments`
 --
 ALTER TABLE `tbl_student_info`
   ADD PRIMARY KEY (`stud_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tbl_course_list`
---
-ALTER TABLE `tbl_course_list`
-  MODIFY `program_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
