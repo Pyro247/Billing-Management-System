@@ -39,7 +39,7 @@
         <!--Animation-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-
+    <script src="./js/introIndex.js" defer></script>
 
     <title>Web-based Billing Management System</title>
 
@@ -65,136 +65,53 @@
 
 
 
-    <div class="absolute">
-        <img src="./images/x.gif" alt="" class="imgIntro">
-    </div>
-
-
     <!-- Navigation -->
-    <!-- <div class="lp_nav" id="nav_id">
-        <div class="lp_nav_left">
-            <ul class="nav-ul">
-                <li><a href="#home">Home</a></li>
-                <li><a href="./html/student_access.php">Learning</a></li>
-                <li><a href="./html/cashier_access.php">About</a></li>
-            </ul>
-        </div>
-
-        <div class="lp_nav_mid" id="nav_mid_id">
-            <img src="./images/logo.png" alt="">
-            <p id="school_n_id">Pyro Colleges Inc.</p>
-            <span id="school_t_id">Excellence at its Finest.</span>
-        </div>
-
-        <div class="lp_nav_right">
-            <ul>
-                <li><a href="#mvo">MVO</a></li>
-                <li><a href="./html/idValidation.php">Register</a></li>
-                <li><a href="./html/login.php">Login</a></li>
-            </ul>
-        </div>
-    </div> -->
-
-    <!-- Navigation -->
-
-    <!-- Navigation -->
-    <div class="nav">
+    <div class="nav" id="navId">
             <img src="./images/logo.png" alt="" width="75px" height="75px" id="logoIntro" style="visibility: hidden;">
+            
             <ul class="linksIntro">
                 <li><a href="./html/login.php"><i class="fas fa-user-circle"></i>&nbsp;Login</a></li>
                 <li><a href="./html/idValidation.php" ><i class="far fa-user-circle"></i>&nbsp;Register</a></li>
             </ul>
     </div>
 
+    <script type="text/javascript">
+        
+        window.addEventListener('scroll', function(){
+            document.querySelector('.linksIntro').classList.toggle('sticky', window.scrollY > 0)
+            document.getElementById('navId').classList.toggle('sticky', window.scrollY > 0);
+        })
+      
+    </script>
     <!-- Homepage -->
     <div class="header">
-        
             <div class="pyroColleges">
                 <span id="pIntro" class="animate__animated">P</span>
                 <span id="yIntro" class="animate__animated">Y</span>
                 <span id="rIntro" class="animate__animated">R</span>
                 <span id="oIntro" class="animate__animated">O</span>
-
             </div>
             <p id="collegesIntro" class="animate__animated">Colleges</p>
-            
-        
             <a href="./html/cashier_access.php" class="animate__animated" id="linkIntro">Billing Management System&nbsp;<i class="fas fa-coins"></i></a>
-        
     </div>
 
+    <div class="about">
+        <span data-aos="fade-up">Keep track on your Payments!</span>
+            <img src="./images/sample.png" alt="" data-aos="flip-up">
+            
 
-    <script type="text/javascript">
-        const imageIntro = document.querySelector('.imgIntro')
-        const logoIntro = document.querySelector('#logoIntro')
-        const navLinks = document.querySelector('.linksIntro')
-        const absolute = document.querySelector('.absolute')
+            <div class="payFeature">
+                <span data-aos="fade-right"
+                data-aos-duration="500"><strong style="font-size: 4.5rem; color: var(--green-color);" class="payLbl"></strong> anytime, anywhere with our Fund Transfer Option!
+                <strong style="font-weight: normal; font-size: 1.2rem; display: block;">(<strong style="color: var(--green-color); font-size: 1.2rem;">Cut-offs</strong> and <strong style="color: var(--green-color); font-size: 1.2rem;">Transaction Fees</strong> are included!)</strong>
+            </span>
+            
+            <img src="./images/oki.png" alt="" data-aos="zoom-in">
+        </div>
 
-        const pIntro = document.getElementById('pIntro')
-            setTimeout(function(){
-                pIntro.classList.toggle('animate__bounceInLeft')
-                pIntro.style.visibility = "visible"
-            }, 2800 );
+    </div>
 
-        const yIntro = document.getElementById('yIntro')
-            setTimeout(function(){
-                    yIntro.classList.toggle('animate__bounceInLeft')
-                    yIntro.style.visibility = "visible"
-                }, 3000 )
-
-        const rIntro = document.getElementById('rIntro')
-            setTimeout(function(){
-                        rIntro.classList.toggle('animate__bounceInLeft')
-                        rIntro.style.visibility = "visible"
-                    }, 3200 )
-        const oIntro = document.getElementById('oIntro')
-            setTimeout(function(){
-                        
-                        oIntro.classList.toggle('animate__bounce')
-                        oIntro.style.visibility = "visible"
-                    }, 4000 )
-        
-        const collegesIntro = document.getElementById('collegesIntro')
-            setTimeout(function(){
-                        collegesIntro.classList.toggle('animate__flipInX')
-                        collegesIntro.style.visibility = "visible"
-                    }, 3600 )
-        
-        const linkIntro = document.getElementById('linkIntro')
-            setTimeout(function(){
-                        linkIntro.classList.toggle('animate__rubberBand')
-                        linkIntro.style.visibility = "visible"
-                    }, 3800 )
-
-
-
-
-        setTimeout(function(){
-            logoIntro.classList.toggle('animate__animated')
-            logoIntro.classList.toggle('animate__jackInTheBox')
-            logoIntro.style.visibility = "visible"
-            navLinks.classList.toggle('animate__animated')
-            navLinks.classList.toggle('animate__lightSpeedInLeft')
-            navLinks.style.visibility = "visible"
-        }, 2800 );
-
-
-        setTimeout(function(){
-
-            imageIntro.classList.toggle('animate__animated')
-            imageIntro.classList.toggle('animate__zoomOutUp')
-            setTimeout(function(){
-                imageIntro.style.visibility = "hidden"
-                imageIntro.style.opacity = "0"
-                absolute.style.zIndex = "-1"
-                absolute.style.userEvents = "none"
-
-               
-            }, 1000)
-
-        }, 2000)
-
-    </script>
+    
 
 
     <!-- Learning -->
@@ -349,7 +266,7 @@
 
     <!-- Js for sticky navbar -->
     <!-- <script type="text/javascript">
-        window.addEventListener("scroll", function () {
+        window.addEventListener("scroll", function 
             let nav_ = document.getElementById('nav_id');
             let school_name = document.getElementById("school_n_id");
             let school_tag = document.getElementById("school_t_id");
@@ -360,11 +277,13 @@
             school_tag.classList.toggle('hide', window.scrollY > 0);
             school_name.classList.toggle('hide', window.scrollY > 0);
             nav_.classList.toggle('sticky', window.scrollY > 0);
-        });
+        
 
 
 
     </script> -->
+
+   
 
     <!-- Data AOS -->
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -373,7 +292,7 @@
     </script>
 
 
-    <script src="./js/type.js"></script>
+
 
 
 </body>
