@@ -84,42 +84,16 @@
   if(isset($_POST['deny'])){
     $transactionNo = $_POST['transactionNo'];
     $reasonToDeny = $_POST['reasonToDeny'];
-    $slq = "SELECT *
-            FROM tbl_pending_payments
-            WHERE transaction_no = ?";
-    $stmt = $con->prepare( $slq );
-    $stmt->bind_param( 's', $transactionNo );
-    $stmt->execute();
-    $res = $stmt->get_result();
-    $row = $res->fetch_assoc();
-    if( $res->num_rows > 0 ) {
-      $transaction_no = $row['transaction_no'];
-      $stud_id = $row['stud_id'];
-      $fullname = $row['fullname'];
-      $email = $row['email'];
-      $amount = $row['amount'];
-      $payment_gateway = $row['payment_gateway'];
-      $sales_invoice = $row['sales_invoice'];
-      $transaction_date = $row['transaction_date'];
-      $status = "Denied";
-  
-      $sqlDeny = "INSERT INTO `tbl_denied_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reason`) VALUES (?,?,?,?,?,?,?,?,?,?)";
-      $stmtDeny = $con->prepare($sqlDeny);
-      $stmtDeny->bind_param('ssssssssss', $transaction_no,$stud_id,$fullname,$email,$amount,$payment_gateway,$sales_invoice,$transaction_date,$status,$reasonToDeny);
-  
-      if($stmtDeny->execute()){
-  
-        $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
-        $stmtPendingPay = $con->prepare($sqlPendingPay);
-        $stmtPendingPay->bind_param('s',$transaction_no);
-        $stmtPendingPay->execute();
-  
-        $response['status'] = 'success';
-            $response['message'] = 'Successfully Denied Payment';
-      }else{
-        $response['status'] = 'error';
-        $response['message'] = 'Failed to Denied Payment!';
-      }
+    $status = "Denied";
+    $slqDenied = "UPDATE `tbl_pending_payments` SET `status`= ?,`reasonToDeny`= ? WHERE transaction_no = ?";
+    $stmtDenied = $con->prepare($slqDenied);
+    $stmtDenied->bind_param('sss',$status,$reasonToDeny,$transactionNo);
+    if($stmtDenied->execute()){
+      $response['status'] = 'success';
+      $response['message'] = 'Denied Payment';
+    }else{
+      $response['status'] = 'error';
+      $response['message'] = 'Failed to Deny Payment!';
     }
   
     echo json_encode( $response );
@@ -135,10 +109,10 @@ if(isset($_POST['viewPending'])){
   $sql ="SELECT pay.*,fees.csi_year_level
           FROM `tbl_pending_payments` as pay
           INNER JOIN tbl_student_fees as fees ON pay.stud_id = fees.stud_id
-          WHERE pay.fullname LIKE CONCAT('%',?,'%') OR pay.stud_id  LIKE CONCAT('%',?)
+          WHERE  pay.status LIKE CONCAT('%',?,'%') OR pay.fullname LIKE CONCAT('%',?,'%') OR pay.stud_id  LIKE CONCAT('%',?)
           ORDER BY ".$sort;
   $stmt = $con->prepare($sql);
-  $stmt->bind_param('ss',$query,$query);
+  $stmt->bind_param('sss',$query,$query,$query);
   $stmt->execute();
   $res = $stmt->get_result();
   $count = $res->num_rows;

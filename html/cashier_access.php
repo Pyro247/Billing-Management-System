@@ -29,7 +29,7 @@
     <title>Cahsier</title>
 </head>
 <body>
-        
+
 <!-- LOADER! -->
         <div class="loader-wrapper" id="loader-wrapperID">
         <div class="wrapper">
@@ -509,7 +509,7 @@
   <script>
     $(document).ready(function () {
       
-      let allData = '%'
+      let allData = 'Pending'
       let generalSort = 'transaction_no'
       viewPending(allData,generalSort); //Onload Display Table Data
       // SEARCH

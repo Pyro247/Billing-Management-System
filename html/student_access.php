@@ -41,6 +41,9 @@
 
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+        <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    
         
         <!-- Fontawsome -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -150,6 +153,7 @@
                                     <th scope="col">Date</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Cashier</th>
+                                    <th scope="col">Remarks</th>
                                     
                                     
                                 </tr>
@@ -176,8 +180,29 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['payment_method'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
-                                    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                    <?php if($data['payment_status'] == 'Approved'){?>
+                                        <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                    <?php }else if($data['payment_status'] == 'Pending'){?>
+                                        <td class="text-primary text-uppercase fw-bold"><?=$data['payment_status'];?>
+                                        </td>
+                                    <?php }else{ ?>
+                                        <td class="text-danger text-uppercase fw-bold"><?=$data['payment_status'];?>
+                                        </td>
+                                    <?php }?>
                                     <td><?=$data['cashier_name'];?></td>
+                                    <?php if($data['payment_status'] == 'Denied'){?>
+                                        <td>
+                                    <!-- Button trigger modal -->
+                                            <button type="button" class="btn btn-primary" 
+                                            id="ViewReason" data-bs-toggle="modal" data-bs-target="#reasonModal"
+                                            data-id="<?=$data['transaction_no'];?>">
+                                            Resubmit
+                                            </button>
+                                        </td>
+                                    <?php }else if($data['payment_status'] == 'Approved'){?>
+                                        <td class="text-success text-uppercase fw-bold">Completed
+                                    </td>
+                                    <?php }?>
                                 </tr>
                                 <?php }?>
                                 <?php }else{?>
@@ -195,13 +220,95 @@
 
                         
                     </div>
-
+                                    
                     
                     
+                </div>
+            
+                <!-- Modal -->
+                <div class="modal fade" id="reasonModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-fullscreen ">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="text-primary m-0">Resubmit Payment Application Form</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body">
+                    <div class="payApp_createPayment mt-2">
+                        <h5 id="TransactionNo"></h5>
+                        Reason of denied payment:<h5 class="text-danger" id="reasonMsg" ></h5>
+                        <form  class=" mb-3 p-2" id="payReqFormRe" enctype="multipart/form-data">
+                        <div class="payAppFormWrapper">
+                            <div class="leftForm">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="min-width: 110px;" id="basic-addon1" >Student ID</span>
+                                    </div>
+                                        <input type="text" class="form-control" placeholder="Student ID" readonly name="stud_id" value="<?=$rowStud['stud_id'];?>">
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Full name</span>
+                                    </div>
+                                        <input type="text" class="form-control" placeholder="Firstname" readonly  name="fullname"
+                                        value="<?=$rowStud['fullname'];?>">
+                                </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Email</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="Email" readonly  name="email"
+                                        value="<?=$_SESSION['email'];?>">
+                                    </div>
 
-         
+                                    <span>Amount:</span>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text d-inline-block">₱</span>
+                                        </div>
+                                        <input type="number" class="form-control" name="amount" id="requestAmountRe" idplaceholder="0.00">
+                                        <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
+                                        
+                                    </div>
 
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Date</span>
+                                        </div>
+                                        <input type="date" class="form-control" name= "date" id="requestDateRe" placeholder="" >
+                                    </div>
+                                    
+                                <div class="col-md">
+                                    <div class="form-floating">
+                                    <input type="text" class="form-control" id="paymentGateway_IdRe" name="paymentGateway"  placeholder="" style="border:2px solid #56A8CBFF"> 
+                                    <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) <span style="font-weight: bold; color: crimson;">*</span></label>
+                                    </div>
+                                </div>
+
+                                </div>
+                                    <div class="rightForm" id="dispalyReInvoice">
+                                        <div class="rightFormInner">
+                                        <div class="rightForm_text text-secondary" id="imageTextRe">
+                                            <i class="fas fa-file-invoice text-primary" style="font-size: 4rem;"></i>
+                                            
+                                            <p>Attach Sales Invoice from your chosen local payment gateway.</p>
+                                            
+                                        </div>
+                                        <img style="width:100%;height:100%;border-radius: 20px;display:none" id="previewReInvoice">
+                                    </div>
+                                    <input id="imageRe" type="file" accept="image/*" name="imageRe" onchange="previewImageRe();"/>
+                                    </div>
+                                </div>
+                            </form> 
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="reSubmitRequest">Resubmit</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             <!-- PAYMENT application -->
             <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
                 <p class="title_tab_universal">Payment Application</p>
@@ -477,9 +584,11 @@
 
             
             </div>
+            
         </div>
     </div>
 </div>
+
 
         
                 
@@ -508,6 +617,19 @@
         
                     fileReader.readAsDataURL(file[0]);
                 }
+            }function previewImageRe() {
+                let file = document.getElementById("imageRe").files;
+                if (file.length > 0) {
+                    var fileReader = new FileReader();
+        
+                    fileReader.onload = function (event) {
+                        document.getElementById("previewReInvoice").setAttribute("src", event.target.result);
+                        document.getElementById("previewReInvoice").style.display = "block";
+                        document.getElementById("imageTextRe").style.display = "none";
+                    };
+        
+                    fileReader.readAsDataURL(file[0]);
+                }
             }
             // Submit Payment Request AJAX
             $(document).ready(function (e) {
@@ -518,7 +640,7 @@
                 $('#payReqForm').submit(function (e) { 
                     e.preventDefault();
                     let formData = new FormData(this) 
-                   
+                    formData.append('submitRequest', 'submitRequest');
                     if(amount.value == ''){
                         amount.focus();
                     }else if(date.value == ''){
@@ -535,11 +657,11 @@
                         $.ajax({
                         type: "POST",
                         url: "../includes/studPaymentRequest.php",
-                        data: formData ,
+                        data: formData,
                         contentType: false,
                         processData:false,
                         success: function (response) {
-                            // console.log(response)
+                            console.log(response)
                             Swal.fire({
                                 icon: response.status,
                                 text: response.message,
@@ -558,5 +680,62 @@
                 });
             });
         </script>
+        <script>
+            $('#ViewReason').click(function (e) { 
+                e.preventDefault();
+                let transactionNo = $(this).attr("data-id");
+                
+                $('#TransactionNo').text(transactionNo);
+                $.ajax({
+                    type: "POST",
+                    url: "../includes/studPaymentRequest.php",
+                    data: {
+                        'getDataPaymentRequest': 1,
+                        'transactionNo': transactionNo
+                    },
+                    success: function (data) {
+                        $('#reasonMsg').text(data.reason);
+                        $("#requestAmountRe").val(data.amount);
+                        $("#requestDateRe").val(data.transaction_date);
+                        $("#paymentGateway_IdRe").val( data.payment_gateway);
+                        // $("#imageRe").val('../saleInvoiceImg/' + data.sales_invoice);//Not Possible 
+                        
+                    }
+                });
+            });
+            $('#reSubmitRequest').click(function (e) { 
+                e.preventDefault();
+                let formData = new FormData(document.getElementById('payReqFormRe'))
+                formData.append('reSubmitRequest', 'reSubmitRequest');
+                formData.append('transactionNo',$('#TransactionNo').text())
+                $.ajax({
+                    type: "POST",
+                    url: "../includes/studPaymentRequest.php",
+                    data: formData,
+                    contentType: false,
+                    processData:false,
+                    success: function (response) {
+                        console.log(response)
+                        Swal.fire({
+                                icon: response.status,
+                                text: response.message,
+                                confirmButtonText: 'Ok'
+                        }).then(function() {
+                            location.reload();
+                        });
+                            $('#requestAmountRe').val('');
+                            $('#requestDateRe').val('');
+                            $('#paymentGateway_IdRe').val('');
+                            document.getElementById("previewReInvoice").style.display = "none";
+                            document.getElementById("imageTextRe").style.display = "block";
+                            document.getElementById("imageRe").value = null;
+                            
+                    }
+                    
+                });
+                
+            });
+        </script>
+        
     </body>
     </html>
