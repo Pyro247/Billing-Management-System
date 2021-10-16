@@ -1,3 +1,10 @@
+<?php
+  session_start();
+  if($_SESSION['role'] != 'Cashier'){
+    session_destroy(); 
+    header('Location: ../html/login.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,13 +80,13 @@
       <div class="col left-tab">
         <div class="upper-left-tab">
           <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-          <p class="reg__name" style="font-size: 1.2rem;">Juan A. Dela Cruz <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+          <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
               <a href="../html/forgotPassword.php">Change Password</a>
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
-          <p class="reg__name" id="roleId">Cashier | C-2021003</p>
+          <p class="reg__name" id="roleId">Cashier | C-><?= $_SESSION['employeeId'];?></p>
           <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -566,6 +573,8 @@
               data: {
                 "approve": 1,
                 "transactionNo": transactionNo,
+                'cashierName': '<?=$_SESSION['fullname']?>',
+                'cashierId': '<?=$_SESSION['employeeId']?>'
               },
               success: function (response) {
                 console.log(response)

@@ -26,29 +26,29 @@
       $rowLogin = $resLogin->fetch_assoc();
 
       if($resLogin->num_rows > 0){
-        if($rowLogin['role'] == 'Registrar'){
-          
+        if($rowLogin['role'] == 'Registrar' ){
           header('Location: ../html/registrar_access.php');
-          $_SESSION['fullname'] =$rowLogin['fullname'];
-          $_SESSION['employeeId'] =$rowLogin['user_id'];
-          $_SESSION['role'] =$rowLogin['role'];
-        }else if ($rowLogin['role'] == 'Cashier'){
-          // Temporary
-          $_SESSION['status'] = "success";
-          $_SESSION['msg'] = "Login success";
-          header('Location: ../html/login.php');
-        }
-        if ($rowLogin['role'] == 'Admin'){
+          $_SESSION['fullname'] = $rowLogin['fullname'];
+          $_SESSION['employeeId'] = $rowLogin['user_id'];
+          $_SESSION['role'] = $rowLogin['role'];
+
+        }else if ( $rowLogin['role'] == 'Cashier') {
+          header('Location: ../html/cashier_access.php');
+          $_SESSION['fullname'] = $rowLogin['fullname'];
+          $_SESSION['employeeId'] = $rowLogin['user_id'];
+          $_SESSION['role'] = $rowLogin['role'];
+
+        }else if ( $rowLogin['role'] == 'Admin' ){
           header('Location: ../html/registrar_access.php');
-          $_SESSION['fullname'] =$rowLogin['fullname'];
-          $_SESSION['employeeId'] =$rowLogin['user_id'];
-          $_SESSION['role'] =$rowLogin['role'];
-        }else
-        if($rowLogin['role'] == 'Student'){
+          $_SESSION['fullname'] = $rowLogin['fullname'];
+          $_SESSION['employeeId'] = $rowLogin['user_id'];
+          $_SESSION['role'] = $rowLogin['role'];
+
+        }else if( $rowLogin['role'] == 'Student' ){
           header('Location: ../html/student_access.php');
-          $_SESSION['fullname'] =$rowLogin['fullname'];
-          $_SESSION['stud_id'] =$rowLogin['user_id'];
-          $_SESSION['email'] =$rowLogin['email'];
+          $_SESSION['fullname'] = $rowLogin['fullname'];
+          $_SESSION['stud_id'] = $rowLogin['user_id'];
+          $_SESSION['email'] = $rowLogin['email'];
           $_SESSION['role'] = 'Student';
         }
       

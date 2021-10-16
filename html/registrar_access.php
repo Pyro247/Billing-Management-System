@@ -1,8 +1,9 @@
 <?php
   require_once '../connection/Config.php';
   session_start();
-  if(!isset($_SESSION['employeeId']) && $_SESSION['role'] != 'Registrar'){
-    header('Location: login.php');
+  if($_SESSION['role'] != 'Admin' && $_SESSION['role'] != 'Registrar'){
+    session_destroy(); 
+    header('Location: ../html/login.php');
   }
 ?>
 <!doctype html>

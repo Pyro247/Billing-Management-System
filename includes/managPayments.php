@@ -51,8 +51,8 @@
         $remarks = 'Full Scholar';
       }
       // Temporary
-      $cashier_id = 11;
-      $cashier_name = 'Unknown';
+      $cashier_id = $_POST['cashierId'];
+      $cashier_name = $_POST['cashierName'];
       $slqApprove = "INSERT INTO `tbl_payments`(`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmtApprove = $con->prepare($slqApprove);
       $stmtApprove->bind_param('sssssssssssssssss', $transaction_no,$program_id,$stud_id,$fullname,$csi_academic_year,$csi_semester,$tuition_fee,$amount,$payment_method,$payment_gateway,$sales_invoice,$balance,$transaction_date,$payment_status,$remarks,$cashier_id,$cashier_name);
