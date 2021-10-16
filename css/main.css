@@ -294,7 +294,56 @@ html,body{
     display: inline-block;
 }
 
+.getInTouch{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
+}
+.getInTouchInner{
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 30px;
+    
+}
+
+
+
+.getInTouchInner strong{
+    font-size: 2rem;
+    color: var(--white-color);
+    text-align: right;
+    font-weight: normal;
+}
+
+.getInTouchInner strong:first-child{
+    font-size: 3rem;
+    margin-bottom: 50px;
+    color: var(--green-color);
+}
+
+.getInTouchInner i{
+    color: var(--green-color);
+}
+
+.socialMedia{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.socialMedia img{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: all 300ms ease;
+    margin: 0 10px;
+}
+
+.socialMedia img:hover{
+    transform: translateY(-12px)
+}
 /* 
 Footer */
 footer{
