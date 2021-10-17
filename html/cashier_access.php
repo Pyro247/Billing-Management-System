@@ -80,13 +80,13 @@
       <div class="col left-tab">
         <div class="upper-left-tab">
           <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-          <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+          <p class="reg__name" style="font-size: 1.2rem;"> <?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
               <a href="../html/forgotPassword.php">Change Password</a>
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
-          <p class="reg__name" id="roleId">Cashier | C-><?= $_SESSION['employeeId'];?></p>
+          <p class="reg__name" id="roleId">Cashier | C-<?= $_SESSION['employeeId'];?></p>
           <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -416,11 +416,7 @@
                         <input type="date" class="form-control" name="lastname" id="lname" placeholder=" ">
                         <label for="floatingInput">Select Date:</label>
                     </div>
-                </div>
-
-
-
-
+                  </div>
                 </div>
 
               <div class="row">
@@ -432,10 +428,8 @@
                 </div>
               </div>
               </form>
-              </div>
-
-              <div class="col universal_bg_gray_table p-3">
-                <div class="table__" style="overflow-x: auto;">
+              
+                <div class="table__ mt-4" style="overflow-x: auto;">
                   <table class="table">
                       <thead class="text-center">
                         <tr>
@@ -494,7 +488,7 @@
                         </tr>--->
                       </tbody>
                     </table>
-              </div>
+                </div>
 
               </div>
 
@@ -503,7 +497,43 @@
 
             <!-- Student Fees -->
             <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
-              <p class="title_tab_universal">Student Fee</p>
+              <p class="title_tab_universal">Student Fees</p>
+
+              <form action="" class="universalForm_one">
+                <input type="text" name="" id="" placeholder="Search">
+                <button type="button" class="btn btn-primary">Search</button>
+              </form>
+
+              <div class="col universal_bg_gray_table p-3">
+                <div class="col-md-6 my-1">
+                  <div class="form-floating">
+                    <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
+                            <option value="" selected>All</option>
+                    </select>
+                    <label for="sortByDashData">Filter by Remarks:</label>
+                  </div>
+                </div>
+
+                <div class="table__ mt-4" style="overflow-x: auto;">
+                  <table class="table">
+                      <thead class="text-center">
+                        <tr>
+                          <th scope="col">Student ID</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Program</th>
+                          <th scope="col">Major</th>
+                          <th scope="col">Year Level</th>
+                          <th scope="col">Tuition Fee</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                            
+                            
+                      </tbody>
+                    </table>
+                </div>
+              </div>
             </div>
 
           

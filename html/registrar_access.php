@@ -197,7 +197,7 @@
               <a href="../includes/logout.inc.php">Logout</a>
             </div>
           
-            <p class="reg__name" id="roleId"><?= $_SESSION['role'];?> | <?= $_SESSION['employeeId'];?></p>
+            <p class="reg__name" id="roleId"><?= $_SESSION['role'];?> | R-<?= $_SESSION['employeeId'];?></p>
             <p class="reg__name" id="reg-date-time"></p>
         </div>
 
@@ -205,9 +205,10 @@
                 <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
                 <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false"><img src="../images/icons/manage_users.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Manage Users</a>
                 <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false"><img src="../images/icons/archive.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Archives</a>
-                <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Fees Management</a>
                 <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><img src="../images/icons/reports.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Reports</a>
-                
+                <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><img src="../images/icons/fees_management.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Fees Management</a>
+                <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Student Fees</a>
+            
             </div>
         </div>
         
@@ -1157,6 +1158,45 @@
             </div>
 
 
+            <!-- Student Fees -->
+            <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
+              <p class="title_tab_universal">Student Fees</p>
+                <form action="" class="universal_search_form">
+                  <input type="text" name="searchDash" id="searchDash" placeholder="Search">
+                  <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
+                </form>
+
+              <div class="col universal_bg_gray_table p-3">
+                <div class="col-md-6 my-1">
+                  <div class="form-floating">
+                    <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
+                            <option value="" selected>All</option>
+                    </select>
+                    <label for="sortByDashData">Filter by Remarks:</label>
+                  </div>
+                </div>
+
+                <div class="table__ mt-4" style="overflow-x: auto;">
+                  <table class="table">
+                      <thead class="text-center">
+                        <tr>
+                          <th scope="col">Student ID</th>
+                          <th scope="col">Full name</th>
+                          <th scope="col">Program</th>
+                          <th scope="col">Major</th>
+                          <th scope="col">Year Level</th>
+                          <th scope="col">Tuition Fee</th>
+                          <th scope="col">Remarks</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+
+
 
             
             <!-- Fees Management -->
@@ -1893,22 +1933,36 @@
       </script>
       <script type="text/javascript">
            // Limited access for Registrar
-          const roleId = document.getElementById('roleId').innerHTML
-            
 
-            if (roleId.includes('Registrar')){
+          /*  Registrar:
+              -DASHBOARD
+              -MANAGE USER (STUDENT)
+              -ARCHIVE
+              -Student Fee
+
+              Admin:
+              -Dashboard
+              -Manage Users (Employee)
+              -Reports
+              -Manage Fees
+          */
+         
+            if (document.getElementById('roleId').innerHTML.includes('Registrar')){
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
               document.getElementById('v-pills-reports-tab').style.display="none"
+
             }else{
               document.querySelector('#student-tab').style.display = "none"
               document.querySelector('#student').style.display = "none"
               document.querySelector('#employees-tab').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('show')
-              document.getElementById('v-pills-fees-tab').style.display = "none"
+              document.getElementById('v-pills-archives-tab').style.display = "none"
+              document.getElementById('v-pills-studFee-tab').style.display = "none"
               
             }
+
             function loaderClose(){
               let loader = document.getElementById('loader-wrapperID')
                   loader.style.opacity = "0"

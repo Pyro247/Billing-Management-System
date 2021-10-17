@@ -99,7 +99,7 @@
         <div class="col-3 left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
+            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
                 <a href="">My Email</a>
                 <a href="../html/forgotPassword.php">Change Password</a>
@@ -128,12 +128,12 @@
                     <div class="miniDashboard mb-5">
                         <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;"><?= $_SESSION['email'];?></span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; "><?=$rowStud['tuition_fee'];?></span></span>
+                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; ">₱<?=$rowStud['tuition_fee'];?></span></span>
                         
                         </div>
                         <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;"><?=$rowStud['balance'];?></span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid:<?= $amount?> <span class="text-success" style="font-weight: bold;"></span></span>
+                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱<?=$rowStud['balance'];?></span></span>
+                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱<?= $amount?></span> </span>
 
                         </div>
                         <div class="col d-flex">
@@ -143,7 +143,7 @@
                     </div>
 
                     <div class="universalLightGrayBg" style="overflow-x: auto;" id="table_dashboard_id">
-                        <span class="text-primary d-block mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
+                        <span class="text-primary d-block mx-2 mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
                             <table class="table">
                                 <thead class="thead-light text-center">
                                 <tr>
@@ -524,7 +524,9 @@
                             <th scope="col">Amount</th>
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date</th>
-                            <th scope="col">Cashier</th>
+                            <th scope="col">Person in Charge</th>
+                            <!-- <th scope="col">Payment Status</th> -->
+                            
                             
                             
                         </tr>
@@ -550,8 +552,9 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['payment'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
-                                    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
                                     <td><?=$data['cashier_name'];?></td>
+                                    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                    
                                 </tr>
                         <?php }?>
                         <?php }else{?>
