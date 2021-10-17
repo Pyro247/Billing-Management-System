@@ -1484,6 +1484,7 @@
                     viewStudetList(allStud);;
                     studFieldsDisbaled(allStudFields,true);
                     $("#stud_delete").prop("disabled", true);
+                    $("#studSave").prop("disabled", true);
                     $("#studSave").text('Save');
                     $("#add").removeAttr('disabled');
                   }
