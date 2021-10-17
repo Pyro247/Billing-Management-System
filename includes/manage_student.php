@@ -20,38 +20,14 @@
     
   }
   //  student school details table
-  if(!isset($_POST['stud_school_year'])){
-    $stud_school_year = '';
-  }else{
-    $stud_school_year = $_POST['stud_school_year'];
-  }
-  if(!isset($_POST['stud_semester'])){
-    $stud_semester = '';
-  }else{
-    $stud_semester = $_POST['stud_semester'];
-  }
-  if(!isset($_POST['stud_year_level'])){
-    $stud_year_level = '';
-  }else{
-    $stud_year_level = $_POST['stud_year_level'];
-  }
-  if(!isset($_POST['stud_status'])){
-    $stud_status = '';
-  }else{
-    $stud_status = $_POST['stud_status'];
-  }
-  if(!isset($_POST['stud_lrn'])){
-    $stud_lrn = '';
-  }else{
-    $stud_lrn = $_POST['stud_lrn'];
-  }
-  // student fee table
-  if(!isset($_POST['stud_discount'])){
-    $stud_discount = '0';
-  }else{
-  $stud_discount =$_POST['stud_discount'];
-  }
-    //student requirement table
+  $stud_school_year = $_POST['stud_school_year'] ?? '';
+  $stud_semester = $_POST['stud_semester'] ?? '';
+  $stud_year_level = $_POST['stud_year_level'] ?? '';
+  $stud_year_level = $_POST['stud_year_level'] ?? '';
+  $stud_status = $_POST['stud_status'] ?? '';
+  $stud_lrn = $_POST['stud_lrn'] ?? '';
+  $stud_discount = $_POST['stud_discount'] ?? 0;
+
   if(!isset($_POST['req_form137']) ){
     $req_form_137 = '';
   }else{
@@ -73,7 +49,7 @@
     $req_good_moral = date("m.d.y");
   }
 
-  if(isset($_POST['stud_save'])){
+  if(isset($_POST['newStud'])){
     // Getting Program ID 
     $sqlGetProgId = "SELECT * FROM `tbl_course_list` WHERE course_major = ?";
     $stmtGetProgId = $con->prepare($sqlGetProgId);
@@ -132,10 +108,9 @@
     $stmtRequirements->bind_param('sssss',$student_number,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral);
     // School Details 
     $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_semester`,`csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?,?)";
-      $stmtDetails = $con->prepare($sqlDetials);
-      $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
-    
-      
+    $stmtDetails = $con->prepare($sqlDetials);
+    $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
+  
   if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
@@ -143,9 +118,7 @@
     $response['status'] = 'error';
     $response['message'] = 'Failed to save!';
   }
-
-
-echo  json_encode($response);
+  echo  json_encode($response);
 }
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
@@ -270,3 +243,80 @@ if(isset($_POST['delete'])){
   echo json_encode($response);
 }
 ?>
+<?php
+  if(isset($_GET['viewStudData'])){
+  $query = $_GET['query'];
+
+  $sql ="SELECT s.stud_id, s.firstname, s.lastname,r.form_137,r.form_138,r.psa_birth_cert,r.good_moral
+        FROM tbl_student_info as s
+        LEFT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
+        WHERE s.stud_id LIKE CONCAT('%',?,'%') OR s.firstname LIKE CONCAT('%',?,'%') 
+      ";
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param('ss',$query,$query);
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $count = $res->num_rows;
+
+?>
+<?php 
+if($count > 0){
+while($data = $res->fetch_assoc()){?>
+  <tr>
+    <td><?=$data['stud_id'];?></td>
+    <td><?=$data['firstname'];?></td>
+    <td><?=$data['lastname'];?></td>
+    <td><?=$data['form_137'];?></td>
+    <td><?=$data['form_138'];?></td>
+    <td><?=$data['psa_birth_cert'];?></td>
+    <td><?=$data['good_moral'];?></td>
+    <td>
+      <a href="#" class="btn btn-success "id="edit" data-id="<?=$data['stud_id'];?>">Edit</a>
+    </td>
+  </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php }
+}?>
+<?php
+  if(isset($_GET['viewStudDataFiltered'])){
+  $byProgram = $_GET['byProgram'];
+  // $byMajor = $_GET['byMajor'];
+  $byMajor = $_GET['byMajor'] ?? '%';
+  $sql ="SELECT s.stud_id, s.firstname, s.lastname,r.form_137,r.form_138,r.psa_birth_cert,r.good_moral,det.csi_program,det.csi_major
+          FROM tbl_student_info as s
+          LEFT JOIN tbl_student_requirements as r ON s.stud_id = r.stud_id
+          LEFT JOIN tbl_student_school_details as det ON det.stud_id = s.stud_id
+          WHERE det.csi_program LIKE CONCAT('%',?,'%') AND det.csi_major LIKE CONCAT('%',?,'%')";
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param('ss',$byProgram,$byMajor);
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $count = $res->num_rows;
+
+?>
+<?php 
+if($count > 0){
+while($data = $res->fetch_assoc()){?>
+  <tr>
+    <td><?=$data['stud_id'];?></td>
+    <td><?=$data['firstname'];?></td>
+    <td><?=$data['lastname'];?></td>
+    <td><?=$data['form_137'];?></td>
+    <td><?=$data['form_138'];?></td>
+    <td><?=$data['psa_birth_cert'];?></td>
+    <td><?=$data['good_moral'];?></td>
+    <td>
+      <a href="#" class="btn btn-success "id="edit" data-id="<?=$data['stud_id'];?>">Edit</a>
+    </td>
+  </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php }
+}?>
