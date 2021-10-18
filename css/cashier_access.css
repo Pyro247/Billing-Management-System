@@ -177,6 +177,7 @@
     margin-top: 60px;
     background-color: #4556a2;
     color: var(--white-color);
+    z-index: 999;
 }
 
 .upper-left-tab{

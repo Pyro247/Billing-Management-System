@@ -176,14 +176,16 @@
 }
 
 .left-tab{
-    height: 100%;
     padding: 0;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
     max-width: 300px;
     position: fixed;
     margin-top: 60px;
     background-color: #363e61;
     color: var(--white-color);
-    
+    z-index: 999;
 }
 
 .right-tab{

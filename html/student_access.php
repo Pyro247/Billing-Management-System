@@ -95,8 +95,8 @@
     
 
 
-    <div class="row parentContainerClass">
-        <div class="col-3 left-tab">
+    <div class="row">
+        <div class="col left-tab">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
             <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
