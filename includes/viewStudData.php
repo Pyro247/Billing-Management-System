@@ -1,6 +1,6 @@
 <?php
   include_once '../connection/Config.php';
-
+ if(isset($_GET['viewStudData'])){
   $sql ="SELECT s.stud_id, s.firstname, s.lastname,r.form_137,r.form_138,r.psa_birth_cert,r.good_moral
         FROM tbl_student_info as s
         LEFT JOIN tbl_student_requirements as r
@@ -33,4 +33,5 @@ while($data = $res->fetch_assoc()){?>
   <tr>
     <td><?php echo "No Records"?></td>
   </tr>
-<?php } ?>
+<?php }
+}?>

@@ -383,7 +383,7 @@
                 <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information text-primary">Student's Information</p>
                         
-                  <form action="../includes/manage_student.php" method="post" class="universalForm_two" id="studForm">
+                  <form action="" method="post" class="universalForm_two" id="studForm">
 
                       <div class="manage_users_universal_tab_lmr_parent">
                           
@@ -399,29 +399,29 @@
                             <div class="row g-2 mb-1">
                             <div class="col-md">
                               <div class="form-floating">
-                                <input type="number" name="student_number" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
-                                <label for="floatingInputGrid">Student ID</label>
+                                <input type="number" name="student_number" class="form-control" id="studId" placeholder=" " value="" disabled>
+                                <label for="studId">Student ID</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_firstname" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
-                                  <label for="floatingInputGrid">First name</label>
+                                  <input type="text" name="stud_firstname" class="form-control" id="studFirstname" placeholder=" " value="" disabled>
+                                  <label for="studFirstname">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_middlename" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
-                                  <label for="floatingInputGrid">Middle name</label>
+                                  <input type="text" name="stud_middlename" class="form-control" id="studMiddlename" placeholder=" " value="" disabled>
+                                  <label for="studMiddlename">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_lastname" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
-                                  <label for="floatingInputGrid">Last name</label>
+                                  <input type="text" name="stud_lastname" class="form-control" id="studLastname" placeholder=" " value="" disabled>
+                                  <label for="studLastname">Last name</label>
                                 </div>
                               </div>
                             </div>
@@ -429,8 +429,8 @@
                             <div class="row g-2 mb-1">
                               <div class="col-md mb-1">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_school_year" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled>
-                                  <label for="floatingInputGrid">School year</label>
+                                  <input type="text" name="stud_school_year" class="form-control" id="studSchoolYear" placeholder=" " value="" disabled>
+                                  <label for="studSchoolYear">School year</label>
                                 </div>
                               </div>
 
@@ -551,7 +551,7 @@
                                   
                                   <div class="col-md">
                                     <div class="form-floating">
-                                      <select class="form-select" name="stud_status" id="floatingSelect" aria-label="Floating label select example" disabled>
+                                      <select class="form-select" name="stud_status" id="studStatus" aria-label="Floating label select example" disabled>
                                       <option value="" selected disabled></option>
                                         <option value="old">Old</option>
                                         <option value="transferee">Transferee</option>
@@ -559,15 +559,15 @@
                                         
                         
                                       </select>
-                                      <label for="floatingSelect">Status</label>
+                                      <label for="studStatus">Status</label>
                                     </div>
                                   </div>
 
                                   
                                   <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_lrn" class="form-control" id="floatingInputGrid" placeholder=" " value="" disabled >
-                                    <label for="floatingInputGrid">LRN</label>
+                                    <input type="text" name="stud_lrn" class="form-control" id="studLrn" placeholder=" " value="" disabled >
+                                    <label for="studLrn">LRN</label>
                                   </div>
                                 </div>
 
@@ -593,15 +593,15 @@
 
                             
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa-bc" disabled>
-                              <label class="form-check-label" for="psa-bc">
+                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa" disabled>
+                              <label class="form-check-label" for="psa">
                                 PSA Birth Certificate
                               </label>
                             </div>
 
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="good-moral" disabled>
-                              <label class="form-check-label" for="good-moral">
+                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="goodMoral" disabled>
+                              <label class="form-check-label" for="goodMoral">
                                 Good Moral
                               </label>
                             </div>
@@ -613,7 +613,7 @@
                       <div class="buttons_manage_universal">
                       <button type="button" name="" id="add" class="btn btn-info">Add</button>
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
-                      <button type="submit" name="stud_save" id="stud_save" class="btn btn-success" >Save</button>
+                      <button type="button" name="stud_save" id="studSave" class="btn btn-success"disabled >Save </button>
                       <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button>
 
                       <a class="btn btn-primary" id="stud_archive">Archive</a>
@@ -657,27 +657,30 @@
                         <div class="row g-2">
                         <div class="col-md-6">
                           <div class="form-floating">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                              <option selected>All</option>
-                              <option value="BSIT">Bachelor of Science in Information Technology</option>
-                              <option value="BSHTM">Bachelor of Science in Computer Science</option>
-                              <option value="BSME">Bachelor of Science in dDucation</option>
-              
+                            <select class="form-select" id="filterByProgram" aria-label="Floating label select example">
+                            <option value="%">All</option>
+                            <?php 
+                              $sqlProgFilter = "SELECT DISTINCT course_program FROM `tbl_course_list`";
+                              $stmtProgFilter = $con->prepare($sqlProgFilter);
+                              $stmtProgFilter->execute();
+                              $resProgFilter = $stmtProgFilter->get_result();
+                                      while($rowProgFilter = $resProgFilter->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowProgFilter['course_program'];?>"><?= $rowProgFilter['course_program'];?></option>
+                            <?php }; ?>
                             </select>
-                            <label for="floatingSelect">Program</label>
+                            <label for="filterByProgram">Program</label>
                           </div>
                         </div>
                         
                         <div class="col-md-6">
                           <div class="form-floating">
-                            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                              <option value="BSIT_WMA" selected>All</option>
-                              <option value="BSIT_WMA">Web and Mobile Application</option>
-                              <option value="BSIT_TSM">Technical Service Managements</option>
-                              <option value="BSIT_NA">Network and Administration</option>
+                            <select class="form-select" id="filterByMajor" aria-label="Floating label select example">
+                              <option value="" selected>All</option>
+                              
               
                             </select>
-                            <label for="floatingSelect">Major</label>
+                            <label for="filterByMajor">Major</label>
                           </div>
                         </div>
                       </div>
@@ -689,12 +692,12 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
-                            <th scope="col">Payments Status</th>
+                            <!-- <th scope="col">Payments Status</th> -->
                             <th scope="col">Form 137</th>
                             <th scope="col">Form 138</th>
                             <th scope="col">PSA Birth Certificate</th>
                             <th scope="col">Good Moral</th>
-                            <th scope="col">History</th>
+                            <!-- <th scope="col">History</th> -->
                             <th scope="col">Action</th>
                             
                           </tr>
@@ -1318,27 +1321,268 @@
           profile_link.classList.toggle('show');
           }
       </script>
+      <!-- Manage User-Student Registrar Access -->
       <script>
+        let partialStudFields = ['studId','studFirstname','studMiddlename','studLastname','studSemester','studYearLevel','studProgram','studMajor','studFee','studScholarship','studDiscount','form137','form138','psa','goodMoral']
+        let allStudFields = ['studId','studFirstname','studMiddlename','studLastname','studSemester','studYearLevel','studProgram','studMajor','studFee','studScholarship','studDiscount','form137','form138','psa','goodMoral','studSchoolYear','studStatus','studLrn']
+        let status;
         $(document).ready(function () {
-          display();
+          $('#v-pills-manage-users-tab').click(function (e) { 
+            e.preventDefault();
+            let allStud = '%';
+            viewStudetList(allStud);//Show All Data Table
+          });
+          // ADD
           $('#add').click(function (e) { 
-            enablePartial();
-              let program = $("#studProgram").val();
-              onChangeProg(program);
+            studFieldsDisbaled(partialStudFields,false);
+            $("#studSave").prop('disabled', false);
+            $("#add").prop('disabled', true);
+            let program = $("#studProgram").val();
+            onChangeProgram(program,null);
 
           });
+           // Trigger OnChange Item of Dropdown Program
           $("#studProgram").change(function(){
             let program = $(this).val();
-            onChangeProg(program);
+            onChangeProgram(program,null);
           });
+          // Trigger OnChange Item of Dropdown Major
           $("#studMajor").change(function(){
             let major = $(this).val();
             let sem = $('#studSemester').val();
             let yearLevel = $('#studYearLevel').val();
             onChangeMajor(major,sem,yearLevel)
           });
-        function onChangeMajor(major,sem,yearLevel){
-          $.ajax({
+          // Save and Update
+          $('#studSave').click(function (e) { 
+            e.preventDefault();
+            let studSave = document.getElementById('studSave')
+            if(studSave.innerText == 'Update'){
+              let updateStud = new FormData(document.getElementById('studForm'))
+              updateStud.append('update', 'update');
+              updateStud.append('empId','<?=$_SESSION['employeeId'];?>')
+              updateStud.append('empName','<?=$_SESSION['fullname'];?>')
+              studActions(updateStud)
+              studFieldsDisbaled(allStudFields,true);
+              $('#studSave').text('Save');
+              $("#add").prop("disabled", false);
+              $("#studSave").prop("disabled", true);
+              $("#stud_delete").prop("disabled", true);
+            }
+            // Save
+            if(studSave.innerText == 'Save'){
+              if ($("#studId").val() == 0){
+                $("#studId").focus()
+              }else if ($("#studFirstname").val() == ""){
+                $("#studFirstname").focus()
+              }else if ($("#studMiddlename").val() == ""){
+                $("#studMiddlename").focus()
+              }else if ($("#studLastname").val() == ""){
+                $("#studLastname").focus()
+              }else if ($("#studFee").val() == ""){
+                $("#studFee").focus()
+              }else{
+                // Request To Save Data Via AJAX
+                let newStud = new FormData(document.getElementById('studForm'))
+                newStud.append('newStud', 'newStud');
+                newStud.append('empId','<?=$_SESSION['employeeId'];?>')
+                newStud.append('empName','<?=$_SESSION['fullname'];?>')
+                studActions(newStud)
+                studFieldsDisbaled(partialStudFields,true);
+                $("#studSave").prop('disabled', true);
+              }
+            }
+          });
+          // Edit Student Data
+          $(document).on('click', '#edit', function(){
+            let id = $(this).attr("data-id");
+            $("#add").prop("disabled", true);
+            $.ajax({
+              type: "POST",
+              url: "../includes/manage_student.php",
+              data: {
+                "edit": 1,
+                "id": id
+              },
+              dataType: 'JSON',
+              success: function (data) {
+                console.log(data)
+                $("#studId").val(data.stud_id);
+                $("#studFirstname").val(data.firstname);
+                $("#studLastname").val(data.lastname);
+                $("#studMiddlename").val(data.middlename);
+                $("#studeYearLevel").val(data.year_level);
+                $("#studProgram").val(data.program);
+                $("#studDiscount").val(data.discount);
+                $("#studSchoolYear").val(data.csi_school_year);
+                $("#studSemester").val(data.csi_semester);
+                $("#studScholarship").val(data.scholar_type);
+                $("#studStatus").val(data.stud_type);
+                $("#studLrn").val(data.stud_lrn);
+                if(data.form_137 != ''){
+                  $("#form137").prop('checked', true);
+                }
+                if(data.form_138 != ''){
+                  $("#form138").prop('checked', true);
+                }
+                if(data.psa_birth_cert != ''){
+                  $("#psa").prop('checked', true);
+                }
+                if(data.good_moral != ''){
+                  $("#goodMoral").prop('checked', true);
+                }
+          
+                let program = data.program
+                let selectedValue = data.major
+                onChangeProgram(program,selectedValue) //Dropdown Options of Major and selected Option base current major of student
+                $("#studFee").val(data.tuition_fee); 
+                studFieldsDisbaled(allStudFields,false);
+                $("#studSave").text('Update');
+                $("#studSave").removeAttr('disabled');
+                $("#stud_delete").removeAttr('disabled');
+              }
+            });
+          });
+          // Search Button
+          $("#searchStud_btn").click(function(){
+            let query = $("#searchStud").val()
+            viewStudetList(query)
+          });
+          // Delete AJAX Request
+          $('#stud_delete').click(function (e) { 
+            e.preventDefault();
+            let id = $("#studId").val();
+            console.log(id);
+            Swal.fire({
+              title: 'Are you sure?',
+              text: "Student Record will be delete",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                $.ajax({
+                  type: "POST",
+                  url: "../includes/manage_student.php",
+                  data: {
+                    "delete": 1,
+                    "id": id
+                  },
+                  dataType: 'JSON',
+                  success: function (response) {
+                    Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+                    if(response.status == 'success'){
+                      $('#studForm').trigger('reset');
+                    }
+                    let allStud = '%';
+                    viewStudetList(allStud);;
+                    studFieldsDisbaled(allStudFields,true);
+                    $("#stud_delete").prop("disabled", true);
+                    $("#studSave").prop("disabled", true);
+                    $("#studSave").text('Save');
+                    $("#add").removeAttr('disabled');
+                  }
+                });
+              }
+            })
+          });
+          // Filter By Program
+          $('#filterByProgram').change(function (e) { 
+            e.preventDefault();
+            let byProgram = $(this).val();
+            onChangeProgramFilter(byProgram);
+            viewStudetListFilter(byProgram)
+          });
+          // Filter By Major
+          $('#filterByMajor').change(function (e) { 
+            e.preventDefault();
+            let byMajor = $(this).val();
+            let byProgram = $("select#filterByProgram option").filter(":selected").val();
+            viewStudetListFilter(byProgram,byMajor)
+          });
+          // AJAX REQUEST FOR SAVE,UPDATE
+          function studActions(formdata){
+            $.ajax({
+            type: "POST",
+            url: "../includes/manage_student.php",
+            data: formdata,
+            contentType: false,
+            processData:false,
+            dataType: 'JSON',
+            success: function (response) {
+              console.log(response)
+              Swal.fire({
+                icon: response.status,
+                text: response.message,
+                confirmButtonText: 'Ok'
+              })
+              if(response.status == 'success'){
+                $('#studForm').trigger('reset');
+                let allStud = '%';
+            viewStudetList(allStud)
+              }
+            }
+          })
+        }
+          // onChange function selection in Program to put appropriate dropdown Options Major
+          function onChangeProgram(program,selectedValue){
+            $.ajax({
+              url: '../includes/comboBoxData.php',
+              type: 'post',
+              data: {
+                "programOnChange": 1,
+                "program": program
+              },
+              success:function(response){ 
+                let len = response.length;
+                $("#studMajor").empty();
+                // Looping the Items of Major By Program
+                for( let i = 0; i<len; i++){
+                  let major = response[i]['major'];
+                  $("#studMajor").append("<option value='"+major+"'>"+major+"</option>");
+                }
+                // Set item slected of Dropdown Major 
+                if(selectedValue != null){
+                  $('#studMajor').val(selectedValue);
+                }
+                // Provind Auto fill fees base on major,sem, and year level
+                let major = $('#studMajor').val();
+                let sem = $('#studSemester').val();
+                let yearLevel = $('#studYearLevel').val();
+                onChangeMajor(major,sem,yearLevel)
+              }
+            });
+          }
+          // Student List Filter Program AJAX Request to fill the filter by major options
+          function onChangeProgramFilter(program){
+            $.ajax({
+              url: '../includes/comboBoxData.php',
+              type: 'post',
+              data: {
+                "programOnChange": 1,
+                "program": program
+              },
+              success:function(response){ 
+                let len = response.length;
+                $("#filterByMajor").empty();
+                $("#filterByMajor").append("<option value='"+'%'+"'>"+'All'+"</option>");
+                // Looping the Items of Major By Program
+                for( let i = 0; i<len; i++){
+                  let major = response[i]['major'];
+                  $("#filterByMajor").append("<option value='"+major+"'>"+major+"</option>");
+                } 
+              }
+            });
+          }
+          // onChange function Selection Option in Major to provide tuition fee
+          function onChangeMajor(major,sem,yearLevel){
+            $.ajax({
               type: "POST",
               url: "../includes/comboBoxData.php",
               data: {
@@ -1350,200 +1594,49 @@
               success: function (response) {
                 $("#studFee").val(response);
               }
-            });
-        }
-        function onChangeProg(program){
-          $.ajax({
-                url: '../includes/comboBoxData.php',
-                type: 'post',
-                data: {
-                  "programOnChange": 1,
-                  "program": program
-                },
-                success:function(response){ 
-                  let len = response.length;
-                    $("#studMajor").empty();
-                      for( let i = 0; i<len; i++){
-                        let major = response[i]['major'];
-                        $("#studMajor").append("<option value='"+major+"'>"+major+"</option>");
-                      }
-                      let major = $('#studMajor').val();
-                      let sem = $('#studSemester').val();
-                      let yearLevel = $('#studYearLevel').val();
-                      onChangeMajor(major,sem,yearLevel)
-                    
-                }
-            });
-        }
-          // Save and Update AJAX Request
-          
-          $('#stud_save').click(function (event) { 
-            if($('#stud_save').text() == 'Update'){
-              $.ajax({
-                type: "POST",
-                url: "../includes/manage_student.php",
-                data: $('#studForm').serialize() + 
-                '&update=update' + 
-                '&empId=<?=$_SESSION['employeeId'];?>' + 
-                '&empName=<?=$_SESSION['fullname'];?>',
-                success: function (response) {
-                  console.log(response);
-                  Swal.fire({
-                    icon: response.status,
-                    text: response.message,
-                    confirmButtonText: 'Ok'
-                  })
-                  if(response.status == 'success'){
-                    $('#studForm').trigger('reset');
-                  }
-                  display();
-                  disableAllFields();
-                  $("#stud_save").text('Save');
-                  $("#stud_delete").prop("disabled", true);
-                  $("#add").removeAttr('disabled');
-                },
-                error: function (error) {
-                    alert('error; ' + error);
-                  }
-              });
-            }
-            if($('#stud_save').text() == 'Save'){
-              // Modify it and have condtion if some required fields are empty
-              if ($("[name='student_number']").val() == 0){
-                $("[name='student_number']").focus()
-              }else if ($("[name='stud_firstname']").val() == ""){
-                $("[name='stud_firstname']").focus()
-              }else if ($("[name='stud_middlename']").val() == ""){
-                $("[name='stud_middlename']").focus()
-              }else if ($("[name='stud_lastname']").val() == ""){
-                $("[name='stud_lastname']").focus()
-              }else if ($("[name='stud_fee']").val() == ""){
-                $("[name='stud_fee']").focus()
-              }
-              else{
-                $.ajax({
-                  url:'../includes/manage_student.php',
-                  method: "POST",
-                  data: 
-                  $('#studForm').serialize() + 
-                  '&stud_save=stud_save' + 
-                  '&empId=<?=$_SESSION['employeeId'];?>' + '&empName=<?=$_SESSION['fullname'];?>',
-                  success: function (response) {
-                    console.log(response);
-                    Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
-                    if(response.status == 'success'){
-                      $('#studForm').trigger('reset');
-                    }
-                    display();
-                    disablePartial();
-                  },
-                  error: function(xhr, ajaxOptions, thrownError){
-                    alert(xhr.status);
-                  },
-                })
-              
-              }
-            }
-              event.preventDefault();
-          });
-          // Edit Ajax Request
-          $(document).on('click', '#edit', function(){
-            
-            $("#add").prop("disabled", true);
-            // e.preventDefault();
-            let id = $(this).attr("data-id");
-            // alert(id);
+            }); 
+          }
+          // Dislay Student Info in the table Include search  feature |AJAX REQUEST
+          function viewStudetList(query){
             $.ajax({
-              type: "POST",
+              type: "GET",
               url: "../includes/manage_student.php",
-              data: {
-                "edit": 1,
-                "id": id
-              },
-              // dataType: "json",
-              success: function (data) {
-                // console.log(data);
-                // Setting data fields
-            
-                $("[name='student_number']").val(data.stud_id);
-                $("[name='stud_firstname']").val(data.firstname);
-                $("[name='stud_lastname']").val(data.lastname);
-                $("[name='stud_middlename']").val(data.middlename);
-                $("[name='stud_year_level']").val(data.year_level);
-                
-                $("[name='stud_fee']").val(data.tuition_fee);
-                $("[name='stud_discount']").val(data.discount);
-                $("[name='stud_school_year']").val(data.csi_school_year);
-                $("[name='stud_semester']").val(data.csi_semester);
-                $("[name='stud_scholarship']").val(data.scholar_type);
-                $("[name='stud_status']").val(data.stud_type);
-                $("[name='stud_lrn']").val(data.stud_lrn);
-                if(data.form_137 != ''){
-                  $("[name='req_form137']").prop('checked', true);
-                }
-                if(data.form_138 != ''){
-                  $("[name='req_form138']").prop('checked', true);
-                }
-                if(data.psa_birth_cert != ''){
-                  $("[name='req_psa']").prop('checked', true);
-                }
-                if(data.good_moral != ''){
-                  $("[name='req_good_moral']").prop('checked', true);
-                }
-                $("[name='stud_program']").val(data.program);
-               let program = data.program
-                //to be update  
-                      $.ajax({
-                      url: '../includes/comboBoxData.php',
-                      type: 'post',
-                      data: {
-                        "programOnChange": 1,
-                        "program": program
-                      },
-                      success:function(response){ 
-                        let len = response.length;
-                          $("#studMajor").empty();
-                            for( let i = 0; i<len; i++){
-                              let major = response[i]['major'];
-                              $("#studMajor").append("<option value='"+major+"'>"+major+"</option>");
-                            }
-                            let major = $('#studMajor').val();
-                            let sem = $('#studSemester').val();
-                            let yearLevel = $('#studYearLevel').val();
-                            onChangeMajor(major,sem,yearLevel)
-                            $("[name='stud_major']").val(data.major);
-                      }
-                  });
-                
-                
-                // Enabline fields
-                enableAll();
-                $("#stud_save").text('Update');
-                $("#stud_delete").removeAttr('disabled');
-              }
-            });
-            
-          });
-          
-          // Search Ajax Request
-          $("#searchStud_btn").click(function(){
-            $.ajax({
-              type:'POST',
-              url:'../includes/searchStudData.php',
               data:{
-                "search": 1,
-                "query":$("#searchStud").val(),
+                "viewStudData": 1,
+                'query': query,
               },
-              success:function(data){
-                $("#viewStud").html(data);
-                
+              dataType: "html",
+              success: function (data) {
+                $('#viewStud').html(data);
               }
             });
-          });
+          }
+          // Student Filter By Program and Major AJAX REQUEST
+          function viewStudetListFilter(byProgram,byMajor){
+            $.ajax({
+              type: "GET",
+              url: "../includes/manage_student.php",
+              data:{
+                "viewStudDataFiltered": 1,
+                'byProgram': byProgram,
+                'byMajor': byMajor,
+              },
+              dataType: "html",
+              success: function (data) {
+                $('#viewStud').html(data);
+              }
+            });
+          }
+          // Enable/Disabled Student Fields
+          function studFieldsDisbaled(fields,bol){
+            for(let i = 0; i < fields.length; i++) {
+              $("#"+fields[i]).prop('disabled', bol);
+            }
+          }
+        });
+      </script>
+      <script>
+        $(document).ready(function () {
           $("#searchDash_btn").click(function(){
             $.ajax({
               type:'POST',
@@ -1572,58 +1665,9 @@
               }
             });
           });
-          // Delete AJAX Request
-          $('#stud_delete').click(function (e) { 
-            e.preventDefault();
-            let id = $("[name='student_number']").val();
-            console.log(id);
-            Swal.fire({
-              title: 'Are you sure?',
-              text: "Student Record will be delete",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                $.ajax({
-                  type: "POST",
-                  url: "../includes/manage_student.php",
-                  data: {
-                    "delete": 1,
-                    "id": id
-                  },
-                  success: function (response) {
-                    Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
-                    if(response.status == 'success'){
-                      $('#studForm').trigger('reset');
-                    }
-                    display();
-                    disableAllFields();
-                    $("#stud_delete").prop("disabled", true);
-                    $("#stud_save").text('Save');
-                    $("#add").removeAttr('disabled');
-                  }
-                });
-              }
-            })
-          });
+          
         });
-        function display(){
-            $.ajax({
-              type: "GET",
-              url: "../includes/viewStudData.php",
-              dataType: "html",
-              success: function (data) {
-                $('#viewStud').html(data);
-              }
-            });
-        }
+        
         //-----------OLD/TRANSFER STUDENT------------
         function sortDisplay(stud_type){
             $.ajax({
@@ -1637,81 +1681,6 @@
               
             });
         }
-        function enableAll(){
-          $("[name='student_number']").removeAttr('disabled');
-          $("[name='stud_firstname']").removeAttr('disabled');
-          $("[name='stud_lastname']").removeAttr('disabled');
-          $("[name='stud_school_year']").removeAttr('disabled');
-          $("[name='stud_semester']").removeAttr('disabled');
-          $("[name='stud_year_level']").removeAttr('disabled');
-          $("[name='stud_program']").removeAttr('disabled');
-          $("[name='stud_major']").removeAttr('disabled');
-          $("[name='stud_fee']").removeAttr('disabled');
-          $("[name='stud_scholarship']").removeAttr('disabled');
-          $("[name='stud_discount']").removeAttr('disabled');
-          $("[name='stud_status']").removeAttr('disabled');
-          $("[name='stud_lrn']").removeAttr('disabled');
-          $("[name='req_form137']").removeAttr('disabled');
-          $("[name='req_form138']").removeAttr('disabled');
-          $("[name='req_psa']").removeAttr('disabled');
-          $("[name='req_good_moral']").removeAttr('disabled');
-          $("[name='stud_middlename']").removeAttr('disabled');
-        }
-        function disableAllFields(){
-          $("[name='student_number']").prop("disabled", true);
-          $("[name='stud_firstname']").prop("disabled", true);
-          $("[name='stud_lastname']").prop("disabled", true);
-          $("[name='stud_school_year']").prop("disabled", true);
-          $("[name='stud_semester']").prop("disabled", true);
-          $("[name='stud_year_level']").prop("disabled", true);
-          $("[name='stud_program']").prop("disabled", true);
-          $("[name='stud_major']").prop("disabled", true);
-          $("[name='stud_fee']").prop("disabled", true);
-          $("[name='stud_scholarship']").prop("disabled", true);
-          $("[name='stud_discount']").prop("disabled", true);
-          $("[name='stud_status']").prop("disabled", true);
-          $("[name='stud_lrn']").prop("disabled", true);
-          $("[name='req_form137']").prop("disabled", true);
-          $("[name='req_form138']").prop("disabled", true);
-          $("[name='req_psa']").prop("disabled", true);
-          $("[name='req_good_moral']").prop("disabled", true);
-          $("[name='stud_middlename']").prop("disabled", true);
-        }
-        function disablePartial(){
-          $("[name='student_number']").prop("disabled", true);
-          $("[name='stud_middlename']").prop("disabled", true);
-          $("[name='stud_lastname']").prop("disabled", true);
-          $("[name='stud_semester']").prop("disabled", true);
-          $("[name='stud_program']").prop("disabled", true);
-          $("[name='stud_year_level']").prop("disabled", true);
-          $("[name='stud_major']").prop("disabled", true);
-          $("[name='stud_fee']").prop("disabled", true);
-          $("[name='stud_scholarship']").prop("disabled", true);
-          $("[name='stud_discount']").prop("disabled", true);
-          $("[name='req_form137']").prop("disabled", true);
-          $("[name='req_form138']").prop("disabled", true);
-          $("[name='req_psa']").prop("disabled", true);
-          $("[name='req_good_moral']").prop("disabled", true); 
-          $("[name='stud_firstname']").prop("disabled", true);
-        }
-        function enablePartial(){
-          $("[name='student_number']").removeAttr('disabled');
-          $("[name='stud_middlename']").removeAttr('disabled');
-          $("[name='stud_lastname']").removeAttr('disabled');
-          $("[name='stud_semester']").removeAttr('disabled');
-          $("[name='stud_year_level']").removeAttr('disabled');
-          $("[name='stud_program']").removeAttr('disabled');
-          $("[name='stud_major']").removeAttr('disabled');
-          $("[name='stud_fee']").removeAttr('disabled');
-          $("[name='stud_scholarship']").removeAttr('disabled');
-          $("[name='stud_discount']").removeAttr('disabled');
-          $("[name='req_form137']").removeAttr('disabled');
-          $("[name='req_form138']").removeAttr('disabled');
-          $("[name='req_psa']").removeAttr('disabled');
-          $("[name='req_good_moral']").removeAttr('disabled');
-          $("[name='stud_firstname']").removeAttr('disabled');
-        }
-     
       </script>
       <script>
           // function display(){
@@ -1730,12 +1699,10 @@
         let allData = '%'
         let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname']
         let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo']
+        // Mange User Clicked
         $('#v-pills-manage-users-tab').click(function (e) { 
           e.preventDefault();
-          
           viewEmployee(allData)
-          
-
         });
         // ADD
         $('#empAdd').click(function (e) { 
@@ -1744,11 +1711,10 @@
           $("#empAdd").prop("disabled", true);
           $("#empSave").prop("disabled", false);
         });
-        // SAVE
+        // Two way process Save and Save base on button text
         $("#empSave").click(function (e) { 
           e.preventDefault();
           if($('#empSave').text() == 'Update'){
-            
             let updateEmp = $('#empForm').serialize() + '&updateEmp=updateEmp';
             empActions(updateEmp);
             $('#empSave').text('Save');
@@ -1756,6 +1722,7 @@
             $("#empAdd").prop("disabled", false);
             $("#empSave").prop("disabled", true);
             $("#empDel").prop("disabled", true);
+
           }else{
             let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
             empActions(newEmp);
@@ -1764,6 +1731,7 @@
             $("#empSave").prop("disabled", true);
           }
         });
+        // Edit Button
         $(document).on('click', '#empEdit', function(){
           let id = $(this).attr("data-id");
 
@@ -1772,13 +1740,13 @@
           $("#empAdd").prop("disabled", true);
           $("#empSave").prop("disabled", false);
           $("#empDel").prop("disabled", false);
-
+          // AJAX request edit
           $.ajax({    
               type: "GET",
               url: "../includes/manage_employee.php", 
               data:{empEdit:id},
               beforeSend: function () {
-                loaderOpen() // Before we send the request, remove the .hidden class from the 
+                loaderOpen()
               },                             
               success: function(data){   
                 $("#empRole").val(data.role);               
@@ -1792,11 +1760,12 @@
                 $("input[name='emp_contact_number']").val(data.contact_number);
                 
               },
-              complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+              complete: function () { 
                 loaderClose() 
               },
           });
         })
+        // Delete Employee Data
         $('#empDel').click(function (e) { 
           e.preventDefault();
           let delEmp = $('#empForm').serialize() + '&delEmp=delEmp';
@@ -1807,6 +1776,7 @@
             $("#empSave").prop("disabled", true);
             $("#empDel").prop("disabled", true);
         });
+        // Filter By
         $('#filterBy').change(function (e) { 
           e.preventDefault();
           let filterBy =  $("select#filterBy option").filter(":selected").val();
@@ -1814,18 +1784,18 @@
         });
         // Enable/Disabled Employee Fields
         function empFieldsAttr(fields,bol){
-          
           for(let i = 0; i < fields.length; i++) {
             $("#"+fields[i]).prop('disabled', bol);
           }
         }
+        // AJAX Request Save,Update,Delete
         function empActions(formData){
           $.ajax({
             type: "POST",
             url: "../includes/manage_employee.php",
             data: formData,
             beforeSend: function () {
-              loaderOpen() // Before we send the request, remove the .hidden class from the 
+              loaderOpen()  
             },
             success: function (response) {
               console.log(response)
@@ -1839,11 +1809,12 @@
                 viewEmployee(allData)
               }
             },
-            complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+            complete: function () {  
               loaderClose() 
             },
           });
         }
+        // Display Table base on filter set
         function viewEmployee(filterBy){
           $.ajax({
             type: "POST",
@@ -1854,12 +1825,12 @@
             },
             dataType: "html",
             beforeSend: function () {
-                loaderOpen() // Before we send the request, remove the .hidden class from the 
+                loaderOpen()  
             }, 
             success: function (data) {
               $('#viewEmployee').html(data);
             },
-            complete: function () { // Set our complete callback, adding the .hidden class and hiding 
+            complete: function () { 
                 loaderClose() 
             },
           });

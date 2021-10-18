@@ -349,10 +349,17 @@
         }
 
         function next_tab(){
+            let email =$('#email').val()
             if (step_counter === 1){
-                if($('#email').val() == ''){
+                if(email == ''){
                     Swal.fire({
                         title: 'Please enter your email',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if( IsEmail(email) == false){
+                    Swal.fire({
+                        title: 'Email is invalid',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
@@ -404,7 +411,14 @@
             }
         }
 
-   
+        function IsEmail(email) {
+            const regex = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+            if(!regex.test(email)) {
+            return false;
+            }else{
+            return true;
+            }
+        } 
 
         function prev_tab(){
             if (step_counter === 2){
