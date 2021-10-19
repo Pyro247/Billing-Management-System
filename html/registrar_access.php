@@ -247,7 +247,7 @@
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud"onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud" onclick="dashboard_table_appear()">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -290,7 +290,7 @@
 
 
 
-                <div class="col universal_bg_gray_table">
+                <div class="col universal_bg_gray_table tableDash">
                   
                   <div class="row">
                   <div class="col">
@@ -319,7 +319,7 @@
               </div>
               </div>
 
-                    <div class="table__dashboard" style="overflow-x: auto;" id="table_dashboard_id">
+                    <div class="table__dashboard" id="table_dashboard_id">
                     <table class="table">
                         <thead class="thead-light">
                           <tr>
@@ -333,6 +333,9 @@
                             <th scope="col">Scholarship</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Email</th>
+
                             
                           </tr>
                         </thead>
@@ -1051,7 +1054,6 @@
                           <option value="Transfer">Transfer</option>
                           <option value="Resign">Resign</option>
                           <option value="Resign">Terminate</option>
-          
                         </select>
                         <label for="floatingSelect">Reason</label>
                       </div>
@@ -1276,15 +1278,6 @@
   <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <!-- Function to appear table -->
-
-  <script type="text/javascript">
-    let table_ = document.getElementById('table_dashboard_id');
-    function dashboard_table_appear(){
-        table_.classList.toggle('active')
-        
-    }
-  </script>
 
   <script>
     //total student

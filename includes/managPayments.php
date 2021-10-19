@@ -125,7 +125,7 @@ while($data = $res->fetch_assoc()){?>
     <td style="font-weight: bold;"><?=$data['transaction_no'];?></td>
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['fullname'];?></td>
-    <td><span style="font-size 1.5rem; font-weight: bold;">P</span><?=$data['amount'];?></td>
+    <td><span style="font-size 1.5rem; font-weight: bold;">₱<?=$data['amount'];?></span></td>
     <td><?=$data['transaction_date'];?></td>
     <td><?=$data['email'];?></td>
     <td>

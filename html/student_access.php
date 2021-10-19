@@ -236,7 +236,7 @@
                     <div class="modal-body">
                     <div class="payApp_createPayment mt-2">
                         <h5 id="TransactionNo"></h5>
-                        Reason of denied payment:<h5 class="text-danger" id="reasonMsg" ></h5>
+                        Reason of denied payment: <h5 class="text-danger" id="reasonMsg" ></h5>
                         <form  class=" mb-3 p-2" id="payReqFormRe" enctype="multipart/form-data">
                         <div class="payAppFormWrapper">
                             <div class="leftForm">

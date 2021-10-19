@@ -173,6 +173,7 @@
 
 .row{
     width: 100%;
+    
 }
 
 .left-tab{
@@ -186,6 +187,7 @@
     background-color: #363e61;
     color: var(--white-color);
     z-index: 999;
+    
 }
 
 .right-tab{
@@ -304,9 +306,11 @@
     padding: 10px;
     margin-top: 10px;
     width: 100%;
-    overflow: auto;
-    
+    overflow-x: auto;
 }
+
+
+
 
 .select__{
     display: block;
@@ -453,23 +457,11 @@ hr{
 
 .s_c__{
     width: 150px;
-
 }
 
 
-.table__dashboard{
-    transition: 150ms ease;
-    opacity: 0;
-    visibility: hidden;
-    height: 0;
-    
-}
 
-.table__dashboard.active{
-    opacity: 1;
-    visibility: visible;
-    height: auto;
-}
+
 
 
 /* For fees management */

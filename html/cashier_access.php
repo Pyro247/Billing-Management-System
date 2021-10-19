@@ -181,8 +181,6 @@
                       <td>jd@gmail.com</td>
                       <td><button class="btn btn-primary">View</button></td>
                       <td><button class="btn btn-success my-1 paymentTransaction_actionBtn">Approve</button><button class="btn btn-danger paymentTransaction_actionBtn">Deny</button></td>
-                      
-                      
                     </tr> -->
                   </tbody>
                 </table>
