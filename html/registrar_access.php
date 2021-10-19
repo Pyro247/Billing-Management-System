@@ -231,7 +231,7 @@
                   <div class="student__group_left">
                     <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
                   </div>
-                  <div class="student__group_right align-center" id="totalStud" onclick="dashboard_table_appear()">
+                  <div class="student__group_right align-center" id="totalStud">
                     <span class="text-center d-block">Total Students</span>
                     <strong class="text-center d-block">
                     <?php
@@ -247,7 +247,7 @@
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -267,7 +267,7 @@
                   </div>
                 </div>
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud" onclick="dashboard_table_appear()">
+                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud">
                   <div class="student__group_left">
                     <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
                   </div>
@@ -290,7 +290,7 @@
 
 
 
-                <div class="col universal_bg_gray_table tableDash">
+                <div class="col universal_bg_gray_table">
                   
                   <div class="row">
                   <div class="col">
@@ -490,7 +490,6 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-                                   
 
 
                                   
