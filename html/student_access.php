@@ -517,7 +517,7 @@
                     </div>
 
                 <div class="universalLightGrayBg rounded-2">
-                    <table class="table">
+                    <table id = "tblData" class="table">
                         <thead class="thead-light text-center">
                         <tr>
                             <th scope="col">Transaction ID</th>
@@ -569,7 +569,7 @@
                     </table>
                    
                     </div>
-                <button class="btn btn-outline-primary">Export to Excel</button>
+                <button class="btn btn-outline-primary" onclick="exportTableToExcel('tblData', 'Transaction-History')">Export to Excel</button>
             </div>
 
             </div>
@@ -727,6 +727,36 @@
                 });
                 
             });
+            function exportTableToExcel(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+            
+            // Create download link element
+            downloadLink = document.createElement("a");
+            
+            document.body.appendChild(downloadLink);
+            
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob( blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            
+                // Setting the file name
+                downloadLink.download = filename;
+                
+                //triggering the function
+                downloadLink.click();
+            }
+        }
         </script>
         
     </body>
