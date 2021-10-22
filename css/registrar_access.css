@@ -309,6 +309,11 @@
     overflow-x: auto;
 }
 
+.table__dashboard{
+    width: 100%;
+    max-width: 0;
+    min-width: 0;
+}
 
 
 

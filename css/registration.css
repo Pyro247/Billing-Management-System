@@ -126,6 +126,10 @@ body {
   text-align: center;
 }
 
+
+html, body{
+  background: linear-gradient(#1e1e1e, #153760);
+}
 .bg{
   position: absolute;
   width: 100%;
@@ -300,14 +304,15 @@ input[type=number]::-webkit-outer-spin-button {
   height: 100vh;
   display: grid;
   place-content: center;
+  
 }
-
 
 .progress_container ul {
   display: flex;
   justify-content: space-evenly;
   
 }
+
 
 form img{
   display: block;

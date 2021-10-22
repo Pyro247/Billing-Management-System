@@ -333,8 +333,7 @@
                             <th scope="col">Scholarship</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Email</th>
+
 
                             
                           </tr>
