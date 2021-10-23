@@ -237,47 +237,47 @@
               <p class="title_tab_universal">Student's Fees</p>
 
               <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <input type="text" id="searchBar_TransacHistory" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="payTransac_btn">Search</button>
               </form>
 
               <div class="col universal_bg_gray_table payments_tab" style="overflow-x: hidden;">
 
                 <div class="payments_tab_left mx-2 my-auto">
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
-                  <span class="d-block text-primary text-center" style="font-size: 1.2rem; font-weight: bold;">Justine Dave Delos reyes</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1.3rem;">2018300366</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1.2rem; font-weight: bold;" id="studName">Fullname</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1.3rem;" id="studID">Student ID</span>
                 </div>
                 <div class="payments_tab_right">
                   <form action="">
                     <div class="col">
-                      <label class="sr-only" for="inlineFormInputGroup">Program</label>
+                      <label class="sr-only" for="StudProgram">Program</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
                               <div class="input-group-text beforeInput">Program</div>
                             </div>
-                          <input type="text" class="form-control w-auto" id="inlineFormInputGroup" placeholder="Program">
+                          <input type="text" class="form-control w-auto" id="StudProgram" placeholder="Program" disabled>
                         </div>
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Tuition Fee</span>
+                        <span class="input-group-text beforeInput" >Tuition Fee</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput">Balance</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        <input type="text" class="form-control w-auto" id="studBalance" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput">Amount</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        <input type="number" min="0"class="form-control w-auto" id="studAmountToPay" placeholder="0.00" >
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
                       </div>  
                     </div>
@@ -285,22 +285,96 @@
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput">Change</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" placeholder="0.00">
+                        <input type="text" class="form-control w-auto" id="changeCalculated" placeholder="0.00">
                         
                       </div>  
                     </div>
 
                   <div class="col-12 mt-3 mb-2">
-                    <button type="button" class="btn btn-success payVoid" id="payBtn">Pay</button>
+                    <button type="button" class="btn btn-success payVoid"  id="payBtn" disabled>Pay</button>
                   </div>
                 </form>
               </div>
             </div>
 
+            <!-- Pay Modal -->
+            <div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Payment Preview</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <div class="col">
+                      <label class="sr-only" for="previewStudId">Student ID</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text beforeInput">Student ID</div>
+                            </div>
+                          <input type="text" class="form-control w-auto" id="previewStudId" placeholder="Student ID" disabled>
+                        </div>
+                    </div>
+                  <div class="col">
+                      <label class="sr-only" for="previewStudName">Fullname</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text beforeInput">Fullname</div>
+                            </div>
+                          <input type="text" class="form-control w-auto" id="previewStudName" placeholder="Fullname" disabled>
+                        </div>
+                    </div>
+                  <div class="col">
+                      <label class="sr-only" for="previewStudProgram">Program</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                              <div class="input-group-text beforeInput">Program</div>
+                            </div>
+                          <input type="text" class="form-control w-auto" id="previewStudProgram" placeholder="Program" disabled>
+                        </div>
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput" >Tuition Fee</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="previewStudTuition" placeholder="0.00" disabled>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Balance</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="previewStudBalance" placeholder="0.00" disabled>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Amount</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="previewStudAmountToPay" placeholder="0.00" disabled>
+                        <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Change</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="previewChangeCalculated" placeholder="0.00" disabled>
+                        
+                      </div>  
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="voidTransaction">Void</button>
+                    <button type="button" class="btn btn-primary" id="transactPayment">Transact</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
-              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">Justine Dave's All Transaction</span>
+              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;" id="studentTagName">Justine Dave's All Transaction</span>
               <hr style="margin-top: 5px; height: 2px;" class="text-primary">
 
               <!-- <div class="col-md">
@@ -386,7 +460,7 @@
 
               <form action="" class="universalForm_one">
                 <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <button type="button" class="btn btn-primary" >Search</button>
               </form>
 
 
@@ -672,8 +746,144 @@
       });
     }
   </script>
-
-
-</script>
+    <!-- Transaction History -->
+    <script>
+      $(document).ready(function () {
+        
+        $('#payBtn').click(function (e) { 
+          e.preventDefault();
+          let lettersRegex=/^[a-zA-Z]+$/;
+          if($('#studAmountToPay').val() == ''){
+            
+            Swal.fire(
+              'Insufficient Amount',
+              'Empty amount',
+              'warning'
+            )
+            }else if(parseInt($('#studAmountToPay').val()) < 0){
+            Swal.fire(
+              'Insufficient Amount',
+              'Negative amount is invalid',
+              'warning'
+            )
+          }else{
+            $("#payModal").modal('show');
+          }
+          
+        });
+        $('#payTransac_btn').click(function (e) { 
+          e.preventDefault();
+          let query = document.getElementById('searchBar_TransacHistory').value
+          if(query == ''){
+            Swal.fire(
+              'Nothing to search',
+              'Empty search bar',
+              'warning'
+            )
+          }else{
+            searchData(query)//Function ajax to request the data
+          }
+        });
+        $('#studAmountToPay').keyup(function (e) { 
+          e.preventDefault();
+          let balance = $('#studBalance').val();
+          let amountToPay = $('#studAmountToPay').val();
+          if(parseInt(amountToPay) > parseInt(balance)){
+            $('#changeCalculated').val(parseInt(amountToPay) - parseInt(balance));
+          }else if(parseInt(amountToPay) <= parseInt(balance)){
+            $('#changeCalculated').val('');
+          }
+          
+        });
+        $('#transactPayment').click(function (e) { 
+          e.preventDefault();
+          // AJAX REQUEST TO SAVE DATA TO TBL PAYMENTS JUST REVISE THE CODE THE YOU WRITE IN MANAGE PAYMENTS
+          x
+            $.ajax({
+              type: "POST",
+              url: "../includes/transaction-history-cashier.php",
+              data: {
+                'transact': 'transact',
+                'studId':  $('#studID').text(),
+                'amount': $('#previewStudAmountToPay').val(),
+                'cashierName': '<?=$_SESSION['fullname']?>',
+                'cashierId': '<?=$_SESSION['employeeId']?>'
+              },
+              dataType: "JSON",
+              success: function (response) {
+                console.log(response)
+                Swal.fire({
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+                if(response.status == 'success'){
+                  $("#payModal").modal('hide');
+                }
+              }
+            });
+          
+        });
+        $('#voidTransaction').click(function (e) { 
+          e.preventDefault();
+          Swal.fire(
+            'Voided!',
+            'Transaction Void',
+            'warning'
+          )
+          $('#StudProgram').val('');
+          $('#studName').text('Fullname');
+          $('#studID').text('Student ID');
+          $('#studentTagName').text('Student last transaction');
+          $('#studTuition').val('');
+          $('#studBalance').val('');
+          $("#payBtn").prop("disabled", true);
+        });
+        $('#payBtn').click(function (e) { 
+          e.preventDefault();
+        
+            $('#previewStudId').val($('#studID').text());
+            $('#previewStudName').val($('#studName').text());
+            $('#previewStudProgram').val($('#StudProgram').val());
+            $('#previewStudTuition').val($('#studTuition').val());
+            $('#previewStudBalance').val($('#studBalance').val());
+            $('#previewStudAmountToPay').val($('#studAmountToPay').val());
+            $('#previewChangeCalculated').val($('#changeCalculated').val());
+          
+          
+        });
+        function searchData(getData){
+          $.ajax({
+            type: "GET",
+            url: "../includes/transaction-history-cashier.php",
+            data: {
+              'getData': getData
+            },
+            dataType: "JSON",
+            success: function (data) {
+              if(data.length ===0){
+                Swal.fire(
+                  'Not Found',
+                  'Student ID not exist',
+                  'info'
+                )
+              }else{
+                console.log(data)
+                $('#StudProgram').val(data.program);
+                $('#studName').text(data.fullname);
+                $('#studID').text(data.stud_id);
+                $('#studentTagName').text(data.fullname + ' last transaction');
+                $('#studTuition').val(data.tuition);
+                $('#studBalance').val(data.balance);
+                $("#payBtn").removeAttr('disabled');
+              }
+            }
+          });
+        }
+        function transactPayment(formData){
+          
+        }
+      });
+    </script>
 </body>
 </html>

@@ -3,7 +3,14 @@
   header('Content-type: application/json');
   session_start();
   $response = array();
-  
+  // PHP Mailer
+  use PHPMailer\PHPMailer\PHPMailer;
+  use PHPMailer\PHPMailer\SMTP;
+  use PHPMailer\PHPMailer\Exception;
+  require '../phpmailer/src/Exception.php';
+  require '../phpmailer/src/PHPMailer.php';
+  require '../phpmailer/src/SMTP.php';
+
   if( isset( $_POST['approve'] ) ){
     $transactionNo = $_POST['transactionNo'];
     $slq = "SELECT pay.*,fees.program_id,fees.tuition_fee,fees.scholar_type,fees.balance,fees.total_amount_paid,det.csi_academic_year,det.csi_semester
@@ -18,6 +25,7 @@
     $row = $res->fetch_assoc();
     if( $res->num_rows > 0 ) {
       $transaction_no = $row['transaction_no'];
+      $email = $row['email'];
       $stud_id = $row['stud_id'];
       $fullname = $row['fullname'];
       $csi_academic_year = $row['csi_academic_year'];
@@ -50,7 +58,7 @@
       if($scholar_type == 'Full'){
         $remarks = 'Full Scholar';
       }
-      // Temporary
+      
       $cashier_id = $_POST['cashierId'];
       $cashier_name = $_POST['cashierName'];
       $slqApprove = "INSERT INTO `tbl_payments`(`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -64,12 +72,35 @@
         $stmtStudFee->bind_param('ssss',$total,$balance,
         $remarks,$stud_id);
         if($stmtStudFee->execute()){
+          // Sending Email to Student that Payment Request is Approve
+          // $mail = new PHPMailer(true);
+          // $mail->smtpClose();
+          // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+          // $mail->isSMTP();                                           
+          // $mail->Host       = 'smtp.gmail.com';                     
+          // $mail->SMTPAuth   = true;                                   
+          // $mail->Username   = 'phptest1301@gmail.com';                     
+          // $mail->Password   = 'fprqtcaljwxcnvie';                               
+          // $mail->SMTPSecure = 'ssl';            
+          // $mail->Port       = 465;   
+          // $mail->isHTML(true);       
+          // $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
+          // $mail->addAddress($email,  $fullname);                                        
+          // $mail->Subject = 'PYRO COLLEGE PAYMENT INVOICE';
+          // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
+      
+          // if($mail->send()){
+            
+          // }else{
+          //     echo 'Something went wrong';
+          // }
 
           $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
           $stmtPendingPay = $con->prepare($sqlPendingPay);
           $stmtPendingPay->bind_param('s',$transaction_no);
           $stmtPendingPay->execute();
 
+        
           $response['status'] = 'success';
           $response['message'] = 'Successfully Approved Payment';
         }
