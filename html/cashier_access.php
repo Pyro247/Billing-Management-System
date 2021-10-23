@@ -1,4 +1,5 @@
 <?php
+include_once '../connection/Config.php';
   session_start();
   if($_SESSION['role'] != 'Cashier'){
     session_destroy(); 
@@ -374,7 +375,7 @@
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
-              <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;" id="studentTagName">Justine Dave's All Transaction</span>
+            <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;" id="studentTagName">Student Last Transaction</span>
               <hr style="margin-top: 5px; height: 2px;" class="text-primary">
 
               <!-- <div class="col-md">
@@ -408,39 +409,8 @@
                         
                       </tr>
                     </thead>
-                    <tbody>
-                    <?php
-                          include_once '../connection/Config.php';
+                    <tbody id="viewLastTransaction">
 
-                              $sqlPT ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                              FROM `tbl_payments`
-                              WHERE transaction_date >=CURRENT_DATE()";
-                              $stmtPT = $con->prepare($sqlPT);
-                              $stmtPT->execute();
-                              $resPT = $stmtPT->get_result();
-                              $countPT = $resPT->num_rows;
-
-                      ?>
-                          <?php 
-                              if($countPT > 0){
-                                  while($dataPT = $resPT->fetch_assoc()){?>
-                                      <tr class="text-center">
-                                          <td><?=$dataPT['transaction_no'];?></td>
-                                          <td><?=$dataPT['stud_id'];?></td>
-                                          <td><?=$dataPT['fullname'];?></td>
-                                          <td><?=$dataPT['amount'];?></td>
-                                          <td><?=$dataPT['payment_method'];?></td>
-                                          <td class="text-success text-uppercase fw-bold"><?=$dataPT['payment_status'];?></td>
-                                          <td><?=$dataPT['transaction_date'];?></td>
-                                      </tr>
-                          <?php }?>
-                          <?php }else{?>
-                                      <tr>
-                                          <td><?php echo "No Records"?></td>
-                                      </tr>
-                          <?php } 
-                                                      
-                      ?>
                 </tbody> 
                   </table>
 
@@ -938,7 +908,8 @@
               'warning'
             )
           }else{
-            searchData(query)//Function ajax to request the data
+            searchData(query)
+            viewLastTransaction(query)
           }
         });
         $('#studAmountToPay').keyup(function (e) { 
@@ -954,11 +925,9 @@
         });
         $('#transactPayment').click(function (e) { 
           e.preventDefault();
-          // AJAX REQUEST TO SAVE DATA TO TBL PAYMENTS JUST REVISE THE CODE THE YOU WRITE IN MANAGE PAYMENTS
-          x
             $.ajax({
               type: "POST",
-              url: "../includes/transaction-history-cashier.php",
+              url: "../includes/payment-transaction-cashier.php",
               data: {
                 'transact': 'transact',
                 'studId':  $('#studID').text(),
@@ -976,6 +945,15 @@
                 })
                 if(response.status == 'success'){
                   $("#payModal").modal('hide');
+                  $('#StudProgram').val('');
+                  $('#studName').text('Fullname');
+                  $('#studID').text('Student ID');
+                  $('#studentTagName').text('Student last transaction');
+                  $('#studTuition').val('');
+                  $('#studAmountToPay').val('');
+                  $('#studBalance').val('');
+                  $("#payBtn").prop("disabled", true);
+                  viewLastTransaction('')
                 }
               }
             });
@@ -995,6 +973,7 @@
           $('#studTuition').val('');
           $('#studBalance').val('');
           $("#payBtn").prop("disabled", true);
+          $('#studAmountToPay').val('');
         });
         $('#payBtn').click(function (e) { 
           e.preventDefault();
@@ -1009,10 +988,11 @@
           
           
         });
+        // Search Student BY ID to fill the fields
         function searchData(getData){
           $.ajax({
             type: "GET",
-            url: "../includes/transaction-history-cashier.php",
+            url: "../includes/payment-transaction-cashier.php",
             data: {
               'getData': getData
             },
@@ -1037,8 +1017,19 @@
             }
           });
         }
-        function transactPayment(formData){
-          
+        function viewLastTransaction(studId){
+          $.ajax({
+            type: "GET",
+            url: "../includes/payment-transaction-cashier.php",
+            data: {
+              'viewLastTransac': 'viewLastTransac',
+              'studId':studId
+            },
+            dataType: "html",
+            success: function (data) {
+              $('#viewLastTransaction').html(data);
+            }
+          });
         }
       });
     </script>
