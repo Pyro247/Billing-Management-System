@@ -1106,13 +1106,13 @@
                       </div>
 
                     <div class="col-md">  
-                      <button type="button" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
+                      <button type="button" onclick="exportTableToExcel('archiveTable', 'Archive')" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
                     </div>
                   </div>
 
                   <hr>
                   <div class="table__" style="overflow-x: auto;">
-                    <table class="table">
+                    <table id="archiveTable" class="table">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID number</th>
@@ -1706,6 +1706,36 @@
           //       }
           //     });
           // }
+          function exportTableToExcel(tableID, filename = ''){
+            var downloadLink;
+            var dataType = 'application/vnd.ms-excel';
+            var tableSelect = document.getElementById(tableID);
+            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            
+            // Specify file name
+            filename = filename?filename+'.xls':'excel_data.xls';
+            
+            // Create download link element
+            downloadLink = document.createElement("a");
+            
+            document.body.appendChild(downloadLink);
+            
+            if(navigator.msSaveOrOpenBlob){
+                var blob = new Blob(['\ufeff', tableHTML], {
+                    type: dataType
+                });
+                navigator.msSaveOrOpenBlob( blob, filename);
+            }else{
+                // Create a link to the file
+                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+            
+                // Setting the file name
+                downloadLink.download = filename;
+                
+                //triggering the function
+                downloadLink.click();
+            }
+        }
       </script>
       <!-- Script For Manage User-Employee Admin Access -->
       <script>
@@ -1869,7 +1899,8 @@
         // Sumbit and Update New Program
         $('#addNewProgram').click(function (e) { 
           e.preventDefault();
-          if($('addNewProgram').text('Update')){
+          let test =$('#addNewProgram').text();
+          if($('addNewProgram').text() == 'Update'){
             let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
             manageFees(newProgram,1);
           }else{

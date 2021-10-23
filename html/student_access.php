@@ -517,7 +517,7 @@
                     </div>
 
                 <div class="universalLightGrayBg rounded-2">
-                    <table id = "tblData" class="table">
+                    <table id = "transactionHistory" class="table">
                         <thead class="thead-light text-center">
                         <tr>
                             <th scope="col">Transaction ID</th>
@@ -569,7 +569,7 @@
                     </table>
                    
                     </div>
-                <button class="btn btn-outline-primary" onclick="exportTableToExcel('tblData', 'Transaction-History')">Export to Excel</button>
+                <button class="btn btn-outline-primary" onclick="exportTableToExcel('transactionHistory', 'Transaction-History')">Export to Excel</button>
             </div>
 
             </div>
