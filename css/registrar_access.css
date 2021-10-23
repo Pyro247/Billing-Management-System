@@ -8,7 +8,7 @@
     --black-color: rgb(31, 29, 28);
     --white-color: #FFFFFF;
     --blue-color: #56A8CBFF;
-    --green-color: #3fd4b7;
+    --green-color: #3bb9a0;
     --input-background-color: rgb(194, 207, 219);
     --font-school-name: 'Zilla Slab', serif;
     --font-tagline: 'Overpass', sans-serif;
@@ -29,8 +29,8 @@
     background: #1e1e1e;
     z-index: 1000;
     transition: 500ms ease;
-  }
-  .wrapper{
+}
+.wrapper{
     width:200px;
     height:60px;
     position: absolute;
@@ -173,7 +173,6 @@
 
 .row{
     width: 100%;
-    
 }
 
 .left-tab{
@@ -193,6 +192,8 @@
 .right-tab{
     margin-left: 300px;
     margin-top: 60px;
+    width: 100%;
+    overflow-x: hidden;
 }
 
 .upper-left-tab{
@@ -309,11 +310,7 @@
     overflow-x: auto;
 }
 
-.table__dashboard{
-    width: 100%;
-    max-width: 0;
-    min-width: 0;
-}
+
 
 
 
@@ -368,38 +365,8 @@
 }
 
 
-
-.student__group{
-    display: flex;
-    justify-content: space-between;
-    cursor: pointer;
-    max-height: 80px;
-    border-radius: 5px;
-    box-shadow: 1px 1px 10px #28a745;
-    padding: 2px 5px;
-    
-}
-
-.student__group_left{
-    display: flex;
-    align-items: center;
-}
-
-
-.student__group_left img{
-    width: 45px;
-    height: 45px;
-}
-
-.student__group_right strong{
-    font-size: 1.3rem;
-    
-}
-
-
-
 .input-group-text{
-font-weight: bold;
+    font-weight: bold;
 }
 
 .manage_users_universal_tab_lmr_parent{
@@ -409,7 +376,6 @@ font-weight: bold;
 @media (max-width: 768px) {
     .manage_users_universal_tab_lmr_parent{
         flex-wrap: wrap;
-        
     } 
 }
 
@@ -567,5 +533,74 @@ hr{
 
 .popUpFeesMgmtinner form input::placeholder{
     color: #1d1f20;
+}
+
+
+.studentCountBoxContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.studentCountBox{
+    cursor: pointer;
+    border-radius: 2px;
+    overflow-x: hidden;
+    margin: 0 25px;
+    display: flex;
+    -webkit-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    transition: all 150ms ease;
+    width: 250px;
+    margin-top: 15px;
+    
+    
+}
+
+.studentCountBox:nth-child(1){
+    background-color: #5d95e9;
+    border: thin solid #5d95e9;
+}
+
+.studentCountBox:nth-child(2){
+    background-color: #7c55c4;
+    border: thin solid #7c55c4;
+}
+
+.studentCountBox:nth-child(3){
+    background-color: var(--green-color);
+    border: thin solid var(--green-color);
+}
+
+.studentCountBox:hover{
+    transform: scale(1.1);
+}
+
+.studentCounter{
+    background-color: var(--white-color);
+    padding: 5px 10px;
+    width: 100%;
+    
+}
+
+.studentCounter h2{
+    font-size: 2rem;
+    text-align: center;
+}
+
+.studentCounter h3{
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+
+.studentCountBox .lnr{
+    font-size: 3rem;
+    color: white;
+    display: block;
+    margin: auto 10px;
+    
 }
 

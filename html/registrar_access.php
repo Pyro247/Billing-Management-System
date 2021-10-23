@@ -22,6 +22,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!--Animation-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
     <title>Registrar</title>
   </head>
   <body>
@@ -34,7 +35,7 @@
       <div class="shadow"></div>
       <div class="shadow"></div>
       <div class="shadow"></div>
-      <span>Pyro Colleges Inc.</span>
+      <span>Pyro Colleges</span>
   </div>
 </div>
 
@@ -49,7 +50,7 @@
       <div class="nav__bar_two">
       <img src="../images/logo.png" alt="">
           <div class="nav__bar_two_text">
-              <span>Pyro Colleges Inc.</span>
+              <span>Pyro Colleges</span>
               <p>Excellence at its finest.</p>
           </div>
       </div>
@@ -221,78 +222,89 @@
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
               <p class="title_tab_universal" >Dashboard</p>
 
+            
+
+
                 <form action="" class="universal_search_form">
                   <input type="text" name="searchDash" id="searchDash" placeholder="Search">
                   <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
                 </form>
 
-              <div class="col my-3 d-flex justify-content-evenly">
-                <div class="col-sm-2 bg-success text-white student__group">
-                  <div class="student__group_left">
-                    <img src="../images/registrar_img/all_students.png" alt="" class="rounded mx-auto d-block">
+
+            
+                <div class="studentCountBoxContainer my-3">
+
+                  <div class="studentCountBox" id="totalStud">
+                      <span class="lnr lnr-users"></span>
+                    <div class="studentCounter">
+                      <h2>
+                        <?php
+                          $sql = "SELECT * FROM tbl_student_info";
+                          $statement = $con->prepare($sql);
+                          $statement->execute();
+                          $result = $statement->get_result();
+                          $row = $result->fetch_row();
+                          $count = mysqli_num_rows($result);
+                          echo $count;
+                        ?>
+                      </h2>
+                        <h3>
+                          Total Students
+                        </h3>
+                    </div>
                   </div>
-                  <div class="student__group_right align-center" id="totalStud">
-                    <span class="text-center d-block">Total Students</span>
-                    <strong class="text-center d-block">
-                    <?php
-                    $sql = "SELECT * FROM tbl_student_info";
-                    $statement = $con->prepare($sql);
-                    $statement->execute();
-                    $result = $statement->get_result();
-                    $row = $result->fetch_row();
-                    $count = mysqli_num_rows($result);
-                    echo $count;
-                    ?>
-                    </strong>
+
+                    
+
+                  <div class="studentCountBox" id="oldStud">
+                    <span class="lnr lnr-user"></span>
+                    <div class="studentCounter">
+                      <h2>
+                      <?php
+                        $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'old'";
+                        $statement = $con->prepare($sql);
+                        $statement->execute();
+                        $result = $statement->get_result();
+                        $row = $result->fetch_row();
+                        $count = mysqli_num_rows($result);
+                        echo $count;
+                      ?>
+                        
+                      </h2>
+                        <h3>
+                          Old Students
+                        </h3>
+                    </div>
+                  </div>
+
+                  <div class="studentCountBox" id="transferStud">
+                  <span class="lnr lnr-user"></span>
+                  <div class="studentCounter">
+                      <h2>
+                      <?php
+                          $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'transferee'";
+                          $statement = $con->prepare($sql);
+                          $statement->execute();
+                          $result = $statement->get_result();
+                          $row = $result->fetch_row();
+                          $count = mysqli_num_rows($result);
+                          echo $count;
+                        ?> 
+                      </h2>
+                        <h3>
+                          Transferees
+                        </h3>
+                    </div>
+
                   </div>
                 </div>
+                  
+        
 
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="transferStud">
-                  <div class="student__group_left">
-                    <img src="../images/registrar_img/transferee.png" alt="" class="rounded mx-auto d-block">
-                  </div>
-                  <div class="student__group_right align-center">
-                    <span class="text-center d-block">Transferee Students</span>
-                    <strong class="text-center d-block">
-                    <?php
-                    $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'transferee'";
-                    $statement = $con->prepare($sql);
-                    $statement->execute();
-                    $result = $statement->get_result();
-                    $row = $result->fetch_row();
-                    $count = mysqli_num_rows($result);
-                    echo $count;
-                    ?>
-                    </strong>
-                  </div>
-                </div>
-
-                <div class="col-sm-2 mx-1 bg-success text-white student__group" id="oldStud">
-                  <div class="student__group_left">
-                    <img src="../images/registrar_img/unregistered_student.png" alt="" class="rounded mx-auto d-block">
-                  </div>
-                  <div class="student__group_right align-center">
-                    <span class="text-center d-block">Old Students</span>
-                    <strong class="text-center d-block">
-                    <?php
-                    $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'old'";
-                    $statement = $con->prepare($sql);
-                    $statement->execute();
-                    $result = $statement->get_result();
-                    $row = $result->fetch_row();
-                    $count = mysqli_num_rows($result);
-                    echo $count;
-                    ?>
-                    </strong>
-                  </div>
-                </div>
-              </div>
-
-
-
-                <div class="col universal_bg_gray_table">
+                <div class="universal_bg_gray_table">
                   
                   <div class="row">
+                    <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;">Total Students</p>
                   <div class="col">
                   <div class="form-floating">
                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
@@ -318,8 +330,9 @@
                   </div>
               </div>
               </div>
+              
 
-                    <div class="table__dashboard" id="table_dashboard_id">
+                  <div class="table__dashboard" id="table_dashboard_id">
                     <table class="table">
                         <thead class="thead-light">
                           <tr>
@@ -333,8 +346,6 @@
                             <th scope="col">Scholarship</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Email</th>
-
-
                             
                           </tr>
                         </thead>
@@ -1278,22 +1289,33 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
   <script>
+    const studentCountLabel = document.querySelector('#studentCountLabelId');
     //total student
   $(document).ready(function() {
     $("#totalStud").click(function(e) {
     sortDisplay();
+    studentCountLabel.style.color = "#56A8CBFF"
+    studentCountLabel.textContent = "Total Students"
   });
     //old student
   $("#oldStud").click(function(e) {
     let stud_type = 'old'
     sortDisplay(stud_type);
+    studentCountLabel.style.color = "#7c55c4"
+    studentCountLabel.textContent = "Old Students"
   });
     //transferee student
   $("#transferStud").click(function(e) {
     let stud_type = 'transferee'
+    studentCountLabel.style.color = "var(--green-color)"
+    studentCountLabel.textContent = "Transferees"
     sortDisplay(stud_type);
   });
+
+  $('#totalStud').click();
   });
+
+
   </script>
 
   <script type="text/javascript">

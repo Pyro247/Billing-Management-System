@@ -474,7 +474,7 @@
                           <?php } 
                                                       
                       ?>
-                       <!-- <tr class="text-center">
+                      <!-- <tr class="text-center">
                           <th scope="row">FT-001</th>
                           <td>2018300366</td>
                           <td>Justine Dave</td>
@@ -489,7 +489,8 @@
                 </div>
 
               </div>
-
+              <span class="mt-2">Tototal Amount Collected: P9,931.00</span>
+              <button class="btn btn-outline-primary float-end mt-2">Create Report</button>
             </div>
 
 
