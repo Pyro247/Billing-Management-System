@@ -464,7 +464,6 @@
               </form>
 
 
-                
               <div class="col universal_bg_gray_table p-3">
                 <p class="text-primary text-center" style="font-size: 1.3rem; font-weight: 500;">Filter:</p>
 
@@ -563,8 +562,7 @@
                 </div>
 
               </div>
-              <span class="mt-2">Tototal Amount Collected: P9,931.00</span>
-              <button class="btn btn-outline-primary float-end mt-2">Create Report</button>
+             
             </div>
 
 

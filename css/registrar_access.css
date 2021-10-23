@@ -555,13 +555,21 @@ hr{
     transition: all 150ms ease;
     width: 250px;
     margin-top: 15px;
-    
-    
 }
 
 .studentCountBox:nth-child(1){
     background-color: #5d95e9;
     border: thin solid #5d95e9;
+}
+
+.studentCountBox:nth-child(1) h2{
+    color: #5d95e9;
+}
+.studentCountBox:nth-child(2) h2{
+    color: #7c55c4;
+}
+.studentCountBox:nth-child(3) h2{
+    color: var(--green-color);
 }
 
 .studentCountBox:nth-child(2){

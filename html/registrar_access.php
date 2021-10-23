@@ -9,7 +9,6 @@
 <!doctype html>
 <html lang="en">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap -->
@@ -222,6 +221,7 @@
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
               <p class="title_tab_universal" >Dashboard</p>
 
+
             
 
 
@@ -230,8 +230,6 @@
                   <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
                 </form>
 
-
-            
                 <div class="studentCountBoxContainer my-3">
 
                   <div class="studentCountBox" id="totalStud">
@@ -300,6 +298,11 @@
                 </div>
                   
         
+                <div class="universal_bg_gray_tabl">
+                  <div id="sampleTable">
+
+                  </div>
+                </div>
 
                 <div class="universal_bg_gray_table">
                   
