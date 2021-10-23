@@ -33,7 +33,7 @@
 
 
 
-    <title>Cahsier</title>
+    <title>Cashier</title>
 </head>
 <body>
 
@@ -466,11 +466,46 @@
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem  display:block;">36</strong> Transactions</h6>
+                        <h6><strong style="font-size: 1.1rem;  display:block;">
+                      <?php
+                        $cashier_ID = $_SESSION['employeeId'];
+                        $sql = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                        FROM `tbl_payments`
+                        WHERE `transaction_date` = CURRENT_DATE() 
+                        AND cashier_id = ?
+                        AND payment_method = 'Cash'";
+                        $cash = $con->prepare($sql);
+                        $cash->bind_param('s',$cashier_ID);
+                        $cash->execute();
+                        $resultCash = $cash->get_result();
+                        $rowCash = $resultCash->fetch_row();
+                        $count = mysqli_num_rows($resultCash);
+                        echo $count;
+                      ?>
+                      </strong> Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong>3,926.91</strong></h5>
+                      <h5>₱<strong>
+                      <?php
+
+                            $cashier_ID = $_SESSION['employeeId'];
+                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                              WHERE transaction_date = CURRENT_DATE()
+                                              AND cashier_id = ?
+                                              AND payment_method = 'Cash'"; 
+                            $stmtTotal = $con->prepare($sqlTotalAmount);
+                            $stmtTotal->bind_param('s',$cashier_ID);
+                            $stmtTotal->execute();
+                            $resTotal = $stmtTotal->get_result();
+                            $row= $resTotal->fetch_assoc();
+                            $total = $row['count'];
+
+                                echo $total;
+                                    
+                            ?>
+                      </strong></h5>
+                      
                       </div>
                       
                     </div>
@@ -481,11 +516,45 @@
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem; display:block;">24</strong>Transactions</h6>
+                        <h6><strong style="font-size: 1.1rem; display:block;">
+                        <?php
+                        $cashier_ID = $_SESSION['employeeId'];
+                        $sqlOnline = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                        FROM `tbl_payments`
+                        WHERE `transaction_date` = CURRENT_DATE() 
+                        AND cashier_id = ?
+                        AND payment_method = 'Online'";
+                        $online = $con->prepare($sqlOnline);
+                        $online->bind_param('s',$cashier_ID);
+                        $online->execute();
+                        $resultOnline = $online->get_result();
+                        $rowOnline = $resultOnline->fetch_row();
+                        $count = mysqli_num_rows($resultOnline);
+                        echo $count;
+                      ?>
+                      </strong>Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong>23,335.02</strong></h5>
+                      <h5>₱<strong>
+                      <?php
+
+                          $cashier_ID = $_SESSION['employeeId'];
+                          $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                            WHERE transaction_date = CURRENT_DATE()
+                                            AND cashier_id = ?
+                                            AND payment_method = 'Online'"; 
+                          $stmtTotal = $con->prepare($sqlTotalAmount);
+                          $stmtTotal->bind_param('s',$cashier_ID);
+                          $stmtTotal->execute();
+                          $resTotal = $stmtTotal->get_result();
+                          $row= $resTotal->fetch_assoc();
+                          $total = $row['count'];
+
+                              echo $total;
+                                  
+                          ?>
+                      </strong></h5>
                       </div>
                       
                     </div>
@@ -497,11 +566,42 @@
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem; display:block;">60</strong>Total Transactions</h6>
+                        <h6><strong style="font-size: 1.1rem; display:block;">
+                        <?php
+                        $cashier_ID = $_SESSION['employeeId'];
+                        $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                        FROM `tbl_payments`
+                        WHERE `transaction_date` = CURRENT_DATE() 
+                        AND cashier_id = ?";
+                        $total = $con->prepare($sqlTotal);
+                        $total->bind_param('s',$cashier_ID);
+                        $total->execute();
+                        $resulttotal = $total->get_result();
+                        $rowtotal = $resulttotal->fetch_row();
+                        $count = mysqli_num_rows($resulttotal);
+                        echo $count;
+                      ?>
+                      </strong>Total Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong>6,261.93</strong></h5>
+                      <h5>₱<strong><?php
+
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo $total;
+                              
+                      ?>
+                      </strong></h5>
                       </div>
                       
                     </div>
