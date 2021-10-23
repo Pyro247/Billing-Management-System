@@ -140,4 +140,39 @@
     }
     echo json_encode($response);
   }
+
 ?>
+<?php
+// <!-- Display Data Tabeles -->
+// include_once '../connection/Config.php';
+if(isset($_GET['viewLastTransac'])){
+  $studId = $_GET['studId'];
+  $slqLastTransaction ="SELECT  *
+                        FROM tbl_payments WHERE stud_id = ? 
+                        ORDER BY transaction_no DESC LIMIT 1";
+  $stmtLastTransaction = $con->prepare($slqLastTransaction);
+  $stmtLastTransaction->bind_param('s', $studId);
+  $stmtLastTransaction->execute();
+  $resLastTransaction = $stmtLastTransaction->get_result(); 
+
+  $count = $resLastTransaction->num_rows;
+
+?>
+<?php 
+if($count > 0){
+while($data = $resLastTransaction->fetch_assoc()){?>
+  <tr class="text-center">
+    <td><?=$data['transaction_no'];?></td>
+    <td><?=$data['stud_id'];?></td>
+    <td><?=$data['fullname'];?></td>
+    <td><?=$data['amount'];?></td>
+    <td><?=$data['payment_method'];?></td>
+    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+    <td><?=$data['transaction_date'];?></td>
+    </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php }}   ?>

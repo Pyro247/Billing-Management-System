@@ -16,7 +16,7 @@
 
             $sqlLatestPaidDate ="SELECT  amount, transaction_date
                                 FROM tbl_payments WHERE stud_id = ? 
-                                ORDER BY transaction_date DESC";
+                                ORDER BY transaction_date DESC LIMIT 1";
             $stmtLatestPaidDate = $con->prepare($sqlLatestPaidDate);
             $stmtLatestPaidDate->bind_param('s', $_SESSION['stud_id']);
             $stmtLatestPaidDate->execute();
