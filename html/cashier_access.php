@@ -572,12 +572,17 @@
                       <?php
                           include_once '../connection/Config.php';
                           
+                          $cashierID = $_SESSION['employeeId'];
                               $sqlHistory ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                              FROM `tbl_payments`";
+                              FROM `tbl_payments`
+                              WHERE `transaction_date` = CURRENT_DATE() 
+                              AND cashier_id = ?";
                               $stmtHistory = $con->prepare($sqlHistory);
+                              $stmtHistory->bind_param('s',$cashierID);
                               $stmtHistory->execute();
                               $resHistory = $stmtHistory->get_result();
                               $countHistory = $resHistory->num_rows;
+
 
                       ?>
                           <?php 
