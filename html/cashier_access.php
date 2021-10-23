@@ -772,7 +772,7 @@
           // AJAX REQUEST TO SAVE DATA TO TBL PAYMENTS JUST REVISE THE CODE THE YOU WRITE IN MANAGE PAYMENTS
             $.ajax({
               type: "POST",
-              url: "../includes/transaction-history-cashier.php",
+              url: "../includes/payment-transaction-cashier.php",
               data: {
                 'transact': 'transact',
                 'studId':  $('#studID').text(),
@@ -795,6 +795,7 @@
                   $('#studID').text('Student ID');
                   $('#studentTagName').text('Student last transaction');
                   $('#studTuition').val('');
+                  $('#studAmountToPay').val('');
                   $('#studBalance').val('');
                   $("#payBtn").prop("disabled", true);
                   viewLastTransaction('')
@@ -816,6 +817,7 @@
           $('#studentTagName').text('Student last transaction');
           $('#studTuition').val('');
           $('#studBalance').val('');
+          $('#studAmountToPay').val('');
           $("#payBtn").prop("disabled", true);
         });
         $('#payBtn').click(function (e) { 
@@ -835,7 +837,7 @@
         function searchData(getData){
           $.ajax({
             type: "GET",
-            url: "../includes/transaction-history-cashier.php",
+            url: "../includes/payment-transaction-cashier.php",
             data: {
               'getData': getData
             },
@@ -863,7 +865,7 @@
         function viewLastTransaction(studId){
           $.ajax({
             type: "GET",
-            url: "../includes/transaction-history-cashier.php",
+            url: "../includes/payment-transaction-cashier.php",
             data: {
               'viewLastTransac': 'viewLastTransac',
               'studId':studId
