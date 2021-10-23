@@ -335,3 +335,93 @@
 td, th{
     vertical-align: middle;
 }
+
+
+.cashierHistoryInfoContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.historyInfoBox{
+    cursor: pointer;
+    border-radius: 2px;
+    overflow-x: hidden;
+    margin: 0 25px;
+    display: flex;
+    -webkit-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
+    transition: all 150ms ease;
+    width: 250px;
+    margin-top: 15px;
+    
+}
+.historyInfoBox:hover{
+    transform: scale(1.1);
+}
+
+.historyInfoBox:nth-child(1){
+    background-color: #5d95e9;
+    border: thin solid #5d95e9;
+}
+
+.historyInfoBox:nth-child(2){
+    background-color: #8368b6;
+    border: thin solid #8368b6;
+}
+
+.historyInfoBox:nth-child(3){
+    background-color: #20c997;
+    border: thin solid #20c997;
+}
+
+
+.historyInfoLbl{
+    background-color: var(--white-color);
+    padding: 5px 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+
+.historyInfoBox i{
+    font-size: 3rem;
+    color: white;
+    display: block;
+    margin: auto 10px;
+    text-align: center;
+}
+
+.historyInfoBox i::after{
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-top: 5px;
+    text-align: center;   
+}
+
+.historyInfoBox:nth-child(1) i::after{
+    content: 'Cash Payments';
+}
+.historyInfoBox:nth-child(2) i::after{
+    content: 'Online Payments';
+}
+.historyInfoBox:nth-child(3) i::after{
+    content: 'Total Amount Collected';
+}
+.historyInfoLblUp{
+    border-bottom: 2px solid black;
+}
+
+.historyInfoLblDown h5{
+    text-align: center;
+    margin: auto 0;
+    padding: 10px 0;
+}
