@@ -1877,7 +1877,8 @@
         // Sumbit and Update New Program
         $('#addNewProgram').click(function (e) { 
           e.preventDefault();
-          if($('addNewProgram').text('Update')){
+          let test =$('#addNewProgram').text();
+          if($('addNewProgram').text() == 'Update'){
             let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
             manageFees(newProgram,1);
           }else{
