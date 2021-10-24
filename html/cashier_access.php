@@ -595,19 +595,19 @@ include_once '../connection/Config.php';
                 <div class="row">
                     <div class="col-md">
                       <div class="form-floating">
-                        <select class="form-select" id="floatingSelectMethod" aria-label="Floating label select example">
-                        <option value="" selected>All</option>
-                          <option value="">Cash</option>
-                          <option value="">Fund Transfer</option>
+                        <select class="form-select" id="filterByPayMethod" aria-label="Floating label select example">
+                        <option value="%" selected>All</option>
+                          <option value="Cash">Cash</option>
+                          <option value="Online">Fund Transfer</option>
                         </select>
-                        <label for="floatingSelectMethod">Payment Method</label>
+                        <label for="filterByPayMethod">Payment Method</label>
                       </div>
                   </div>
 
 
                   <div class="col-md">
                     <div class="form-floating">
-                        <input type="date" class="form-control" name="lastname" id="lname" placeholder=" ">
+                        <input type="date" class="form-control" name="filterByDate" id="filterByDate" placeholder=" ">
                         <label for="floatingInput">Select Date:</label>
                     </div>
                   </div>
@@ -638,43 +638,8 @@ include_once '../connection/Config.php';
                           
                         </tr>
                       </thead>
-                      <tbody>
-                      <?php
-                          include_once '../connection/Config.php';
-                          
-                          $cashierID = $_SESSION['employeeId'];
-                              $sqlHistory ="SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                              FROM `tbl_payments`
-                              WHERE `transaction_date` = CURRENT_DATE() 
-                              AND cashier_id = ?";
-                              $stmtHistory = $con->prepare($sqlHistory);
-                              $stmtHistory->bind_param('s',$cashierID);
-                              $stmtHistory->execute();
-                              $resHistory = $stmtHistory->get_result();
-                              $countHistory = $resHistory->num_rows;
-
-
-                      ?>
-                          <?php 
-                              if($countHistory > 0){
-                                  while($dataHistory = $resHistory->fetch_assoc()){?>
-                                      <tr class="text-center">
-                                          <td><?=$dataHistory['transaction_no'];?></td>
-                                          <td><?=$dataHistory['stud_id'];?></td>
-                                          <td><?=$dataHistory['fullname'];?></td>
-                                          <td><?=$dataHistory['amount'];?></td>
-                                          <td><?=$dataHistory['payment_method'];?></td>
-                                          <td class="text-success text-uppercase fw-bold"><?=$dataHistory['payment_status'];?></td>
-                                          <td><?=$dataHistory['transaction_date'];?></td>
-                                      </tr>
-                          <?php }?>
-                          <?php }else{?>
-                                      <tr>
-                                          <td><?php echo "No Records"?></td>
-                                      </tr>
-                          <?php } 
-                                                      
-                      ?>
+                      <tbody id="viewTransactionHistory">
+                      
                       <!-- <tr class="text-center">
                           <th scope="row">FT-001</th>
                           <td>2018300366</td>
@@ -873,10 +838,10 @@ include_once '../connection/Config.php';
       });
     }
   </script>
-    <!-- Transaction History -->
+    <!-- Payment Transaction -->
     <script>
       $(document).ready(function () {
-        
+        // Pay Button
         $('#payBtn').click(function (e) { 
           e.preventDefault();
           let lettersRegex=/^[a-zA-Z]+$/;
@@ -895,9 +860,17 @@ include_once '../connection/Config.php';
             )
           }else{
             $("#payModal").modal('show');
+            $('#previewStudId').val($('#studID').text());
+            $('#previewStudName').val($('#studName').text());
+            $('#previewStudProgram').val($('#StudProgram').val());
+            $('#previewStudTuition').val($('#studTuition').val());
+            $('#previewStudBalance').val($('#studBalance').val());
+            $('#previewStudAmountToPay').val($('#studAmountToPay').val());
+            $('#previewChangeCalculated').val($('#changeCalculated').val());
           }
           
         });
+        // Search Button
         $('#payTransac_btn').click(function (e) { 
           e.preventDefault();
           let query = document.getElementById('searchBar_TransacHistory').value
@@ -912,6 +885,7 @@ include_once '../connection/Config.php';
             viewLastTransaction(query)
           }
         });
+        // Calculate Change
         $('#studAmountToPay').keyup(function (e) { 
           e.preventDefault();
           let balance = $('#studBalance').val();
@@ -923,6 +897,7 @@ include_once '../connection/Config.php';
           }
           
         });
+        // Transact Payment Button
         $('#transactPayment').click(function (e) { 
           e.preventDefault();
             $.ajax({
@@ -959,6 +934,7 @@ include_once '../connection/Config.php';
             });
           
         });
+        // Void Transaction Button
         $('#voidTransaction').click(function (e) { 
           e.preventDefault();
           Swal.fire(
@@ -974,19 +950,6 @@ include_once '../connection/Config.php';
           $('#studBalance').val('');
           $("#payBtn").prop("disabled", true);
           $('#studAmountToPay').val('');
-        });
-        $('#payBtn').click(function (e) { 
-          e.preventDefault();
-        
-            $('#previewStudId').val($('#studID').text());
-            $('#previewStudName').val($('#studName').text());
-            $('#previewStudProgram').val($('#StudProgram').val());
-            $('#previewStudTuition').val($('#studTuition').val());
-            $('#previewStudBalance').val($('#studBalance').val());
-            $('#previewStudAmountToPay').val($('#studAmountToPay').val());
-            $('#previewChangeCalculated').val($('#changeCalculated').val());
-          
-          
         });
         // Search Student BY ID to fill the fields
         function searchData(getData){
@@ -1017,6 +980,7 @@ include_once '../connection/Config.php';
             }
           });
         }
+        // AJAX request for search that will display in table
         function viewLastTransaction(studId){
           $.ajax({
             type: "GET",
@@ -1028,6 +992,60 @@ include_once '../connection/Config.php';
             dataType: "html",
             success: function (data) {
               $('#viewLastTransaction').html(data);
+            }
+          });
+        }
+      });
+    </script>
+    <!-- Transaction History -->
+    <script>
+      $(document).ready(function () {
+        // Open History Tab
+        $('#v-pills-history-tab').click(function (e) { 
+          viewTransactionHistory() //Initial Table data base on current date and cashier log in
+        });
+        // Filter By Payment Method if date is empty current date transactio will be displayed
+        $('#filterByPayMethod').change(function (e) { 
+          let selected = $('#filterByPayMethod').val();
+          let date = $('#filterByDate').val();
+          viewTransactionHistoryFilteredBy(selected,date)
+        });
+        // Filter By Date and base on Payment method selected
+        $('#filterByDate').change(function (e) { 
+          let selected = $('#filterByPayMethod').val();
+          let date = $('#filterByDate').val();
+          viewTransactionHistoryFilteredBy(selected,date)
+        });
+        // Ajax Request For Filter By Payment Mentod and Date
+        function viewTransactionHistoryFilteredBy(selected,date){
+          $.ajax({
+            type: "GET",
+            url: "../includes/transaction-history-cashier.php",
+            data: {
+              'viewTransactionHistoryFilteredBy': 1,
+              'cashierID': '<?= $_SESSION['employeeId'];?>',
+              'filterByPay': selected,
+              'filterByDate': date
+            },
+            dataType: "html",
+            success: function (data) {
+              $("#viewTransactionHistory").html(data);
+              // console.log(data)
+            }
+          });
+        }
+        // Ajax Request Of Initial Table Date
+        function viewTransactionHistory(){
+          $.ajax({
+            type: "GET",
+            url: "../includes/transaction-history-cashier.php",
+            data: {
+              'viewTransactionHistory': 1,
+              'cashierID': '<?= $_SESSION['employeeId'];?>'
+            },
+            dataType: "html",
+            success: function (data) {
+              $("#viewTransactionHistory").html(data);
             }
           });
         }
