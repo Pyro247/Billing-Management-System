@@ -695,6 +695,37 @@ include_once '../connection/Config.php';
                             
                             
                       </tbody>
+                      <?php
+                          include_once '../connection/Config.php';
+                                                
+                          $studFees ="SELECT sf.stud_id, sf.fullname, sf.csi_year_level, sf.tuition_fee,  sf.remarks, ssd.csi_program, ssd.csi_major
+                          FROM tbl_student_fees AS sf
+                          LEFT JOIN tbl_student_school_details AS ssd
+                          ON sf.stud_id = ssd.stud_id";
+                          $stmtstudFees = $con->prepare($studFees);
+                          $stmtstudFees->execute();
+                          $resstudFees = $stmtstudFees->get_result();
+                          $countstudFees = $resstudFees->num_rows;
+                        ?>
+                        <?php 
+                          if($countstudFees > 0){
+                            while($datastudFees = $resstudFees->fetch_assoc()){?>
+                              <tr class="text-center">
+                                  <td><?=$datastudFees['stud_id'];?></td>
+                                  <td><?=$datastudFees['fullname'];?></td>
+                                  <td><?=$datastudFees['csi_program'];?></td>
+                                  <td><?=$datastudFees['csi_major'];?></td>
+                                  <td><?=$datastudFees['csi_year_level'];?></td>
+                                  <td><?=$datastudFees['tuition_fee'];?></td>
+                                  <td><?=$datastudFees['remarks'];?></td>
+                              </tr>
+                            <?php }?>
+                          <?php }else{?>
+                            <tr>
+                              <td><?php echo "No Records"?></td>
+                            </tr>
+                          <?php } 
+                            ?>
                     </table>
                 </div>
               </div>
