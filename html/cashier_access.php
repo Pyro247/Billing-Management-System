@@ -616,8 +616,8 @@ include_once '../connection/Config.php';
               <div class="row">
                 <div class="col-md-3">
                   <div class="col-md mt-1">
-                    <button class="btn btn-primary ">Apply</button>
-                    <button class="btn btn-primary ">Clear</button>
+                    <button class="btn btn-primary " id="filterApply">Apply</button>
+                    <button class="btn btn-primary " id="filterClear">Clear</button>
                   </div>
                 </div>
               </div>
@@ -1004,17 +1004,19 @@ include_once '../connection/Config.php';
         $('#v-pills-history-tab').click(function (e) { 
           viewTransactionHistory() //Initial Table data base on current date and cashier log in
         });
-        // Filter By Payment Method if date is empty current date transactio will be displayed
-        $('#filterByPayMethod').change(function (e) { 
+        // Apply Filter Button
+        $('#filterApply').click(function (e) { 
+          e.preventDefault();
           let selected = $('#filterByPayMethod').val();
           let date = $('#filterByDate').val();
           viewTransactionHistoryFilteredBy(selected,date)
         });
-        // Filter By Date and base on Payment method selected
-        $('#filterByDate').change(function (e) { 
-          let selected = $('#filterByPayMethod').val();
-          let date = $('#filterByDate').val();
-          viewTransactionHistoryFilteredBy(selected,date)
+        // Clear Filter Button
+        $('#filterClear').click(function (e) { 
+          e.preventDefault();
+          $("#filterByPayMethod").val("%").change();
+          $("#filterByDate").val("").change();
+          viewTransactionHistory() 
         });
         // Ajax Request For Filter By Payment Mentod and Date
         function viewTransactionHistoryFilteredBy(selected,date){
