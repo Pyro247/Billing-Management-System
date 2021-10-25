@@ -13,7 +13,11 @@ include_once '../connection/Config.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <!-- Animation -->
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -62,7 +66,80 @@ include_once '../connection/Config.php';
 <!-- LOADER -->
 
 
+  <div class="cashDenominationContainer">
+    <form class="cashDenominationForm">
+      <div class="cashDenominationTitle">
+        <strong>Cash Denomination</strong>
+        <i class="fas fa-times-circle" id="closeBtnCD"></i>
+      </div>
+      <div class="cashDenominationBody">
+        <div class="cashInputsContainer">
 
+        <div class="cashInputs">
+          <img src="../images/cashDenomination/1000.png" alt="">
+          <input type="text" name="" id="" placeholder="₱1000">
+        </div>
+
+        <div class="cashInputs">
+          <img src="../images/cashDenomination/500.jpg" alt="">
+          <input type="text" name="" id="" placeholder="₱500">
+        </div>
+
+        <div class="cashInputs">
+            <img src="../images/cashDenomination/200.png" alt="">
+            <input type="text" name="" id="" placeholder="₱200">
+          </div>
+        </div>
+
+
+
+          <div class="cashInputsContainer">
+            
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/100.jpg" alt="">
+            <input type="text" name="" id="" placeholder="₱100">
+          </div>
+
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/50.jpg" alt="">
+            <input type="text" name="" id="" placeholder="₱50">
+          </div>
+
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/20.jpg" alt="">
+            <input type="text" name="" id="" placeholder="₱20">
+          </div>
+          </div>
+
+
+          <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/centavo.jpg" alt="">
+            <input type="text" name="" id="" placeholder="Centavo">
+          </div>
+
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/1php.jpg" alt="">
+            <input type="text" name="" id="" placeholder="₱1">
+          </div>
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/5php.png" alt="">
+            <input type="text" name="" id="" placeholder="₱5">
+          </div>
+          <div class="cashInputs">
+            <img src="../images/cashDenomination/10php.jpg" alt="">
+            <input type="text" name="" id="" placeholder="₱10">
+          </div>
+          </div>
+        
+          <div class="cashDenominationFooter my-3">
+          <strong>Total Cash: <span>₱300</span></strong><br>
+          <strong>Total Cash Denomination: <span>₱300</span></strong>
+          <button class="btn btn-primary float-end">Generate Report</button>
+          </div>
+      </div>
+    </form>
+  </div>
 
 
         
@@ -653,8 +730,30 @@ include_once '../connection/Config.php';
                       </tbody>
                     </table>
                 </div>
+               
 
               </div>
+              <button class="btn btn-outline-primary my-2" id="genReportBtn">Create Report</button>
+              <script type="text/javascript">
+                  const cashDenominationContainer = document.querySelector('.cashDenominationContainer')
+                  const cashDenominationForm = document.querySelector('.cashDenominationForm')
+                document.querySelector("#genReportBtn").addEventListener('click', function(){
+                 
+                  cashDenominationContainer.style.visibility = "visible"
+                  cashDenominationContainer.style.opacity = "1"
+                  cashDenominationForm.classList.toggle('animate__animated')
+                  cashDenominationForm.classList.toggle('animate__bounceIn')
+              })
+
+              document.querySelector('#closeBtnCD').addEventListener('click', function(){
+                cashDenominationContainer.style.visibility = "hidden"
+                  cashDenominationContainer.style.opacity = "0"
+                  cashDenominationForm.classList.toggle('animate__animated')
+                  cashDenominationForm.classList.toggle('animate__bounceIn')
+              })
+              </script>
+
+             
              
             </div>
 
@@ -698,7 +797,9 @@ include_once '../connection/Config.php';
                     
                     </table>
                 </div>
+                
               </div>
+              
             </div>
 
           

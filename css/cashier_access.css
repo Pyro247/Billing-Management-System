@@ -404,7 +404,8 @@ td, th{
     font-size: 1rem;
     font-weight: normal;
     margin-top: 5px;
-    text-align: center;   
+    text-align: center;
+    font-family: 'Poppins', sans-serif;   
 }
 
 .historyInfoBox:nth-child(1) i::after{
@@ -425,3 +426,83 @@ td, th{
     margin: auto 0;
     padding: 10px 0;
 }
+
+.cashDenominationContainer{
+    position: absolute;
+    z-index: 1001;
+    width: 100vw;
+    height: 100%;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    display: grid;
+    place-items: center;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.cashDenominationForm{
+    position: sticky;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px 25px;
+    background-color: white;
+    color: #0d6efd;
+    overflow-y: auto;
+    top: 5%;
+    max-height: calc(100vh - 50px);
+    
+}
+.cashDenominationForm strong{
+    font-size: 1.4rem;
+    width: 100%;
+}   
+.cashDenominationBody{
+    width: 100%;
+}
+
+.cashDenominationTitle i{
+    font-size: 1.6rem;
+    color: crimson;
+    cursor: pointer;
+    position: absolute;
+    right: 25px;
+}
+
+.cashDenominationTitle{
+    border-bottom: 2px solid #0d6efd;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.cashInputs{
+    display: flex;
+    flex-direction: column;
+    margin: 10px 25px;
+}
+
+.cashInputs input{
+    margin-top: 10px;
+    background-color: #d6e6f7;
+    border: none;
+    padding: 5px 10px;
+    outline: none;
+    border: 2px solid #1e1e1e;
+    text-align: center;
+    width: 100%;
+}
+
+.cashInputsContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.cashInputsContainer.coins img{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+}
+.cashDenominationFooter span{
+    color: #17e610;
+}
+
+
