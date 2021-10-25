@@ -664,8 +664,8 @@ include_once '../connection/Config.php';
               <p class="title_tab_universal">Student Fees</p>
 
               <form action="" class="universalForm_one">
-                <input type="text" name="" id="" placeholder="Search">
-                <button type="button" class="btn btn-primary">Search</button>
+                <input type="text"  id="studentFeeSearch" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="studentFeeSearch-btn">Search</button>
               </form>
 
               <div class="col universal_bg_gray_table p-3">
@@ -691,41 +691,11 @@ include_once '../connection/Config.php';
                           <th scope="col">Remarks</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="viewStudentFeesList">
                             
                             
                       </tbody>
-                      <?php
-                          include_once '../connection/Config.php';
-                                                
-                          $studFees ="SELECT sf.stud_id, sf.fullname, sf.csi_year_level, sf.tuition_fee,  sf.remarks, ssd.csi_program, ssd.csi_major
-                          FROM tbl_student_fees AS sf
-                          LEFT JOIN tbl_student_school_details AS ssd
-                          ON sf.stud_id = ssd.stud_id";
-                          $stmtstudFees = $con->prepare($studFees);
-                          $stmtstudFees->execute();
-                          $resstudFees = $stmtstudFees->get_result();
-                          $countstudFees = $resstudFees->num_rows;
-                        ?>
-                        <?php 
-                          if($countstudFees > 0){
-                            while($datastudFees = $resstudFees->fetch_assoc()){?>
-                              <tr class="text-center">
-                                  <td><?=$datastudFees['stud_id'];?></td>
-                                  <td><?=$datastudFees['fullname'];?></td>
-                                  <td><?=$datastudFees['csi_program'];?></td>
-                                  <td><?=$datastudFees['csi_major'];?></td>
-                                  <td><?=$datastudFees['csi_year_level'];?></td>
-                                  <td><?=$datastudFees['tuition_fee'];?></td>
-                                  <td><?=$datastudFees['remarks'];?></td>
-                              </tr>
-                            <?php }?>
-                          <?php }else{?>
-                            <tr>
-                              <td><?php echo "No Records"?></td>
-                            </tr>
-                          <?php } 
-                            ?>
+                    
                     </table>
                 </div>
               </div>
@@ -1083,6 +1053,36 @@ include_once '../connection/Config.php';
           });
         }
       });
+    </script>
+    <!-- Student Fees -->
+    <script>
+      $(document).ready(function () {
+        // Initial Data Table
+        $('#v-pills-studFee-tab').click(function (e) { 
+          viewStudentFees()
+          
+        });
+        // Search Button
+        $('#studentFeeSearch-btn').click(function (e) { 
+          let searchTxt = $('#studentFeeSearch').val(); 
+          viewStudentFees(searchTxt)
+        });
+      });
+      // Ajax Request viewList of Student Fees
+      function viewStudentFees(search){
+        $.ajax({
+          type: "GET",
+          url: "../includes/student-fees-cashier.php",
+          data: {
+            'viewStudentList': 1,
+            'search': search
+          },
+          dataType: "html",
+          success: function (data) {
+            $('#viewStudentFeesList').html(data);
+          }
+        });
+      }
     </script>
 </body>
 </html>
