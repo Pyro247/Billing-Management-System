@@ -84,7 +84,7 @@
           $rowGetDisc  = $resGetDisc->fetch_assoc();
           $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
         }
-        $remarks = 'not fully paid';
+        $remarks = 'Not Fully Paid';
         $studScholarType = 'Partial Scholar';
       }else if($scholarType == 'Full'){
         $balance = 0;

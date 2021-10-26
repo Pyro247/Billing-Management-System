@@ -770,12 +770,12 @@ include_once '../connection/Config.php';
               <div class="col universal_bg_gray_table p-3">
                 <div class="col-md-6 my-1">
                   <div class="form-floating">
-                    <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
-                            <option value="" selected>All</option>
-                            <option value="" selected>All</option>
-                            <option value="" selected>All</option>
+                    <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
+                            <option value="All" selected>All</option>
+                            <option value="Fully Paid" >Fully Paid</option>
+                            <option value="Not Fully Paid" >Not Fully Paid</option>
                     </select>
-                    <label for="sortByDashData">Filter by Remarks:</label>
+                    <label for="filterByRemarks">Filter by Remarks:</label>
                   </div>
                 </div>
 
@@ -1169,7 +1169,13 @@ include_once '../connection/Config.php';
         $('#studentFeeSearch-btn').click(function (e) { 
           let searchTxt = $('#studentFeeSearch').val(); 
           viewStudentFees(searchTxt)
+          $('#filterByRemarks').val('All');
         });
+      });
+      $('#filterByRemarks').change(function (e) { 
+        e.preventDefault();
+        let filterBy = $('#filterByRemarks').val();
+        viewStudentFeesfilterBy(filterBy)
       });
       // Ajax Request viewList of Student Fees
       function viewStudentFees(search){
@@ -1183,6 +1189,22 @@ include_once '../connection/Config.php';
           dataType: "html",
           success: function (data) {
             $('#viewStudentFeesList').html(data);
+          }
+        });
+      }
+       // Ajax Request viewList of Student Fees Filter By Remarks
+       function viewStudentFeesfilterBy(filterBy){
+        $.ajax({
+          type: "GET",
+          url: "../includes/student-fees-cashier.php",
+          data: {
+            'viewStudentListfilterBy': 1,
+            'filterBy': filterBy
+          },
+          dataType: "html",
+          success: function (data) {
+            $('#viewStudentFeesList').html(data);
+            // console.log(data)
           }
         });
       }
