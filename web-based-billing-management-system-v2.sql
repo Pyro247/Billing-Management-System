@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2021 at 03:31 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Oct 26, 2021 at 10:19 AM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -60,6 +60,7 @@ CREATE TABLE `tbl_accounts` (
 
 INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES
 (2018301276, 'Denver Pulido', 'student01@gmail.com', 'Student-01', 'Student', '', ''),
+(2018301301, 'Michael Isla', 'student02@gmail.com', 'Student-02', 'Student', '', ''),
 (2021000001, 'Justine Dave Delos Reyes', 'administrator@gmail.com', 'Admin-01', 'Admin', '', ''),
 (2021000002, 'Mery Ane Villano', 'registrar@gmail.com', 'Registrar-01', 'Registrar', '', ''),
 (2021000003, 'Michael Isla', 'cashier01@gmail.com', 'Cashier-01', 'Cashier', '', '');
@@ -264,21 +265,6 @@ CREATE TABLE `tbl_pending_payments` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_reports`
---
-
-CREATE TABLE `tbl_reports` (
-  `cashier_id` int(11) NOT NULL,
-  `cashier_name` varchar(255) NOT NULL,
-  `cash_payment` int(11) NOT NULL,
-  `fund_transfer` int(11) NOT NULL,
-  `total_transaction_count` int(11) NOT NULL,
-  `date-time` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_scholarship`
 --
 
@@ -320,7 +306,8 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301301, 'Michael Estrecho Isla', '4', 'Academic', 'Full Scholar', 'N/A', 7500, 0, 0, 'Fully Paid');
+(1, 2018301301, 'Michael Estrecho Isla', '4', 'Academic', 'Full Scholar', 'N/A', 7500, 0, 0, 'Fully Paid'),
+(1, 2018301276, 'Denver Guieb Pulido', '4', 'Academic', 'Full Scholar', 'Sibling Discount', 100000, 0, 0, 'Fully Paid');
 
 -- --------------------------------------------------------
 
@@ -348,8 +335,8 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('20211', 2018301276, 'Denver', 'Pulido', 'Guieb', 'male', 'Maliwalo Tarlac City, Tarlac', 'student@gmail.com', '09987654321', 'October 26, 2021, 12:03 am', 2021000001, 'Mery Ane Villano'),
-('', 2018301301, 'Michael', 'Isla', 'Estrecho', '', '', '', '', 'N/A', 2021000002, 'Mery Ane Villano');
+('20211', 2018301276, 'Denver', 'Pulido', 'Guieb', 'male', 'Maliwalo Tarlac City, Tarlac', 'student01@gmail.com', '09483291587', 'October 26, 2021, 4:03 pm', 2021000002, 'Mery Ane Villano'),
+('202112', 2018301301, 'Michael', 'Isla', 'Estrecho', 'male', 'Tarlac City, Tarlac', 'student02@gmail.com', '09987654321', 'October 26, 2021, 4:16 pm', 2021000002, 'Mery Ane Villano');
 
 -- --------------------------------------------------------
 
@@ -370,8 +357,8 @@ CREATE TABLE `tbl_student_requirements` (
 --
 
 INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2018301276, '10.26.21', '10.26.21', '10.26.21', '10.26.21'),
-(2018301301, '10.26.21', '10.26.21', '10.26.21', '10.26.21');
+(2018301301, '10.26.21', '10.26.21', '10.26.21', '10.26.21'),
+(2018301276, '10.26.21', '10.26.21', '10.26.21', '10.26.21');
 
 -- --------------------------------------------------------
 
@@ -395,7 +382,8 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301301, '', '', '', '2', 'BSIT', 'WMA', '4');
+(2018301301, '12345678910', 'transferee', '2020-2021', '1', 'BSIT', 'WMA', '4'),
+(2018301276, '104240046', 'old', '2020-2021', '1', 'BSIT', 'WMA', '4');
 
 --
 -- Indexes for dumped tables
