@@ -133,10 +133,23 @@ include_once '../connection/Config.php';
           </div>
         
           <div class="cashDenominationFooter my-3">
-          <strong>Total Cash: <span>₱300</span></strong><br>
-          <strong>Total Cash Denomination: <span>₱300</span></strong>
-          <button class="btn btn-primary float-end">Generate Report</button>
+            <div class="cashDenominationFooterLeft">
+              <p>Total Transaction Count: <span>3</span></p>
+              <p>Total Amount Collected: <span>₱3582</span></p>
+              <p>Total Cash: <span>₱3582</span></p>
+              <p>Variance: <span>N/A</span></p>
+            </div>
+
+            <div class="cashDenominationFooterRight">
+              <p>Fund Transfer Amount Collected: <span>₱3582</span></p>
+              <p>&nbsp;Gcash: <span>₱3582</span></p>
+              <p>&nbsp;Paymaya: <span>N/A</span></p>
+              <p>&nbsp;Remittance: <span>N/A</span></p>
+              <p>&nbsp;Bank Transfer: <span>N/A</span></p>
+            </div>
+            <button class="btn btn-primary d-block">Generate Report</button>
           </div>
+          
       </div>
     </form>
   </div>
