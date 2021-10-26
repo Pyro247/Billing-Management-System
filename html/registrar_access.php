@@ -367,7 +367,7 @@
                     <div class="employeeCounter">
                       <h2>
                         <?php
-                          $sql = "SELECT * FROM tbl_student_info";
+                          $sql = "SELECT `role`FROM `tbl_employee_info` WHERE `role` = 'Registrar'";
                           $statement = $con->prepare($sql);
                           $statement->execute();
                           $result = $statement->get_result();
@@ -388,7 +388,7 @@
             <div class="employeeCounter">
               <h2>
                 <?php
-                  $sql = "SELECT * FROM tbl_student_info";
+                  $sql = "SELECT `role`FROM `tbl_employee_info` WHERE `role` = 'Cashier'";
                   $statement = $con->prepare($sql);
                   $statement->execute();
                   $result = $statement->get_result();
@@ -409,7 +409,7 @@
           <div class="employeeCounter">
             <h2>
               <?php
-                $sql = "SELECT * FROM tbl_student_info";
+                $sql = "SELECT * FROM tbl_employee_info";
                 $statement = $con->prepare($sql);
                 $statement->execute();
                 $result = $statement->get_result();
@@ -445,6 +445,36 @@
                              </tr>
                            </thead>
                            <tbody id="registrarDash">
+                           <?php
+
+                            $sql ="SELECT reg_no, employee_id, role, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname,  email, contact_number 
+                            FROM tbl_employee_info";
+                            $stmt = $con->prepare($sql);
+                            $stmt->execute();
+                            $res = $stmt->get_result();
+                            $count = $res->num_rows;
+
+                            ?>
+                            <?php 
+                            if($count > 0){
+                            while($data = $res->fetch_assoc()){?>
+                            <tr class="text-center">
+                                <td><?=$data['employee_id'];?></td>
+                                <td><?=$data['fullname'];?></td>
+                                <td><?=$data['reg_no'];?></td>
+                                <td><?=$data['role'];?></td>
+                                <td><?=$data['contact_number'];?></td>
+                                <td><?=$data['email'];?></td>
+                                
+                            </tr>
+                            <?php }?>
+                            <?php }else{?>
+                            <tr>
+                                <td><?php echo "No Records"?></td>
+                            </tr>
+                            <?php } 
+                                                    
+                            ?>
                                
                            </tbody>
                          </table>
