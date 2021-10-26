@@ -22,6 +22,9 @@
     <!--Animation-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+ 
     <title>Registrar</title>
   </head>
   <body>
@@ -224,11 +227,11 @@
 
             
 
-
+<!-- 
                 <form action="" class="universal_search_form">
                   <input type="text" name="searchDash" id="searchDash" placeholder="Search">
                   <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
-                </form>
+                </form> -->
 
                 <div class="studentCountBoxContainer my-3">
 
@@ -297,16 +300,9 @@
                   </div>
                 </div>
                   
-        
-                <div class="universal_bg_gray_tabl">
-                  <div id="sampleTable">
-
-                  </div>
-                </div>
-
                 <div class="universal_bg_gray_table">
                   
-                  <div class="row">
+                 <div class="row">
                     <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;">Total Students</p>
                   <div class="col">
                   <div class="form-floating">
@@ -320,7 +316,7 @@
                     <label for="floatingSelect">Choose Program</label>
                   </div>
                 </div>
-                
+                 
               
               <div class="col">
                   <div class="form-floating">
@@ -332,11 +328,11 @@
                     <label for="floatingSelect">Choose Filter</label>
                   </div>
               </div>
-              </div>
+              </div> 
               
 
-                  <div class="table__dashboard" id="table_dashboard_id">
-                    <table class="table">
+                  <div class="table__dashboard mt-3" id="table_dashboard_id">
+                    <table class="table mydatatable">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">Student ID</th>
@@ -349,15 +345,90 @@
                             <th scope="col">Scholarship</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Email</th>
-                            
                           </tr>
                         </thead>
                         <tbody id="registrarDash">
+                            
                         </tbody>
                       </table>
                     </div>
+
+                    
               </div>
-            </div>
+              <!-- <div class="tblContainer my-5" style="background: lightgray;">
+
+              
+              <table class="table table-striped table-bordered mydatatable" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Address</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Justine</td>
+                    <td>21</td>
+                    <td>paniqui</td>
+                  </tr>
+                  <tr>
+                    <td>Mike</td>
+                    <td>20</td>
+                    <td>Tarlac</td>
+                  </tr>
+                  <tr>
+                    <td>Denver</td>
+                    <td>10</td>
+                    <td>Ramos</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                  <tr>
+                    <td>Mery</td>
+                    <td>20</td>
+                    <td>Gerona</td>
+                  </tr>
+                </tbody>
+                
+            </table>
+            </div> -->
+          
+          </div>
+
 
 
 
@@ -2045,6 +2116,12 @@
             }
       </script>
 
+  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+          <script>            
+              $('.mydatatable').DataTable({
+                lengthMenu: [[10, -1], [10, "All"]],
+              });
+          </script> -->
 
   </body>
 </html>

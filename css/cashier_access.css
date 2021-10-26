@@ -511,7 +511,7 @@ td, th{
 }
 
 .cashDenominationFooterLeft{
-    text-align: right;
+    text-align: left;
 }
 
 .cashDenominationFooterLeft span, .cashDenominationFooterRight span{
@@ -521,4 +521,5 @@ td, th{
 
 .cashDenominationFooter button{
     height: 100px;
+    
 }
