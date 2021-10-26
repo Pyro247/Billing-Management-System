@@ -93,7 +93,8 @@
       }
     }else{
       $balance = $stud_fee;
-      $remarks = 'not fully paid';
+      $remarks = 'Not Fully Paid';
+      $studScholarType = 'N/A';
     }
     
     
@@ -198,7 +199,8 @@ if(isset($_POST['update'])){
     }
   }else{
     $balance = $stud_fee;
-    $remarks = 'not fully paid';
+    $remarks = 'Not Fully Paid';
+      $studScholarType = 'N/A';
   }
 
   $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
