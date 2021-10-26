@@ -23,8 +23,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
- 
     <title>Registrar</title>
   </head>
   <body>
@@ -2177,12 +2175,6 @@
             }
       </script>
 
-  <!-- <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-          <script>            
-              $('.mydatatable').DataTable({
-                lengthMenu: [[10, -1], [10, "All"]],
-              });
-          </script> -->
 
   </body>
 </html>

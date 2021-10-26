@@ -55,6 +55,9 @@
          <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+ 
         <title>Student</title>
     </head>
     <body>
@@ -141,10 +144,11 @@
                             <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <?= $date?> <span class="text-success" style="font-weight: bold; "></span></span>
                         </div>
                     </div>
-
-                    <div class="universalLightGrayBg" style="overflow-x: auto;" id="table_dashboard_id">
-                        <span class="text-primary d-block mx-2 mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
-                            <table class="table">
+                    <span class="text-primary d-block mx-2 mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
+                     
+                    <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
+                   
+                            <table class="table table-striped pb-3" id="transactTblStud">
                                 <thead class="thead-light text-center">
                                 <tr>
                                     <th scope="col">Transaction ID</th>
@@ -216,6 +220,15 @@
 
                                 
                                 </tbody>
+                                <!-- <tfoot>
+                                <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Payment Method</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Cashier</th>
+                                    <th scope="col">Remarks</th>
+                        </tfoot> -->
                             </table>
 
                         
@@ -566,6 +579,7 @@
                         ?>
                         
                         </tbody>
+                        
                     </table>
                    
                     </div>
@@ -758,6 +772,36 @@
             }
         }
         </script>
+
+        
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+          <script>            
+              $('#transactTblStud').DataTable({
+                
+                // pagingType: 'full_numbers',
+                lengthMenu: [[5, -1], [5, "All"]],
+
+                // initComplete: function() {
+                //     this.api().columns().every( function () {
+                //         var column = this;
+                //         var select = $('<select><option value=""></option></select>')
+                //         .appendTo( $(column.footer()).empty() )
+                //         .on( 'change', function() {
+                //             var val = $.fn.dataTable.util.escapeRegex(
+                //                 $(this).val()
+                //             );
+                //             column
+                //             .search( val ? '^'+val+'$' : '', true, false )
+                //             .draw();
+                //         });
+                //         column.data().unique().sort().each( function ( d, j ) {
+                //             select.append('<option value="'+d+'">'+d+'</option>')
+                //         });
+                //     });
+                // }
+
+              });
+          </script> 
         
     </body>
     </html>
