@@ -41,6 +41,8 @@
     $countSelectMajor = $resSelectMajor->num_rows;
     if($countSelectMajor > 0){
       $tution = $rowSelectMajor['tuition_fee'];
+    }else{
+      $tution = '';
     }
     echo json_encode($tution);
   }

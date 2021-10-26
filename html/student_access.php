@@ -137,7 +137,7 @@
 
                         </div>
                         <div class="col d-flex">
-                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_type'];?></span></span>
+                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_desc'];?></span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <?= $date?> <span class="text-success" style="font-weight: bold; "></span></span>
                         </div>
                     </div>

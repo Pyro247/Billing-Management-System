@@ -772,6 +772,8 @@ include_once '../connection/Config.php';
                   <div class="form-floating">
                     <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
                             <option value="" selected>All</option>
+                            <option value="" selected>All</option>
+                            <option value="" selected>All</option>
                     </select>
                     <label for="sortByDashData">Filter by Remarks:</label>
                   </div>

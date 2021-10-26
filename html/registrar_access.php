@@ -1369,6 +1369,20 @@
             let yearLevel = $('#studYearLevel').val();
             onChangeMajor(major,sem,yearLevel)
           });
+          $('#studSemester').change(function (e) { 
+            let sem = $(this).val();
+            let major = $('#studMajor').val();
+            let yearLevel = $('#studYearLevel').val();
+            onChangeMajor(major,sem,yearLevel)
+            
+          });
+          $('#studYearLevel').click(function (e) { 
+            let yearLevel = $(this).val();
+            let major = $('#studMajor').val();
+            let sem = $('#studSemester').val();
+            onChangeMajor(major,sem,yearLevel)
+            
+          });
           // Save and Update
           $('#studSave').click(function (e) { 
             e.preventDefault();
@@ -1607,8 +1621,15 @@
                 "sem":sem,
                 "yearLevel": yearLevel
               },
+              dataType: 'JSON',
               success: function (response) {
-                $("#studFee").val(response);
+                if(response == null){
+                  $("#studFee").val('');
+                }else{
+                  $("#studFee").val(response);
+                }
+                
+                // console.log(response)
               }
             }); 
           }
