@@ -1996,9 +1996,16 @@
           if($('#addNewProgram').text() === 'Update'){
             let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
             manageFees(newProgram,1);
+            $('#newProgram').trigger('reset');
+            $("[name='programId']").prop('readonly', false);
+            availablePrograms('%');
+
           }else{
             let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
             manageFees(newProgram,1);
+            $('#newProgram').trigger('reset');
+            $('#addNewProgram').text('Submit');
+            availablePrograms('%');
           }
         });
         // New Scholarship

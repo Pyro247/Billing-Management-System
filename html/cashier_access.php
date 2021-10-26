@@ -77,7 +77,7 @@ include_once '../connection/Config.php';
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/1000.png" alt="">
-          <input type="text" name="" id="" placeholder="₱1000">
+          <input type="text" name="" id="deno100" placeholder="₱1000">
         </div>
 
         <div class="cashInputs">
@@ -1221,6 +1221,14 @@ include_once '../connection/Config.php';
           }
         });
       }
+    </script>
+    <!-- Cash Denomination -->
+    <script>
+      $(document).ready(function () {
+        $('#deno100').keypress(function (e) { 
+          alert('SAMPLE')
+        });
+      });
     </script>
 </body>
 </html>
