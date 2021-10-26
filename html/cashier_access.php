@@ -67,7 +67,7 @@ include_once '../connection/Config.php';
 
 
   <div class="cashDenominationContainer">
-    <form class="cashDenominationForm">
+    <form action="../includes/generate-report.php" method="post" class="cashDenominationForm">
       <div class="cashDenominationTitle">
         <strong>Cash Denomination</strong>
         <i class="fas fa-times-circle" id="closeBtnCD"></i>
@@ -134,7 +134,7 @@ include_once '../connection/Config.php';
         
           <div class="cashDenominationFooter my-3">
             <div class="cashDenominationFooterLeft">
-              <p>Total Transaction Count: <span>
+              <p>Total Transaction Count: <span id = "total" >
                 <?php
                         $cashier_ID = $_SESSION['employeeId'];
                         $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
@@ -168,7 +168,7 @@ include_once '../connection/Config.php';
                             
                     ?>
                     </span></p>
-                    <p>Fund Transfer Amount Collected: <span><?php
+                    <p>Fund Transfer Amount Collected: <span id = "fund"><?php
                       $cashier_ID = $_SESSION['employeeId'];
                       $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
                                         WHERE transaction_date = CURRENT_DATE()
@@ -184,7 +184,7 @@ include_once '../connection/Config.php';
                           echo "₱". $total;
                               
                       ?></span></p>
-                      <p>Total Cash: <span><?php
+                      <p>Total Cash: <span id = "cash"><?php
 
                         $cashier_ID = $_SESSION['employeeId'];
                         $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
@@ -203,7 +203,7 @@ include_once '../connection/Config.php';
                         ?>
                         </span></p>
               
-              <p>Variance: <span>N/A</span></p>
+              <p>Variance: <span id = "variance">N/A</span></p>
             </div>
 
             <div class="cashDenominationFooterRight">
@@ -275,7 +275,7 @@ include_once '../connection/Config.php';
                               
                       ?></span></p> -->
             </div>
-            <button class="btn btn-primary d-block">Generate Report</button>
+            <button type="submit" id="generateReport" class="btn btn-primary d-block">Generate Report</button>
           </div>
           
       </div>
