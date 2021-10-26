@@ -77,7 +77,7 @@ include_once '../connection/Config.php';
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/1000.png" alt="">
-          <input type="text" name="" id="" placeholder="₱1000">
+          <input type="text" name="" id="deno100" placeholder="₱1000">
         </div>
 
         <div class="cashInputs">
@@ -134,18 +134,142 @@ include_once '../connection/Config.php';
         
           <div class="cashDenominationFooter my-3">
             <div class="cashDenominationFooterLeft">
-              <p>Total Transaction Count: <span>3</span></p>
-              <p>Total Amount Collected: <span>₱3582</span></p>
-              <p>Total Cash: <span>₱3582</span></p>
+              <p>Total Transaction Count: <span>
+                <?php
+                        $cashier_ID = $_SESSION['employeeId'];
+                        $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                        FROM `tbl_payments`
+                        WHERE `transaction_date` = CURRENT_DATE() 
+                        AND cashier_id = ?";
+                        $total = $con->prepare($sqlTotal);
+                        $total->bind_param('s',$cashier_ID);
+                        $total->execute();
+                        $resulttotal = $total->get_result();
+                        $rowtotal = $resulttotal->fetch_row();
+                        $count = mysqli_num_rows($resulttotal);
+                        echo $count;
+                  ?>
+                      </span></p>
+              <p>Total Amount Collected: <span>
+                <?php
+
+                    $cashier_ID = $_SESSION['employeeId'];
+                    $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                      WHERE transaction_date = CURRENT_DATE()
+                                      AND cashier_id = ?"; 
+                    $stmtTotal = $con->prepare($sqlTotalAmount);
+                    $stmtTotal->bind_param('s',$cashier_ID);
+                    $stmtTotal->execute();
+                    $resTotal = $stmtTotal->get_result();
+                    $row= $resTotal->fetch_assoc();
+                    $total = $row['count'];
+
+                        echo "₱". $total;
+                            
+                    ?>
+                    </span></p>
+              <p>Total Cash: <span><?php
+
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_method = 'Cash'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?>
+                    </span></p>
               <p>Variance: <span>N/A</span></p>
             </div>
 
             <div class="cashDenominationFooterRight">
-              <p>Fund Transfer Amount Collected: <span>₱3582</span></p>
-              <p>&nbsp;Gcash: <span>₱3582</span></p>
-              <p>&nbsp;Paymaya: <span>N/A</span></p>
-              <p>&nbsp;Remittance: <span>N/A</span></p>
-              <p>&nbsp;Bank Transfer: <span>N/A</span></p>
+              <p>Fund Transfer Amount Collected: <span><?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_method = 'Online'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?></span></p>
+              <p>&nbsp;Gcash: <span><?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_gateway = 'Gcash'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?></span></p>
+              <p>&nbsp;Paymaya: <span><?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_gateway = 'Paymaya'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?></span></p>
+              <p>&nbsp;Remittance: <span><?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_gateway = 'Remittance'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?></span></p>
+              <p>&nbsp;Bank Transfer: <span><?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_gateway = 'Bank Transfer'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
+
+                          echo "₱". $total;
+                              
+                      ?></span></p>
             </div>
             <button class="btn btn-primary d-block">Generate Report</button>
           </div>
@@ -1221,6 +1345,14 @@ include_once '../connection/Config.php';
           }
         });
       }
+    </script>
+    <!-- Cash Denomination -->
+    <script>
+      $(document).ready(function () {
+        $('#deno100').keypress(function (e) { 
+          alert('SAMPLE')
+        });
+      });
     </script>
 </body>
 </html>
