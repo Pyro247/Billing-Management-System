@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 06:20 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Generation Time: Oct 26, 2021 at 03:31 AM
+-- Server version: 10.4.19-MariaDB
+-- PHP Version: 7.4.20
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,6 +30,13 @@ SET time_zone = "+00:00";
 CREATE TABLE `tbl_academic_year` (
   `academic_year` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_academic_year`
+--
+
+INSERT INTO `tbl_academic_year` (`academic_year`) VALUES
+('2021-2022');
 
 -- --------------------------------------------------------
 
@@ -134,6 +141,14 @@ CREATE TABLE `tbl_course_fees` (
   `tuition_fee` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_course_fees`
+--
+
+INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `tuition_fee`) VALUES
+(1, '2', '4', 7500),
+(2, '2', '4', 5000);
+
 -- --------------------------------------------------------
 
 --
@@ -147,6 +162,14 @@ CREATE TABLE `tbl_course_list` (
   `course_duration` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_course_list`
+--
+
+INSERT INTO `tbl_course_list` (`program_id`, `course_program`, `course_major`, `course_duration`) VALUES
+(1, 'BSIT', 'WMA', 4),
+(2, 'BSIT', 'TSM', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -157,6 +180,13 @@ CREATE TABLE `tbl_discount` (
   `discount_type` varchar(100) NOT NULL,
   `discount_percent` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_discount`
+--
+
+INSERT INTO `tbl_discount` (`discount_type`, `discount_percent`) VALUES
+('Sibling Discount', 15);
 
 -- --------------------------------------------------------
 
@@ -234,6 +264,21 @@ CREATE TABLE `tbl_pending_payments` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_reports`
+--
+
+CREATE TABLE `tbl_reports` (
+  `cashier_id` int(11) NOT NULL,
+  `cashier_name` varchar(255) NOT NULL,
+  `cash_payment` int(11) NOT NULL,
+  `fund_transfer` int(11) NOT NULL,
+  `total_transaction_count` int(11) NOT NULL,
+  `date-time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_scholarship`
 --
 
@@ -241,6 +286,14 @@ CREATE TABLE `tbl_scholarship` (
   `scholar_type` varchar(10) NOT NULL,
   `scholar_description` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_scholarship`
+--
+
+INSERT INTO `tbl_scholarship` (`scholar_type`, `scholar_description`) VALUES
+('Half', 'Athlete'),
+('Full', 'Academic');
 
 -- --------------------------------------------------------
 
@@ -253,13 +306,21 @@ CREATE TABLE `tbl_student_fees` (
   `stud_id` int(11) NOT NULL,
   `fullname` varchar(100) NOT NULL,
   `csi_year_level` varchar(100) NOT NULL,
-  `scholar_type` varchar(100) NOT NULL,
+  `scholar_desc` varchar(100) NOT NULL,
+  `scholar_type` varchar(255) NOT NULL,
   `discount_type` varchar(100) NOT NULL,
   `tuition_fee` int(100) NOT NULL,
   `total_amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `remarks` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_fees`
+--
+
+INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
+(1, 2018301301, 'Michael Estrecho Isla', '4', 'Academic', 'Full Scholar', 'N/A', 7500, 0, 0, 'Fully Paid');
 
 -- --------------------------------------------------------
 
@@ -287,7 +348,8 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('20211', 2018301276, 'Denver', 'Pulido', 'Guieb', 'male', 'Maliwalo Tarlac City, Tarlac', 'student@gmail.com', '09987654321', 'October 26, 2021, 12:03 am', 2021000001, 'Mery Ane Villano');
+('20211', 2018301276, 'Denver', 'Pulido', 'Guieb', 'male', 'Maliwalo Tarlac City, Tarlac', 'student@gmail.com', '09987654321', 'October 26, 2021, 12:03 am', 2021000001, 'Mery Ane Villano'),
+('', 2018301301, 'Michael', 'Isla', 'Estrecho', '', '', '', '', 'N/A', 2021000002, 'Mery Ane Villano');
 
 -- --------------------------------------------------------
 
@@ -308,7 +370,8 @@ CREATE TABLE `tbl_student_requirements` (
 --
 
 INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
-(2018301276, '10.26.21', '10.26.21', '10.26.21', '10.26.21');
+(2018301276, '10.26.21', '10.26.21', '10.26.21', '10.26.21'),
+(2018301301, '10.26.21', '10.26.21', '10.26.21', '10.26.21');
 
 -- --------------------------------------------------------
 
@@ -326,6 +389,13 @@ CREATE TABLE `tbl_student_school_details` (
   `csi_major` longtext NOT NULL,
   `csi_year_level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_school_details`
+--
+
+INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
+(2018301301, '', '', '', '2', 'BSIT', 'WMA', '4');
 
 --
 -- Indexes for dumped tables
