@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 26, 2021 at 10:19 AM
+-- Generation Time: Oct 26, 2021 at 11:28 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -243,6 +243,17 @@ CREATE TABLE `tbl_payments` (
   `cashier_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_payments`
+--
+
+INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
+('FT-001', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 10000, 'Online', 'Gcash', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-002', 1, 2018301301, 'Michael Estrecho Isla', '2020-2021', '1', 7500, 5000, 'Cash', '', '', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-003', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 20000, 'Online', 'Paymaya', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-004', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 30000, 'Online', 'Remittance', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-005', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 40000, 'Online', 'Bank Transfer', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla');
+
 -- --------------------------------------------------------
 
 --
@@ -306,8 +317,8 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301301, 'Michael Estrecho Isla', '4', 'Academic', 'Full Scholar', 'N/A', 7500, 0, 0, 'Fully Paid'),
-(1, 2018301276, 'Denver Guieb Pulido', '4', 'Academic', 'Full Scholar', 'Sibling Discount', 100000, 0, 0, 'Fully Paid');
+(1, 2018301301, 'Michael Estrecho Isla', '4', 'Academic', 'Full Scholar', 'N/A', 7500, 5000, 0, 'Fully Paid'),
+(1, 2018301276, 'Denver Guieb Pulido', '4', 'Academic', 'Full Scholar', 'Sibling Discount', 100000, 80000, 0, 'Fully Paid');
 
 -- --------------------------------------------------------
 
