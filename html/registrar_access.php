@@ -359,7 +359,10 @@
             </div>
 
             <!-- For admin -->
-            <div class="employeeCountBox mb-3 d-block mx-auto" id="totalStud">
+            <div class="dashBoardforAdmin">
+
+            <div class="studentCountBoxContainer">
+            <div class="employeeCountBox mb-3 d-block mx-auto" id="">
                       <span class="lnr lnr-users text-center py-1"></span>
                     <div class="employeeCounter">
                       <h2>
@@ -374,12 +377,56 @@
                         ?>
                       </h2>
                         <h3>
-                          Total Employee(s)
+                          registrar(s)
                         </h3>
                     </div>
                   </div>
 
+                   
+            <div class="employeeCountBox mb-3 d-block mx-auto" id="">
+              <span class="lnr lnr-users text-center py-1"></span>
+            <div class="employeeCounter">
+              <h2>
+                <?php
+                  $sql = "SELECT * FROM tbl_student_info";
+                  $statement = $con->prepare($sql);
+                  $statement->execute();
+                  $result = $statement->get_result();
+                  $row = $result->fetch_row();
+                  $count = mysqli_num_rows($result);
+                  echo $count;
+                ?>
+              </h2>
+                <h3>
+                  Cashier(s)
+                </h3>
+            </div>
+          </div>
 
+           
+          <div class="employeeCountBox mb-3 d-block mx-auto" id="">
+            <span class="lnr lnr-users text-center py-1"></span>
+          <div class="employeeCounter">
+            <h2>
+              <?php
+                $sql = "SELECT * FROM tbl_student_info";
+                $statement = $con->prepare($sql);
+                $statement->execute();
+                $result = $statement->get_result();
+                $row = $result->fetch_row();
+                $count = mysqli_num_rows($result);
+                echo $count;
+              ?>
+            </h2>
+              <h3>
+                Total Employee(s)
+              </h3>
+          </div>
+        </div>
+        </div>
+
+
+                  
                   <div class="universal_bg_gray_table">
                   
                
@@ -389,15 +436,11 @@
                        <table class="table mydatatable">
                            <thead class="thead-light">
                              <tr>
-                               <th scope="col">Student ID</th>
-                               <th scope="col">First name</th>
-                               <th scope="col">Last name</th>
-                               <th scope="col">Program</th>
-                               <th scope="col">Major</th>
-                               <th scope="col">Year Level</th>
-                               <th scope="col">Status</th>
-                               <th scope="col">Scholarship</th>
-                               <th scope="col">LRN</th>
+                               <th scope="col">Employee ID</th>
+                               <th scope="col">Employee name</th>
+                               <th scope="col">Registration No.</th>
+                               <th scope="col">Role</th>
+                               <th scope="col">Mobile Number</th>
                                <th scope="col">Email</th>
                              </tr>
                            </thead>
@@ -409,6 +452,7 @@
    
                        
                  </div>
+                </div>
           
           </div>
 
@@ -2147,7 +2191,7 @@
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
               document.getElementById('v-pills-reports-tab').style.display="none"
-              document.querySelector('.dashBoardForAdmin').style.display = "none"
+              document.querySelector('.dashBoardforAdmin').style.display = "none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"

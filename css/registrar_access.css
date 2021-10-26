@@ -557,7 +557,7 @@ hr{
     margin-top: 15px;
 }
 
-.studentCountBox:nth-child(1), .employeeCountBox{
+.studentCountBox:nth-child(1), .employeeCountBox:nth-child(1){
     background-color: #5d95e9;
     border: thin solid #5d95e9;
 }
@@ -565,19 +565,19 @@ hr{
 .studentCountBox:nth-child(1) h2, .employeeCountBox h2{
     color: #5d95e9;
 }
-.studentCountBox:nth-child(2) h2{
+.studentCountBox:nth-child(2) h2, .employeeCountBox:nth-child(2) h2{
     color: #7c55c4;
 }
-.studentCountBox:nth-child(3) h2{
+.studentCountBox:nth-child(3) h2, .employeeCountBox:nth-child(3) h2{
     color: var(--green-color);
 }
 
-.studentCountBox:nth-child(2){
+.studentCountBox:nth-child(2), .employeeCountBox:nth-child(2){
     background-color: #7c55c4;
     border: thin solid #7c55c4;
 }
 
-.studentCountBox:nth-child(3){
+.studentCountBox:nth-child(3), .employeeCountBox:nth-child(3){
     background-color: var(--green-color);
     border: thin solid var(--green-color);
 }
