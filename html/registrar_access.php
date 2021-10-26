@@ -310,26 +310,29 @@
                     <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;">Total Students</p>
                   <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <?php ?>
-                      <option selected>All</option>
-                      <option value="1">Bachelor of Science in Information Technology</option>
-                      <option value="2">Bachelor of Science in Computer Science </option>
-                      <option value="3">Bachelor of Science in Education</option>
+                    <select class="form-select" id="filterByProgramDash"  aria-label="Floating label select example">
+                    <option value="All" selected>All</option>
+                    <?php 
+                        $sqlProgFilterDash = "SELECT DISTINCT course_program FROM `tbl_course_list`";
+                        $stmtProgFilterDash = $con->prepare($sqlProgFilterDash);
+                        $stmtProgFilterDash->execute();
+                        $resProgFilterDash = $stmtProgFilterDash->get_result();
+                        while($rowProgFilterDash = $resProgFilterDash->fetch_assoc()){
+                        ?>
+                          <option value="<?= $rowProgFilterDash['course_program'];?>"><?= $rowProgFilterDash['course_program'];?></option>
+                      <?php }; ?>
                     </select>
-                    <label for="floatingSelect">Choose Program</label>
+                    <label for="filterByProgramDash">Choose Program</label>
                   </div>
                 </div>
                 
               
               <div class="col">
                   <div class="form-floating">
-                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                      <option selected>All</option>
-                      <option value="1"></option>
-                      <option value="2"></option>
+                    <select class="form-select" id="filterByMajorDash" aria-label="Floating label select example">
+                      <option value="All" selected>All</option>
                     </select>
-                    <label for="floatingSelect">Choose Filter</label>
+                    <label for="filterByMajorDash">Choose Filter</label>
                   </div>
               </div>
               </div>
@@ -1291,35 +1294,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-  <script>
-    const studentCountLabel = document.querySelector('#studentCountLabelId');
-    //total student
-  $(document).ready(function() {
-    $("#totalStud").click(function(e) {
-    sortDisplay();
-    studentCountLabel.style.color = "#56A8CBFF"
-    studentCountLabel.textContent = "Total Students"
-  });
-    //old student
-  $("#oldStud").click(function(e) {
-    let stud_type = 'old'
-    sortDisplay(stud_type);
-    studentCountLabel.style.color = "#7c55c4"
-    studentCountLabel.textContent = "Old Students"
-  });
-    //transferee student
-  $("#transferStud").click(function(e) {
-    let stud_type = 'transferee'
-    studentCountLabel.style.color = "var(--green-color)"
-    studentCountLabel.textContent = "Transferees"
-    sortDisplay(stud_type);
-  });
-
-  $('#totalStud').click();
-  });
-
-
-  </script>
 
   <script type="text/javascript">
         // LIVE CLOCK
@@ -1336,6 +1310,127 @@
             let profile_link = document.getElementById('profile_link_id');
           profile_link.classList.toggle('show');
           }
+      </script>
+      <!-- Registrar Dashboard -->
+      <script>
+        const studentCountLabel = document.querySelector('#studentCountLabelId');
+          //total student
+        $(document).ready(function() {
+          sortDisplay('All');
+          // Total Student
+          $("#totalStud").click(function(e) {
+            sortDisplay('All');
+            $('#filterByProgramDash').val('All');
+            $("#filterByMajorDash").empty();
+            $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
+            studentCountLabel.style.color = "#56A8CBFF"
+            studentCountLabel.textContent = "Total Students"
+          });
+          // Old Student
+          $("#oldStud").click(function(e) {
+            let stud_type = 'old'
+            sortDisplay(stud_type);
+            $('#filterByProgramDash').val('All');
+            $("#filterByMajorDash").empty();
+            $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
+            studentCountLabel.style.color = "#7c55c4"
+            studentCountLabel.textContent = "Old Students"
+          });
+          //Transferee Student
+          $("#transferStud").click(function(e) {
+            let stud_type = 'transferee'
+            $('#filterByProgramDash').val('All');
+            $("#filterByMajorDash").empty();
+            $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
+            studentCountLabel.style.color = "var(--green-color)"
+            studentCountLabel.textContent = "Transferees"
+            sortDisplay(stud_type);
+          });
+          // Search Button
+          $("#searchDash_btn").click(function(){
+            $.ajax({
+              type:'POST',
+              url:'../includes/dashboard-registrar.php',
+              data:{
+                "search": 1,
+                "query":$("#searchDash").val(),
+              },
+              success:function(data){
+                $("#registrarDash").html(data);
+                      
+              }
+            });
+          });
+          // Filter By Program
+          $('#filterByProgramDash').change(function (e) { 
+              let filterByProgram = $('#filterByProgramDash').val();
+              let studType = $('#studentCountLabelId').text().split(' ')[0]
+              onChangeProgramFilterDash(filterByProgram)
+              viewStudetListFilterDash(studType,filterByProgram)
+          });
+          // Filter By Major
+          $('#filterByMajorDash').change(function (e) { 
+                  e.preventDefault();
+                  let filterByMajor = $('#filterByMajorDash').val();
+                  let filterByProgram = $('#filterByProgramDash').val();
+                  let studType = $('#studentCountLabelId').text().split(' ')[0]
+                  viewStudetListFilterDash(studType,filterByProgram,filterByMajor)
+          });
+            //-----------OLD/TRANSFER STUDENT------------
+            function sortDisplay(stud_type){
+              $.ajax({
+                type: "POST",
+                url: "../includes/dashboard-registrar.php",
+                dataType: "html",
+                data: {
+                  "viewStudDash": 1,
+                  "stud_type" : stud_type
+                },
+                  success: function (data) {
+                    $('#registrarDash').html(data);
+                  }
+              });
+            }
+            // Student List Filter Program AJAX Request to fill the filter by major options
+            function onChangeProgramFilterDash(program){
+                  $.ajax({
+                    url: '../includes/comboBoxData.php',
+                    type: 'post',
+                    data: {
+                      "programOnChange": 1,
+                      "program": program
+                    },
+                    success:function(response){ 
+                      let len = response.length;
+                      $("#filterByMajorDash").empty();
+                      $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
+                      // Looping the Items of Major By Program
+                      for( let i = 0; i<len; i++){
+                        let major = response[i]['major'];
+                        $("#filterByMajorDash").append("<option value='"+major+"'>"+major+"</option>");
+                      } 
+                    }
+                  });
+                }
+                // Student Filter By Program and Major AJAX REQUEST
+                function viewStudetListFilterDash(studType,byProgram,byMajor){
+                  $.ajax({
+                    type: "GET",
+                    url: "../includes/dashboard-registrar.php",
+                    data:{
+                      "viewStudDataFiltered": 1,
+                      'byProgram': byProgram,
+                      'byMajor': byMajor,
+                      'studType': studType
+                    },
+                    dataType: "html",
+                    success: function (data) {
+                      $('#registrarDash').html(data);
+                      // console.log(data)
+                    }
+                  });
+                }
+        });
       </script>
       <!-- Manage User-Student Registrar Access -->
       <script>
@@ -1674,20 +1769,7 @@
       </script>
       <script>
         $(document).ready(function () {
-          $("#searchDash_btn").click(function(){
-            $.ajax({
-              type:'POST',
-              url:'../includes/searchDash.php',
-              data:{
-                "search": 1,
-                "query":$("#searchDash").val(),
-              },
-              success:function(data){
-                $("#registrarDash").html(data);
-                
-              }
-            });
-          });
+          
           $("#searchArchive_btn").click(function(){
             $.ajax({
               type:'POST',
@@ -1705,19 +1787,7 @@
           
         });
         
-        //-----------OLD/TRANSFER STUDENT------------
-        function sortDisplay(stud_type){
-            $.ajax({
-              type: "POST",
-              url: "../includes/registrarDash.php",
-              dataType: "html",
-              data: {"stud_type" : stud_type},
-              success: function (data) {
-                $('#registrarDash').html(data);
-              }
-              
-            });
-        }
+      
       </script>
       <script>
           // function display(){
