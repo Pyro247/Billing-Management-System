@@ -543,7 +543,7 @@ hr{
     
 }
 
-.studentCountBox{
+.studentCountBox, .employeeCountBox{
     cursor: pointer;
     border-radius: 2px;
     overflow-x: hidden;
@@ -557,12 +557,12 @@ hr{
     margin-top: 15px;
 }
 
-.studentCountBox:nth-child(1){
+.studentCountBox:nth-child(1), .employeeCountBox{
     background-color: #5d95e9;
     border: thin solid #5d95e9;
 }
 
-.studentCountBox:nth-child(1) h2{
+.studentCountBox:nth-child(1) h2, .employeeCountBox h2{
     color: #5d95e9;
 }
 .studentCountBox:nth-child(2) h2{
@@ -582,29 +582,29 @@ hr{
     border: thin solid var(--green-color);
 }
 
-.studentCountBox:hover{
+.studentCountBox:hover, .employeeCountBox:hover{
     transform: scale(1.1);
 }
 
-.studentCounter{
+.studentCounter, .employeeCounter{
     background-color: var(--white-color);
     padding: 5px 10px;
     width: 100%;
     
 }
 
-.studentCounter h2{
+.studentCounter h2, .employeeCounter h2{
     font-size: 2rem;
     text-align: center;
 }
 
-.studentCounter h3{
+.studentCounter h3, .employeeCounter h3{
     font-size: 1.2rem;
     text-align: center;
 }
 
 
-.studentCountBox .lnr{
+.studentCountBox .lnr, .employeeCountBox .lnr{
     font-size: 3rem;
     color: white;
     display: block;

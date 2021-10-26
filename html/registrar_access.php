@@ -232,7 +232,7 @@
                   <input type="text" name="searchDash" id="searchDash" placeholder="Search">
                   <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
                 </form> -->
-
+              <div class="dashBoardForRegistrar">
                 <div class="studentCountBoxContainer my-3">
 
                   <div class="studentCountBox" id="totalStud">
@@ -358,77 +358,59 @@
 
                     
               </div>
-              <!-- <div class="tblContainer my-5" style="background: lightgray;">
+            </div>
 
-              
-              <table class="table table-striped table-bordered mydatatable" style="width: 100%;">
-                <thead>
-                  <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Address</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Justine</td>
-                    <td>21</td>
-                    <td>paniqui</td>
-                  </tr>
-                  <tr>
-                    <td>Mike</td>
-                    <td>20</td>
-                    <td>Tarlac</td>
-                  </tr>
-                  <tr>
-                    <td>Denver</td>
-                    <td>10</td>
-                    <td>Ramos</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                  <tr>
-                    <td>Mery</td>
-                    <td>20</td>
-                    <td>Gerona</td>
-                  </tr>
-                </tbody>
-                
-            </table>
-            </div> -->
+            <!-- For admin -->
+            <div class="employeeCountBox mb-3 d-block mx-auto" id="totalStud">
+                      <span class="lnr lnr-users text-center py-1"></span>
+                    <div class="employeeCounter">
+                      <h2>
+                        <?php
+                          $sql = "SELECT * FROM tbl_student_info";
+                          $statement = $con->prepare($sql);
+                          $statement->execute();
+                          $result = $statement->get_result();
+                          $row = $result->fetch_row();
+                          $count = mysqli_num_rows($result);
+                          echo $count;
+                        ?>
+                      </h2>
+                        <h3>
+                          Total Employee(s)
+                        </h3>
+                    </div>
+                  </div>
+
+
+                  <div class="universal_bg_gray_table">
+                  
+               
+                 
+   
+                     <div class="table__dashboard mt-3" id="table_dashboard_id">
+                       <table class="table mydatatable">
+                           <thead class="thead-light">
+                             <tr>
+                               <th scope="col">Student ID</th>
+                               <th scope="col">First name</th>
+                               <th scope="col">Last name</th>
+                               <th scope="col">Program</th>
+                               <th scope="col">Major</th>
+                               <th scope="col">Year Level</th>
+                               <th scope="col">Status</th>
+                               <th scope="col">Scholarship</th>
+                               <th scope="col">LRN</th>
+                               <th scope="col">Email</th>
+                             </tr>
+                           </thead>
+                           <tbody id="registrarDash">
+                               
+                           </tbody>
+                         </table>
+                       </div>
+   
+                       
+                 </div>
           
           </div>
 
@@ -2167,6 +2149,7 @@
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
               document.getElementById('v-pills-reports-tab').style.display="none"
+              document.querySelector('.dashBoardForAdmin').style.display = "none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"
@@ -2176,6 +2159,7 @@
               document.querySelector('#employees').classList.toggle('show')
               document.getElementById('v-pills-archives-tab').style.display = "none"
               document.getElementById('v-pills-studFee-tab').style.display = "none"
+              document.querySelector('.dashBoardForRegistrar').style.display = "none"
               
             }
 
