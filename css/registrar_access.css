@@ -311,9 +311,6 @@
 }
 
 
-
-
-
 .select__{
     display: block;
     margin: 0 auto;
@@ -611,4 +608,57 @@ hr{
     margin: auto 10px;
     
 }
+
+.chartsContainer{
+    display: flex;
+}
+
+#myChart{
+    max-width: 300px;
+    max-height: 300px;
+    border: 2px solid #0d6efd;
+}
+.rightChart{
+    border: 2px solid #0d6efd;
+    margin: 0 0 0 20px;
+    padding: 5px 20px;
+    width: 100%;
+    
+    
+}
+.c_o, .totalamountChart{
+    font-size: 3rem;
+}
+.totalamountChart{
+    color: var(--green-color)
+}
+.cashText, .onlineText{
+    font-size: 2rem;
+    margin: 0 25px;
+}
+
+
+.cashText::after{
+    content: 'Cash';
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;;
+    border-top: 3px solid rgba(214, 40, 78);
+}
+.onlineText::after{
+    content: 'Online';
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    color: black;
+    border-top: 3px solid rgba(54, 162, 235);
+
+}
+.cash_online{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 

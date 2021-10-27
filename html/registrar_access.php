@@ -24,7 +24,11 @@
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
- 
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js" integrity="sha512-GMGzUEevhWh8Tc/njS0bDpwgxdCJLQBWG3Z2Ct+JGOpVnEmjvNx6ts4v6A2XJf1HOrtOsfhv3hBKpK9kE5z8AQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+  
     <title>Registrar</title>
   </head>
   <body>
@@ -303,7 +307,7 @@
                 <div class="universal_bg_gray_table">
                   
                  <div class="row">
-                    <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;">Total Students</p>
+                    <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;"></p>
                   <div class="col">
                   <div class="form-floating">
                     <select class="form-select" id="filterByProgramDash"  aria-label="Floating label select example">
@@ -335,7 +339,8 @@
               
 
                   <div class="table__dashboard mt-3" id="table_dashboard_id">
-                    <table class="table mydatatable">
+                    <table class="table" id="dashboardTbl">
+                      
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">Student ID</th>
@@ -435,7 +440,7 @@
                  
    
                      <div class="table__dashboard mt-3" id="table_dashboard_id">
-                       <table class="table mydatatable">
+                       <table class="table">
                            <thead class="thead-light">
                              <tr>
                                <th scope="col">Employee ID</th>
@@ -1300,7 +1305,90 @@
                 
               </form>
               </div>
-            </div>
+
+
+              <!-- charts! -->
+              <div class="chartsContainer mt-3">
+              <canvas id="myChart"></canvas>
+                <div class="rightChart">
+                  <h3 class="text-center totalamountChart">₱5392.00</h3>
+                      <h5 class="text-center mb-5">Total Amount Collected</h6>
+                      <div class="cash_online">
+                        <span class="cashText">₱2392.00</span>
+                        <span class="onlineText">₱3000.00</span>
+                      </div>
+                    </div>
+              </div>
+             
+
+<script>
+  const ctx = document.getElementById('myChart').getContext('2d');
+  const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Cash Payments', 'Online Payments'],
+      datasets: [{
+          data: [12, 20],
+          backgroundColor: [
+              'rgba(214, 40, 78, 0.2)',
+              'rgba(54, 162, 235, 0.2)'
+              
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)'
+              
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        },
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title:{
+            display: true,
+            color: '#3bb9a0',
+            text: 'Transactions',
+            font: {
+              size: 24,
+              family: 'Poppins',
+              weight: 'normal'
+            }
+          }
+        }
+        
+      }
+    });
+</script>
+
+<div class="universal_bg_gray_table">
+    <table id="reportsTable" class="table mt-5">
+      <thead class="thead-light">
+        <tr>
+          <th>Transaction No.</th>
+          <th>Student Name</th>
+          <th>Payment Method</th>
+          <th>Email</th>
+          <th>Amount</th>
+          <th>Date</th>
+          <th>Cashier Name</th>
+        </tr>
+      </thead>
+      
+    </table>
+    </div>
+              
+            
+  </div>
+
+           
 
 
             <!-- Student Fees -->
@@ -1424,7 +1512,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+  
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -1444,9 +1533,10 @@
       <!-- Registrar Dashboard -->
       <script>
         const studentCountLabel = document.querySelector('#studentCountLabelId');
+        
           //total student
         $(document).ready(function() {
-          sortDisplay('All');
+          
           // Total Student
           $("#totalStud").click(function(e) {
             sortDisplay('All');
@@ -1455,7 +1545,12 @@
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
             studentCountLabel.style.color = "#56A8CBFF"
             studentCountLabel.textContent = "Total Students"
+            sortDisplay('All');
           });
+
+          
+          
+          
           // Old Student
           $("#oldStud").click(function(e) {
             let stud_type = 'old'
@@ -1465,6 +1560,8 @@
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
             studentCountLabel.style.color = "#7c55c4"
             studentCountLabel.textContent = "Old Students"
+            
+            
           });
           //Transferee Student
           $("#transferStud").click(function(e) {
@@ -1474,6 +1571,8 @@
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
             studentCountLabel.style.color = "var(--green-color)"
             studentCountLabel.textContent = "Transferees"
+            
+            
             sortDisplay(stud_type);
           });
           // Search Button
@@ -1491,6 +1590,8 @@
               }
             });
           });
+
+         
           // Filter By Program
           $('#filterByProgramDash').change(function (e) { 
               let filterByProgram = $('#filterByProgramDash').val();
@@ -1561,6 +1662,12 @@
                   });
                 }
         });
+
+      
+         
+          
+        
+          
       </script>
       <!-- Manage User-Student Registrar Access -->
       <script>
@@ -2305,35 +2412,35 @@
             }
       </script>
              
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-          <script>            
-              $('.mydatatable').DataTable({
-                
-                // pagingType: 'full_numbers',
-                lengthMenu: [[5, -1], [5, "All"]],
+          <script type="text/javascript">
+               
 
-                // initComplete: function() {
-                //     this.api().columns().every( function () {
-                //         var column = this;
-                //         var select = $('<select><option value=""></option></select>')
-                //         .appendTo( $(column.footer()).empty() )
-                //         .on( 'change', function() {
-                //             var val = $.fn.dataTable.util.escapeRegex(
-                //                 $(this).val()
-                //             );
-                //             column
-                //             .search( val ? '^'+val+'$' : '', true, false )
-                //             .draw();
-                //         });
-                //         column.data().unique().sort().each( function ( d, j ) {
-                //             select.append('<option value="'+d+'">'+d+'</option>')
-                //         });
-                //     });
-                // }
+$('#reportsTable').DataTable({
+  lengthMenu: [[5, -1], [5, "All"]]
 
-              });
+
+    // pagingType: 'full_numbers',
+    // initComplete: function() {
+    //     this.api().columns().every( function () {
+    //         var column = this;
+    //         var select = $('<select><option value=""></option></select>')
+    //         .appendTo( $(column.footer()).empty() )
+    //         .on( 'change', function() {
+    //             var val = $.fn.dataTable.util.escapeRegex(
+    //                 $(this).val()
+    //             );
+    //             column
+    //             .search( val ? '^'+val+'$' : '', true, false )
+    //             .draw();
+    //         });
+    //         column.data().unique().sort().each( function ( d, j ) {
+    //             select.append('<option value="'+d+'">'+d+'</option>')
+    //         });
+    //     });
+    // }
+
+  });
           </script> 
-
 
   </body>
 </html>
