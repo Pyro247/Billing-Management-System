@@ -57,11 +57,20 @@ include_once '../connection/Config.php';
 
         <script type="text/javascript">
         window.onload = function(){
-                let loader = document.getElementById('loader-wrapperID')
+          closeLoader()
+        }
+        function closeLoader(){
+          let loader = document.getElementById('loader-wrapperID')
                 loader.style.opacity = "0"
                 loader.style.visibility = "hidden"
                 loader.style.pointerEvents = "none"
-        }
+          }
+          function openLoader(){
+          let loader = document.getElementById('loader-wrapperID')
+                loader.style.opacity = "1"
+                loader.style.visibility = "visible"
+               
+          }
         </script>
 <!-- LOADER -->
 
@@ -514,9 +523,7 @@ include_once '../connection/Config.php';
                   </div>
                 </form>
               </div>
-            </div>
-
-            <!-- Pay Modal -->
+                <!-- Pay Modal -->
             <div class="modal fade" id="payModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
@@ -590,6 +597,9 @@ include_once '../connection/Config.php';
                 </div>
               </div>
             </div>
+            </div>
+
+          
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
@@ -1015,6 +1025,9 @@ include_once '../connection/Config.php';
                 'cashierName': '<?=$_SESSION['fullname']?>',
                 'cashierId': '<?=$_SESSION['employeeId']?>'
               },
+              beforeSend: function() {
+                openLoader()
+              },
               success: function (response) {
                 console.log(response)
                 Swal.fire(
@@ -1023,6 +1036,9 @@ include_once '../connection/Config.php';
                 'Success'
                 )
                 viewPending(allData,generalSort);
+              },
+              complete: function() {
+                closeLoader()
               }
             });
           }
@@ -1155,6 +1171,9 @@ include_once '../connection/Config.php';
                 'cashierName': '<?=$_SESSION['fullname']?>',
                 'cashierId': '<?=$_SESSION['employeeId']?>'
               },
+              beforeSend: function() {
+                openLoader()
+              },
               dataType: "JSON",
               success: function (response) {
                 console.log(response)
@@ -1175,7 +1194,10 @@ include_once '../connection/Config.php';
                   $("#payBtn").prop("disabled", true);
                   viewLastTransaction('')
                 }
-              }
+              },
+              complete: function() {
+                closeLoader()
+              },
             });
           
         });

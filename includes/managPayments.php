@@ -73,27 +73,26 @@
         $remarks,$stud_id);
         if($stmtStudFee->execute()){
           // Sending Email to Student that Payment Request is Approve
-          // $mail = new PHPMailer(true);
-          // $mail->smtpClose();
+          $mail = new PHPMailer(true);
+          $mail->smtpClose();
           // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
-          // $mail->isSMTP();                                           
-          // $mail->Host       = 'smtp.gmail.com';                     
-          // $mail->SMTPAuth   = true;                                   
-          // $mail->Username   = 'phptest1301@gmail.com';                     
-          // $mail->Password   = 'fprqtcaljwxcnvie';                               
-          // $mail->SMTPSecure = 'ssl';            
-          // $mail->Port       = 465;   
-          // $mail->isHTML(true);       
-          // $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
-          // $mail->addAddress($email,  $fullname);                                        
-          // $mail->Subject = 'PYRO COLLEGE PAYMENT INVOICE';
-          // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-      
-          // if($mail->send()){
-            
-          // }else{
-          //     echo 'Something went wrong';
-          // }
+          $mail->isSMTP();                                           
+          $mail->Host       = 'smtp.gmail.com';                     
+          $mail->SMTPAuth   = true;                                   
+          $mail->Username   = 'phptest1301@gmail.com';                     
+          $mail->Password   = 'fprqtcaljwxcnvie';                               
+          $mail->SMTPSecure = 'ssl';            
+          $mail->Port       = 465;   
+          $mail->isHTML(true);       
+          $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
+          $mail->addAddress($email, $fullname);                                        
+          $mail->Subject = 'PYRO COLLEGE PAYMENT Acknowledgement Letter';
+          $mail->Body    = 'Thank you for the recent payment that you made on '.'<b>'.$transaction_date.'</b>'.' for the amount of '.'<b>₱'.$amount.'</b>'.'. This is a confirmation that amount has been successfully received and deposited in our account.';
+          
+          if($mail->send()){
+            $response['status'] = 'success';
+            $response['message'] = 'Successfully Approved Payment';
+          }
 
           $sqlPendingPay = "DELETE FROM `tbl_pending_payments` WHERE `transaction_no`= ?";
           $stmtPendingPay = $con->prepare($sqlPendingPay);
@@ -101,8 +100,7 @@
           $stmtPendingPay->execute();
 
         
-          $response['status'] = 'success';
-          $response['message'] = 'Successfully Approved Payment';
+          
         }
       }else{
         $response['status'] = 'error';

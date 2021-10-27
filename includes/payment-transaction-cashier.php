@@ -3,6 +3,13 @@
   session_start();
   $response = array();
   $data = array();
+   // PHP Mailer
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\SMTP;
+    use PHPMailer\PHPMailer\Exception;
+    require '../phpmailer/src/Exception.php';
+    require '../phpmailer/src/PHPMailer.php';
+    require '../phpmailer/src/SMTP.php';
   if(isset($_GET['getData'])){
     $query = $_GET['getData'];
     $slq = "SELECT * FROM `tbl_student_fees` WHERE stud_id = ?";
@@ -58,9 +65,10 @@
       $newTransNo = sprintf("FT%s%03d", "-", ($newTransNo + 1)); 
     }
     // Selecting Student Data base on Stud ID
-    $slq = "SELECT fees.program_id,fees.fullname,fees.tuition_fee,fees.scholar_type,fees.balance,fees.total_amount_paid,det.csi_academic_year,det.csi_semester
+    $slq = "SELECT fees.program_id,fees.fullname,fees.tuition_fee,fees.scholar_type,fees.balance,fees.total_amount_paid,det.csi_academic_year,det.csi_semester,info.email
             FROM tbl_student_fees as fees 
             INNER JOIN tbl_student_school_details as det ON fees.stud_id = det.stud_id
+            INNER JOIN tbl_student_info as info ON fees.stud_id = info.stud_id
             WHERE fees.stud_id = ?";
     $stmt = $con->prepare( $slq );
     $stmt->bind_param( 's', $studId );
@@ -70,6 +78,7 @@
     if( $res->num_rows > 0 ) {
       $program_id = $row['program_id'];
       $fullname = $row['fullname'];
+      $email = $row['email'];
       $csi_academic_year = $row['csi_academic_year'];
       $csi_semester = $row['csi_semester'];
       $tuition_fee = $row['tuition_fee'];
@@ -107,31 +116,29 @@
         $stmtStudFee->bind_param('ssss',$total,$balance,
         $remarks,$studId);
         if($stmtStudFee->execute()){
-          // Sending Email to Student that Payment Request is Approve
-          // $mail = new PHPMailer(true);
-          // $mail->smtpClose();
+         // Sending Email to Student that Payment Request is Approve
+          $mail = new PHPMailer(true);
+          $mail->smtpClose();
           // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
-          // $mail->isSMTP();                                           
-          // $mail->Host       = 'smtp.gmail.com';                     
-          // $mail->SMTPAuth   = true;                                   
-          // $mail->Username   = 'phptest1301@gmail.com';                     
-          // $mail->Password   = 'fprqtcaljwxcnvie';                               
-          // $mail->SMTPSecure = 'ssl';            
-          // $mail->Port       = 465;   
-          // $mail->isHTML(true);       
-          // $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
-          // $mail->addAddress($email,  $fullname);                                        
-          // $mail->Subject = 'PYRO COLLEGE PAYMENT INVOICE';
-          // $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-      
-          // if($mail->send()){
-            
-          // }else{
-          //     echo 'Something went wrong';
-          // }
+          $mail->isSMTP();                                           
+          $mail->Host       = 'smtp.gmail.com';                     
+          $mail->SMTPAuth   = true;                                   
+          $mail->Username   = 'phptest1301@gmail.com';                     
+          $mail->Password   = 'fprqtcaljwxcnvie';                               
+          $mail->SMTPSecure = 'ssl';            
+          $mail->Port       = 465;   
+          $mail->isHTML(true);       
+          $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
+          $mail->addAddress($email, $fullname);                                        
+          $mail->Subject = 'PYRO COLLEGE PAYMENT Acknowledgement Letter';
+          $mail->Body    = 'Thank you for the recent payment that you made on '.'<b>'.$today.'</b>'.' for the amount of '.'<b>₱'.$amount.'</b>'.'. This is a confirmation that amount has been successfully received and deposited in our account.';
+          if($mail->send()){
+            $response['status'] = 'success';
+            $response['message'] = 'Successfully Transacted Payment';
+          }
+          
 
-          $response['status'] = 'success';
-          $response['message'] = 'Successfully Transacted Payment';
+         
         }
       }else{
         $response['status'] = 'error';
