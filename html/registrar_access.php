@@ -1305,15 +1305,17 @@
             <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
               <p class="title_tab_universal">Student Fees</p>
                 <form action="" class="universal_search_form">
-                  <input type="text" name="searchDash" id="searchDash" placeholder="Search">
-                  <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
+                  <input type="text" id="studentFeeSearch" placeholder="Search">
+                  <button type="button" class="btn btn-primary" id="studentFeeSearch-btn">Search</button>
                 </form>
 
               <div class="col universal_bg_gray_table p-3">
                 <div class="col-md-6 my-1">
                   <div class="form-floating">
-                    <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
+                    <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
                             <option value="" selected>All</option>
+                            <option value="Fully Paid" >Fully Paid</option>
+                            <option value="Not Fully Paid" >Not Fully Paid</option>
                     </select>
                     <label for="sortByDashData">Filter by Remarks:</label>
                   </div>
@@ -1332,7 +1334,7 @@
                           <th scope="col">Remarks</th>
                         </tr>
                       </thead>
-                      <tbody>
+                      <tbody id="viewStudentFees">
                       </tbody>
                     </table>
                 </div>
@@ -1912,9 +1914,60 @@
           });
           
         });
-        
-      
+     
       </script>
+       <!-- Student Fees -->
+    <script>
+      $(document).ready(function () {
+        // Initial Data Table
+        $('#v-pills-studFee-tab').click(function (e) { 
+          viewStudentFees()
+          
+        });
+        // Search Button
+        $('#studentFeeSearch-btn').click(function (e) { 
+          let searchTxt = $('#studentFeeSearch').val(); 
+          viewStudentFees(searchTxt)
+          $('#filterByRemarks').val('All');
+        });
+      });
+      $('#filterByRemarks').change(function (e) { 
+        e.preventDefault();
+        let filterBy = $('#filterByRemarks').val();
+        viewStudentFeesfilterBy(filterBy)
+      });
+      // Ajax Request viewList of Student Fees
+      function viewStudentFees(search){
+        $.ajax({
+          type: "GET",
+          url: "../includes/student-fees-cashier.php",
+          data: {
+            'viewStudentList': 1,
+            'search': search
+          },
+          dataType: "html",
+          success: function (data) {
+            $('#viewStudentFees').html(data);
+          }
+        });
+      }
+       // Ajax Request viewList of Student Fees Filter By Remarks
+       function viewStudentFeesfilterBy(filterBy){
+        $.ajax({
+          type: "GET",
+          url: "../includes/student-fees-cashier.php",
+          data: {
+            'viewStudentListfilterBy': 1,
+            'filterBy': filterBy
+          },
+          dataType: "html",
+          success: function (data) {
+            $('#viewStudentFees').html(data);
+            // console.log(data)
+          }
+        });
+      }
+    </script>
       <script>
           // function display(){
           //     $.ajax({

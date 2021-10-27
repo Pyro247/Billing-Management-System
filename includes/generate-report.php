@@ -16,9 +16,8 @@
     $stmtReport->bind_param('sssss', $cashier_id, $cashier_name, $cash, $fund,$total);
     $stmtReport->execute();
     $resreport = $stmtReport->get_result(); 
+    $count = $resreport->num_rows;
 
-
-    echo $resreport;
   }
     ?>
 
