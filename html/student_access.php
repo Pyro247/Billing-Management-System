@@ -148,8 +148,8 @@
                      
                     <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
                    
-                            <table class="table table-dark table-striped pb-3" id="transactTblStud">
-                                <thead class="thead-dark text-center">
+                            <table class="table pb-3" id="transactTblStud">
+                                <thead class="thead-light text-center">
                                 <tr>
                                     <th scope="col">Transaction ID</th>
                                     <th scope="col">Amount</th>
