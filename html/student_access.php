@@ -47,7 +47,7 @@
         
         <!-- Fontawsome -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
         <!-- CSS Local -->
         <link rel="stylesheet" href="../css/student_access.css">
@@ -148,8 +148,8 @@
                      
                     <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
                    
-                            <table class="table table-striped pb-3" id="transactTblStud">
-                                <thead class="thead-light text-center">
+                            <table class="table table-dark table-striped pb-3" id="transactTblStud">
+                                <thead class="thead-dark text-center">
                                 <tr>
                                     <th scope="col">Transaction ID</th>
                                     <th scope="col">Amount</th>

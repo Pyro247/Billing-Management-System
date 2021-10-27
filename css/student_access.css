@@ -363,4 +363,35 @@
     text-align: center;
 }
 
+.dataTables_filter label, .dataTables_length label, .dataTables_filter input{
+   font-size: 1.3rem;
+   font-weight: 400;
+}
 
+.dataTables_filter input, .dataTables_length select{
+    border: 2px solid #0d6efd;
+    outline: none;
+}
+
+
+
+
+
+
+.dataTables_filter label::after{
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    content: "\f002";
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    color: #0d6efd;
+    margin-left: 5px;
+    
+}
+
+.sorting{
+    font-weight: bold;
+}

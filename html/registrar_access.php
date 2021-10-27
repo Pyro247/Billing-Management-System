@@ -23,6 +23,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdn.linearicons.com/free/1.0.0/icon-font.min.css">
 
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+ 
     <title>Registrar</title>
   </head>
   <body>
@@ -2302,6 +2304,35 @@
                   // loader.style.pointerEvents = "none"
             }
       </script>
+             
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+          <script>            
+              $('.mydatatable').DataTable({
+                
+                // pagingType: 'full_numbers',
+                lengthMenu: [[5, -1], [5, "All"]],
+
+                // initComplete: function() {
+                //     this.api().columns().every( function () {
+                //         var column = this;
+                //         var select = $('<select><option value=""></option></select>')
+                //         .appendTo( $(column.footer()).empty() )
+                //         .on( 'change', function() {
+                //             var val = $.fn.dataTable.util.escapeRegex(
+                //                 $(this).val()
+                //             );
+                //             column
+                //             .search( val ? '^'+val+'$' : '', true, false )
+                //             .draw();
+                //         });
+                //         column.data().unique().sort().each( function ( d, j ) {
+                //             select.append('<option value="'+d+'">'+d+'</option>')
+                //         });
+                //     });
+                // }
+
+              });
+          </script> 
 
 
   </body>
