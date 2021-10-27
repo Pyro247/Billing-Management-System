@@ -574,6 +574,7 @@
                               <div class="col-md mb-1">
                                 <div class="form-floating">
                                   <input type="text" name="stud_school_year" class="form-control" id="studSchoolYear" placeholder=" " value="" disabled>
+                                  
                                   <label for="studSchoolYear">School year</label>
                                 </div>
                               </div>

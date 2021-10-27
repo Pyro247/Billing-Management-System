@@ -32,29 +32,10 @@
         <span>Pyro Colleges Inc.</span>
     </div>
 </div>
-<?php if(isset($_SESSION['status']) == 'success'){?>
-        <script>
-            Swal.fire({
-                title: '<?= $_SESSION['msg']; ?>',
-                icon: '<?= $_SESSION['status']; ?>',
-                confirmButtonText: 'OK'
-            }).then(function() {
-                window.location = "./login.php";
-            });
-        </script>
-    <?php }else{?>
-        <script>
-            Swal.fire({
-                title: '<?= $_SESSION['msg']; ?>',
-                icon: '<?= $_SESSION['status']; ?>',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    <?php } unset($_SESSION['status']);?>
     <div class="parent_container__">
 <div class="container active" id="container__id">
 
-    <form action="../includes/registration.inc.php" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "empReg" method="POST">
+    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" id= "empReg">
         <img src="../images/logo.png" alt="" style="filter: invert(43%) sepia(73%) saturate(6840%) hue-rotate(212deg) brightness(99%) contrast(104%);">
         <h3 class="text-center my-2 text-success">Register | <?=$_SESSION['userId']; ?> | <?=  $_SESSION['role']; ?></h3>
        <!-- Dont Remove this input hiddens  -->
@@ -184,8 +165,8 @@
 
             
             <div class="form-check mt-5">
-                    <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
-                    <label class="form-check-label" for="flexCheckIndeterminate" style="font-size: 1.2rem">
+                    <input class="form-check-input " type="checkbox" name="agreePolicy" id="agreePolicy">
+                    <label class="form-check-label" for="agreePolicy" style="font-size: 1.2rem">
                         By checking this box, you agree to our <a href="">Terms </a>and that you have read our <a href="">Data Use Policy.</a>
                     </label>
                 </div>
@@ -199,7 +180,7 @@
         <div class="row float-end mb-5">
             <div class="col-auto" >
                 <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
-                <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
+                <button type="button" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
             </div>
         </div>
         </div>
@@ -212,6 +193,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         
             <script src="../js/registration.js"></script>
+   
     <script type="text/javascript">
     
         let prevBtn = document.getElementById('previous_id');
@@ -310,6 +292,7 @@
                         confirmButtonText: 'OK'
                     })
                 }else{
+                    
                     step_counter = 2;
                     progress_bar.style.width = "100%"
                     nextBtn.textContent = "Submit"
@@ -358,18 +341,83 @@
             }
         });
         
-        $('#next_id').click(function(event){
-            if($("input[name='agreePolicy']").is(":checked")){
-                $('#empReg').submit();
-            }
-            event.preventDefault();
-        })
+        
+        
         $(window).on("load", function(){
             $(".loader-wrapper").fadeOut('xslow');
         });
 
     </script>
-    
+    <script>
+        $(document).ready(function () {
+            $('#next_id').click(function (e) { 
+                e.preventDefault();
+                if($('#next_id').text() == 'Submit' && $('#agreePolicy').is(":checked")){
+                    if($("#fname").val() == ''){
+                        Swal.fire({
+                            title: 'Empty firstname',
+                            text: 'Please enter your firstname',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else if($("#midInitial").val() == ''){
+                        Swal.fire({
+                            title: 'Empty middlename',
+                            text: 'Please enter your middlename',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else if($("#lname").val() == ''){
+                        Swal.fire({
+                            title: 'Empty lastname',
+                            text: 'Please enter your lastname',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else if($("#phone").val() == ''){
+                        Swal.fire({
+                            title: 'Empty contact',
+                            text: 'Please enter your contact number',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else if($("#address").val() == ''){
+                        Swal.fire({
+                            title: 'Empty address',
+                            text: 'Please enter your address',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else if(!$("input[name='sex']").is(':checked')){
+                        Swal.fire({
+                            title: 'No selected',
+                            text: 'Please select your sex',
+                            icon: 'warning',
+                            confirmButtonText: 'OK'
+                        })
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "../includes/registration.inc.php",
+                            data:  $('#empReg').serialize(),
+                            dataType: "JSON",
+                            success: function (response) {
+                                Swal.fire({
+                                        icon: response.status,
+                                        text: response.message,
+                                        confirmButtonText: 'Ok'
+                                    }).then(function() {
+                                        window.location.href = '../html/login.php';
+                                    
+                                    });
+                            }
+                        });
+                    }
+                }
+                
+            });
+        });
+    </script>
 </div>
 </body>
 </html>

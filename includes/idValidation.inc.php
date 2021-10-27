@@ -41,9 +41,9 @@
       
       if( $result_checkStudID->num_rows > 0 ) {
         $_SESSION['userId'] = $row_checkStudID['stud_id'];
-        $_SESSION['fname'] = $row_checkStudID['firstname'];
-        $_SESSION['lname'] = $row_checkStudID['lastname'];
-        $_SESSION['midname'] = $row_checkStudID['middlename'];
+        // $_SESSION['fname'] = $row_checkStudID['firstname'];
+        // $_SESSION['lname'] = $row_checkStudID['lastname'];
+        // $_SESSION['midname'] = $row_checkStudID['middlename'];
         $_SESSION['role'] = "Student";
         header('Location: ../html/formStud_Registration.php');
       }else {

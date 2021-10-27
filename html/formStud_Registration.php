@@ -1,5 +1,21 @@
 <?php
+    include_once '../connection/Config.php';
     session_start();
+     // Check Student ID
+    if(!isset( $_SESSION['userId'])){
+        header('Location: idValidation.php');
+    }else{
+        $sqlStudInfo = "SELECT S.firstname,S.lastname,S.middlename,det.csi_semester,det.csi_year_level,det.csi_program,det.csi_major
+        FROM `tbl_student_info` as S
+        INNER JOIN tbl_student_school_details as det ON S.stud_id = det.stud_id
+        WHERE S.stud_id = ?";
+        $stmtStudInfo = $con->prepare($sqlStudInfo);
+        $stmtStudInfo->bind_param('s', $_SESSION['userId']);
+        $stmtStudInfo->execute();
+        $resStudInfo = $stmtStudInfo->get_result();
+        $rowStudInfo = $resStudInfo->fetch_assoc();
+    }
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,30 +48,10 @@
         <span>Pyro Colleges Inc.</span>
     </div>
 </div>
-<?php if(isset($_SESSION['status']) == 'success'){?>
-        <script>
-            Swal.fire({
-                title: '<?= $_SESSION['msg']; ?>',
-                icon: '<?= $_SESSION['status']; ?>',
-                confirmButtonText: 'OK'
-            }).then(function() {
-                window.location = "./login.php";
-            });
-        </script>
-    <?php }else{?>
-        <script>
-            Swal.fire({
-                title: '<?= $_SESSION['msg']; ?>',
-                icon: '<?= $_SESSION['status']; ?>',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    <?php } unset($_SESSION['status']);?>
-
 <div class="parent_container__">
 <div class="container active" id="container__id">
 
-    <form action="../includes/registration.inc.php" class="shadow-lg p-3 mb-2 bg-body rounded" name="myForm" id= "studForm" method="POST">
+    <form action="" class="shadow-lg p-3 mb-2 bg-body rounded" id="studForm" >
     <img src="../images/logo.png" alt="" style="filter: invert(43%) sepia(73%) saturate(6840%) hue-rotate(212deg) brightness(99%) contrast(104%);">
         <h3 class="text-center my-2 text-success">Register | <?= $_SESSION['userId']; ?> | Student</h3>
       <!-- Dont Remove this input hiddens  -->
@@ -121,7 +117,7 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
                         
-                        <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $_SESSION['fname']; ?>">
+                        <input type="text" class="form-control" id="fname" placeholder=" " name="fname" value="<?= $rowStudInfo['firstname'] ?>">
                         <label for="fname">First name</label>
                     </div>
                 </div>
@@ -130,7 +126,7 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="middlename" id="midInitial" placeholder=" "
-                        value="<?= $_SESSION['midname']; ?>">
+                        value="<?= $rowStudInfo['middlename'] ?>">
                         <label for="midInitial">Middle name</label>
                     </div>
                 </div>
@@ -138,7 +134,7 @@
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" name="lastname" id="lname" placeholder=" "
-                        value="<?= $_SESSION['lname'];;?>">
+                        value="<?= $rowStudInfo['lastname']?>">
                         <label for="floatingInput">Last name</label>
                     </div>
                 </div>
@@ -149,14 +145,14 @@
             <div class="row mb-3">
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="contact" id="contact" placeholder=" " >
+                        <input type="text" class="form-control" name="contact" id="contact" placeholder=" " required >
                         <label for="contact">Contact Number</label>
                     </div>  
                 </div>
                     
                 <div class="col-md-4">
                     <div class="form-floating mb-3">
-                        <input type="text" class="form-control" name="address" id="address" placeholder=" " >
+                        <input type="text" class="form-control" name="address" id="address" placeholder=" " required >
                         <label for="address">Address</label>
                     </div>
                 </div>
@@ -198,32 +194,36 @@
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select col-2" id="floatingSelect" name="currSchoolYr">
+                        <select class="form-select col-2" id="academicYear" name="currSchoolYr" required>
                             <option hidden>School Year</option>
-                            <option value="2016-2017">2016 - 2017</option>
-                            <option value="2017-2018">2017 - 2018</option>
-                            <option value="2018-2019">2018 - 2019</option>
-                            <option value="2019-2020">2019 - 2020</option>
-                            <option value="2020-2021">2020 - 2021</option>
+                            <?php 
+                                $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
+                                $stmtYear = $con->prepare($sqlYear);
+                                $stmtYear->execute();
+                                $resYear = $stmtYear->get_result();
+                                while($rowYear = $resYear->fetch_assoc()){
+                                ?>
+                                <option value="<?= $rowYear['academic_year'];?>"><?= $rowYear['academic_year'];?></option>
+                            <?php }; ?>
                         </select>
-                            <label for="floatingSelect">School Year</label>
+                            <label for="academicYear">School Year</label>
                     </div>
                 </div>
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select col-2" id="floatingSelect" name="currSem">
+                        <select class="form-select col-2" id="currentSem" name="currSem" required>
                             <option hidden>Semester</option>
                             <option value="1">1st Semester</option>
                             <option value="2">2nd Semester</option>
                         </select>
-                            <label for="floatingSelect">Semester</label>
+                            <label for="currentSem">Semester</label>
                     </div>
                 </div>
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select col-2" id="floatingSelect" name="currYear">
+                        <select class="form-select col-2" id="currentYearLevel" name="currYear" required>
                             <option hidden>Year Level</option>
                             <option value="1">1st</option>
                             <option value="2">2nd</option>
@@ -231,7 +231,7 @@
                             <option value="4">4th</option>
                             <option value="5">5th</option>
                         </select>
-                            <label for="floatingSelect">Year Level</label>
+                            <label for="currentYearLevel">Year Level</label>
                     </div>
                 </div>
 
@@ -244,30 +244,34 @@
             <div class="row mb-3">
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select form-control" name="currCourse" id="floatingInput">
-                            <option hidden >Program</option>
-                            <option value="BSIT">BSIT </option>
-                            <option value="BSCS">BSCS</option>
-                            <option value="BSA">BSA</option>
+                        <select class="form-select form-control" name="currCourse" id="studProgram" required>
+                            
+                            <?php 
+                                $sqlProg = "SELECT DISTINCT course_program FROM `tbl_course_list`";
+                                $stmtProg = $con->prepare($sqlProg);
+                                $stmtProg->execute();
+                                $resProg = $stmtProg->get_result();
+                                while($rowProg = $resProg->fetch_assoc()){
+                                ?>
+                                    <option value="<?= $rowProg['course_program'];?>"><?= $rowProg['course_program'];?></option>
+                            <?php }; ?>
                         </select>
-                            <label for="floatingSelect">Program</label>
+                            <label for="studProgram">Program</label>
                     </div>
                 </div>
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select" name="currMajor" aria-label="Default select example">
-                            <option hidden>Major</option>
-                            <option value="WMA">Web and Mobile Application</option>
-                            <option value="TSM">TSM</option>
+                        <select class="form-select" name="currMajor" id="currentMajor" aria-label="Default select example" required>
+                            
                         </select>
-                            <label for="floatingSelect">Specialization</label>
+                            <label for="currentMajor">Specialization</label>
                     </div>
                 </div>
 
             <div class="col-md">
                     <div class="form-floating" >
-                        <input type="text" class="form-control"  name="LRN" id="lrn" placeholder=" " autocomplete="off">
+                        <input type="text" class="form-control"  name="LRN" id="lrn" placeholder=" " autocomplete="off" required>
                         <label for="lrn">LRN</label>
                     </div>
                 </div>
@@ -275,8 +279,8 @@
             
             </div>
                 <div class="form-check mt-3">
-                    <input class="form-check-input " type="checkbox" name="agreePolicy" id="flexCheckIndeterminate">
-                    <label class="form-check-label" for="flexCheckIndeterminate" style="font-size: 1.2rem">
+                    <input class="form-check-input " type="checkbox" name="agreePolicy" id="agreePolicy">
+                    <label class="form-check-label" for="agreePolicy" style="font-size: 1.2rem">
                         By checking this box, you agree to our <a href="">Terms </a>and that you have read our <a href="">Data Use Policy.</a>
                     </label>
                 </div>
@@ -284,26 +288,109 @@
         </div>
         
         
-    
+        
 </form>
-
-    <div class="row float-end mb-5">
+<div class="row float-end mb-5">
             <div class="col-auto" >
                 <button type="button" class="btn btn-outline-danger btn_nxt_prv" id="previous_id" onclick="prev_tab()">Previous</button>
-                <button type="submit" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
+                <button type="button" class="btn btn-outline-success btn_nxt_prv" name="registerAccount" id="next_id" onclick="next_tab(), check_if_firststep()">Next</button>
             </div>
-        </div>
+    </div>
+   
 
         </div>
         </div>
-
+        
 
         
 
     
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="../js/registration.js"></script>
-
+        <script>
+            $(document).ready(function () {
+                let program = $('#studProgram').val();
+                let selectedMajor = '<?= $rowStudInfo['csi_major']?>'
+                $('#currentSem').val('<?= $rowStudInfo['csi_semester']?>');
+                $('#currentYearLevel').val('<?= $rowStudInfo['csi_year_level']?>');
+                $('#studProgram').val('<?= $rowStudInfo['csi_program']?>');
+                onChangeProgram(program,selectedMajor);
+                 // Trigger OnChange Item of Dropdown Program
+                $("#studProgram").change(function(){
+                    let program = $(this).val();
+                    onChangeProgram(program,null);
+                });
+                $('#studForm').submit(function (event) { 
+                    if($('#next_id').text() == 'Submit' && $('#agreePolicy').is(":checked")){
+                        if(!$("input[name='stud_status']").is(':checked')){
+                            Swal.fire({
+                                title: 'No selected',
+                                text: 'Please select if your old or transferee student',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                            })
+                        }else if($('#academicYear').val() == 'School Year'){
+                            Swal.fire({
+                                title: 'Empty Academic Year',
+                                text: 'Please enter your academic year',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                            })
+                        }else  if($('#lrn').val() == ''){
+                            Swal.fire({
+                                title: 'Empty LRN',
+                                text: 'Please enter your LRN',
+                                icon: 'warning',
+                                confirmButtonText: 'OK'
+                            })
+                        }else{
+                            $.ajax({
+                                type: "POST",
+                                url: "../includes/registration.inc.php",
+                                data: $('#studForm').serialize(),
+                                dataType: "JSON",
+                                success: function (response) {
+                                    // console.log(response)
+                                    Swal.fire({
+                                        icon: response.status,
+                                        text: response.message,
+                                        confirmButtonText: 'Ok'
+                                    }).then(function() {
+                                        window.location.href = '../html/login.php';
+                                    
+                                    });
+                                }
+                            });
+                        }
+                    event.preventDefault();
+                    }
+                });
+                // onChange function selection in Program to put appropriate dropdown Options Major
+                function onChangeProgram(program,selectedValue){
+                    $.ajax({
+                    url: '../includes/comboBoxData.php',
+                    type: 'post',
+                    data: {
+                        "programOnChange": 1,
+                        "program": program
+                    },
+                    success:function(response){ 
+                        let len = response.length;
+                        $("#currentMajor").empty();
+                        // Looping the Items of Major By Program
+                        for( let i = 0; i<len; i++){
+                        let major = response[i]['major'];
+                        $("#currentMajor").append("<option value='"+major+"'>"+major+"</option>");
+                        }
+                          // Set item slected of Dropdown Major 
+                        if(selectedValue != null){
+                        $('#currentMajor').val(selectedValue);
+                        }
+                    }
+                    });
+                }
+            });
+        </script>
         <script type="text/javascript">
         let prevBtn = document.getElementById('previous_id');
         let nextBtn = document.getElementById('next_id');
@@ -401,6 +488,49 @@
                     personal_info_icon.style.color = "green";
                 }
             }else if (step_counter === 2){
+                if($('#fname').val() == ''){
+                    Swal.fire({
+                        title: 'Empty Firstname',
+                        text: 'Please enter your firstname',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if($('#midInitial').val() == ''){
+                    Swal.fire({
+                        title: 'Empty middlename',
+                        text: 'Please enter your middlename',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if($('#lname').val() == ''){
+                    Swal.fire({
+                        title: 'Empty lastname',
+                        text: 'Please enter your lastname',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if($('#contact').val() == 0){
+                    Swal.fire({
+                        title: 'Empty contact',
+                        text: 'Please enter your contact number',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if($('#address').val() == ''){
+                    Swal.fire({
+                        title: 'Empty address',
+                        text: 'Please enter your address',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else if(!$("input[name='sex']").is(':checked')){
+                    Swal.fire({
+                        title: 'Sex no selected',
+                        text: 'Please select your sex',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                    })
+                }else{
                     choose_step_3();
                     step_counter = 3;
                     nextBtn.textContent = "Submit"
@@ -408,6 +538,7 @@
                     progress_bar.style.width = "100%"
                     college_info_icon.innerHTML = "&#xf058;";
                     college_info_icon.style.color = "green";
+                }
             }
         }
 
@@ -448,9 +579,6 @@
                 prevBtn.style.display = "inline"
             }
         }
-
-        
-
     </script>
 
 

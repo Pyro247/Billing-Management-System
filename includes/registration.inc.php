@@ -1,7 +1,7 @@
 <?php
   include_once '../connection/Config.php';
   session_start();
-
+  $response = array();
   // Check if email is already taken
   if(isset($_POST['checking_email'])){
     $email = $_POST['email'];
@@ -18,6 +18,7 @@
   }
   // Update Info and Create Account
   if( isset( $_POST['agreePolicy'] ) ){
+    
     if(isset($_SESSION['role']) && $_SESSION['role'] == 'Student'  ){
       $userId = $_POST['userId']; 
       $role = $_POST['role'];
@@ -76,19 +77,16 @@
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {
-          $_SESSION['status'] = "success";
-          $_SESSION['msg'] = "Registered Successfully";
-          header('Location: ../html/formStud_Registration.php');
+          $response['status'] = 'success';
+          $response['message'] = 'Successfully Registered';
         }else {
-          $_SESSION['status'] = "error";
-          $_SESSION['msg'] = "Registration Failed 1";
-          header('Location: ../html/formStud_Registration.php');
+          $response['status'] = 'error';
+          $response['message'] = 'Failed to Registered';
         }
         
       }else {
-        $_SESSION['status'] = "error";
-        $_SESSION['msg'] = "Registration Failed 2";
-        header('Location: ../html/formStud_Registration.php');
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to Registered';
       }
     }
     if(isset($_POST['role']) && ($_POST['role'] == 'Cashier' || $_POST['role'] == 'Registrar' ) ){
@@ -135,21 +133,19 @@
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {
-          $_SESSION['status'] = "success";
-          $_SESSION['msg'] = "Registered Successfully";
-          header('Location: ../html/formEmp_Registration.php');
+          $response['status'] = 'success';
+          $response['message'] = 'Successfully Registered';
         }else {
-          $_SESSION['status'] = "error";
-          $_SESSION['msg'] = "Registration Failed ";
-          header('Location: ../html/formEmp_Registration.php');
+          $response['status'] = 'error';
+          $response['message'] = 'Failed to Registered';
         }
       } else {
-        $_SESSION['status'] = "error";
-        $_SESSION['msg'] = "Registration Failed";
-        header('Location: ../html/formEmp_Registration.php');
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to Registered';
       }
     } 
-    
+    echo json_encode($response);
+  
   }
 
 ?>
