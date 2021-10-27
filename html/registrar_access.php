@@ -1313,7 +1313,7 @@
                 <div class="col-md-6 my-1">
                   <div class="form-floating">
                     <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
-                            <option value="" selected>All</option>
+                            <option value="All" selected>All</option>
                             <option value="Fully Paid" >Fully Paid</option>
                             <option value="Not Fully Paid" >Not Fully Paid</option>
                     </select>
@@ -1334,7 +1334,7 @@
                           <th scope="col">Remarks</th>
                         </tr>
                       </thead>
-                      <tbody id="viewStudentFees">
+                      <tbody id="viewStudentFeesList">
                       </tbody>
                     </table>
                 </div>
@@ -1947,7 +1947,7 @@
           },
           dataType: "html",
           success: function (data) {
-            $('#viewStudentFees').html(data);
+            $('#viewStudentFeesList').html(data);
           }
         });
       }
@@ -1962,7 +1962,7 @@
           },
           dataType: "html",
           success: function (data) {
-            $('#viewStudentFees').html(data);
+            $('#viewStudentFeesList').html(data);
             // console.log(data)
           }
         });
