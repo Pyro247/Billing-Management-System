@@ -86,17 +86,17 @@ include_once '../connection/Config.php';
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/1000.png" alt="">
-          <input type="text" name="" id="deno100" placeholder="₱1000">
+          <input type="text" name="" id="deno1000" placeholder="₱1000">
         </div>
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/500.jpg" alt="">
-          <input type="text" name="" id="" placeholder="₱500">
+          <input type="text" name="" id="deno500" placeholder="₱500">
         </div>
 
         <div class="cashInputs">
             <img src="../images/cashDenomination/200.png" alt="">
-            <input type="text" name="" id="" placeholder="₱200">
+            <input type="text" name="" id="deno200" placeholder="₱200">
           </div>
         </div>
 
@@ -106,17 +106,17 @@ include_once '../connection/Config.php';
             
           <div class="cashInputs">
             <img src="../images/cashDenomination/100.jpg" alt="">
-            <input type="text" name="" id="" placeholder="₱100">
+            <input type="text" name="" id="deno100" placeholder="₱100">
           </div>
 
           <div class="cashInputs">
             <img src="../images/cashDenomination/50.jpg" alt="">
-            <input type="text" name="" id="" placeholder="₱50">
+            <input type="text" name="" id="deno50" placeholder="₱50">
           </div>
 
           <div class="cashInputs">
             <img src="../images/cashDenomination/20.jpg" alt="">
-            <input type="text" name="" id="" placeholder="₱20">
+            <input type="text" name="" id="deno20" placeholder="₱20">
           </div>
           </div>
 
@@ -124,20 +124,20 @@ include_once '../connection/Config.php';
           <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
           <div class="cashInputs">
             <img src="../images/cashDenomination/centavo.jpg" alt="">
-            <input type="text" name="" id="" placeholder="Centavo">
+            <input type="text" name="" id="denoCent" placeholder="Centavo">
           </div>
 
           <div class="cashInputs">
             <img src="../images/cashDenomination/1php.jpg" alt="">
-            <input type="text" name="" id="" placeholder="₱1">
+            <input type="text" name="" id="deno1" placeholder="₱1">
           </div>
           <div class="cashInputs">
             <img src="../images/cashDenomination/5php.png" alt="">
-            <input type="text" name="" id="" placeholder="₱5">
+            <input type="text" name="" id="deno5" placeholder="₱5">
           </div>
           <div class="cashInputs">
             <img src="../images/cashDenomination/10php.jpg" alt="">
-            <input type="text" name="" id="" placeholder="₱10">
+            <input type="text" name="" id="deno10" placeholder="₱10">
           </div>
           </div>
         
@@ -1375,9 +1375,40 @@ include_once '../connection/Config.php';
     <!-- Cash Denomination -->
     <script>
       $(document).ready(function () {
-        $('#deno100').keypress(function (e) { 
-          alert('SAMPLE')
+        $('#deno1000').keypress(function (e) { 
+          // alert('1000')
+          let input = $('#deno1000').val();
+          let calc = 1000 * parseInt(input); 
+          $('#variance').text(calc);
         });
+        $('#deno500').keypress(function (e) { 
+          alert('500')
+        });
+        $('#deno200').keypress(function (e) { 
+          alert('200')
+        });
+        $('#deno100').keypress(function (e) { 
+          alert('100')
+        });
+        $('#deno50').keypress(function (e) { 
+          alert('50')
+        });
+        $('#deno20').keypress(function (e) { 
+          alert('20')
+        });
+        $('#denoCent').keypress(function (e) { 
+          alert('Cent')
+        });
+        $('#deno1').keypress(function (e) { 
+          alert('1')
+        });
+        $('#deno5').keypress(function (e) { 
+          alert('5')
+        });
+        $('#deno10').keypress(function (e) { 
+          alert('10')
+        });
+       
       });
     </script>
 </body>
