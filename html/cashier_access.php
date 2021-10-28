@@ -89,7 +89,7 @@ include_once '../connection/Config.php';
           <div class="inputCash">
           <input type="text" name="" id="deno1000" placeholder="₱1000">
           <span>=</span>
-          <input type="text" name="" id="deno1000" placeholder="">
+          <input type="text" name="" id="totalDeno1000" placeholder="" value="00.00">
           </div>
         </div>
 
@@ -99,7 +99,7 @@ include_once '../connection/Config.php';
           <div class="inputCash">
           <input type="text" name="" id="deno500" placeholder="₱500">
           <span>=</span>
-          <input type="text" name="" id="deno500" placeholder="">
+          <input type="text" name="" id="totalDeno500" placeholder="" value="00.00">
           </div>
         </div>
 
@@ -108,7 +108,7 @@ include_once '../connection/Config.php';
             <div class="inputCash">
             <input type="text" name="" id="deno200" placeholder="₱200">
             <span>=</span>
-            <input type="text" name="" id="deno200" placeholder="">
+            <input type="text" name="" id="totalDeno200" placeholder="" value="00.00">
         </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ include_once '../connection/Config.php';
             <div class="inputCash">
             <input type="text" name="" id="deno100" placeholder="₱100">
             <span>=</span>
-            <input type="text" name="" id="deno100" placeholder="">
+            <input type="text" name="" id="totalDeno100" placeholder="" value="00.00">
             </div>
           </div>
 
@@ -131,7 +131,7 @@ include_once '../connection/Config.php';
             <div class="inputCash">
             <input type="text" name="" id="deno50" placeholder="₱50">
             <span>=</span>
-            <input type="text" name="" id="deno50" placeholder="">
+            <input type="text" name="" id="totalDeno50" placeholder="" value="00.00">
             </div>
 
           </div>
@@ -143,7 +143,7 @@ include_once '../connection/Config.php';
           
             <input type="text" name="" id="deno20" placeholder="₱20">
             <span>=</span>
-            <input type="text" name="" id="deno20" placeholder="">
+            <input type="text" name="" id="totalDeno20" placeholder="" value="00.00">
                
            </div>
 
@@ -158,7 +158,7 @@ include_once '../connection/Config.php';
 
             <input type="text" name="" id="denoCent" placeholder="Centavo">
               <span>=</span>
-              <input type="text" name="" id="denoCent" placeholder="">
+              <input type="text" name="" id="totalDenoCent" placeholder="" value="00.00">
             
         
         
@@ -170,7 +170,7 @@ include_once '../connection/Config.php';
            
             <input type="text" name="" id="deno1" placeholder="₱1">
               <span>=</span>
-              <input type="text" name="" id="deno1" placeholder="">
+              <input type="text" name="" id="totalDeno1" placeholder="" value="00.00">
             
             
            
@@ -184,7 +184,7 @@ include_once '../connection/Config.php';
            
               <input type="text" name="" id="deno5" placeholder="₱5">
               <span>=</span>
-              <input type="text" name="" id="deno5" placeholder="">
+              <input type="text" name="" id="totalDeno5" placeholder="" value="00.00">
             
 
         
@@ -196,7 +196,7 @@ include_once '../connection/Config.php';
                       
             <input type="text" name="" id="deno10" placeholder="₱10">
             <span>=</span>
-            <input type="text" name="" id="deno10" placeholder="">
+            <input type="text" name="" id="totalDeno10" placeholder="" value="00.00">
           
 
         
@@ -222,7 +222,7 @@ include_once '../connection/Config.php';
                         echo $count;
                   ?>
                       </span></p>
-              <p>Total Amount Collected: <span>
+              <p>Total Amount Collected:₱ <span id="totalAmountCollected">
                 <?php
 
                     $cashier_ID = $_SESSION['employeeId'];
@@ -235,12 +235,17 @@ include_once '../connection/Config.php';
                     $resTotal = $stmtTotal->get_result();
                     $row= $resTotal->fetch_assoc();
                     $total = $row['count'];
-
-                        echo "₱". $total;
+                    if($resTotal->num_rows > 0){
+                      echo  $total;
+                    }else{
+                      echo  '0.00';
+                    }
+                        
                             
                     ?>
                     </span></p>
-                    <p>Fund Transfer Amount Collected: <span id = "fund"><?php
+                    <p>Fund Transfer: ₱ <span id = "fund">
+                      <?php
                       $cashier_ID = $_SESSION['employeeId'];
                       $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
                                         WHERE transaction_date = CURRENT_DATE()
@@ -253,27 +258,35 @@ include_once '../connection/Config.php';
                       $row= $resTotal->fetch_assoc();
                       $total = $row['count'];
 
-                          echo "₱". $total;
+                      if($resTotal->num_rows > 0){
+                        echo  $total;
+                      }else{
+                        echo  '0.00';
+                      }
                               
                       ?></span></p>
-                      <p>Total Cash: <span id = "cash"><?php
+                       <p>Cash Payment: ₱ <span id = "cash">
+                      <?php
+                      $cashier_ID = $_SESSION['employeeId'];
+                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                        WHERE transaction_date = CURRENT_DATE()
+                                        AND cashier_id = ?
+                                        AND payment_method = 'Cash'"; 
+                      $stmtTotal = $con->prepare($sqlTotalAmount);
+                      $stmtTotal->bind_param('s',$cashier_ID);
+                      $stmtTotal->execute();
+                      $resTotal = $stmtTotal->get_result();
+                      $row= $resTotal->fetch_assoc();
+                      $total = $row['count'];
 
-                        $cashier_ID = $_SESSION['employeeId'];
-                        $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                          WHERE transaction_date = CURRENT_DATE()
-                                          AND cashier_id = ?
-                                          AND payment_method = 'Cash'"; 
-                        $stmtTotal = $con->prepare($sqlTotalAmount);
-                        $stmtTotal->bind_param('s',$cashier_ID);
-                        $stmtTotal->execute();
-                        $resTotal = $stmtTotal->get_result();
-                        $row= $resTotal->fetch_assoc();
-                        $total = $row['count'];
-
-                            echo "₱". $total;
-                                
-                        ?>
-                        </span></p>
+                      if($resTotal->num_rows > 0){
+                        echo  $total;
+                      }else{
+                        echo  '0.00';
+                      }
+                              
+                      ?></span></p>
+                      <p>Actual Cash: ₱ <span id ="totalCashInput">0.00</span></p>
               
               <p>Variance: <span id = "variance">N/A</span></p>
             </div>
@@ -827,7 +840,7 @@ include_once '../connection/Config.php';
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem; display:block;">
+                        <h6><strong style="font-size: 1.1rem; display:block;" id="totalTransactionCount">
                         <?php
                         $cashier_ID = $_SESSION['employeeId'];
                         $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
@@ -846,7 +859,7 @@ include_once '../connection/Config.php';
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong><?php
+                      <h5>₱<strong ><?php
 
                       $cashier_ID = $_SESSION['employeeId'];
                       $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
@@ -951,20 +964,32 @@ include_once '../connection/Config.php';
               <script type="text/javascript">
                   const cashDenominationContainer = document.querySelector('.cashDenominationContainer')
                   const cashDenominationForm = document.querySelector('.cashDenominationForm')
+                  const totalTransactionCount =document.getElementById('totalTransactionCount')
                 document.querySelector("#genReportBtn").addEventListener('click', function(){
-                 
+                 if(totalTransactionCount.innerText == '0'){
+                  Swal.fire(
+                    'No Transaction',
+                    '',
+                    'info'
+                  )
+                 }else{
                   cashDenominationContainer.style.visibility = "visible"
                   cashDenominationContainer.style.opacity = "1"
                   cashDenominationForm.classList.toggle('animate__animated')
                   cashDenominationForm.classList.toggle('animate__bounceIn')
+                 }
+                
               })
 
               document.querySelector('#closeBtnCD').addEventListener('click', function(){
+                closedCashDenomination();
+              })
+              function closedCashDenomination(){
                 cashDenominationContainer.style.visibility = "hidden"
                   cashDenominationContainer.style.opacity = "0"
                   cashDenominationForm.classList.toggle('animate__animated')
                   cashDenominationForm.classList.toggle('animate__bounceIn')
-              })
+              }
               </script>
 
              
@@ -1438,41 +1463,160 @@ include_once '../connection/Config.php';
     <!-- Cash Denomination -->
     <script>
       $(document).ready(function () {
-        $('#deno1000').keypress(function (e) { 
-          // alert('1000')
+        $('#deno1000').keyup(function (e) { 
           let input = $('#deno1000').val();
-          let calc = 1000 * parseInt(input); 
-          $('#variance').text(calc);
+          if(input == 0){
+            input = 0
+          }
+          let calc = 1000 * parseInt(input);
+          $('#totalDeno1000').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno500').keypress(function (e) { 
-          alert('500')
+        $('#deno500').keyup(function (e) { 
+          let input = $('#deno500').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 500 * parseInt(input);
+          $('#totalDeno500').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno200').keypress(function (e) { 
-          alert('200')
+        $('#deno200').keyup(function (e) { 
+          let input = $('#deno200').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 200 * parseInt(input);
+          $('#totalDeno200').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno100').keypress(function (e) { 
-          alert('100')
+        $('#deno100').keyup(function (e) { 
+          let input = $('#deno100').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 100 * parseInt(input);
+          $('#totalDeno100').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno50').keypress(function (e) { 
-          alert('50')
+        $('#deno50').keyup(function (e) { 
+          let input = $('#deno50').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 50 * parseInt(input);
+          $('#totalDeno50').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno20').keypress(function (e) { 
-          alert('20')
+        $('#deno20').keyup(function (e) { 
+          let input = $('#deno20').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 20 * parseInt(input);
+          $('#totalDeno20').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#denoCent').keypress(function (e) { 
-          alert('Cent')
+        $('#denoCent').keyup(function (e) { 
+          let input = $('#denoCent').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = .25 * parseInt(input);
+          $('#totalDenoCent').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno1').keypress(function (e) { 
-          alert('1')
+        $('#deno1').keyup(function (e) { 
+          let input = $('#deno1').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 1 * parseInt(input);
+          $('#totalDeno1').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno5').keypress(function (e) { 
-          alert('5')
+        $('#deno5').keyup(function (e) { 
+          let input = $('#deno5').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 5 * parseInt(input);
+          $('#totalDeno5').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-        $('#deno10').keypress(function (e) { 
-          alert('10')
+        $('#deno10').keyup(function (e) { 
+          let input = $('#deno10').val();
+          if(input == 0){
+            input = 0
+          }
+          let calc = 10 * parseInt(input);
+          $('#totalDeno10').val(calc.toFixed(2));
+          $('#totalCashInput').text(calcTotal());
+          $('#variance').text(calcVariance());
         });
-       
+      $('#generateReport').click(function (e) { 
+        e.preventDefault();
+        let total = parseFloat($('#total').text())
+        let cash = parseFloat($('#cash').text())
+        let fund = parseFloat($('#fund').text()) 
+        let variance = parseFloat($('#variance').text()) 
+        let cashierName = '<?=$_SESSION['fullname']?>'
+        let cashierID = '<?=$_SESSION['employeeId']?>'
+        $.ajax({
+          type: "POST",
+          url: "../includes/generate-report.php",
+          data: {
+            'cashierName': cashierName,
+            'cashierID': cashierID,
+            'total': total,
+            'cash': cash,
+            'fund': fund,
+            'variance': variance,
+          },
+          dataType: "json",
+          success: function (response) {
+            console.log(response)
+            Swal.fire({
+              icon: response.status,
+              text: response.message,
+              confirmButtonText: 'Ok'
+            })
+            if(response.status == 'success'){
+              closedCashDenomination();
+            } 
+          }
+          // To updated account will logout after generating report
+        });
       });
+      });
+      function calcTotal(){
+        let totalCash = parseFloat($('#totalDeno1000').val()) + 
+        parseFloat($('#totalDeno500').val()) +
+        parseFloat($('#totalDeno200').val()) +
+        parseFloat($('#totalDeno100').val()) +
+        parseFloat($('#totalDeno50').val()) +
+        parseFloat($('#totalDeno20').val()) +
+        parseFloat($('#totalDenoCent').val()) +
+        parseFloat($('#totalDeno1').val()) +
+        parseFloat($('#totalDeno5').val()) +
+        parseFloat($('#totalDeno10').val())
+        return totalCash.toFixed(2)
+      }
+      function calcVariance(){
+        let cash = $('#cash').text();
+        let cashInputed = $('#totalCashInput').text();
+        let variance = (parseFloat(cashInputed) - parseFloat(cash))  
+        return variance.toFixed(2)
+      }
     </script>
 </body>
 </html>
