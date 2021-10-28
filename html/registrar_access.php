@@ -451,7 +451,7 @@
                                <th scope="col">Email</th>
                              </tr>
                            </thead>
-                           <tbody id="registrarDash">
+                           <tbody id="adminDash">
                            <?php
 
                             $sql ="SELECT reg_no, employee_id, role, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname,  email, contact_number 

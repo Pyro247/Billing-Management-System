@@ -514,15 +514,19 @@
                     <div class="row mb-3">
                         <div class="col">
                             <div class="form-floating">
-                                <select class="form-select col-2" id="floatingSelect" name="currSchoolY">
-                                    <option hidden>Academic Year</option>
-                                    <option value="2016-2017">2016 - 2017</option>
-                                    <option value="2017-2018">2017 - 2018</option>
-                                    <option value="2018-2019">2018 - 2019</option>
-                                    <option value="2019-2020">2019 - 2020</option>
-                                    <option value="2020-2021">2020 - 2021</option>
+                                <select class="form-select col-2" id="filterByAcademicYear" name="currSchoolY">
+                                <option value="All">All</option>
+                                <?php 
+                                    $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
+                                    $stmtYear = $con->prepare($sqlYear);
+                                    $stmtYear->execute();
+                                    $resYear = $stmtYear->get_result();
+                                    while($rowYear = $resYear->fetch_assoc()){
+                                    ?>
+                                    <option value="<?= $rowYear['academic_year'];?>"><?= $rowYear['academic_year'];?></option>
+                                <?php }; ?>
                                 </select>
-                                    <label for="floatingSelect">Select Academic Year</label>
+                                    <label for="filterByAcademicYear">Select Academic Year</label>
                             </div>
                         </div>
 
@@ -538,13 +542,13 @@
                             <th scope="col">Payment Method</th>
                             <th scope="col">Date</th>
                             <th scope="col">Person in Charge</th>
-                            <!-- <th scope="col">Payment Status</th> -->
+                            <th scope="col">Payment Status</th>
                             
                             
                             
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="viewTableTransactionHistory">
                         <?php
 
                                 $sql ="SELECT transaction_no, amount, CONCAT(payment_method,'-',payment_gateway) 
@@ -603,7 +607,7 @@
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    
+        <!-- Payment Application -->
         <script type="text/javascript">
         let image = document.getElementById('image');
             function profile_link_show(){
@@ -686,6 +690,7 @@
                 });
             });
         </script>
+        <!-- Resubmit payment application -->
         <script>
             $('#ViewReason').click(function (e) { 
                 e.preventDefault();
@@ -741,36 +746,57 @@
                 });
                 
             });
-            function exportTableToExcel(tableID, filename = ''){
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(tableID);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-            
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-            
-            // Create download link element
-            downloadLink = document.createElement("a");
-            
-            document.body.appendChild(downloadLink);
-            
-            if(navigator.msSaveOrOpenBlob){
-                var blob = new Blob(['\ufeff', tableHTML], {
-                    type: dataType
+        </script>
+        <!-- Transaction Hsitory -->
+        <script>
+            $(document).ready(function () {
+                $('#filterByAcademicYear').change(function (e) { 
+                    let selected = $('#filterByAcademicYear').val();
+                    $.ajax({
+                        type: "GET",
+                        url: "../includes/transact-history-student.php",
+                        data: {
+                            'studId': '<?php echo $_SESSION['stud_id']?>',
+                            'schoolYear': selected
+                        },
+                        dataType: "html",
+                        success: function (data) {
+                            $('#viewTableTransactionHistory').html(data);
+                        }
+                    });
                 });
-                navigator.msSaveOrOpenBlob( blob, filename);
-            }else{
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-            
-                // Setting the file name
-                downloadLink.download = filename;
-                
-                //triggering the function
-                downloadLink.click();
-            }
-        }
+                // Export Excel
+                function exportTableToExcel(tableID, filename = ''){
+                    var downloadLink;
+                    var dataType = 'application/vnd.ms-excel';
+                    var tableSelect = document.getElementById(tableID);
+                    var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+                    
+                    // Specify file name
+                    filename = filename?filename+'.xls':'excel_data.xls';
+                    
+                    // Create download link element
+                    downloadLink = document.createElement("a");
+                    
+                    document.body.appendChild(downloadLink);
+                    
+                    if(navigator.msSaveOrOpenBlob){
+                        var blob = new Blob(['\ufeff', tableHTML], {
+                            type: dataType
+                        });
+                        navigator.msSaveOrOpenBlob( blob, filename);
+                    }else{
+                        // Create a link to the file
+                        downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+                    
+                        // Setting the file name
+                        downloadLink.download = filename;
+                        
+                        //triggering the function
+                        downloadLink.click();
+                    }
+                }
+            });
         </script>
 
         
