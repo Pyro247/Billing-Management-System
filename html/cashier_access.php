@@ -86,17 +86,30 @@ include_once '../connection/Config.php';
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/1000.png" alt="">
+          <div class="inputCash">
           <input type="text" name="" id="deno1000" placeholder="₱1000">
+          <span>=</span>
+          <input type="text" name="" id="deno1000" placeholder="">
+          </div>
         </div>
 
         <div class="cashInputs">
+
           <img src="../images/cashDenomination/500.jpg" alt="">
+          <div class="inputCash">
           <input type="text" name="" id="deno500" placeholder="₱500">
+          <span>=</span>
+          <input type="text" name="" id="deno500" placeholder="">
+          </div>
         </div>
 
         <div class="cashInputs">
             <img src="../images/cashDenomination/200.png" alt="">
+            <div class="inputCash">
             <input type="text" name="" id="deno200" placeholder="₱200">
+            <span>=</span>
+            <input type="text" name="" id="deno200" placeholder="">
+        </div>
           </div>
         </div>
 
@@ -106,39 +119,89 @@ include_once '../connection/Config.php';
             
           <div class="cashInputs">
             <img src="../images/cashDenomination/100.jpg" alt="">
+            <div class="inputCash">
             <input type="text" name="" id="deno100" placeholder="₱100">
+            <span>=</span>
+            <input type="text" name="" id="deno100" placeholder="">
+            </div>
           </div>
 
           <div class="cashInputs">
             <img src="../images/cashDenomination/50.jpg" alt="">
+            <div class="inputCash">
             <input type="text" name="" id="deno50" placeholder="₱50">
+            <span>=</span>
+            <input type="text" name="" id="deno50" placeholder="">
+            </div>
+
           </div>
 
           <div class="cashInputs">
+          
             <img src="../images/cashDenomination/20.jpg" alt="">
+           <div class="inputCash">
+          
             <input type="text" name="" id="deno20" placeholder="₱20">
+            <span>=</span>
+            <input type="text" name="" id="deno20" placeholder="">
+               
+           </div>
+
+        
           </div>
           </div>
 
 
           <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
-          <div class="cashInputs">
-            <img src="../images/cashDenomination/centavo.jpg" alt="">
+            <div class="cashInputs">
+              <img src="../images/cashDenomination/centavo.jpg" alt="">
+              
             <input type="text" name="" id="denoCent" placeholder="Centavo">
+              <span>=</span>
+              <input type="text" name="" id="denoCent" placeholder="Centavo">
+            
+        
+        
           </div>
 
           <div class="cashInputs">
+            
             <img src="../images/cashDenomination/1php.jpg" alt="">
+           
             <input type="text" name="" id="deno1" placeholder="₱1">
+              <span>=</span>
+              <input type="text" name="" id="deno1" placeholder="₱1">
+            
+            
+           
+             
+            
           </div>
+
           <div class="cashInputs">
+         
             <img src="../images/cashDenomination/5php.png" alt="">
-            <input type="text" name="" id="deno5" placeholder="₱5">
+           
+              <input type="text" name="" id="deno5" placeholder="₱5">
+              <span>=</span>
+              <input type="text" name="" id="deno5" placeholder="₱5">
+            
+
+        
           </div>
+
           <div class="cashInputs">
+          
             <img src="../images/cashDenomination/10php.jpg" alt="">
+                      
             <input type="text" name="" id="deno10" placeholder="₱10">
+            <span>=</span>
+            <input type="text" name="" id="deno10" placeholder="₱10">
+          
+
+        
           </div>
+
           </div>
         
           <div class="cashDenominationFooter my-3">

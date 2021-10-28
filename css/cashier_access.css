@@ -461,16 +461,42 @@ th {
   margin: 10px 25px;
 }
 
-.cashInputs input {
+.inputCash input, .coins input{
   margin-top: 10px;
-  background-color: #d6e6f7;
-  border: none;
   padding: 5px 10px;
-  outline: none;
-  border: 2px solid #1e1e1e;
+  border: none;
   text-align: center;
-  width: 100%;
+  width: 100px;
+  
 }
+
+.inputCash input:last-child{
+  background-color: lightgray;
+  outline: none;
+  pointer-events: none;
+  user-select: none;
+  
+}
+.inputCash input:first-child, .coins input:nth-child(2){
+  border-bottom: 1px solid black;
+  background-color: lightblue;
+  margin-bottom: 1px;
+}
+
+
+.coins span{
+  display: block;
+  text-align:center;
+}
+
+.coins input:last-child{
+  margin-top: 1px;
+  outline: none;
+  background-color: lightgray;
+  pointer-events: none;
+  user-select: none;
+}
+
 
 .cashInputsContainer {
   display: flex;
@@ -503,4 +529,8 @@ th {
 
 .cashDenominationFooter button {
   height: 100px;
+}
+
+.inputsCashdenomination{
+  display: flex;
 }
