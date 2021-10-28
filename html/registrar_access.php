@@ -1311,11 +1311,44 @@
               <div class="chartsContainer mt-3">
               <canvas id="myChart"></canvas>
                 <div class="rightChart">
-                  <h3 class="text-center totalamountChart">₱5392.00</h3>
+                  <h3 class="text-center totalamountChart">
+                    <?php
+                          $sqlTotalamount = "SELECT SUM(`cash_payment` + `fund_transfer`) AS total_amount_collected FROM `tbl_reports` WHERE`date` = CURRENT_DATE"; 
+                          $stmtTotalamount = $con->prepare($sqlTotalamount);
+                          $stmtTotalamount->execute();
+                          $resTotalamount = $stmtTotalamount->get_result();
+                          $rowamount= $resTotalamount->fetch_assoc();
+                          $totalamount = $rowamount['total_amount_collected'];
+
+                          echo "₱". $totalamount;
+                                                              
+                    ?></h3>
                       <h5 class="text-center mb-5">Total Amount Collected</h6>
                       <div class="cash_online">
-                        <span class="cashText">₱2392.00</span>
-                        <span class="onlineText">₱3000.00</span>
+                        <span class="cashText">
+                          <?php
+                          $sqlTotalcash = "SELECT SUM(cash_payment) AS total_cash FROM tbl_reports WHERE`date` = CURRENT_DATE"; 
+                          $stmtTotalcash = $con->prepare($sqlTotalcash);
+                          $stmtTotalcash->execute();
+                          $resTotalcash = $stmtTotalcash->get_result();
+                          $rowcash= $resTotalcash->fetch_assoc();
+                          $totalcash = $rowcash['total_cash'];
+
+                          echo "₱". $totalcash;
+                                                              
+                          ?></span>
+                        <span class="onlineText">
+                          <?php
+                          $sqlTotalonline = "SELECT SUM(fund_transfer) AS total_online FROM tbl_reports WHERE`date` = CURRENT_DATE"; 
+                          $stmtTotalonline = $con->prepare($sqlTotalonline);
+                          $stmtTotalonline->execute();
+                          $resTotalonline = $stmtTotalonline->get_result();
+                          $rowonline= $resTotalonline->fetch_assoc();
+                          $totalonline = $rowonline['total_online'];
+
+                          echo "₱". $totalonline;
+                                                              
+                          ?></span>
                       </div>
                     </div>
               </div>
@@ -1372,16 +1405,50 @@
     <table id="reportsTable" class="table mt-5">
       <thead class="thead-light">
         <tr>
-          <th>Transaction No.</th>
-          <th>Student Name</th>
-          <th>Payment Method</th>
-          <th>Email</th>
-          <th>Amount</th>
-          <th>Date</th>
+          <th>Cashier Id</th>
           <th>Cashier Name</th>
+          <th>Total Cash Payment</th>
+          <th>Total Fund Transfer</th>
+          <th>Total Collected Amount</th>
+          <th>Variance</th>
+          <th>Total Transaction Made</th>
+          <th>Date</th>
         </tr>
       </thead>
-      
+      <tbody>
+      <?php
+
+          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, 
+          `variance`, `total_transaction_count`, `date` FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
+          $stmt = $con->prepare($sql);
+          $stmt->execute();
+          $res = $stmt->get_result();
+          $count = $res->num_rows;
+
+          ?>
+          <?php 
+          if($count > 0){
+          while($data = $res->fetch_assoc()){?>
+          <tr class="text-center">
+              <td><?=$data['cashier_id'];?></td>
+              <td><?=$data['cashier_name'];?></td>
+              <td><?=$data['cash_payment'];?></td>
+              <td><?=$data['fund_transfer'];?></td>
+              <td><?=$data['total_transaction_amount'];?></td>
+              <td><?=$data['variance'];?></td>
+              <td><?=$data['total_transaction_count'];?></td>
+              <td><?=$data['date'];?></td>
+              
+          </tr>
+          <?php }?>
+          <?php }else{?>
+          <tr>
+              <td><?php echo "No Records"?></td>
+          </tr>
+          <?php } 
+                                  
+          ?>
+      </tbody>
     </table>
     </div>
               
