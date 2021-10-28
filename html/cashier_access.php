@@ -155,10 +155,10 @@ include_once '../connection/Config.php';
           <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
             <div class="cashInputs">
               <img src="../images/cashDenomination/centavo.jpg" alt="">
-              
+
             <input type="text" name="" id="denoCent" placeholder="Centavo">
               <span>=</span>
-              <input type="text" name="" id="denoCent" placeholder="Centavo">
+              <input type="text" name="" id="denoCent" placeholder="">
             
         
         
@@ -170,7 +170,7 @@ include_once '../connection/Config.php';
            
             <input type="text" name="" id="deno1" placeholder="₱1">
               <span>=</span>
-              <input type="text" name="" id="deno1" placeholder="₱1">
+              <input type="text" name="" id="deno1" placeholder="">
             
             
            
@@ -184,7 +184,7 @@ include_once '../connection/Config.php';
            
               <input type="text" name="" id="deno5" placeholder="₱5">
               <span>=</span>
-              <input type="text" name="" id="deno5" placeholder="₱5">
+              <input type="text" name="" id="deno5" placeholder="">
             
 
         
@@ -196,7 +196,7 @@ include_once '../connection/Config.php';
                       
             <input type="text" name="" id="deno10" placeholder="₱10">
             <span>=</span>
-            <input type="text" name="" id="deno10" placeholder="₱10">
+            <input type="text" name="" id="deno10" placeholder="">
           
 
         
