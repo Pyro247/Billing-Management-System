@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 28, 2021 at 04:45 AM
+-- Generation Time: Oct 28, 2021 at 11:13 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -62,7 +62,7 @@ INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, 
 (2018301276, 'Denver Pulido', 'student01@gmail.com', 'Student-01', 'Student', '', ''),
 (2018301301, 'Michael Isla', 'student02@gmail.com', 'Student-02', 'Student', '', ''),
 (2021000001, 'Justine Dave Delos Reyes', 'administrator@gmail.com', 'Admin-01', 'Admin', '', ''),
-(2021000002, 'Mery Ane Villano', 'registrar@gmail.com', 'Registrar-01', 'Registrar', '', ''),
+(2021000002, 'Mery Anne Villano', 'registrar@gmail.com', 'Registrar-01', 'Registrar', '', ''),
 (2021000003, 'Michael Isla', 'cashier01@gmail.com', 'Cashier-01', 'Cashier', '', ''),
 (2021000004, 'Donna Belle Pulido', 'cashier02@gmail.com', 'Cashier-02', 'Cashier', '', '');
 
@@ -250,7 +250,7 @@ CREATE TABLE `tbl_payments` (
 --
 
 INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
-('FT-001', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 10000, 'Online', 'Gcash', 'images.jpg', 0, '2021-10-27', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-001', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 10000, 'Online', 'Gcash', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-002', 1, 2018301301, 'Michael Estrecho Isla', '2020-2021', '1', 7500, 5000, 'Cash', '', '', 0, '2021-10-27', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-003', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 20000, 'Online', 'Paymaya', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-004', 1, 2018301276, 'Denver Guieb Pulido', '2020-2021', '1', 100000, 30000, 'Online', 'Remittance', 'images.jpg', 0, '2021-10-26', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
@@ -275,6 +275,37 @@ CREATE TABLE `tbl_pending_payments` (
   `status` varchar(100) NOT NULL,
   `reasonToDeny` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pending_payments`
+--
+
+INSERT INTO `tbl_pending_payments` (`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reasonToDeny`) VALUES
+('FT-007', 2018301276, 'Denver Guieb Pulido', 'student01@gmail.com', 50000, 'Gcash', 'images.jpg', '2021-10-28', 'Pending', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_reports`
+--
+
+CREATE TABLE `tbl_reports` (
+  `cashier_id` int(100) NOT NULL,
+  `cashier_name` varchar(255) NOT NULL,
+  `cash_payment` int(100) NOT NULL,
+  `fund_transfer` int(100) NOT NULL,
+  `variance` int(100) NOT NULL,
+  `total_transaction_count` int(100) NOT NULL,
+  `date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_reports`
+--
+
+INSERT INTO `tbl_reports` (`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `variance`, `total_transaction_count`, `date`) VALUES
+(2021000004, 'Donna Belle Guieb Pulido', 50000, 40000, 50000, 4, '2021-10-27'),
+(2021000003, 'Michael Isla', 60000, 50000, 60000, 4, '2021-10-28');
 
 -- --------------------------------------------------------
 
