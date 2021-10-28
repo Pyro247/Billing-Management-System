@@ -1279,9 +1279,9 @@
               <div class="col universal_bg_gray_table p-3">
                 <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">View Transactions:</span>
                 
-                <button class="btn btn-outline-primary float-end mx-1">Annually</button>
-                  <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
-                  <button class="btn btn-outline-primary float-end mx-1">Daily</button>
+                <button id="Annually" class="btn btn-outline-primary float-end mx-1">Annually</button>
+                  <button id="Monthly" class="btn btn-outline-primary float-end mx-1">Monthly</button>
+                  <button id="Daily" class="btn btn-outline-primary float-end mx-1">Daily</button>
                 </div>
 
                 
@@ -1337,9 +1337,43 @@
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: ['Cash Payments', 'Online Payments'],
+    labels: ['Today'],
       datasets: [{
-          data: [12, 20],
+          data: ['10'],
+          backgroundColor: [
+              'rgba(214, 40, 78, 0.2)',
+              'rgba(54, 162, 235, 0.2)'
+              
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)'
+              
+          ],
+          borderWidth: 1
+        }]
+      },
+      data1: {
+    labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+      datasets: [{
+          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
+          backgroundColor: [
+              'rgba(214, 40, 78, 0.2)',
+              'rgba(54, 162, 235, 0.2)'
+              
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)'
+              
+          ],
+          borderWidth: 1
+        }]
+      },
+      data2: {
+    labels: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011'],
+      datasets: [{
+          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
           backgroundColor: [
               'rgba(214, 40, 78, 0.2)',
               'rgba(54, 162, 235, 0.2)'
@@ -1366,7 +1400,7 @@
           title:{
             display: true,
             color: '#3bb9a0',
-            text: 'Transactions',
+            text: 'Transactions Made',
             font: {
               size: 24,
               family: 'Poppins',
@@ -1377,6 +1411,21 @@
         
       }
     });
+    var context = document.getElementById('myChart').getContext('2d');
+      new Chart(context).Line(data);
+    
+  $("#Daily").on("click", function() {
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, data);
+  });
+  $("#Monthly").on("click", function() {
+    var context2 = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, data1);
+  });
+  $("#Annually").on("click", function() {
+    var context3 = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, dat2);
+  });
 </script>
 
 <div class="universal_bg_gray_table">
