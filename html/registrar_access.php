@@ -1283,30 +1283,8 @@
                   <button class="btn btn-outline-primary float-end mx-1">Monthly</button>
                   <button class="btn btn-outline-primary float-end mx-1">Daily</button>
                 </div>
-                
-                
-              <div class="col universal_bg_gray_table p-3">
-                <form action="" class="d-flex justify-content-between">
-                <div class="col-md-3">
-                  <div class="form-floating">
-                    <select class="form-select col-2" id="floatingSelect" aria-label="Floating label select example">
-                    <option value="" selected>All</option>
-                      <option value="" selected>Cash</option>
-                      <option value="">Fund Transfer</option>
-                    </select>
-                    <label for="floatingSelect">Payment Method</label>
 
-                  </div>
-                  <div class="col-md mt-1">
-                    <button class="btn btn-primary ">Apply</button>
-                    <button class="btn btn-primary ">Clear</button>
-                  </div>
-                </div>
                 
-              </form>
-              </div>
-
-
               <!-- charts! -->
               <div class="chartsContainer mt-3">
               <canvas id="myChart"></canvas>
