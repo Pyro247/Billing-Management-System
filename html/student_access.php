@@ -42,8 +42,7 @@
         <!-- Bootstrap -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    
+        
         
         <!-- Fontawsome -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
@@ -53,12 +52,10 @@
         <link rel="stylesheet" href="../css/student_access.css">
 
          <!-- Sweet Alert 2 -->
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
- 
-        <title>Student</title>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+      
+       <title>Student</title>
     </head>
     <body>
 
@@ -146,9 +143,10 @@
                     </div>
                     <span class="text-primary d-block mx-2 mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
                      
+                    
                     <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
                    
-                            <table class="table pb-3" id="transactTblStud">
+                            <table class="table pb-3 display" id="myTable">
                                 <thead class="thead-light text-center">
                                 <tr>
                                     <th scope="col">Transaction ID</th>
@@ -800,12 +798,11 @@
         </script>
 
         
-  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-          <script>            
-              $('#transactTblStud').DataTable({
-                
-                // pagingType: 'full_numbers',
-                lengthMenu: [[5, -1], [5, "All"]],
+
+    <script>            
+              
+                // // pagingType: 'full_numbers',
+                // lengthMenu: [[5, -1], [5, "All"]],
 
                 // initComplete: function() {
                 //     this.api().columns().every( function () {
@@ -826,8 +823,16 @@
                 //     });
                 // }
 
-              });
+             
           </script> 
+           
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+          <script>
+              $(document).ready( function () {
+                $('table.display').DataTable();
+            } );
+          </script>
         
     </body>
     </html>

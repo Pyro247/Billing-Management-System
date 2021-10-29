@@ -614,7 +614,7 @@ hr{
 }
 
 #myChart{
-    max-width: 300px;
+    max-width: 50%;
     max-height: 300px;
     border: 2px solid #0d6efd;
 }
@@ -622,7 +622,7 @@ hr{
     border: 2px solid #0d6efd;
     margin: 0 0 0 20px;
     padding: 5px 20px;
-    width: 100%;
+    width: 50%;
     
     
 }

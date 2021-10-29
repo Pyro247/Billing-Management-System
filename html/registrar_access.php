@@ -152,7 +152,7 @@
     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
       <div class="popUpFeesMgmtinner">
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(2)"></i>
-        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Scholarship</p>
           <hr class="mt-0 mb-3">
             <form action="" id="newScholarship">
 
@@ -1020,7 +1020,7 @@
                   </div>
 
                 <div class="table__" style="overflow-x: auto;">
-                  <table class="table">
+                  <table class="table" id="employeeTbl">
                     <thead>
                       <tr>
                         <th scope="col">Employee ID</th>
@@ -1279,9 +1279,12 @@
               <div class="col universal_bg_gray_table p-3">
                 <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">View Transactions:</span>
                 
-                <button id="Annually" class="btn btn-outline-primary float-end mx-1">Annually</button>
-                  <button id="Monthly" class="btn btn-outline-primary float-end mx-1">Monthly</button>
-                  <button id="Daily" class="btn btn-outline-primary float-end mx-1">Daily</button>
+                <button id="Daily" class="btn btn-outline-primary active mx-1">Daily</button>
+                <button id="Monthly" class="btn btn-outline-primary mx-1">Monthly</button>
+                <button id="Annually" class="btn btn-outline-primary mx-1">Annually</button>
+                <button class="btn btn-outline-primary float-end">Export To Excel</button>
+                  
+                  
                 </div>
 
                 
@@ -1434,9 +1437,10 @@
         <tr>
           <th>Cashier Id</th>
           <th>Cashier Name</th>
+          <th>Total Collected Amount</th>
           <th>Total Cash Payment</th>
           <th>Total Fund Transfer</th>
-          <th>Total Collected Amount</th>
+          
           <th>Variance</th>
           <th>Total Transaction Made</th>
           <th>Date</th>
@@ -1536,7 +1540,7 @@
                 <button type="button" class="btn btn-primary" id="searchProgram-btn">Search</button>
               </form>
               <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
-                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add School Year</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add Academic Year</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(1)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)"><i class="fas fa-plus"></i>&nbsp;Add Scholarship</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
@@ -1606,8 +1610,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
-    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-  
   <script type="text/javascript">
         // LIVE CLOCK
         let clockElement = document.getElementById('reg-date-time');
@@ -2486,7 +2488,6 @@
               document.querySelector('#employees-tab').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('active')
               document.querySelector('#employees').classList.toggle('show')
-              document.getElementById('v-pills-archives-tab').style.display = "none"
               document.getElementById('v-pills-studFee-tab').style.display = "none"
               document.querySelector('.dashBoardForRegistrar').style.display = "none"
               
@@ -2506,11 +2507,10 @@
             }
       </script>
              
+             
           <script type="text/javascript">
                
-
-$('#reportsTable').DataTable({
-  lengthMenu: [[5, -1], [5, "All"]]
+  
 
 
     // pagingType: 'full_numbers',
@@ -2533,8 +2533,14 @@ $('#reportsTable').DataTable({
     //     });
     // }
 
-  });
-          </script> 
-
+  
+          </script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+  
+        <script>
+          $(document).ready(function(){
+            $('#reportsTable').DataTable();
+          })
+        </script>
   </body>
 </html>
