@@ -44,10 +44,10 @@
       $payment_method = 'Online';
       if($balance > $amount){
         $balance = $balance - $amount;
-      }else{
+      }else if($amount >= $balance){
         $balance = 0;
-        // For sukli
       }
+        // For sukli
       // remarks condition
       if($balance == 0){
         $remarks = 'Fully Paid';

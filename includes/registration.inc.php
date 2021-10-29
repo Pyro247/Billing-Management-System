@@ -65,6 +65,13 @@
       $sqlStudReg = "UPDATE `tbl_student_info` SET `reg_no` = ? ,`firstname`= ? ,`lastname`= ?,`middlename`= ?,`sex`= ?,`contact_number`= ?,`address` = ?,email = ? , `joined_date` = ?  WHERE stud_id = ?";
       $stmtStduReg = $con->prepare($sqlStudReg);
       $stmtStduReg->bind_param('ssssssssss', $newRegNo, $firstname, $lastname, $midInitial, $sex, $phoneNumber, $address,$email,$today,$userId);
+
+      // Updating stduent fees datails if have changes
+      $fullname = $firstname.' '.$lastname;
+      $sqlFeesDet = "UPDATE `tbl_student_fees` SET `fullname`= ? WHERE stud_id = ?";
+      $stmtStudFees = $con->prepare($sqlFeesDet);
+      $stmtStudFees->bind_param('ss', $fullname,$userId);
+      $stmtStudFees->execute();
       if($stmtStduReg->execute()){
         // Saving School Details
         $slqDetails = "UPDATE `tbl_student_school_details` SET `LRN` = ?,`stud_type` = ?,`csi_academic_year`= ? ,`csi_semester` = ?,`csi_program` = ? ,`csi_major` = ?,`csi_year_level` = ? WHERE stud_id = ?"; 

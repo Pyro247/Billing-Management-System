@@ -93,7 +93,7 @@
       
       if($balance > $amount){
         $balance = $balance - $amount;
-      }else if($balance == $amount){
+      }else if($amount >= $balance){
         $balance = 0;
       }
       // remarks condition

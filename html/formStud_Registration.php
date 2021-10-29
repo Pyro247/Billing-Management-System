@@ -309,7 +309,7 @@
         <script src="../js/registration.js"></script>
         <script>
             $(document).ready(function () {
-                let program = $('#studProgram').val();
+                let program = '<?= $rowStudInfo['csi_program']?>'
                 let selectedMajor = '<?= $rowStudInfo['csi_major']?>'
                 $('#currentSem').val('<?= $rowStudInfo['csi_semester']?>');
                 $('#currentYearLevel').val('<?= $rowStudInfo['csi_year_level']?>');

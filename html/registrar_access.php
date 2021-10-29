@@ -156,9 +156,9 @@
           <hr class="mt-0 mb-3">
             <form action="" id="newScholarship">
 
-              <p>Description &nbsp;<input type="text"  name="scholarDesc" placeholder="Description"></p>
+              <p>Description &nbsp;<input type="text"  name="scholarDesc" id="scholarDesc" placeholder="Description"></p>
               <p>Type &nbsp;
-                <select name="scholarType" id="">
+                <select name="scholarType" id="scholarType">
                   <option value="Full">Full</option>
                   <option value="Half">Partial</option>
                 </select>
@@ -1542,7 +1542,7 @@
               <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add Academic Year</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(1)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
-                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)"><i class="fas fa-plus"></i>&nbsp;Add Scholarship</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)" id="addScholarship"><i class="fas fa-plus" ></i>&nbsp;Add Scholarship</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
               </div>
               <div class="col universal_bg_gray_table">
@@ -2392,11 +2392,71 @@
             availablePrograms('%');
           }
         });
+        $('#addScholarship').click(function (e) { 
+          $("input[name='scholarDesc']").val('');
+          $("input[name='scholarType']").val('');
+        });
         // New Scholarship
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
-          let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
-          manageFees(newScholarship,2);
+          if($('#addNewScholarship').text() == 'Submit'){
+            let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
+            $.ajax({
+              type: "POST",
+              url: "../includes/manageFess.php",
+              data: newScholarship,
+              success: function (response) {
+                console.log(response)
+                
+                if(response.status == 'success'){
+                  Swal.fire({
+                        icon: response.status,
+                        text: response.message,
+                        confirmButtonText: 'Ok'
+                      })
+                      closePopUp(2)
+                }else{
+                  closePopUp(2)
+                  Swal.fire({
+                    title: 'Already Exist',
+                    text: 'Do you want to update it?',
+                    icon: response.status,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      $('#addNewScholarship').text('Update');
+                      $( "input[name='scholarDesc']" ).prop( "disabled", true );
+                      popUpAdmin_SchoolFees(2)
+                    }
+                  })
+                }
+                
+              }
+            });
+          }else{
+            $.ajax({
+              type: "POST",
+              url: "../includes/manageFess.php",
+              data: {
+                'udpateScholarship': 1,
+                'scholarDesc': $("input[name='scholarDesc']").val(),
+                'scholarType': $("#scholarType").find(":selected").val()
+              },
+              dataType: "json",
+              success: function (response) {
+                Swal.fire({
+                        icon: response.status,
+                        text: response.message,
+                        confirmButtonText: 'Ok'
+                      })
+                      closePopUp(2)
+              }
+            });
+          }
+          
         });
         // New Discount
         $('#addNewDiscount').click(function (e) { 

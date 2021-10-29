@@ -43,35 +43,67 @@
     }
     echo json_encode($response);
   }
-  if(isset($_POST['addNewScholarship'])){
+  if(isset($_POST['udpateScholarship'])){
     $scholarDesc = $_POST['scholarDesc'];
     $scholarType = $_POST['scholarType'];
-    $sqlNewScholar = "INSERT INTO `tbl_scholarship`(`scholar_type`, `scholar_description`) VALUES (?,?)";
-    $stmtNewScholar = $con->prepare($sqlNewScholar);
-    $stmtNewScholar->bind_param('ss', $scholarType,$scholarDesc);
-    if($stmtNewScholar->execute()){
+
+    $slqUpdateScholar = "UPDATE `tbl_scholarship` SET `scholar_type`= ? 
+                        WHERE scholar_description = ?";
+    $stmtUpdateScholar = $con->prepare($slqUpdateScholar);
+    $stmtUpdateScholar->bind_param('ss',$scholarType ,$scholarDesc);
+    if($stmtUpdateScholar->execute()){
       $response['status'] = 'success';
-      $response['message'] = 'Successfully Added New School Year';
+      $response['message'] = 'Scholarship updated Successfully';
     }else{
       $response['status'] = 'error';
-      $response['message'] = 'Failed to Add New School Year!';
+      $response['message'] = 'Scholarship udpate failed';
     }
     echo json_encode($response);
   }
-  if(isset($_POST['addNewDiscount'])){
-    $discountDesc = $_POST['discountDesc'];
-    $discountPer = $_POST['discountPer'];
-    $sqlnewDiscount = "INSERT INTO `tbl_discount`(`discount_type`, `discount_percent`) VALUES (?,?)";
-    $stmtNewDiscount = $con->prepare($sqlnewDiscount);
-    $stmtNewDiscount->bind_param('ss', $discountDesc,$discountPer);
-    if($stmtNewDiscount->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Successfully Added New School Year';
-    }else{
+  if(isset($_POST['addNewScholarship'])){
+    $scholarDesc = $_POST['scholarDesc'];
+    $scholarType = $_POST['scholarType'];
+
+    $sqlCheckDesc = "SELECT * FROM `tbl_scholarship`  WHERE scholar_description = ? ";
+    $stmtCheckDesc = $con->prepare($sqlCheckDesc);
+    $stmtCheckDesc->bind_param('s', $scholarDesc);
+    $stmtCheckDesc->execute();
+    $resCheckDesc = $stmtCheckDesc->get_result();
+
+    if($resCheckDesc->num_rows > 0){
       $response['status'] = 'error';
-      $response['message'] = 'Failed to Add New School Year!';
+        $response['message'] = 'This Scholarship is already exist';
+        echo json_encode($response);
+    }else{
+      $sqlNewScholar = "INSERT INTO `tbl_scholarship`(`scholar_type`, `scholar_description`) VALUES (?,?)";
+      $stmtNewScholar = $con->prepare($sqlNewScholar);
+      $stmtNewScholar->bind_param('ss', $scholarType,$scholarDesc);
+      if($stmtNewScholar->execute()){
+        $response['status'] = 'success';
+        $response['message'] = 'Successfully Added New Scholarship';
+      }else{
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to Add New Scholarship!';
+      }
+      echo json_encode($response);
     }
-    echo json_encode($response);
+    if(isset($_POST['addNewDiscount'])){
+      $discountDesc = $_POST['discountDesc'];
+      $discountPer = $_POST['discountPer'];
+      $sqlnewDiscount = "INSERT INTO `tbl_discount`(`discount_type`, `discount_percent`) VALUES (?,?)";
+      $stmtNewDiscount = $con->prepare($sqlnewDiscount);
+      $stmtNewDiscount->bind_param('ss', $discountDesc,$discountPer);
+      if($stmtNewDiscount->execute()){
+        $response['status'] = 'success';
+        $response['message'] = 'Successfully Added New Discount';
+      }else{
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to Add New Discount!';
+      }
+      echo json_encode($response);
+    }
+   
+   
   }
   if(isset($_POST['updateProgram'])){
     $programId = $_POST['programId'];
