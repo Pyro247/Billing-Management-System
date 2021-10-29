@@ -29,24 +29,24 @@
   $stud_discount = $_POST['stud_discount'] ?? 0;
 
   if(!isset($_POST['req_form137']) ){
-    $req_form_137 = '';
+    $req_form_137 = 'x';
   }else{
-    $req_form_137 = date("m.d.y");
+    $req_form_137 = $_POST['req_form137'];
   }
   if(!isset($_POST['req_form138'])){
-    $req_form_138 = '';
+    $req_form_138 = 'x';
   }else{
-    $req_form_138 = date("m.d.y");
+    $req_form_138 = $_POST['req_form138'];
   }
   if(!isset($_POST['req_psa'])){
-    $req_psa_birth_cert = '';
+    $req_psa_birth_cert = 'x';
   }else{
-    $req_psa_birth_cert = date("m.d.y");
+    $req_psa_birth_cert = $_POST['req_psa'];
   }
   if(!isset($_POST['req_good_moral'])){
-    $req_good_moral = '';
+    $req_good_moral = 'x';
   }else{
-    $req_good_moral = date("m.d.y");
+    $req_good_moral = $_POST['req_good_moral'];
   }
 
   if(isset($_POST['newStud'])){

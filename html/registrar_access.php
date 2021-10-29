@@ -765,7 +765,7 @@
                       <button type="button" name="" id="add" class="btn btn-info">Add</button>
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="button" name="stud_save" id="studSave" class="btn btn-success"disabled >Save </button>
-                      <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button>
+                      <!-- <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button> -->
 
                       <a class="btn btn-primary" id="stud_archive">Archive</a>
                       <script type="text/javascript">
@@ -957,6 +957,12 @@
                               <label for="empAddress">Address</label>
                             </div>
                           </div>
+                          <div class="col-md">
+                            <div class="form-floating">
+                              <input type="date" class="form-control" name="empHireDate" id="empHireDate" placeholder=" " value="" disabled>
+                              <label for="empHireDate">Hire Date</label>
+                            </div>
+                          </div>
                         </div>
 
                         <div class="row g-2 mb-1">
@@ -995,7 +1001,7 @@
                     <div class="buttons_manage_universal">
                       <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
                       <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
-                      <button type="submit" name="emp_delete" class="btn btn-danger" id="empDel" disabled>Delete</button>
+                      <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
                       
                     </div> 
                   </form>
@@ -2218,8 +2224,8 @@
       <!-- Script For Manage User-Employee Admin Access -->
       <script>
         let allData = '%'
-        let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname']
-        let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo']
+        let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empHireDate']
+        let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo','empHireDate']
         // Mange User Clicked
         $('#v-pills-manage-users-tab').click(function (e) { 
           e.preventDefault();
@@ -2245,11 +2251,26 @@
             $("#empDel").prop("disabled", true);
 
           }else{
-            let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
-            empActions(newEmp);
-            empFieldsAttr(partialfields,true)
-            $("#empAdd").prop("disabled", false);
-            $("#empSave").prop("disabled", true);
+            if($('#empRole').val() == 'N/A'){
+              $('#empRole').focus()
+            }else if($('#empId').val() == 0){
+              $('#empId').focus()
+            }else if($('#empFirstname').val() == ''){
+              $('#empFirstname').focus()
+            }else if($('#empMiddlename').val() == ''){
+              $('#empMiddlename').focus()
+            }else if($('#empLastname').val() == ''){
+              $('#empLastname').focus()
+            }else if($('#empHireDate').val() == ''){
+              $('#empHireDate').focus()
+            }else{
+              let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
+              empActions(newEmp);
+              empFieldsAttr(partialfields,true)
+              $("#empAdd").prop("disabled", false);
+              $("#empSave").prop("disabled", true);
+            }
+            
           }
         });
         // Edit Button
@@ -2277,6 +2298,7 @@
                 $("input[name='emp_lastname']").val(data.lastname);
                 $("#empSex").val(data.sex);
                 $("input[name='emp_address']").val(data.address);
+                $("#empHireDate").val(data.hiredate);
                 $("input[name='emp_email']").val(data.email);
                 $("input[name='emp_contact_number']").val(data.contact_number);
                 

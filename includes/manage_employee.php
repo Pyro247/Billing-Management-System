@@ -10,12 +10,13 @@
     $emp_firstname = $_POST['emp_firstname'];
     $emp_middlename = $_POST['emp_middlename'];
     $emp_lastname = $_POST['emp_lastname'];
+    $empHire = $_POST['empHireDate'];
   }
 
   if(isset($_POST['newEmp'])){
-    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`employee_id`, `role`, `firstname`, `lastname`, `middlename`) VALUES (?,?,?,?,?)";  
+    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`employee_id`, `role`, `firstname`, `lastname`, `middlename`,hireDate) VALUES (?,?,?,?,?,?)";  
     $stmtNewEmp = $con->prepare($sqlNewEmp);
-    $stmtNewEmp->bind_param('sssss',$emp_id,$emp_role,$emp_firstname,$emp_lastname,$emp_middlename);
+    $stmtNewEmp->bind_param('ssssss',$emp_id,$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$empHire);
     if($stmtNewEmp->execute()){
       $response['status'] = 'success';
       $response['message'] = 'Successfully saved';
@@ -43,6 +44,7 @@
     $data['email'] = $rowGetEmp['email'];
     $data['address'] = $rowGetEmp['address'];
     $data['contact_number'] = $rowGetEmp['contact_number'];
+    $data['hiredate'] = $rowGetEmp['hireDate'];
     echo json_encode($data);
   }
   if(isset($_POST['updateEmp'])){
@@ -51,9 +53,9 @@
     $emp_email = $_POST['emp_email'];
     $emp_contact_number = $_POST['emp_contact_number'];
 
-    $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ? WHERE employee_id = ? ";  
+    $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ? WHERE employee_id = ? ";  
     $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);
-    $stmtUpdateEmp->bind_param('sssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$emp_id);
+    $stmtUpdateEmp->bind_param('ssssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$empHire,$emp_id);
     if($stmtUpdateEmp->execute()){
       $response['status'] = 'success';
       $response['message'] = 'Successfully Updated';
@@ -82,7 +84,7 @@
   // <!-- Display Data Tables -->
   if(isset($_POST['showEmp'])){
     $filterBy = $_POST['filterBy'];
-    $sql ="SELECT `employee_id`,`firstname`, `lastname`, `role`,`joined_date` 
+    $sql ="SELECT `employee_id`,`firstname`, `lastname`, `role`,`hireDate` 
             FROM `tbl_employee_info` 
             WHERE role LIKE ?";
     $stmt = $con->prepare($sql);
@@ -100,7 +102,7 @@
       <td><?=$data['firstname'];?></td>
       <td><?=$data['lastname'];?></td>
       <td><?=$data['role'];?></td>
-      <td><?=$data['joined_date'];?></td>
+      <td><?=$data['hireDate'];?></td>
       <td>
       <button href="#" type="button" class="btn btn-primary"
       id="empEdit"

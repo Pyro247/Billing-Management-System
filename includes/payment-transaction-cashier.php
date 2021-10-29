@@ -95,6 +95,7 @@
         $balance = $balance - $amount;
       }else if($amount >= $balance){
         $balance = 0;
+        $amount = $row['balance'];
       }
       // remarks condition
       if($balance == 0){
