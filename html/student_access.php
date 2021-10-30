@@ -586,7 +586,7 @@
                     </table>
                    
                     </div>
-                <button class="btn btn-outline-primary" onclick="exportTableToExcel('transactionHistory', 'Transaction-History')">Export to Excel</button>
+                <button class="btn btn-outline-primary" onclick="exportTableToExcel('transactionHistory', '-Transaction-History-student'+'<?= $_SESSION['fullname'];?>')">Export to Excel</button>
             </div>
 
             </div>
@@ -763,8 +763,12 @@
                         }
                     });
                 });
-                // Export Excel
-                function exportTableToExcel(tableID, filename = ''){
+                
+            });
+        </script>
+        <script>
+            // Export Excel
+            function exportTableToExcel(tableID, filename = ''){
                     var downloadLink;
                     var dataType = 'application/vnd.ms-excel';
                     var tableSelect = document.getElementById(tableID);
@@ -794,9 +798,7 @@
                         downloadLink.click();
                     }
                 }
-            });
         </script>
-
         
 
     <script>            

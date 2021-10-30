@@ -1251,7 +1251,7 @@
                       </div>
 
                     <div class="col-md">  
-                      <button type="button" onclick="exportTableToExcel('archiveTable', 'Archive')" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
+                      <button type="button" onclick="exportTableToExcel('archiveTable', 'ArchiveData')" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
                     </div>
                   </div>
 
@@ -2137,36 +2137,7 @@
                 }
               });
           }
-          function exportTableToExcel(tableID, filename = ''){
-            var downloadLink;
-            var dataType = 'application/vnd.ms-excel';
-            var tableSelect = document.getElementById(tableID);
-            var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-            
-            // Specify file name
-            filename = filename?filename+'.xls':'excel_data.xls';
-            
-            // Create download link element
-            downloadLink = document.createElement("a");
-            
-            document.body.appendChild(downloadLink);
-            
-            if(navigator.msSaveOrOpenBlob){
-                var blob = new Blob(['\ufeff', tableHTML], {
-                    type: dataType
-                });
-                navigator.msSaveOrOpenBlob( blob, filename);
-            }else{
-                // Create a link to the file
-                downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-            
-                // Setting the file name
-                downloadLink.download = filename;
-                
-                //triggering the function
-                downloadLink.click();
-            }
-          }
+          
         });
       </script>
        <!-- Student Fees Tab-->
@@ -2614,8 +2585,40 @@
     //         });
     //     });
     // }
-
+      
   
+          </script>
+          <script>
+            function exportTableToExcel(tableID, filename = ''){
+              var downloadLink;
+              var dataType = 'application/vnd.ms-excel';
+              var tableSelect = document.getElementById(tableID);
+              var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+              
+              // Specify file name
+              filename = filename?filename+'.xls':'excel_data.xls';
+              
+              // Create download link element
+              downloadLink = document.createElement("a");
+              
+              document.body.appendChild(downloadLink);
+              
+              if(navigator.msSaveOrOpenBlob){
+                  var blob = new Blob(['\ufeff', tableHTML], {
+                      type: dataType
+                  });
+                  navigator.msSaveOrOpenBlob( blob, filename);
+              }else{
+                  // Create a link to the file
+                  downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+              
+                  // Setting the file name
+                  downloadLink.download = filename;
+                  
+                  //triggering the function
+                  downloadLink.click();
+              }
+            }
           </script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
   
