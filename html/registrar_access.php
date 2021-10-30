@@ -102,15 +102,42 @@
       </div>
     </div>
 
+    <!-- Bacherlor's Program Tuition Fee input -->
+    <div class="popUpAdmin_FeesManagement"  style="visibility: hidden; opacity: 0; transition: all 150ms;" id="tuitionFeePopUp">
+      <div class="popUpFeesMgmtinner">
+      <i class="far fa-arrow-circle-left text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5">Enter Tuition Fee</p>
+        <hr class="mt-0 mb-3">
+        <form action="" id="newSY">
+          <p>Lecture Fees&nbsp;<input type="text" name="programId" placeholder="Lecture Fees"></p>
+          <p>Laboratory Fees&nbsp;<input type="text" name="programId" placeholder="Laboratory Fees"></p>
+          
+          <p>Library Fees&nbsp;<input type="text" name="programId" placeholder="Library Fees"></p>
+          
+          <p>Guidance Fees&nbsp;<input type="text" name="programId" placeholder="Guidance Fees"></p>
+          <p>Athletic Fees&nbsp;<input type="text" name="programId" placeholder="Athletic Fees"></p>
+          <p>Computer Fees&nbsp;<input type="text" name="programId" placeholder="Computer Fees"></p>
+          <p>Registration Fees&nbsp;<input type="text" name="programId" placeholder="Registration Fees"></p>
+          <p style="font-size: 1.2rem; font-weight: bold">Total Assessment Fee:&nbsp;<span class="text-primary"></span>
+          
+                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewSY" >Submit</button>
+            </form>
+      </div>
+
+    </div>
+
     <!-- Add Bachelor's Program -->
     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
       <div class="popUpFeesMgmtinner">
-        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1)"></i>
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(2)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
           <hr class="mt-0 mb-3">
             <form action="" id="newProgram">
-            
+            <a class="btn btn-primary d-block mx-auto my-3" id="tuitionFeeBtn">Accessed Fees</a>
+           
+           
             <p>Course ID &nbsp;<input type="text" name="programId" placeholder="Course ID"></p>
+            
             <p>Program &nbsp;<input type="text" name="program" placeholder="Program"></p>
             <p>Major &nbsp;<input type="text" name="major" placeholder="Major"></p>
             <!-- <p>Duration &nbsp;<input type="text" name="duration" placeholder="Duration"></p> -->
@@ -151,7 +178,7 @@
     <!-- Add Scholarship -->
     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
       <div class="popUpFeesMgmtinner">
-        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(2)"></i>
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(3)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Scholarship</p>
           <hr class="mt-0 mb-3">
             <form action="" id="newScholarship">
@@ -159,8 +186,6 @@
               <p>Description &nbsp;<br>
                 <select  name="scholarDesc" id="scholarDesc" placeholder="Description">
                   <option value=""></option>
-                  <option value="Athelete">Athelete</option>
-                  <option value="Academic">Academic</option>
                 </select> 
                 </p>
               <p>Type &nbsp;<br>  
@@ -180,13 +205,13 @@
     <!-- Add Discount -->
     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
       <div class="popUpFeesMgmtinner">
-        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(3)"></i>
+        <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(4)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Discount</p>
           <hr class="mt-0 mb-3">
           <form action="" class="popUpAdminBP" id="newDiscount">
             
             <p>Description &nbsp;<input type="text" name="discountDesc" placeholder="Description"></p>
-            <p>Percentage &nbsp;<input type="number" name="discountPer" placeholder="0.00%"></p>
+            <p>Percentage &nbsp;<input type="text" name="discountPer" placeholder="0.00%"></p>
 
               <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewDiscount">Submit</button>
           </form>
@@ -1557,9 +1582,9 @@
               </form>
               <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add Academic Year</button>
-                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(1)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
-                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)" id="addScholarship"><i class="fas fa-plus" ></i>&nbsp;Add Scholarship</button>
-                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)" id="addScholarship"><i class="fas fa-plus" ></i>&nbsp;Add Scholarship</button>
+                  <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(4)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
               </div>
               <div class="col universal_bg_gray_table">
                 <table class="table">
@@ -1602,6 +1627,12 @@
                   childContainerPopUpForAdmin[index].classList.toggle('animate__animated')
                   childContainerPopUpForAdmin[index].classList.toggle('animate__bounceIn')
                 }
+                
+                
+                  document.querySelector('#tuitionFeeBtn').addEventListener('click', function(){
+                    closePopUp(2); 
+                    popUpAdmin_SchoolFees(1);
+                  })
                 
 
 
@@ -2395,92 +2426,67 @@
             availablePrograms('%');
           }
         });
+        $('#addScholarship').click(function (e) { 
+          $("input[name='scholarDesc']").val('');
+          $("input[name='scholarType']").val('');
+        });
         // New Scholarship
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
           if($('#addNewScholarship').text() == 'Submit'){
             let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
-            if($('#scholarDesc').val() == ''){
-              Swal.fire({
-                icon: 'info',
-                title: 'Oops...',
-                text: 'Scholarship Description is empty',
-                width: '400px'
-              })
-            }else if($('#scholarType').val() == ''){
-              Swal.fire({
-                icon: 'info',
-                title: 'Oops...',
-                text: 'Scholarship Type is empty',
-                width: '400px'
-              })
-            }else{
-              $.ajax({
-                type: "POST",
-                url: "../includes/manageFess.php",
-                data: newScholarship,
-                success: function (response) {
-                  console.log(response)
-                  
-                  if(response.status == 'success'){
-                    Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
-                    if(response.status == 'success'){
-                      $('#scholarDesc').val('');
+            $.ajax({
+              type: "POST",
+              url: "../includes/manageFess.php",
+              data: newScholarship,
+              success: function (response) {
+                console.log(response)
+                
+                if(response.status == 'success'){
+                  Swal.fire({
+                        icon: response.status,
+                        text: response.message,
+                        confirmButtonText: 'Ok'
+                      })
                       closePopUp(2)
+                }else{
+                  closePopUp(2)
+                  Swal.fire({
+                    title: 'Already Exist',
+                    text: 'Do you want to update it?',
+                    icon: response.status,
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      $('#addNewScholarship').text('Update');
+                      $( "input[name='scholarDesc']" ).prop( "disabled", true );
+                      popUpAdmin_SchoolFees(2)
                     }
-                        
-                  }else{
-                    closePopUp(2)
-                    Swal.fire({
-                      title: 'Already Exist',
-                      text: 'Do you want to update it?',
-                      icon: response.status,
-                      showCancelButton: true,
-                      confirmButtonColor: '#3085d6',
-                      cancelButtonColor: '#d33',
-                      confirmButtonText: 'Yes'
-                    }).then((result) => {
-                      if (result.isConfirmed) {
-                        $('#addNewScholarship').text('Update');
-                        $('#scholarType').val(response.scholarType).change();
-                        $( "input[name='scholarDesc']" ).prop( "disabled", true );
-                        popUpAdmin_SchoolFees(2)
-                      }
-                    })
-                  }
-                  
+                  })
                 }
-              });
-            }
-            
+                
+              }
+            });
           }else{
             $.ajax({
               type: "POST",
               url: "../includes/manageFess.php",
-              // url: "process.php",
               data: {
                 'udpateScholarship': 1,
-                'scholarDesc': $('#scholarDesc').val(),
+                'scholarDesc': $("input[name='scholarDesc']").val(),
                 'scholarType': $("#scholarType").find(":selected").val()
               },
               dataType: "json",
               success: function (response) {
-                console.log(response)
                 Swal.fire({
                         icon: response.status,
                         text: response.message,
                         confirmButtonText: 'Ok'
                       })
-                  if(response.status == 'success'){
-                    $("#scholarDesc").val('').change()
-                    $( "input[name='scholarDesc']" ).prop( "disabled", false );
-                    $('#addNewScholarship').text('Submit');
-                    closePopUp(2)
-                }
+                      closePopUp(2)
               }
             });
           }
@@ -2490,89 +2496,7 @@
         $('#addNewDiscount').click(function (e) { 
           e.preventDefault();
           let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
-          
-          if($('#addNewDiscount').text() == 'Submit'){
-            if($("[name='discountDesc']").val() == ''){
-              Swal.fire({
-                  icon: 'info',
-                  title: 'Oops...',
-                  text: 'Discount Description is empty',
-                  width: '400px'
-                })
-            }else if ($("[name='discountPer']").val() == 0){
-              Swal.fire({
-                icon: 'info',
-                title: 'Oops...',
-                text: 'Discount Percentage is empty',
-                width: '400px'
-              })
-            }else{
-              $.ajax({
-                  type: "POST",
-                  url: "../includes/manageFess.php",
-                  data: newDiscount,
-                  success: function (response) {
-                    console.log(response)
-                    
-                    if(response.status == 'success'){
-                      Swal.fire({
-                            icon: response.status,
-                            text: response.message,
-                            confirmButtonText: 'Ok'
-                          })
-                          $("input[name='discountDesc']").val('')
-                          $("input[name='discountPer']").val('')
-                          closePopUp(3)
-                    }else{
-                      closePopUp(3)
-                      Swal.fire({
-                        title: 'Already Exist',
-                        text: 'Do you want to update it?',
-                        icon: response.status,
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        confirmButtonText: 'Yes'
-                      }).then((result) => {
-                        if (result.isConfirmed) {
-                          $('#addNewDiscount').text('Update');
-                          $( "input[name='discountDesc']" ).prop( "disabled", true );
-                          $("input[name='discountPer']").val(response.percent);
-                          popUpAdmin_SchoolFees(3)
-                        }
-                      })
-                    }
-                  }
-              });
-            }
-          }else{
-            $.ajax({
-              type: "POST",
-              url: "../includes/manageFess.php",
-              data: {
-                'updateDiscount': 1,
-                'discountDesc': $("input[name='discountDesc']").val(),
-                'discountPer': $("input[name='discountPer']").val()
-              },
-              dataType: "json",
-              success: function (response) {
-                Swal.fire({
-                  icon: response.status,
-                  text: response.message,
-                  confirmButtonText: 'Ok'
-                })
-                if(response.status == 'success'){
-                  $("input[name='discountDesc']").val('')
-                  $("input[name='discountPer']").val('')
-                  $( "input[name='discountDesc']" ).prop( "disabled", false );
-                  $('#addNewDiscount').text('Submit');
-                  closePopUp(3)
-                }
-                
-              }
-            });
-          }
-          
+          manageFees(newDiscount,3);
         });
         // Edit Program
         $(document).on('click', '#editProgram', function(){ 
@@ -2605,12 +2529,12 @@
             data: newData,
             success: function (response) {
               console.log(response)
-              // Swal.fire({
-              //         icon: response.status,
-              //         text: response.message,
-              //         confirmButtonText: 'Ok'
-              //       })
-              // closePopUp(close)
+              Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+              closePopUp(close)
             }
           });
         }
