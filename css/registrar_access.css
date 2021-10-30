@@ -661,4 +661,7 @@ hr{
     justify-content: center;
 }
 
+#newScholarship select{
+    width: 100%;
+}
 

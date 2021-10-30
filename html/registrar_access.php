@@ -156,13 +156,18 @@
           <hr class="mt-0 mb-3">
             <form action="" id="newScholarship">
 
-              <p>Description &nbsp;<input type="text"  name="scholarDesc" id="scholarDesc" placeholder="Description"></p>
-              <p>Type &nbsp;
+              <p>Description &nbsp;<br>
+                <select  name="scholarDesc" id="scholarDesc" placeholder="Description">
+                  <option value=""></option>
+                </select> 
+                </p>
+              <p>Type &nbsp;<br>  
                 <select name="scholarType" id="scholarType">
                   <option value="Full">Full</option>
                   <option value="Half">Partial</option>
                 </select>
               </p>
+              <input type="text" style="visibility: hidden">
 
                 <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewScholarship">Submit</button>
             </form>
@@ -332,7 +337,7 @@
                     <select class="form-select" id="filterByMajorDash" aria-label="Floating label select example">
                       <option value="All" selected>All</option>
                     </select>
-                    <label for="filterByMajorDash">Choose Filter</label>
+                    <label for="filterByMajorDash">Choose Major</label>
                   </div>
               </div>
               </div> 
@@ -349,7 +354,7 @@
                             <th scope="col">Program</th>
                             <th scope="col">Major</th>
                             <th scope="col">Year Level</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Student Status</th>
                             <th scope="col">Scholarship</th>
                             <th scope="col">LRN</th>
                             <th scope="col">Email</th>
@@ -1209,7 +1214,7 @@
                           <option value="Resign">Resign</option>
                           <option value="Resign">Terminate</option>
                         </select>
-                        <label for="floatingSelect">Reason</label>
+                        <label for="floatingSelect">Condition</label>
                       </div>
                     </div>
 
@@ -1222,7 +1227,7 @@
                           <option value="Registrar">Registrar</option>
                           <option value="Cashier">Cashier</option>
                         </select>
-                        <label for="floatingSelect">Role</label>
+                        <label for="floatingSelect">Student Status</label>
                       </div>
                     </div>
                     
@@ -1263,9 +1268,9 @@
                             <th scope="col">ID number</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
-                            <th scope="col">Role</th>
+                            <th scope="col">Student Status</th>
                             <th scope="col">Email</th>
-                            <th scope="col">Status</th>
+                            <th scope="col">Condition</th>
                             
                           </tr>
                         </thead>
@@ -1447,7 +1452,7 @@
           <th>Total Cash Payment</th>
           <th>Total Fund Transfer</th>
           
-          <th>Variance</th>
+          
           <th>Total Transaction Made</th>
           <th>Date</th>
         </tr>
@@ -1525,6 +1530,9 @@
                           <th scope="col">Major</th>
                           <th scope="col">Year Level</th>
                           <th scope="col">Tuition Fee</th>
+                          <th scope="col">Scholarship</th>
+                          <th scope="col">Scholar Type</th>
+                          <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>
                         </tr>
                       </thead>

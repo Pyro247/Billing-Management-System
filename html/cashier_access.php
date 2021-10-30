@@ -549,8 +549,10 @@ include_once '../connection/Config.php';
 
                 <div class="payments_tab_left mx-2 my-auto">
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
-                  <span class="d-block text-primary text-center" style="font-size: 1.2rem; font-weight: bold;" id="studName">Fullname</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1.3rem;" id="studID">Student ID</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studName">Fullname</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studID">Student ID</span>
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="studName">Program<span>
+                  <span class="d-block text-primary text-center" style="font-size: .9rem; font-weight: bold;" id="studName">Major<span>
                 </div>
                 <div class="payments_tab_right">
                   <form action="">
@@ -572,6 +574,20 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput" >Scholarship Deduction</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput" >Discount Deduction</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
                         <span class="input-group-text beforeInput">Balance</span>
                         <span class="input-group-text">₱</span>
                         <input type="text" class="form-control w-auto" id="studBalance" placeholder="0.00" disabled>
@@ -579,20 +595,13 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount</span>
+                        <span class="input-group-text beforeInput">Amount Paid</span>
                         <span class="input-group-text">₱</span>
                         <input type="number" min="0"class="form-control w-auto" id="studAmountToPay" placeholder="0.00" >
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
                       </div>  
                     </div>
-                    <div class="col">
-                      <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Change</span>
-                        <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="changeCalculated" placeholder="0.00">
-                        
-                      </div>  
-                    </div>
+                    
 
                   <div class="col-12 mt-3 mb-2">
                     <button type="button" class="btn btn-success payVoid"  id="payBtn" disabled>Pay</button>
@@ -703,12 +712,14 @@ include_once '../connection/Config.php';
                 <table class="table">
                     <thead class="text-center">
                       <tr>
-                        <th scope="col">Total Amount Due</th>
-                        <th scope="col">Total Amount Paid</th>
-                        <th scope="col">Balance Remaining</th>
+                        <th scope="col">Transaction No.</th>
+                        <th scope="col">Student No.</th>
+                        <th scope="col">Full Name</th>
                         <th scope="col">Amount Paid</th>
                         <th scope="col">Payment Method</th>
                         <th scope="col">Payment Status</th>
+                        <th scope="col">Payment Gateway</th>
+                        <th scope="col">Remarks</th>
                         <th scope="col">Date</th>
                         
                       </tr>
