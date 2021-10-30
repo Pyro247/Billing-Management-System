@@ -934,8 +934,9 @@ include_once '../connection/Config.php';
                           <th scope="col">Transaction ID</th>
                           <th scope="col">Student ID</th>
                           <th scope="col">Full name</th>
-                          <th scope="col">Amount</th>
+                          <th scope="col">Amount Paid</th>
                           <th scope="col">Payment Method</th>
+                          <th scope="col">Payment Gateway</th>
                           <th scope="col">Payment Status</th>
                           <th scope="col">Date</th>
                       
