@@ -551,8 +551,8 @@ include_once '../connection/Config.php';
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studName">Fullname</span>
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studID">Student ID</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="studName">Program<span>
-                  <span class="d-block text-primary text-center" style="font-size: .9rem; font-weight: bold;" id="studName">Major<span>
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudProg">Program-Major<span>
+                  
                 </div>
                 <div class="payments_tab_right">
                   <form action="">
@@ -576,14 +576,14 @@ include_once '../connection/Config.php';
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput" >Scholarship Deduction</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="scholarDeduction" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput" >Discount Deduction</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="discountDeduction" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
@@ -1339,9 +1339,14 @@ include_once '../connection/Config.php';
                 $('#StudProgram').val(data.program);
                 $('#studName').text(data.fullname);
                 $('#studID').text(data.stud_id);
+                $('#payStudProg').text(data.program);
                 $('#studentTagName').text(data.fullname + ' last transaction');
                 $('#studTuition').val(data.tuition);
+                $('#scholarDeduction').val(data.scholarDeduction);
+                $('#discountDeduction').val(data.discountDeduction);
                 $('#studBalance').val(data.balance);
+                
+                
                 $("#payBtn").removeAttr('disabled');
               }
             }
