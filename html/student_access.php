@@ -152,10 +152,9 @@
                                 <tr>
                                     <th scope="col">Transaction ID</th>
                                     <th scope="col">Amount</th>
-                                    <th scope="col">Payment Method</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Status</th>
-                                    <th scope="col">Cashier</th>
+                                    <th scope="col">Reason To Deny</th>
                                     <th scope="col">Remarks</th>
                                     
                                     
@@ -163,13 +162,10 @@
                                 </thead>
                                 <tbody >
                                 <?php
-                                $sql ="SELECT transaction_no, amount, payment_method, transaction_date, payment_status, cashier_name
-                                        FROM tbl_payments WHERE stud_id = ?
-                                        UNION ALL
-                                        SELECT transaction_no, amount, NUll as payment_method, transaction_date, status, NULL as cashier_name
+                                $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny
                                         FROM tbl_pending_payments WHERE stud_id = ?";
                                 $stmt = $con->prepare($sql);
-                                $stmt->bind_param('ss', $_SESSION['stud_id'], $_SESSION['stud_id']);
+                                $stmt->bind_param('s', $_SESSION['stud_id']);
                                 $stmt->execute();
                                 $res = $stmt->get_result();
                                 $count = $res->num_rows;
@@ -181,19 +177,15 @@
                                 <tr class="text-center">
                                     <td><?=$data['transaction_no'];?></td>
                                     <td><?=$data['amount'];?></td>
-                                    <td><?=$data['payment_method'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
-                                    <?php if($data['payment_status'] == 'Approved'){?>
+                                    <?php if($data['status'] == 'Pending'){?>
                                         <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
-                                    <?php }else if($data['payment_status'] == 'Pending'){?>
-                                        <td class="text-primary text-uppercase fw-bold"><?=$data['payment_status'];?>
-                                        </td>
                                     <?php }else{ ?>
-                                        <td class="text-danger text-uppercase fw-bold"><?=$data['payment_status'];?>
+                                        <td class="text-danger text-uppercase fw-bold"><?=$data['status'];?>
                                         </td>
                                     <?php }?>
-                                    <td><?=$data['cashier_name'];?></td>
-                                    <?php if($data['payment_status'] == 'Denied'){?>
+                                    <td><?=$data['reasonToDeny'];?></td>
+                                    <?php if($data['status'] == 'Denied'){?>
                                         <td>
                                     <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" 
@@ -202,9 +194,6 @@
                                             Resubmit
                                             </button>
                                         </td>
-                                    <?php }else if($data['payment_status'] == 'Approved'){?>
-                                        <td class="text-success text-uppercase fw-bold">Completed
-                                    </td>
                                     <?php }?>
                                 </tr>
                                 <?php }?>
