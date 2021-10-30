@@ -14,7 +14,7 @@
   }
 
   if(isset($_POST['newEmp'])){
-    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`employee_id`, `role`, `firstname`, `lastname`, `middlename`,hireDate) VALUES (?,?,?,?,?,?)";  
+    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES ('',?,?,?,?,?,'','','','',?,'')";  
     $stmtNewEmp = $con->prepare($sqlNewEmp);
     $stmtNewEmp->bind_param('ssssss',$emp_id,$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$empHire);
     if($stmtNewEmp->execute()){

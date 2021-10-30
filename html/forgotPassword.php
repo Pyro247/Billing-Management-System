@@ -19,8 +19,14 @@
     <!-- For Loader -->
     <script type="text/javascript">
         $(window).on("load", function () {
-            $(".loader-wrapper").fadeOut('xslow');
+            closeLoader()
         }); 
+        function openLoader(){
+            $(".loader-wrapper").fadeIn('xslow');
+        }
+        function closeLoader(){
+            $(".loader-wrapper").fadeOut('xslow');
+        }
 
     </script>
 
@@ -41,30 +47,63 @@
             </div>
         </div>
         <!-- LOADER -->
-
-    <?php if(isset($_SESSION['status'])){?>
-        <script>
-            Swal.fire({
-                title: '<?= $_SESSION['msg']; ?>',
-                icon: '<?= $_SESSION['status']; ?>',
-                confirmButtonText: 'OK'
-            });
-        </script>
-    <?php 
-    unset($_SESSION['status']);
-    }?>
     <div class="forgot_wrapper">
 
-        <form action="../includes/resetPassword.inc.php" method="POST">
+        <form action="" method="POST">
         <img src="../images/logo.png" alt="">
             <span class="fyp">Forgot your password?</span>
             <p>Don't worry! Resseting your password is easy. Just type in the email you used to register with us.</p>
 
             <input type="email" name="email" id="email" placeholder="Email" required autocomplete="off">
-            <button type="submit" name="submit">Submit</button>
+            <button type="button" name="submit" id="submit">Submit</button>
             
             <span class="foot">Did you remember your password? <a href="./login.php">Try logging in</a></span>
         </form>
     </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit').click(function (e) { 
+                e.preventDefault();
+                if($('#email').val() == ''){
+                    Swal.fire(
+                        'Empty Field',
+                        'No email entered',
+                        'info'
+                    )
+                }else{
+                    $.ajax({
+                    type: "POST",
+                    url: "../includes/resetPassword.inc.php",
+                    beforeSend: function() {
+                        openLoader()
+                    },
+                    data: {
+                        'submit': 1,
+                        'email': $('#email').val()
+                    },
+                    dataType: "JSON",
+                    success: function (response) {
+                        console.log(response)
+                        if(response.status){
+                            window.location.replace("../html/reset_password.php");
+                        }else if(response.status == 'error'){
+                            Swal.fire(
+                                'Something Went Wrong',
+                                'Please try again letter',
+                                'info'
+                            )
+                        }
+                    },
+                    complete: function() {
+                        closeLoader()
+                    },
+                });
+                }
+                
+            });
+        });
+    </script>
 </body>
 </html>

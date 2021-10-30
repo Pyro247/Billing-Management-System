@@ -31,12 +31,10 @@
       $stmtOtp->bind_param('sss', $generated_otp , $otp_expiration, $user_email);
       $stmtOtp->execute();
       // echo"Hello";
-      // phpmailer object
-      // $mail = new email_otp_send();
-      // $mail->send_email($user_email,$generated_otp);
+      // phpmailer 
       $mail = new PHPMailer(true);
       $mail->smtpClose();
-      $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+      // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
       $mail->isSMTP();                                           
       $mail->Host       = 'smtp.gmail.com';                     
       $mail->SMTPAuth   = true;                                   
@@ -52,15 +50,17 @@
   
       if($mail->send()){
         $_SESSION['email'] = $user_email;
-        header('Location: ../html/reset_password.php');
+        $response['status'] = 'success'; 
       }else{
+        $response['status'] = 'error'; 
           echo 'Something went wrong';
       }
+          
     }else{
-      $_SESSION['status'] = "error";
-      $_SESSION['msg'] = "Email not found";
-      header('Location: ../html/forgotPassword.php');
+      $response['status'] = 'error';
+      $response['message'] = 'Email not exist';
     }
+    echo json_encode($response);
   }
   if (isset($_POST['verifiedOtp'])){
     $otp = $_POST['otp'];
@@ -83,41 +83,33 @@
         $stmtOtp = $con->prepare($sqlOtp);
         $stmtOtp->bind_param('sss', $otp , $otp_expiration, $email);
         $stmtOtp->execute();
-        $_SESSION['statusOtp'] = "info";
-        $_SESSION['msgOtp'] = "Otp expired";
-        header('Location: ../html/reset_password.php');
+        session_destroy();
+        $response['status'] = 'info';
+        $response['message'] = 'OTP expired';
       }else{
-        $_SESSION['statusOtp'] = "success";
-      header('Location: ../html/reset_password.php');
+        $response['status'] = 'success';
       }
       
     }else{
-      $_SESSION['statusOtp'] = "error";
-      $_SESSION['msgOtp'] = "Otp Incorrect";
-      header('Location: ../html/reset_password.php');
+      $response['status'] = 'error';
+      $response['message'] = 'OTP incorrect';
     }
+    echo json_encode($response);
   }
 
   if(isset($_POST['changePass'])){
     $email =$_POST['email'];
     $password =$_POST['password'];
-    $confirmPass =$_POST['confirmPass'];
     $otp = "";
     $otp_expiration ="";
-    if($password == $confirmPass){
       $sqlChangePass = "UPDATE `tbl_accounts` SET `password`= ?,`otp_code`= ?,`otp_expiration`= ? WHERE email = ?";
       $stmtChangePss = $con->prepare($sqlChangePass);
       $stmtChangePss->bind_param('ssss', $password,  $otp, $otp_expiration, $email);
       if($stmtChangePss->execute()){
-        $_SESSION['statuspass'] = "success";
-        $_SESSION['msgpass'] = "Password has been changed";
-        header('Location: ../html/reset_password.php');
+        $response['status'] = 'success';
+        $response['message'] = 'Password has been changed';
       }
-    }else{
-      $_SESSION['statuspass'] = "info";
-      $_SESSION['msgpass'] = "Password Not Match";
-      header('Location: ../html/reset_password.php');
-    }
+    echo json_encode($response);
   }
 // Generate OTP
 function generateNumericOTP($n){

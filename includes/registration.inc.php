@@ -80,7 +80,7 @@
         $stmtDetails->execute();
         // Creating Account to the databse
         $fullname = $firstname.' '.$lastname;
-        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`) VALUES (?,?,?,?,?)";
+        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES (?,?,?,?,?,'','')";
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {
@@ -93,7 +93,7 @@
         
       }else {
         $response['status'] = 'error';
-        $response['message'] = 'Failed to Registered';
+        $response['message'] = 'Failed to Registered Here';
       }
     }
     if(isset($_POST['role']) && ($_POST['role'] == 'Cashier' || $_POST['role'] == 'Registrar' ) ){
@@ -136,7 +136,7 @@
       if ( $stmtEmpReg->execute() ){
         // Save Account
         $fullname = $firstname.' '.$lastname;
-        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`) VALUES (?,?,?,?,?)";
+        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES (?,?,?,?,?,'','')";
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {

@@ -1,55 +1,58 @@
 
 <?php
   include_once '../connection/Config.php';
-  header('Content-type: application/json');
   session_start();
   $response = array();
-  // Getting POST DATA
-  //  student info table
+  header('Content-type: application/json');
   if(isset($_POST['student_number'])){
-    $student_number =$_POST['student_number'];
-    $stud_firstname =$_POST['stud_firstname'];
-    $stud_middlename =$_POST['stud_middlename'];
-    $stud_lastname =$_POST['stud_lastname'];
-    $stud_program =$_POST['stud_program'];
-    $stud_major =$_POST['stud_major'];
-    $stud_scholarship =$_POST['stud_scholarship'];
-    $stud_fee =$_POST['stud_fee'];
-    $empId = $_POST['empId'];
-    $empName = $_POST['empName'];
+      $student_number =$_POST['student_number'];
+        $stud_firstname =$_POST['stud_firstname'];
+        $stud_middlename =$_POST['stud_middlename'];
+        $stud_lastname =$_POST['stud_lastname'];
+        $stud_program =$_POST['stud_program'];
+        $stud_major =$_POST['stud_major'];
+        $stud_scholarship =$_POST['stud_scholarship'];
+        $stud_fee =$_POST['stud_fee'];
+        $empId = $_POST['empId'];
+        $empName = $_POST['empName'];
+        
+         $stud_school_year = $_POST['stud_school_year'] ?? '';
+        $stud_semester = $_POST['stud_semester'] ?? '';
+        $stud_year_level = $_POST['stud_year_level'] ?? '';
+        $stud_year_level = $_POST['stud_year_level'] ?? '';
+        $stud_status = $_POST['stud_status'] ?? '';
+        $stud_lrn = $_POST['stud_lrn'] ?? '';
+        $stud_discount = $_POST['stud_discount'] ?? 0;
+       
+       if(!isset($_POST['req_form137']) ){
+    $req_form_137 = 'x';
+      }else{
+        $req_form_137 = $_POST['req_form137'];
+      }
+      if(!isset($_POST['req_form138'])){
+        $req_form_138 = 'x';
+      }else{
+        $req_form_138 = $_POST['req_form138'];
+      }
+      if(!isset($_POST['req_psa'])){
+        $req_psa_birth_cert = 'x';
+      }else{
+        $req_psa_birth_cert = $_POST['req_psa'];
+      }
+      if(!isset($_POST['req_good_moral'])){
+        $req_good_moral = 'x';
+      }else{
+        $req_good_moral = $_POST['req_good_moral'];
+      }
+
     
   }
-  //  student school details table
-  $stud_school_year = $_POST['stud_school_year'] ?? '';
-  $stud_semester = $_POST['stud_semester'] ?? '';
-  $stud_year_level = $_POST['stud_year_level'] ?? '';
-  $stud_year_level = $_POST['stud_year_level'] ?? '';
-  $stud_status = $_POST['stud_status'] ?? '';
-  $stud_lrn = $_POST['stud_lrn'] ?? '';
-  $stud_discount = $_POST['stud_discount'] ?? 0;
 
-  if(!isset($_POST['req_form137']) ){
-    $req_form_137 = 'x';
-  }else{
-    $req_form_137 = $_POST['req_form137'];
-  }
-  if(!isset($_POST['req_form138'])){
-    $req_form_138 = 'x';
-  }else{
-    $req_form_138 = $_POST['req_form138'];
-  }
-  if(!isset($_POST['req_psa'])){
-    $req_psa_birth_cert = 'x';
-  }else{
-    $req_psa_birth_cert = $_POST['req_psa'];
-  }
-  if(!isset($_POST['req_good_moral'])){
-    $req_good_moral = 'x';
-  }else{
-    $req_good_moral = $_POST['req_good_moral'];
-  }
 
+  
   if(isset($_POST['newStud'])){
+      
+        
     // Getting Program ID 
     $sqlGetProgId = "SELECT * FROM `tbl_course_list` WHERE course_major = ?";
     $stmtGetProgId = $con->prepare($sqlGetProgId);
@@ -59,7 +62,7 @@
     $rowGetProgId = $resGetProgId->fetch_assoc();
     $course_id = $rowGetProgId['program_id'];
     //Inserting Data to Student Info
-    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`stud_id`, `firstname`, `lastname`, `middlename`,`registrar_id`, `registrar_name`) VALUES (?,?,?,?,?,?)";
+    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES ('',?,?,?,?,'','','','','',?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
     $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
     // Computing Student Fee base on Scholarship and Discount
@@ -110,17 +113,18 @@
     $stmtRequirements = $con->prepare($slqRequirements);
     $stmtRequirements->bind_param('sssss',$student_number,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral);
     // School Details 
-    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `csi_semester`,`csi_program`, `csi_major`, `csi_year_level`) VALUES (?,?,?,?,?)";
+    $sqlDetials = "INSERT INTO `tbl_student_school_details`(`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES (?,'','','',?,?,?,?)";
     $stmtDetails = $con->prepare($sqlDetials);
     $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
-  
-  if($stmtStudInfo->execute() && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()) {
+//    && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()
+  if(  $stmtStudInfo->execute() && $stmtRequirements->execute() && $stmtStudFee->execute() && $stmtDetails->execute() ) {
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
   } else{
     $response['status'] = 'error';
     $response['message'] = 'Failed to save!';
   }
+//  
   echo  json_encode($response);
 }
 if(isset($_POST['edit'])){
