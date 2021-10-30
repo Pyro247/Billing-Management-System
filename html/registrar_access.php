@@ -159,6 +159,8 @@
               <p>Description &nbsp;<br>
                 <select  name="scholarDesc" id="scholarDesc" placeholder="Description">
                   <option value=""></option>
+                  <option value="Athelete">Athelete</option>
+                  <option value="Academic">Academic</option>
                 </select> 
                 </p>
               <p>Type &nbsp;<br>  
@@ -184,7 +186,7 @@
           <form action="" class="popUpAdminBP" id="newDiscount">
             
             <p>Description &nbsp;<input type="text" name="discountDesc" placeholder="Description"></p>
-            <p>Percentage &nbsp;<input type="text" name="discountPer" placeholder="0.00%"></p>
+            <p>Percentage &nbsp;<input type="number" name="discountPer" placeholder="0.00%"></p>
 
               <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewDiscount">Submit</button>
           </form>
@@ -2393,67 +2395,92 @@
             availablePrograms('%');
           }
         });
-        $('#addScholarship').click(function (e) { 
-          $("input[name='scholarDesc']").val('');
-          $("input[name='scholarType']").val('');
-        });
         // New Scholarship
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
           if($('#addNewScholarship').text() == 'Submit'){
             let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
-            $.ajax({
-              type: "POST",
-              url: "../includes/manageFess.php",
-              data: newScholarship,
-              success: function (response) {
-                console.log(response)
-                
-                if(response.status == 'success'){
-                  Swal.fire({
-                        icon: response.status,
-                        text: response.message,
-                        confirmButtonText: 'Ok'
-                      })
+            if($('#scholarDesc').val() == ''){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Scholarship Description is empty',
+                width: '400px'
+              })
+            }else if($('#scholarType').val() == ''){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Scholarship Type is empty',
+                width: '400px'
+              })
+            }else{
+              $.ajax({
+                type: "POST",
+                url: "../includes/manageFess.php",
+                data: newScholarship,
+                success: function (response) {
+                  console.log(response)
+                  
+                  if(response.status == 'success'){
+                    Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+                    if(response.status == 'success'){
+                      $('#scholarDesc').val('');
                       closePopUp(2)
-                }else{
-                  closePopUp(2)
-                  Swal.fire({
-                    title: 'Already Exist',
-                    text: 'Do you want to update it?',
-                    icon: response.status,
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      $('#addNewScholarship').text('Update');
-                      $( "input[name='scholarDesc']" ).prop( "disabled", true );
-                      popUpAdmin_SchoolFees(2)
                     }
-                  })
+                        
+                  }else{
+                    closePopUp(2)
+                    Swal.fire({
+                      title: 'Already Exist',
+                      text: 'Do you want to update it?',
+                      icon: response.status,
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        $('#addNewScholarship').text('Update');
+                        $('#scholarType').val(response.scholarType).change();
+                        $( "input[name='scholarDesc']" ).prop( "disabled", true );
+                        popUpAdmin_SchoolFees(2)
+                      }
+                    })
+                  }
+                  
                 }
-                
-              }
-            });
+              });
+            }
+            
           }else{
             $.ajax({
               type: "POST",
               url: "../includes/manageFess.php",
+              // url: "process.php",
               data: {
                 'udpateScholarship': 1,
-                'scholarDesc': $("input[name='scholarDesc']").val(),
+                'scholarDesc': $('#scholarDesc').val(),
                 'scholarType': $("#scholarType").find(":selected").val()
               },
               dataType: "json",
               success: function (response) {
+                console.log(response)
                 Swal.fire({
                         icon: response.status,
                         text: response.message,
                         confirmButtonText: 'Ok'
                       })
-                      closePopUp(2)
+                  if(response.status == 'success'){
+                    $("#scholarDesc").val('').change()
+                    $( "input[name='scholarDesc']" ).prop( "disabled", false );
+                    $('#addNewScholarship').text('Submit');
+                    closePopUp(2)
+                }
               }
             });
           }
@@ -2463,7 +2490,89 @@
         $('#addNewDiscount').click(function (e) { 
           e.preventDefault();
           let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
-          manageFees(newDiscount,3);
+          
+          if($('#addNewDiscount').text() == 'Submit'){
+            if($("[name='discountDesc']").val() == ''){
+              Swal.fire({
+                  icon: 'info',
+                  title: 'Oops...',
+                  text: 'Discount Description is empty',
+                  width: '400px'
+                })
+            }else if ($("[name='discountPer']").val() == 0){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Discount Percentage is empty',
+                width: '400px'
+              })
+            }else{
+              $.ajax({
+                  type: "POST",
+                  url: "../includes/manageFess.php",
+                  data: newDiscount,
+                  success: function (response) {
+                    console.log(response)
+                    
+                    if(response.status == 'success'){
+                      Swal.fire({
+                            icon: response.status,
+                            text: response.message,
+                            confirmButtonText: 'Ok'
+                          })
+                          $("input[name='discountDesc']").val('')
+                          $("input[name='discountPer']").val('')
+                          closePopUp(3)
+                    }else{
+                      closePopUp(3)
+                      Swal.fire({
+                        title: 'Already Exist',
+                        text: 'Do you want to update it?',
+                        icon: response.status,
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          $('#addNewDiscount').text('Update');
+                          $( "input[name='discountDesc']" ).prop( "disabled", true );
+                          $("input[name='discountPer']").val(response.percent);
+                          popUpAdmin_SchoolFees(3)
+                        }
+                      })
+                    }
+                  }
+              });
+            }
+          }else{
+            $.ajax({
+              type: "POST",
+              url: "../includes/manageFess.php",
+              data: {
+                'updateDiscount': 1,
+                'discountDesc': $("input[name='discountDesc']").val(),
+                'discountPer': $("input[name='discountPer']").val()
+              },
+              dataType: "json",
+              success: function (response) {
+                Swal.fire({
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+                if(response.status == 'success'){
+                  $("input[name='discountDesc']").val('')
+                  $("input[name='discountPer']").val('')
+                  $( "input[name='discountDesc']" ).prop( "disabled", false );
+                  $('#addNewDiscount').text('Submit');
+                  closePopUp(3)
+                }
+                
+              }
+            });
+          }
+          
         });
         // Edit Program
         $(document).on('click', '#editProgram', function(){ 
@@ -2496,12 +2605,12 @@
             data: newData,
             success: function (response) {
               console.log(response)
-              Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
-              closePopUp(close)
+              // Swal.fire({
+              //         icon: response.status,
+              //         text: response.message,
+              //         confirmButtonText: 'Ok'
+              //       })
+              // closePopUp(close)
             }
           });
         }
