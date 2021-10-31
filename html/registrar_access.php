@@ -1321,7 +1321,7 @@
                 <button id="Daily" class="btn btn-outline-primary active mx-1">Daily</button>
                 <button id="Monthly" class="btn btn-outline-primary mx-1">Monthly</button>
                 <button id="Annually" class="btn btn-outline-primary mx-1">Annually</button>
-                <button class="btn btn-outline-primary float-end">Export To Excel</button>
+                <button type="button" onclick="exportTableToExcel('reportsTable', 'Reports')" class="btn btn-outline-primary float-end">Export To Excel</button>
                   
                   
                 </div>
@@ -1395,40 +1395,6 @@
           borderWidth: 1
         }]
       },
-      data1: {
-    labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      datasets: [{
-          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
-          backgroundColor: [
-              'rgba(214, 40, 78, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
-              
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)'
-              
-          ],
-          borderWidth: 1
-        }]
-      },
-      data2: {
-    labels: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011'],
-      datasets: [{
-          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
-          backgroundColor: [
-              'rgba(214, 40, 78, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
-              
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)'
-              
-          ],
-          borderWidth: 1
-        }]
-      },
       options: {
         scales: {
             y: {
@@ -1453,21 +1419,6 @@
         
       }
     });
-    var context = document.getElementById('myChart').getContext('2d');
-      new Chart(context).Line(data);
-    
-  $("#Daily").on("click", function() {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, data);
-  });
-  $("#Monthly").on("click", function() {
-    var context2 = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, data1);
-  });
-  $("#Annually").on("click", function() {
-    var context3 = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, dat2);
-  });
 </script>
 
 <div class="universal_bg_gray_table">
@@ -1488,8 +1439,8 @@
       <tbody>
       <?php
 
-          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, 
-          `variance`, `total_transaction_count`, `date` FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
+          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
+          FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
           $stmt = $con->prepare($sql);
           $stmt->execute();
           $res = $stmt->get_result();
@@ -1502,10 +1453,9 @@
           <tr class="text-center">
               <td><?=$data['cashier_id'];?></td>
               <td><?=$data['cashier_name'];?></td>
+              <td><?=$data['total_transaction_amount'];?></td>
               <td><?=$data['cash_payment'];?></td>
               <td><?=$data['fund_transfer'];?></td>
-              <td><?=$data['total_transaction_amount'];?></td>
-              <td><?=$data['variance'];?></td>
               <td><?=$data['total_transaction_count'];?></td>
               <td><?=$data['date'];?></td>
               
