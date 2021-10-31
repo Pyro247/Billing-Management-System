@@ -151,10 +151,11 @@
                                 <thead class="thead-light text-center">
                                 <tr>
                                     <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount</th>
+                                    <th scope="col">Amount Paid</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Reason To Deny</th>
+                                    <th scope="col">Payment Status</th>
+                                    <th scope="col">Reason To Denied</th>
+                                    <th scope="col">Person in Charge</th>
                                     <th scope="col">Remarks</th>
                                     
                                     
@@ -186,6 +187,7 @@
                                     <?php }?>
                                     <td><?=$data['reasonToDeny'];?></td>
                                     <?php if($data['status'] == 'Denied'){?>
+                                        <td></td>
                                         <td>
                                     <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" 

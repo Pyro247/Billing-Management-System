@@ -1,7 +1,7 @@
 <?php
   include_once '../connection/Config.php';
 
-  $sql = "SELECT `stud_id`, `firstname`, `lastname`, `role`, `email`, `status` FROM `tbl_archive`";
+  $sql = "SELECT `stud_id`, `firstname`, `lastname`, `email` FROM `tbl_archive`";
   $stmt = $con->prepare($sql);
   $stmt->execute();
   $res = $stmt->get_result();
@@ -14,9 +14,9 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['firstname'];?></td>
     <td><?=$data['lastname'];?></td>
-    <td><?=$data['role'];?></td>
+    <td></td>
     <td><?=$data['email'];?></td>
-    <td><?=$data['status'];?></td>
+    <td></td>
   </tr>
 <?php }?>
 <?php }else{?>
