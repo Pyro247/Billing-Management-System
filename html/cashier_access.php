@@ -521,6 +521,14 @@ include_once '../connection/Config.php';
               <div class="input-group input-group-sm mb-3">
                 
                 <input type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="transactionNo">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Fullname:</span>
+                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="studFullname">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email:</span>
+                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="studEmail">
+                </div>
               </div>
               <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
@@ -551,8 +559,12 @@ include_once '../connection/Config.php';
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studName">Fullname</span>
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studID">Student ID</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="studName">Program<span>
-                  <span class="d-block text-primary text-center" style="font-size: .9rem; font-weight: bold;" id="studName">Major<span>
+                  <!-- <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudProg">Program-Major</span> -->
+
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudScholar">Scholarship</span>
+
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudDiscount">Discount</span>
+                  
                 </div>
                 <div class="payments_tab_right">
                   <form action="">
@@ -560,7 +572,7 @@ include_once '../connection/Config.php';
                       <label class="sr-only" for="StudProgram">Program</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                              <div class="input-group-text beforeInput">Program</div>
+                              <div class="input-group-text beforeInput">Program ID</div>
                             </div>
                           <input type="text" class="form-control w-auto" id="StudProgram" placeholder="Program" disabled>
                         </div>
@@ -576,14 +588,14 @@ include_once '../connection/Config.php';
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput" >Scholarship Deduction</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="scholarDeduction" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
                         <span class="input-group-text beforeInput" >Discount Deduction</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="studTuition" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="discountDeduction" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
@@ -595,7 +607,7 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount Paid</span>
+                        <span class="input-group-text beforeInput">Amount to Pay</span>
                         <span class="input-group-text">₱</span>
                         <input type="number" min="0"class="form-control w-auto" id="studAmountToPay" placeholder="0.00" >
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
@@ -660,9 +672,17 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount</span>
+                        <span class="input-group-text beforeInput">Amount to Pay</span>
                         <span class="input-group-text">₱</span>
                         <input type="text" class="form-control w-auto" id="previewStudAmountToPay" placeholder="0.00" disabled>
+                      
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Cash Amount</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="number" class="form-control w-auto" id="cashAmount" placeholder="0.00">
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
                       </div>  
                     </div>
@@ -1148,7 +1168,10 @@ include_once '../connection/Config.php';
       $(document).on('click', '#deny', function(){
         let transactionNo = $(this).attr("data-id");
         let name = $(this).attr("data-name");
+        let email = $(this).attr("data-email");
         $('#transactionNo').val(transactionNo);
+        $('#studEmail').val(email);
+        $('#studFullname').val(name);
 
       });
       // Send Deny madal button
@@ -1156,13 +1179,22 @@ include_once '../connection/Config.php';
         e.preventDefault();
         let transactionNo = $('#transactionNo').val();
         let reasonToDeny = $('#reasonToDeny').val();
+        let studFullname = $('#studFullname').val();
+        let studEmail = $('#studEmail').val();
         $.ajax({
           type: "POST",
           url: "../includes/managPayments.php",
           data: {
             "deny": 1,
             "transactionNo": transactionNo,
-            "reasonToDeny": reasonToDeny
+            "reasonToDeny": reasonToDeny,
+            "studEmail": studEmail,
+            "studFullname": studFullname,
+            'cashierName': '<?=$_SESSION['fullname']?>',
+            'cashierId': '<?=$_SESSION['employeeId']?>'
+          },
+          beforeSend: function() {
+                openLoader()
           },
           success: function (response) {
             console.log(response)
@@ -1172,7 +1204,10 @@ include_once '../connection/Config.php';
                 'info'
                 )
             viewPending(allData,generalSort);
-          }
+          },
+            complete: function() {
+                closeLoader()
+            },
         });
       });
       // Show Invoice Modal
@@ -1204,31 +1239,38 @@ include_once '../connection/Config.php';
       $(document).ready(function () {
         // Pay Button
         $('#payBtn').click(function (e) { 
+          let amountToPay = $('#studAmountToPay').val();
+          let studBalance = $('#studBalance').val();
           e.preventDefault();
-          let lettersRegex=/^[a-zA-Z]+$/;
-          if($('#studAmountToPay').val() == ''){
-            
+          if(parseInt(studBalance) == 0){
             Swal.fire(
+              'Balance is Zero',
+              'The student is Fully Paid',
+              'info'
+            )
+          
+            }else if(amountToPay == ''){
+              Swal.fire(
               'Insufficient Amount',
               'Empty amount',
               'warning'
             )
-            }else if(parseInt($('#studAmountToPay').val()) < 0){
-            Swal.fire(
+            }else if(parseFloat(amountToPay) > parseFloat(studBalance.replace(/,/g, ""))){
+              Swal.fire(
               'Insufficient Amount',
-              'Negative amount is invalid',
+              'Amount to pay is greater than Student Balance',
               'warning'
             )
-          }else{
-            $("#payModal").modal('show');
-            $('#previewStudId').val($('#studID').text());
-            $('#previewStudName').val($('#studName').text());
-            $('#previewStudProgram').val($('#StudProgram').val());
-            $('#previewStudTuition').val($('#studTuition').val());
-            $('#previewStudBalance').val($('#studBalance').val());
-            $('#previewStudAmountToPay').val($('#studAmountToPay').val());
-            $('#previewChangeCalculated').val($('#changeCalculated').val());
-          }
+            }else{
+              $("#payModal").modal('show');
+              $('#previewStudId').val($('#studID').text());
+              $('#previewStudName').val($('#studName').text());
+              $('#previewStudProgram').val($('#StudProgram').val());
+              $('#previewStudTuition').val($('#studTuition').val());
+              $('#previewStudBalance').val($('#studBalance').val());
+              $('#previewStudAmountToPay').val($('#studAmountToPay').val());
+              $('#previewChangeCalculated').val($('#changeCalculated').val());
+            }
           
         });
         // Search Button
@@ -1247,21 +1289,30 @@ include_once '../connection/Config.php';
           }
         });
         // Calculate Change
-        $('#studAmountToPay').keyup(function (e) { 
+        $('#cashAmount').keyup(function (e) { 
           e.preventDefault();
-          let balance = $('#studBalance').val();
+          let cashAmount = $('#cashAmount').val();
           let amountToPay = $('#studAmountToPay').val();
-          if(parseInt(amountToPay) > parseInt(balance)){
-            $('#changeCalculated').val(parseInt(amountToPay) - parseInt(balance));
-          }else if(parseInt(amountToPay) <= parseInt(balance)){
-            $('#changeCalculated').val('');
+          if(parseInt(cashAmount) > parseInt(amountToPay)){
+            $('#previewChangeCalculated').val(parseInt(cashAmount) - parseInt(amountToPay));
+          }else if(parseInt(cashAmount) <= parseInt(amountToPay)){
+            $('#previewChangeCalculated').val('');
           }
           
         });
         // Transact Payment Button
         $('#transactPayment').click(function (e) { 
           e.preventDefault();
-            $.ajax({
+          let cash = $('#cashAmount').val();
+          let amoutToPay = $('#previewStudAmountToPay').val();
+          if( parseFloat(cash) < parseFloat(amoutToPay)  ){
+            Swal.fire(
+              'Insufficient',
+              'Insufficient Cash ',
+              'error'
+            )
+          }else{
+             $.ajax({
               type: "POST",
               url: "../includes/payment-transaction-cashier.php",
               data: {
@@ -1287,10 +1338,15 @@ include_once '../connection/Config.php';
                   $('#StudProgram').val('');
                   $('#studName').text('Fullname');
                   $('#studID').text('Student ID');
+                  $('#payStudScholar').text('Scholarship');
+                  $('#payStudDiscount').text('Discount');
                   $('#studentTagName').text('Student last transaction');
                   $('#studTuition').val('');
                   $('#studAmountToPay').val('');
+                  $('#cashAmount').val('');
                   $('#studBalance').val('');
+                  $('#scholarDeduction').val('');
+                  $('#discountDeduction').val('');
                   $("#payBtn").prop("disabled", true);
                   viewLastTransaction('')
                 }
@@ -1299,6 +1355,8 @@ include_once '../connection/Config.php';
                 closeLoader()
               },
             });
+          }
+           
           
         });
         // Void Transaction Button
@@ -1336,12 +1394,19 @@ include_once '../connection/Config.php';
                 )
               }else{
                 console.log(data)
-                $('#StudProgram').val(data.program);
+                $('#StudProgram').val(data.prograId);
                 $('#studName').text(data.fullname);
-                $('#studID').text(data.stud_id);
+                $('#studID').text(data.stud_id + ' | ' + data.program);
+                // $('#payStudProg').text(data.program);
+                $('#payStudScholar').text(data.scholar);
+                $('#payStudDiscount').text(data.studDiscount);
                 $('#studentTagName').text(data.fullname + ' last transaction');
                 $('#studTuition').val(data.tuition);
+                $('#scholarDeduction').val(data.scholarDeduction);
+                $('#discountDeduction').val(data.discountDeduction);
                 $('#studBalance').val(data.balance);
+                
+                
                 $("#payBtn").removeAttr('disabled');
               }
             }

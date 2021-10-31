@@ -187,6 +187,8 @@
               <p>Description &nbsp;<br>
                 <select  name="scholarDesc" id="scholarDesc" placeholder="Description">
                   <option value=""></option>
+                  <option value="Athelete">Athelete</option>
+                  <option value="Academic">Academic</option>
                 </select> 
                 </p>
               <p>Type &nbsp;<br>  
@@ -212,8 +214,7 @@
           <form action="" class="popUpAdminBP" id="newDiscount">
             
             <p>Description &nbsp;<input type="text" name="discountDesc" placeholder="Description"></p>
-            <p>Percentage &nbsp;<input type="text" name="discountPer" placeholder="0.00%"></p>
-
+            <p>Percentage &nbsp;<input type="number" name="discountPer" placeholder="0.00%"></p>
               <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewDiscount">Submit</button>
           </form>
             
@@ -1321,7 +1322,7 @@
                 <button id="Daily" class="btn btn-outline-primary active mx-1">Daily</button>
                 <button id="Monthly" class="btn btn-outline-primary mx-1">Monthly</button>
                 <button id="Annually" class="btn btn-outline-primary mx-1">Annually</button>
-                <button class="btn btn-outline-primary float-end">Export To Excel</button>
+                <button type="button" onclick="exportTableToExcel('reportsTable', 'Reports')" class="btn btn-outline-primary float-end">Export To Excel</button>
                   
                   
                 </div>
@@ -1395,40 +1396,6 @@
           borderWidth: 1
         }]
       },
-      data1: {
-    labels: ['January','February','March','April','May','June','July','August','September','October','November','December'],
-      datasets: [{
-          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
-          backgroundColor: [
-              'rgba(214, 40, 78, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
-              
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)'
-              
-          ],
-          borderWidth: 1
-        }]
-      },
-      data2: {
-    labels: ['2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011'],
-      datasets: [{
-          data: ['10','20','30','40','50','60','70','80','90','100','110','120'],
-          backgroundColor: [
-              'rgba(214, 40, 78, 0.2)',
-              'rgba(54, 162, 235, 0.2)'
-              
-          ],
-          borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)'
-              
-          ],
-          borderWidth: 1
-        }]
-      },
       options: {
         scales: {
             y: {
@@ -1453,21 +1420,6 @@
         
       }
     });
-    var context = document.getElementById('myChart').getContext('2d');
-      new Chart(context).Line(data);
-    
-  $("#Daily").on("click", function() {
-    const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, data);
-  });
-  $("#Monthly").on("click", function() {
-    var context2 = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, data1);
-  });
-  $("#Annually").on("click", function() {
-    var context3 = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, dat2);
-  });
 </script>
 
 <div class="universal_bg_gray_table">
@@ -1488,8 +1440,8 @@
       <tbody>
       <?php
 
-          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, 
-          `variance`, `total_transaction_count`, `date` FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
+          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
+          FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
           $stmt = $con->prepare($sql);
           $stmt->execute();
           $res = $stmt->get_result();
@@ -1502,10 +1454,9 @@
           <tr class="text-center">
               <td><?=$data['cashier_id'];?></td>
               <td><?=$data['cashier_name'];?></td>
+              <td><?=$data['total_transaction_amount'];?></td>
               <td><?=$data['cash_payment'];?></td>
               <td><?=$data['fund_transfer'];?></td>
-              <td><?=$data['total_transaction_amount'];?></td>
-              <td><?=$data['variance'];?></td>
               <td><?=$data['total_transaction_count'];?></td>
               <td><?=$data['date'];?></td>
               
@@ -2419,80 +2370,97 @@
           e.preventDefault();
           if($('#addNewProgram').text() === 'Update'){
             let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
-            manageFees(newProgram,1);
+            manageFees(newProgram,2);
             $('#newProgram').trigger('reset');
             $("[name='programId']").prop('readonly', false);
             availablePrograms('%');
 
           }else{
             let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
-            manageFees(newProgram,1);
+            manageFees(newProgram,2);
             $('#newProgram').trigger('reset');
             $('#addNewProgram').text('Submit');
             availablePrograms('%');
           }
-        });
-        $('#addScholarship').click(function (e) { 
-          $("input[name='scholarDesc']").val('');
-          $("input[name='scholarType']").val('');
         });
         // New Scholarship
         $('#addNewScholarship').click(function (e) { 
           e.preventDefault();
           if($('#addNewScholarship').text() == 'Submit'){
             let newScholarship = $('#newScholarship').serialize() + '&addNewScholarship=addNewScholarship';
-            $.ajax({
-              type: "POST",
-              url: "../includes/manageFess.php",
-              data: newScholarship,
-              success: function (response) {
-                console.log(response)
-                
-                if(response.status == 'success'){
-                  Swal.fire({
-                        icon: response.status,
-                        text: response.message,
-                        confirmButtonText: 'Ok'
-                      })
-                      closePopUp(2)
-                }else{
-                  closePopUp(2)
-                  Swal.fire({
-                    title: 'Already Exist',
-                    text: 'Do you want to update it?',
-                    icon: response.status,
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes'
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      $('#addNewScholarship').text('Update');
-                      $( "input[name='scholarDesc']" ).prop( "disabled", true );
-                      popUpAdmin_SchoolFees(2)
-                    }
-                  })
+            if($('#scholarDesc').val() == ''){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Scholarship Description is empty',
+                width: '400px'
+              })
+            }else if($('#scholarType').val() == ''){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Scholarship Type is empty',
+                width: '400px'
+              })
+            }else{
+              $.ajax({
+                type: "POST",
+                url: "../includes/manageFess.php",
+                data: newScholarship,
+                success: function (response) {
+                  console.log(response)
+                  
+                  if(response.status == 'success'){
+                    Swal.fire({
+                          icon: response.status,
+                          text: response.message,
+                          confirmButtonText: 'Ok'
+                        })
+                        closePopUp(3)
+                  }else{
+                    closePopUp(3)
+                    Swal.fire({
+                      title: 'Already Exist',
+                      text: 'Do you want to update it?',
+                      icon: response.status,
+                      showCancelButton: true,
+                      confirmButtonColor: '#3085d6',
+                      cancelButtonColor: '#d33',
+                      confirmButtonText: 'Yes'
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        $('#addNewScholarship').text('Update');
+                        $('#scholarType').val(response.scholarType);
+                        $( "input[name='scholarDesc']" ).prop( "disabled", true );
+                        popUpAdmin_SchoolFees(3)
+                      }
+                    })
+                  }
                 }
-                
-              }
-            });
+            }); 
+            }
           }else{
             $.ajax({
               type: "POST",
               url: "../includes/manageFess.php",
               data: {
                 'udpateScholarship': 1,
-                'scholarDesc': $("input[name='scholarDesc']").val(),
+                'scholarDesc': $('#scholarDesc').val(),
                 'scholarType': $("#scholarType").find(":selected").val()
               },
               dataType: "json",
               success: function (response) {
                 Swal.fire({
-                        icon: response.status,
-                        text: response.message,
-                        confirmButtonText: 'Ok'
-                      })
-                      closePopUp(2)
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+                if(response.status == 'success'){
+                    $("#scholarDesc").val('').change()
+                    $( "input[name='scholarDesc']" ).prop( "disabled", false );
+                    $('#addNewScholarship').text('Submit');
+                    closePopUp(3)
+                }
               }
             });
           }
@@ -2502,7 +2470,86 @@
         $('#addNewDiscount').click(function (e) { 
           e.preventDefault();
           let newDiscount = $('#newDiscount').serialize() + '&addNewDiscount=addNewDiscount';
-          manageFees(newDiscount,3);
+          if($('#addNewDiscount').text() == 'Submit'){
+            if($("[name='discountDesc']").val() == ''){
+              Swal.fire({
+                  icon: 'info',
+                  title: 'Oops...',
+                  text: 'Discount Description is empty',
+                  width: '400px'
+                })
+            }else if ($("[name='discountPer']").val() == 0){
+              Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Discount Percentage is empty',
+                width: '400px'
+              })
+            }else{
+              $.ajax({
+                  type: "POST",
+                  url: "../includes/manageFess.php",
+                  data: newDiscount,
+                  success: function (response) {
+                    console.log(response)
+
+                    if(response.status == 'success'){
+                      Swal.fire({
+                            icon: response.status,
+                            text: response.message,
+                            confirmButtonText: 'Ok'
+                          })
+                          $("input[name='discountDesc']").val('')
+                          $("input[name='discountPer']").val('')
+                          closePopUp(4)
+                    }else{
+                      closePopUp(4)
+                      Swal.fire({
+                        title: 'Already Exist',
+                        text: 'Do you want to update it?',
+                        icon: response.status,
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes'
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          $('#addNewDiscount').text('Update');
+                          $( "input[name='discountDesc']" ).prop( "disabled", true );
+                          $("input[name='discountPer']").val(response.percent);
+                          popUpAdmin_SchoolFees(4)
+                        }
+                      })
+                    }
+                  }
+              });
+            }
+          }else{
+            $.ajax({
+              type: "POST",
+              url: "../includes/manageFess.php",
+              data: {
+                'updateDiscount': 1,
+                'discountDesc': $("input[name='discountDesc']").val(),
+                'discountPer': $("input[name='discountPer']").val()
+              },
+              dataType: "json",
+              success: function (response) {
+                Swal.fire({
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+                if(response.status == 'success'){
+                  $("input[name='discountDesc']").val('')
+                  $("input[name='discountPer']").val('')
+                  $( "input[name='discountDesc']" ).prop( "disabled", false );
+                  $('#addNewDiscount').text('Submit');
+                  closePopUp(4)
+                }
+              }
+            });
+          }
         });
         // Edit Program
         $(document).on('click', '#editProgram', function(){ 
@@ -2514,7 +2561,7 @@
           let semester = $('#'+id).children('td[data-target=semester]').text();
           let tuition_fee = $('#'+id).children('td[data-target=tuition_fee]').text();
           
-          popUpAdmin_SchoolFees(1);
+          popUpAdmin_SchoolFees(2);
           
           $("[name='programId']").val(id);
           $("[name='programId']").prop('readonly', true);
@@ -2536,11 +2583,14 @@
             success: function (response) {
               console.log(response)
               Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
-              closePopUp(close)
+                icon: response.status,
+                text: response.message,
+                confirmButtonText: 'Ok'
+              })
+              if(response.status == 'success'){
+                closePopUp(close)
+              }
+              
             }
           });
         }

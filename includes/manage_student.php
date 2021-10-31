@@ -215,12 +215,11 @@ $sqlUpdateAll = "UPDATE `tbl_student_info` AS info
                 INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
                   SET 
                   info.firstname = ?,info.lastname = ?,info.middlename = ?,
-                  req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,
-                  fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
+                  req.form_137 = ?,req.form_138 = ?,req.psa_birth_cert = ?,req.good_moral= ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
                   det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?
                   WHERE info.stud_id = ?";
 $stmtUpdateAll = $con->prepare($sqlUpdateAll);
-$stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);
+$stmtUpdateAll->bind_param('ssssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$req_form_137,$req_form_138,$req_psa_birth_cert,$req_good_moral,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$student_number);
 
 if($stmtUpdateAll->execute()) {
   $response['status'] = 'success';

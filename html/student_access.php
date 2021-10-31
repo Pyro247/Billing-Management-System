@@ -165,28 +165,51 @@
                         
 
                     
-                        <div class="pendingTransactionTbl p-3">
+<<<<<<< HEAD
+                        <div class="pendingTransactionTbl p-3" id="table_dashboard_id">
                         
                         <h4 id="pendingnDenied">Pending & Denied Transactions</h4>
                         <h4 id="noTransaction" style="color: var(--greenPrimary)">You have 0 Pending or Denied Transactions!</h4>
 
                         
 
-                        <table id="pendingTbl" class="table" style="color: var(--white);">
+                        <table id="myTable" class="table" style="color: var(--white);">
                         <thead class="text-center">
                             <tr>
-                                <th scope="col">Transaction ID</th>
-                                <th scope="col">Amount</th>
-                                <th scope="col">Date</th>
-                                <th scope="col">Payment Status</th>
-                                <th scope="col">Remarks</th>
+                                    <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount Paid</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Payment Status</th>
+                                    <th scope="col">Reason To Denied</th>
+                                    <th scope="col">Person in Charge</th>
+                                    <th scope="col">Remarks</th>
+                                    
                                 
                             </tr>
                             
                         </thead>
                         <tbody class="text-center">
+=======
+                    <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
+                   
+                            <table class="table pb-3 display" id="myTable">
+                                <thead class="thead-light text-center">
+                                <tr>
+                                    <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount Paid</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Payment Status</th>
+                                    <th scope="col">Reason To Denied</th>
+                                    <th scope="col">Person in Charge</th>
+                                    <th scope="col">Remarks</th>
+                                    
+                                    
+                                </tr>
+                                </thead>
+                                <tbody >
+>>>>>>> 630c24bb30763f0d14eafbc36a41fae322c9db3d
                                 <?php
-                                $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny
+                                $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny,cashier_name
                                         FROM tbl_pending_payments WHERE stud_id = ?";
                                 $stmt = $con->prepare($sql);
                                 $stmt->bind_param('s', $_SESSION['stud_id']);
@@ -203,12 +226,13 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
                                     <?php if($data['status'] == 'Pending'){?>
-                                        <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                        <td class="text-success text-uppercase fw-bold"><?=$data['status'];?></td>
                                     <?php }else{ ?>
                                         <td class="text-danger text-uppercase fw-bold"><?=$data['status'];?>
                                         </td>
                                     <?php }?>
                                     <td><?=$data['reasonToDeny'];?></td>
+                                    <td><?=$data['cashier_name'];?></td>
                                     <?php if($data['status'] == 'Denied'){?>
                                         <td>
                                     <!-- Button trigger modal -->
@@ -724,7 +748,7 @@
         </script>
         <!-- Resubmit payment application -->
         <script>
-            $('#ViewReason').click(function (e) { 
+            $(document).on("click","#ViewReason",function(e) {
                 e.preventDefault();
                 let transactionNo = $(this).attr("data-id");
                 $('#TransactionNo').text(transactionNo);

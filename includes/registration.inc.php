@@ -80,7 +80,7 @@
         $stmtDetails->execute();
         // Creating Account to the databse
         $fullname = $firstname.' '.$lastname;
-        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES (?,?,?,?,?,'','')";
+        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `status`, `otp_code`, `otp_expiration`)  VALUES (?,?,?,?,?,'Active','','')";
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {
@@ -136,7 +136,7 @@
       if ( $stmtEmpReg->execute() ){
         // Save Account
         $fullname = $firstname.' '.$lastname;
-        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `otp_code`, `otp_expiration`) VALUES (?,?,?,?,?,'','')";
+        $slqAcc = "INSERT INTO `tbl_accounts`(`user_id`, `fullname`, `email`, `password`, `role`, `status`, `otp_code`, `otp_expiration`)  VALUES (?,?,?,?,?,'Active','','')";
         $stmtAcc = $con->prepare($slqAcc);
         $stmtAcc->bind_param('sssss', $userId, $fullname, $email, $password, $role);
         if ( $stmtAcc->execute() ) {

@@ -20,7 +20,7 @@
     $row = $res->fetch_assoc();
     if( $res->num_rows > 0 ) {
       $programID = $row['program_id'];
-      $slqProg = "SELECT CONCAT(course_program,'-',course_major) as Program 
+      $slqProg = "SELECT program_id,CONCAT(course_program,'-',course_major) as Program 
                     FROM tbl_course_list
                     WHERE program_id = ?";
       $stmtProg = $con->prepare( $slqProg );
@@ -30,10 +30,43 @@
       $rowProg = $resProg->fetch_assoc();
 
       $data['program'] = $rowProg['Program'];
+      $data['prograId'] = $rowProg['program_id'];
+      // Data from tbl student fees
       $data['fullname'] = $row['fullname'];
       $data['stud_id'] = $row['stud_id'];
-      $data['tuition'] = $row['tuition_fee'];
-      $data['balance'] = $row['balance'];
+      $data['tuition'] = number_format($row['tuition_fee'], 2);
+      $data['balance'] = number_format($row['balance'], 2);
+      $scholar_type = $row['scholar_type'];
+      $scholar_desc = $row['scholar_desc'];
+      $discount_type = $row['discount_type'];
+      $balance = 0;
+      // Calculate Scholar Deduction
+      if( $scholar_type == 'N/A' ){
+        $data['scholarDeduction'] = number_format( 0, 2);
+        $data['scholar'] = '';
+      }else if( $scholar_type == 'Partial Scholar' ){
+        $balance = $row['tuition_fee'] / 2;
+        $data['scholarDeduction'] = number_format($balance, 2);
+        $data['scholar'] = 'Half Scholar'.'('.$scholar_desc.')';
+      }else if ( $scholar_type == 'Full Scholar' ){
+        $data['scholarDeduction'] = number_format( $row['tuition_fee'] , 2);
+        $data['scholar'] = 'Full Scholar'.'('.$scholar_desc.')';
+      }
+      // Caslculate Discount Deduction
+      if($discount_type == 'N/A'){
+        $data['discountDeduction'] = number_format( 0, 2);
+        $data['studDiscount'] = '';
+      }else{
+        $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+          $stmtGetDisc = $con->prepare($sqlGetDisc);
+          $stmtGetDisc->bind_param('s',$discount_type);
+          $stmtGetDisc->execute();
+          $resGetDisc = $stmtGetDisc->get_result();
+          $rowGetDisc  = $resGetDisc->fetch_assoc();
+          $data['studDiscount'] = $discount_type;
+          $data['discountDeduction'] = ((  $balance * ($rowGetDisc['discount_percent'])/  100));
+      }
+     
 
       echo json_encode($data);
     }else{
@@ -176,6 +209,8 @@ while($data = $resLastTransaction->fetch_assoc()){?>
     <td><?=$data['amount'];?></td>
     <td><?=$data['payment_method'];?></td>
     <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+    <td><?=$data['payment_gateway'];?></td>
+    <td><?=$data['remarks'];?></td>
     <td><?=$data['transaction_date'];?></td>
     </tr>
 <?php }?>

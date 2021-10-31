@@ -34,7 +34,7 @@
     }
 
   
-    $slq ="INSERT INTO `tbl_pending_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reasonToDeny`) VALUES (?,?,?,?,?,?,?,?,?,'')";
+    $slq ="INSERT INTO `tbl_pending_payments`(`transaction_no`, `stud_id`, `fullname`, `email`, `amount`, `payment_gateway`, `sales_invoice`, `transaction_date`, `status`, `reasonToDeny`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,'','','')";
     $stmt = $con->prepare($slq);
     $stmt->bind_param('sssssssss',$newTransNo ,$stud_id,$fullname,$email,$amount,$payment_gateway,$file,$transaction_date,$status);
     if($stmt->execute()){
