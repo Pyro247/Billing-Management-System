@@ -551,7 +551,11 @@ include_once '../connection/Config.php';
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studName">Fullname</span>
                   <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studID">Student ID</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudProg">Program-Major<span>
+                  <!-- <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudProg">Program-Major</span> -->
+
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudScholar">Scholarship</span>
+
+                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudDiscount">Discount</span>
                   
                 </div>
                 <div class="payments_tab_right">
@@ -560,7 +564,7 @@ include_once '../connection/Config.php';
                       <label class="sr-only" for="StudProgram">Program</label>
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                              <div class="input-group-text beforeInput">Program</div>
+                              <div class="input-group-text beforeInput">Program ID</div>
                             </div>
                           <input type="text" class="form-control w-auto" id="StudProgram" placeholder="Program" disabled>
                         </div>
@@ -595,7 +599,7 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount Paid</span>
+                        <span class="input-group-text beforeInput">Amount to Pay</span>
                         <span class="input-group-text">₱</span>
                         <input type="number" min="0"class="form-control w-auto" id="studAmountToPay" placeholder="0.00" >
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
@@ -660,9 +664,17 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount</span>
+                        <span class="input-group-text beforeInput">Amount Paid</span>
                         <span class="input-group-text">₱</span>
                         <input type="text" class="form-control w-auto" id="previewStudAmountToPay" placeholder="0.00" disabled>
+                        <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Cash Amount</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="number" class="form-control w-auto" id="cashAmount" placeholder="0.00">
                         <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
                       </div>  
                     </div>
@@ -1205,21 +1217,20 @@ include_once '../connection/Config.php';
         // Pay Button
         $('#payBtn').click(function (e) { 
           e.preventDefault();
-          let lettersRegex=/^[a-zA-Z]+$/;
-          if($('#studAmountToPay').val() == ''){
-            
+          if(parseInt($('#studBalance').val()) == 0){
             Swal.fire(
+              'Balance is Zero',
+              'The student is Fully Paid',
+              'info'
+            )
+           
+            }else if($('#studAmountToPay').val() == ''){
+              Swal.fire(
               'Insufficient Amount',
               'Empty amount',
               'warning'
             )
-            }else if(parseInt($('#studAmountToPay').val()) < 0){
-            Swal.fire(
-              'Insufficient Amount',
-              'Negative amount is invalid',
-              'warning'
-            )
-          }else{
+            }else{
             $("#payModal").modal('show');
             $('#previewStudId').val($('#studID').text());
             $('#previewStudName').val($('#studName').text());
@@ -1247,27 +1258,34 @@ include_once '../connection/Config.php';
           }
         });
         // Calculate Change
-        $('#studAmountToPay').keyup(function (e) { 
+        $('#cashAmount').keyup(function (e) { 
           e.preventDefault();
-          let balance = $('#studBalance').val();
+          let cashAmount = $('#cashAmount').val();
           let amountToPay = $('#studAmountToPay').val();
-          if(parseInt(amountToPay) > parseInt(balance)){
-            $('#changeCalculated').val(parseInt(amountToPay) - parseInt(balance));
-          }else if(parseInt(amountToPay) <= parseInt(balance)){
-            $('#changeCalculated').val('');
+          if(parseInt(cashAmount) > parseInt(amountToPay)){
+            $('#previewChangeCalculated').val(parseInt(cashAmount) - parseInt(amountToPay));
+          }else if(parseInt(amountToPay) <= parseInt(cashAmount)){
+            $('#previewChangeCalculated').val('');
           }
           
         });
         // Transact Payment Button
         $('#transactPayment').click(function (e) { 
           e.preventDefault();
-            $.ajax({
+          if($('#cashAmount').val() < $('#previewStudAmountToPay').val()){
+            Swal.fire(
+              'Insufficient',
+              'Insufficient Cash ',
+              'error'
+            )
+          }else{
+             $.ajax({
               type: "POST",
               url: "../includes/payment-transaction-cashier.php",
               data: {
                 'transact': 'transact',
                 'studId':  $('#studID').text(),
-                'amount': $('#previewStudAmountToPay').val(),
+                'amount': $('#cashAmount').val(),
                 'cashierName': '<?=$_SESSION['fullname']?>',
                 'cashierId': '<?=$_SESSION['employeeId']?>'
               },
@@ -1299,6 +1317,8 @@ include_once '../connection/Config.php';
                 closeLoader()
               },
             });
+          }
+           
           
         });
         // Void Transaction Button
@@ -1336,10 +1356,12 @@ include_once '../connection/Config.php';
                 )
               }else{
                 console.log(data)
-                $('#StudProgram').val(data.program);
+                $('#StudProgram').val(data.prograId);
                 $('#studName').text(data.fullname);
-                $('#studID').text(data.stud_id);
-                $('#payStudProg').text(data.program);
+                $('#studID').text(data.stud_id + ' | ' + data.program);
+                // $('#payStudProg').text(data.program);
+                $('#payStudScholar').text(data.scholar);
+                $('#payStudDiscount').text(data.studDiscount);
                 $('#studentTagName').text(data.fullname + ' last transaction');
                 $('#studTuition').val(data.tuition);
                 $('#scholarDeduction').val(data.scholarDeduction);
