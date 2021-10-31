@@ -149,31 +149,16 @@
                         </div>
                     </div>
 
-                        <!-- <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;"><?= $_SESSION['email'];?></span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; ">₱<?=$rowStud['tuition_fee'];?></span></span>
-                        
-                        </div>
-                        <div class="col d-flex mb-2">
-                            <span class="miniDashboardh3 mx-3 w-50">Remaining Balance: <span class="text-success" style="font-weight: bold;">₱<?=$rowStud['balance'];?></span></span>
-                            <span class="miniDashboardh3 text-end w-50">Last Amount paid: <span class="text-success" style="font-weight: bold;">₱<?= $amount?></span> </span>
 
-                        </div>
-                        <div class="col d-flex">
-                            <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_desc'];?></span></span>
-                            <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <?= $date?> <span class="text-success" style="font-weight: bold; "></span></span>
-                        </div>-->
-                        
-
-                    
-                        <div class="pendingTransactionTbl p-3" id="table_dashboard_id">
+             
+                        <div class="pendingTransactionTbl p-3">
                         
                         <h4 id="pendingnDenied">Pending & Denied Transactions</h4>
                         <h4 id="noTransaction" style="color: var(--greenPrimary)">You have 0 Pending or Denied Transactions!</h4>
 
                         
 
-                        <table id="myTable" class="table" style="color: var(--white);">
+                        <table id="pendingTbl" class="table" style="color: var(--white);">
                         <thead class="text-center">
                             <tr>
                                     <th scope="col">Transaction ID</th>
@@ -188,7 +173,7 @@
                             </tr>
                             
                         </thead>
-                        <tbody class="text-center">
+                                <tbody class="text-center">
                                 <?php
                                 $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny,cashier_name
                                         FROM tbl_pending_payments WHERE stud_id = ?";
@@ -232,20 +217,11 @@
                                 
                                 <?php } 
                                 
-                                ?>
+                                ?> -->
 
-                                </tbody>
-                                
-                          
-                        
-
+                                </tbody> 
                             </table>
-                            </div>
-                        
-                  
-                                    
-                    
-                    
+                            </div> 
                 </div>
             
                 <!-- Modal -->
@@ -836,7 +812,10 @@
           </script> 
            
 
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+
+
 
                         <script>
                             checkPending();
