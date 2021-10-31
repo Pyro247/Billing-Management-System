@@ -41,6 +41,7 @@
 
         <!-- Bootstrap -->
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+        
         <!-- Data Tables -->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         
@@ -165,7 +166,6 @@
                         
 
                     
-<<<<<<< HEAD
                         <div class="pendingTransactionTbl p-3" id="table_dashboard_id">
                         
                         <h4 id="pendingnDenied">Pending & Denied Transactions</h4>
@@ -180,7 +180,7 @@
                                     <th scope="col">Amount Paid</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Payment Status</th>
-                                    <th scope="col">Reason To Denied</th>
+                                    <th scope="col">Reason for Denying</th>
                                     <th scope="col">Person in Charge</th>
                                     <th scope="col">Remarks</th>
                                     
@@ -189,25 +189,6 @@
                             
                         </thead>
                         <tbody class="text-center">
-=======
-                    <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
-                   
-                            <table class="table pb-3 display" id="myTable">
-                                <thead class="thead-light text-center">
-                                <tr>
-                                    <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount Paid</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Payment Status</th>
-                                    <th scope="col">Reason To Denied</th>
-                                    <th scope="col">Person in Charge</th>
-                                    <th scope="col">Remarks</th>
-                                    
-                                    
-                                </tr>
-                                </thead>
-                                <tbody >
->>>>>>> 630c24bb30763f0d14eafbc36a41fae322c9db3d
                                 <?php
                                 $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny,cashier_name
                                         FROM tbl_pending_payments WHERE stud_id = ?";
@@ -247,48 +228,17 @@
                                 </tr>
                                 <?php }?>
                                 <?php }else{?>
-                                   
+                                
                                 
                                 <?php } 
                                 
                                 ?>
 
-
-                                
                                 </tbody>
                                 
-                            </th>
-                        </table>
+                          
                         
 
-                            <!-- <table class="table pb-3 display">
-                                <thead class="thead-dark text-center">
-                                <tr>
-                                    <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Reason To Deny</th>
-                                    <th scope="col">Remarks</th>
-                                    
-                                    
-                                </tr>
-                                </thead>
-                                <tbody >
-                                
-
-
-                                
-                                </tbody>
-                                <!-- <tfoot>
-                                <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Payment Method</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Cashier</th>
-                                    <th scope="col">Remarks</th>
-                        </tfoot> -->
                             </table>
                             </div>
                         
@@ -887,6 +837,7 @@
            
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+
                         <script>
                             checkPending();
                             function checkPending(){
@@ -901,13 +852,13 @@
                         }
                         </script>
 
-        <script>
+        <!-- <script>
             $(document).ready( function () {
                 $('#transactionHistory').DataTable({
                     lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
                     pagingType: 'full_numbers'
                 });
             } );
-        </script>
+        </script> -->
     </body>
     </html>

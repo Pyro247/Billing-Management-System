@@ -744,7 +744,7 @@
                                         
                         
                                       </select>
-                                      <label for="studStatus">Status</label>
+                                      <label for="studStatus">Student Status</label>
                                     </div>
                                   </div>
 
@@ -1251,10 +1251,9 @@
                     <div class="col-md">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                          <option value="BSIT_WMA" selected>All</option>
-                          <option value="BSIT_WMA">Student</option>
-                          <option value="Registrar">Registrar</option>
-                          <option value="Cashier">Cashier</option>
+                          <option value="" selected>All</option>
+                          <option value="old">Old</option>
+                          <option value="transferee">Transferee</option>
                         </select>
                         <label for="floatingSelect">Student Status</label>
                       </div>
@@ -1298,6 +1297,7 @@
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
                             <th scope="col">Student Status</th>
+                            <th scope="col">Account Status</th>
                             <th scope="col">Email</th>
                             <th scope="col">Condition</th>
                             
@@ -1509,7 +1509,7 @@
                           <th scope="col">Major</th>
                           <th scope="col">Year Level</th>
                           <th scope="col">Tuition Fee</th>
-                          <th scope="col">Scholarship</th>
+                          <th scope="col">Scholarship Discount</th>
                           <th scope="col">Scholar Type</th>
                           <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>

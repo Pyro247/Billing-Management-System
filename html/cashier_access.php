@@ -1054,12 +1054,15 @@ include_once '../connection/Config.php';
                   <table class="table">
                       <thead class="text-center">
                         <tr>
-                          <th scope="col">Student ID</th>
+                        <th scope="col">Student ID</th>
                           <th scope="col">Full name</th>
                           <th scope="col">Program</th>
                           <th scope="col">Major</th>
                           <th scope="col">Year Level</th>
                           <th scope="col">Tuition Fee</th>
+                          <th scope="col">Scholarship Discount</th>
+                          <th scope="col">Scholar Type</th>
+                          <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>
                         </tr>
                       </thead>
