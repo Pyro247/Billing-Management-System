@@ -163,7 +163,7 @@
                                 </thead>
                                 <tbody >
                                 <?php
-                                $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny
+                                $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny,cashier_name
                                         FROM tbl_pending_payments WHERE stud_id = ?";
                                 $stmt = $con->prepare($sql);
                                 $stmt->bind_param('s', $_SESSION['stud_id']);
@@ -180,14 +180,14 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
                                     <?php if($data['status'] == 'Pending'){?>
-                                        <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                        <td class="text-success text-uppercase fw-bold"><?=$data['status'];?></td>
                                     <?php }else{ ?>
                                         <td class="text-danger text-uppercase fw-bold"><?=$data['status'];?>
                                         </td>
                                     <?php }?>
                                     <td><?=$data['reasonToDeny'];?></td>
+                                    <td><?=$data['cashier_name'];?></td>
                                     <?php if($data['status'] == 'Denied'){?>
-                                        <td></td>
                                         <td>
                                     <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" 
@@ -682,7 +682,7 @@
         </script>
         <!-- Resubmit payment application -->
         <script>
-            $('#ViewReason').click(function (e) { 
+            $(document).on("click","#ViewReason",function(e) {
                 e.preventDefault();
                 let transactionNo = $(this).attr("data-id");
                 $('#TransactionNo').text(transactionNo);

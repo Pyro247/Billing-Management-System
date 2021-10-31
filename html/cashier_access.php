@@ -521,6 +521,14 @@ include_once '../connection/Config.php';
               <div class="input-group input-group-sm mb-3">
                 
                 <input type="hidden" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" id="transactionNo">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Fullname:</span>
+                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="studFullname">
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email:</span>
+                  <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="studEmail">
+                </div>
               </div>
               <div class="form-floating">
                 <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
@@ -664,10 +672,10 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Amount Paid</span>
+                        <span class="input-group-text beforeInput">Amount to Pay</span>
                         <span class="input-group-text">₱</span>
                         <input type="text" class="form-control w-auto" id="previewStudAmountToPay" placeholder="0.00" disabled>
-                        <span class="input-group-text text-success" style="font-weight: bold;"><i class="fas fa-coins"></i>&nbsp; Cash</span>
+                      
                       </div>  
                     </div>
                     <div class="col">
@@ -1160,7 +1168,10 @@ include_once '../connection/Config.php';
       $(document).on('click', '#deny', function(){
         let transactionNo = $(this).attr("data-id");
         let name = $(this).attr("data-name");
+        let email = $(this).attr("data-email");
         $('#transactionNo').val(transactionNo);
+        $('#studEmail').val(email);
+        $('#studFullname').val(name);
 
       });
       // Send Deny madal button
@@ -1168,13 +1179,22 @@ include_once '../connection/Config.php';
         e.preventDefault();
         let transactionNo = $('#transactionNo').val();
         let reasonToDeny = $('#reasonToDeny').val();
+        let studFullname = $('#studFullname').val();
+        let studEmail = $('#studEmail').val();
         $.ajax({
           type: "POST",
           url: "../includes/managPayments.php",
           data: {
             "deny": 1,
             "transactionNo": transactionNo,
-            "reasonToDeny": reasonToDeny
+            "reasonToDeny": reasonToDeny,
+            "studEmail": studEmail,
+            "studFullname": studFullname,
+            'cashierName': '<?=$_SESSION['fullname']?>',
+            'cashierId': '<?=$_SESSION['employeeId']?>'
+          },
+          beforeSend: function() {
+                openLoader()
           },
           success: function (response) {
             console.log(response)
@@ -1184,7 +1204,10 @@ include_once '../connection/Config.php';
                 'info'
                 )
             viewPending(allData,generalSort);
-          }
+          },
+            complete: function() {
+                closeLoader()
+            },
         });
       });
       // Show Invoice Modal
@@ -1216,30 +1239,38 @@ include_once '../connection/Config.php';
       $(document).ready(function () {
         // Pay Button
         $('#payBtn').click(function (e) { 
+          let amountToPay = $('#studAmountToPay').val();
+          let studBalance = $('#studBalance').val();
           e.preventDefault();
-          if(parseInt($('#studBalance').val()) == 0){
+          if(parseInt(studBalance) == 0){
             Swal.fire(
               'Balance is Zero',
               'The student is Fully Paid',
               'info'
             )
-           
-            }else if($('#studAmountToPay').val() == ''){
+          
+            }else if(amountToPay == ''){
               Swal.fire(
               'Insufficient Amount',
               'Empty amount',
               'warning'
             )
+            }else if(parseFloat(amountToPay) > parseFloat(studBalance.replace(/,/g, ""))){
+              Swal.fire(
+              'Insufficient Amount',
+              'Amount to pay is greater than Student Balance',
+              'warning'
+            )
             }else{
-            $("#payModal").modal('show');
-            $('#previewStudId').val($('#studID').text());
-            $('#previewStudName').val($('#studName').text());
-            $('#previewStudProgram').val($('#StudProgram').val());
-            $('#previewStudTuition').val($('#studTuition').val());
-            $('#previewStudBalance').val($('#studBalance').val());
-            $('#previewStudAmountToPay').val($('#studAmountToPay').val());
-            $('#previewChangeCalculated').val($('#changeCalculated').val());
-          }
+              $("#payModal").modal('show');
+              $('#previewStudId').val($('#studID').text());
+              $('#previewStudName').val($('#studName').text());
+              $('#previewStudProgram').val($('#StudProgram').val());
+              $('#previewStudTuition').val($('#studTuition').val());
+              $('#previewStudBalance').val($('#studBalance').val());
+              $('#previewStudAmountToPay').val($('#studAmountToPay').val());
+              $('#previewChangeCalculated').val($('#changeCalculated').val());
+            }
           
         });
         // Search Button
@@ -1264,7 +1295,7 @@ include_once '../connection/Config.php';
           let amountToPay = $('#studAmountToPay').val();
           if(parseInt(cashAmount) > parseInt(amountToPay)){
             $('#previewChangeCalculated').val(parseInt(cashAmount) - parseInt(amountToPay));
-          }else if(parseInt(amountToPay) <= parseInt(cashAmount)){
+          }else if(parseInt(cashAmount) <= parseInt(amountToPay)){
             $('#previewChangeCalculated').val('');
           }
           
@@ -1272,7 +1303,9 @@ include_once '../connection/Config.php';
         // Transact Payment Button
         $('#transactPayment').click(function (e) { 
           e.preventDefault();
-          if($('#cashAmount').val() < $('#previewStudAmountToPay').val()){
+          let cash = $('#cashAmount').val();
+          let amoutToPay = $('#previewStudAmountToPay').val();
+          if( parseFloat(cash) < parseFloat(amoutToPay)  ){
             Swal.fire(
               'Insufficient',
               'Insufficient Cash ',
@@ -1285,7 +1318,7 @@ include_once '../connection/Config.php';
               data: {
                 'transact': 'transact',
                 'studId':  $('#studID').text(),
-                'amount': $('#cashAmount').val(),
+                'amount': $('#previewStudAmountToPay').val(),
                 'cashierName': '<?=$_SESSION['fullname']?>',
                 'cashierId': '<?=$_SESSION['employeeId']?>'
               },
@@ -1305,10 +1338,15 @@ include_once '../connection/Config.php';
                   $('#StudProgram').val('');
                   $('#studName').text('Fullname');
                   $('#studID').text('Student ID');
+                  $('#payStudScholar').text('Scholarship');
+                  $('#payStudDiscount').text('Discount');
                   $('#studentTagName').text('Student last transaction');
                   $('#studTuition').val('');
                   $('#studAmountToPay').val('');
+                  $('#cashAmount').val('');
                   $('#studBalance').val('');
+                  $('#scholarDeduction').val('');
+                  $('#discountDeduction').val('');
                   $("#payBtn").prop("disabled", true);
                   viewLastTransaction('')
                 }

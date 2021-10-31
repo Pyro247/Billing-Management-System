@@ -113,13 +113,37 @@
   if(isset($_POST['deny'])){
     $transactionNo = $_POST['transactionNo'];
     $reasonToDeny = $_POST['reasonToDeny'];
+    $studFullname = $_POST['studFullname'];
+    $studEmail = $_POST['studEmail'];
+    $cashier_id = $_POST['cashierId'];
+    $cashier_name = $_POST['cashierName'];
     $status = "Denied";
-    $slqDenied = "UPDATE `tbl_pending_payments` SET `status`= ?,`reasonToDeny`= ? WHERE transaction_no = ?";
+    $slqDenied = "UPDATE `tbl_pending_payments` SET `status`= ?,`reasonToDeny`= ?,`cashier_id`= ?,`cashier_name`= ? WHERE transaction_no = ?";
     $stmtDenied = $con->prepare($slqDenied);
-    $stmtDenied->bind_param('sss',$status,$reasonToDeny,$transactionNo);
+    $stmtDenied->bind_param('sssss',$status,$reasonToDeny,$cashier_id,$cashier_name,$transactionNo);
     if($stmtDenied->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Denied Payment';
+        // Sending Email to Student that Payment Request Denied
+        $mail = new PHPMailer(true);
+        $mail->smtpClose();
+        // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                     
+        $mail->isSMTP();                                           
+        $mail->Host       = 'smtp.gmail.com';                     
+        $mail->SMTPAuth   = true;                                   
+        $mail->Username   = 'phptest1301@gmail.com';                     
+        $mail->Password   = 'fprqtcaljwxcnvie';                               
+        $mail->SMTPSecure = 'ssl';            
+        $mail->Port       = 465;   
+        $mail->isHTML(true);       
+        $mail->setFrom('phptest1301@gmail.com', 'Pyro College');
+        $mail->addAddress($studEmail, $studFullname);                                        
+        $mail->Subject = 'PYRO COLLEGE PAYMENT issue Letter';
+        $mail->Body    = 'Thank you for the request payment that you made on. Unfortunately Cashier name: '.'<b>'. $cashier_name . '</b>'.' denied your payment request. The reason is '.'<b>'. $reasonToDeny . '</b>'.',please check your account to address this issue and resubmit your payment request';
+        
+        if($mail->send()){
+          $response['status'] = 'success';
+          $response['message'] = 'Denied Payment';
+        }
+      
     }else{
       $response['status'] = 'error';
       $response['message'] = 'Failed to Deny Payment!';
@@ -167,12 +191,14 @@ while($data = $res->fetch_assoc()){?>
         id="approve" 
         data-id="<?=$data['transaction_no'];?>"
         data-name="<?=$data['fullname'];?>"
+    
         >Approve</a>
         <a href="#" class="btn btn-danger paymentTransaction_actionBtn mb-1 d-block"
         id="deny" 
         data-bs-toggle="modal" data-bs-target="#denyModal"
         data-id="<?=$data['transaction_no'];?>"
         data-name="<?=$data['fullname'];?>"
+        data-email="<?=$data['email'];?>"
         >Deny</a>
     </td>
   </tr>
