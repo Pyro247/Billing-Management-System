@@ -40,22 +40,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!-- Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-        <!-- Bootstrap JS -->
-        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+        <!-- Data Tables -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         
         <!-- Fontawsome -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        <!-- BoxIcons -->
+        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
         <!-- CSS Local -->
         <link rel="stylesheet" href="../css/student_access.css">
 
          <!-- Sweet Alert 2 -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.css"/>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      
+        
        <title>Student</title>
     </head>
     <body>
@@ -83,38 +84,30 @@
     </script>
     <!-- LOADER -->
 
-    <div class="nav__bar">
-        <div class="nav__bar_two">
-        <img src="../images/logo.png" alt="">
-            <div class="nav__bar_two_text">
-                <span>Pyro Colleges Inc.</span>
-                <p>Excellence at its finest.</p>
-            </div>
-        </div>
-    </div>
-
     
 
 
     <div class="row">
         <div class="col left-tab">
-        <div class="upper-left-tab">
-            <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
-            <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
-            <div class="profile_link" id="profile_link_id">
-                <a href="">My Email</a>
-                <a href="../html/forgotPassword.php">Change Password</a>
-                <a href="../includes/logout.inc.php">Logout</a>
-            </div>
+            <div class="upper-left-tab">
+              
+                <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+                <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()"></i></p>
+                        <div class="profile_link" id="profile_link_id">
+                            <a href="">My Email</a>
+                            <a href="../html/forgotPassword.php">Change Password</a>
+                            <a href="../includes/logout.inc.php">Logout</a>
+                        </div>
             <p class="reg__name"> <?=$rowStud['csi_program'];?> | <?=$rowStud['csi_major'];?></p>
-            <p class="reg__name" id="reg-date-time"></p>
+            
         </div>
 
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
-            <a class="nav-link main__" id="v-pills-payment-application-tab" data-toggle="pill" href="#v-pills-payment-application" role="tab" aria-controls="v-pills-payment-application" aria-selected="false"><img src="../images/icons/stud_payment_form.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Payment Application</a>
-            <a class="nav-link main__" id="v-pills-transaction-history-tab" data-toggle="pill" href="#v-pills-transaction-history" role="tab" aria-controls="v-pills-transaction-history" aria-selected="false"><img src="../images/icons/transaction_history.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Transaction History</a>
+            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class='bx bxs-dashboard'></i>&nbsp;Dashboard</a>
+            <a class="nav-link main__" id="v-pills-payment-application-tab" data-toggle="pill" href="#v-pills-payment-application" role="tab" aria-controls="v-pills-payment-application" aria-selected="false"><i class="fas fa-credit-card"></i>&nbsp;Payment Form</a>
+            <a class="nav-link main__" id="v-pills-transaction-history-tab" data-toggle="pill" href="#v-pills-transaction-history" role="tab" aria-controls="v-pills-transaction-history" aria-selected="false"><i class='bx bx-history'></i>&nbsp; History</a>
         </div>
+        <img src="../images/logo.png" class="logoLeftTab" alt="">
         </div>
         
 
@@ -124,10 +117,38 @@
             <div class="tab-content" id="v-pills-tabContent">
 
                 <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
-                    <p class="title_tab_universal mb-3">Dashboard</p>
+                    <p class="title_tab_universal my-3">Dashboard</p>
 
-                    <div class="miniDashboard mb-5">
-                        <div class="col d-flex mb-2">
+                    <div class="dashBoardBoxContainer mb-4">
+                    
+                    <div class="dashBoardBox lastPaid">
+                            <i class="far fa-clock"></i>
+                            <span><?= $date?></span>
+                            <h1>₱<?= $amount?></h1>
+                            <h3>Last Amount Paid</h3>
+                        </div>
+
+                        <div class="dashBoardBox remainingBal">
+                            <i class="fas fa-wallet"></i>
+                            <h1>₱<?=$rowStud['balance'];?></h1>
+                            <h3>Remaining Balance</h3>
+                        </div>
+
+                        <div class="dashBoardBox tuition">
+                            <i class="fas fa-tags"></i>
+                            <h1>₱<?=$rowStud['tuition_fee'];?></h1>
+                            <h3>Tuition Fee</h3>
+                        </div>
+                        
+                        <div class="dashBoardBox scholarship">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span></span>
+                            <h1><?=$rowStud['scholar_desc'];?></h1>
+                            <h3>Scholarship</h3>
+                        </div>
+                    </div>
+
+                        <!-- <div class="col d-flex mb-2">
                             <span class="miniDashboardh3 mx-3 w-50 ">Email: <span class="text-primary" style="font-weight: bold;"><?= $_SESSION['email'];?></span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Tuition Fee: <span class="text-success" style="font-weight: bold; ">₱<?=$rowStud['tuition_fee'];?></span></span>
                         
@@ -140,27 +161,30 @@
                         <div class="col d-flex">
                             <span class="miniDashboardh3 mx-3 w-50">Scholarship: <span class="text-success" style="font-weight: bold; "><?=$rowStud['scholar_desc'];?></span></span>
                             <span class="miniDashboardh3 w-50 text-end ">Last Date Payment: <?= $date?> <span class="text-success" style="font-weight: bold; "></span></span>
-                        </div>
-                    </div>
-                    <span class="text-primary d-block mx-2 mb-2" style="font-size: 1.5rem; font-weight: bold;">Transaction History</span>
-                     
+                        </div>-->
+                        
+
                     
-                    <div class="p-2 border border-primary" style="overflow-x: auto;" id="table_dashboard_id">
-                   
-                            <table class="table pb-3 display" id="myTable">
-                                <thead class="thead-light text-center">
-                                <tr>
-                                    <th scope="col">Transaction ID</th>
-                                    <th scope="col">Amount</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Reason To Deny</th>
-                                    <th scope="col">Remarks</th>
-                                    
-                                    
-                                </tr>
-                                </thead>
-                                <tbody >
+                        <div class="pendingTransactionTbl p-3">
+                        
+                        <h4 id="pendingnDenied">Pending & Denied Transactions</h4>
+                        <h4 id="noTransaction" style="color: var(--greenPrimary)">You have 0 Pending or Denied Transactions!</h4>
+
+                        
+
+                        <table id="pendingTbl" class="table" style="color: var(--white);">
+                        <thead class="text-center">
+                            <tr>
+                                <th scope="col">Transaction ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Payment Status</th>
+                                <th scope="col">Remarks</th>
+                                
+                            </tr>
+                            
+                        </thead>
+                        <tbody class="text-center">
                                 <?php
                                 $sql = "SELECT transaction_no, amount, transaction_date, status, reasonToDeny
                                         FROM tbl_pending_payments WHERE stud_id = ?";
@@ -194,16 +218,40 @@
                                             Resubmit
                                             </button>
                                         </td>
+                                        
                                     <?php }?>
                                 </tr>
                                 <?php }?>
                                 <?php }else{?>
-                                <tr>
-                                    <td><?php echo "No Records"?></td>
-                                </tr>
+                                   
+                                
                                 <?php } 
                                 
                                 ?>
+
+
+                                
+                                </tbody>
+                                
+                            </th>
+                        </table>
+                        
+
+                            <!-- <table class="table pb-3 display">
+                                <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">Transaction ID</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Reason To Deny</th>
+                                    <th scope="col">Remarks</th>
+                                    
+                                    
+                                </tr>
+                                </thead>
+                                <tbody >
+                                
 
 
                                 
@@ -218,9 +266,9 @@
                                     <th scope="col">Remarks</th>
                         </tfoot> -->
                             </table>
-
+                            </div>
                         
-                    </div>
+                  
                                     
                     
                     
@@ -312,12 +360,13 @@
                 </div>
             <!-- PAYMENT application -->
             <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
-                <p class="title_tab_universal">Payment Application</p>
+                <p class="title_tab_universal my-3">Payment Application</p>
 
-                    <span class="d-block text-primary" style="font-size: 1.4rem;">Paying Bills? - It's easy and simple! - <strong>Click the Platforms to see instructions</strong></span>
+                    <span class="d-block" style="font-size: 1.4rem">Paying Bills? - It's easy and simple! - <strong>Click the Platforms to see the instructions.</strong></span>
                     <div class="miniDashboard mb-4">
-                        <span class="d-block text-primary text-center" style="font-size: 1.7rem;">You can use:</span>
-                        <div class="miniDashboardInner d-flex justify-content-around">
+                        <span class="d-block text-center" style="font-size: 1.5rem; font-weight: 500; color: var(--secondary)">You can use:</span>
+                        
+                        <div class="miniDashboardInner">
                             <div class="paymentPlatform" onclick="paymentGcash()">
                             <img src="../images/student_pics/gcash.png" alt="">
                             <span>Gcash</span>
@@ -422,8 +471,8 @@
                     
 
                     <div class="payApp_createPayment mt-2">
-                        <form  class="universalLightGrayBg mb-3 p-2" id="payReqForm" enctype="multipart/form-data">
-                        <p class="title_tab_universal text-primary m-0">Create Payment Application Form</p>
+                        <form  class="paymentForm mb-3 p-2" id="payReqForm" enctype="multipart/form-data">
+                        <p class="" style="font-size: 1.5rem">Create Payment Application Form</p>
                         <div class="payAppFormWrapper">
                             <div class="leftForm">
                                 <div class="input-group mb-3">
@@ -452,7 +501,7 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text d-inline-block">₱</span>
                                         </div>
-                                        <input type="number" class="form-control" name="amount" id="requestAmount" idplaceholder="0.00">
+                                        <input type="number" class="form-control" name="amount" id="requestAmount" placeholder="0.00">
                                         <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
                                         
                                     </div>
@@ -461,13 +510,13 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text" style="min-width: 110px;" id="basic-addon1">Date</span>
                                         </div>
-                                        <input type="date" class="form-control" name= "date" id="requestDate" placeholder="" >
+                                        <input type="date" class="form-control" name= "date" id="requestDate" placeholder="">
                                     </div>
                                     
                                 <div class="col-md">
                                     <div class="form-floating">
-                                    <input type="text" class="form-control" id="paymentGateway_Id" name="paymentGateway"  placeholder="" style="border:2px solid #56A8CBFF"> 
-                                    <label for="floatingInputGrid">Payment Gateway: (e.g. Gcash, Paymaya) <span style="font-weight: bold; color: crimson;">*</span></label>
+                                    <input type="text" class="form-control" id="paymentGateway_Id" name="paymentGateway"  placeholder=""> 
+                                    <label for="floatingInputGrid" style="color: black">Payment Gateway: (e.g. Gcash, Paymaya) <span style="font-weight: bold; color: crimson;">*</span></label>
                                     </div>
                                 </div>
 
@@ -496,11 +545,11 @@
 
             <!-- Transaction History -->
             <div class="tab-pane fade" id="v-pills-transaction-history" role="tabpanel" aria-labelledby="v-pills-transaction-history-tab">
-                <p class="title_tab_universal">Transaction History</p>
+                <p class="title_tab_universal my-3">Transaction History</p>
                 
-                <div class="miniDashboard mb-5">
+                <div class="transactionHistory mb-5">
                     <div class="row mb-3">
-                        <div class="col">
+                        <div class="col mb-4">
                             <div class="form-floating">
                                 <select class="form-select col-2" id="filterByAcademicYear" name="currSchoolY">
                                 <option value="All">All</option>
@@ -514,16 +563,16 @@
                                     <option value="<?= $rowYear['academic_year'];?>"><?= $rowYear['academic_year'];?></option>
                                 <?php }; ?>
                                 </select>
-                                    <label for="filterByAcademicYear">Select Academic Year</label>
+                                    <label for="filterByAcademicYear" style="color: black">Select Academic Year</label>
                             </div>
                         </div>
 
 
                     </div>
 
-                <div class="universalLightGrayBg rounded-2">
-                    <table id = "transactionHistory" class="table">
-                        <thead class="thead-light text-center">
+                
+                    <table id="transactionHistory" class="table" style="background: none;">
+                        <thead class="text-center" style="color: white; border-bottom: 2px solid white">
                         <tr>
                             <th scope="col">Transaction ID</th>
                             <th scope="col">Amount</th>
@@ -531,12 +580,9 @@
                             <th scope="col">Date</th>
                             <th scope="col">Person in Charge</th>
                             <th scope="col">Payment Status</th>
-                            
-                            
-                            
                         </tr>
                         </thead>
-                        <tbody id="viewTableTransactionHistory">
+                        <tbody id="viewTableTransactionHistory" style="color: var(--white)">
                         <?php
 
                                 $sql ="SELECT transaction_no, amount, CONCAT(payment_method,'-',payment_gateway) 
@@ -573,9 +619,7 @@
                         </tbody>
                         
                     </table>
-                   
-                    </div>
-                <button class="btn btn-outline-primary" onclick="exportTableToExcel('transactionHistory', '-Transaction-History-student'+'<?= $_SESSION['fullname'];?>')">Export to Excel</button>
+                <button class="btn btn-outline-primary mt-3" onclick="exportTableToExcel('transactionHistory', '-Transaction-History-student'+'<?= $_SESSION['fullname'];?>')">Export to Excel</button>
             </div>
 
             </div>
@@ -592,7 +636,7 @@
                 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <!-- Payment Application -->
@@ -819,11 +863,27 @@
            
 
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-          <script>
-              $(document).ready( function () {
-                $('table.display').DataTable();
+                        <script>
+                            checkPending();
+                            function checkPending(){
+                            const tblCount = $('#pendingTbl').find('td').length
+                            if (tblCount <= 0 ){
+                                document.querySelector('#noTransaction').style.display = "block";
+                                document.querySelector('#pendingnDenied').style.display = "none";
+                            }else{
+                                document.querySelector('#noTransaction').style.display = "none";
+                                document.querySelector('#pendingnDenied').style.display = "block";
+                            }
+                        }
+                        </script>
+
+        <script>
+            $(document).ready( function () {
+                $('#transactionHistory').DataTable({
+                    lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'All']],
+                    pagingType: 'full_numbers'
+                });
             } );
-          </script>
-        
+        </script>
     </body>
     </html>
