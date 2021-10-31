@@ -53,11 +53,12 @@
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 
         <!-- CSS Local -->
-        <link rel="stylesheet" href="../css/student_access.css">
+        <!-- <link rel="stylesheet" href="../css/student_access.css"> -->
+        <link rel="stylesheet" type="text/css" href="../css/student_access.css?<?php echo time(); ?>" />
 
          <!-- Sweet Alert 2 -->
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
        <title>Student</title>
     </head>
     <body>
@@ -234,8 +235,8 @@
                     </div>
                     <div class="modal-body">
                     <div class="payApp_createPayment mt-2">
-                        <h5 id="TransactionNo"></h5>
-                        Reason of denied payment: <h5 class="text-danger" id="reasonMsg" ></h5>
+                        <h5 class="text-dark fs-1" id="TransactionNo"></h5>
+                        <h5 class="text-danger" id="reasonMsg" ></h5>
                         <form  class=" mb-3 p-2" id="payReqFormRe" enctype="multipart/form-data">
                         <div class="payAppFormWrapper">
                             <div class="leftForm">
@@ -678,6 +679,7 @@
                 e.preventDefault();
                 let transactionNo = $(this).attr("data-id");
                 $('#TransactionNo').text(transactionNo);
+                alert(transactionNo)
                 $.ajax({
                     type: "POST",
                     url: "../includes/studPaymentRequest.php",
@@ -686,7 +688,7 @@
                         'transactionNo': transactionNo
                     },
                     success: function (data) {
-                        $('#reasonMsg').text(data.reason);
+                        $('#reasonMsg').text('Reason of denied payment: ' + data.reason);
                         $("#requestAmountRe").val(data.amount);
                         $("#requestDateRe").val(data.transaction_date);
                         $("#paymentGateway_IdRe").val( data.payment_gateway);

@@ -78,11 +78,11 @@ include_once '../connection/Config.php';
   <div class="cashDenominationContainer">
     <form action="../includes/generate-report.php" method="post" class="cashDenominationForm">
       <div class="cashDenominationTitle">
-        <strong>Cash Denomination</strong>
+        <strong>Generate Report</strong>
         <i class="fas fa-times-circle" id="closeBtnCD"></i>
       </div>
       <div class="cashDenominationBody">
-        <div class="cashInputsContainer">
+        <!-- <div class="cashInputsContainer">
 
         <div class="cashInputs">
           <img src="../images/cashDenomination/1000.png" alt="">
@@ -101,21 +101,21 @@ include_once '../connection/Config.php';
           <span>=</span>
           <input type="text" name="" id="totalDeno500" placeholder="" value="00.00">
           </div>
-        </div>
+        </div> -->
 
-        <div class="cashInputs">
+        <!-- <div class="cashInputs">
             <img src="../images/cashDenomination/200.png" alt="">
             <div class="inputCash">
             <input type="text" name="" id="deno200" placeholder="₱200">
             <span>=</span>
             <input type="text" name="" id="totalDeno200" placeholder="" value="00.00">
         </div>
-          </div>
+          </div> -->
         </div>
 
 
 
-          <div class="cashInputsContainer">
+          <!-- <div class="cashInputsContainer">
             
           <div class="cashInputs">
             <img src="../images/cashDenomination/100.jpg" alt="">
@@ -149,10 +149,10 @@ include_once '../connection/Config.php';
 
         
           </div>
-          </div>
+          </div> -->
 
 
-          <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
+          <!-- <div class="cashInputsContainer coins pb-3" style="border-bottom: 2px solid #0d6efd">
             <div class="cashInputs">
               <img src="../images/cashDenomination/centavo.jpg" alt="">
 
@@ -202,7 +202,7 @@ include_once '../connection/Config.php';
         
           </div>
 
-          </div>
+          </div> -->
         
           <div class="cashDenominationFooter my-3">
             <div class="cashDenominationFooterLeft">
@@ -286,9 +286,9 @@ include_once '../connection/Config.php';
                       }
                               
                       ?></span></p>
-                      <p>Actual Cash: ₱ <span id ="totalCashInput">0.00</span></p>
+                      <!-- <p>Actual Cash: ₱ <span id ="totalCashInput">0.00</span></p> -->
               
-              <p>Variance: <span id = "variance">N/A</span></p>
+              <!-- <p>Variance: <span id = "variance">N/A</span></p> -->
             </div>
 
             <div class="cashDenominationFooterRight">
@@ -360,10 +360,11 @@ include_once '../connection/Config.php';
                               
                       ?></span></p> -->
             </div>
-            <button type="submit" id="generateReport" class="btn btn-primary d-block">Generate Report</button>
+            
           </div>
-          
+          <!-- <button type="submit" id="generateReport" class="btn btn-primary d-block">Generate Report</button> -->
       </div>
+     
     </form>
   </div>
 
@@ -993,25 +994,184 @@ include_once '../connection/Config.php';
 
               </div>
               <button class="btn btn-outline-primary my-2" id="genReportBtn">Create Report</button>
+              <!-- Modal Password Input -->
+              <div class="modal fade" id="genReportAuth" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered ">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="staticBackdropLabel">Authentication</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                      <div class="modal-body">
+                        <form action="" id="genReportAuthForm">
+                          <div class="form-floating">
+                            <input type="password" class="form-control" id="genReportPass" placeholder="Enter your password">
+                            <label for="genReportPass">Password</label>
+                          </div>
+                          <div style="height: 70px;">
+                              <div class=" h-75 d-flex justify-content-center my-3">
+                                <button type="submit" class="btn btn-primary w-50">Enter</button>
+                              </div>
+                          </div>
+                        </form>
+                      </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Modal Generate Report -->
+              <div class="modal fade" id="genReportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Generate Report</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form action="">
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Cashier ID:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Cashier ID</div>
+                              </div>
+                            <input type="text" class="form-control w-auto" id="gencashierId" disabled
+                            value="<?= $_SESSION['fullname'] ?>">
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Cashier Name:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Cashier Name</div>
+                              </div>
+                            <input type="text" class="form-control w-auto" id="gencashierName" disabled value="<?= $_SESSION['employeeId'] ?>">
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Total Transaction Count:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Total Transaction Count</div>
+                              </div>
+                            <input type="text" class="form-control w-auto" id="genTotalTransCount" disabled 
+                            value="<?php
+
+                                  $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
+                                  FROM `tbl_payments`
+                                  WHERE `transaction_date` = CURRENT_DATE() 
+                                  AND cashier_id = ?";
+                                  $total = $con->prepare($sqlTotal);
+                                  $total->bind_param('s',$_SESSION['employeeId']);
+                                  $total->execute();
+                                  $resulttotal = $total->get_result();
+                                  $rowtotal = $resulttotal->fetch_row();
+                                  $count = mysqli_num_rows($resulttotal);
+                                  echo $count;
+                            ?>">
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Total Amount Collected:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Total Amount Collected</div>
+                              </div>
+                            <input type="text" class="form-control w-auto" id="genTotalAmounCollected" disabled 
+                            value=" <?php
+                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                              WHERE transaction_date = CURRENT_DATE()
+                                              AND cashier_id = ?"; 
+                            $stmtTotal = $con->prepare($sqlTotalAmount);
+                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
+                            $stmtTotal->execute();
+                            $resTotal = $stmtTotal->get_result();
+                            $row= $resTotal->fetch_assoc();
+                            $total = $row['count'];
+                            if($resTotal->num_rows > 0){
+                              echo  $total;
+                            }else{
+                              echo  '0.00';
+                            }        
+                            ?>">
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Fund Transfer Collected:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Fund Transfer Collected</div>
+                              </div>
+                            <input type="number" class="form-control w-auto" id="genFundsColleted" disabled  placeholder="0.00" 
+                            value="<?php
+                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                                WHERE transaction_date = CURRENT_DATE()
+                                                AND cashier_id = ?
+                                                AND payment_method = 'Online'"; 
+                            $stmtTotal = $con->prepare($sqlTotalAmount);
+                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
+                            $stmtTotal->execute();
+                            $resTotal = $stmtTotal->get_result();
+                            $row= $resTotal->fetch_assoc();
+                            $total = $row['count'];
+                            if($resTotal->num_rows > 0){
+                              echo  $total;
+                            }else{
+                              echo  '0.00';
+                            }        
+                            ?>">
+                          </div>
+                      </div>
+                      <div class="col">
+                        <label class="sr-only" for="StudProgram">Cash Amount Collected:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Cash Amount Collected</div>
+                              </div>
+                            <input type="number" class="form-control w-auto" id="genCashColleted" disabled  placeholder="0.00" 
+                            value="<?php
+                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
+                                                WHERE transaction_date = CURRENT_DATE()
+                                                AND cashier_id = ?
+                                                AND payment_method = 'Cash'"; 
+                            $stmtTotal = $con->prepare($sqlTotalAmount);
+                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
+                            $stmtTotal->execute();
+                            $resTotal = $stmtTotal->get_result();
+                            $row= $resTotal->fetch_assoc();
+                            $total = $row['count'];
+                            if($resTotal->num_rows > 0){
+                              echo  $total;
+                            }else{
+                              echo  '0.00';
+                            }        
+                            ?>">
+                          </div>
+                      </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" id="generateReport">Generate</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <script type="text/javascript">
                   const cashDenominationContainer = document.querySelector('.cashDenominationContainer')
                   const cashDenominationForm = document.querySelector('.cashDenominationForm')
                   const totalTransactionCount =document.getElementById('totalTransactionCount')
-                document.querySelector("#genReportBtn").addEventListener('click', function(){
-                 if(totalTransactionCount.innerText == '0'){
-                  Swal.fire(
-                    'No Transaction',
-                    '',
-                    'info'
-                  )
-                 }else{
-                  cashDenominationContainer.style.visibility = "visible"
-                  cashDenominationContainer.style.opacity = "1"
-                  cashDenominationForm.classList.toggle('animate__animated')
-                  cashDenominationForm.classList.toggle('animate__bounceIn')
-                 }
+              //   document.querySelector("#genReportBtn").addEventListener('click', function(){
+              //    if(totalTransactionCount.innerText == '0'){
+              //     Swal.fire(
+              //       'No Transaction',
+              //       '',
+              //       'info'
+              //     )
+              //    }else{
+                  
+              //    }
                 
-              })
+              // })
 
               document.querySelector('#closeBtnCD').addEventListener('click', function(){
                 closedCashDenomination();
@@ -1019,6 +1179,12 @@ include_once '../connection/Config.php';
               function closedCashDenomination(){
                 cashDenominationContainer.style.visibility = "hidden"
                   cashDenominationContainer.style.opacity = "0"
+                  cashDenominationForm.classList.toggle('animate__animated')
+                  cashDenominationForm.classList.toggle('animate__bounceIn')
+              }
+              function openCashDenomination(){
+                  cashDenominationContainer.style.visibility = "visible"
+                  cashDenominationContainer.style.opacity = "1"
                   cashDenominationForm.classList.toggle('animate__animated')
                   cashDenominationForm.classList.toggle('animate__bounceIn')
               }
@@ -1543,124 +1709,155 @@ include_once '../connection/Config.php';
     <!-- Cash Denomination -->
     <script>
       $(document).ready(function () {
-        $('#deno1000').keyup(function (e) { 
-          let input = $('#deno1000').val();
-          if(input == 0){
-            input = 0
+        // $('#deno1000').keyup(function (e) { 
+        //   let input = $('#deno1000').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 1000 * parseInt(input);
+        //   $('#totalDeno1000').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno500').keyup(function (e) { 
+        //   let input = $('#deno500').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 500 * parseInt(input);
+        //   $('#totalDeno500').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno200').keyup(function (e) { 
+        //   let input = $('#deno200').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 200 * parseInt(input);
+        //   $('#totalDeno200').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno100').keyup(function (e) { 
+        //   let input = $('#deno100').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 100 * parseInt(input);
+        //   $('#totalDeno100').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno50').keyup(function (e) { 
+        //   let input = $('#deno50').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 50 * parseInt(input);
+        //   $('#totalDeno50').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno20').keyup(function (e) { 
+        //   let input = $('#deno20').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 20 * parseInt(input);
+        //   $('#totalDeno20').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#denoCent').keyup(function (e) { 
+        //   let input = $('#denoCent').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = .25 * parseInt(input);
+        //   $('#totalDenoCent').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno1').keyup(function (e) { 
+        //   let input = $('#deno1').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 1 * parseInt(input);
+        //   $('#totalDeno1').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno5').keyup(function (e) { 
+        //   let input = $('#deno5').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 5 * parseInt(input);
+        //   $('#totalDeno5').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+        // $('#deno10').keyup(function (e) { 
+        //   let input = $('#deno10').val();
+        //   if(input == 0){
+        //     input = 0
+        //   }
+        //   let calc = 10 * parseInt(input);
+        //   $('#totalDeno10').val(calc.toFixed(2));
+        //   $('#totalCashInput').text(calcTotal());
+        //   $('#variance').text(calcVariance());
+        // });
+      $('#genReportBtn').click(function (e) { 
+        e.preventDefault();
+        $('#genReportAuth').modal('show'); 
+      });
+      $('#genReportAuthForm').submit(function (e) { 
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "../includes/generate-report.php",
+          data: {
+            'genReportAuth': 1,
+            'empId':  '<?=$_SESSION['employeeId']?>',
+            'password': $('#genReportPass').val()
+          },
+          dataType: "JSON",
+          success: function (response) {
+            if(response.status == 'error'){
+              Swal.fire({
+                icon: response.status,
+                text: response.message,
+                confirmButtonText: 'Ok'
+              })
+            }else{
+              // openCashDenomination();
+              
+              $('#genReportModal').modal('show');
+              $('#genReportAuth').modal('toggle'); 
+              $('#genReportPass').val('');
+            }
           }
-          let calc = 1000 * parseInt(input);
-          $('#totalDeno1000').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
         });
-        $('#deno500').keyup(function (e) { 
-          let input = $('#deno500').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 500 * parseInt(input);
-          $('#totalDeno500').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno200').keyup(function (e) { 
-          let input = $('#deno200').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 200 * parseInt(input);
-          $('#totalDeno200').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno100').keyup(function (e) { 
-          let input = $('#deno100').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 100 * parseInt(input);
-          $('#totalDeno100').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno50').keyup(function (e) { 
-          let input = $('#deno50').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 50 * parseInt(input);
-          $('#totalDeno50').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno20').keyup(function (e) { 
-          let input = $('#deno20').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 20 * parseInt(input);
-          $('#totalDeno20').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#denoCent').keyup(function (e) { 
-          let input = $('#denoCent').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = .25 * parseInt(input);
-          $('#totalDenoCent').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno1').keyup(function (e) { 
-          let input = $('#deno1').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 1 * parseInt(input);
-          $('#totalDeno1').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno5').keyup(function (e) { 
-          let input = $('#deno5').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 5 * parseInt(input);
-          $('#totalDeno5').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
-        $('#deno10').keyup(function (e) { 
-          let input = $('#deno10').val();
-          if(input == 0){
-            input = 0
-          }
-          let calc = 10 * parseInt(input);
-          $('#totalDeno10').val(calc.toFixed(2));
-          $('#totalCashInput').text(calcTotal());
-          $('#variance').text(calcVariance());
-        });
+      });
       $('#generateReport').click(function (e) { 
         e.preventDefault();
-        let total = parseFloat($('#total').text())
-        let cash = parseFloat($('#cash').text())
-        let fund = parseFloat($('#fund').text()) 
-        let variance = parseFloat($('#variance').text()) 
+        let total = $('#genTotalTransCount').val();
+        let cash = $('#genCashColleted').val();
+        let fund =  $('#genFundsColleted').val();
         let cashierName = '<?=$_SESSION['fullname']?>'
         let cashierID = '<?=$_SESSION['employeeId']?>'
         $.ajax({
           type: "POST",
           url: "../includes/generate-report.php",
           data: {
+            'generateReport': 1,
             'cashierName': cashierName,
             'cashierID': cashierID,
             'total': total,
             'cash': cash,
             'fund': fund,
-            'variance': variance,
           },
           dataType: "json",
           success: function (response) {
@@ -1671,7 +1868,7 @@ include_once '../connection/Config.php';
               confirmButtonText: 'Ok'
             })
             if(response.status == 'success'){
-              closedCashDenomination();
+              $('#genReportModal').modal('toggle'); 
             } 
           }
           // To updated account will logout after generating report

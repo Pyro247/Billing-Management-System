@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2021 at 01:05 PM
+-- Generation Time: Oct 31, 2021 at 07:33 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -270,7 +270,14 @@ INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname
 ('FT-006', 1, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 10000, 4250, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-008', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 500, 'Cash', '', '', 2900, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-009', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 900, 'Cash', '', '', 2000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-010', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 2000, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla');
+('FT-010', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 2000, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-011', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 3000, 'Cash', '', '', 2000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
+('FT-012', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 1000, 'Online', 'Paymaya', 'Pay.png', 1000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
+('FT-013', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 10000, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-014', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 400, 'Cash', '', '', 3000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
+('FT-015', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 3000, 'Online', 'Paymaya', 'Pay.png', 0, '2021-11-01', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
+('FT-016', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 2500, 'Online', 'Gcash', 'Paymaya-receipt-sample.jpg', 900, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
+('FT-017', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 900, 'Cash', '', '', 0, '2021-11-01', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla');
 
 -- --------------------------------------------------------
 
@@ -312,7 +319,6 @@ CREATE TABLE `tbl_reports` (
   `cashier_name` varchar(255) NOT NULL,
   `cash_payment` int(100) NOT NULL,
   `fund_transfer` int(100) NOT NULL,
-  `variance` int(100) NOT NULL,
   `total_transaction_count` int(100) NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -321,11 +327,14 @@ CREATE TABLE `tbl_reports` (
 -- Dumping data for table `tbl_reports`
 --
 
-INSERT INTO `tbl_reports` (`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `variance`, `total_transaction_count`, `date`) VALUES
-(2021000003, 'Michael Isla', 60000, 50000, 60000, 4, '2021-10-28'),
-(2021000004, 'Donna Belle Guieb Pulido', 50000, 40000, 50000, 4, '2021-10-27'),
-(2021000003, 'Michael Isla', 5000, 3000, -4000, 2, '2021-10-29'),
-(2021000003, 'Michael Isla', 5000, 3000, -4000, 2, '2021-10-29');
+INSERT INTO `tbl_reports` (`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `total_transaction_count`, `date`) VALUES
+(2021000003, 'Michael Isla', 60000, 50000, 4, '2021-10-28'),
+(2021000004, 'Donna Belle Guieb Pulido', 50000, 40000, 4, '2021-10-27'),
+(2021000003, 'Michael Isla', 5000, 3000, 2, '2021-10-29'),
+(2021000003, 'Michael Isla', 5000, 3000, 2, '2021-10-29'),
+(2021000003, 'Michael Isla', 1300, 5500, 4, '2021-11-01'),
+(2021000003, 'Michael Isla', 1300, 5500, 4, '2021-11-01'),
+(2021000003, 'Michael Isla', 1300, 5500, 4, '2021-11-01');
 
 -- --------------------------------------------------------
 
@@ -371,9 +380,9 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(4, 2018301301, 'Michael Estrecho Isla', '4', 'Athelete', 'Partial Scholar', 'Sibling Discount', 8000, 11900, 0, 'Fully Paid'),
+(4, 2018301301, 'Michael Estrecho Isla', '4', 'Athelete', 'Partial Scholar', 'Sibling Discount', 8000, 18700, 0, 'Fully Paid'),
 (1, 2018301302, 'Mike Isla', '4', 'N/A', 'N/A', 'N/A', 10000, 10000, 0, 'Fully Paid'),
-(1, 2018301276, 'Denver Pulido', '4', 'Athelete', 'Partial Scholar', 'N/A', 10000, 0, 5000, 'Not Fully Paid');
+(1, 2018301276, 'Denver Pulido', '4', 'Athelete', 'Partial Scholar', 'N/A', 10000, 14000, 0, 'Fully Paid');
 
 -- --------------------------------------------------------
 
