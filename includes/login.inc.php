@@ -18,14 +18,14 @@
     $resCheckEmail = $stmtCheckEmail->get_result();
     if($resCheckEmail->num_rows > 0){
 
-      $sqlLogin = "SELECT * FROM `tbl_accounts` WHERE email = ? AND password = ?";
+      $sqlLogin = "SELECT * FROM `tbl_accounts` WHERE email = ?";
       $stmtLogin = $con->prepare($sqlLogin);
-      $stmtLogin->bind_param('ss', $email, $password);
+      $stmtLogin->bind_param('s', $email);
       $stmtLogin->execute();
       $resLogin = $stmtLogin->get_result();
       $rowLogin = $resLogin->fetch_assoc();
 
-      if($resLogin->num_rows > 0){
+      if(password_verify($password,$rowLogin['password'])){
         if($rowLogin['role'] == 'Registrar' ){
           header('Location: ../html/registrar_access.php');
           $_SESSION['fullname'] = $rowLogin['fullname'];

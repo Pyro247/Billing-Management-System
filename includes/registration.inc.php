@@ -40,7 +40,7 @@
       $email = $_POST['email'];
       $password = $_POST['password'];
       $confirm_pass = $_POST['confirm_pass'];
-
+      $password = password_hash($password, PASSWORD_DEFAULT);
       if (empty($sex)){
         $sex = "N/A"; 
       }
@@ -109,7 +109,7 @@
       $email = $_POST['email'];
       $password = $_POST['password'];
       $confirm_pass = $_POST['confirm_pass'];
-
+      $password = password_hash($password, PASSWORD_DEFAULT);
       if (empty($sex)){
         $sex = "N/A"; 
       }
