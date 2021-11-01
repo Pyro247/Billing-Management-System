@@ -485,7 +485,7 @@
                                     <input id="image" type="file" accept="image/*" name="image" onchange="previewImage();"/>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-success d-block mx-auto mt-5 mb-3" id="submitPayReq">Submit</button>
+                                <button type="submit" style="width: 150px; height: 50" class="btn btn-success d-block mx-auto mt-5 mb-3" id="submitPayReq">Submit</button>
                             </form> 
                     </div>
             </div>
@@ -515,6 +515,15 @@
                                 <?php }; ?>
                                 </select>
                                     <label for="filterByAcademicYear" style="color: black">Select Academic Year</label>
+                            </div>
+                        </div>
+                        <div class="col mb-4">
+                            <div class="form-floating">
+                                <select class="form-select col-2" id="filterByAcademicYear" name="currSchoolY">
+                                <option value="All">All</option>
+                                
+                                </select>
+                                    <label for="filterByAcademicYear" style="color: black">Select Semester</label>
                             </div>
                         </div>
 

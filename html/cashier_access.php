@@ -1227,6 +1227,7 @@ include_once '../connection/Config.php';
                           <th scope="col">Year Level</th>
                           <th scope="col">Tuition Fee</th>
                           <th scope="col">Scholarship Discount</th>
+                          <th scope="col">Discount Deduction</th>
                           <th scope="col">Scholar Type</th>
                           <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>
