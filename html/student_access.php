@@ -216,11 +216,12 @@
                                 </tr>
                                 <?php }?>
                                 <?php }else{?>
-                                
+                                    
+
                                 
                                 <?php } 
                                 
-                                ?> -->
+                                ?> 
 
                                 </tbody> 
                             </table>
@@ -836,6 +837,7 @@
                             if (tblCount <= 0 ){
                                 document.querySelector('#noTransaction').style.display = "block";
                                 document.querySelector('#pendingnDenied').style.display = "none";
+                                document.querySelector('#pendingTbl').style.display="none"
                             }else{
                                 document.querySelector('#noTransaction').style.display = "none";
                                 document.querySelector('#pendingnDenied').style.display = "block";

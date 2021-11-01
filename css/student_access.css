@@ -301,7 +301,6 @@ html, body{
 }
 .dashBoardBox i{
     font-size: 2rem;
-    
 }
 
 .dashBoardBox h1{
@@ -329,6 +328,7 @@ html, body{
 .scholarship{
     color: var(--greenPrimary);
 }
+
 .paymentPlatform span{
     display: block;
     text-align: center;

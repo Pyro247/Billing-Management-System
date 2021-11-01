@@ -414,9 +414,7 @@ include_once '../connection/Config.php';
             <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class='bx bxs-dashboard'></i>&nbsp;Dashboard</a>
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><i class="fas fa-money-bill-wave-alt"></i>&nbsp;Payment</a>
             <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><i class='fas fa-history' srty></i>&nbsp;History</a>
-            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-history"></i>&nbsp;Student Fees</a>
-            
-            
+            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
       </div>
       </div>
       
@@ -427,7 +425,7 @@ include_once '../connection/Config.php';
           <div class="tab-content" id="v-pills-tabContent">
             <!-- Dashboard -->
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
-           
+                      
               <p class="title_tab_universal my-3">Approve Payments</p>
 
             <!-- Table -->
@@ -1871,12 +1869,7 @@ include_once '../connection/Config.php';
     </script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
         <script>
-            $(document).ready( function () {
-                $('table.dataTblMe').DataTable({
-                    lengthMenu: [[5, 10, -1], [5, 10, 'All']],
-                    pagingType: 'full_numbers'
-                });
-            } );
+          
 
             $(document).ready( function () {
                 $('table.dataTblMe2').DataTable({

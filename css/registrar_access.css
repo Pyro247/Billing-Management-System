@@ -5,14 +5,26 @@
 
 :root{
     font-size: 16px;
-    --black-color: rgb(31, 29, 28);
-    --white-color: #FFFFFF;
-    --blue-color: #56A8CBFF;
-    --green-color: #3bb9a0;
-    --input-background-color: rgb(194, 207, 219);
     --font-school-name: 'Zilla Slab', serif;
     --font-tagline: 'Overpass', sans-serif;
+    --primary: #3861fb;
+    --secondary: #6188ff;
+    --greenPrimary: #16c784;
+    --greenSecondary: #56c59a;
+    --purple: #DDA0DD;
+    --orange: #fd7e14;
+    --white: #ffffff;
+    --leftTabBg: #17181d;
+    --secondDarkBg: #222531;
+    --thirdDarkBg: #394158;
+    --activeColorBg: rgb(56, 56, 63, 0.5);
 }
+
+html, body{
+    background: linear-gradient(to right, #1e1e1e, #2e2e2e);
+    color: var(--white);
+}
+
 
 *{
     font-family: 'Poppins', sans-serif;
@@ -123,51 +135,6 @@
 /* LOADER */
 
 
-.nav__bar{
-    width: 100%;
-    height: 60px;
-    background: #363e61;
-    color: white;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    margin: 0;
-    transition: 300ms ease;
-    position: fixed;
-    z-index: 1000;
-}
-
-
-
-
-.nav__bar .nav__bar_two img{
-    width: 50px;
-    height: 50px;
-    margin: 0 10px;
-}
-
-.nav__bar .nav__bar_two{
-    display: flex;
-    align-items: center;
-}
-
-
-.nav__bar .nav__bar_two .nav__bar_two_text span{
-    display: block;
-    font-family: var(--font-school-name);
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--white-color);
-    margin-top: 10px;
-}
-
-.nav__bar .nav__bar_two .nav__bar_two_text p{
-    font-family: var(--font-tagline);   
-    color: var(--white-color);
-    font-weight: bold;   
-    margin-bottom: 10px;
-}
-
 
 
 
@@ -180,24 +147,24 @@
     top: 0;
     bottom: 0;
     overflow-y: auto;
-    max-width: 300px;
+    max-width: 230px;
     position: fixed;
-    margin-top: 60px;
-    background-color: #363e61;
-    color: var(--white-color);
+    background-color: var(--leftTabBg);
+    color: var(--white);
     z-index: 999;
-    
+    height: 100%;
 }
 
-.right-tab{
-    margin-left: 300px;
-    margin-top: 60px;
-    width: 100%;
-    overflow-x: hidden;
+.logoLeftTab{
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 10px auto;
 }
 
 .upper-left-tab{
     position: relative;
+    
 }
 .upper-left-tab > *{
     transition: 300ms ease;
@@ -205,18 +172,22 @@
 
 
 .upper-left-tab img{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: block;
-    margin: 20px auto 5px;
+    margin: 50px auto 5px;
 }
 
 .reg__name{
     text-align: center;
     margin: 0;
     font-weight: 500;
-    margin-bottom: 5px;
+    margin-bottom: 3px;
+}
+.reg__name:last-child{
+    font-size: .9rem;
+    opacity: .8;
 }
 
 .reg__name i{
@@ -229,14 +200,14 @@
     opacity: 0;
     flex-direction: column;
     border-radius: 5px;
-    width: 225px;
+    width: 80%;
     margin: -20px auto 10px;
     transition: 300ms ease;
     height: 0;
     box-shadow: -2px 11px 14px 0px rgba(248, 247, 247, 0.2);
     user-select: none;
     pointer-events: none;
-    border: 1px solid var(--white-color);
+    border: 1px solid var(--white);
 }
 
 .profile_link.show{
@@ -246,6 +217,7 @@
     user-select: auto;
     pointer-events: auto;
 }
+
 
 .profile_link a:hover{
     opacity: .8;
@@ -258,32 +230,32 @@
     text-decoration: none;
 }
 
-
 .nav-link.main__{
     color: var(--white-color);
     font-size: 1.2rem;
-    padding: 10px 25px;
-    line-height: 25px;
+    padding: 15px 25px;
     width: 100%;
-    text-align: center;
+    text-align: left;
     transition: 250ms;
-    border-bottom: 1px solid var(--white-color);
     border-radius: 0;
-    
-}
-.nav-link.main__:first-child{
-    border-top: 1px solid var(--white-color);
 }
 
 .nav-link.main__.active{
-    background-color: var(--white-color);
-    color: var(--black-color);
+    background: var(--activeColorBg);
+    color: var(--secondary);
+    border-radius: 0;
 }
 
 
+.right-tab{
+    margin-left: 230px;
+    padding: 10px;
+}
 
 .title_tab_universal{
     font-size: 2rem;
+    font-weight: 600;
+    color: white;
 }
 
 .universal_search_form{
@@ -302,15 +274,25 @@
 
 
 
-.universal_bg_gray_table{
-    background-color: lightgray;
-    padding: 10px;
-    margin-top: 10px;
+.dashboardBox{
     width: 100%;
-    
+    border-radius: 18px;
+    background: linear-gradient(145deg, #2d2e2f, #262728);
+    box-shadow:  5px 5px 10px #111112,
+                -5px -5px 10px #434546;
+    backdrop-filter: blur(1.8px);
+    -webkit-backdrop-filter: blur(1.8px);
+    padding: 12px;
+    position: relative;
+    margin: 15px 10px; 
 }
 
-
+.dashBoardForRegistrar{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
 .select__{
     display: block;
     margin: 0 auto;
@@ -341,24 +323,25 @@
     width: 100%;
 }
 
+
+
 .manage-users-tab__secondary{
     margin-top: 15px;
-    
 }
 
 .manage-users-tab__secondary__nav{
     height: 50px;
 }
 
-.manage__stud-emp-all-tab{
-    padding: 5px;
-    width: 100%;
-    background-color: lightgray;
-}
 
+
+.labelForTextBox{
+    color: black;
+}
 
 .role_information{
     font-size: 1.5rem;
+    color: var(--secondary);
 }
 
 
@@ -449,7 +432,7 @@ hr{
     align-items: center;
     justify-content: center;
     position: fixed;
-    
+
 }
 
 .popUpArchiveinner, .popUpFeesMgmtinner{
@@ -457,12 +440,13 @@ hr{
     position: fixed;
     max-height: calc(100vh - 50px);
     overflow-y: auto;
-    background: var(--white-color);
+    background: var(--white);
     border-radius: 25px;
     padding: 25px;
     -webkit-box-shadow: 0px 10px 5px 0px rgba(147,144,219,1);
     -moz-box-shadow: 0px 10px 5px 0px rgba(147,144,219,1);
     box-shadow: 0px 10px 5px 0px rgba(147,144,219,1);
+    background-color: var(--secondDarkBg);
 
 }
 
@@ -494,7 +478,8 @@ hr{
 .PopUpFeesMgmt_Title{
     font-size: 1.4rem;
     font-weight: bold;
-    color: #0d6efd;
+    color: var(--primary);
+    
 }
 
 .addAY input{
@@ -515,6 +500,7 @@ hr{
     border-bottom: 2px solid #1e1e1e;
     text-align: center;
     width: 100%;
+    
 }
 
 .popUpFeesMgmtinner .addAY input{
@@ -533,81 +519,59 @@ hr{
 }
 
 
-.studentCountBoxContainer{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    
-}
 
 .studentCountBox, .employeeCountBox{
+    max-width: 25%; 
+    min-width: 250px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #2d2e2f, #262728);
+    box-shadow:  5px 5px 10px #111112,
+                -5px -5px 10px #434546;
+    backdrop-filter: blur(1.8px);
+    -webkit-backdrop-filter: blur(1.8px);
+    padding: 12px;
+    position: relative;
+    margin: 15px 10px; 
     cursor: pointer;
-    border-radius: 2px;
-    overflow-x: hidden;
-    margin: 0 25px;
-    display: flex;
-    -webkit-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 4px 5px 5px 0px rgba(0,0,0,0.75);
-    transition: all 150ms ease;
-    width: 250px;
-    margin-top: 15px;
-}
-
-.studentCountBox:nth-child(1), .employeeCountBox:nth-child(1){
-    background-color: #5d95e9;
-    border: thin solid #5d95e9;
-}
-
-.studentCountBox:nth-child(1) h2, .employeeCountBox h2{
-    color: #5d95e9;
-}
-.studentCountBox:nth-child(2) h2, .employeeCountBox:nth-child(2) h2{
-    color: #7c55c4;
-}
-.studentCountBox:nth-child(3) h2, .employeeCountBox:nth-child(3) h2{
-    color: var(--green-color);
-}
-
-.studentCountBox:nth-child(2), .employeeCountBox:nth-child(2){
-    background-color: #7c55c4;
-    border: thin solid #7c55c4;
-}
-
-.studentCountBox:nth-child(3), .employeeCountBox:nth-child(3){
-    background-color: var(--green-color);
-    border: thin solid var(--green-color);
+    transition: all 250ms;
 }
 
 .studentCountBox:hover, .employeeCountBox:hover{
     transform: scale(1.1);
 }
 
-.studentCounter, .employeeCounter{
-    background-color: var(--white-color);
-    padding: 5px 10px;
-    width: 100%;
-    
-}
 
-.studentCounter h2, .employeeCounter h2{
+.studentCountBox h3{
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: right;
+}
+.studentCountBox i{
     font-size: 2rem;
-    text-align: center;
 }
 
-.studentCounter h3, .employeeCounter h3{
-    font-size: 1.2rem;
-    text-align: center;
+.studentCountBox h1{
+    margin: 0;
+    padding: 0;
+    color: var(--white);
+    text-align: right;
 }
 
 
-.studentCountBox .lnr, .employeeCountBox .lnr{
-    font-size: 3rem;
-    color: white;
-    display: block;
-    margin: auto 10px;
-    
+
+.studentCountBox:nth-child(1){
+    color: var(--secondary);
 }
+
+.studentCountBox:nth-child(2){
+    color: var(--orange);
+}
+
+.studentCountBox:nth-child(3){
+    color: var(--greenPrimary);
+}
+
 
 .chartsContainer{
     display: flex;
@@ -645,6 +609,7 @@ hr{
     font-size: 1.5rem;
     color: black;;
     border-top: 3px solid rgba(214, 40, 78);
+    color: var(--white);
 }
 .onlineText::after{
     content: 'Online';
@@ -653,6 +618,7 @@ hr{
     font-size: 1.5rem;
     color: black;
     border-top: 3px solid rgba(54, 162, 235);
+    color: var(--white);
 
 }
 .cash_online{

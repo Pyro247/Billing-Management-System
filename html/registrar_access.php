@@ -15,9 +15,12 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
     <!-- Data Tables -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <!-- Fontawsome -->
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <!-- CSS -->
+        <!-- Fontawsome -->
+        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- BoxIcons -->
+        <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+ <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/registrar_access.css?<?php echo time(); ?>" />
     <!-- Sweet Alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -61,15 +64,6 @@
   
 </script>
 <!-- LOADER -->
-    <div class="nav__bar">
-      <div class="nav__bar_two">
-      <img src="../images/logo.png" alt="">
-          <div class="nav__bar_two_text">
-              <span>Pyro Colleges</span>
-              <p>Excellence at its finest.</p>
-          </div>
-      </div>
-    </div>
 
     <!-- PopUp for Archive -->
     <div class="popUpArchive" style="visibility: hidden; opacity: 0; transition: all 150ms;"> 
@@ -237,8 +231,10 @@
 
     <div class="row">
       <div class="col left-tab">
+      <img src="../images/logo.png" class="logoLeftTab" alt="">
         <div class="upper-left-tab">
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+            
             <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down mx-2" onclick="profile_link_show()"></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>
@@ -251,12 +247,12 @@
         </div>
 
             <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
-                <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false"><img src="../images/icons/manage_users.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Manage Users</a>
-                <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false"><img src="../images/icons/archive.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Archives</a>
-                <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><img src="../images/icons/reports.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Reports</a>
-                <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><img src="../images/icons/fees_management.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Fees Management</a>
-                <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Student Fees</a>
+                <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class='bx bxs-dashboard'></i>&nbsp;Dashboard</a>
+                <a class="nav-link main__" id="v-pills-manage-users-tab" data-toggle="pill" href="#v-pills-manage-users" role="tab" aria-controls="v-pills-manage-users" aria-selected="false"><i class='bx bxs-user-account'></i>&nbsp;Manage Users</a>
+                <a class="nav-link main__" id="v-pills-archives-tab" data-toggle="pill" href="#v-pills-archives" role="tab" aria-controls="v-pills-archives" aria-selected="false"><i class='bx bxs-archive'></i>&nbsp;Archives</a>
+                <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><i class='bx bxs-report' ></i>&nbsp;Reports</a>
+                <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><i class="fas fa-money-bill-wave"></i>&nbsp;Fees Management</a>
+                <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
             
             </div>
         </div>
@@ -268,24 +264,50 @@
         <!-- Dashboard -->
           <div class="tab-content" id="v-pills-tabContent">
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-              <p class="title_tab_universal" >Dashboard</p>
-
-
-            
-
+              <p class="title_tab_universal my-3" >Dashboard</p>
 <!-- 
-                <form action="" class="universal_search_form">
-                  <input type="text" name="searchDash" id="searchDash" placeholder="Search">
-                  <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
-                </form> -->
+              <form action="" class="universal_search_form">
+                <input type="text" name="searchDash" id="searchDash" placeholder="Search">
+                <button type="button" class="btn btn-primary" id="searchDash_btn">Search</button>
+              </form> -->
               <div class="dashBoardForRegistrar">
-                <div class="studentCountBoxContainer my-3">
+                  <div class="studentCountBox" id="oldStud">
+                    <i class="lnr lnr-users"></i>
+                            <h1>
+                              <?php
+                                $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'old'";
+                                $statement = $con->prepare($sql);
+                                $statement->execute();
+                                $result = $statement->get_result();
+                                $row = $result->fetch_row();
+                                $count = mysqli_num_rows($result);
+                                echo $count;
+                              ?>
+                          </h1>
+                        <h3>Old Student</h3>
+                  </div>
+
+
+                  <div class="studentCountBox" id="transferStud">
+                    <i class="lnr lnr-user"></i>
+                            <h1>
+                            <?php
+                              $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'transferee'";
+                              $statement = $con->prepare($sql);
+                              $statement->execute();
+                              $result = $statement->get_result();
+                              $row = $result->fetch_row();
+                              $count = mysqli_num_rows($result);
+                              echo $count;
+                            ?> 
+                          </h1>
+                        <h3>Transferee</h3>
+                  </div>
 
                   <div class="studentCountBox" id="totalStud">
-                      <span class="lnr lnr-users"></span>
-                    <div class="studentCounter">
-                      <h2>
-                        <?php
+                  <i class="lnr lnr-user"></i>
+                  <h1>
+                  <?php
                           $sql = "SELECT * FROM tbl_student_info";
                           $statement = $con->prepare($sql);
                           $statement->execute();
@@ -294,61 +316,15 @@
                           $count = mysqli_num_rows($result);
                           echo $count;
                         ?>
-                      </h2>
-                        <h3>
-                          Total Students
-                        </h3>
-                    </div>
+                        </h1>
+                        <h3>Total Student</h3>
                   </div>
-
-                    
-
-                  <div class="studentCountBox" id="oldStud">
-                    <span class="lnr lnr-user"></span>
-                    <div class="studentCounter">
-                      <h2>
-                      <?php
-                        $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'old'";
-                        $statement = $con->prepare($sql);
-                        $statement->execute();
-                        $result = $statement->get_result();
-                        $row = $result->fetch_row();
-                        $count = mysqli_num_rows($result);
-                        echo $count;
-                      ?>
-                        
-                      </h2>
-                        <h3>
-                          Old Students
-                        </h3>
-                    </div>
-                  </div>
-
-                  <div class="studentCountBox" id="transferStud">
-                  <span class="lnr lnr-user"></span>
-                  <div class="studentCounter">
-                      <h2>
-                      <?php
-                          $sql = "SELECT`stud_type` FROM `tbl_student_school_details` WHERE stud_type = 'transferee'";
-                          $statement = $con->prepare($sql);
-                          $statement->execute();
-                          $result = $statement->get_result();
-                          $row = $result->fetch_row();
-                          $count = mysqli_num_rows($result);
-                          echo $count;
-                        ?> 
-                      </h2>
-                        <h3>
-                          Transferees
-                        </h3>
-                    </div>
-
-                  </div>
-                </div>
+                
                   
-                <div class="universal_bg_gray_table">
+                
+                  <div class="dashboardBox">
                   
-                 <div class="row">
+                 <div class="row mb-5">
                     <p id="studentCountLabelId" style="font-size: 2rem; font-weight: 500;"></p>
                   <div class="col">
                   <div class="form-floating">
@@ -364,7 +340,7 @@
                           <option value="<?= $rowProgFilterDash['course_program'];?>"><?= $rowProgFilterDash['course_program'];?></option>
                       <?php }; ?>
                     </select>
-                    <label for="filterByProgramDash">Choose Program</label>
+                    <label for="filterByProgramDash" style="color: black">Choose Program</label>
                   </div>
                 </div>
                  
@@ -374,16 +350,18 @@
                     <select class="form-select" id="filterByMajorDash" aria-label="Floating label select example">
                       <option value="All" selected>All</option>
                     </select>
-                    <label for="filterByMajorDash">Choose Major</label>
+                    <label for="filterByMajorDash" style="color: black">Choose Major</label>
                   </div>
               </div>
-              </div> 
+             
+          </div>
+             
               
 
-                  <div class="table__dashboard mt-3" id="table_dashboard_id">
-                    <table class="table" id="dashboardTbl">
+                 
+                    <table class="table" style="color: var(--white)" id="dashboardTbl">
                       
-                        <thead class="thead-light">
+                        <thead class="text-center">
                           <tr>
                             <th scope="col">Student ID</th>
                             <th scope="col">First name</th>
@@ -401,21 +379,19 @@
                             
                         </tbody>
                       </table>
-                    </div>
-
+                      </div>
+                  
                     
-              </div>
+              
             </div>
 
             <!-- For admin -->
-            <div class="dashBoardforAdmin">
 
-            <div class="studentCountBoxContainer">
-            <div class="employeeCountBox mb-3 d-block mx-auto" id="">
-                      <span class="lnr lnr-users text-center py-1"></span>
-                    <div class="employeeCounter">
-                      <h2>
-                        <?php
+            <div class="dashBoardForRegistrar" id="dashboardForAdminId">
+              <div class="studentCountBox" id="">
+                <i class="lnr lnr-users"></i>
+                        <h1>
+                          <?php
                           $sql = "SELECT `role`FROM `tbl_employee_info` WHERE `role` = 'Registrar'";
                           $statement = $con->prepare($sql);
                           $statement->execute();
@@ -424,77 +400,59 @@
                           $count = mysqli_num_rows($result);
                           echo $count;
                         ?>
-                      </h2>
-                        <h3>
-                          registrar(s)
-                        </h3>
-                    </div>
-                  </div>
-
-                   
-            <div class="employeeCountBox mb-3 d-block mx-auto" id="">
-              <span class="lnr lnr-users text-center py-1"></span>
-            <div class="employeeCounter">
-              <h2>
-                <?php
-                  $sql = "SELECT `role`FROM `tbl_employee_info` WHERE `role` = 'Cashier'";
-                  $statement = $con->prepare($sql);
-                  $statement->execute();
-                  $result = $statement->get_result();
-                  $row = $result->fetch_row();
-                  $count = mysqli_num_rows($result);
-                  echo $count;
-                ?>
-              </h2>
-                <h3>
-                  Cashier(s)
-                </h3>
-            </div>
-          </div>
-
-           
-          <div class="employeeCountBox mb-3 d-block mx-auto" id="">
-            <span class="lnr lnr-users text-center py-1"></span>
-          <div class="employeeCounter">
-            <h2>
-              <?php
-                $sql = "SELECT * FROM tbl_employee_info";
-                $statement = $con->prepare($sql);
-                $statement->execute();
-                $result = $statement->get_result();
-                $row = $result->fetch_row();
-                $count = mysqli_num_rows($result);
-                echo $count;
-              ?>
-            </h2>
-              <h3>
-                Total Employee(s)
-              </h3>
-          </div>
-        </div>
-        </div>
+                      </h1>
+                    <h3>Registrar</h3>
+              </div>
+              <div class="studentCountBox" id="">
+                <i class="lnr lnr-users"></i>
+                        <h1>
+                          <?php
+                          $sql = "SELECT `role`FROM `tbl_employee_info` WHERE `role` = 'Cashier'";
+                          $statement = $con->prepare($sql);
+                          $statement->execute();
+                          $result = $statement->get_result();
+                          $row = $result->fetch_row();
+                          $count = mysqli_num_rows($result);
+                          echo $count;
+                        ?>
+                          
+                      </h1>
+                    <h3>Registrar</h3>
+              </div>
+              <div class="studentCountBox" id="">
+                <i class="lnr lnr-users"></i>
+                        <h1>
+                        <?php
+                        $sql = "SELECT * FROM tbl_employee_info";
+                        $statement = $con->prepare($sql);
+                        $statement->execute();
+                        $result = $statement->get_result();
+                        $row = $result->fetch_row();
+                        $count = mysqli_num_rows($result);
+                        echo $count;
+                      ?>
+          
+                      </h1>
+                    <h3>Registrar</h3>
+              </div>
+            
 
 
+                  <div class="dashboardBox">
                   
-                  <div class="universal_bg_gray_table">
-                  
-               
-                 
-   
-                     <div class="table__dashboard mt-3" id="table_dashboard_id">
-                       <table class="table">
-                           <thead class="thead-light">
-                             <tr>
-                               <th scope="col">Employee ID</th>
-                               <th scope="col">Employee name</th>
-                               <th scope="col">Registration No.</th>
-                               <th scope="col">Role</th>
-                               <th scope="col">Mobile Number</th>
-                               <th scope="col">Email</th>
-                             </tr>
-                           </thead>
-                           <tbody id="adminDash">
-                           <?php
+                        <table class="table" style="color: var(--white)">
+                            <thead class="thead-light">
+                              <tr>
+                                <th scope="col">Employee ID</th>
+                                <th scope="col">Employee name</th>
+                                <th scope="col">Registration No.</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Mobile Number</th>
+                                <th scope="col">Email</th>
+                              </tr>
+                            </thead>
+                            <tbody id="adminDash">
+                            <?php
 
                             $sql ="SELECT reg_no, employee_id, role, CONCAT(firstname,' ',middlename,' ',lastname) AS fullname,  email, contact_number 
                             FROM tbl_employee_info";
@@ -524,15 +482,10 @@
                             <?php } 
                                                     
                             ?>
-                               
-                           </tbody>
-                         </table>
-                       </div>
-   
-                       
-                 </div>
-                </div>
-          
+                          </tbody>
+                        </table>
+                        </div>
+                      </div>
           </div>
 
 
@@ -547,17 +500,17 @@
 
             <!-- MANAGE USERS -->
             <div class="tab-pane fade" id="v-pills-manage-users" role="tabpanel" aria-labelledby="v-pills-manage-users-tab">
-              <p class="title_tab_universal">Manage User's Records</p>
+              <p class="title_tab_universal my-3">Manage User's Records</p>
               
-              <ul class="nav nav-tabs manage-users-tab__secondary" id="myTab" role="tablist">
+              <ul class="nav nav-tabs manage-users-tab__secondary" id="myTab" role="tablist" style="border-bottom: none">
                 <li class="nav-item">
-                  <a class="nav-link active" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
+                  <a class="nav-link active" style="background: none; color: var(--secondary); border-bottom: none; border-color: var(--secondary)" id="student-tab" data-toggle="tab" href="#student" role="tab" aria-controls="student" aria-selected="true">Student</a>
                 </li>
                 
 
                 <!-- For Admin -->
                 <li class="nav-item">
-                  <a class="nav-link" id="employees-tab" data-toggle="tab" href="#employees" role="tab" aria-controls="employees" aria-selected="false">Employees</a>
+                  <a class="nav-link" style="background: none; color: var(--secondary);   border-bottom: none; border-color: var(--secondary)"  id="employees-tab" data-toggle="tab" href="#employees" role="tab" aria-controls="employees" aria-selected="false">Employees</a>
                 </li>
                 <!-- <li class="nav-item" id="alluser_ForAdmin">
                   <a class="nav-link" id="all-users-tab" data-toggle="tab" href="#all-users" role="tab" aria-controls="all-users" aria-selected="false">All users</a>
@@ -573,8 +526,8 @@
 
               <div class="tab-content" id="myTabContent">
 <!----------------------------------------------- Students Tab ---------------------------------------------------------->
-                <div class="tab-pane fade show active mt-2 manage__stud-emp-all-tab" id="student" role="tabpanel" aria-labelledby="student-tab">
-                  <p class="role_information text-primary">Student's Information</p>
+                <div class="tab-pane fade show active mt-2" id="student" role="tabpanel" aria-labelledby="student-tab">
+                  <p class="role_information">Student's Information</p>
                         
                   <form action="" method="post" class="universalForm_two" id="studForm">
 
@@ -593,28 +546,28 @@
                             <div class="col-md">
                               <div class="form-floating">
                                 <input type="number" name="student_number" class="form-control" id="studId" placeholder=" " value="" disabled>
-                                <label for="studId">Student ID</label>
+                                <label for="studId" class="labelForTextBox">Student ID</label>
                               </div>
                             </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" name="stud_firstname" class="form-control" id="studFirstname" placeholder=" " value="" disabled>
-                                  <label for="studFirstname">First name</label>
+                                  <label for="studFirstname" class="labelForTextBox">First name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" name="stud_middlename" class="form-control" id="studMiddlename" placeholder=" " value="" disabled>
-                                  <label for="studMiddlename">Middle name</label>
+                                  <label for="studMiddlename" class="labelForTextBox">Middle name</label>
                                 </div>
                               </div>
 
                               <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" name="stud_lastname" class="form-control" id="studLastname" placeholder=" " value="" disabled>
-                                  <label for="studLastname">Last name</label>
+                                  <label for="studLastname" class="labelForTextBox">Last name</label>
                                 </div>
                               </div>
                             </div>
@@ -624,7 +577,7 @@
                                 <div class="form-floating">
                                   <input type="text" name="stud_school_year" class="form-control" id="studSchoolYear" placeholder=" " value="" disabled>
                                   
-                                  <label for="studSchoolYear">School year</label>
+                                  <label for="studSchoolYear" class="labelForTextBox">School year</label>
                                 </div>
                               </div>
 
@@ -637,7 +590,7 @@
                                     
                     
                                   </select>
-                                  <label for="studSemester">Semester</label>
+                                  <label for="studSemester" class="labelForTextBox">Semester</label>
                                 </div>
                               </div>
 
@@ -651,11 +604,12 @@
                                     
                     
                                   </select>
-                                  <label for="studYearLevel">Year Level</label>
+                                  <label for="studYearLevel" class="labelForTextBox">Year Level</label>
                                 </div>
                               </div>
 
                             </div>
+
                               <div class="row g-2 mb-1">
                                 <div class="col-md">
                                   <div class="form-floating">
@@ -671,7 +625,7 @@
                                       <option value="<?= $rowProg['course_program'];?>"><?= $rowProg['course_program'];?></option>
                                     <?php }; ?>
                                     </select>
-                                    <label for="studProgram">Program</label>
+                                    <label for="studProgram" class="labelForTextBox">Program</label>
                                   </div>
                                 </div>
                               
@@ -685,14 +639,14 @@
 
                                   
                                     </select>
-                                    <label for="studMajor">Major</label>
+                                    <label for="studMajor" class="labelForTextBox">Major</label>
                                   </div>
                                 </div>
 
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
-                                    <label for="studFee">Fee</label>
+                                    <label for="studFee" class="labelForTextBox">Fee</label>
                                   </div>
                                 </div>
 
@@ -718,7 +672,7 @@
                                     <?php }; ?>
                                       <!--  -->
                                       </select>
-                                      <label for="studScholarship">Scholarship</label>
+                                      <label for="studScholarship" class="labelForTextBox">Scholarship</label>
                                     </div>
                                   </div>
 
@@ -737,7 +691,7 @@
                                       <option value="<?= $rowDiscount['discount_type'];?>"><?= $rowDiscount['discount_type'];?></option>
                                     <?php }; ?>
                                       </select>
-                                      <label for="studDiscount">Discount</label>
+                                      <label for="studDiscount" class="labelForTextBox">Discount</label>
                                     </div>
                                   </div>
 
@@ -752,7 +706,7 @@
                                         
                         
                                       </select>
-                                      <label for="studStatus">Student Status</label>
+                                      <label for="studStatus" class="labelForTextBox">Student Status</label>
                                     </div>
                                   </div>
 
@@ -760,7 +714,7 @@
                                   <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_lrn" class="form-control" id="studLrn" placeholder=" " value="" disabled >
-                                    <label for="studLrn">LRN</label>
+                                    <label for="studLrn" class="labelForTextBox">LRN</label>
                                   </div>
                                 </div>
 
@@ -772,14 +726,14 @@
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" disabled >
-                              <label class="form-check-label" for="form137">
+                              <label class="form-check-label" style="color: var(--white)" for="form137" >
                                 Form 137
                               </label>
                             </div>
 
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="req_form138" value="✓" id="form138" disabled>
-                              <label class="form-check-label" for="form138">
+                              <label class="form-check-label" style="color: var(--white)" for="form138">
                                 Form 138
                               </label>
                             </div>
@@ -787,14 +741,14 @@
                             
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa" disabled>
-                              <label class="form-check-label" for="psa">
+                              <label class="form-check-label" style="color: var(--white)" for="psa">
                                 PSA Birth Certificate
                               </label>
                             </div>
 
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="goodMoral" disabled>
-                              <label class="form-check-label" for="goodMoral">
+                              <label class="form-check-label" style="color: var(--white)" for="goodMoral">
                                 Good Moral
                               </label>
                             </div>
@@ -839,12 +793,9 @@
                     
 
                       <hr>
-                      <form action="" class="universal_search_form">
-                        <input  type="text" name="searchStud" id="searchStud" placeholder="Search">
-                        <button type="button" class="btn btn-primary" id="searchStud_btn">Search</button>
-                      </form>
+                              
                       <div class="manage_student_tab_below mt-4">
-                        <p class="role_information text-success">All Student's list and Filtering</p>
+                        <p class="role_information">All Student's list and Filtering</p>
 
 
                         <div class="row g-2">
@@ -862,7 +813,7 @@
                                       <option value="<?= $rowProgFilter['course_program'];?>"><?= $rowProgFilter['course_program'];?></option>
                             <?php }; ?>
                             </select>
-                            <label for="filterByProgram">Program</label>
+                            <label for="filterByProgram" style="color: #000">Program</label>
                           </div>
                         </div>
                         
@@ -873,13 +824,13 @@
                               
               
                             </select>
-                            <label for="filterByMajor">Major</label>
+                            <label for="filterByMajor" style="color: black">Major</label>
                           </div>
                         </div>
                       </div>
 
-                      <div class="table__" style="overflow-x: auto;">
-                      <table class="table">
+                      
+                      <table class="table" style="color: var(--white)">
                         <thead>
                           <tr>
                             <th scope="col">Student ID</th>
@@ -900,7 +851,7 @@
                               
                         </tbody>
                       </table>
-                    </div>
+                    
                     </div>
                 </div>
               
@@ -910,7 +861,7 @@
 
     <!-------------------------------------------- Employees Tab -------------------------------------->
                 <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
-                  <p class="role_information text-primary">Employee's Information</p>
+                  <p class="role_information" style="color: var(--secondary)">Employee's Information</p>
 
                   <form method="post" class="universalForm_two" id="empForm">
                     <div class="manage_users_universal_tab_lmr_parent">
@@ -930,14 +881,14 @@
                                 <option value="Registrar">Registrar</option>
                                 <option value="Cashier">Cashier</option>
                               </select>
-                              <label for="empRole">Role</label>
+                              <label for="empRole" class="labelForTextBox">Role</label>
                             </div>
                           </div>
                           <!-- Employee ID -->
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="number" class="form-control" name="emp_id" id="empId" placeholder=" " value="" disabled>
-                              <label for="empId">Employee ID</label>
+                              <label for="empId" class="labelForTextBox">Employee ID</label>
                             </div>
                           </div>
                         </div>
@@ -947,21 +898,21 @@
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="text" class="form-control" name="emp_firstname" id="empFirstname" placeholder=" " value="" disabled>
-                              <label for="empFirstname">First name</label>
+                              <label for="empFirstname" class="labelForTextBox">First name</label>
                             </div>
                           </div>
                           <!-- Employee Middlename -->
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="text" class="form-control" name="emp_middlename" id="empMiddlename" placeholder=" " value="" disabled>
-                              <label for="empMiddlename">Middle name</label>
+                              <label for="empMiddlename" class="labelForTextBox">Middle name</label>
                             </div>
                           </div>
                           <!-- Employee Lastname -->
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="text" class="form-control" name="emp_lastname" id="empLastname" placeholder=" " value="" disabled>
-                              <label for="empLastname">Last name</label>
+                              <label for="empLastname" class="labelForTextBox">Last name</label>
                             </div>
                           </div>
                         </div>
@@ -972,10 +923,10 @@
                             <div class="form-floating">
                               <select class="form-select" name="emp_sex" id="empSex" aria-label="Floating label select example" disabled>
                                 <option value="male">Male</option>
-                                <option value="female">Female</option>
+                                <option value="female" class="labelForTextBox">Female</option>
                                 
                               </select>
-                              <label for="empGender">Sex</label>
+                              <label for="empGender" class="labelForTextBox">Sex</label>
                             </div>
                           </div>
 <!-- 
@@ -996,13 +947,13 @@
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="text" class="form-control" name="emp_address" id="empAddress" placeholder=" " value="" disabled>
-                              <label for="empAddress">Address</label>
+                              <label for="empAddress" class="labelForTextBox">Address</label>
                             </div>
                           </div>
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="date" class="form-control" name="empHireDate" id="empHireDate" placeholder=" " value="" disabled>
-                              <label for="empHireDate">Hire Date</label>
+                              <label for="empHireDate" class="labelForTextBox">Hire Date</label>
                             </div>
                           </div>
                         </div>
@@ -1012,14 +963,14 @@
                           <div class="col-md">
                             <div class="form-floating">
                               <input type="email" class="form-control" name="emp_email" id="empEmail" placeholder=" " value="" disabled>
-                              <label for="empEmail">Email</label>
+                              <label for="empEmail" class="labelForTextBox">Email</label>
                             </div>
                           </div>
                           <!-- Employee Contact Nunmber -->
                           <div class="col-md">
                               <div class="form-floating">
                                 <input type="number" class="form-control" name="emp_contact_number" id="empContactNo" placeholder=" " value="" disabled>
-                                <label for="empContactNo">Contact number</label>
+                                <label for="empContactNo" class="labelForTextBox">Contact number</label>
                               </div>
                           </div>
 <!-- 
@@ -1049,7 +1000,7 @@
                   </form>
                   <hr>
                   <div class="manage_student_tab_below mt-4">
-                    <p class="role_information text-success">All Employee's list and Filtering</p>
+                    <p class="role_information" style="color: var(--secondary)">All Employee's list and Filtering</p>
 
 
                     <div class="row g-2">
@@ -1062,13 +1013,13 @@
                           
           
                         </select>
-                        <label for="filterBy">Role</label>
+                        <label for="filterBy" style="color: black">Role</label>
                       </div>
                     </div>
                   </div>
 
-                <div class="table__" style="overflow-x: auto;">
-                  <table class="table" id="employeeTbl">
+                                        
+                  <table class="table" id="employeeTbl" style="color: var(--white)">
                     <thead>
                       <tr>
                         <th scope="col">Employee ID</th>
@@ -1084,7 +1035,7 @@
                       
                     </tbody>
                   </table>
-                  </div>
+
 
                   </div>
 
@@ -1228,17 +1179,14 @@
 <!------------------------ ARCHIVES --------------------------------->
 
             <div class="tab-pane fade" id="v-pills-archives" role="tabpanel" aria-labelledby="v-pills-archives-tab">
-              <p class="title_tab_universal">Archives</p>
+              <p class="title_tab_universal my-3">Archives</p>
 
-              <form action="" class="universal_search_form">
-                <input type="text" name="searchArchive" id="searchArchive" placeholder="Search">
-                <button type="button" class="btn btn-primary" id="searchArchive_btn">Search</button>
-              </form>
 
               
-              <div class="universal_bg_gray_table mt-3">
-              <p class="role_information text-primary mt-2">Choose Account to Filter</p>
-
+              
+            
+              <div class="dashboardBox">
+                <p class="role_information mt-2" style="color: var(--secondary)">Choose Account to Filter</p>
                   <div class="row g-2">
 
                     <div class="col-md">
@@ -1251,7 +1199,7 @@
                           <option value="Resign">Resign</option>
                           <option value="Resign">Terminate</option>
                         </select>
-                        <label for="floatingSelect">Condition</label>
+                        <label for="floatingSelect" style="color: black">Condition</label>
                       </div>
                     </div>
 
@@ -1263,7 +1211,7 @@
                           <option value="old">Old</option>
                           <option value="transferee">Transferee</option>
                         </select>
-                        <label for="floatingSelect">Student Status</label>
+                        <label for="floatingSelect" style="color: black">Student Status</label>
                       </div>
                     </div>
                     
@@ -1271,34 +1219,34 @@
                     <div class="col-md">
                       <div class="form-floating">
                         <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
-                        <label for="floatingInputGrid">Date archived From</label>
+                        <label for="floatingInputGrid" style="color: black">Date archived From</label>
                       </div>
                     </div>
                     
                     <div class="col-md">
                       <div class="form-floating">
                         <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
-                        <label for="floatingInputGrid">Date archived To</label>
+                        <label for="floatingInputGrid" style="color: black">Date archived To</label>
                       </div>
                     </div>
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Apply</button>
+                        <button type="button" class="btn btn-primary font p-2 s_c__">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-outline-primary font p-2 s_c__">Clear Filter</button>
+                        <button type="button" class="btn btn-primary font p-2 s_c__">Clear Filter</button>
                       </div>
 
                     <div class="col-md">  
-                      <button type="button" onclick="exportTableToExcel('archiveTable', 'ArchiveData')" class="btn btn-outline-primary font p-2 float-end">Export Records to Excel</button>
+                      <button type="button" onclick="exportTableToExcel('archiveTable', 'ArchiveData')" class="btn btn-primary font p-2 float-end">Export Records to Excel</button>
                     </div>
                   </div>
 
                   <hr>
-                  <div class="table__" style="overflow-x: auto;">
-                    <table id="archiveTable" class="table">
+                  
+                    <table id="archiveTable" class="table" style="color: var(--white)">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID number</th>
@@ -1315,22 +1263,21 @@
                         
                         </tbody>
                       </table>
-                    </div>
+                    
                   </div>
                 </div>
             </div>
 
              <!-- REPORTS -->
              <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
-              <p class="title_tab_universal">Generated Reports</p>
-
-             
-              <div class="col universal_bg_gray_table p-3">
+              <p class="title_tab_universal my-3">Generated Reports</p>
+              
                 <span class="text-primary" style="font-size: 1.3rem; font-weight: 500; line-height: 50px">View Transactions:</span>
                 
-                 <button id="Daily" class="btn btn-outline-primary mx-1">Daily</button>
+                 <button id="Daily" class="btn btn-outline-primary">Daily</button>
 
-                 <select id="Monthly" name="Monthly">
+                 <select id="Monthly" name="Monthly" class="btn btn-outline-primary ml-1">
+                      <option hidden>Monthly</option>
                       <option value="1">January</option>
                       <option value="2">February</option>
                       <option value="3">March</option>
@@ -1369,7 +1316,8 @@
                     <ul class="dropdown-menu" aria-labelledby="Annually">
                     <li><a class="dropdown-item" href="#">2020-2021</a></li>
                     </ul> -->
-                    <select id="Annually" name="Annually">
+                    <select id="Annually" name="Annually" class="btn btn-outline-primary ml-1">
+                      <option hidden>Annually</option>
                     <?php 
                                 $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
                                 $stmtYear = $con->prepare($sqlYear);
@@ -1384,11 +1332,14 @@
                 <button type="button" onclick="exportTableToExcel('reportsTable', 'Reports')" class="btn btn-outline-primary mx-5">Export To Excel</button>
                 
              
-                </div>
+            
                
 
                 
               <!-- charts! -->
+              <div class="dashboardBox">
+
+              
               <div class="chartsContainer mt-3">
               <canvas id="myChart"></canvas>
                 <div class="rightChart">
@@ -1433,7 +1384,7 @@
                       </div>
                     </div>
               </div>
-             
+            </div>
 
 <script>
   const ctx = document.getElementById('myChart').getContext('2d');
@@ -1482,8 +1433,8 @@
     });
 </script>
 
-<div class="universal_bg_gray_table">
-    <table id="reportsTable" class="table mt-5">
+    <div class="dashboardBox">
+    <table id="reportsTable" class="table" style="color: var(--white)">
       <thead class="thead-light">
         <tr>
           <th>Cashier Id</th>
@@ -1502,8 +1453,7 @@
       </tbody>
     </table>
     </div>
-              
-            
+      
   </div>
 
            
@@ -1511,13 +1461,12 @@
 
             <!-- Student Fees -->
             <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
-              <p class="title_tab_universal">Student Fees</p>
-                <form action="" class="universal_search_form">
-                  <input type="text" id="studentFeeSearch" placeholder="Search">
-                  <button type="button" class="btn btn-primary" id="studentFeeSearch-btn">Search</button>
-                </form>
+              <p class="title_tab_universal my-3">Student Fees</p>
+                
 
-              <div class="col universal_bg_gray_table p-3">
+              <div class="dashboardBox">
+
+             
                 <div class="col-md-6 my-1">
                   <div class="form-floating">
                     <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
@@ -1525,12 +1474,12 @@
                             <option value="Fully Paid" >Fully Paid</option>
                             <option value="Not Fully Paid" >Not Fully Paid</option>
                     </select>
-                    <label for="sortByDashData">Filter by Remarks:</label>
+                    <label for="sortByDashData" style="color: black">Filter by Remarks:</label>
                   </div>
                 </div>
 
-                <div class="table__ mt-4" style="overflow-x: auto;">
-                  <table class="table">
+               
+                  <table class="table" style="color: var(--white)">
                       <thead class="text-center">
                         <tr>
                           <th scope="col">Student ID</th>
@@ -1549,8 +1498,8 @@
                       <tbody id="viewStudentFeesList">
                       </tbody>
                     </table>
-                </div>
-              </div>
+                    </div>
+              
             </div>
 
 
@@ -1558,20 +1507,21 @@
             
             <!-- Fees Management -->
             <div class="tab-pane fade" id="v-pills-fees" role="tabpanel" aria-labelledby="v-pills-fees-tab">
-              <p class="title_tab_universal">Manage Fees</p>
+              <p class="title_tab_universal my-3">Manage Fees</p>
               <form action="" class="universal_search_form">
                 <input type="text" name="searhProgram" id="searhProgram" placeholder="Search">
                 <button type="button" class="btn btn-primary" id="searchProgram-btn">Search</button>
               </form>
-              <div class="feesManagement_miniDashboard my-2 p-4 d-flex justify-content-between">
+              <div class="dashboardBox mt-4 p-4 d-flex justify-content-between">
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(0)"><i class="fas fa-plus"></i>&nbsp;Add Academic Year</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(2)"><i class="fas fa-plus"></i>&nbsp;Add Bachelor's Program</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(3)" id="addScholarship"><i class="fas fa-plus" ></i>&nbsp;Add Scholarship</button>
                   <button class="btn btn-success feesMgmt_btn" onclick="popUpAdmin_SchoolFees(4)"><i class="fas fa-plus"></i>&nbsp;Add Discount</button>
               </div>
-              <div class="col universal_bg_gray_table">
-                <table class="table">
-                  <thead class="thead-light">
+
+              <div class="col dashboardBox">
+                <table class="table" style="color: var(--white)">
+                  <thead>
                     <tr>
                       <th scope="col">Course ID</th>
                       <th scope="col">Program</th>
@@ -2662,7 +2612,7 @@
               document.querySelector('#employees-tab').style.display = "none"
               document.getElementById('v-pills-fees-tab').style.display = "none"
               document.getElementById('v-pills-reports-tab').style.display="none"
-              document.querySelector('.dashBoardforAdmin').style.display = "none"
+              document.querySelector('#dashboardForAdminId').style.display = "none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"
