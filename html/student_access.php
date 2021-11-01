@@ -1,4 +1,5 @@
-    <?php
+<?php
+
         session_start();
         if(!isset($_SESSION['stud_id']) && $_SESSION['role'] != 'Student'){
             header('Location: login.php');
@@ -31,7 +32,7 @@
             }
 
         }
-    ?>
+?>
     <!DOCTYPE html>
     <html lang="en">
     <head>

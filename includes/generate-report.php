@@ -6,12 +6,13 @@
     $empId = $_POST['empId'];
     $password = $_POST['password'];
 
-    $sqlAuth = "SELECT * FROM `tbl_accounts` WHERE user_id = ? AND password = ?";
+    $sqlAuth = "SELECT * FROM `tbl_accounts` WHERE user_id = ?";
     $stmtAuth = $con->prepare($sqlAuth);
-    $stmtAuth->bind_param('ss',$empId,$password);
+    $stmtAuth->bind_param('s',$empId);
     $stmtAuth->execute();
     $resAuth = $stmtAuth->get_result();
-    if($resAuth->num_rows > 0){
+    $row = $resAuth->fetch_assoc();
+    if(password_verify($password, $row['password'])){
       $response['status'] = 'success';
     }else{
       $response['status'] = 'error';

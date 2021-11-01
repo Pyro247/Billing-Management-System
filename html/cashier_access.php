@@ -1537,7 +1537,7 @@ include_once '../connection/Config.php';
                 console.log(data)
                 $('#StudProgram').val(data.prograId);
                 $('#studName').text(data.fullname);
-                $('#studID').text(data.stud_id + ' | ' + data.program);
+                $('#studID').text(data.stud_id);
                 $('#studTotalAmountPaid').val(data.studTotalAmountPaid);
                 $('#payStudScholar').text(data.scholar);
                 $('#payStudDiscount').text(data.studDiscount);

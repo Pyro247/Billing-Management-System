@@ -77,8 +77,7 @@
   if(isset($_POST['transact'])){
     $studId = $_POST['studId'];
     $amount = $_POST['amount'];
-    $cashier_id = $_POST['cashierId'];
-    $cashier_name = $_POST['cashierName'];
+    
     // Genearate Transaction No base on last no on tbl payments of pending payments
     $sqlTransNo = "SELECT transaction_no
                     FROM tbl_payments
@@ -140,6 +139,8 @@
       if($scholar_type == 'Full'){
         $remarks = 'Full Scholar';
       }
+      $cashier_id = $_POST['cashierId'];
+      $cashier_name = $_POST['cashierName'];
       $slqApprove = "INSERT INTO `tbl_payments`(`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $stmtApprove = $con->prepare($slqApprove);
       $stmtApprove->bind_param('sssssssssssssssss', $newTransNo,$program_id,$studId,$fullname,$csi_academic_year,$csi_semester,$tuition_fee,$amount,$payment_method,$payment_gateway,$sales_invoice,$balance,$today,$payment_status,$remarks,$cashier_id,$cashier_name);
