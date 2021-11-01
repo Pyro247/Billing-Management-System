@@ -79,7 +79,24 @@ include_once '../connection/Config.php';
           }
         </script>
 <!-- LOADER -->
+ <!-- Modal Banner -->
+ <div class="modal fade text-dark" id="bannerForCashier" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
 
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          </div>
+          <div class="modal-body">
+            <h4>Good day <strong><?= $_SESSION['fullname']?></strong> as of today, you are already generated a report.
+            You can't transact payment as of now. See you tomorrow!</h4>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" id="bannerOk">Ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   <div class="cashDenominationContainer">
     <form action="../includes/generate-report.php" method="post" class="cashDenominationForm">
@@ -415,10 +432,10 @@ include_once '../connection/Config.php';
 
             <!-- Table -->
             
-            <div class="dashBoardBox p-3">
+            <div class="dashBoardBox p-3" dissabled>
             <span style="font-size: 1.6rem; font-weight: 500; color: var(--secondary); display: block; margin: 0 0 25px 0">Fund Transfers (Online)</span>  
             
-              <table class="table dataTblMe" style="color: var(--white);">
+              <table class="table dataTblMe" style="color: var(--white);" id="pendingTable">
                   <thead class="text-center" style="border-bottom: 2px solid white; margin-top: 25px">
                     <tr>
                       <th scope="col">Transaction ID</th>
@@ -459,7 +476,7 @@ include_once '../connection/Config.php';
         <div class="modal fade" id="denyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
           <div class="modal-dialog  modal-dialog-centered modal-lg">
             <div class="modal-content">
-              <div class="modal-header">
+              <div class="modal-header text-dark">
                 <h5 class="modal-title" id="staticBackdropLabel">Reason to Deny Payment Request</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
@@ -476,14 +493,14 @@ include_once '../connection/Config.php';
                   <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="studEmail">
                 </div>
               </div>
-              <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
+              <div class="form-floating text-dark">
+                <textarea class="form-control " placeholder="Leave a comment here" id="reasonToDeny" style="height: 100px"></textarea>
                 <label for="reasonToDeny">Comments</label>
               </div>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="sendDeny">Send Deny</button>
+                <button type="button" class="btn btn-primary" id="sendDeny">Send Deny</button>
               </div>
             </div>
           </div>
@@ -535,6 +552,13 @@ include_once '../connection/Config.php';
                         <span class="input-group-text beforeInput" >Scholarship Deduction</span>
                         <span class="input-group-text">₱</span>
                         <input type="text" class="form-control w-auto" id="scholarDeduction" placeholder="0.00" disabled>
+                      </div>  
+                    </div>
+                    <div class="col">
+                      <div class="input-group mb-2">
+                        <span class="input-group-text beforeInput">Total Amount Paid</span>
+                        <span class="input-group-text">₱</span>
+                        <input type="text" class="form-control w-auto" id="studTotalAmountPaid" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
@@ -1269,6 +1293,7 @@ include_once '../connection/Config.php';
         let transactionNo = $(this).attr("data-id");
         let name = $(this).attr("data-name");
         let email = $(this).attr("data-email");
+        $('#denyModal').modal('show');
         $('#transactionNo').val(transactionNo);
         $('#studEmail').val(email);
         $('#studFullname').val(name);
@@ -1281,34 +1306,44 @@ include_once '../connection/Config.php';
         let reasonToDeny = $('#reasonToDeny').val();
         let studFullname = $('#studFullname').val();
         let studEmail = $('#studEmail').val();
-        $.ajax({
-          type: "POST",
-          url: "../includes/managPayments.php",
-          data: {
-            "deny": 1,
-            "transactionNo": transactionNo,
-            "reasonToDeny": reasonToDeny,
-            "studEmail": studEmail,
-            "studFullname": studFullname,
-            'cashierName': '<?=$_SESSION['fullname']?>',
-            'cashierId': '<?=$_SESSION['employeeId']?>'
-          },
-          beforeSend: function() {
-                openLoader()
-          },
-          success: function (response) {
-            console.log(response)
-            Swal.fire(
-                'Denied!',
-                'Payment Denied Complete',
-                'info'
-                )
-            viewPending(allData,generalSort);
-          },
-            complete: function() {
-                closeLoader()
+        if(reasonToDeny == 0){
+          Swal.fire(
+            'Comment is empty',
+            'Please enter your reason why are you denying payment request',
+            'info'
+          )
+        }else{
+          $.ajax({
+            type: "POST",
+            url: "../includes/managPayments.php",
+            data: {
+              "deny": 1,
+              "transactionNo": transactionNo,
+              "reasonToDeny": reasonToDeny,
+              "studEmail": studEmail,
+              "studFullname": studFullname,
+              'cashierName': '<?=$_SESSION['fullname']?>',
+              'cashierId': '<?=$_SESSION['employeeId']?>'
             },
-        });
+            beforeSend: function() {
+                  openLoader()
+            },
+            success: function (response) {
+              console.log(response)
+              Swal.fire(
+                  'Denied!',
+                  'Payment Denied Complete',
+                  'info'
+                  )
+              $('#denyModal').modal('hide');
+              viewPending(allData,generalSort);
+            },
+              complete: function() {
+                  closeLoader()
+              },
+          });
+        }
+        
       });
       // Show Invoice Modal
       $(document).on('click', '#viewInvoice', function(){
@@ -1405,7 +1440,7 @@ include_once '../connection/Config.php';
           e.preventDefault();
           let cash = $('#cashAmount').val();
           let amoutToPay = $('#previewStudAmountToPay').val();
-          if( parseFloat(cash) < parseFloat(amoutToPay)  ){
+          if( parseFloat(cash) < parseFloat(amoutToPay)  || cash == 0){
             Swal.fire(
               'Insufficient',
               'Insufficient Cash ',
@@ -1446,6 +1481,7 @@ include_once '../connection/Config.php';
                   $('#cashAmount').val('');
                   $('#studBalance').val('');
                   $('#scholarDeduction').val('');
+                  $('#studTotalAmountPaid').val('');
                   $('#discountDeduction').val('');
                   $("#payBtn").prop("disabled", true);
                   viewLastTransaction('')
@@ -1470,9 +1506,14 @@ include_once '../connection/Config.php';
           $('#StudProgram').val('');
           $('#studName').text('Fullname');
           $('#studID').text('Student ID');
+          $('#payStudScholar').text('Scholarship');
+          $('#payStudDiscount').text('Discount');
           $('#studentTagName').text('Student last transaction');
           $('#studTuition').val('');
           $('#studBalance').val('');
+          $('#scholarDeduction').val('');
+          $('#studTotalAmountPaid').val('');
+          $('#discountDeduction').val('');
           $("#payBtn").prop("disabled", true);
           $('#studAmountToPay').val('');
         });
@@ -1497,7 +1538,7 @@ include_once '../connection/Config.php';
                 $('#StudProgram').val(data.prograId);
                 $('#studName').text(data.fullname);
                 $('#studID').text(data.stud_id + ' | ' + data.program);
-                // $('#payStudProg').text(data.program);
+                $('#studTotalAmountPaid').val(data.studTotalAmountPaid);
                 $('#payStudScholar').text(data.scholar);
                 $('#payStudDiscount').text(data.studDiscount);
                 $('#studentTagName').text(data.fullname + ' last transaction');
@@ -1799,7 +1840,9 @@ include_once '../connection/Config.php';
               confirmButtonText: 'Ok'
             })
             if(response.status == 'success'){
-              $('#genReportModal').modal('toggle'); 
+              $('#genReportModal').modal('toggle');
+              location.reload(); 
+
             } 
           }
           // To updated account will logout after generating report
@@ -1843,5 +1886,29 @@ include_once '../connection/Config.php';
                 });
             } );
         </script> 
+         <script>
+      $(document).ready(function () {
+        <?php
+          $today = date("Y-m-d");
+          $id = $_SESSION['employeeId'];
+            $sqlCheckCashier = "SELECT * FROM tbl_reports WHERE cashier_id = ? AND date = ?";
+            $stmtCheckCashier = $con->prepare($sqlCheckCashier);
+            $stmtCheckCashier->bind_param('ss',$id,$today);
+            $stmtCheckCashier->execute();
+            $resCheckCashier = $stmtCheckCashier->get_result();
+            $rowCheckCashier = $resCheckCashier->fetch_assoc();
+            $countCheckCashier = $resCheckCashier->num_rows;
+            if($countCheckCashier > 0){?>
+              $('#bannerForCashier').modal('show'); 
+           <?php }?>
+      });
+      $('#bannerOk').click(function (e) { 
+        e.preventDefault();
+        $("#viewPendingPayments a").prop("disabled", true);
+        $( "#payTransac_btn" ).prop( "disabled", true );
+        $( "#genReportBtn" ).prop( "disabled", true );
+        $('#bannerForCashier').modal('hide');
+      });
+    </script>
   </body>
 </html>

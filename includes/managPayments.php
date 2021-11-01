@@ -195,7 +195,6 @@ while($data = $res->fetch_assoc()){?>
         >Approve</a>
         <a href="#" class="btn btn-danger paymentTransaction_actionBtn mb-1 d-block"
         id="deny" 
-        data-bs-toggle="modal" data-bs-target="#denyModal"
         data-id="<?=$data['transaction_no'];?>"
         data-name="<?=$data['fullname'];?>"
         data-email="<?=$data['email'];?>"

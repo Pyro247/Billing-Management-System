@@ -689,7 +689,6 @@
                 e.preventDefault();
                 let transactionNo = $(this).attr("data-id");
                 $('#TransactionNo').text(transactionNo);
-                alert(transactionNo)
                 $.ajax({
                     type: "POST",
                     url: "../includes/studPaymentRequest.php",

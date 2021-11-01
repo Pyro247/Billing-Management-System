@@ -36,6 +36,7 @@
       $data['stud_id'] = $row['stud_id'];
       $data['tuition'] = number_format($row['tuition_fee'], 2);
       $data['balance'] = number_format($row['balance'], 2);
+      $data['studTotalAmountPaid'] = number_format($row['total_amount_paid'], 2);
       $scholar_type = $row['scholar_type'];
       $scholar_desc = $row['scholar_desc'];
       $discount_type = $row['discount_type'];
