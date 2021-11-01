@@ -67,7 +67,7 @@ include_once '../connection/Config.php';
 <?php
 
     if(isset($_GET['Annually'])){
-        $annually = $_GET['Annually'];
+        $annually = $_GET['yearSelect'];
           $sqlannually ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
           FROM `tbl_reports` WHERE YEAR(`date`) = ?";
           $stmtannually = $con->prepare($sqlannually);

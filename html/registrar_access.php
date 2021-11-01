@@ -1369,7 +1369,7 @@
                     <ul class="dropdown-menu" aria-labelledby="Annually">
                     <li><a class="dropdown-item" href="#">2020-2021</a></li>
                     </ul> -->
-                    <select id="Yearly" name="Yearly">
+                    <select id="Annually" name="Annually">
                     <?php 
                                 $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
                                 $stmtYear = $con->prepare($sqlYear);
@@ -2723,10 +2723,21 @@
                 });
 
 
-              $("#Annually").click(function(e) {
-                let date = 'Annually'
-                reports();
-              });
+                $('#Annually').on('change',function(){
+                    var optionValyear = $(Annually).val();
+                    $.ajax({
+                        type: "GET",
+                        url: "../includes/admin_reports.php",
+                        dataType: "html",
+                        data: {
+                          "Annually" : 1,
+                          "yearSelect": optionValyear
+                        },
+                          success: function (data) {
+                            $('#adminReports').html(data);
+                          }
+                      });
+                });
 
             });
 
