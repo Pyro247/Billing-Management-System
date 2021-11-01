@@ -1324,8 +1324,23 @@
                 <span class="text-primary" style="font-size: 1.3rem; font-weight: 500; line-height: 50px">View Transactions:</span>
                 
                  <button id="Daily" class="btn btn-outline-primary mx-1">Daily</button>
+
+                 <select id="Monthly" name="Monthly">
+                      <option value="1">January</option>
+                      <option value="2">February</option>
+                      <option value="3">March</option>
+                      <option value="4">April</option>
+                      <option value="5">May</option>
+                      <option value="6">June</option>
+                      <option value="7">July</option>
+                      <option value="8">August</option>
+                      <option value="9">September</option>
+                      <option value="10">October</option>
+                      <option value="11">November</option>
+                      <option value="12">December</option>
+                    </select>
                 
-                    <btn class="btn btn-outline-primary dropdown-toggle mx-1" href="#" role="button" id="Monthly" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!--<btn class="btn btn-outline-primary dropdown-toggle mx-1" href="#" role="button" id="Monthly" data-bs-toggle="dropdown" aria-expanded="false">
                       Monthly 
                     </btn>
                     <ul class="dropdown-menu" aria-labelledby="Monthly">
@@ -1341,7 +1356,7 @@
                       <li><a class="dropdown-item" href="#">October</a></li>
                       <li><a class="dropdown-item" href="#">November</a></li>
                       <li><a class="dropdown-item" href="#">December</a></li>
-                    </ul>
+                    </ul>-->
                     
                     <btn class="btn btn-outline-primary dropdown-toggle mx-1" href="#" role="button" id="Monthly" data-bs-toggle="dropdown" aria-expanded="false">
                       Annually 
@@ -1465,38 +1480,8 @@
           <th>Date</th>
         </tr>
       </thead>
-      <tbody>
-      <?php
-
-          $sql ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
-          FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
-          $stmt = $con->prepare($sql);
-          $stmt->execute();
-          $res = $stmt->get_result();
-          $count = $res->num_rows;
-
-          ?>
-          <?php 
-          if($count > 0){
-          while($data = $res->fetch_assoc()){?>
-          <tr class="text-center">
-              <td><?=$data['cashier_id'];?></td>
-              <td><?=$data['cashier_name'];?></td>
-              <td><?=$data['total_transaction_amount'];?></td>
-              <td><?=$data['cash_payment'];?></td>
-              <td><?=$data['fund_transfer'];?></td>
-              <td><?=$data['total_transaction_count'];?></td>
-              <td><?=$data['date'];?></td>
-              
-          </tr>
-          <?php }?>
-          <?php }else{?>
-          <tr>
-              <td><?php echo "No Records"?></td>
-          </tr>
-          <?php } 
-                                  
-          ?>
+      <tbody id = "adminReports">
+      
       </tbody>
     </table>
     </div>
@@ -2689,6 +2674,51 @@
              
              
           <script type="text/javascript">
+          $(document).ready(function(){
+              $("#Daily").click(function(e) {
+                reports('All');
+              });
+
+              $('#Monthly').on('change',function(){
+                    var optionVal = $(Monthly).val();
+                    
+                    alert(optionVal);
+                    $.ajax({
+                        type: "POST",
+                        url: "../includes/admin-reports.php",
+                        dataType: "html",
+                        data: {
+                          "Monthly" : 1,
+                          "monthselect": optionVal
+                        },
+                          success: function (data) {
+                            $('#adminReports').html(data);
+                          }
+                      });
+                });
+
+
+              $("#Annually").click(function(e) {
+                let date = 'Annually'
+                reports();
+              });
+
+            });
+               
+               /*function reports(){
+              $.ajax({
+                type: "POST",
+                url: "../includes/admin-reports.php",
+                dataType: "html",
+                data: {
+                  "date" : date
+                },
+                  success: function (data) {
+                    $('#adminReports').html(data);
+                  }
+              });
+            }*/
+
                
   
 
