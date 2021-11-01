@@ -3,7 +3,7 @@
     include_once '../connection/Config.php';
     if(isset($_GET['viewStudentList'])){
       $search = $_GET['search'] ?? '%';
-      $studFees ="SELECT sf.stud_id, sf.fullname, sf.tuition_fee, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major
+      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major
       FROM tbl_student_fees AS sf
       LEFT JOIN tbl_student_school_details AS ssd
       ON sf.stud_id = ssd.stud_id
@@ -13,10 +13,38 @@
       $stmtstudFees->execute();
       $resstudFees = $stmtstudFees->get_result();
       $countstudFees = $resstudFees->num_rows;
+      $datastudFees = $resstudFees->fetch_assoc();
+
     ?>
     <?php 
       if($countstudFees > 0){
-        while($datastudFees = $resstudFees->fetch_assoc()){?>
+        while($datastudFees = $resstudFees->fetch_assoc()){
+          $scholar_type = $datastudFees['scholar_type'];
+          $discount_type = $datastudFees['discount_type'];
+          // Calculate Scholar Deduction
+          if( $scholar_type == 'N/A' ){
+           $scholarDeduction = number_format( 0, 2);
+           $data['scholar'] = '';
+         }else if( $scholar_type == 'Partial Scholar' ){
+           $balance = $datastudFees['tuition_fee'] / 2;
+           $scholarDeduction = number_format($balance, 2);
+           // $data['scholar'] = 'Half Scholar'.'('.$scholar_desc.')';
+         }else if ( $scholar_type == 'Full Scholar' ){
+           $scholarDeduction = number_format( $row['tuition_fee'] , 2);
+           // $data['scholar'] = 'Full Scholar'.'('.$scholar_desc.')';
+         }
+         if($discount_type == 'N/A'){
+          $discountDeduction = number_format( 0, 2);
+        }else{
+          $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+            $stmtGetDisc = $con->prepare($sqlGetDisc);
+            $stmtGetDisc->bind_param('s',$discount_type);
+            $stmtGetDisc->execute();
+            $resGetDisc = $stmtGetDisc->get_result();
+            $rowGetDisc  = $resGetDisc->fetch_assoc();
+            $discountDeduction = ((  $balance * ($rowGetDisc['discount_percent'])/  100));
+        }
+          ?>
           <tr class="text-center">
               <td><?=$datastudFees['stud_id'];?></td>
               <td><?=$datastudFees['fullname'];?></td>
@@ -24,6 +52,10 @@
               <td><?=$datastudFees['csi_major'];?></td>
               <td><?=$datastudFees['csi_year_level'];?></td>
               <td><?=$datastudFees['tuition_fee'];?></td>
+              <td><?=$scholarDeduction?></td>
+              <td><?=$discountDeduction?></td>
+              <td><?=$datastudFees['scholar_type'];?></td>
+              <td><?=$datastudFees['balance'];?></td>
               <td><?=$datastudFees['remarks'];?></td>
           </tr>
         <?php }?>
@@ -42,7 +74,7 @@
       }else{
         $filterBy = $_GET['filterBy'];
       }
-      $studFees ="SELECT sf.stud_id, sf.fullname, sf.tuition_fee, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major,sf.remarks
+      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major,sf.remarks
       FROM tbl_student_fees AS sf
       LEFT JOIN tbl_student_school_details AS ssd
       ON sf.stud_id = ssd.stud_id
@@ -55,14 +87,44 @@
     ?>
     <?php 
       if($countstudFees > 0){
-        while($datastudFees = $resstudFees->fetch_assoc()){?>
+        while($datastudFees = $resstudFees->fetch_assoc()){
+          $scholar_type = $datastudFees['scholar_type'];
+          $discount_type = $datastudFees['discount_type'];
+          // Calculate Scholar Deduction
+          if( $scholar_type == 'N/A' ){
+           $scholarDeduction = number_format( 0, 2);
+           $data['scholar'] = '';
+         }else if( $scholar_type == 'Partial Scholar' ){
+           $balance = $datastudFees['tuition_fee'] / 2;
+           $scholarDeduction = number_format($balance, 2);
+           // $data['scholar'] = 'Half Scholar'.'('.$scholar_desc.')';
+         }else if ( $scholar_type == 'Full Scholar' ){
+           $scholarDeduction = number_format( $row['tuition_fee'] , 2);
+           // $data['scholar'] = 'Full Scholar'.'('.$scholar_desc.')';
+         }
+         if($discount_type == 'N/A'){
+          $discountDeduction = number_format( 0, 2);
+        }else{
+          $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+            $stmtGetDisc = $con->prepare($sqlGetDisc);
+            $stmtGetDisc->bind_param('s',$discount_type);
+            $stmtGetDisc->execute();
+            $resGetDisc = $stmtGetDisc->get_result();
+            $rowGetDisc  = $resGetDisc->fetch_assoc();
+            $discountDeduction = ((  $balance * ($rowGetDisc['discount_percent'])/  100));
+        }  
+        ?>
           <tr class="text-center">
-              <td><?=$datastudFees['stud_id'];?></td>
+          <td><?=$datastudFees['stud_id'];?></td>
               <td><?=$datastudFees['fullname'];?></td>
               <td><?=$datastudFees['csi_program'];?></td>
               <td><?=$datastudFees['csi_major'];?></td>
               <td><?=$datastudFees['csi_year_level'];?></td>
               <td><?=$datastudFees['tuition_fee'];?></td>
+              <td><?=$scholarDeduction?></td>
+              <td><?=$discountDeduction?></td>
+              <td><?=$datastudFees['scholar_type'];?></td>
+              <td><?=$datastudFees['balance'];?></td>
               <td><?=$datastudFees['remarks'];?></td>
           </tr>
         <?php }?>
