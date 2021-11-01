@@ -20,11 +20,17 @@ include_once '../connection/Config.php';
   />
 
     <!-- Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+
+    <!-- Data Tables -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+     <!-- BoxIcons -->
+     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
    
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="../css/cashier_access.css?<?php echo time(); ?>" />
@@ -121,7 +127,7 @@ include_once '../connection/Config.php';
             <img src="../images/cashDenomination/100.jpg" alt="">
             <div class="inputCash">
             <input type="text" name="" id="deno100" placeholder="₱100">
-            <span>=</span>
+            <span>=</span>  
             <input type="text" name="" id="totalDeno100" placeholder="" value="00.00">
             </div>
           </div>
@@ -369,20 +375,12 @@ include_once '../connection/Config.php';
   </div>
 
 
-        
-    <div class="nav__bar">
-      <div class="nav__bar_two">
-      <img src="../images/logo.png" alt="">
-          <div class="nav__bar_two_text">
-              <span>Pyro Colleges Inc.</span>
-              <p>Excellence at its finest.</p>
-          </div>
-      </div>
-    </div>
+   
 
 
     <div class="row">
       <div class="col left-tab">
+      <img src="../images/logo.png" class="logoLeftTab" alt="">
         <div class="upper-left-tab">
           <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
           <p class="reg__name" style="font-size: 1.2rem;"> <?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
@@ -396,10 +394,10 @@ include_once '../connection/Config.php';
         </div>
 
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><img src="../images/icons/dashboard.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Dashboard</a>
-            <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><img src="../images/icons/payment_transaction.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Payment Transactions</a>
-            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><img src="../images/icons/history.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;History</a>
-            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><img src="../images/icons/stud_fee.png" width="30px" height="30px" class="d-block mx-auto mb-1">&nbsp;Student Fees</a>
+            <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class='bx bxs-dashboard'></i>&nbsp;Dashboard</a>
+            <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><i class="fas fa-money-bill-wave-alt"></i>&nbsp;Payment</a>
+            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><i class='fas fa-history' srty></i>&nbsp;History</a>
+            <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-history"></i>&nbsp;Student Fees</a>
             
             
       </div>
@@ -412,46 +410,21 @@ include_once '../connection/Config.php';
           <div class="tab-content" id="v-pills-tabContent">
             <!-- Dashboard -->
             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard">
-              <p class="title_tab_universal">Approve Payments</p>
-
-              <form action="" class="universalForm_one">
-                <input type="text" name="searchDashBar" id="searchDashBar" placeholder="Search">
-                <button type="button" class="btn btn-primary" id="searchDashBar-btn">Search</button>
-              </form>
-              
+           
+              <p class="title_tab_universal my-3">Approve Payments</p>
 
             <!-- Table -->
-            <div class="col universal_bg_gray_table p-3">
-            <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;">Fund Transfers (Online)</span>
-
-            <div class="col-md-6 my-1">
-              <div class="form-floating">
-                <select class="form-select" id="sortByDashData" aria-label="Floating label select example">
-                <option value="transaction_no" selected>None</option>
-                  <option value="stud_id" selected>Student ID</option>
-                  <option value="transaction_no">Transaction ID</option>
-                  <option value="transaction_date">Date of Payment</option>
-                  <option value="csi_year_level">Year Level</option>
-                  
-  
-                </select>
-                <label for="sortByDashData">Sort By:</label>
-              </div>
-            </div>
-
-
-
             
-            <div class="table__" style="overflow-x: auto;">
-              <table class="table">
-                  <thead class="text-center">
+            <div class="dashBoardBox p-3">
+            <span style="font-size: 1.6rem; font-weight: 500; color: var(--secondary); display: block; margin: 0 0 25px 0">Fund Transfers (Online)</span>  
+            
+              <table class="table dataTblMe" style="color: var(--white);">
+                  <thead class="text-center" style="border-bottom: 2px solid white; margin-top: 25px">
                     <tr>
                       <th scope="col">Transaction ID</th>
                       <th scope="col">Student ID</th>
                       <th scope="col">Fullname</th>
-                      <!-- <th scope="col">Last name</th> -->
                       <th scope="col">Amount</th>
-                      <!-- <th scope="col">Remaining Balance</th> -->
                       <th scope="col">Date</th>
                       <th scope="col">Email</th>
                       <th scope="col">Sales Invoice</th>
@@ -459,38 +432,10 @@ include_once '../connection/Config.php';
                       
                     </tr>
                   </thead>
-                  <tbody id ="viewPendingPayments"> 
-                    <!-- <tr class="text-center">
-                      <th scope="row">FT-001</th>
-                      <td>2018300366</td>
-                      <td>Justine Dave</td>
-                      <td>Delos reyes</td>
-                      <td>9000</td>
-                      <td>2500</td>
-                      <td>08/21/2021</td>
-                      <td>ex@gmail.com</td>
-                      <td><button class="btn btn-primary">View</button></td>
-                      <td><button class="btn btn-success my-1 paymentTransaction_actionBtn">Approve</button><button class="btn btn-danger paymentTransaction_actionBtn">Deny</button></td>
-                      
-                      
-                    </tr>
-
-                    <tr class="text-center">
-                      <th scope="row">FT-002</th>
-                      <td>2018300726</td>
-                      <td>John</td>
-                      <td>Doe</td>
-                      <td>7500</td>
-                      <td>9000</td>
-                      <td>08/26/2021</td>
-                      <td>jd@gmail.com</td>
-                      <td><button class="btn btn-primary">View</button></td>
-                      <td><button class="btn btn-success my-1 paymentTransaction_actionBtn">Approve</button><button class="btn btn-danger paymentTransaction_actionBtn">Deny</button></td>
-                    </tr> -->
+                  <tbody id ="viewPendingPayments" class="text-center"> 
+                    
                   </tbody>
                 </table>
-          </div>
-        
         </div>
       </div>
       <!-- Modal View Invoice -->
@@ -547,24 +492,24 @@ include_once '../connection/Config.php';
 
             <!-- PAYMENT TRANSACTIONS -->
             <div class="tab-pane fade" id="v-pills-payment-transactions" role="tabpanel" aria-labelledby="v-pills-payment-transactions">
-              <p class="title_tab_universal">Student's Fees</p>
+              <p class="title_tab_universal my-3">Student's Fees</p>
 
               <form action="" class="universalForm_one">
                 <input type="text" id="searchBar_TransacHistory" placeholder="Search">
                 <button type="button" class="btn btn-primary" id="payTransac_btn">Search</button>
               </form>
 
-              <div class="col universal_bg_gray_table payments_tab" style="overflow-x: hidden;">
+              <div class="dashBoardBox d-flex" style="overflow-x: hidden;">
 
-                <div class="payments_tab_left mx-2 my-auto">
+                <div class="mx-2 my-auto" style="color: var(--primary)">
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
-                  <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studName">Fullname</span>
-                  <span class="d-block text-primary text-center" style="font-size: 1.1rem; font-weight: bold;" id="studID">Student ID</span>
+                  <span class="d-block text-center" style="font-size: 1.1rem; font-weight: bold; color: var(--secondary)" id="studName">Fullname</span>
+                  <span class="d-block text-center" style="font-size: 1.1rem; font-weight: bold; color: var(--secondary)" id="studID">Student ID</span>
                   <!-- <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudProg">Program-Major</span> -->
 
-                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudScholar">Scholarship</span>
+                  <span class="d-block text-center" style="font-size: 1rem; font-weight: bold; color: var(--secondary)" id="payStudScholar">Scholarship</span>
 
-                  <span class="d-block text-primary text-center" style="font-size: 1rem; font-weight: bold;" id="payStudDiscount">Discount</span>
+                  <span class="d-block text-center" style="font-size: 1rem; font-weight: bold; color: var(--secondary)" id="payStudDiscount">Discount</span>
                   
                 </div>
                 <div class="payments_tab_right">
@@ -709,7 +654,7 @@ include_once '../connection/Config.php';
 
             <!-- Table -->
             <div class="col universal_bg_gray_table p-3">
-            <span class="text-primary" style="font-size: 1.3rem; font-weight: 500;" id="studentTagName">Student Last Transaction</span>
+            <span style="font-size: 1.3rem; font-weight: 500; color: var(--secondary)" id="studentTagName">Student's Last Transaction</span>
               <hr style="margin-top: 5px; height: 2px;" class="text-primary">
 
               <!-- <div class="col-md">
@@ -728,10 +673,10 @@ include_once '../connection/Config.php';
 
               </div> -->
 
-              <div class="row">
-              <div class="table__" style="overflow-x: auto;">
-                <table class="table">
-                    <thead class="text-center">
+              
+              
+                <table class="table dataTblMe" style="color: var(--white)">
+                    <thead class="text-center" style="color: var(--white)">
                       <tr>
                         <th scope="col">Transaction No.</th>
                         <th scope="col">Student No.</th>
@@ -745,14 +690,13 @@ include_once '../connection/Config.php';
                         
                       </tr>
                     </thead>
-                    <tbody id="viewLastTransaction">
+                    <tbody id="viewLastTransaction" class="Text-center">
 
                 </tbody> 
                   </table>
 
-
-            </div>
-          </div>
+          
+          
           </div>
           
         </div>
@@ -762,7 +706,7 @@ include_once '../connection/Config.php';
 
             <!-- HISTORY -->
             <div class="tab-pane fade history-tab" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
-              <p class="title_tab_universal">Transaction History</p>
+              <p class="title_tab_universal my-3">Transaction History</p>
 
               
 
@@ -923,11 +867,10 @@ include_once '../connection/Config.php';
 
 
 
-              <div class="col universal_bg_gray_table p-3">
-                <p class="text-primary text-center" style="font-size: 1.3rem; font-weight: 500;">Filter:</p>
+              <div class="dashBoardBox p-3">
+                <p style="font-size: 1.6rem; font-weight: 500; color: var(--primary)">Filter:</p>
 
                 <form action="" class="my-1">
-
                 <div class="row">
                     <div class="col-md">
                       <div class="form-floating">
@@ -936,7 +879,7 @@ include_once '../connection/Config.php';
                           <option value="Cash">Cash</option>
                           <option value="Online">Fund Transfer</option>
                         </select>
-                        <label for="filterByPayMethod">Payment Method</label>
+                        <label for="filterByPayMethod" style="color: black">Payment Method</label>
                       </div>
                   </div>
 
@@ -944,7 +887,7 @@ include_once '../connection/Config.php';
                   <div class="col-md">
                     <div class="form-floating">
                         <input type="date" class="form-control" name="filterByDate" id="filterByDate" placeholder=" ">
-                        <label for="floatingInput">Select Date:</label>
+                        <label for="floatingInput" style="color: black">Select Date:</label>
                     </div>
                   </div>
                 </div>
@@ -959,8 +902,7 @@ include_once '../connection/Config.php';
               </div>
               </form>
               
-                <div class="table__ mt-4" style="overflow-x: auto;">
-                  <table class="table">
+                  <table class="table" style="color: white">
                       <thead class="text-center">
                         <tr>
                           <th scope="col">Transaction ID</th>
@@ -976,20 +918,9 @@ include_once '../connection/Config.php';
                         </tr>
                       </thead>
                       <tbody id="viewTransactionHistory">
-                      
-                      <!-- <tr class="text-center">
-                          <th scope="row">FT-001</th>
-                          <td>2018300366</td>
-                          <td>Justine Dave</td>
-                          <td>9000</td>
-                          <td>Cash</td>
-                          <td>Approved</td>
-                          <td>08/21/2021</td>
-
-                        </tr>--->
                       </tbody>
                     </table>
-                </div>
+                
                
 
               </div>
@@ -999,18 +930,18 @@ include_once '../connection/Config.php';
                 <div class="modal-dialog modal-dialog-centered ">
                   <div class="modal-content">
                     <div class="modal-header">
-                      <h5 class="modal-title" id="staticBackdropLabel">Authentication</h5>
+                      <h5 class="modal-title" id="staticBackdropLabel" style="color: black">Authentication</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                       <div class="modal-body">
                         <form action="" id="genReportAuthForm">
                           <div class="form-floating">
                             <input type="password" class="form-control" id="genReportPass" placeholder="Enter your password">
-                            <label for="genReportPass">Password</label>
+                            <label for="genReportPass" style="color: black">Enter Password</label>
                           </div>
                           <div style="height: 70px;">
                               <div class=" h-75 d-flex justify-content-center my-3">
-                                <button type="submit" class="btn btn-primary w-50">Enter</button>
+                                <button type="submit" class="btn btn-primary w-50">Submit</button>
                               </div>
                           </div>
                         </form>
@@ -1197,27 +1128,24 @@ include_once '../connection/Config.php';
 
             <!-- Student Fees -->
             <div class="tab-pane fade studFee-tab" id="v-pills-studFee" role="tabpanel" aria-labelledby="v-pills-studFee-tab">
-              <p class="title_tab_universal">Student Fees</p>
+              <p class="title_tab_universal my-3">Student Fees</p>
 
-              <form action="" class="universalForm_one">
-                <input type="text"  id="studentFeeSearch" placeholder="Search">
-                <button type="button" class="btn btn-primary" id="studentFeeSearch-btn">Search</button>
-              </form>
+            
 
-              <div class="col universal_bg_gray_table p-3">
-                <div class="col-md-6 my-1">
+              <div class="dashBoardBox p-3">
+                <div class="col-md-6 mb-5">
                   <div class="form-floating">
                     <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
                             <option value="All" selected>All</option>
                             <option value="Fully Paid" >Fully Paid</option>
                             <option value="Not Fully Paid" >Not Fully Paid</option>
                     </select>
-                    <label for="filterByRemarks">Filter by Remarks:</label>
+                    <label for="filterByRemarks" style="color: black">Filter by Remarks:</label>
                   </div>
                 </div>
 
-                <div class="table__ mt-4" style="overflow-x: auto;">
-                  <table class="table">
+                
+                  <table class="table dataTblMe2" style="color: white; overflow-x: hidden" >
                       <thead class="text-center">
                         <tr>
                         <th scope="col">Student ID</th>
@@ -1239,7 +1167,6 @@ include_once '../connection/Config.php';
                       </tbody>
                     
                     </table>
-                </div>
                 
               </div>
               
@@ -1271,6 +1198,7 @@ include_once '../connection/Config.php';
           
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -1896,5 +1824,22 @@ include_once '../connection/Config.php';
         return variance.toFixed(2)
       }
     </script>
-</body>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+        <script>
+            $(document).ready( function () {
+                $('table.dataTblMe').DataTable({
+                    lengthMenu: [[5, 10, -1], [5, 10, 'All']],
+                    pagingType: 'full_numbers'
+                });
+            } );
+
+            $(document).ready( function () {
+                $('table.dataTblMe2').DataTable({
+                    lengthMenu: [[5, 10, -1], [5, 10, 'All']],
+                    pagingType: 'full_numbers',
+                    scrollX: 400,
+                });
+            } );
+        </script> 
+  </body>
 </html>

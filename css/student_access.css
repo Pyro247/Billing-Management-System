@@ -7,7 +7,6 @@
     font-size: 16px;
     --font-school-name: 'Zilla Slab', serif;
     --font-tagline: 'Overpass', sans-serif;
-    box-sizing: border-box;
     --primary: #3861fb;
     --secondary: #6188ff;
     --greenPrimary: #16c784;
@@ -155,10 +154,7 @@ html, body{
     width: 50px;
     height: 50px;
     display: block;
-    position: absolute;
-    bottom: 25px;
-    left: 50%;
-    transform: translate(-50%);
+    margin: 10px auto;
 }
 
 .upper-left-tab{
@@ -216,6 +212,7 @@ html, body{
     user-select: auto;
     pointer-events: auto;
 }
+
 
 .profile_link a:hover{
     opacity: .8;
@@ -364,7 +361,6 @@ html, body{
     padding: 12px 0 50px 0;
     position: relative;
     margin: 15px 10px; 
-    
 }
 .miniDashboardInner img{
     width: 120px;

@@ -91,6 +91,7 @@
 
     <div class="row">
         <div class="col left-tab">
+        <img src="../images/logo.png" class="logoLeftTab" alt="">
             <div class="upper-left-tab">
               
                 <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
@@ -109,7 +110,7 @@
             <a class="nav-link main__" id="v-pills-payment-application-tab" data-toggle="pill" href="#v-pills-payment-application" role="tab" aria-controls="v-pills-payment-application" aria-selected="false"><i class="fas fa-credit-card"></i>&nbsp;Payment Form</a>
             <a class="nav-link main__" id="v-pills-transaction-history-tab" data-toggle="pill" href="#v-pills-transaction-history" role="tab" aria-controls="v-pills-transaction-history" aria-selected="false"><i class='bx bx-history'></i>&nbsp; History</a>
         </div>
-        <img src="../images/logo.png" class="logoLeftTab" alt="">
+      
         </div>
         
 
