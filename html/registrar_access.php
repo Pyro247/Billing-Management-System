@@ -32,8 +32,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
 
-  
-    <title>Registrar</title>
+    <?php
+      if($_SESSION['role'] == 'Admin'){?>
+        <title>Admin</title>
+      <?php }else{?>
+        <title>Registrar</title>
+      <?php }?>
+    
   </head>
   <body>
 <!-- LOADER! -->
@@ -1358,12 +1363,24 @@
                       <li><a class="dropdown-item" href="#">December</a></li>
                     </ul>-->
                     
-                    <btn class="btn btn-outline-primary dropdown-toggle mx-1" href="#" role="button" id="Monthly" data-bs-toggle="dropdown" aria-expanded="false">
+                    <!-- <btn class="btn btn-outline-primary dropdown-toggle mx-1" href="#" role="button" id="Monthly" data-bs-toggle="dropdown" aria-expanded="false">
                       Annually 
                     </btn>
                     <ul class="dropdown-menu" aria-labelledby="Annually">
                     <li><a class="dropdown-item" href="#">2020-2021</a></li>
-                    </ul>
+                    </ul> -->
+                    <select id="Yearly" name="Yearly">
+                    <?php 
+                                $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
+                                $stmtYear = $con->prepare($sqlYear);
+                                $stmtYear->execute();
+                                $resYear = $stmtYear->get_result();
+                                while($rowYear = $resYear->fetch_assoc()){
+                                  $acadYear = substr($rowYear['academic_year'], 0, 4);
+                                ?>
+                                <option value="<?= $acadYear ?>"><?= $acadYear?></option>
+                            <?php }; ?>
+                    </select>
                 <button type="button" onclick="exportTableToExcel('reportsTable', 'Reports')" class="btn btn-outline-primary mx-5">Export To Excel</button>
                 
              
