@@ -1,7 +1,7 @@
 <?php
 include_once '../connection/Config.php';
 
-    if(isset($_POST['Daily'])){
+    if(isset($_GET['Daily'])){
           $sqldaily ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
           FROM `tbl_reports` WHERE`date` = CURRENT_DATE";
           $stmtdaily = $con->prepare($sqldaily);
@@ -32,8 +32,8 @@ include_once '../connection/Config.php';
 
 <?php
 
-    if(isset($_POST['Monthly'])){
-        $monthly = $_GET['Monthly'];
+    if(isset($_GET['Monthly'])){
+        $monthly = $_GET['monthSelect'];
           $sqlmonthly ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
           FROM `tbl_reports` WHERE MONTH(`date`) = ?";
           $stmtmonthly = $con->prepare($sqlmonthly);
@@ -66,7 +66,7 @@ include_once '../connection/Config.php';
 
 <?php
 
-    if(isset($_POST['Annually'])){
+    if(isset($_GET['Annually'])){
         $annually = $_GET['Annually'];
           $sqlannually ="SELECT `cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`,(cash_payment + fund_transfer) as total_transaction_amount, `total_transaction_count`, `date` 
           FROM `tbl_reports` WHERE YEAR(`date`) = ?";

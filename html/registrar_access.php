@@ -2675,21 +2675,29 @@
              
           <script type="text/javascript">
           $(document).ready(function(){
-              $("#Daily").click(function(e) {
-                reports('All');
+
+              $("#Daily").click(function(){
+              $.ajax({
+                type: "GET",
+                url: "../includes/admin_reports.php",
+                dataType: "html",
+                data: {
+                    "Daily" : 1
+                },
+              success: function(data){
+              $("#adminReports").html(data);
+                  }});
               });
 
               $('#Monthly').on('change',function(){
                     var optionVal = $(Monthly).val();
-                    
-                    alert(optionVal);
                     $.ajax({
-                        type: "POST",
-                        url: "../includes/admin-reports.php",
+                        type: "GET",
+                        url: "../includes/admin_reports.php",
                         dataType: "html",
                         data: {
                           "Monthly" : 1,
-                          "monthselect": optionVal
+                          "monthSelect": optionVal
                         },
                           success: function (data) {
                             $('#adminReports').html(data);
@@ -2704,20 +2712,6 @@
               });
 
             });
-               
-               /*function reports(){
-              $.ajax({
-                type: "POST",
-                url: "../includes/admin-reports.php",
-                dataType: "html",
-                data: {
-                  "date" : date
-                },
-                  success: function (data) {
-                    $('#adminReports').html(data);
-                  }
-              });
-            }*/
 
                
   
