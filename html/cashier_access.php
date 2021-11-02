@@ -1861,7 +1861,7 @@ include_once '../connection/Config.php';
       }
     </script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-        <script>
+        <!-- <script>
           
 
             $(document).ready( function () {
@@ -1871,7 +1871,7 @@ include_once '../connection/Config.php';
                     scrollX: 400,
                 });
             } );
-        </script> 
+        </script>  -->
          <script>
       $(document).ready(function () {
         <?php

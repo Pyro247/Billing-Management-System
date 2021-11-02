@@ -108,7 +108,7 @@
     <!-- Bacherlor's Program Tuition Fee input -->
     <div class="popUpAdmin_FeesManagement"  style="visibility: hidden; opacity: 0; transition: all 150ms;" id="tuitionFeePopUp">
       <div class="popUpFeesMgmtinner">
-      <i class="far fa-arrow-circle-left text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
+      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Enter Tuition Fee</p>
         <hr class="mt-0 mb-3">
         <form action="" id="newProgramAccessed">
@@ -545,38 +545,109 @@
 
                           <div class="manage_users_universal_mid_tab px-1">
                             
+                            <!-- StudentID -->
                             <div class="row g-2 mb-1">
-                            <div class="col-md">
-                              <div class="form-floating">
-                                <input type="number" name="student_number" class="form-control" id="studId" placeholder=" " value="" disabled>
-                                <label for="studId" class="labelForTextBox">Student ID</label>
-                              </div>
-                            </div>
-
                               <div class="col-md">
                                 <div class="form-floating">
-                                  <input type="text" name="stud_firstname" class="form-control" id="studFirstname" placeholder=" " value="" disabled>
-                                  <label for="studFirstname" class="labelForTextBox">First name</label>
-                                </div>
-                              </div>
-
-                              <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" name="stud_middlename" class="form-control" id="studMiddlename" placeholder=" " value="" disabled>
-                                  <label for="studMiddlename" class="labelForTextBox">Middle name</label>
-                                </div>
-                              </div>
-
-                              <div class="col-md">
-                                <div class="form-floating">
-                                  <input type="text" name="stud_lastname" class="form-control" id="studLastname" placeholder=" " value="" disabled>
-                                  <label for="studLastname" class="labelForTextBox">Last name</label>
+                                  <input type="number" name="student_number" class="form-control" id="studId" placeholder=" " value="" disabled>
+                                  <label for="studId" class="labelForTextBox">Student ID</label>
                                 </div>
                               </div>
                             </div>
 
+
+                            <!-- Full name -->
                             <div class="row g-2 mb-1">
-                              <div class="col-md mb-1">
+                              
+                              <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_firstname" class="form-control" id="studFirstname" placeholder=" " value="" disabled>
+                                    <label for="studFirstname" class="labelForTextBox">First name</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_middlename" class="form-control" id="studMiddlename" placeholder=" " value="" disabled>
+                                    <label for="studMiddlename" class="labelForTextBox">Middle name</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_lastname" class="form-control" id="studLastname" placeholder=" " value="" disabled>
+                                    <label for="studLastname" class="labelForTextBox">Last name</label>
+                                  </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            
+                          
+
+                              <div class="row g-2 mb-1">
+                                <div class="col-md">
+                                  <div class="form-floating">
+
+                                    <select class="form-select" name="stud_program" id="studProgram" aria-label="Floating label select example" disabled>
+                                    <?php 
+                                      $sqlProg = "SELECT DISTINCT course_program FROM `tbl_course_list`";
+                                      $stmtProg = $con->prepare($sqlProg);
+                                      $stmtProg->execute();
+                                      $resProg = $stmtProg->get_result();
+                                      while($rowProg = $resProg->fetch_assoc()){
+                                    ?>
+                                      <option value="<?= $rowProg['course_program'];?>"><?= $rowProg['course_program'];?></option>
+                                    <?php }; ?>
+                                    </select>
+                                    <label for="studProgram" class="labelForTextBox">Program</label>
+                                  </div>
+                                </div>
+                              
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
+                                    </select>
+                                    <label for="studMajor" class="labelForTextBox">Major</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_lrn" class="form-control" id="studLrn" placeholder=" " value="" disabled >
+                                    <label for="studLrn" class="labelForTextBox">LRN</label>
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div class="row g-2 mb-1">
+
+                              <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="" placeholder=" " value="" disabled >
+                                    <label for="studFee" class="labelForTextBox">Lecture Units</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="" placeholder=" " value="" disabled >
+                                    <label for="studFee" class="labelForTextBox">Laboratory Units</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
+                                    <label for="studFee" class="labelForTextBox">Fee</label>
+                                  </div>
+                                </div>
+                              </div>
+                              <br>
+
+                              <div class="row g-2 mb-1">
+                              <div class="col-md">
                                 <div class="form-floating">
                                   <input type="text" name="stud_school_year" class="form-control" id="studSchoolYear" placeholder=" " value="" disabled>
                                   
@@ -610,51 +681,7 @@
                                   <label for="studYearLevel" class="labelForTextBox">Year Level</label>
                                 </div>
                               </div>
-
                             </div>
-
-                              <div class="row g-2 mb-1">
-                                <div class="col-md">
-                                  <div class="form-floating">
-
-                                    <select class="form-select" name="stud_program" id="studProgram" aria-label="Floating label select example" disabled>
-                                    <?php 
-                                      $sqlProg = "SELECT DISTINCT course_program FROM `tbl_course_list`";
-                                      $stmtProg = $con->prepare($sqlProg);
-                                      $stmtProg->execute();
-                                      $resProg = $stmtProg->get_result();
-                                      while($rowProg = $resProg->fetch_assoc()){
-                                    ?>
-                                      <option value="<?= $rowProg['course_program'];?>"><?= $rowProg['course_program'];?></option>
-                                    <?php }; ?>
-                                    </select>
-                                    <label for="studProgram" class="labelForTextBox">Program</label>
-                                  </div>
-                                </div>
-                              
-                                
-
-                          
-                                <div class="col-md">
-                                  <div class="form-floating">
-                                    <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
-
-
-                                  
-                                    </select>
-                                    <label for="studMajor" class="labelForTextBox">Major</label>
-                                  </div>
-                                </div>
-
-                                <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
-                                    <label for="studFee" class="labelForTextBox">Fee</label>
-                                  </div>
-                                </div>
-
-
-                              </div>
                               
 
                               
@@ -713,16 +740,11 @@
                                     </div>
                                   </div>
 
-                                  
-                                  <div class="col-md">
-                                  <div class="form-floating">
-                                    <input type="text" name="stud_lrn" class="form-control" id="studLrn" placeholder=" " value="" disabled >
-                                    <label for="studLrn" class="labelForTextBox">LRN</label>
-                                  </div>
-                                </div>
 
                                 </div> 
                             </div>
+
+                            
 
 
                           <div class="manage_users_students_right_tab">
@@ -1275,7 +1297,7 @@
              <div class="tab-pane fade reports-tab" id="v-pills-reports" role="tabpanel" aria-labelledby="v-pills-reports-tab">
               <p class="title_tab_universal my-3">Generated Reports</p>
               
-                <span class="text-primary" style="font-size: 1.3rem; font-weight: 500; line-height: 50px">View Transactions:</span>
+                <span class="text-primary" style="font-size: 1.3rem; font-weight: 500; line-height: 50px;">View Transactions:</span>
                 
                  <button id="Daily" class="btn btn-outline-primary">Daily</button>
 
@@ -1561,11 +1583,11 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   -->
     <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-      <script>
+      <!-- <script>
           $(document).ready( function () {
           $('#dashboardTbl').DataTable();
           } );
-      </script>
+      </script> -->
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -1586,6 +1608,7 @@
           profile_link.classList.toggle('show');
           }
       </script>
+     
       <!-- Registrar Dashboard -->
       <script>
         const studentCountLabel = document.querySelector('#studentCountLabelId');
@@ -1625,7 +1648,7 @@
             $('#filterByProgramDash').val('All');
             $("#filterByMajorDash").empty();
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
-            studentCountLabel.style.color = "var(--green-color)"
+            studentCountLabel.style.color = "var(--orange)"
             studentCountLabel.textContent = "Transferees"
             
             
@@ -2939,6 +2962,10 @@
               }
             }
           </script>
-
+ <script type="text/javascript">
+        $(document).ready(function(){
+          $("#totalStud").click();
+        });
+      </script>
   </body>
 </html>

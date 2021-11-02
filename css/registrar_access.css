@@ -351,6 +351,7 @@ html, body{
 
 .manage_users_universal_tab_lmr_parent{
     display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {
