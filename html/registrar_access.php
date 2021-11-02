@@ -2972,10 +2972,10 @@
 
 
     <script>
-      $('#studScholarship').on('change', function(){
-       document.querySelector('#stud_lecUnits').value = ""
-       document.querySelector('#stud_labUnits').value = ""
-       document.querySelector('#stud_Fee').value = ""
+      $('#studProgram').on('change', function(){
+        document.querySelector('#stud_lecUnits').value = ""
+        document.querySelector('#stud_labUnits').value = ""
+        document.querySelector('#stud_Fee').value = ""
       })
     </script>
 
