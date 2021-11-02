@@ -111,19 +111,21 @@
       <i class="far fa-arrow-circle-left text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Enter Tuition Fee</p>
         <hr class="mt-0 mb-3">
-        <form action="" id="newSY">
-          <p>Lecture Fees&nbsp;<input type="text" name="programId" placeholder="Lecture Fees"></p>
-          <p>Laboratory Fees&nbsp;<input type="text" name="programId" placeholder="Laboratory Fees"></p>
+        <form action="" id="newProgramAccessed">
+          <p>Lecture Fees&nbsp;<input type="number" name="lectureFee" id="lectureFee" placeholder="Lecture Fees" value="0.00"> </p>
+          <p>Laboratory Fees&nbsp;<input type="number" name="labFee" id="labFee" placeholder="Laboratory Fees" value="0.00"></p>
           
-          <p>Library Fees&nbsp;<input type="text" name="programId" placeholder="Library Fees"></p>
+          <p>Library Fees&nbsp;<input type="number" name="libraryFee" id="libraryFee" placeholder="Library Fees" value="0.00"></p>
           
-          <p>Guidance Fees&nbsp;<input type="text" name="programId" placeholder="Guidance Fees"></p>
-          <p>Athletic Fees&nbsp;<input type="text" name="programId" placeholder="Athletic Fees"></p>
-          <p>Computer Fees&nbsp;<input type="text" name="programId" placeholder="Computer Fees"></p>
-          <p>Registration Fees&nbsp;<input type="text" name="programId" placeholder="Registration Fees"></p>
-          <p style="font-size: 1.2rem; font-weight: bold">Total Assessment Fee:&nbsp;<span class="text-primary"></span>
+          <p>Guidance Fees&nbsp;<input type="number" name="guidanceFee" id="guidanceFee"  placeholder="Guidance Fees" value="0.00"></p>
+          <p>Athletic Fees&nbsp;<input type="number" name="athleticFee" id="athleticFee" placeholder="Athletic Fees" value="0.00"></p>
+          <p>Computer Fees&nbsp;<input type="number" name="computerFee" id="computerFee" placeholder="Computer Fees" value="0.00"></p>
+          <p>Registration Fees&nbsp;<input type="number" name="registrationFee" id="registrationFee" placeholder="Registration Fees" value="0.00"></p>
+          <p>Total Fee &nbsp;<input type="number" name="fee" id="newFee" placeholder="Fee" required></p>
           
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewSY" >Submit</button>
+          <!-- <p style="font-size: 1.2rem; font-weight: bold">Total Assessment Fee:&nbsp;<span class="text-primary"></span> -->
+          
+          <button type="button" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewProgram">Submit</button>
             </form>
       </div>
 
@@ -136,16 +138,17 @@
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bachelor's Program</p>
           <hr class="mt-0 mb-3">
             <form action="" id="newProgram">
-            <a class="btn btn-primary d-block mx-auto my-3" id="tuitionFeeBtn">Accessed Fees</a>
-           
-           
-            <p>Course ID &nbsp;<input type="text" name="programId" placeholder="Course ID"></p>
             
-            <p>Program &nbsp;<input type="text" name="program" placeholder="Program"></p>
-            <p>Major &nbsp;<input type="text" name="major" placeholder="Major"></p>
+           
+           
+            <p>Course ID &nbsp;<input type="text" name="programId" id="newProgramId" placeholder="Course ID" required></p>
+            <span id="showMsg"></span>
+            
+            <p>Program &nbsp;<input type="text" name="program" id="newProg" placeholder="Program" required></p>
+            <p>Major &nbsp;<input type="text" name="major" id="newMajor" placeholder="Major" required></p>
             <!-- <p>Duration &nbsp;<input type="text" name="duration" placeholder="Duration"></p> -->
             <p>Duration &nbsp;
-                <select name="duration">
+                <select name="duration" id="newDuration" required >
                   <option value="1">1 Year</option>
                   <option value="2">2 Years</option>
                   <option value="3">3 Years</option>
@@ -154,7 +157,7 @@
                 </select>
             <!-- <p>Year Level &nbsp;<input type="text" name="yearLevel" placeholder="Year Level"></p> -->
             <p>Year Level &nbsp;
-                <select name="yearLevel">
+                <select name="yearLevel" id="newYearLevel" required> 
                   <option value="1">1st Year</option>
                   <option value="2">2nd Year</option>
                   <option value="3">3rd Year</option>
@@ -163,17 +166,17 @@
                 </select>
             <!-- <p>Semester &nbsp;<input type="text" name="semester" placeholder="Semester"></p> -->
             <p>Semester &nbsp;
-                <select name="semester">
+                <select name="semester" id="newSemester" required>
                   <option value="1">1st Semester</option>
                   <option value="2">2nd Semester</option>
-                  <optio value="3">3rd Semester</optio>
+                  <option value="3">3rd Semester</option>
                 </select>
-            <p>Fee &nbsp;<input type="text" name="fee" placeholder="Fee"></p>
+                <a class="btn btn-primary d-block mx-auto my-3" id="tuitionFeeBtn">Accessed Fees</a>
           
 
                 
 
-                <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="addNewProgram">Submit</button>
+                
             </form>
       </div>
     </div>
@@ -1560,16 +1563,17 @@
                   childContainerPopUpForAdmin[index].classList.toggle('animate__animated')
                   childContainerPopUpForAdmin[index].classList.toggle('animate__bounceIn')
                 }
-                
-                
+
+                 
                   document.querySelector('#tuitionFeeBtn').addEventListener('click', function(){
-                    closePopUp(2); 
-                    popUpAdmin_SchoolFees(1);
+                    
+                    
+                    
                   })
                 
+                  
 
-
-
+                  
 
 
 
@@ -2330,6 +2334,7 @@
           });
         }
       </script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
       <!-- Script For Manage Fees Admin Access -->
       <script>
         $('#v-pills-fees-tab').click(function (e) { 
@@ -2347,22 +2352,150 @@
             let newSY = $('#newSY').serialize() + '&addNewSy=addNewSy';
             manageFees(newSY,0);
         });
+        $(document).ready(function () {
+          $('#tuitionFeeBtn').click(function (e) { 
+            e.preventDefault();
+            if($('#tuitionFeeBtn').text() == 'Accessed Fees'){
+              checkProgramID()
+            }else{
+              closePopUp(2); 
+              popUpAdmin_SchoolFees(1);
+            }
+            
+          });
+          $("#lectureFee").keyup(function (e) {
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#labFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#libraryFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#guidanceFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#athleticFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#computerFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          $("#registrationFee").keyup(function (e) { 
+            $("#newFee").val( calcTotalFee());
+          });
+          
+        });
+        function calcTotalFee(){
+          let total = parseFloat($('#lectureFee').val() ? $('#lectureFee').val() : 0) +
+                      parseFloat($('#labFee').val() ? $('#labFee').val() : 0) + 
+                      parseFloat($('#libraryFee').val() ? $('#libraryFee').val() : 0) + 
+                      parseFloat($('#guidanceFee').val() ? $('#guidanceFee').val() : 0) + 
+                      parseFloat($('#athleticFee').val() ? $('#athleticFee').val() : 0) + 
+                      parseFloat($('#computerFee').val() ? $('#computerFee').val() : 0) + 
+                      parseFloat($('#registrationFee').val() ? $('#registrationFee').val() : 0) 
+        return total.toFixed(2)
+        }
+        function checkProgramID(){
+          $.ajax({
+            type: "GET",
+            url: "../includes/manageFess.php",
+            data: {
+              'checkProgID': 1,
+              'progId': $('#newProgramId').val()
+            },
+            dataType: "json",
+            success: function (response) {
+              // console.log(response)
+              // $('#showMsg').text(response.msg);
+              if(response.status == 'error'){
+                Swal.fire({
+                  icon: response.status,
+                  text: response.message,
+                  confirmButtonText: 'Ok'
+                })
+              }
+             
+              if(response.status != 'error'){
+                let validator = $( "#newProgram" ).validate();
+                if( validator.form()){
+                      closePopUp(2); 
+                      popUpAdmin_SchoolFees(1);
+              }
+              }
+              
+            }
+          });
+        }
         // Sumbit and Update New Program
         $('#addNewProgram').click(function (e) { 
           e.preventDefault();
           if($('#addNewProgram').text() === 'Update'){
-            let newProgram = $('#newProgram').serialize() + '&updateProgram=updateProgram';
-            manageFees(newProgram,2);
-            $('#newProgram').trigger('reset');
-            $("[name='programId']").prop('readonly', false);
-            availablePrograms('%');
+            let formData = new FormData($("#newProgram")[0]);
+            let formDataPrecios = new FormData($("#newProgramAccessed")[0]);
+            for (var pair of formDataPrecios.entries()) {
+                formData.append(pair[0], pair[1]);
+            }
+            formData.append('updateProgram', 'updateProgram');
+            $.ajax({
+            type: "POST",
+            url: "../includes/manageFess.php",
+            data: formData,
+            contentType: false,
+            processData:false,
+            success: function (response) {
+              console.log(response)
+              Swal.fire({
+                icon: response.status,
+                text: response.message,
+                confirmButtonText: 'Ok'
+              })
+              if(response.status == 'success'){
+                closePopUp(1)
+                $('#newProgram').trigger('reset');
+                $('#newProgramAccessed').trigger('reset');
+                $('#tuitionFeeBtn').text('Accessed Fees');
+                $('#addNewProgram').text('Submit');
+                  $("[name='programId']").prop('readonly', false);
+                availablePrograms('%');
+              }
+              
+            }
+          });
 
           }else{
-            let newProgram = $('#newProgram').serialize() + '&addNewProgram=addNewProgram';
-            manageFees(newProgram,2);
-            $('#newProgram').trigger('reset');
-            $('#addNewProgram').text('Submit');
-            availablePrograms('%');
+            
+            let formData = new FormData($("#newProgram")[0]);
+            let formDataPrecios = new FormData($("#newProgramAccessed")[0]);
+            for (var pair of formDataPrecios.entries()) {
+                formData.append(pair[0], pair[1]);
+            }
+            formData.append('addNewProgram', 'addNewProgram');
+            $.ajax({
+            type: "POST",
+            url: "../includes/manageFess.php",
+            data: formData,
+            contentType: false,
+            processData:false,
+            success: function (response) {
+              console.log(response)
+              Swal.fire({
+                icon: response.status,
+                text: response.message,
+                confirmButtonText: 'Ok'
+              })
+              if(response.status == 'success'){
+                closePopUp(1)
+                $('#newProgram').trigger('reset');
+                $('#newProgramAccessed').trigger('reset');
+                availablePrograms('%');
+              }
+              
+            }
+          });
+              
+              // $('#addNewProgram').text('Submit');
+              
           }
         });
         // New Scholarship
@@ -2536,13 +2669,32 @@
         // Edit Program
         $(document).on('click', '#editProgram', function(){ 
           let id = $(this).attr("data-id");
+          $('#tuitionFeeBtn').text('View Accessed Fees');
           let course_program = $('#'+id).children('td[data-target=course_program]').text();
           let course_major = $('#'+id).children('td[data-target=course_major]').text();
           let course_year_level = $('#'+id).children('td[data-target=course_year_level]').text();
           let course_duration = $('#'+id).children('td[data-target=course_duration]').text();
           let semester = $('#'+id).children('td[data-target=semester]').text();
           let tuition_fee = $('#'+id).children('td[data-target=tuition_fee]').text();
-          
+          $.ajax({
+            type: "GET",
+            url: "../includes/manageFess.php",
+            data: {
+              'getProgramData': 1,
+              'id': id
+            },
+            dataType: "JSON",
+            success: function (data) {
+              // console.log(response)
+              $('#lectureFee').val(data.lecture_Fee);
+              $('#labFee').val(data.lab_Fee);
+              $('#libraryFee').val(data.library_Fee);
+              $('#guidanceFee').val(data.guidance_Fee);
+              $('#athleticFee').val(data.athletic_Fee);
+              $('#computerFee').val(data.computer_Fee);
+              $('#registrationFee').val(data.registration_Fee);
+            }
+          });
           popUpAdmin_SchoolFees(2);
           
           $("[name='programId']").val(id);
@@ -2562,6 +2714,7 @@
             type: "POST",
             url: "../includes/manageFess.php",
             data: newData,
+            
             success: function (response) {
               console.log(response)
               Swal.fire({

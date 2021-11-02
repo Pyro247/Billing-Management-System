@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2021 at 01:14 PM
+-- Generation Time: Nov 02, 2021 at 03:51 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -36,7 +36,7 @@ CREATE TABLE `tbl_academic_year` (
 --
 
 INSERT INTO `tbl_academic_year` (`academic_year`) VALUES
-('2020-2021');
+('2021-2022');
 
 -- --------------------------------------------------------
 
@@ -136,19 +136,29 @@ CREATE TABLE `tbl_course_fees` (
   `program_id` int(11) NOT NULL,
   `semester` varchar(100) NOT NULL,
   `course_year_level` varchar(100) NOT NULL,
-  `tuition_fee` int(11) NOT NULL
+  `lecture_Fee` float NOT NULL,
+  `lab_Fee` float NOT NULL,
+  `library_Fee` float NOT NULL,
+  `guidance_Fee` float NOT NULL,
+  `athletic_Fee` float NOT NULL,
+  `computer_Fee` float NOT NULL,
+  `registration_Fee` float NOT NULL,
+  `tuition_fee` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_course_fees`
 --
 
-INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `tuition_fee`) VALUES
-(1, '2', '4', 10000),
-(2, '2', '4', 8000),
-(3, '1', '4', 10000),
-(4, '1', '4', 8000),
-(5, '2', '4', 7000);
+INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `lecture_Fee`, `lab_Fee`, `library_Fee`, `guidance_Fee`, `athletic_Fee`, `computer_Fee`, `registration_Fee`, `tuition_fee`) VALUES
+(1, '1', '1', 1000, 2000, 500, 300, 200, 1500, 500, 6000),
+(2, '2', '4', 0, 500, 500, 500, 500, 500, 500, 3000),
+(3, '2', '4', 0, 500, 500, 500, 500, 500, 500, 3000),
+(4, '1', '4', 500, 500, 500, 500, 500, 500, 500, 3500),
+(5, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
+(6, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
+(7, '1', '4', 1000, 500, 500, 500, 500, 500, 500, 4000),
+(8, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500);
 
 -- --------------------------------------------------------
 
@@ -170,9 +180,12 @@ CREATE TABLE `tbl_course_list` (
 INSERT INTO `tbl_course_list` (`program_id`, `course_program`, `course_major`, `course_duration`) VALUES
 (1, 'BSIT', 'WMA', 4),
 (2, 'BSIT', 'TSM', 4),
-(3, 'BSED', 'English', 4),
-(4, 'BSIT', 'NA', 4),
-(5, 'BSED', 'MATH', 4);
+(3, 'BSIT', 'NA', 4),
+(4, 'BSED', 'English', 4),
+(5, 'BSED', 'Math', 4),
+(6, 'BSED', 'Science', 4),
+(7, 'BSED', 'Art', 4),
+(8, 'BSED', 'Filipino', 4);
 
 -- --------------------------------------------------------
 
@@ -219,7 +232,8 @@ CREATE TABLE `tbl_employee_info` (
 --
 
 INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES
-('20211', 102101, 'Registrar', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', 'November 1,2021', 'November 1, 2021, 8:08 pm');
+('20211', 102101, 'Registrar', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', 'November 1,2021', 'November 1, 2021, 8:08 pm'),
+('', 102102, 'Registrar', 'Mike', 'Isla', 'E', '', '', '', '', '2021-11-01', '');
 
 -- --------------------------------------------------------
 
