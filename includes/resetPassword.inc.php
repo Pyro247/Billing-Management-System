@@ -100,6 +100,7 @@
   if(isset($_POST['changePass'])){
     $email =$_POST['email'];
     $password =$_POST['password'];
+    $password = password_hash($password, PASSWORD_DEFAULT);
     $otp = "";
     $otp_expiration ="";
       $sqlChangePass = "UPDATE `tbl_accounts` SET `password`= ?,`otp_code`= ?,`otp_expiration`= ? WHERE email = ?";

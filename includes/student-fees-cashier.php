@@ -1,20 +1,17 @@
 
   <?php
     include_once '../connection/Config.php';
+
     if(isset($_GET['viewStudentList'])){
-      $search = $_GET['search'] ?? '%';
-      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major
+      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major,sf.remarks
       FROM tbl_student_fees AS sf
       LEFT JOIN tbl_student_school_details AS ssd
       ON sf.stud_id = ssd.stud_id
-      WHERE sf.stud_id LIKE CONCAT('%',?) OR sf.fullname LIKE CONCAT('%',?,'%')";
+    ";
       $stmtstudFees = $con->prepare($studFees);
-      $stmtstudFees->bind_param('ss',$search,$search);
       $stmtstudFees->execute();
       $resstudFees = $stmtstudFees->get_result();
       $countstudFees = $resstudFees->num_rows;
-      $datastudFees = $resstudFees->fetch_assoc();
-
     ?>
     <?php 
       if($countstudFees > 0){
@@ -43,10 +40,10 @@
             $resGetDisc = $stmtGetDisc->get_result();
             $rowGetDisc  = $resGetDisc->fetch_assoc();
             $discountDeduction = ((  $balance * ($rowGetDisc['discount_percent'])/  100));
-        }
-          ?>
+        }  
+        ?>
           <tr class="text-center">
-              <td><?=$datastudFees['stud_id'];?></td>
+          <td><?=$datastudFees['stud_id'];?></td>
               <td><?=$datastudFees['fullname'];?></td>
               <td><?=$datastudFees['csi_program'];?></td>
               <td><?=$datastudFees['csi_major'];?></td>
@@ -64,9 +61,10 @@
           <td><?php echo "No Records"?></td>
         </tr>
       <?php } 
-        }?>
+        }
+    
+  ?>
  <?php
-    include_once '../connection/Config.php';
     if(isset($_GET['viewStudentListfilterBy'])){
       
       if($_GET['filterBy'] == 'All'){
@@ -133,4 +131,5 @@
           <td><?php echo "No Records"?></td>
         </tr>
       <?php } 
-        }?>
+        }
+        ?>

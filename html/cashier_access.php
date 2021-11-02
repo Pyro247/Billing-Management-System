@@ -1628,36 +1628,29 @@ include_once '../connection/Config.php';
     <script>
       $(document).ready(function () {
         // Initial Data Table
-        $('#v-pills-studFee-tab').click(function (e) { 
+        $('#v-pills-studFee-tab').click(function (e) {
           viewStudentFees()
-          
         });
-        // Search Button
-        $('#studentFeeSearch-btn').click(function (e) { 
-          let searchTxt = $('#studentFeeSearch').val(); 
-          viewStudentFees(searchTxt)
-          $('#filterByRemarks').val('All');
+        $('#filterByRemarks').change(function (e) { 
+          e.preventDefault();
+          let filterBy = $('#filterByRemarks').val();
+          viewStudentFeesfilterBy(filterBy)
         });
-      });
-      $('#filterByRemarks').change(function (e) { 
-        e.preventDefault();
-        let filterBy = $('#filterByRemarks').val();
-        viewStudentFeesfilterBy(filterBy)
       });
       // Ajax Request viewList of Student Fees
-      function viewStudentFees(search){
+      function viewStudentFees(){
         $.ajax({
-          type: "GET",
-          url: "../includes/student-fees-cashier.php",
-          data: {
-            'viewStudentList': 1,
-            'search': search
-          },
-          dataType: "html",
-          success: function (data) {
-            $('#viewStudentFeesList').html(data);
-          }
-        });
+              type: "GET",
+              url: "../includes/student-fees-cashier.php",
+              data: {
+                'viewStudentList': 1,
+              },
+              dataType: "html",
+              success: function (data) {
+                $('#viewStudentFeesList').html(data);
+                // console.log(data);
+              }
+            });
       }
        // Ajax Request viewList of Student Fees Filter By Remarks
        function viewStudentFeesfilterBy(filterBy){

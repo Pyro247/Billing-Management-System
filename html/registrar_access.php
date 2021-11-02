@@ -2102,26 +2102,19 @@
           viewStudentFees()
           
         });
-        // Search Button
-        $('#studentFeeSearch-btn').click(function (e) { 
-          let searchTxt = $('#studentFeeSearch').val(); 
-          viewStudentFees(searchTxt)
-          $('#filterByRemarks').val('All');
+        $('#filterByRemarks').change(function (e) { 
+          e.preventDefault();
+          let filterBy = $('#filterByRemarks').val();
+          viewStudentFeesfilterBy(filterBy)
         });
       });
-      $('#filterByRemarks').change(function (e) { 
-        e.preventDefault();
-        let filterBy = $('#filterByRemarks').val();
-        viewStudentFeesfilterBy(filterBy)
-      });
       // Ajax Request viewList of Student Fees
-      function viewStudentFees(search){
+      function viewStudentFees(){
         $.ajax({
           type: "GET",
           url: "../includes/student-fees-cashier.php",
           data: {
             'viewStudentList': 1,
-            'search': search
           },
           dataType: "html",
           success: function (data) {
@@ -2760,6 +2753,13 @@
                   loader.style.visibility = "visible"
                   // loader.style.pointerEvents = "none"
             }
+            $(document).ajaxStart(function() {
+              loaderOpen();
+            });
+
+            $(document).ajaxStop(function() {
+              loaderClose();
+            });
       </script>
              
              
