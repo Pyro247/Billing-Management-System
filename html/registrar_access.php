@@ -417,7 +417,7 @@
                         ?>
                           
                       </h1>
-                    <h3>Registrar</h3>
+                    <h3>Cashier</h3>
               </div>
               <div class="studentCountBox" id="">
                 <i class="lnr lnr-users"></i>
@@ -433,7 +433,7 @@
                       ?>
           
                       </h1>
-                    <h3>Registrar</h3>
+                    <h3>Total Employee</h3>
               </div>
             
 
