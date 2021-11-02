@@ -604,7 +604,7 @@
                                   </div>
                                 </div>
                               
-
+                              
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <select class="form-select" name="stud_major" id="studMajor" aria-label="Floating label select example" disabled>
@@ -625,14 +625,14 @@
 
                               <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="" placeholder=" " value="" disabled >
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnits" placeholder=" " value="" disabled >
                                     <label for="studFee" class="labelForTextBox">Lecture Units</label>
                                   </div>
                                 </div>
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="" placeholder=" " value="" disabled >
+                                    <input type="text" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" " value="" disabled >
                                     <label for="studFee" class="labelForTextBox">Laboratory Units</label>
                                   </div>
                                 </div>
@@ -2967,5 +2967,17 @@
           $("#totalStud").click();
         });
       </script>
+
+
+
+
+    <script>
+      $('#studScholarship').on('change', function(){
+       document.querySelector('#stud_lecUnits').value = ""
+       document.querySelector('#stud_labUnits').value = ""
+       document.querySelector('#stud_Fee').value = ""
+      })
+    </script>
+
   </body>
 </html>
