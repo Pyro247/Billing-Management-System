@@ -2807,7 +2807,7 @@
                         $('.cashText').text(data.total_cash);
                         $('.onlineText').text(data.total_online);
                         let count = data.total_Count;
-                        myChart.data.labels = [months[optionVal]];
+                        myChart.data.labels = [months[optionVal-1]];
                         myChart.data.datasets[0].data = [parseInt(count)];
                         myChart.update();
                       }
