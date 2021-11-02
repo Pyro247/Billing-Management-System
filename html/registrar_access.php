@@ -1347,43 +1347,13 @@
               <canvas id="myChart"></canvas>
                 <div class="rightChart">
                   <h3 class="text-center totalamountChart">
-                    <?php
-                          $sqlTotalamount = "SELECT SUM(`cash_payment` + `fund_transfer`) AS total_amount_collected FROM `tbl_reports` WHERE`date` = CURRENT_DATE"; 
-                          $stmtTotalamount = $con->prepare($sqlTotalamount);
-                          $stmtTotalamount->execute();
-                          $resTotalamount = $stmtTotalamount->get_result();
-                          $rowamount= $resTotalamount->fetch_assoc();
-                          $totalamount = $rowamount['total_amount_collected'];
-
-                          echo "₱". $totalamount;
-                                                              
-                    ?></h3>
+                    </h3>
                       <h5 class="text-center mb-5">Total Amount Collected</h6>
                       <div class="cash_online">
                         <span class="cashText">
-                          <?php
-                          $sqlTotalcash = "SELECT SUM(cash_payment) AS total_cash FROM tbl_reports WHERE`date` = CURRENT_DATE"; 
-                          $stmtTotalcash = $con->prepare($sqlTotalcash);
-                          $stmtTotalcash->execute();
-                          $resTotalcash = $stmtTotalcash->get_result();
-                          $rowcash= $resTotalcash->fetch_assoc();
-                          $totalcash = $rowcash['total_cash'];
-
-                          echo "₱". $totalcash;
-                                                              
-                          ?></span>
+                        </span>
                         <span class="onlineText">
-                          <?php
-                          $sqlTotalonline = "SELECT SUM(fund_transfer) AS total_online FROM tbl_reports WHERE`date` = CURRENT_DATE"; 
-                          $stmtTotalonline = $con->prepare($sqlTotalonline);
-                          $stmtTotalonline->execute();
-                          $resTotalonline = $stmtTotalonline->get_result();
-                          $rowonline= $resTotalonline->fetch_assoc();
-                          $totalonline = $rowonline['total_online'];
-
-                          echo "₱". $totalonline;
-                                                              
-                          ?></span>
+                        </span>
                       </div>
                     </div>
               </div>
@@ -1394,9 +1364,9 @@
   const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-    labels: ['Today'],
+    labels: [],
       datasets: [{
-          data: ['10'],
+          data: [],
           backgroundColor: [
               'rgba(214, 40, 78, 0.2)',
               'rgba(54, 162, 235, 0.2)'
@@ -2797,51 +2767,118 @@
           $(document).ready(function(){
 
               $("#Daily").click(function(){
-              $.ajax({
-                type: "GET",
-                url: "../includes/admin_reports.php",
-                dataType: "html",
-                data: {
-                    "Daily" : 1
-                },
-              success: function(data){
-              $("#adminReports").html(data);
-                  }});
+                let today =  new Date().toLocaleDateString()
+                daily()
+                $.ajax({
+                  type: "GET",
+                  url: "../includes/admin_reports.php",
+                  data: {
+                    'computeDaily': 1
+                  },
+                  dataType: "JSON",
+                  success: function (data) {
+                    // console.log(data)
+                    $('.totalamountChart').text(data.total_amount_collected);
+                    $('.cashText').text(data.total_cash);
+                    $('.onlineText').text(data.total_online);
+                    let count = data.total_Count;
+                    myChart.data.labels = ['Today'];
+                    myChart.data.datasets[0].data = [parseInt(count)];
+                    myChart.update();
+                  }
+                });
               });
 
               $('#Monthly').on('change',function(){
-                    var optionVal = $(Monthly).val();
+                var  months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+                  let optionVal = $(Monthly).val();
+                  monthlyTable(optionVal)
                     $.ajax({
+                      type: "GET",
+                      url: "../includes/admin_reports.php",
+                      data: {
+                        'computeMothly': 1,
+                        'month': optionVal
+                      },
+                      dataType: "JSON",
+                      success: function (data) {
+                        // console.log(data)
+                        $('.totalamountChart').text(data.total_amount_collected);
+                        $('.cashText').text(data.total_cash);
+                        $('.onlineText').text(data.total_online);
+                        let count = data.total_Count;
+                        myChart.data.labels = [months[optionVal]];
+                        myChart.data.datasets[0].data = [parseInt(count)];
+                        myChart.update();
+                      }
+                  });
+                });
+            
+                $('#Annually').on('change',function(){
+                    let optionValyear = $(Annually).val();
+                    yearlyTable(optionValyear)
+                    $.ajax({
+                      type: "GET",
+                      url: "../includes/admin_reports.php",
+                      data: {
+                        'computeYearly': 1,
+                        'year': optionValyear
+                      },
+                      dataType: "JSON",
+                      success: function (data) {
+                        console.log(data)
+                        $('.totalamountChart').text(data.total_amount_collected);
+                        $('.cashText').text(data.total_cash);
+                        $('.onlineText').text(data.total_online);
+                        let count = data.total_Count;
+                        myChart.data.labels = ['Year: '+ optionValyear];
+                        myChart.data.datasets[0].data = [parseInt(count)];
+                        myChart.update();
+                      }
+                  });
+                });
+
+                // Functio Reports
+                function daily(){
+                  $.ajax({
+                  type: "GET",
+                  url: "../includes/admin_reports.php",
+                  dataType: "html",
+                  data: {
+                      "Daily" : 1
+                  },
+                  success: function(data){
+                    $("#adminReports").html(data);
+                  }});
+              }
+              function monthlyTable(month){
+                  $.ajax({
                         type: "GET",
                         url: "../includes/admin_reports.php",
                         dataType: "html",
                         data: {
                           "Monthly" : 1,
-                          "monthSelect": optionVal
+                          "monthSelect": month
                         },
                           success: function (data) {
                             $('#adminReports').html(data);
                           }
                       });
-                });
-
-
-                $('#Annually').on('change',function(){
-                    var optionValyear = $(Annually).val();
-                    $.ajax({
+                }
+                function yearlyTable(year){
+                  $.ajax({
                         type: "GET",
                         url: "../includes/admin_reports.php",
                         dataType: "html",
                         data: {
                           "Annually" : 1,
-                          "yearSelect": optionValyear
+                          "yearSelect": year
                         },
                           success: function (data) {
                             $('#adminReports').html(data);
                           }
                       });
-                });
-
+                }
             });
 
                
