@@ -40,12 +40,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+          
         <!-- Bootstrap -->
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
         
         <!-- Data Tables -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.0.1/r-2.2.9/sp-1.4.0/sl-1.3.3/datatables.min.css"/>
+    
         <!-- Fontawsome -->
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -61,7 +62,8 @@
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-       <title>Student</title>
+        
+        <title>Student</title>
     </head>
     <body>
 
@@ -173,8 +175,6 @@
                                     <th scope="col">Reason for Denying</th>
                                     <th scope="col">Person in Charge</th>
                                     <th scope="col">Remarks</th>
-                                    
-                                
                             </tr>
                             
                         </thead>
@@ -503,7 +503,7 @@
             <div class="tab-pane fade" id="v-pills-transaction-history" role="tabpanel" aria-labelledby="v-pills-transaction-history-tab">
                 <p class="title_tab_universal my-3">Transaction History</p>
                 
-                <div class="transactionHistory mb-5">
+                <div class="transactionHistoryDiv mb-5">
                     <div class="row mb-3">
                         <div class="col mb-4">
                             <div class="form-floating">
@@ -536,16 +536,16 @@
                     </div>
 
                 
-                    <table id="transactionHistory" class="table dataTableMe" style="background: none;">
+                    <table id="transactionHistory" class="table" style="background: none;">
                         <thead class="text-center" style="color: white; border-bottom: 2px solid white">
-                        <tr>
-                            <th scope="col">Transaction ID</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Payment Method</th>
-                            <th scope="col">Date</th>
-                            <th scope="col">Person in Charge</th>
-                            <th scope="col">Payment Status</th>
-                        </tr>
+                            <tr>
+                                <th scope="col">Transaction ID</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Payment Method</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Person in Charge</th>
+                                <th scope="col">Payment Status</th>
+                            </tr>
                         </thead>
                         <tbody id="viewTableTransactionHistory" style="color: var(--white)">
                         <?php
@@ -558,7 +558,6 @@
                                 $stmt->execute();
                                 $res = $stmt->get_result();
                                 $count = $res->num_rows;
-
                         ?>
                         <?php 
                                 if($count > 0){
@@ -602,11 +601,19 @@
                 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.0.1/r-2.2.9/sp-1.4.0/sl-1.3.3/datatables.min.js"></script>   
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         
+        <script>
+            $(document).ready( function () {
+                $('#transactionHistory').DataTable({
+                    pagingType: 'full_numbers',
+                    lengthMenu: [[5, 10, -1], [5, 10, "All"]]
+                });
+            } );
+        </script>
+
   
         <!-- Payment Application -->
 
@@ -835,21 +842,22 @@
 
 
 
-                        <script>
-                            checkPending();
-                            function checkPending(){
-                            const tblCount = $('#pendingTbl').find('td').length
-                            if (tblCount <= 0 ){
-                                document.querySelector('#noTransaction').style.display = "block";
-                                document.querySelector('#pendingnDenied').style.display = "none";
-                                document.querySelector('#pendingTbl').style.display="none"
-                            }else{
-                                document.querySelector('#noTransaction').style.display = "none";
-                                document.querySelector('#pendingnDenied').style.display = "block";
-                            }
-                        }
-                        </script>
+            <script>
+                checkPending();
+                function checkPending(){
+                const tblCount = $('#pendingTbl').find('td').length
+                if (tblCount <= 0 ){
+                    document.querySelector('#noTransaction').style.display = "block";
+                    document.querySelector('#pendingnDenied').style.display = "none";
+                    document.querySelector('#pendingTbl').style.display="none"
+                }else{
+                    document.querySelector('#noTransaction').style.display = "none";
+                    document.querySelector('#pendingnDenied').style.display = "block";
+                }
+            }
+            </script>
 
+             
 
 
     </body>

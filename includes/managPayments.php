@@ -203,7 +203,18 @@ while($data = $res->fetch_assoc()){?>
   </tr>
 <?php }?>
 <?php }else{?>
-  <tr>
-    <td><?php echo "No Records"?></td>
-  </tr>
+  
 <?php }}   ?>
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.0.1/r-2.2.9/sp-1.4.0/sl-1.3.3/datatables.min.js"></script>   
+ 
+<script>
+      $(document).ready( function () {
+          $('#pendingTable').DataTable({
+            lengthMenu: [[5, 10, -1], [5, 10, "All"]],
+            pagingType: 'full_numbers'
+          });
+      } );
+    </script>
+
+

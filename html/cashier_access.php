@@ -19,12 +19,14 @@ include_once '../connection/Config.php';
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.css"/>
+  
 
-    <!-- Data Tables -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        
+  
+    <!-- Data Tables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.0.1/r-2.2.9/sp-1.4.0/sl-1.3.3/datatables.min.css"/>
+    
     <!-- Fontawsome -->
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -433,7 +435,7 @@ include_once '../connection/Config.php';
             <div class="dashBoardBox p-3" dissabled>
             <span style="font-size: 1.6rem; font-weight: 500; color: var(--secondary); display: block; margin: 0 0 25px 0">Fund Transfers (Online)</span>  
             
-              <table class="table dataTblMe" style="color: var(--white);" id="pendingTable">
+              <table class="table" style="color: var(--white);" id="pendingTable">
                   <thead class="text-center" style="border-bottom: 2px solid white; margin-top: 25px">
                     <tr>
                       <th scope="col">Transaction ID</th>
@@ -507,14 +509,15 @@ include_once '../connection/Config.php';
 
             <!-- PAYMENT TRANSACTIONS -->
             <div class="tab-pane fade" id="v-pills-payment-transactions" role="tabpanel" aria-labelledby="v-pills-payment-transactions">
-              <p class="title_tab_universal my-3">Student's Fees</p>
+              <p class="title_tab_universal my-3">Payment Form</p>
 
               <form action="" class="universalForm_one">
                 <input type="text" id="searchBar_TransacHistory" placeholder="Search">
                 <button type="button" class="btn btn-primary" id="payTransac_btn">Search</button>
               </form>
-
+                      
               <div class="dashBoardBox d-flex" style="overflow-x: hidden;">
+              
 
                 <div class="mx-2 my-auto" style="color: var(--primary)">
                   <img src="../images/registrar_img/sample_student_pic.png" alt="" class="mb-2 d-block mx-auto my-auto" style="width: 180px; height: 180px;">
@@ -675,31 +678,36 @@ include_once '../connection/Config.php';
             </div>
 
           
-
+           
             <!-- Table -->
-            <div class="col universal_bg_gray_table p-3">
-            <span style="font-size: 1.3rem; font-weight: 500; color: var(--secondary)" id="studentTagName">Student's Last Transaction</span>
-              <hr style="margin-top: 5px; height: 2px;" class="text-primary">
-
-              <!-- <div class="col-md">
-                <div class="form-floating">
-                  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                  <option value="BSIT_WMA" selected>All</option>
-                    <option value="Graduated" selected>BSIT</option>
-                    <option value="Dropout">BSIT</option>
-                    <option value="Transfer">BSIT</option>
-                    <option value="Resign">BSIT</option>
-                    <option value="Resign">BSIT</option>
-    
-                  </select>
-                  <label for="floatingSelect">Program</label>
-                </div>
-
-              </div> -->
+          <div class="dashBoardBox">
+            
+          <span style="color: var(--secondary); font-weight: 500; font-size: 1.3rem"  id="studentTagName">Student's Last Transaction</span>
+           
+            
+            <table class="table" style="color: var(--white)">
+            <thead class="text-center">
+              <tr>
+                <th scope="col">Transction No.</th>
+                <th scope="col">Student No.</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Amount Paid</th>
+                <th scope="col">Payment Method</th>
+                <th scope="col">Payment Status</th>
+                <th scope="col">Payment Gateway</th>
+                <th scope="col">Remarks</th>
+                <th scope="col">Date</th>
+              </tr>
+                <tbody id="viewLastTransaction" class="text-center">
+                  
+                </tbody>
+            </thead>
+            </table>
+          </div>
 
               
-              
-                <table class="table dataTblMe" style="color: var(--white)">
+              <!-- <div class="dashBoardBox">
+                <table class="table" style="color: var(--white)">
                     <thead class="text-center" style="color: var(--white)">
                       <tr>
                         <th scope="col">Transaction No.</th>
@@ -711,17 +719,13 @@ include_once '../connection/Config.php';
                         <th scope="col">Payment Gateway</th>
                         <th scope="col">Remarks</th>
                         <th scope="col">Date</th>
-                        
                       </tr>
                     </thead>
                     <tbody id="viewLastTransaction" class="Text-center">
 
-                </tbody> 
+                  </tbody> 
                   </table>
-
-          
-          
-          </div>
+                  </div> -->
           
         </div>
             
@@ -1169,7 +1173,7 @@ include_once '../connection/Config.php';
                 </div>
 
                 
-                  <table class="table dataTblMe2" style="color: white; overflow-x: hidden" >
+                  <table class="table" style="color: white; overflow-x: hidden" >
                       <thead class="text-center">
                         <tr>
                         <th scope="col">Student ID</th>
@@ -1223,9 +1227,13 @@ include_once '../connection/Config.php';
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/af-2.3.7/b-2.0.1/r-2.2.9/sp-1.4.0/sl-1.3.3/datatables.min.js"></script>   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+   
+
+    
     <!-- Dashboard Script -->
   <script>
     $(document).ready(function () {
@@ -1860,18 +1868,8 @@ include_once '../connection/Config.php';
         return variance.toFixed(2)
       }
     </script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/b-2.0.1/datatables.min.js"></script>
-        <!-- <script>
-          
-
-            $(document).ready( function () {
-                $('table.dataTblMe2').DataTable({
-                    lengthMenu: [[5, 10, -1], [5, 10, 'All']],
-                    pagingType: 'full_numbers',
-                    scrollX: 400,
-                });
-            } );
-        </script>  -->
+        
+       
          <script>
       $(document).ready(function () {
         <?php
