@@ -207,6 +207,21 @@ if(isset($_POST['edit'])){
     $data['csi_school_year'] = $row['csi_academic_year'];
     $data['csi_semester'] = $row['csi_semester'];
     $data['scholar_type'] = $row['scholar_desc'];
+
+    $slqSelectMajor = "SELECT list.course_major, fees.*
+    FROM tbl_course_list as list
+    INNER JOIN tbl_course_fees as fees
+    ON list.program_id = fees.program_id
+    WHERE list.course_major = ? 
+          AND fees.semester = ? 
+          AND fees.course_year_level= ?";
+  $stmtSelectMajor = $con->prepare($slqSelectMajor);
+  $stmtSelectMajor->bind_param('sss', $row['csi_major'],$row['csi_semester'],$row['csi_year_level']);
+  $stmtSelectMajor->execute();
+  $resSelectMajor = $stmtSelectMajor->get_result();
+  $rowSelectMajor = $resSelectMajor->fetch_assoc();
+  $countSelectMajor = $resSelectMajor->num_rows;
+  $data['tuitionRaw'] = $rowSelectMajor['tuition_fee'];
   }
   echo json_encode($data);
 }

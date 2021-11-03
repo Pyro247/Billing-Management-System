@@ -351,14 +351,23 @@
                                 dataType: "JSON",
                                 success: function (response) {
                                     // console.log(response)
-                                    Swal.fire({
-                                        icon: response.status,
-                                        text: response.message,
-                                        confirmButtonText: 'Ok'
-                                    }).then(function() {
-                                        window.location.href = '../html/login.php';
+                                    if(response.status == 'success'){
+                                        Swal.fire({
+                                            icon: response.status,
+                                            text: response.message,
+                                            confirmButtonText: 'Ok'
+                                        }).then(function() {
+                                            window.location.href = '../html/login.php';
+                                        
+                                        });
+                                    }else{
+                                        Swal.fire({
+                                            icon: response.status,
+                                            text: response.message,
+                                            confirmButtonText: 'Ok'
+                                        })
+                                    }
                                     
-                                    });
                                 }
                             });
                         }

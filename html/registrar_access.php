@@ -633,7 +633,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_labUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" " value="" disabled >
+                                    <input type="text" name="stud_labUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" clacl" value="" disabled >
                                     <input type="hidden" name="stud_labUnitsTotal" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnitsTotal" placeholder=" " value="" disabled >
                                     <label for="studFee" class="labelForTextBox">Laboratory Units</label>
                                   </div>
@@ -1926,35 +1926,34 @@
                 $("#studScholarship").val(data.scholar_type);
                 $("#studStatus").val(data.stud_type);
                 $("#studLrn").val(data.stud_lrn);
-                $("#studFeeTotal").val('1000000');
+                $("#studFeeTotal").val(data.tuition_fee);
                 $("#stud_labUnits").val(data.lab_units);
                 $("#stud_lecUnits").val(data.lec_units);
-                if(data.form_137 != ''){
+                if(data.form_137 == '✓'){
                   $("#form137").prop('checked', true);
                 }
-                if(data.form_138 != ''){
+                if(data.form_138== '✓'){
                   $("#form138").prop('checked', true);
                 }
-                if(data.psa_birth_cert != ''){
+                if(data.psa_birth_cert == '✓'){
                   $("#psa").prop('checked', true);
                 }
-                if(data.good_moral != ''){
+                if(data.good_moral == '✓'){
                   $("#goodMoral").prop('checked', true);
                 }
           
                 let program = data.program
                 let selectedValue = data.major
                 onChangeProgram(program,selectedValue) //Dropdown Options of Major and selected Option base current major of student
-                $("#studFee").val(data.tuition_fee); 
-               
+                $("#studFee").val(data.tuitionRaw); 
                 studFieldsDisbaled(allStudFields,false);
                 $("#studSave").text('Update');
                 $("#studSave").removeAttr('disabled');
                 $("#stud_delete").removeAttr('disabled');
               }
+              
             });
-            calcLabUnits()
-                calcLecUnits()
+           
           });
           // Search Button
           $("#searchStud_btn").click(function(){
@@ -2065,10 +2064,13 @@
                   $('#studMajor').val(selectedValue);
                 }
                 // Provind Auto fill fees base on major,sem, and year level
-                let major = $('#studMajor').val();
-                let sem = $('#studSemester').val();
-                let yearLevel = $('#studYearLevel').val();
-                onChangeMajor(major,sem,yearLevel)
+                if($('#stud_lecUnits').val() == ''){
+                  let major = $('#studMajor').val();
+                  let sem = $('#studSemester').val();
+                  let yearLevel = $('#studYearLevel').val();
+                  onChangeMajor(major,sem,yearLevel)
+                }
+                
               }
             });
           }
@@ -2109,8 +2111,13 @@
                 if(response == null){
                   $("#studFee").val('');
                 }else{
-                  $("#studFee").val(response);
-                  $("#studFeeTotal").val(response);
+                  if($('#stud_lecUnits').val() == ''){
+                    $("#studFee").val(response);
+                    $("#studFeeTotal").val(response);
+                  }else{
+                    $("#studFee").val(response);
+                  }
+                  
                 }
                 
                 // console.log(response)

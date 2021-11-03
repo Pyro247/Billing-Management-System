@@ -244,7 +244,7 @@
                         <h5 class="text-danger" id="reasonMsg" ></h5>
                         <form  class=" mb-3 p-2" id="payReqFormRe" enctype="multipart/form-data">
                         <div class="payAppFormWrapper">
-                            <div class="leftForm">
+                            <div class="leftForm text-dark">
                                 <div class="input-group mb-3">
                                     <div class="input-group-prepend">
                                         <span class="input-group-text" style="min-width: 110px;" id="basic-addon1" >Student ID</span>
