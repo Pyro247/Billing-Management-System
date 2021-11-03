@@ -73,19 +73,19 @@
         
           <form action="">
             <div class="innerFormArchive">
-              <input type="radio" class="btn-check" name="options-outlined" id="graduate" autocomplete="off">
+              <input type="radio" class="btn-check" name="condition" id="graduate" value="Graduate" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="graduate">Graduate</label>
 
-              <input type="radio" class="btn-check" name="options-outlined" id="transfer" autocomplete="off">
+              <input type="radio" class="btn-check" name="condition" id="transfer" value="Transfer" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="transfer">Transfer</label>
 
-              <input type="radio" class="btn-check" name="options-outlined" id="drop" autocomplete="off">
+              <input type="radio" class="btn-check" name="condition" id="drop" value="Dropped" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="drop">Dropped</label>
 
-              <input type="radio" class="btn-check" name="options-outlined" id="discontinued" autocomplete="off">
+              <input type="radio" class="btn-check" name="condition" id="discontinued" value="Discontinued" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="discontinued">Discontinued</label>
             </div>
-              <button class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+              <button id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
         </div>
       </div>
