@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 03, 2021 at 08:39 AM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Nov 03, 2021 at 05:59 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -71,61 +71,18 @@ INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, 
 --
 
 CREATE TABLE `tbl_archive` (
-  `academic_year` varchar(100) NOT NULL,
-  `user_id` int(20) NOT NULL,
-  `fullname` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `password` longtext NOT NULL,
-  `role` varchar(15) NOT NULL,
-  `otp_code` varchar(100) NOT NULL,
-  `otp_expiration` varchar(100) NOT NULL,
-  `program_id` int(11) NOT NULL,
-  `semester` varchar(100) NOT NULL,
-  `course_year_level` varchar(100) NOT NULL,
-  `tuition_fee` int(11) NOT NULL,
-  `course_program` varchar(100) NOT NULL,
-  `course_major` varchar(100) NOT NULL,
-  `course_duration` int(11) NOT NULL,
-  `discount_type` varchar(100) NOT NULL,
-  `discount_percent` int(11) NOT NULL,
   `reg_no` varchar(255) NOT NULL,
-  `employee_id` int(20) NOT NULL,
+  `user_id` int(20) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `lastname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
+  `role` varchar(15) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `sex` varchar(20) NOT NULL,
   `address` longtext NOT NULL,
   `contact_number` varchar(15) NOT NULL,
-  `joined_date` varchar(100) NOT NULL,
-  `transaction_no` varchar(100) NOT NULL,
-  `stud_id` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  `payment_method` varchar(100) NOT NULL,
-  `payment_gateway` varchar(100) NOT NULL,
-  `sales_invoice` longtext NOT NULL,
-  `balance` int(11) NOT NULL,
-  `transaction_date` date NOT NULL,
-  `payment_status` varchar(100) NOT NULL,
-  `remarks` varchar(100) NOT NULL,
-  `cashier_id` int(11) NOT NULL,
-  `cashier_name` varchar(100) NOT NULL,
-  `status` varchar(100) NOT NULL,
-  `reasonToDeny` longtext NOT NULL,
-  `csi_year_level` varchar(100) NOT NULL,
-  `scholar_type` varchar(100) NOT NULL,
-  `total_amount_paid` int(11) NOT NULL,
-  `registrar_id` int(11) NOT NULL,
-  `registrar_name` varchar(100) NOT NULL,
-  `form_137` varchar(100) NOT NULL,
-  `form_138` varchar(100) NOT NULL,
-  `psa_birth_cert` varchar(100) NOT NULL,
-  `good_moral` varchar(100) NOT NULL,
-  `LRN` varchar(100) NOT NULL,
-  `stud_type` varchar(100) NOT NULL,
-  `csi_academic_year` varchar(100) NOT NULL,
-  `csi_semester` varchar(100) NOT NULL,
-  `csi_program` varchar(255) NOT NULL,
-  `csi_major` longtext NOT NULL
+  `condition` varchar(100) NOT NULL,
+  `date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
