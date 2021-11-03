@@ -1280,8 +1280,7 @@
                             <th scope="col">ID number</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
-                            <th scope="col">Student Status</th>
-                            <th scope="col">Account Status</th>
+                            <th scope="col">Role</th>
                             <th scope="col">Email</th>
                             <th scope="col">Condition</th>
                             
@@ -2170,6 +2169,15 @@
             viewArchiveDataTable()
             
           });
+          $(document).ready(function(){
+                $("archive_btn").click(function(){
+                    $.ajax({url: "archive.php", 
+                      success: function(data){
+                        $("registrarArchive").html(data);
+                    }});
+                });
+            });
+
           $("#searchArchive_btn").click(function(){
             $.ajax({
               type:'POST',
