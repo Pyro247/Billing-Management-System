@@ -25,6 +25,10 @@
   }
   if(isset($_GET['checkProgID'])){
     $progId = $_GET['progId'];
+    $program = $_GET['program'];
+    $major = $_GET['major'];
+    $year = $_GET['year'];
+    $sem = $_GET['sem'];
     $sqlCheckProgId = " SELECT * FROM `tbl_course_list` WHERE program_id = ?";
     $stmtCheckProgId = $con->prepare($sqlCheckProgId);
     $stmtCheckProgId->bind_param('s', $progId);
@@ -34,9 +38,28 @@
       $response['status'] = 'error';
       $response['message'] = 'Program ID Already Exist';
     }else{
-      $response['msg'] = '';
+      
+      // echo json_encode($response);
     }
+    $sqlCheck = "SELECT list.course_program,list.course_major,fees.course_year_level,fees.semester
+                  FROM tbl_course_list as list
+                  INNER JOIN tbl_course_fees as fees ON list.program_id = fees.program_id
+                  WHERE list.course_program = '$program' AND list.course_major = '$major' AND fees.course_year_level = '$year' AND fees.semester = '$sem'";
+      $stmtCheck = $con->prepare($sqlCheck);
+      // $stmtCheck->bind_param('ssss', $program,$major,$year,$sem);
+      $stmtCheck->execute();
+      $resCheck = $stmtCheck->get_result();
+      if($resCheck->num_rows > 0){
+        $response['status'] = 'error';
+        $response['message'] = 'Program Program,Major,Year Level,and Semester';
+      }else{
+        // $response['message'] = '';
+      }
     echo json_encode($response);
+  }
+  if(isset($_GET['checkProgToSem'])){
+    
+    
   }  
   if(isset($_POST['addNewSy'])){
   $academic_year = $_POST['SYstart'].'-'.$_POST['SYend'];
