@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 02, 2021 at 03:51 AM
+-- Generation Time: Nov 03, 2021 at 08:39 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -36,7 +36,9 @@ CREATE TABLE `tbl_academic_year` (
 --
 
 INSERT INTO `tbl_academic_year` (`academic_year`) VALUES
-('2021-2022');
+('2021-2022'),
+('2022-2023'),
+('2022-2023');
 
 -- --------------------------------------------------------
 
@@ -158,7 +160,10 @@ INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `l
 (5, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
 (6, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
 (7, '1', '4', 1000, 500, 500, 500, 500, 500, 500, 4000),
-(8, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500);
+(8, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
+(9, '2', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
+(22, '1', '3', 500, 500, 500, 500, 500, 500, 500, 3500),
+(23, '1', '4', 100, 0, 100, 100, 100, 100, 100, 100);
 
 -- --------------------------------------------------------
 
@@ -185,7 +190,10 @@ INSERT INTO `tbl_course_list` (`program_id`, `course_program`, `course_major`, `
 (5, 'BSED', 'Math', 4),
 (6, 'BSED', 'Science', 4),
 (7, 'BSED', 'Art', 4),
-(8, 'BSED', 'Filipino', 4);
+(8, 'BSED', 'Filipino', 4),
+(9, 'BSED', 'Social Studies', 4),
+(22, 'BSED', 'English', 4),
+(23, 'BSED', 'English', 4);
 
 -- --------------------------------------------------------
 
@@ -204,7 +212,7 @@ CREATE TABLE `tbl_discount` (
 
 INSERT INTO `tbl_discount` (`discount_type`, `discount_percent`) VALUES
 ('Disabilities', 20),
-('Sibling Discount', 15);
+('Sibling Discount', 20);
 
 -- --------------------------------------------------------
 
@@ -232,8 +240,10 @@ CREATE TABLE `tbl_employee_info` (
 --
 
 INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES
-('20211', 102101, 'Registrar', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', 'November 1,2021', 'November 1, 2021, 8:08 pm'),
-('', 102102, 'Registrar', 'Mike', 'Isla', 'E', '', '', '', '', '2021-11-01', '');
+('2021113', 10211, 'Cashier', 'Justine', 'Delos Reyes', 'E', 'male', 'justine@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', '2021-11-02', 'November 2, 2021, 7:52 pm'),
+('20211', 102101, 'Admin', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', '2021-11-01', 'November 1, 2021, 8:08 pm'),
+('', 102102, 'Cashier', 'Merry Anne', 'Villano', 'V', '', '', '', '', '2019-06-04', ''),
+('202112', 102103, 'Registrar', 'Mike', 'Isla', 'E', 'female', 'villano@gmail.com', 'Tarlac City', '09307078204', '2019-02-02', 'November 2, 2021, 7:42 pm');
 
 -- --------------------------------------------------------
 
@@ -266,29 +276,8 @@ CREATE TABLE `tbl_payments` (
 --
 
 INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
-('FT-001', 3, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 10000, 1250, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 3000, '2021-10-29', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-003', 1, 2018301302, 'Mike Isla', '2021-2022', '2', 10000, 5000, 'Online', 'Paymaya', 'Pay.png', 5000, '2021-10-30', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-004', 1, 2018301302, 'Mike Isla', '2021-2022', '2', 10000, 5000, 'Cash', '', '', 0, '2021-10-30', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-005', 1, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 10000, 4250, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-006', 1, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 10000, 4250, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-007', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 400, 'Online', 'Paymaya', 'Pay.png', 2600, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-008', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 500, 'Cash', '', '', 2900, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-009', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 900, 'Cash', '', '', 2000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-010', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 2000, 'Cash', '', '', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-011', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 3000, 'Cash', '', '', 2000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-012', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 1000, 'Online', 'Paymaya', 'Pay.png', 1000, '2021-10-31', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-013', 1, 2018301276, 'Denver Pulido', '2020-2021', '2', 10000, 10000, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 0, '2021-10-31', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-014', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 400, 'Cash', '', '', 3000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-015', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 3000, 'Online', 'Paymaya', 'Pay.png', 0, '2021-11-01', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-016', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 2500, 'Online', 'Gcash', 'Paymaya-receipt-sample.jpg', 900, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-017', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 900, 'Cash', '', '', 0, '2021-11-01', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-018', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 400, 'Cash', '', '', 3000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-019', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 1000, 'Cash', '', '', 2000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-020', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 1000, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 500, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-021', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 500, 'Online', 'Paymaya', 'Pay.png', 1500, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-022', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 500, 'Cash', '', '', 0, '2021-11-01', 'Approved', 'Fully Paid', 2021000003, 'Michael Isla'),
-('FT-023', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 400, 'Cash', '', '', 3000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-024', 4, 2018301301, 'Michael Estrecho Isla', '2021-2022', '1', 8000, 600, 'Cash', '', '', 2000, '2021-11-01', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla');
+('FT-004', 3, 2018301301, 'Michael Isla', '2021-2022', '2', 3000, 1000, 'Cash', '', '', 2000, '2021-11-02', 'Approved', 'Not Fully Paid', 10211, 'Justine Delos Reyes');
 
 -- --------------------------------------------------------
 
@@ -360,10 +349,19 @@ CREATE TABLE `tbl_student_fees` (
   `scholar_type` varchar(255) NOT NULL,
   `discount_type` varchar(100) NOT NULL,
   `tuition_fee` int(100) NOT NULL,
+  `lab_units` int(11) NOT NULL,
+  `lec_units` int(11) NOT NULL,
   `total_amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `remarks` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_fees`
+--
+
+INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `lab_units`, `lec_units`, `total_amount_paid`, `balance`, `remarks`) VALUES
+(1, 2018301301, 'Michael Estrecho Isla', '1', 'Athelete', 'Partial Scholar', 'N/A', 6000, 2, 1, 0, 3000, 'not fully paid');
 
 -- --------------------------------------------------------
 
@@ -386,6 +384,13 @@ CREATE TABLE `tbl_student_info` (
   `registrar_name` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_student_info`
+--
+
+INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
+('', 2018301301, 'Michael', 'Isla', 'Estrecho', '', '', '', '', '', 102103, 'Mike Isla');
+
 -- --------------------------------------------------------
 
 --
@@ -399,6 +404,13 @@ CREATE TABLE `tbl_student_requirements` (
   `psa_birth_cert` varchar(100) NOT NULL,
   `good_moral` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_requirements`
+--
+
+INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
+(2018301301, '✓', '✓', '✓', '✓');
 
 -- --------------------------------------------------------
 
@@ -416,6 +428,13 @@ CREATE TABLE `tbl_student_school_details` (
   `csi_major` longtext NOT NULL,
   `csi_year_level` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_student_school_details`
+--
+
+INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
+(2018301301, '', '', '', '1', 'BSIT', 'WMA', '1');
 
 --
 -- Indexes for dumped tables
