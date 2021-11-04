@@ -790,8 +790,9 @@
                       <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
                       <button type="button" name="stud_save" id="studSave" class="btn btn-success"disabled >Save </button>
                       <!-- <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button> -->
-
-                      <a class="btn btn-primary" id="stud_archive">Archive</a>
+                                  
+                      <!-- <a class="btn btn-primary" id="stud_archive" disbled>Archive</a> -->
+                      <button type="button" class="btn btn-primary" name="stud_archive" id="stud_archive" disabled >Archive</button>
                       <script type="text/javascript">
                               
                               const popUpArchive = document.querySelector('.popUpArchive')
@@ -858,7 +859,7 @@
                       </div>
 
                       
-                      <table class="table" style="color: var(--white)">
+                      <table class="table" id="viewStudTable" style="color: var(--white)">
                         <thead>
                           <tr>
                             <th scope="col">Student ID</th>
@@ -1873,6 +1874,7 @@
               $('#studSave').text('Save');
               $("#add").prop("disabled", false);
               $("#studSave").prop("disabled", true);
+              $("#stud_archive").prop("disabled", true);
               $("#stud_delete").prop("disabled", true);
             }
             // Save
@@ -1948,6 +1950,7 @@
                 studFieldsDisbaled(allStudFields,false);
                 $("#studSave").text('Update');
                 $("#studSave").removeAttr('disabled');
+                $("#stud_archive").removeAttr('disabled');
                 $("#stud_delete").removeAttr('disabled');
               }
               
@@ -2123,21 +2126,7 @@
               }
             }); 
           }
-          // Dislay Student Info in the table Include search  feature |AJAX REQUEST
-          function viewStudetList(query){
-            $.ajax({
-              type: "GET",
-              url: "../includes/manage_student.php",
-              data:{
-                "viewStudData": 1,
-                'query': query,
-              },
-              dataType: "html",
-              success: function (data) {
-                $('#viewStud').html(data);
-              }
-            });
-          }
+          
           // Student Filter By Program and Major AJAX REQUEST
           function viewStudetListFilter(byProgram,byMajor){
             $.ajax({
@@ -2161,6 +2150,21 @@
             }
           }
         });
+        // Dislay Student Info in the table Include search  feature |AJAX REQUEST
+        function viewStudetList(query){
+            $.ajax({
+              type: "GET",
+              url: "../includes/manage_student.php",
+              data:{
+                "viewStudData": 1,
+                'query': query,
+              },
+              dataType: "html",
+              success: function (data) {
+                $('#viewStud').html(data);
+              }
+            });
+          }
       </script>
       <!-- Archives Tab Script -->
       <script>
@@ -2172,23 +2176,44 @@
           $(document).ready(function(){
                 $("#archive_btn").click(function(e){
                   e.preventDefault();
+                  if(!$("input[name='condition']").is(':checked')){
+                    Swal.fire(
+                      'No Selected',
+                      'Please select condtion',
+                      'warning'
+                    )
+                  }else{
                     $.ajax({
-                      type: "post",
+                      type: "POST",
                       url: "../includes/archive.php", 
                       data:{
                         "archive_btn": 1,
-                        "condition":condition,
-                        "date":date,
-                        "user_id":studId,
+                        "condition": $('input[name="condition"]:checked').val(),
+                        "user_id":$('#studId').val(),
                       },
                       dataType: 'JSON',
                       success: function(response){
+                        // console.log(response)
                         Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
+                          icon: response.status,
+                          text: response.message,
+                          confirmButtonText: 'Ok'
+                        })
+                        if(response.status == 'success'){
+                          $('.closeBtnPopUp').click()
+                          viewStudetList('%')
+                          $('#studSave').text('Save');
+                          $("#add").prop("disabled", false);
+                          $("#studSave").prop("disabled", true);
+                          $("#stud_archive").prop("disabled", true);
+                          $("#stud_delete").prop("disabled", true);
+                          $('#studForm').trigger('reset');
+                          $("#studForm input").prop("disabled", true);
+
+                        }
                     }});
+                  }
+                    
                 });
             });
             $(document).ready(function(){
@@ -2309,9 +2334,11 @@
             empActions(updateEmp);
             $('#empSave').text('Save');
             empFieldsAttr(allfields,true)
+            
             $("#empAdd").prop("disabled", false);
             $("#empSave").prop("disabled", true);
             $("#empDel").prop("disabled", true);
+            
 
           }else{
             if($('#empRole').val() == 'N/A'){
