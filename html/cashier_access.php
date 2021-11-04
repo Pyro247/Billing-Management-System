@@ -415,7 +415,7 @@ include_once '../connection/Config.php';
         <div class="nav flex-column nav-pills pl-2 mt-5 align-middle" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link active main__" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="true"><i class='bx bxs-dashboard'></i>&nbsp;Dashboard</a>
             <a class="nav-link main__" id="v-pills-payment-transactions-tab" data-toggle="pill" href="#v-pills-payment-transactions" role="tab" aria-controls="v-pills-payment-transactions" aria-selected="false"><i class="fas fa-money-bill-wave-alt"></i>&nbsp;Payment</a>
-            <a class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><i class='fas fa-history' srty></i>&nbsp;History</a>
+            <a  class="nav-link main__" id="v-pills-history-tab" data-toggle="pill" href="#v-pills-history" role="tab" aria-controls="v-pills-history" aria-selected="false"><i class='fas fa-history' srty></i>&nbsp;History</a>
             <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
       </div>
       </div>
@@ -744,44 +744,14 @@ include_once '../connection/Config.php';
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem;  display:block;">
-                      <?php
-                        $cashier_ID = $_SESSION['employeeId'];
-                        $sql = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                        FROM `tbl_payments`
-                        WHERE `transaction_date` = CURRENT_DATE() 
-                        AND cashier_id = ?
-                        AND payment_method = 'Cash'";
-                        $cash = $con->prepare($sql);
-                        $cash->bind_param('s',$cashier_ID);
-                        $cash->execute();
-                        $resultCash = $cash->get_result();
-                        $rowCash = $resultCash->fetch_row();
-                        $count = mysqli_num_rows($resultCash);
-                        echo $count;
-                      ?>
+                        <h6><strong style="font-size: 1.1rem;  display:block;" id="cashCount">
+                      
                       </strong> Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong>
-                      <?php
-
-                            $cashier_ID = $_SESSION['employeeId'];
-                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                              WHERE transaction_date = CURRENT_DATE()
-                                              AND cashier_id = ?
-                                              AND payment_method = 'Cash'"; 
-                            $stmtTotal = $con->prepare($sqlTotalAmount);
-                            $stmtTotal->bind_param('s',$cashier_ID);
-                            $stmtTotal->execute();
-                            $resTotal = $stmtTotal->get_result();
-                            $row= $resTotal->fetch_assoc();
-                            $total = $row['count'];
-
-                                echo $total;
-                                    
-                            ?>
+                      <h5>₱<strong id="cashTotal">
+                   
                       </strong></h5>
                       
                       </div>
@@ -794,44 +764,14 @@ include_once '../connection/Config.php';
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem; display:block;">
-                        <?php
-                        $cashier_ID = $_SESSION['employeeId'];
-                        $sqlOnline = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                        FROM `tbl_payments`
-                        WHERE `transaction_date` = CURRENT_DATE() 
-                        AND cashier_id = ?
-                        AND payment_method = 'Online'";
-                        $online = $con->prepare($sqlOnline);
-                        $online->bind_param('s',$cashier_ID);
-                        $online->execute();
-                        $resultOnline = $online->get_result();
-                        $rowOnline = $resultOnline->fetch_row();
-                        $count = mysqli_num_rows($resultOnline);
-                        echo $count;
-                      ?>
+                        <h6><strong style="font-size: 1.1rem; display:block;" id="onlineCount">
+                      
                       </strong>Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong>
-                      <?php
-
-                          $cashier_ID = $_SESSION['employeeId'];
-                          $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                            WHERE transaction_date = CURRENT_DATE()
-                                            AND cashier_id = ?
-                                            AND payment_method = 'Online'"; 
-                          $stmtTotal = $con->prepare($sqlTotalAmount);
-                          $stmtTotal->bind_param('s',$cashier_ID);
-                          $stmtTotal->execute();
-                          $resTotal = $stmtTotal->get_result();
-                          $row= $resTotal->fetch_assoc();
-                          $total = $row['count'];
-
-                              echo $total;
-                                  
-                          ?>
+                      <h5>₱<strong id="onlineTotal">
+                     
                       </strong></h5>
                       </div>
                       
@@ -844,41 +784,14 @@ include_once '../connection/Config.php';
                   
                     <div class="historyInfoLbl">
                       <div class="historyInfoLblUp text-center">
-                        <h6><strong style="font-size: 1.1rem; display:block;" id="totalTransactionCount">
-                        <?php
-                        $cashier_ID = $_SESSION['employeeId'];
-                        $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                        FROM `tbl_payments`
-                        WHERE `transaction_date` = CURRENT_DATE() 
-                        AND cashier_id = ?";
-                        $total = $con->prepare($sqlTotal);
-                        $total->bind_param('s',$cashier_ID);
-                        $total->execute();
-                        $resulttotal = $total->get_result();
-                        $rowtotal = $resulttotal->fetch_row();
-                        $count = mysqli_num_rows($resulttotal);
-                        echo $count;
-                      ?>
+                        <h6><strong style="font-size: 1.1rem; display:block;"  id="totalTransactionCount">
+                     
                       </strong>Total Transactions</h6>
 
                       </div>
                       <div class="historyInfoLblDown">
-                      <h5>₱<strong ><?php
-
-                      $cashier_ID = $_SESSION['employeeId'];
-                      $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                        WHERE transaction_date = CURRENT_DATE()
-                                        AND cashier_id = ?"; 
-                      $stmtTotal = $con->prepare($sqlTotalAmount);
-                      $stmtTotal->bind_param('s',$cashier_ID);
-                      $stmtTotal->execute();
-                      $resTotal = $stmtTotal->get_result();
-                      $row= $resTotal->fetch_assoc();
-                      $total = $row['count'];
-
-                          echo $total;
-                              
-                      ?>
+                      <h5>₱<strong id="totalTransactionAmount" >
+                    
                       </strong></h5>
                       </div>
                       
@@ -1013,20 +926,7 @@ include_once '../connection/Config.php';
                                 <div class="input-group-text beforeInput">Total Transaction Count</div>
                               </div>
                             <input type="text" class="form-control w-auto" id="genTotalTransCount" disabled 
-                            value="<?php
-
-                                  $sqlTotal = "SELECT `transaction_no`, `stud_id`, `fullname`, `amount`, `payment_method`, `transaction_date`, `payment_status` 
-                                  FROM `tbl_payments`
-                                  WHERE `transaction_date` = CURRENT_DATE() 
-                                  AND cashier_id = ?";
-                                  $total = $con->prepare($sqlTotal);
-                                  $total->bind_param('s',$_SESSION['employeeId']);
-                                  $total->execute();
-                                  $resulttotal = $total->get_result();
-                                  $rowtotal = $resulttotal->fetch_row();
-                                  $count = mysqli_num_rows($resulttotal);
-                                  echo $count;
-                            ?>">
+                            value="">
                           </div>
                       </div>
                       <div class="col">
@@ -1036,22 +936,7 @@ include_once '../connection/Config.php';
                                 <div class="input-group-text beforeInput">Total Amount Collected</div>
                               </div>
                             <input type="text" class="form-control w-auto" id="genTotalAmounCollected" disabled 
-                            value=" <?php
-                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                              WHERE transaction_date = CURRENT_DATE()
-                                              AND cashier_id = ?"; 
-                            $stmtTotal = $con->prepare($sqlTotalAmount);
-                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
-                            $stmtTotal->execute();
-                            $resTotal = $stmtTotal->get_result();
-                            $row= $resTotal->fetch_assoc();
-                            $total = $row['count'];
-                            if($resTotal->num_rows > 0){
-                              echo  $total;
-                            }else{
-                              echo  '0.00';
-                            }        
-                            ?>">
+                            value="">
                           </div>
                       </div>
                       <div class="col">
@@ -1061,23 +946,7 @@ include_once '../connection/Config.php';
                                 <div class="input-group-text beforeInput">Fund Transfer Collected</div>
                               </div>
                             <input type="number" class="form-control w-auto" id="genFundsColleted" disabled  placeholder="0.00" 
-                            value="<?php
-                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                                WHERE transaction_date = CURRENT_DATE()
-                                                AND cashier_id = ?
-                                                AND payment_method = 'Online'"; 
-                            $stmtTotal = $con->prepare($sqlTotalAmount);
-                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
-                            $stmtTotal->execute();
-                            $resTotal = $stmtTotal->get_result();
-                            $row= $resTotal->fetch_assoc();
-                            $total = $row['count'];
-                            if($resTotal->num_rows > 0){
-                              echo  $total;
-                            }else{
-                              echo  '0.00';
-                            }        
-                            ?>">
+                            value="">
                           </div>
                       </div>
                       <div class="col">
@@ -1087,23 +956,7 @@ include_once '../connection/Config.php';
                                 <div class="input-group-text beforeInput">Cash Amount Collected</div>
                               </div>
                             <input type="number" class="form-control w-auto" id="genCashColleted" disabled  placeholder="0.00" 
-                            value="<?php
-                            $sqlTotalAmount = "SELECT SUM(amount) AS count FROM tbl_payments
-                                                WHERE transaction_date = CURRENT_DATE()
-                                                AND cashier_id = ?
-                                                AND payment_method = 'Cash'"; 
-                            $stmtTotal = $con->prepare($sqlTotalAmount);
-                            $stmtTotal->bind_param('s',$_SESSION['employeeId']);
-                            $stmtTotal->execute();
-                            $resTotal = $stmtTotal->get_result();
-                            $row= $resTotal->fetch_assoc();
-                            $total = $row['count'];
-                            if($resTotal->num_rows > 0){
-                              echo  $total;
-                            }else{
-                              echo  '0.00';
-                            }        
-                            ?>">
+                            value="">
                           </div>
                       </div>
                       </form>
@@ -1583,6 +1436,7 @@ include_once '../connection/Config.php';
         // Open History Tab
         $('#v-pills-history-tab').click(function (e) { 
           viewTransactionHistory() //Initial Table data base on current date and cashier log in
+          transactHistoryAuto()
         });
         // Apply Filter Button
         $('#filterApply').click(function (e) { 
@@ -1894,6 +1748,33 @@ include_once '../connection/Config.php';
         $( "#genReportBtn" ).prop( "disabled", true );
         $('#bannerForCashier').modal('hide');
       });
+    </script>
+    <script>
+      function transactHistoryAuto(){
+        $.ajax({
+          type: "GET",
+          url: "../includes/transactAuto.php",
+          data: {
+            'view': 1,
+            'cashier_ID': '<?= $_SESSION['employeeId']?>'
+          },
+          dataType: "json",
+          success: function (data) {
+            console.log(data.countCash)
+            $('#cashCount').text(data.countCash);
+            $('#cashTotal').text(data.cashTotal);
+            $('#onlineCount').text(data.onlineCount);
+            $('#onlineTotal').text(data.onlineTotal);
+            $('#totalTransactionCount').text(data.totalTransactionCount);
+            $('#totalTransactionAmount').text(data.totalTransactionAmount);
+
+            $('#genTotalTransCount').val(data.totalTransactionCount);
+            $('#genTotalAmounCollected').val(data.totalTransactionAmount);
+            $('#genFundsColleted').val(data.onlineTotal);
+            $('#genCashColleted').val(data.cashTotal);
+          }
+        });
+      }
     </script>
   </body>
 </html>
