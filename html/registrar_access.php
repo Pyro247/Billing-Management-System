@@ -1950,7 +1950,7 @@
                 studFieldsDisbaled(allStudFields,false);
                 $("#studSave").text('Update');
                 $("#studSave").removeAttr('disabled');
-                $("#stud_archive").removeAttr('disabled');
+                $("#stud_archive").removeAttr('disabled',false);
                 $("#stud_delete").removeAttr('disabled');
               }
               
@@ -2220,21 +2220,35 @@
                 $("#empArchive").click(function(e){
                   e.preventDefault();
                     $.ajax({
-                      type: "post",
+                      type: "POST",
                       url: "../includes/archive.php", 
                       data:{
                         "empArchive": 1,
-                        "empId":empId,
+                        "empId":$('#empId').val(),
                       },
                       dataType: 'JSON',
                       success: function(response){
+                        // console.log(response)
                         Swal.fire({
-                      icon: response.status,
-                      text: response.message,
-                      confirmButtonText: 'Ok'
-                    })
+                          icon: response.status,
+                          text: response.message,
+                          confirmButtonText: 'Ok'
+                        })
+                        if(response.status == 'success'){
+                          viewEmployee('%')
+                          $('#empSave').text('Save');
+                          $("#empAdd").prop("disabled", false);
+                          $("#empSave").prop("disabled", true);
+                          $("#empArchive").prop("disabled", true);
+                          $("#emp_delete").prop("disabled", true);
+                          $('#empForm').trigger('reset');
+                          $("#empForm input").prop("disabled", true);
+
+                        }
                     }});
-                });
+                  
+                    
+                  });
             });
 
           $("#searchArchive_btn").click(function(){
@@ -2371,7 +2385,7 @@
           $('#empSave').text('Update');
           $("#empAdd").prop("disabled", true);
           $("#empSave").prop("disabled", false);
-          $("#empDel").prop("disabled", false);
+          $("#empArchive").prop("disabled", false);
           // AJAX request edit
           $.ajax({    
               type: "GET",

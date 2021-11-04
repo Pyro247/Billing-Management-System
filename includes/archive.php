@@ -23,7 +23,8 @@ if(isset($_POST['archive_btn'])){
     $contact_number = $rowInfo['contact_number'];
 
 
-    $sqlArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `condition`, `date`) VALUES ('$regNo','$stud_id','$firstname','$lastname','$middlename','Student','$email','$sex','$address','$contact_number','$condition','$date')";
+    $sqlArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `condition`, `date`) 
+    VALUES ('$regNo','$stud_id','$firstname','$lastname','$middlename','Student','$email','$sex','$address','$contact_number','$condition','$date')";
     $stmtArchive = $con->prepare($sqlArchive);
     if($stmtArchive->execute()){
 
@@ -63,28 +64,55 @@ if(isset($_POST['archive_btn'])){
   if(isset($_POST['empArchive'])){
     $empId = $_POST['empId'];
 
-    $sqlEmpArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `role`)
-    SELECT `reg_no`, `employee_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `role`
-    FROM `tbl_employee_info`
-    WHERE employee_id = ?;
+    $selectEmpInfo = "SELECT * FROM `tbl_employee_info` WHERE employee_id = ?";
+    $stmtEmpInfo = $con->prepare($selectEmpInfo);
+    $stmtEmpInfo->bind_param('s', $empId);
+    $stmtEmpInfo->execute();
+    $resEmpInfo = $stmtEmpInfo->get_result();
+    $rowEmpInfo = $resEmpInfo->fetch_assoc();
+    $Emp_regNo = $rowEmpInfo['reg_no'];
+    $Emp_id = $rowEmpInfo['employee_id'];
+    $Emp_role = $rowEmpInfo['role'];
+    $Emp_firstname = $rowEmpInfo['firstname'];
+    $Emp_lastname = $rowEmpInfo['lastname'];
+    $Emp_middlename = $rowEmpInfo['middlename'];
+    $Emp_sex = $rowEmpInfo['sex'];
+    $Emp_address = $rowEmpInfo['address'];
+    $Emp_email = $rowEmpInfo['email'];
+    $Empcontact_number = $rowEmpInfo['contact_number'];
 
-    DELETE FROM `tbl_employee_info`
-    WHERE employee_id = ?;";
-
+    $sqlEmpArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`) 
+    VALUES ('$Emp_regNo','$Emp_id','$Emp_firstname','$Emp_lastname','$Emp_middlename','$Emp_role','$Emp_email','$Emp_sex','$Emp_address','$Empcontact_number')";
     $stmtEmpArchive = $con->prepare($sqlEmpArchive);
-    $stmtEmpArchive->bind_param('s', $empId);
-    $stmtEmpArchive->execute();
-    if( $stmtEmpArchive->execute()){
-      $response['status'] = 'success';
-      $response['message'] = 'Successfully Archived';
+    if($stmtEmpArchive->execute()){
+    
+      $sqlEmpDel = "DELETE FROM `tbl_employee_info` WHERE `employee_id` = ?";
+    
+      $stmtEmpDel = $con->prepare($sqlEmpDel);
+      $stmtEmpDel->bind_param('s', $empId );
+      $stmtEmpDel->execute();
+      $checkEmpAccount = "SELECT * FROM `tbl_accounts` WHERE user_id = '$empId'";
+      $stmtEmpAccount = $con->prepare($checkEmpAccount);
+      $stmtEmpAccount->execute();
+      $resEmpAccount = $stmtEmpAccount->get_result();
+      if($resEmpAccount->num_rows > 0){
+        $Empupdate = "UPDATE `tbl_accounts` SET `status`= 'Inactive' WHERE  user_id = '$empId'";
+        $stmtEmpUpdate = $con->prepare($Empupdate);
+        if($stmtEmpUpdate->execute()){
+          $response['status'] = 'success';
+          $response['message'] = 'Successfully Archived';
+        }
+      }else{
+        $response['status'] = 'success';
+        $response['message'] = 'Successfully Archived';
+      }
     }else{
       $response['status'] = 'error';
       $response['message'] = 'Failed Added';
     }
+    
+    
     echo json_encode($response);
   }
-
+    
   ?>
-
-
-
