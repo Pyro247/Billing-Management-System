@@ -22,6 +22,7 @@
           if( $scholar_type == 'N/A' ){
            $scholarDeduction = number_format( 0, 2);
            $data['scholar'] = '';
+           $balance = $datastudFees['tuition_fee'];
          }else if( $scholar_type == 'Partial Scholar' ){
            $balance = $datastudFees['tuition_fee'] / 2;
            $scholarDeduction = number_format($balance, 2);
@@ -29,6 +30,7 @@
          }else if ( $scholar_type == 'Full Scholar' ){
            $scholarDeduction = number_format( $row['tuition_fee'] , 2);
            // $data['scholar'] = 'Full Scholar'.'('.$scholar_desc.')';
+           $balance = 0;
          }
          if($discount_type == 'N/A'){
           $discountDeduction = number_format( 0, 2);
