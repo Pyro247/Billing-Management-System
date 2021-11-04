@@ -265,8 +265,8 @@ while($data = $res->fetch_assoc()){?>
     <td data-target="course_year_level"><?=$data['course_year_level'];?></td>
     <td data-target="course_duration"><?=$data['course_duration'];?></td>
     <td  data-target="semester"><?=$data['semester'];?></td>
-    <td data-target="tuition_fee"><?=$data['lab_Fee'];?></td>
-    <td data-target="tuition_fee"><?=$data['lecture_Fee'];?></td>
+    <td data-target="lab_Fee"><?=$data['lab_Fee'];?></td>
+    <td data-target="lecture_Fee"><?=$data['lecture_Fee '];?></td>
     <td  data-target="tuition_fee"><?=$data['tuition_fee'];?></td>
     <td>
       <a href="#" class="btn btn-success "id="editProgram" data-id="<?=$data['program_id'];?>">Edit</a>
