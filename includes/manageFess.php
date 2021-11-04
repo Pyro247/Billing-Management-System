@@ -242,7 +242,7 @@
 
   if(isset($_POST['showProgram'])){
   $query = $_POST['query'];
-  $sql ="SELECT list.program_id,list.course_program,list.course_major,fees.course_year_level,list.course_duration,fees.semester,fees.tuition_fee
+  $sql ="SELECT list.program_id,list.course_program,list.course_major,fees.course_year_level,list.course_duration,fees.semester,fees.lecture_Fee,fees.lab_Fee,fees.tuition_fee
         FROM tbl_course_list AS list
         INNER JOIN tbl_course_fees as fees 
         ON list.program_id = fees.program_id
@@ -265,6 +265,8 @@ while($data = $res->fetch_assoc()){?>
     <td data-target="course_year_level"><?=$data['course_year_level'];?></td>
     <td data-target="course_duration"><?=$data['course_duration'];?></td>
     <td  data-target="semester"><?=$data['semester'];?></td>
+    <td data-target="tuition_fee"><?=$data['lab_Fee'];?></td>
+    <td data-target="tuition_fee"><?=$data['lecture_Fee'];?></td>
     <td  data-target="tuition_fee"><?=$data['tuition_fee'];?></td>
     <td>
       <a href="#" class="btn btn-success "id="editProgram" data-id="<?=$data['program_id'];?>">Edit</a>

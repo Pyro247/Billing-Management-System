@@ -1527,6 +1527,8 @@
                       <th scope="col">Year Level</th>
                       <th scope="col">Duration</th>
                       <th scope="col">Semester</th>
+                      <th scope="col">Lab Fee/Unit</th>
+                      <th scope="col">Lec Fee/Unit</th>
                       <th scope="col">Tuition Fee</th>
                       <th scope="col">Action</th>
                     </tr>
