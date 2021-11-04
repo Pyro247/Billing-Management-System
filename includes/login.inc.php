@@ -27,30 +27,53 @@
 
       if(password_verify($password,$rowLogin['password'])){
         if($rowLogin['role'] == 'Registrar' ){
-          header('Location: ../html/registrar_access.php');
-          $_SESSION['fullname'] = $rowLogin['fullname'];
-          $_SESSION['employeeId'] = $rowLogin['user_id'];
-          $_SESSION['role'] = $rowLogin['role'];
+          if($rowLogin['status'] == 'Inactive' ){
+            $_SESSION['status'] = "info";
+            $_SESSION['msg'] = "Account is inactive";
+            header('Location: ../html/login.php');
+          }else{
+            header('Location: ../html/registrar_access.php');
+            $_SESSION['fullname'] = $rowLogin['fullname'];
+            $_SESSION['employeeId'] = $rowLogin['user_id'];
+            $_SESSION['role'] = $rowLogin['role'];
+          }
 
         }else if ( $rowLogin['role'] == 'Cashier') {
-          header('Location: ../html/cashier_access.php');
-          $_SESSION['fullname'] = $rowLogin['fullname'];
-          $_SESSION['employeeId'] = $rowLogin['user_id'];
-          $_SESSION['role'] = $rowLogin['role'];
-
+          if($rowLogin['status'] == 'Inactive' ){
+            $_SESSION['status'] = "info";
+            $_SESSION['msg'] = "Account is inactive";
+            header('Location: ../html/login.php');
+          }else{
+            header('Location: ../html/cashier_access.php');
+            $_SESSION['fullname'] = $rowLogin['fullname'];
+            $_SESSION['employeeId'] = $rowLogin['user_id'];
+            $_SESSION['role'] = $rowLogin['role'];
+          }
         }else if ( $rowLogin['role'] == 'Admin' ){
-          header('Location: ../html/registrar_access.php');
-          $_SESSION['fullname'] = $rowLogin['fullname'];
-          $_SESSION['employeeId'] = $rowLogin['user_id'];
-          $_SESSION['role'] = $rowLogin['role'];
+          if($rowLogin['status'] == 'Inactive' ){
+            $_SESSION['status'] = "info";
+            $_SESSION['msg'] = "Account is inactive";
+            header('Location: ../html/login.php');
+          }else{
+            header('Location: ../html/registrar_access.php');
+            $_SESSION['fullname'] = $rowLogin['fullname'];
+            $_SESSION['employeeId'] = $rowLogin['user_id'];
+            $_SESSION['role'] = $rowLogin['role'];
+          }
+          
 
         }else if( $rowLogin['role'] == 'Student' ){
-          
-          $_SESSION['fullname'] = $rowLogin['fullname'];
-          $_SESSION['stud_id'] = $rowLogin['user_id'];
-          $_SESSION['email'] = $rowLogin['email'];
-          $_SESSION['role'] = 'Student';
-          header('Location: ../html/student_access.php');
+          if($rowLogin['status'] == 'Inactive' ){
+            $_SESSION['status'] = "info";
+            $_SESSION['msg'] = "Account is inactive";
+            header('Location: ../html/login.php');
+          }else{
+            $_SESSION['fullname'] = $rowLogin['fullname'];
+            $_SESSION['stud_id'] = $rowLogin['user_id'];
+            $_SESSION['email'] = $rowLogin['email'];
+            $_SESSION['role'] = 'Student';
+            header('Location: ../html/student_access.php');
+          }
         }
       
       }else{
