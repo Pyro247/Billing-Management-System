@@ -85,7 +85,7 @@
               <input type="radio" class="btn-check" name="condition" id="discontinued" value="Discontinued" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="discontinued">Discontinued</label>
             </div>
-              <button id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+              <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
         </div>
       </div>
@@ -2170,10 +2170,44 @@
             
           });
           $(document).ready(function(){
-                $("archive_btn").click(function(){
-                    $.ajax({url: "archive.php", 
-                      success: function(data){
-                        $("registrarArchive").html(data);
+                $("#archive_btn").click(function(e){
+                  e.preventDefault();
+                    $.ajax({
+                      type: "post",
+                      url: "../includes/archive.php", 
+                      data:{
+                        "archive_btn": 1,
+                        "condition":condition,
+                        "date":date,
+                        "user_id":studId,
+                      },
+                      dataType: 'JSON',
+                      success: function(response){
+                        Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
+                    }});
+                });
+            });
+            $(document).ready(function(){
+                $("#empArchive").click(function(e){
+                  e.preventDefault();
+                    $.ajax({
+                      type: "post",
+                      url: "../includes/archive.php", 
+                      data:{
+                        "empArchive": 1,
+                        "empId":empId,
+                      },
+                      dataType: 'JSON',
+                      success: function(response){
+                        Swal.fire({
+                      icon: response.status,
+                      text: response.message,
+                      confirmButtonText: 'Ok'
+                    })
                     }});
                 });
             });
