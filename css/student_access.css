@@ -389,6 +389,7 @@ html, body{
     justify-content: space-around;
     width: 100%;
     padding: 25px;
+    flex-wrap: wrap;
 }
 
 .leftForm .input-group input{
@@ -416,7 +417,7 @@ html, body{
 }
 
 /* Transaction History */
-.transactionHistory{
+.transactionHistoryDiv{
     background: #2d2e2f;
     box-shadow:  5px 5px 10px #111112,
                 -5px -5px 10px #434546;
