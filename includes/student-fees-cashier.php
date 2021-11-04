@@ -3,7 +3,7 @@
     include_once '../connection/Config.php';
 
     if(isset($_GET['viewStudentList'])){
-      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major,sf.remarks
+      $studFees ="SELECT sf.*, ssd.csi_year_level, sf.remarks, ssd.csi_program, ssd.csi_major,sf.remarks,sf.total_amount_paid	
       FROM tbl_student_fees AS sf
       LEFT JOIN tbl_student_school_details AS ssd
       ON sf.stud_id = ssd.stud_id
@@ -54,6 +54,7 @@
               <td><?=$scholarDeduction?></td>
               <td><?=$discountDeduction?></td>
               <td><?=$datastudFees['scholar_type'];?></td>
+              <td><?=$datastudFees['total_amount_paid'];?></td>
               <td><?=$datastudFees['balance'];?></td>
               <td><?=$datastudFees['remarks'];?></td>
           </tr>

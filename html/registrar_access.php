@@ -641,7 +641,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_feeTotal" class="form-control text-primary" style="font-weight: bold;" id="studFeeTotal" placeholder=" " value=""  disabled>
+                                    <input type="text" name="stud_feeTotal" class="form-control text-primary" style="font-weight: bold;" id="studFeeTotal" placeholder=" " value=""  readonly>
                                     <input type="hidden" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
                                     <label for="studFee" class="labelForTextBox">Fee</label>
                                   </div>
@@ -1489,6 +1489,7 @@
                           <th scope="col">Scholarship Deduction</th>  
                           <th scope="col">Discount Deduction</th>
                           <th scope="col">Scholar Type</th>
+                          <th scope="col">Total Amount Paid</th>
                           <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>
                         </tr>
