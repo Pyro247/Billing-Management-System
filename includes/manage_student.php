@@ -118,7 +118,7 @@
       $stmtGetScholar->execute();
       $resGetScholar = $stmtGetScholar->get_result();
       $rowGetScholar = $resGetScholar->fetch_assoc();
-
+      
       $scholarType = $rowGetScholar['scholar_type'];
       if($scholarType == 'Half'){
         $balance = $stud_fee/2;
@@ -139,7 +139,17 @@
         $studScholarType = 'Full Scholar';
       }
     }else{
-      $balance = $stud_fee;
+      if($stud_discount != 'N/A'){
+        $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+          $stmtGetDisc = $con->prepare($sqlGetDisc);
+          $stmtGetDisc->bind_param('s',$stud_discount);
+          $stmtGetDisc->execute();
+          $resGetDisc = $stmtGetDisc->get_result();
+          $rowGetDisc  = $resGetDisc->fetch_assoc();
+          $balance = (($stud_fee * (100 - $rowGetDisc['discount_percent'])/  100));
+      }else{
+        $balance = $stud_fee;
+      }
       $remarks = 'Not Fully Paid';
       $studScholarType = 'N/A';
     }
@@ -234,7 +244,7 @@ if(isset($_POST['update'])){
   $resGetProgId = $stmtGetProgId->get_result();
   $rowGetProgId = $resGetProgId->fetch_assoc();
   $course_id = $rowGetProgId['program_id'];
-
+ 
   if($stud_scholarship != 'N/A'){
     $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_description = ?";
     $stmtGetScholar = $con->prepare($slqGetScholar);
@@ -242,7 +252,6 @@ if(isset($_POST['update'])){
     $stmtGetScholar->execute();
     $resGetScholar = $stmtGetScholar->get_result();
     $rowGetScholar = $resGetScholar->fetch_assoc();
-
     $scholarType = $rowGetScholar['scholar_type'];
     if($scholarType == 'Half'){
       $balance = $stud_fee/2;
@@ -255,7 +264,7 @@ if(isset($_POST['update'])){
         $rowGetDisc  = $resGetDisc->fetch_assoc();
         $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
       }
-      $remarks = 'not fully paid';
+      $remarks = 'Not Fully Paid';
       $studScholarType = 'Partial Scholar';
     }else if($scholarType == 'Full'){
       $balance = 0;
@@ -263,7 +272,18 @@ if(isset($_POST['update'])){
       $studScholarType = 'Full Scholar';
     }
   }else{
-    $balance = $stud_fee;
+    if($stud_discount != 'N/A'){
+      $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+        $stmtGetDisc = $con->prepare($sqlGetDisc);
+        $stmtGetDisc->bind_param('s',$stud_discount);
+        $stmtGetDisc->execute();
+        $resGetDisc = $stmtGetDisc->get_result();
+        $rowGetDisc  = $resGetDisc->fetch_assoc();
+        $balance = (($stud_fee * (100 - $rowGetDisc['discount_percent'])/  100));
+    }else{
+      $balance = $stud_fee;
+    }
+    
     $remarks = 'Not Fully Paid';
       $studScholarType = 'N/A';
   }
