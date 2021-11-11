@@ -550,9 +550,12 @@
                         <tbody id="viewTableTransactionHistory" style="color: var(--white)">
                         <?php
 
-                                $sql ="SELECT transaction_no, amount, CONCAT(payment_method,'-',payment_gateway) 
-                                AS payment, transaction_date, payment_status, cashier_name
-                                FROM tbl_payments WHERE stud_id = ?";
+                                $sql ="SELECT transaction_no, amount, CONCAT(payment_method,' - ',payment_gateway) AS payment, transaction_date, payment_status, cashier_name
+                                FROM tbl_payments
+                                UNION ALL
+                                SELECT transaction_no, amount, CONCAT(payment_gateway) AS payment, transaction_date, status, ' ' AS cashier_name
+                                FROM tbl_pending_payments
+                                WHERE stud_id = ?";
                                 $stmt = $con->prepare($sql);
                                 $stmt->bind_param('s', $_SESSION['stud_id']);
                                 $stmt->execute();
