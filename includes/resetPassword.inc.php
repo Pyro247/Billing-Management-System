@@ -12,7 +12,6 @@
   // Email Verification
   if(isset($_POST['submit'])){
     $user_email = mysqli_real_escape_string($con, $_POST['email']);
-  
     $sqlCheckEmail = "SELECT * FROM `tbl_accounts`  WHERE email = ?";
     $stmtCheckEmail = $con->prepare($sqlCheckEmail);
     $stmtCheckEmail->bind_param('s', $user_email);

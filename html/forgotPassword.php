@@ -86,14 +86,14 @@
                     dataType: "JSON",
                     success: function (response) {
                         console.log(response)
-                        if(response.status){
+                        if(response.status == 'success'){
                             window.location.replace("../html/reset_password.php");
-                        }else if(response.status == 'error'){
-                            Swal.fire(
-                                'Something Went Wrong',
-                                'Please try again letter',
-                                'info'
-                            )
+                        }else{
+                            Swal.fire({
+                                icon: response.status,
+                                text: response.message,
+                                confirmButtonText: 'Ok'
+                            })
                         }
                     },
                     complete: function() {

@@ -1433,6 +1433,19 @@ include_once '../connection/Config.php';
     <!-- Transaction History -->
     <script>
       $(document).ready(function () {
+        let dtToday = new Date();
+        let month = dtToday.getMonth() + 1;
+        let day = dtToday.getDate();
+        let year = dtToday.getFullYear();
+        if(month < 0){
+          month = '0' + month.toString();
+        }
+        if(day < 10){
+          day = '0' + day.toString();
+        }
+        let maxDate = year + '-' + month + '-' + day;
+        $('#filterByDate').attr('max', maxDate);
+
         // Open History Tab
         $('#v-pills-history-tab').click(function (e) { 
           viewTransactionHistory() //Initial Table data base on current date and cashier log in
@@ -1445,6 +1458,7 @@ include_once '../connection/Config.php';
           let date = $('#filterByDate').val();
           viewTransactionHistoryFilteredBy(selected,date)
         });
+        
         // Clear Filter Button
         $('#filterClear').click(function (e) { 
           e.preventDefault();
@@ -1775,6 +1789,8 @@ include_once '../connection/Config.php';
           }
         });
       }
+      
+        
     </script>
   </body>
 </html>
