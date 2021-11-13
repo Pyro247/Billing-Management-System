@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2021 at 05:28 AM
+-- Generation Time: Nov 13, 2021 at 06:13 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -65,7 +65,6 @@ INSERT INTO `tbl_accounts` (`user_id`, `fullname`, `email`, `password`, `role`, 
 (102101, 'Admin Admin', 'admin@gmail.com', '$2y$10$iFTw0PMTWaNBToeSR9dX2uP91Ww2fSyWSnBxcHUUwuOO0dERMLFyq', 'Admin', 'Active', '', ''),
 (102102, 'Merry Anne Villamo', 'merryannevillano16@gmail.com', '$2y$10$Z/z3cblWrAdgXP.FVVApB.VhkM6Jbd.Pm8YG3DKUAsIhTn/qR6lTu', 'Registrar', 'Active', '', ''),
 (102103, 'Justine Dave Delos Reyes', 'justine@gmail.com', '$2y$10$7Z4tGfYR1kYFegxEoUzWMeq6ZQPjnPsT6y0V6Dd0eViS2JJb6Awqa', 'Cashier', 'Active', '', ''),
-(2018301276, 'Denver Pulido', 'denvergpulido15@gmail.com', '$2y$10$cAvD.DPTprAftApAuFH7L.rOjc7CqIeclvHWwXOVU7X8434skhh/i', 'Student', 'Active', '', ''),
 (2018301301, 'Michael Isla', 'isla.michael.estrecho@gmail.com', '$2y$10$JwdbqfJtzxvAx8ARPIhTPe8h1JKRJ25IGhsXBEBw1GhhHkWExUaqS', 'Student', 'Active', '', '');
 
 -- --------------------------------------------------------
@@ -334,13 +333,13 @@ CREATE TABLE `tbl_student_fees` (
 --
 
 INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `lab_units`, `lec_units`, `assessed_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
+(1, 123456, 'Mike Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 7000, 1, 2, 3000, 0, 7000, 'Not Fully Paid'),
+(1, 12345678, 'Michael Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
+(6, 2018098123, 'Mylene Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 5000, 1, 4, 2500, 0, 5000, 'Not Fully Paid'),
+(1, 2018276186, 'Merry Anne V Villano', '1', 'N/A', 'N/A', 'N/A', 9000, 2, 2, 3000, 0, 9000, 'Not Fully Paid'),
+(1, 2018287456, 'Justine Dave D Delos Reyes', '1', 'N/A', 'N/A', 'N/A', 10000, 3, 1, 3000, 0, 10000, 'Not Fully Paid'),
 (2, 2018301301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 'N/A', 5100, 4, 2, 2500, 10500, 5100, 'Not Fully Paid'),
-(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'Sibling Discount', 12000, 3, 2, 3000, 0, 10200, 'Not Fully Paid'),
-(1, 123456, 'Mike Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 9000, 1, 1, 3000, 0, 9000, 'Not Fully Paid'),
-(1, 12345678, 'Michael Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 11000, 2, 1, 3000, 0, 11000, 'Not Fully Paid'),
-(1, 2018276186, 'Merry Anne V Villano', '1', 'N/A', 'N/A', 'N/A', 12000, 2, 2, 3000, 0, 12000, 'Not Fully Paid'),
-(1, 2018287456, 'Justine Dave D Delos Reyes', '1', 'N/A', 'N/A', 'N/A', 13000, 3, 1, 3000, 0, 13000, 'Not Fully Paid'),
-(6, 2018098123, 'Mylene Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 5000, 1, 4, 2500, 0, 5000, 'Not Fully Paid');
+(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid');
 
 -- --------------------------------------------------------
 
@@ -373,7 +372,7 @@ INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `m
 ('', 2018098123, 'Mylene', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('', 2018276186, 'Merry Anne', 'Villano', 'V', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('', 2018287456, 'Justine Dave', 'Delos Reyes', 'D', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
-('202112', 2018301276, 'Denver', 'Pulido', 'G', 'male', 'Tarlac City', 'denvergpulido15@gmail.com', '09307078204', 'November 5, 2021, 5:07 am', 102102, 'Merry Anne Villamo'),
+('', 2018301276, 'Denver', 'Pulido', 'G', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('20211', 2018301301, 'Michael', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'isla.michael.estrecho@gmail.com', '09307078204', 'November 5, 2021, 5:04 am', 102102, 'Merry Anne Villamo');
 
 -- --------------------------------------------------------
@@ -422,13 +421,13 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301301, '101943050047', 'old', '2021-2022', '2', 'BSIT', 'TSM', '4'),
-(2018301276, '101943050048', 'transferee', '2021-2022', '1', 'BSIT', 'WMA', '1'),
 (123456, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (12345678, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(2018098123, '', '', '', '1', 'BSED', 'Science', '1'),
 (2018276186, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018287456, '', '', '', '1', 'BSIT', 'WMA', '1'),
-(2018098123, '', '', '', '1', 'BSED', 'Science', '1');
+(2018301301, '101943050047', 'old', '2021-2022', '2', 'BSIT', 'TSM', '4'),
+(2018301276, '', '', '', '1', 'BSIT', 'WMA', '1');
 
 --
 -- Indexes for dumped tables

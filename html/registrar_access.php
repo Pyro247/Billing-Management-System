@@ -647,7 +647,7 @@
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_feeTotal" class="form-control text-primary" style="font-weight: bold;" id="studFeeTotal" placeholder=" " value=""  readonly>
-                                    <label for="studFeeTotal" class="labelForTextBox">Total Fee</label>
+                                    <label for="studFeeTotal" class="labelForTextBox">TotalFee</label>
                                   </div>
                                 </div>
                                 
@@ -1961,7 +1961,7 @@
                 $("#studFirstname").val(data.firstname);
                 $("#studLastname").val(data.lastname);
                 $("#studMiddlename").val(data.middlename);
-                $("#studeYearLevel").val(data.year_level);
+                $("#studYearLevel").val(data.year_level);
                 $("#studProgram").val(data.program);
                 $("#studDiscount").val(data.discount);
                 $("#studSchoolYear").val(data.csi_school_year);
@@ -1972,6 +1972,8 @@
                 $("#studFeeTotal").val(data.tuition_fee);
                 $("#stud_labUnits").val(data.lab_units);
                 $("#stud_lecUnits").val(data.lec_units);
+                $("#stud_lecUnitsTotal").val(data.lecture_Fee);
+                $("#stud_labUnitsTotal").val(data.lab_Fee);
                 // if(data.form_137 == '✓'){
                 //   $("#form137").prop('checked', true);
                 // }

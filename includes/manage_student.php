@@ -204,10 +204,11 @@
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major,c.lab_Fee,c.lecture_Fee
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_fees as f ON s.stud_id = f.stud_id
               RIGHT JOIN tbl_student_school_details as d ON f.stud_id = d.stud_id
+              RIGHT JOIN tbl_course_fees as c ON c.program_id = f.program_id
               WHERE s.stud_id = ?";
   $stmtEdit = $con->prepare($slqEdit);
   $stmtEdit->bind_param('s', $id);
@@ -230,6 +231,10 @@ if(isset($_POST['edit'])){
     $data['tuition_fee'] = $row['tuition_fee'];
     $data['lab_units'] = $row['lab_units'];
     $data['lec_units'] = $row['lec_units'];
+    $data['lab_Fee'] = $row['lab_Fee'] * $row['lab_units'];
+    $data['lecture_Fee'] = $row['lecture_Fee'] * $row['lec_units'];
+
+
     $data['discount'] = $row['discount_type'];
     $data['stud_lrn'] = $row['LRN'];
     $data['stud_type'] = $row['stud_type'];
