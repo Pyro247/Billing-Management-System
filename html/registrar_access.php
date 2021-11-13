@@ -108,12 +108,12 @@
     <!-- Bacherlor's Program Tuition Fee input -->
     <div class="popUpAdmin_FeesManagement"  style="visibility: hidden; opacity: 0; transition: all 150ms;" id="tuitionFeePopUp">
       <div class="popUpFeesMgmtinner">
-      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
+      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" id="closeTuitionFeePopUp" onclick="closePopUp(1); popUpAdmin_SchoolFees(2)"></i>
         <p class="PopUpFeesMgmt_Title mb-0 mt-5">Enter Tuition Fee</p>
         <hr class="mt-0 mb-3">
         <form action="" id="newProgramAccessed">
-          <p>Lecture Fees Per Unit &nbsp;<input type="number" name="lectureFee" id="lectureFee" placeholder="Lecture Fees Per Unit" value=""> </p>
-          <p>Laboratory Fees Per Unit&nbsp;<input type="number" name="labFee" id="labFee" placeholder="Laboratory Fees Per Unit" value=""></p>
+          <p id="lecPara" >Lecture Fees Per Unit &nbsp;<input type="number" name="lectureFee" id="lectureFee" placeholder="Lecture Fees Per Unit" value=""> </p>
+          <p id="labPara">Laboratory Fees Per Unit&nbsp;<input type="number" name="labFee" id="labFee" placeholder="Laboratory Fees Per Unit" value=""></p>
           
           <p>Library Fees &nbsp;<input type="number" name="libraryFee" id="libraryFee" placeholder="Library Fees" value=""></p>
           
@@ -627,7 +627,7 @@
                                   <div class="form-floating">
                                     <input type="text" name="stud_lecUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnits" placeholder=" " value="" disabled >
                                     <input type="hidden" name="stud_lecUnitsTotal" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnitsTotal" placeholder=" " value=""  >
-                                    <label for="studFee" class="labelForTextBox">Lecture Units</label>
+                                    <label for="stud_lecUnitsTotal" class="labelForTextBox">Lecture Units</label>
                                   </div>
                                 </div>
 
@@ -635,17 +635,22 @@
                                   <div class="form-floating">
                                     <input type="text" name="stud_labUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" clacl" value="" disabled >
                                     <input type="hidden" name="stud_labUnitsTotal" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnitsTotal" placeholder=" " value="" disabled >
-                                    <label for="studFee" class="labelForTextBox">Laboratory Units</label>
+                                    <label for="stud_labUnitsTotal" class="labelForTextBox">Laboratory Units</label>
                                   </div>
                                 </div>
-
+                                <div class="col-md">
+                                  <div class="form-floating">
+                                    <input type="text" name="assessed_fee" class="form-control text-primary" style="font-weight: bold;" id="assessed_fee" placeholder=" " value="" readonly >
+                                    <label for="assessed_fee" class="labelForTextBox">Other Fees</label>
+                                  </div>
+                                </div>
                                 <div class="col-md">
                                   <div class="form-floating">
                                     <input type="text" name="stud_feeTotal" class="form-control text-primary" style="font-weight: bold;" id="studFeeTotal" placeholder=" " value=""  readonly>
-                                    <input type="hidden" name="stud_fee" class="form-control text-primary" style="font-weight: bold;" id="studFee" placeholder=" " value="" disabled >
-                                    <label for="studFee" class="labelForTextBox">Fee</label>
+                                    <label for="studFeeTotal" class="labelForTextBox">Total Fee</label>
                                   </div>
                                 </div>
+                                
                               </div>
                               <br>
 
@@ -750,7 +755,7 @@
                             
 
 
-                          <div class="manage_users_students_right_tab">
+                          <!-- <div class="manage_users_students_right_tab">
                             <p class="text-center">Submitted Requirements</p>
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" disabled >
@@ -780,7 +785,7 @@
                                 Good Moral
                               </label>
                             </div>
-                          </div>
+                          </div> -->
                         </div>
                         
                       
@@ -866,10 +871,10 @@
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
                             <!-- <th scope="col">Payments Status</th> -->
-                            <th scope="col">Form 137</th>
-                            <th scope="col">Form 138</th>
-                            <th scope="col">PSA Birth Certificate</th>
-                            <th scope="col">Good Moral</th>
+                            <th scope="col">Lecture Fee</th>
+                            <th scope="col">Laboratory Fee</th>
+                            <th scope="col">Other Fee</th>
+                            <th scope="col">Tuition Fee</th>
                             <!-- <th scope="col">History</th> -->
                             <th scope="col">Action</th>
                             
@@ -883,7 +888,7 @@
                     
                     </div>
                 </div>
-              
+                
 
 
 
@@ -1859,10 +1864,11 @@
             let total = 
                 parseFloat($('#stud_lecUnitsTotal').val() ? $('#stud_lecUnitsTotal').val() : 0) + 
                 parseFloat($('#stud_labUnitsTotal').val() ? $('#stud_labUnitsTotal').val() : 0) + 
-                parseFloat($('#studFee').val() ? $('#studFee').val() : 0)
+                parseFloat($('#assessed_fee').val() ? $('#assessed_fee').val() : 0)
 
                 $('#studFeeTotal').val(total);
           }
+          
           // Save and Update
           $('#studSave').click(function (e) { 
             e.preventDefault();
@@ -1890,8 +1896,8 @@
                 $("#studMiddlename").focus()
               }else if ($("#studLastname").val() == ""){
                 $("#studLastname").focus()
-              }else if ($("#studFee").val() == ""){
-                $("#studFee").focus()
+              }else if ($("#assessed_fee").val() == ""){
+                $("#assessed_fee").focus()
               }else{
                 // Request To Save Data Via AJAX
                 let newStud = new FormData(document.getElementById('studForm'))
@@ -1904,6 +1910,39 @@
               }
             }
           });
+          $(document).on('click', '#viewAssessdFee', function(){
+            let id = $(this).attr("data-id");
+            // alert(id)
+            popUpAdmin_SchoolFees(1)
+            $( ".PopUpFeesMgmt_Title" ).html('Assessed Fee');
+            $( "#lecPara" ).remove();
+            $( "#labPara" ).remove();
+            $( "#addNewProgram" ).remove();
+            $('#newProgramAccessed input').attr('readonly', 'readonly');
+            $.ajax({
+              type: "GET",
+              url: "../includes/manage_student.php",
+              data: {
+                'getAssessedFeee': 1,
+                'id': id
+              },
+              dataType: "json",
+              success: function (data) {
+                console.log(data)
+                $('#libraryFee').val(data.library_Fee);
+                $('#guidanceFee').val(data.guidance_Fee);
+                $('#athleticFee').val(data.athletic_Fee);
+                $('#computerFee').val(data.computer_Fee);
+                $('#registrationFee').val(data.registration_Fee);
+                $('#newFee').val(data.totalFee);
+              }
+            });
+          })
+          $('#closeTuitionFeePopUp').click(function (e) { 
+            e.preventDefault();
+            closePopUp(2)
+          });
+         
           // Edit Student Data
           $(document).on('click', '#edit', function(){
             let id = $(this).attr("data-id");
@@ -1933,23 +1972,23 @@
                 $("#studFeeTotal").val(data.tuition_fee);
                 $("#stud_labUnits").val(data.lab_units);
                 $("#stud_lecUnits").val(data.lec_units);
-                if(data.form_137 == '✓'){
-                  $("#form137").prop('checked', true);
-                }
-                if(data.form_138== '✓'){
-                  $("#form138").prop('checked', true);
-                }
-                if(data.psa_birth_cert == '✓'){
-                  $("#psa").prop('checked', true);
-                }
-                if(data.good_moral == '✓'){
-                  $("#goodMoral").prop('checked', true);
-                }
+                // if(data.form_137 == '✓'){
+                //   $("#form137").prop('checked', true);
+                // }
+                // if(data.form_138== '✓'){
+                //   $("#form138").prop('checked', true);
+                // }
+                // if(data.psa_birth_cert == '✓'){
+                //   $("#psa").prop('checked', true);
+                // }
+                // if(data.good_moral == '✓'){
+                //   $("#goodMoral").prop('checked', true);
+                // }
           
                 let program = data.program
                 let selectedValue = data.major
                 onChangeProgram(program,selectedValue) //Dropdown Options of Major and selected Option base current major of student
-                $("#studFee").val(data.tuitionRaw); 
+                $("#assessed_fee").val(data.tuitionRaw); 
                 studFieldsDisbaled(allStudFields,false);
                 $("#studSave").text('Update');
                 $("#studSave").removeAttr('disabled');
@@ -2114,13 +2153,13 @@
               dataType: 'JSON',
               success: function (response) {
                 if(response == null){
-                  $("#studFee").val('');
+                  $("#assessed_fee").val('');
                 }else{
                   if($('#stud_lecUnits').val() == ''){
-                    $("#studFee").val(response);
+                    $("#assessed_fee").val(response);
                     $("#studFeeTotal").val(response);
                   }else{
-                    $("#studFee").val(response);
+                    $("#assessed_fee").val(response);
                   }
                   
                 }

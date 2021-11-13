@@ -6,7 +6,7 @@
 
   if(isset( $_POST['programOnChange'])){
     $program = $_POST['program'];
-    $sqlSelectProg = "SELECT * FROM `tbl_course_list` WHERE course_program = ? ";
+    $sqlSelectProg = "SELECT DISTINCT course_major FROM `tbl_course_list` WHERE course_program = ? ";
     $stmtSelectProg = $con->prepare($sqlSelectProg);
     $stmtSelectProg->bind_param('s', $program);
     $stmtSelectProg->execute();

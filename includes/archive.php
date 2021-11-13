@@ -28,9 +28,8 @@ if(isset($_POST['archive_btn'])){
     $stmtArchive = $con->prepare($sqlArchive);
     if($stmtArchive->execute()){
 
-      $sqlDel = "DELETE s.*, r.* ,fee.*,d.*
+      $sqlDel = "DELETE s.*,fee.*,d.*
                   FROM tbl_student_info AS s 
-                  LEFT JOIN tbl_student_requirements AS r ON s.stud_id = r.stud_id 
                   LEFT JOIN tbl_student_fees AS fee ON s.stud_id = fee.stud_id 
                   LEFT JOIN tbl_student_school_details AS d ON s.stud_id = d.stud_id 
                   WHERE s.stud_id = ?";

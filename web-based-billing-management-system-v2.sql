@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 04, 2021 at 10:23 PM
+-- Generation Time: Nov 13, 2021 at 05:28 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -114,18 +114,18 @@ CREATE TABLE `tbl_course_fees` (
 --
 
 INSERT INTO `tbl_course_fees` (`program_id`, `semester`, `course_year_level`, `lecture_Fee`, `lab_Fee`, `library_Fee`, `guidance_Fee`, `athletic_Fee`, `computer_Fee`, `registration_Fee`, `tuition_fee`) VALUES
-(1, '1', '1', 1000, 2000, 500, 300, 200, 1500, 500, 6000),
-(2, '2', '4', 0, 500, 500, 500, 500, 500, 500, 3000),
-(3, '2', '4', 0, 500, 500, 500, 500, 500, 500, 3000),
-(4, '1', '4', 500, 500, 500, 500, 500, 500, 500, 3500),
-(5, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
-(6, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
-(7, '1', '4', 1000, 500, 500, 500, 500, 500, 500, 4000),
-(8, '1', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
-(9, '2', '1', 500, 500, 500, 500, 500, 500, 500, 3500),
-(22, '1', '3', 500, 500, 500, 500, 500, 500, 500, 3500),
-(23, '1', '4', 100, 0, 100, 100, 100, 100, 100, 100),
-(24, '1', '1', 300, 100, 200, 140, 300, 150, 400, 1190);
+(1, '1', '1', 1000, 2000, 500, 300, 200, 1500, 500, 3000),
+(2, '2', '4', 300, 500, 500, 500, 500, 500, 500, 2500),
+(3, '2', '4', 300, 500, 500, 500, 500, 500, 500, 2500),
+(4, '1', '4', 500, 500, 500, 500, 500, 500, 500, 2500),
+(5, '1', '1', 500, 500, 500, 500, 500, 500, 500, 2500),
+(6, '1', '1', 500, 500, 500, 500, 500, 500, 500, 2500),
+(7, '1', '4', 1000, 500, 500, 500, 500, 500, 500, 2500),
+(8, '1', '1', 500, 500, 500, 500, 500, 500, 500, 2500),
+(9, '2', '1', 500, 500, 500, 500, 500, 500, 500, 2500),
+(22, '1', '3', 500, 500, 500, 500, 500, 500, 500, 2500),
+(23, '1', '4', 100, 0, 100, 100, 100, 100, 100, 500),
+(24, '1', '1', 300, 100, 200, 150, 300, 150, 400, 1200);
 
 -- --------------------------------------------------------
 
@@ -240,7 +240,9 @@ CREATE TABLE `tbl_payments` (
 INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
 ('FT-003', 1, 2018301302, 'Mike Isla', '2021-2022', '2', 10000, 5000, 'Online', 'Paymaya', 'Pay.png', 5000, '2021-10-30', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
 ('FT-004', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 4000, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 10000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
-('FT-005', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 5000, 'Cash', '', '', 5000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes');
+('FT-005', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 5000, 'Cash', '', '', 5000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
+('FT-007', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 1000, 'Cash', '', '', 4000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
+('FT-008', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 500, 'Cash', '', '', 3500, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes');
 
 -- --------------------------------------------------------
 
@@ -321,6 +323,7 @@ CREATE TABLE `tbl_student_fees` (
   `tuition_fee` int(100) NOT NULL,
   `lab_units` int(11) NOT NULL,
   `lec_units` int(11) NOT NULL,
+  `assessed_fee` int(11) NOT NULL,
   `total_amount_paid` int(11) NOT NULL,
   `balance` int(11) NOT NULL,
   `remarks` varchar(100) NOT NULL
@@ -330,9 +333,14 @@ CREATE TABLE `tbl_student_fees` (
 -- Dumping data for table `tbl_student_fees`
 --
 
-INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `lab_units`, `lec_units`, `total_amount_paid`, `balance`, `remarks`) VALUES
-(1, 2018301301, 'Michael Isla', '1', 'N/A', 'N/A', 'N/A', 14000, 3, 2, 9000, 5000, 'Not Fully Paid'),
-(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'Sibling Discount', 14000, 3, 2, 0, 11900, 'Not Fully Paid');
+INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_level`, `scholar_desc`, `scholar_type`, `discount_type`, `tuition_fee`, `lab_units`, `lec_units`, `assessed_fee`, `total_amount_paid`, `balance`, `remarks`) VALUES
+(2, 2018301301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 'N/A', 5100, 4, 2, 2500, 10500, 5100, 'Not Fully Paid'),
+(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'Sibling Discount', 12000, 3, 2, 3000, 0, 10200, 'Not Fully Paid'),
+(1, 123456, 'Mike Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 9000, 1, 1, 3000, 0, 9000, 'Not Fully Paid'),
+(1, 12345678, 'Michael Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 11000, 2, 1, 3000, 0, 11000, 'Not Fully Paid'),
+(1, 2018276186, 'Merry Anne V Villano', '1', 'N/A', 'N/A', 'N/A', 12000, 2, 2, 3000, 0, 12000, 'Not Fully Paid'),
+(1, 2018287456, 'Justine Dave D Delos Reyes', '1', 'N/A', 'N/A', 'N/A', 13000, 3, 1, 3000, 0, 13000, 'Not Fully Paid'),
+(6, 2018098123, 'Mylene Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 5000, 1, 4, 2500, 0, 5000, 'Not Fully Paid');
 
 -- --------------------------------------------------------
 
@@ -360,6 +368,11 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
+('', 123456, 'Mike', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
+('', 12345678, 'Michael', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
+('', 2018098123, 'Mylene', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
+('', 2018276186, 'Merry Anne', 'Villano', 'V', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
+('', 2018287456, 'Justine Dave', 'Delos Reyes', 'D', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('202112', 2018301276, 'Denver', 'Pulido', 'G', 'male', 'Tarlac City', 'denvergpulido15@gmail.com', '09307078204', 'November 5, 2021, 5:07 am', 102102, 'Merry Anne Villamo'),
 ('20211', 2018301301, 'Michael', 'Isla', 'Estrecho', 'male', 'San Roque, San Jacinto, Pangasinan', 'isla.michael.estrecho@gmail.com', '09307078204', 'November 5, 2021, 5:04 am', 102102, 'Merry Anne Villamo');
 
@@ -383,7 +396,9 @@ CREATE TABLE `tbl_student_requirements` (
 
 INSERT INTO `tbl_student_requirements` (`stud_id`, `form_137`, `form_138`, `psa_birth_cert`, `good_moral`) VALUES
 (2018301301, '✓', '✓', '✓', '✓'),
-(2018301276, 'x', 'x', 'x', 'x');
+(2018301276, '✓', '✓', '✓', '✓'),
+(123456, '✓', '✓', '✓', '✓'),
+(12345678, '✓', '✓', '✓', '✓');
 
 -- --------------------------------------------------------
 
@@ -407,8 +422,13 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(2018301301, '101943050047', 'old', '2021-2022', '1', 'BSIT', 'WMA', '1'),
-(2018301276, '101943050048', 'transferee', '2021-2022', '1', 'BSIT', 'WMA', '1');
+(2018301301, '101943050047', 'old', '2021-2022', '2', 'BSIT', 'TSM', '4'),
+(2018301276, '101943050048', 'transferee', '2021-2022', '1', 'BSIT', 'WMA', '1'),
+(123456, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(12345678, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(2018276186, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(2018287456, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(2018098123, '', '', '', '1', 'BSED', 'Science', '1');
 
 --
 -- Indexes for dumped tables
