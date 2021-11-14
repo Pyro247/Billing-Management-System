@@ -9,7 +9,7 @@ include_once '../connection/Config.php';
     }
 
   $sql = "SELECT s.stud_id, s.firstname, s.lastname, s.email, d.LRN, d.stud_type,
-        i.scholar_type, d.csi_program, d.csi_major, d.csi_year_level
+        i.scholar_type, i.lab_units, i.lec_units,  d.csi_program, d.csi_major, d.csi_year_level, d.csi_semester
         FROM tbl_student_info as s
         LEFT JOIN tbl_student_school_details as d ON s.stud_id = d.stud_id
         LEFT JOIN tbl_student_fees as i ON s.stud_id = i.stud_id
@@ -27,13 +27,14 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['firstname'];?></td>
     <td><?=$data['lastname'];?></td>
+    <td><?=$data['csi_semester'];?></td>
     <td><?=$data['csi_program'];?></td>
     <td><?=$data['csi_major'];?></td>
     <td><?=$data['csi_year_level'];?></td>
-    <td><?=$data['stud_type'];?></td>
-    <td><?=$data['scholar_type'];?></td>
+    <td><?=$data['lec_units'];?></td>
+    <td><?=$data['lab_units'];?></td>
     <td><?=$data['LRN'];?></td>
-    <td><?=$data['email'];?></td>
+    <td><?=$data['stud_type'];?></td>
   </tr>
 <?php }?>
 <?php }else{?>

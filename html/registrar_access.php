@@ -369,13 +369,14 @@
                             <th scope="col">Student ID</th>
                             <th scope="col">First name</th>
                             <th scope="col">Last name</th>
+                            <th scope="col">Semester</th>
                             <th scope="col">Program</th>
                             <th scope="col">Major</th>
                             <th scope="col">Year Level</th>
-                            <th scope="col">Student Status</th>
-                            <th scope="col">Scholarship</th>
+                            <th scope="col">Lecture Units</th>
+                            <th scope="col">Laboratory Units</th>
                             <th scope="col">LRN</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Student Status</th>
                           </tr>
                         </thead>
                         <tbody id="registrarDash">
