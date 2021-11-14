@@ -256,7 +256,12 @@
                 <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><i class='bx bxs-report' ></i>&nbsp;Reports</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><i class="fas fa-money-bill-wave"></i>&nbsp;Fees Management</a>
                 <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
-            
+              
+                <a class="nav-link" style="color: var(--greenSecondary); font-size: 1.3rem" style="margin: 0">Audit Logs</a>
+                <a class="nav-link secondary__" id="v-pills-student-audit-log-tab" data-toggle="pill" href="#v-pills-student-audit-log" role="tab" aria-controls="v-pills-student-audit-log" aria-selected="false"><i class="fas fa-graduation-cap"></i>&nbsp;Student</a>
+                <a class="nav-link secondary__" id="v-pills-employee-audit-log-tab" data-toggle="pill" href="#v-pills-employee-audit-log" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-user-tie"></i>&nbsp;Employees</a>
+                                  
+           
             </div>
         </div>
         
@@ -1568,21 +1573,80 @@
                   childContainerPopUpForAdmin[index].classList.toggle('animate__bounceIn')
                 }
 
-                 
                   // document.querySelector('#tuitionFeeBtn').addEventListener('click', function(){
                     
                     
                     
                   // })
                 
-                  
-
-                  
-
-
-
             </script>
-        
+
+
+
+          <!-- AUDIT LOGS -->
+          <!-- Student audit log -->
+          <div class="tab-pane fade" id="v-pills-student-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
+                  <p class="title_tab_universal my-3">Student's Audit Logs</p>
+                  <div class="col dashboardBox">
+                <table class="table" style="color: var(--white)">
+                  <thead>
+                    <tr>
+                      <th scope="col">Student ID</th>
+                      <th scope="col">Full name</th>
+                      <th scope="col">Login Date & Time</th>
+                      <th scope="col">Logout Date & Time</th>
+                      <th scope="col">Changes Made</th>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <tr>
+                      <td>2018300366</td>
+                      <td>Justine Dave</td>
+                      <td>4:00PM | 11/21/2021</td>
+                      <td>4:15PM | 11/21/2021</td>
+                      <td>Changed Password</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+
+          <!-- Employee audit log -->
+          <div class="tab-pane fade" id="v-pills-employee-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
+                  <p class="title_tab_universal my-3">Employee's Audit Logs</p>
+                  <div class="col dashboardBox">
+                <table class="table" style="color: var(--white)">
+                  <thead>
+                    <tr>
+                      <th scope="col">ID Number</th>
+                      <th scope="col">Full name</th>
+                      <th scope="col">Role</th>
+                      <th scope="col">Login Date & Time</th>
+                      <th scope="col">Logout Date & Time</th>
+                      <th scope="col">Changes Made</th>
+                    </tr>
+                  </thead>
+                  <tbody id="">
+                    <tr>
+                      <td>C-2018392</td>
+                      <td>Dave Reyes</td>
+                      <td>Cashier</td>
+                      <td>4:00PM | 11/21/2021</td>
+                      <td>4:15PM | 11/21/2021</td>
+                      <td>Changed Password</td>
+                    </tr>
+                    <tr>
+                      <td>R-2912792</td>
+                      <td>Justine Reyes</td>
+                      <td>Registrar</td>
+                      <td>4:00PM | 11/21/2021</td>
+                      <td>4:15PM | 11/21/2021</td>
+                      <td>Added Student: 20183303</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
 
           
           </div>

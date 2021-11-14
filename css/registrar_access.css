@@ -153,7 +153,21 @@ html, body{
     color: var(--white);
     z-index: 999;
     height: 100%;
+    
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--primary);
+    border-radius: 100px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 100px;
+}
+
 
 .logoLeftTab{
     width: 50px;
@@ -234,18 +248,32 @@ html, body{
     color: var(--white-color);
     font-size: 1.2rem;
     padding: 15px 25px;
-    width: 100%;
     text-align: left;
     transition: 250ms;
     border-radius: 0;
 }
 
-.nav-link.main__.active{
+.nav-link.main__.active, .nav-link.secondary__.active{
     background: var(--activeColorBg);
     color: var(--secondary);
     border-radius: 0;
 }
 
+.secondary__{
+    font-size: 1rem;
+    color: var(--white);
+    margin-left: 20px;
+    color: var(--white-color);
+    text-align: left;
+    transition: 250ms;
+    border-radius: 0;
+}
+.secondary__:hover{
+    color: white;
+}
+.secondary__:last-child{
+    margin-bottom: 25px;
+}
 
 .right-tab{
     margin-left: 230px;
@@ -635,3 +663,4 @@ hr{
 .dropdownMonthly{
     position: absolute;
 }
+
