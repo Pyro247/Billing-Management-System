@@ -134,7 +134,17 @@ html, body{
     }
 /* LOADER */
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background-color: var(--secondDarkBg);
+}
 
+::-webkit-scrollbar-thumb {
+    background-color: var(--secondary);
+    border-radius: 100px;
+}
 
 
 
