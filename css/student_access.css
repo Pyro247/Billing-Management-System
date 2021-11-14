@@ -13,6 +13,8 @@
     --greenSecondary: #56c59a;
     --purple: #DDA0DD;
     --orange: #fd7e14;
+    --yellow: #ffc107;
+    --pink: #d63384;
     --white: #ffffff;
     --leftTabBg: #17181d;
     --secondDarkBg: #222531;
@@ -269,7 +271,6 @@ html, body{
     justify-content: space-evenly;
 }
 .dashBoardBox{
-    max-width: 25%; 
     min-width: 250px;
     border-radius: 18px;
     background: linear-gradient(145deg, #2d2e2f, #262728);
@@ -327,6 +328,13 @@ html, body{
 }
 .scholarship{
     color: var(--greenPrimary);
+}
+.discount{
+    color: var(--yellow);
+}
+.email{
+    color: var(--pink);
+    
 }
 
 .paymentPlatform span{
