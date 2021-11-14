@@ -154,6 +154,20 @@
                             <h1><?=$rowStud['scholar_desc'];?></h1>
                             <h3>Scholarship</h3>
                         </div>
+
+                        <div class="dashBoardBox scholarship">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span></span>
+                            <h1></h1>
+                            <h3>Scholarship Deduction</h3>
+                        </div>
+
+                        <div class="dashBoardBox scholarship">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span></span>
+                            <h1></h1>
+                            <h3>Discount Deduction</h3>
+                        </div>
                     </div>
 
 
