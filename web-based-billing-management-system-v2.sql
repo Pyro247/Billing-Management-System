@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 09:59 AM
+-- Generation Time: Nov 15, 2021 at 09:50 PM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -123,12 +123,6 @@ CREATE TABLE `tbl_audit_logs` (
 --
 
 INSERT INTO `tbl_audit_logs` (`id`, `user_id`, `role`, `username`, `activity`, `date_time`) VALUES
-(4, 102101, '', 'root', 'Login', '2021-11-14 19:44:36'),
-(5, 102101, '', 'root', 'Login', '2021-11-14 19:45:54'),
-(6, 102102, '', 'root', 'Login', '2021-11-14 19:46:51'),
-(7, 102102, '', 'root', 'Login', '2021-11-14 19:47:52'),
-(8, 102102, '', 'root', 'Login', '2021-11-14 19:48:21'),
-(9, 12345, '', 'root', 'Login', '2021-11-14 19:49:29'),
 (10, 12345, '', 'SAMPLE', 'Login', '2021-11-14 19:50:21'),
 (11, 0, '', 'Merry Anne Villamo', 'Login', '2021-11-14 19:51:34'),
 (12, 102102, '', 'Merry Anne Villamo', 'Login', '2021-11-14 19:52:16'),
@@ -193,7 +187,19 @@ INSERT INTO `tbl_audit_logs` (`id`, `user_id`, `role`, `username`, `activity`, `
 (71, 102101, 'Admin', 'Admin', 'Login', '2021-11-15 16:56:51'),
 (72, 102101, 'Admin', 'Admin', 'Update employee details of 102103 - Justine Dave Delos Reyes', '2021-11-15 16:57:04'),
 (73, 102101, 'Admin', 'Admin Admin', 'Logout', '2021-11-15 16:57:35'),
-(74, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-15 16:57:53');
+(74, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-15 16:57:53'),
+(75, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-15 23:14:50'),
+(76, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Login', '2021-11-15 23:14:59'),
+(77, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Transact payment of 2018301301-Michael Estrecho Isla', '2021-11-16 00:37:00'),
+(78, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Transact payment of 2018301301-Michael Estrecho Isla', '2021-11-16 00:46:50'),
+(79, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Transact payment of 2018301301-Michael Estrecho Isla', '2021-11-16 00:47:32'),
+(80, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Logout', '2021-11-16 04:30:10'),
+(81, 102101, 'Admin', 'Admin', 'Login', '2021-11-16 04:30:18'),
+(82, 102101, 'Admin', 'Admin Admin', 'Logout', '2021-11-16 04:41:33'),
+(83, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-16 04:41:58'),
+(84, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-16 04:48:20'),
+(85, 2018301301, 'Student', 'Michael Isla', 'Login', '2021-11-16 04:48:45'),
+(86, 2018301301, 'Student', 'Michael Isla', 'Logout', '2021-11-16 04:49:45');
 
 -- --------------------------------------------------------
 
@@ -344,14 +350,13 @@ CREATE TABLE `tbl_payments` (
 --
 
 INSERT INTO `tbl_payments` (`transaction_no`, `program_id`, `stud_id`, `fullname`, `academic_year`, `semester`, `tuition_fee`, `amount`, `payment_method`, `payment_gateway`, `sales_invoice`, `balance`, `transaction_date`, `payment_status`, `remarks`, `cashier_id`, `cashier_name`) VALUES
-('FT-003', 1, 2018301302, 'Mike Isla', '2021-2022', '2', 10000, 5000, 'Online', 'Paymaya', 'Pay.png', 5000, '2021-10-30', 'Approved', 'Not Fully Paid', 2021000003, 'Michael Isla'),
-('FT-004', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 4000, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 10000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
-('FT-005', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 5000, 'Cash', '', '', 5000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
-('FT-006', 2, 2018301301, 'Michael Isla', '2021-2022', '2', 5100, 1500, 'Online', 'Paymaya', 'Pay.png', 3600, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
 ('FT-007', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 1000, 'Cash', '', '', 4000, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
 ('FT-008', 1, 2018301301, 'Michael Isla', '2021-2022', '1', 14000, 500, 'Cash', '', '', 3500, '2021-11-05', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
 ('FT-009', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Cash', '', '', 3500, '2021-11-15', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
-('FT-010', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 3400, '2021-11-15', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes');
+('FT-010', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Online', 'Paymaya', 'Paymaya-receipt-sample.jpg', 3400, '2021-11-15', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
+('FT-011', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Cash', '', '', 3300, '2021-11-16', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
+('FT-012', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Cash', '', '', 3200, '2021-11-16', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes'),
+('FT-013', 2, 2018301301, 'Michael Estrecho Isla', '2021-2022', '2', 5100, 100, 'Cash', '', '', 3100, '2021-11-16', 'Approved', 'Not Fully Paid', 102103, 'Justine Dave Delos Reyes');
 
 -- --------------------------------------------------------
 
@@ -389,6 +394,13 @@ CREATE TABLE `tbl_reports` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_reports`
+--
+
+INSERT INTO `tbl_reports` (`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `total_transaction_count`, `date`) VALUES
+(102103, 'Justine Dave Delos Reyes', 300, 0, 3, '2021-11-16');
+
 -- --------------------------------------------------------
 
 --
@@ -405,8 +417,8 @@ CREATE TABLE `tbl_scholarship` (
 --
 
 INSERT INTO `tbl_scholarship` (`scholar_type`, `scholar_description`) VALUES
-('Half', 'Athelete'),
-('Half', 'Academic');
+('Half', 'Academic'),
+('Half', 'Athlete');
 
 -- --------------------------------------------------------
 
@@ -441,8 +453,8 @@ INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_l
 (6, 2018098123, 'Mylene Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 5000, 1, 4, 2500, 0, 5000, 'Not Fully Paid'),
 (1, 2018276186, 'Merry Anne V Villano', '1', 'N/A', 'N/A', 'N/A', 9000, 2, 2, 3000, 0, 9000, 'Not Fully Paid'),
 (1, 2018287456, 'Justine Dave D Delos Reyes', '1', 'N/A', 'N/A', 'N/A', 10000, 3, 1, 3000, 0, 10000, 'Not Fully Paid'),
-(2, 2018301301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 'N/A', 5100, 4, 2, 2500, 12200, 3400, 'Not Fully Paid'),
 (1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
+(2, 2018301301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 'N/A', 5100, 4, 2, 2500, 2000, 3100, 'Not Fully Paid'),
 (1, 2018302302, 'Juan Manuel  Dela Curz', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
 (1, 2018303303, 'Jose Cruz Velasco', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
 (1, 2018304304, 'Manuel Velasco Perez', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
@@ -594,6 +606,12 @@ ALTER TABLE `tbl_pending_payments`
   ADD PRIMARY KEY (`transaction_no`);
 
 --
+-- Indexes for table `tbl_student_fees`
+--
+ALTER TABLE `tbl_student_fees`
+  ADD PRIMARY KEY (`stud_id`);
+
+--
 -- Indexes for table `tbl_student_info`
 --
 ALTER TABLE `tbl_student_info`
@@ -607,7 +625,7 @@ ALTER TABLE `tbl_student_info`
 -- AUTO_INCREMENT for table `tbl_audit_logs`
 --
 ALTER TABLE `tbl_audit_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
