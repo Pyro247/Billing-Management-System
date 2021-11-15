@@ -258,8 +258,8 @@
                 <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
               
                 <a class="nav-link" style="color: var(--greenSecondary); font-size: 1.3rem" style="margin: 0">Audit Logs</a>
-                <a class="nav-link secondary__" id="v-pills-student-audit-log-tab" data-toggle="pill" href="#v-pills-student-audit-log" role="tab" aria-controls="v-pills-student-audit-log" aria-selected="false"><i class="fas fa-graduation-cap"></i>&nbsp;Student</a>
-                <a class="nav-link secondary__" id="v-pills-employee-audit-log-tab" data-toggle="pill" href="#v-pills-employee-audit-log" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-user-tie"></i>&nbsp;Employees</a>
+                <a class="nav-link secondary__" id="v-pills-student-audit-log-tab" data-toggle="pill" href="#v-pills-student-audit-log" role="tab" aria-controls="v-pills-student-audit-log" aria-selected="false"><i class="fas fa-graduation-cap"></i>&nbsp;Audit Logs</a>
+                <!-- <a class="nav-link secondary__" id="v-pills-employee-audit-log-tab" data-toggle="pill" href="#v-pills-employee-audit-log" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-user-tie"></i>&nbsp;Employees</a> -->
                                   
            
             </div>
@@ -1608,33 +1608,43 @@
           <!-- AUDIT LOGS -->
           <!-- Student audit log -->
           <div class="tab-pane fade" id="v-pills-student-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
-                  <p class="title_tab_universal my-3">Student's Audit Logs</p>
+                  <p class="title_tab_universal my-3">Audit Logs</p>
                   <div class="col dashboardBox">
                 <table class="table" style="color: var(--white)">
                   <thead>
                     <tr>
-                      <th scope="col">Student ID</th>
-                      <th scope="col">Full name</th>
-                      <th scope="col">Login Date & Time</th>
-                      <th scope="col">Logout Date & Time</th>
-                      <th scope="col">Changes Made</th>
+                      <th scope="col">ID</th>
+                      <th scope="col">User ID</th>
+                      <th scope="col">Role</th> 
+                      <th scope="col">Username</th>
+                      <th scope="col">Activity Made</th>
+                      <th scope="col">Date/Time</th>
                     </tr>
                   </thead>
                   <tbody id="">
+                    <?php
+                      $sqlViewAudit ="SELECT * FROM `tbl_audit_logs`";
+                      $stmtViewAudit = $con->prepare($sqlViewAudit);
+                      $stmtViewAudit->execute();
+                      $resViewAudit = $stmtViewAudit->get_result();
+                      while($rowViewAudit = $resViewAudit->fetch_assoc()){
+                    ?>
                     <tr>
-                      <td>2018300366</td>
-                      <td>Justine Dave</td>
-                      <td>4:00PM | 11/21/2021</td>
-                      <td>4:15PM | 11/21/2021</td>
-                      <td>Changed Password</td>
+                      <td><?= $rowViewAudit['id']?></td>
+                      <td><?= $rowViewAudit['user_id']?></td>
+                      <td><?= $rowViewAudit['role']?></td>
+                      <td><?= $rowViewAudit['username']?></td>
+                      <td><?= $rowViewAudit['activity']?></td>
+                      <td><?= $rowViewAudit['date_time']?></td>
                     </tr>
+                    <?php }?>
                   </tbody>
                 </table>
               </div>
           </div>
 
           <!-- Employee audit log -->
-          <div class="tab-pane fade" id="v-pills-employee-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
+          <!-- <div class="tab-pane fade" id="v-pills-employee-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
                   <p class="title_tab_universal my-3">Employee's Audit Logs</p>
                   <div class="col dashboardBox">
                 <table class="table" style="color: var(--white)">
@@ -1668,7 +1678,7 @@
                   </tbody>
                 </table>
               </div>
-          </div>
+          </div> -->
 
           
           </div>
