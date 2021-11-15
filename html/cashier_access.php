@@ -1036,7 +1036,7 @@ include_once '../connection/Config.php';
                 </div>
                 <div class="col-md-2">
                 <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
-                  <label class="btn btn-outline-success" for="btn-check-2-outlined" style="height: 100%; width: 100%;">Past Due</label><br>
+                  <label class="btn btn-outline-success pt-3  " for="btn-check-2-outlined" style="height: 100%; width: 100%;">Past Due</label><br>
 
                 </div>
                 <div class="col-md-2">
