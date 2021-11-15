@@ -132,19 +132,19 @@
                     <div class="dashBoardBox lastPaid">
                             <i class="far fa-clock"></i>
                             <span><?= $date?></span>
-                            <h1>₱<?= $amount?></h1>
+                            <h1>₱ <?= $amount?></h1>
                             <h3>Last Amount Paid</h3>
                         </div>
 
                         <div class="dashBoardBox remainingBal">
                             <i class="fas fa-wallet"></i>
-                            <h1>₱<?=$rowStud['balance'];?></h1>
+                            <h1>₱ <?=$rowStud['balance'];?></h1>
                             <h3>Remaining Balance</h3>
                         </div>
 
                         <div class="dashBoardBox tuition">
                             <i class="fas fa-tags"></i>
-                            <h1>₱<?=$rowStud['tuition_fee'];?></h1>
+                            <h1>₱ <?=$rowStud['tuition_fee'];?></h1>
                             <h3>Tuition Fee</h3>
                         </div>
                     </div>
@@ -152,20 +152,22 @@
                     <div class="dashBoardBoxContainer">
                         <div class="dashBoardBox scholarship">
                                 <i class="fas fa-graduation-cap"></i>
-                                <span>₱</span>
-                                <h1><?=$rowStud['scholar_desc'];?></h1>
-                                <h3>Scholarship</h3>
+                                <span><?=$rowStud['scholar_desc'];?></span>
+                                <h1>₱ 4000</h1>
+                                <!--<h1><?=$rowStud['scholar_desc'];?></h1>-->
+                                <h3>Scholarship Deduction</h3>
                             </div>
                             <div class="dashBoardBox discount">
                                 <i class="fas fa-percentage"></i>
-                                <span>₱</span>
-                                <h1><?=$rowStud['scholar_desc'];?></h1>
-                                <h3>Deduction</h3>
+                                <span><?=$rowStud['discount_type'];?></span>
+                                <h1>₱ 600</h1>
+                                <!--<h1>₱ <?=$rowStud['discount_type'];?></h1>-->
+                                <h3>Discount Deduction</h3>
                             </div>
                             <div class="dashBoardBox email">
                             <i class="fas fa-file-invoice"></i>
                                 <span></span>
-                                <h1>23</h1>
+                                <h1><?=$rowStud['lab_units'] +  $rowStud['lec_units'];?></h1>
                                 <h3>Total Units</h3>
                             </div>
                     </div>
@@ -568,12 +570,13 @@
 
                                 $sql ="SELECT transaction_no, amount, CONCAT(payment_method,' - ',payment_gateway) AS payment, transaction_date, payment_status, cashier_name
                                 FROM tbl_payments
-                                UNION ALL
+                                WHERE stud_id = ?
+                                UNION
                                 SELECT transaction_no, amount, CONCAT(payment_gateway) AS payment, transaction_date, status, cashier_name
                                 FROM tbl_pending_payments
                                 WHERE stud_id = ?";
                                 $stmt = $con->prepare($sql);
-                                $stmt->bind_param('s', $_SESSION['stud_id']);
+                                $stmt->bind_param('ss', $_SESSION['stud_id'], $_SESSION['stud_id']);
                                 $stmt->execute();
                                 $res = $stmt->get_result();
                                 $count = $res->num_rows;
