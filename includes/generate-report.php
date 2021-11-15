@@ -27,17 +27,38 @@
       $cashier_id = $_POST['cashierID'];
       $cashier_name = $_POST['cashierName'];
       $today =date("Y-m-d");
-      $report = "INSERT INTO `tbl_reports`(`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `total_transaction_count`, `date`) VALUES (?,?,?,?,?,?)";
-      $stmtReport = $con->prepare($report);
-      $stmtReport->bind_param('ssssss', $cashier_id, $cashier_name, $cash, $fund,$total,$today);
-      if($stmtReport->execute()){
-        $response['status'] = 'success';
-        $response['message'] = 'Successfully Generated Report';
+
+      $sqlCheck = "SELECT * FROM `tbl_reports` WHERE cashier_id = ? AND date = ?";
+      $stmtCheck = $con->prepare($sqlCheck);
+      $stmtCheck->bind_param('ss',$cashier_id, $today);
+      $stmtCheck->execute();
+      $resCheck = $stmtCheck->get_result();
+      if($resCheck->num_rows > 0){
+        $slqUpdate = "UPDATE `tbl_reports` SET `cash_payment`= ? ,`fund_transfer`= ?,`total_transaction_count`= ? WHERE cashier_id = ?";
+        $stmtUpdate = $con->prepare($slqUpdate);
+        $stmtUpdate->bind_param('ssss',$cash, $fund,$total,$cashier_id);
+        if($stmtUpdate->execute()){
+          $response['status'] = 'success';
+          $response['message'] = 'Successfully Generated Report';
+        }else{
+          $response['status'] = 'error';
+          $response['message'] = 'Failed to Generate Report';
+        }
+        echo json_encode($response);
       }else{
-        $response['status'] = 'error';
-        $response['message'] = 'Failed to Generate Report';
+        $report = "INSERT INTO `tbl_reports`(`cashier_id`, `cashier_name`, `cash_payment`, `fund_transfer`, `total_transaction_count`, `date`) VALUES (?,?,?,?,?,?)";
+        $stmtReport = $con->prepare($report);
+        $stmtReport->bind_param('ssssss', $cashier_id, $cashier_name, $cash, $fund,$total,$today);
+        if($stmtReport->execute()){
+          $response['status'] = 'success';
+          $response['message'] = 'Successfully Generated Report';
+        }else{
+          $response['status'] = 'error';
+          $response['message'] = 'Failed to Generate Report';
+        }
+        echo json_encode($response);
       }
-      echo json_encode($response);
+     
   }
  
 

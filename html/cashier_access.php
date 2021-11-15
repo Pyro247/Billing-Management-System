@@ -1465,11 +1465,24 @@ include_once '../connection/Config.php';
         }
         let maxDate = year + '-' + month + '-' + day;
         $('#filterByDate').attr('max', maxDate);
-
+        $('#filterByDate').change(function (e) { 
+          e.preventDefault();
+          let pickDate = $('#filterByDate').val();
+          if(pickDate < maxDate){
+            $( "#genReportBtn" ).prop( "disabled", true );
+          }else{
+            $( "#genReportBtn" ).prop( "disabled", false );
+          }
+        });
         // Open History Tab
         $('#v-pills-history-tab').click(function (e) { 
           viewTransactionHistory() //Initial Table data base on current date and cashier log in
           transactHistoryAuto()
+          if($('#totalTransactionCount').text() == '0'){
+            $( "#genReportBtn" ).prop( "disabled", true );
+          }else{
+            $( "#genReportBtn" ).prop( "disabled", false );
+          }
         });
         // Apply Filter Button
         $('#filterApply').click(function (e) { 
@@ -1477,6 +1490,7 @@ include_once '../connection/Config.php';
           let selected = $('#filterByPayMethod').val();
           let date = $('#filterByDate').val();
           viewTransactionHistoryFilteredBy(selected,date)
+          sumInfoTransaction(date)
         });
         
         // Clear Filter Button
@@ -1484,8 +1498,36 @@ include_once '../connection/Config.php';
           e.preventDefault();
           $("#filterByPayMethod").val("%").change();
           $("#filterByDate").val("").change();
+          $( "#genReportBtn" ).prop( "disabled", false );
           viewTransactionHistory() 
         });
+        function sumInfoTransaction(date){
+          $.ajax({
+            type: "GET",
+            url: "../includes/transaction-history-cashier.php",
+            data: {
+              'getInfoSumTransaction': 1,
+              'filterByDate': date,
+              'cashier_ID': '<?= $_SESSION['employeeId']?>'
+            },
+            dataType: "json",
+            success: function (data) {
+              console.log(data)
+              $('#cashCount').text(data.countCash);
+              $('#cashTotal').text(data.cashTotal);
+            $('#onlineCount').text(data.onlineCount);
+            $('#onlineTotal').text(data.onlineTotal);
+            $('#totalTransactionCount').text(data.totalTransactionCount);
+            $('#totalTransactionAmount').text(data.totalTransactionAmount);
+
+            // $('#genTotalTransCount').val(data.totalTransactionCount);
+            // $('#genTotalAmounCollected').val(data.totalTransactionAmount);
+            // $('#genFundsColleted').val(data.onlineTotal);
+            // $('#genCashColleted').val(data.cashTotal);
+            }
+          });
+        }
+        
         // Ajax Request For Filter By Payment Mentod and Date
         function viewTransactionHistoryFilteredBy(selected,date){
           $.ajax({
@@ -1729,7 +1771,7 @@ include_once '../connection/Config.php';
             })
             if(response.status == 'success'){
               $('#genReportModal').modal('toggle');
-              location.reload(); 
+              // location.reload(); 
 
             } 
           }
@@ -1759,7 +1801,7 @@ include_once '../connection/Config.php';
     </script>
         
        
-         <script>
+         <!-- <script>
       $(document).ready(function () {
         <?php
           $today = date("Y-m-d");
@@ -1782,7 +1824,7 @@ include_once '../connection/Config.php';
         $( "#genReportBtn" ).prop( "disabled", true );
         $('#bannerForCashier').modal('hide');
       });
-    </script>
+    </script> -->
     <script>
       function transactHistoryAuto(){
         $.ajax({

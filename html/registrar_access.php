@@ -192,7 +192,7 @@
               <p>Description &nbsp;<br>
                 <select  name="scholarDesc" id="scholarDesc" placeholder="Description">
                   <option value=""></option>
-                  <option value="Athelete">Athelete</option>
+                  <option value="Athlete">Athlete</option>
                   <option value="Academic">Academic</option>
                 </select> 
                 </p>
@@ -1563,7 +1563,7 @@
                       <th scope="col">Semester</th>
                       <th scope="col">Lab Fee/Unit</th>
                       <th scope="col">Lec Fee/Unit</th>
-                      <th scope="col">Tuition Fee</th>
+                      <th scope="col">Other Fee</th>
                       <th scope="col">Action</th>
                     </tr>
                   </thead>
@@ -1613,7 +1613,7 @@
                 <table class="table" style="color: var(--white)">
                   <thead>
                     <tr>
-                      <th scope="col">ID</th>
+                      <th scope="col">No</th>
                       <th scope="col">User ID</th>
                       <th scope="col">Role</th> 
                       <th scope="col">Username</th>
