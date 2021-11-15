@@ -1,5 +1,7 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
+
   header('Content-type: application/json');
   session_start();
   $response = array();
@@ -38,6 +40,8 @@
     $stmt = $con->prepare($slq);
     $stmt->bind_param('sssssssss',$newTransNo ,$stud_id,$fullname,$email,$amount,$payment_gateway,$file,$transaction_date,$status);
     if($stmt->execute()){
+      $act = 'Submit payment request';
+      audit($stud_id,'Student',$fullname,$act);
       move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$file);
       $response['status'] = 'success';
       $response['message'] = 'Successfully Send Payment Request';
@@ -83,6 +87,8 @@
     $stmt = $con->prepare($slq);
     $stmt->bind_param('sssssss',$amount ,$payment_gateway,$file,$transaction_date,$status,$reasonToDeny,$transactionNo);
     if($stmt->execute()){
+      $act = 'Resubmit payment request';
+      audit($stud_id,'Student',$fullname,$act);
       move_uploaded_file($_FILES['imageRe']['tmp_name'], $target_dir.$file);
       $response['status'] = 'success';
       $response['message'] = 'Successfully Re-Send Payment Request';

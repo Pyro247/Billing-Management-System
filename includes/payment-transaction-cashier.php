@@ -1,5 +1,6 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
   session_start();
   $response = array();
   $data = array();
@@ -146,6 +147,9 @@
       $stmtApprove->bind_param('sssssssssssssssss', $newTransNo,$program_id,$studId,$fullname,$csi_academic_year,$csi_semester,$tuition_fee,$amount,$payment_method,$payment_gateway,$sales_invoice,$balance,$today,$payment_status,$remarks,$cashier_id,$cashier_name);
 
       if($stmtApprove->execute()){
+        $act = "Transact payment of ". $studId .'-'. $fullname;
+        audit($_SESSION['employeeId'],'Cashier',$_SESSION['fullname'],$act);
+
         $total = $total_amount_paid + $amount;
         $slqStudFee = "UPDATE `tbl_student_fees` SET `total_amount_paid`= ?,`balance`= ?,`remarks`= ? WHERE stud_id = ?";
         $stmtStudFee = $con->prepare($slqStudFee);

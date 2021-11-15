@@ -1,6 +1,7 @@
 
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
   session_start();
   $response = array();
   header('Content-type: application/json');
@@ -192,6 +193,9 @@
     $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
 //    && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()
   if(  $stmtStudInfo->execute() && $stmtStudFee->execute() && $stmtDetails->execute() ) {
+    
+    $act = 'Add new student '. $student_number . ' - ' . $fullname;
+    audit($empId,'Registrar',$empName,$act);
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
   } else{
@@ -325,6 +329,10 @@ $stmtUpdateAll = $con->prepare($sqlUpdateAll);
 $stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$student_number);
 
 if($stmtUpdateAll->execute()) {
+
+  
+  $act = 'Update student details of '. $student_number . ' - ' . $fullname;
+  audit($empId,'Registrar',$empName,$act);
   $response['status'] = 'success';
   $response['message'] = 'Successfully Updated';
 } else{

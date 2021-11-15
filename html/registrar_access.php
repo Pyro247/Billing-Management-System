@@ -1994,6 +1994,7 @@
                 studActions(newStud)
                 studFieldsDisbaled(partialStudFields,true);
                 $("#studSave").prop('disabled', true);
+                $("#add").prop("disabled", false);
               }
             }
           });

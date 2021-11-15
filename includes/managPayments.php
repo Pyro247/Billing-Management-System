@@ -1,5 +1,7 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
+
   header('Content-type: application/json');
   session_start();
   $response = array();
@@ -90,6 +92,8 @@
           $mail->Body    = 'Thank you for the recent payment that you made on '.'<b>'.$transaction_date.'</b>'.' for the amount of '.'<b>₱'.$amount.'</b>'.'. This is a confirmation that amount has been successfully received and deposited in our account.';
           
           if($mail->send()){
+            $act = 'Apporove student payment '. $stud_id . ' - ' . $fullname;
+            audit($cashier_id,'Cashier',$cashier_name,$act);
             $response['status'] = 'success';
             $response['message'] = 'Successfully Approved Payment';
           }
@@ -140,8 +144,10 @@
         $mail->Body    = 'Thank you for the request payment that you made on. Unfortunately Cashier name: '.'<b>'. $cashier_name . '</b>'.' denied your payment request. The reason is '.'<b>'. $reasonToDeny . '</b>'.',please check your account to address this issue and resubmit your payment request';
         
         if($mail->send()){
+          $act = 'Denied student payment'.' - ' . $studFullname;
+            audit($cashier_id,'Cashier',$cashier_name,$act);
           $response['status'] = 'success';
-          $response['message'] = 'Denied Payment';
+          $response['message'] = 'Denied Payment';  
         }
       
     }else{

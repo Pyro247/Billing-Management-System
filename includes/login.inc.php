@@ -1,5 +1,7 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
+  
   session_start();
   // Check email is excist in the databse -Done
   // Yes => check email and password -Done
@@ -32,6 +34,7 @@
             $_SESSION['msg'] = "Account is inactive";
             header('Location: ../html/login.php');
           }else{
+            audit($rowLogin['user_id'],$rowLogin['role'],$rowLogin['fullname'],'Login');
             header('Location: ../html/registrar_access.php');
             $_SESSION['fullname'] = $rowLogin['fullname'];
             $_SESSION['employeeId'] = $rowLogin['user_id'];
@@ -44,6 +47,7 @@
             $_SESSION['msg'] = "Account is inactive";
             header('Location: ../html/login.php');
           }else{
+            audit($rowLogin['user_id'],$rowLogin['role'],$rowLogin['fullname'],'Login');
             header('Location: ../html/cashier_access.php');
             $_SESSION['fullname'] = $rowLogin['fullname'];
             $_SESSION['employeeId'] = $rowLogin['user_id'];
@@ -55,10 +59,12 @@
             $_SESSION['msg'] = "Account is inactive";
             header('Location: ../html/login.php');
           }else{
+            audit($rowLogin['user_id'],$rowLogin['role'],$rowLogin['role'],'Login');
             header('Location: ../html/registrar_access.php');
             $_SESSION['fullname'] = $rowLogin['fullname'];
             $_SESSION['employeeId'] = $rowLogin['user_id'];
             $_SESSION['role'] = $rowLogin['role'];
+          
           }
           
 
@@ -68,6 +74,7 @@
             $_SESSION['msg'] = "Account is inactive";
             header('Location: ../html/login.php');
           }else{
+            audit($rowLogin['user_id'],$rowLogin['role'],$rowLogin['fullname'],'Login');
             $_SESSION['fullname'] = $rowLogin['fullname'];
             $_SESSION['stud_id'] = $rowLogin['user_id'];
             $_SESSION['email'] = $rowLogin['email'];

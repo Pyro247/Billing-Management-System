@@ -1,5 +1,6 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
   header('Content-type: application/json');
   session_start();
   $response = array();
@@ -24,6 +25,9 @@
       $response['status'] = 'error';
       $response['message'] = 'Failed to save!';
     }
+    $fullname = $emp_firstname .' '.$emp_lastname;
+    $act = 'And new employee '. $emp_id . ' - ' . $fullname;
+    audit($_SESSION['employeeId'],$_SESSION['role'],'Admin',$act);
     echo json_encode($response);
   }
   if(isset($_GET['empEdit'])){
@@ -63,7 +67,9 @@
       $response['status'] = 'error';
       $response['message'] = 'Failed to Update!';
     }
-
+    $fullname = $emp_firstname .' '.$emp_lastname;
+    $act = 'Update employee details of '. $emp_id . ' - ' . $fullname;
+    audit($_SESSION['employeeId'],$_SESSION['role'],'Admin',$act);
     echo json_encode($response);
   }
   if(isset($_POST['delEmp'])){

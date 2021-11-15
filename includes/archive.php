@@ -1,5 +1,8 @@
 <?php
+  session_start();
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
+  
   $response =array();
 if(isset($_POST['archive_btn'])){
     $condition = $_POST['condition'];
@@ -28,6 +31,9 @@ if(isset($_POST['archive_btn'])){
     $stmtArchive = $con->prepare($sqlArchive);
     if($stmtArchive->execute()){
 
+      $fullname = $firstname .' '.$lastname;
+      $act = 'Archive student '. $user_id . ' - ' . $fullname;
+      audit($_SESSION['employeeId'],'Registrar',$_SESSION['fullname'],$act);
       $sqlDel = "DELETE s.*,fee.*,d.*
                   FROM tbl_student_info AS s 
                   LEFT JOIN tbl_student_fees AS fee ON s.stud_id = fee.stud_id 
@@ -84,9 +90,12 @@ if(isset($_POST['archive_btn'])){
     VALUES ('$Emp_regNo','$Emp_id','$Emp_firstname','$Emp_lastname','$Emp_middlename','$Emp_role','$Emp_email','$Emp_sex','$Emp_address','$Empcontact_number')";
     $stmtEmpArchive = $con->prepare($sqlEmpArchive);
     if($stmtEmpArchive->execute()){
-    
+
+      $fullname = $Emp_firstname .' '.$Emp_lastname;
+      $act = 'Archive employee '. $empId . ' - ' . $fullname;
+      audit($_SESSION['employeeId'],$_SESSION['role'],'Admin',$act);
+
       $sqlEmpDel = "DELETE FROM `tbl_employee_info` WHERE `employee_id` = ?";
-    
       $stmtEmpDel = $con->prepare($sqlEmpDel);
       $stmtEmpDel->bind_param('s', $empId );
       $stmtEmpDel->execute();
