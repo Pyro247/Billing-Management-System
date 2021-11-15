@@ -129,6 +129,35 @@
 
                     <div class="dashBoardBoxContainer mb-2">
                     
+                    <div class="dashBoardBox tuition">
+                            <i class="fas fa-tags"></i>
+                            <h1>₱ <?=$rowStud['tuition_fee'];?></h1>
+                            <h3>Tuition Fee</h3>
+                        </div>
+
+                        <div class="dashBoardBox scholarship">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span><?=$rowStud['scholar_desc'];?></span>
+                                <h1>₱ 4000</h1>
+                                <!--<h1><?=$rowStud['scholar_desc'];?></h1>-->
+                                <h3>Scholarship Deduction</h3>
+                            </div>
+
+                            <div class="dashBoardBox discount">
+                                <i class="fas fa-percentage"></i>
+                                <span><?=$rowStud['discount_type'];?></span>
+                                <h1>₱ 600</h1>
+                                <!--<h1>₱ <?=$rowStud['discount_type'];?></h1>-->
+                                <h3>Discount Deduction</h3>
+                            </div>
+
+                   
+
+                        
+                        
+                    </div>
+
+                    <div class="dashBoardBoxContainer">
                     <div class="dashBoardBox lastPaid">
                             <i class="far fa-clock"></i>
                             <span><?= $date?></span>
@@ -142,31 +171,11 @@
                             <h3>Remaining Balance</h3>
                         </div>
 
-                        <div class="dashBoardBox tuition">
-                            <i class="fas fa-tags"></i>
-                            <h1>₱ <?=$rowStud['tuition_fee'];?></h1>
-                            <h3>Tuition Fee</h3>
-                        </div>
-                    </div>
-
-                    <div class="dashBoardBoxContainer">
-                        <div class="dashBoardBox scholarship">
-                                <i class="fas fa-graduation-cap"></i>
-                                <span><?=$rowStud['scholar_desc'];?></span>
-                                <h1>₱ 4000</h1>
-                                <!--<h1><?=$rowStud['scholar_desc'];?></h1>-->
-                                <h3>Scholarship Deduction</h3>
-                            </div>
-                            <div class="dashBoardBox discount">
-                                <i class="fas fa-percentage"></i>
-                                <span><?=$rowStud['discount_type'];?></span>
-                                <h1>₱ 600</h1>
-                                <!--<h1>₱ <?=$rowStud['discount_type'];?></h1>-->
-                                <h3>Discount Deduction</h3>
-                            </div>
+                            
                             <div class="dashBoardBox email">
                             <i class="fas fa-file-invoice"></i>
                                 <span></span>
+                                <span style="color: var(--white)"><strong style="font-size: 1rem; color: var(--pink)">Lec: </strong><?=$rowStud['lab_units'];?> | <strong style="font-size: 1rem; color: var(--pink)">Lab: </strong><?=$rowStud['lec_units'];?></span>
                                 <h1><?=$rowStud['lab_units'] +  $rowStud['lec_units'];?></h1>
                                 <h3>Total Units</h3>
                             </div>
