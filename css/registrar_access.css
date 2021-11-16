@@ -252,27 +252,12 @@ html, body{
     border-radius: 0;
 }
 
-.nav-link.main__.active, .nav-link.secondary__.active{
+.nav-link.main__.active{
     background: var(--activeColorBg);
     color: var(--secondary);
     border-radius: 0;
 }
 
-.secondary__{
-    font-size: 1rem;
-    color: var(--white);
-    margin-left: 20px;
-    color: var(--white-color);
-    text-align: left;
-    transition: 250ms;
-    border-radius: 0;
-}
-.secondary__:hover{
-    color: white;
-}
-.secondary__:last-child{
-    margin-bottom: 25px;
-}
 
 .right-tab{
     margin-left: 230px;

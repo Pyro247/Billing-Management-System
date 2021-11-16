@@ -227,6 +227,28 @@
       </div>
     </div>
 
+     <!-- Post e-bill -->
+     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
+      <div class="popUpFeesMgmtinner">
+       <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" onclick="closePopUp(5)"></i>
+       <p class="PopUpFeesMgmt_Title mb-0 mt-5">Bill</p>
+       
+       <hr class="mt-0 mb-3">
+          <form action="" class="popUpAdminBP" id="newDiscount">
+            
+            <p>Dute Date &nbsp;<input type="date" name="" placeholder=""></p>
+            <p>Due Time &nbsp;<input type="number" name="" placeholder="00:00"></p>
+            <p>Payment Amount &nbsp;<input type="number" name="" placeholder="₱"></p>
+            <p>Filter &nbsp;
+              <select name="" id="">
+                <option value=""></option>
+              </select>
+            </p>
+              <button type="submit" class="d-block mt-2 btn btn-primary" style="margin-left: auto;" id="">Submit</button>
+          </form>
+       </div>
+         
+    </div>
     
 
     
@@ -256,9 +278,8 @@
                 <a class="nav-link main__" id="v-pills-reports-tab" data-toggle="pill" href="#v-pills-reports" role="tab" aria-controls="v-pills-reports" aria-selected="false"><i class='bx bxs-report' ></i>&nbsp;Reports</a>
                 <a class="nav-link main__" id="v-pills-fees-tab" data-toggle="pill" href="#v-pills-fees" role="tab" aria-controls="v-pills-fees" aria-selected="false"><i class="fas fa-money-bill-wave"></i>&nbsp;Fees Management</a>
                 <a class="nav-link main__" id="v-pills-studFee-tab" data-toggle="pill" href="#v-pills-studFee" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-coins"></i>&nbsp;Student Fees</a>
-              
-                <a class="nav-link" style="color: var(--greenSecondary); font-size: 1.3rem" style="margin: 0">Audit Logs</a>
-                <a class="nav-link secondary__" id="v-pills-student-audit-log-tab" data-toggle="pill" href="#v-pills-student-audit-log" role="tab" aria-controls="v-pills-student-audit-log" aria-selected="false"><i class="fas fa-graduation-cap"></i>&nbsp;Audit Logs</a>
+                <a class="nav-link main__" id="v-pills-student-audit-log-tab" data-toggle="pill" href="#v-pills-student-audit-log" role="tab" aria-controls="v-pills-student-audit-log" aria-selected="false"><i class="fas fa-history"></i>&nbsp;Audit Logs</a>
+                
                 <!-- <a class="nav-link secondary__" id="v-pills-employee-audit-log-tab" data-toggle="pill" href="#v-pills-employee-audit-log" role="tab" aria-controls="v-pills-studFee" aria-selected="false"><i class="fas fa-user-tie"></i>&nbsp;Employees</a> -->
                                   
            
@@ -1501,7 +1522,7 @@
 
                 </div>
                 <div class="col-md-2">
-                  <button class="btn btn-outline-primary" style="height: 100%; width: 100%; color: var(--secondary)">Post e-bill</button>
+                  <button class="btn btn-outline-primary" style="height: 100%; width: 100%; color: var(--secondary)" onclick="popUpAdmin_SchoolFees(5)">Post e-bill</button>
                 </div>
                 </div>
              

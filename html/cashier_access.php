@@ -100,6 +100,7 @@ include_once '../connection/Config.php';
       </div>
     </div>
 
+   
   <div class="cashDenominationContainer">
     <form action="../includes/generate-report.php" method="post" class="cashDenominationForm">
       <div class="cashDenominationTitle">
