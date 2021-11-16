@@ -1019,15 +1019,16 @@
                               </div>
                             </div> -->
                         </div>
+                        <div class="buttons_manage_universal">
+                          <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
+                          <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
+                          <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
+                          <button type="button" name="" class="btn btn-secondary" id="btncancel" disabled>Cancel</button>
+                        </div> 
                       </div>
                     </div> 
                   
-                    <div class="buttons_manage_universal">
-                      <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
-                      <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
-                      <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
-                      <button type="button" name="" class="btn btn-secondary" id="btncancel" disabled>Cancel</button>
-                    </div> 
+                   
                   </form>
                   <hr>
                   <div class="manage_student_tab_below mt-4">
