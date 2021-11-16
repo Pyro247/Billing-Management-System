@@ -2760,6 +2760,7 @@
               if(response.status == 'error'){
                 Swal.fire({
                   icon: response.status,
+                  title: 'Existing',
                   text: response.message,
                   confirmButtonText: 'Ok'
                 })

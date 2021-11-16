@@ -26,7 +26,7 @@
       $response['message'] = 'Failed to save!';
     }
     $fullname = $emp_firstname .' '.$emp_lastname;
-    $act = 'And new employee '. $emp_id . ' - ' . $fullname;
+    $act = 'Add new employee '. $emp_id . ' - ' . $fullname;
     audit($_SESSION['employeeId'],$_SESSION['role'],'Admin',$act);
     echo json_encode($response);
   }

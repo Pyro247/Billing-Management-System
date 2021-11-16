@@ -51,7 +51,7 @@
       $resCheck = $stmtCheck->get_result();
       if($resCheck->num_rows > 0){
         $response['status'] = 'error';
-        $response['message'] = 'Program Program,Major,Year Level,and Semester';
+        $response['message'] = 'Program,Major,Year Level,and Semester';
       }else{
         // $response['message'] = '';
       }
