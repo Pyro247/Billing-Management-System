@@ -32,6 +32,52 @@
             }
 
         }
+
+        $slq = "SELECT * FROM `tbl_student_fees` WHERE stud_id = ?";
+        $stmt = $con->prepare( $slq );
+        $stmt->bind_param( 's', $_SESSION['stud_id']);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+
+        $scholar_type = $row['scholar_type'];
+        $scholar_desc = $row['scholar_desc'];
+        $discount_type = $row['discount_type'];
+        //$balance;
+
+         // Calculate Scholar Deduction
+      /*if( $scholar_type == 'N/A' ){
+        $scholar['scholarDeduction'] = number_format( 0, 2);
+        $scholar['scholar'] = '';  
+      }else if( $scholar_type == 'Partial Scholar' ){
+        $balance = $row['tuition_fee'] / 2;
+        $scholar['scholarDeduction'] = number_format($balance, 2);
+        $scholar['scholar'] = 'Half Scholar'.'('.$scholar_desc.')';
+      }else if ( $scholar_type == 'Full Scholar' ){
+        $scholar['scholarDeduction'] = number_format( $row['tuition_fee'] , 2);
+        $scholar['scholar'] = 'Full Scholar'.'('.$scholar_desc.')';
+      }*/
+
+      if( $scholar_type == 'N/A' ){
+        $scholar = 0;
+      }else if( $scholar_type == 'Partial Scholar' ){
+        $scholar = $row['tuition_fee'] / 2;
+      }else if ( $scholar_type == 'Full Scholar' ){
+        $scholar = $row['tuition_fee'];
+      }
+
+      // Caslculate Discount Deduction
+      if($discount_type == 'N/A'){
+        $discount = 0;
+      }else{
+        $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+          $stmtGetDisc = $con->prepare($sqlGetDisc);
+          $stmtGetDisc->bind_param('s',$discount_type);
+          $stmtGetDisc->execute();
+          $resGetDisc = $stmtGetDisc->get_result();
+          $rowGetDisc  = $resGetDisc->fetch_assoc();
+          $discount = ((  $scholar * ($rowGetDisc['discount_percent'])/ 100));
+      }
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -138,16 +184,14 @@
                         <div class="dashBoardBox scholarship">
                                 <i class="fas fa-graduation-cap"></i>
                                 <span><?=$rowStud['scholar_desc'];?></span>
-                                <h1>₱ 4000</h1>
-                                <!--<h1><?=$rowStud['scholar_desc'];?></h1>-->
+                                <h1>₱ <?php echo $scholar; ?></h1>
                                 <h3>Scholarship Deduction</h3>
                             </div>
 
                             <div class="dashBoardBox discount">
                                 <i class="fas fa-percentage"></i>
                                 <span><?=$rowStud['discount_type'];?></span>
-                                <h1>₱ 600</h1>
-                                <!--<h1>₱ <?=$rowStud['discount_type'];?></h1>-->
+                                <h1>₱ <?php echo $discount; ?></h1>
                                 <h3>Discount Deduction</h3>
                             </div>
 
