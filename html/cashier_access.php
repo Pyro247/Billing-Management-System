@@ -1015,7 +1015,7 @@ include_once '../connection/Config.php';
             
 
               <div class="dashBoardBox p-3">
-                <div class="row">
+                <div class="row mb-3">
                 <div class="col-md-4">
                   <div class="form-floating">
                     <select class="form-select" id="filterByRemarks" aria-label="Floating label select example">
@@ -1035,19 +1035,19 @@ include_once '../connection/Config.php';
                     <label for="filterByRemarks" style="color: black">Select Due Date:</label>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                 <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
                   <label class="btn btn-outline-success pt-3  " for="btn-check-2-outlined" style="height: 100%; width: 100%;">Past Due</label><br>
 
                 </div>
                 <div class="col-md-2">
                   <button class="btn btn-outline-primary" style="height: 100%; width: 100%; color: var(--secondary)">Post e-bill</button>
-                </div>
+                </div> -->
                 </div>
 
 
                 
-                  <table class="table" style="color: white; overflow-x: hidden" >
+                  <table class="table studentFeeTbl" style="color: white; overflow-x: hidden" >
                       <thead class="text-center">
                         <tr>
                         <th scope="col">Student ID</th>

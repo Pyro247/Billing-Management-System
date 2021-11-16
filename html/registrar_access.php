@@ -1516,14 +1516,14 @@
                     <label for="filterByRemarks" style="color: black">Select Due Date:</label>
                   </div>
                 </div>
-                <div class="col-md-2">
+                <!-- <div class="col-md-2">
                 <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
                   <label class="btn btn-outline-success pt-3" for="btn-check-2-outlined" style="height: 100%; width: 100%;">Past Due</label><br>
 
                 </div>
                 <div class="col-md-2">
                   <button class="btn btn-outline-primary" style="height: 100%; width: 100%; color: var(--secondary)" onclick="popUpAdmin_SchoolFees(5)">Post e-bill</button>
-                </div>
+                </div> -->
                 </div>
              
                 
@@ -1628,11 +1628,11 @@
 
 
           <!-- AUDIT LOGS -->
-          <!-- Student audit log -->
+          
           <div class="tab-pane fade" id="v-pills-student-audit-log" role="tabpanel" aria-labelledby="v-pills-audit_log-tab">
                   <p class="title_tab_universal my-3">Audit Logs</p>
                   <div class="col dashboardBox">
-                <table class="table" style="color: var(--white)">
+                <table class="table auditTbl" style="color: var(--white);">
                   <thead>
                     <tr>
                       <th scope="col">No</th>
@@ -1718,6 +1718,11 @@
           $('#dashboardTbl').DataTable();
           } );
       </script> -->
+      <script>
+        $(document).ready(function (){
+          $('table.auditTbl').DataTable();
+        });
+      </script>
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
@@ -1752,7 +1757,7 @@
             $('#filterByProgramDash').val('All');
             $("#filterByMajorDash").empty();
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
-            studentCountLabel.style.color = "#56A8CBFF"
+            studentCountLabel.style.color = "var(--greenPrimary)"
             studentCountLabel.textContent = "Total Students"
             sortDisplay('All');
           });
@@ -1767,7 +1772,7 @@
             $('#filterByProgramDash').val('All');
             $("#filterByMajorDash").empty();
             $("#filterByMajorDash").append("<option value='"+'%'+"'>"+'All'+"</option>");
-            studentCountLabel.style.color = "#7c55c4"
+            studentCountLabel.style.color = "var(--secondary)"
             studentCountLabel.textContent = "Old Students"
             
             
@@ -3110,6 +3115,8 @@
               document.getElementById('v-pills-fees-tab').style.display = "none"
               document.getElementById('v-pills-reports-tab').style.display="none"
               document.querySelector('#dashboardForAdminId').style.display = "none"
+              document.querySelector('#v-pills-student-audit-log').style.display="none"
+              document.querySelector('#v-pills-student-audit-log-tab').style.display="none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"
