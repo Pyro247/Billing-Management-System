@@ -263,6 +263,12 @@
                         icon: 'warning',
                         confirmButtonText: 'OK'
                     })
+                }else if( $('#msg').text() != ''){
+                    Swal.fire({
+                        title: 'Email is exist',
+                        icon: 'warning',
+                        confirmButtonText: 'OK'
+                })
                 }else if ($('#password').val() == ''){
                     Swal.fire({
                         title: 'No password',
@@ -388,6 +394,7 @@
                             icon: 'warning',
                             confirmButtonText: 'OK'
                         })
+                    
                     }else if(!$("input[name='sex']").is(':checked')){
                         Swal.fire({
                             title: 'No selected',

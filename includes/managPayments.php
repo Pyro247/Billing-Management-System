@@ -212,10 +212,6 @@ while($data = $res->fetch_assoc()){?>
   
 <?php }}   ?>
 
-<script>
-  $(document).ready(function(){
-    $('#pendingTable').DataTable();
-  });
-</script>
+
 
 
