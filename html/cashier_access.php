@@ -1499,7 +1499,8 @@ include_once '../connection/Config.php';
           $("#filterByPayMethod").val("%").change();
           $("#filterByDate").val("").change();
           $( "#genReportBtn" ).prop( "disabled", false );
-          viewTransactionHistory() 
+          viewTransactionHistory()
+          sumInfoTransaction(maxDate)
         });
         function sumInfoTransaction(date){
           $.ajax({

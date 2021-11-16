@@ -804,6 +804,7 @@
                                   
                       <!-- <a class="btn btn-primary" id="stud_archive" disbled>Archive</a> -->
                       <button type="button" class="btn btn-primary" name="stud_archive" id="stud_archive" disabled >Archive</button>
+                      <button type="button" name="" class="btn btn-secondary" id="studbtncancel" disabled>Cancel</button>
                       <script type="text/javascript">
                               
                               const popUpArchive = document.querySelector('.popUpArchive')
@@ -1035,7 +1036,7 @@
                       <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
                       <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
                       <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
-                      
+                      <button type="button" name="" class="btn btn-secondary" id="btncancel" disabled>Cancel</button>
                     </div> 
                   </form>
                   <hr>
@@ -1872,10 +1873,21 @@
           $('#add').click(function (e) { 
             studFieldsDisbaled(partialStudFields,false);
             $("#studSave").prop('disabled', false);
+            $("#studbtncancel").prop('disabled', false);
             $("#add").prop('disabled', true);
             let program = $("#studProgram").val();
             onChangeProgram(program,null);
 
+          });
+          $('#studbtncancel').click(function (e) { 
+            e.preventDefault();
+            $('#studForm').trigger('reset');
+            studFieldsDisbaled(allStudFields,true);
+            $("#add").prop("disabled", false);
+            $("#studbtncancel").prop("disabled", true);
+            $("#stud_archive").prop("disabled", true);
+            $('#studSave').text('Save');
+            $("#studSave").prop("disabled", true);
           });
            // Trigger OnChange Item of Dropdown Program
           $("#studProgram").change(function(){
@@ -2049,6 +2061,7 @@
           $(document).on('click', '#edit', function(){
             let id = $(this).attr("data-id");
             $("#add").prop("disabled", true);
+            $("#studbtncancel").prop("disabled", false);
             $.ajax({
               type: "POST",
               url: "../includes/manage_student.php",
@@ -2485,6 +2498,18 @@
           empFieldsAttr(partialfields,false);
           $("#empAdd").prop("disabled", true);
           $("#empSave").prop("disabled", false);
+          $("#btncancel").prop("disabled", false);
+        });
+        $('#btncancel').click(function (e) { 
+          e.preventDefault();
+          $('#empForm').trigger('reset');
+          empFieldsAttr(allfields,true);
+          $("#empAdd").prop("disabled", false);
+          $("#btncancel").prop("disabled", true);
+          $("#empArchive").prop("disabled", true);
+          $('#empSave').text('Save');
+          $("#empSave").prop("disabled", true);
+
         });
         // Two way process Save and Save base on button text
         $("#empSave").click(function (e) { 
@@ -2532,6 +2557,7 @@
           $("#empAdd").prop("disabled", true);
           $("#empSave").prop("disabled", false);
           $("#empArchive").prop("disabled", false);
+          $("#btncancel").prop("disabled", false);
           // AJAX request edit
           $.ajax({    
               type: "GET",
