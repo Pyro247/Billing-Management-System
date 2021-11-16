@@ -631,7 +631,7 @@
 
                               <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_lecUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnits" placeholder=" " value="" disabled >
+                                    <input type="number" name="stud_lecUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnits" placeholder=" " value="" disabled >
                                     <input type="hidden" name="stud_lecUnitsTotal" class="form-control text-primary" style="font-weight: bold;" id="stud_lecUnitsTotal" placeholder=" " value=""  >
                                     <label for="stud_lecUnitsTotal" class="labelForTextBox">Lecture Units</label>
                                   </div>
@@ -639,7 +639,7 @@
 
                                 <div class="col-md">
                                   <div class="form-floating">
-                                    <input type="text" name="stud_labUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" clacl" value="" disabled >
+                                    <input type="number" name="stud_labUnits" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnits" placeholder=" clacl" value="" disabled >
                                     <input type="hidden" name="stud_labUnitsTotal" class="form-control text-primary" style="font-weight: bold;" id="stud_labUnitsTotal" placeholder=" " value="" disabled >
                                     <label for="stud_labUnitsTotal" class="labelForTextBox">Laboratory Units</label>
                                   </div>
@@ -1995,6 +1995,10 @@
                 $("#studLastname").focus()
               }else if ($("#assessed_fee").val() == ""){
                 $("#assessed_fee").focus()
+              }else if ($("#stud_lecUnits").val() == 0){
+                $("#stud_lecUnits").focus()
+              }else if ($("#stud_labUnits").val() == 0){
+                $("#stud_labUnits").focus()
               }else{
                 // Request To Save Data Via AJAX
                 let newStud = new FormData(document.getElementById('studForm'))

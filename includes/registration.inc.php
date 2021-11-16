@@ -1,5 +1,7 @@
 <?php
   include_once '../connection/Config.php';
+  include '../includes/audit_logs.php';
+
   session_start();
   $response = array();
   // Check if email is already taken
@@ -86,6 +88,9 @@
         if ( $stmtAcc->execute() ) {
           $response['status'] = 'success';
           $response['message'] = 'Successfully Registered';
+
+          audit($userId,'Student',$fullname,'Registered Account');
+
         }else {
           $response['status'] = 'error';
           $response['message'] = 'Failed to Registered';
@@ -142,6 +147,8 @@
         if ( $stmtAcc->execute() ) {
           $response['status'] = 'success';
           $response['message'] = 'Successfully Registered';
+          audit($userId,$role,$fullname,'Registered Account');
+
         }else {
           $response['status'] = 'error';
           $response['message'] = 'Failed to Registered';
