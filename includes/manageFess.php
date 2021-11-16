@@ -63,6 +63,17 @@
   }  
   if(isset($_POST['addNewSy'])){
   $academic_year = $_POST['SYstart'].'-'.$_POST['SYend'];
+
+  $sqlExistSY = " SELECT * FROM `tbl_academic_year` WHERE `academic_year` = ?";
+  $stmtExistSY = $con->prepare($sqlExistSY);
+  $stmtExistSY->bind_param('s', $academic_year);
+  $stmtExistSY->execute();
+  $resExistSY = $stmtExistSY->get_result();
+  
+  if($resExistSY->num_rows > 0){
+    $response['status'] = 'error';
+    $response['message'] = 'Academic Year is Already Existed';
+  }else{
   $sqlNewSY = " INSERT INTO `tbl_academic_year`(`academic_year`) VALUES (?)";
   $stmtNewSY = $con->prepare($sqlNewSY);
   $stmtNewSY->bind_param('s', $academic_year);
@@ -73,8 +84,11 @@
     $response['status'] = 'error';
     $response['message'] = 'Failed to Add New School Year!';
   }
+}
     echo json_encode($response);
   }
+
+
   if(isset($_POST['addNewProgram'])){
     $programId = $_POST['programId'];
     $program = $_POST['program'];
