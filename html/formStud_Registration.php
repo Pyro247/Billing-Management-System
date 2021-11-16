@@ -212,7 +212,7 @@
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select col-2" id="currentSem" name="currSem" required>
+                        <select class="form-select col-2" id="currentSem" name="currSem" required disabled>
                             <option hidden>Semester</option>
                             <option value="1">1st Semester</option>
                             <option value="2">2nd Semester</option>
@@ -223,7 +223,7 @@
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select col-2" id="currentYearLevel" name="currYear" required>
+                        <select class="form-select col-2" id="currentYearLevel" name="currYear" required disabled>
                             <option hidden>Year Level</option>
                             <option value="1">1st</option>
                             <option value="2">2nd</option>
@@ -244,7 +244,7 @@
             <div class="row mb-3">
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select form-control" name="currCourse" id="studProgram" required>
+                        <select class="form-select form-control" name="currCourse" id="studProgram" required disabled>
                             
                             <?php 
                                 $sqlProg = "SELECT DISTINCT course_program FROM `tbl_course_list`";
@@ -262,7 +262,7 @@
 
                 <div class="col-md">
                     <div class="form-floating">
-                        <select class="form-select" name="currMajor" id="currentMajor" aria-label="Default select example" required>
+                        <select class="form-select" name="currMajor" id="currentMajor" aria-label="Default select example" required disabled>
                             
                         </select>
                             <label for="currentMajor">Specialization</label>
@@ -325,7 +325,7 @@
                         if(!$("input[name='stud_status']").is(':checked')){
                             Swal.fire({
                                 title: 'No selected',
-                                text: 'Please select if your old or transferee student',
+                                text: 'Please select if you are an old or transferee student',
                                 icon: 'warning',
                                 confirmButtonText: 'OK'
                             })
@@ -344,6 +344,7 @@
                                 confirmButtonText: 'OK'
                             })
                         }else{
+                            $('input, select').prop('disabled', false);
                             $.ajax({
                                 type: "POST",
                                 url: "../includes/registration.inc.php",
@@ -461,7 +462,7 @@
                     })
                 }else if( $('#msg').text() != ''){
                     Swal.fire({
-                        title: 'Email is exist',
+                        title: 'Email is already taken',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                 })

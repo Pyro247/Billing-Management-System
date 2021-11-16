@@ -85,7 +85,7 @@
       
       }else{
         $_SESSION['status'] = "info";
-        $_SESSION['msg'] = "Incorrect password";
+        $_SESSION['msg'] = "Incorrect Credentials";
         header('Location: ../html/login.php');
       }
 

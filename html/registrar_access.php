@@ -777,77 +777,46 @@
 
 
                                 </div> 
+                                <div class="buttons_manage_universal">
+                                  <button type="button" name="" id="add" class="btn btn-info">Add</button>
+                                  <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
+                                  <button type="button" name="stud_save" id="studSave" class="btn btn-success"disabled >Save </button>
+                                  <!-- <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button> -->
+                                              
+                                  <!-- <a class="btn btn-primary" id="stud_archive" disbled>Archive</a> -->
+                                  <button type="button" class="btn btn-primary" name="stud_archive" id="stud_archive" disabled >Archive</button>
+                                  <button type="button" name="" class="btn btn-secondary" id="studbtncancel" disabled>Cancel</button>
+                                  <script type="text/javascript">
+                                          
+                                          const popUpArchive = document.querySelector('.popUpArchive')
+                                          const popUpinner = document.querySelector('.popUpArchiveinner')
+            
+                                            document.querySelector('#stud_archive').addEventListener("click", function(){
+                                            popUpArchive.style.visibility = "visible"
+                                            popUpArchive.style.opacity = "1"
+                                            popUpinner.classList.toggle('animate__animated')
+                                            popUpinner.classList.toggle('animate__bounceIn')
+                                          })
+            
+                                            document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
+                                              popUpArchive.style.visibility = "hidden"
+                                              popUpArchive.style.opacity = "0"
+                                              popUpinner.classList.toggle('animate__animated')
+                                              popUpinner.classList.toggle('animate__bounceIn')
+                                          })
+                                        </script>
+            
+            
+                                  </div>
                             </div>
 
                             
 
-
-                          <!-- <div class="manage_users_students_right_tab">
-                            <p class="text-center">Submitted Requirements</p>
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_form137" value="✓" id="form137" disabled >
-                              <label class="form-check-label" style="color: var(--white)" for="form137" >
-                                Form 137
-                              </label>
-                            </div>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_form138" value="✓" id="form138" disabled>
-                              <label class="form-check-label" style="color: var(--white)" for="form138">
-                                Form 138
-                              </label>
-                            </div>
-
-                            
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_psa" value="✓" id="psa" disabled>
-                              <label class="form-check-label" style="color: var(--white)" for="psa">
-                                PSA Birth Certificate
-                              </label>
-                            </div>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="checkbox" name="req_good_moral" value="✓" id="goodMoral" disabled>
-                              <label class="form-check-label" style="color: var(--white)" for="goodMoral">
-                                Good Moral
-                              </label>
-                            </div>
-                          </div> -->
                         </div>
                         
                       
                   
-                      <div class="buttons_manage_universal">
-                      <button type="button" name="" id="add" class="btn btn-info">Add</button>
-                      <!-- <button type="submit" name="stud_update" class="btn btn-warning">Edit</button> -->
-                      <button type="button" name="stud_save" id="studSave" class="btn btn-success"disabled >Save </button>
-                      <!-- <button type="submit" name="stud_delete" id ="stud_delete" class="btn btn-danger" disabled>Delete</button> -->
-                                  
-                      <!-- <a class="btn btn-primary" id="stud_archive" disbled>Archive</a> -->
-                      <button type="button" class="btn btn-primary" name="stud_archive" id="stud_archive" disabled >Archive</button>
-                      <button type="button" name="" class="btn btn-secondary" id="studbtncancel" disabled>Cancel</button>
-                      <script type="text/javascript">
-                              
-                              const popUpArchive = document.querySelector('.popUpArchive')
-                              const popUpinner = document.querySelector('.popUpArchiveinner')
-
-                                document.querySelector('#stud_archive').addEventListener("click", function(){
-                                popUpArchive.style.visibility = "visible"
-                                popUpArchive.style.opacity = "1"
-                                popUpinner.classList.toggle('animate__animated')
-                                popUpinner.classList.toggle('animate__bounceIn')
-                              })
-
-                                document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
-                                  popUpArchive.style.visibility = "hidden"
-                                  popUpArchive.style.opacity = "0"
-                                  popUpinner.classList.toggle('animate__animated')
-                                  popUpinner.classList.toggle('animate__bounceIn')
-                              })
-                            </script>
-
-
-                      </div>
+                     
                     </form> 
                     
 
