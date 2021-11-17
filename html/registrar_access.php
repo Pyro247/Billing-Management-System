@@ -1990,9 +1990,32 @@
               $("#studSave").prop("disabled", true);
               $("#stud_archive").prop("disabled", true);
               $("#stud_delete").prop("disabled", true);
-            }
-            // Save
-            if(studSave.innerText == 'Save'){
+              $("#studbtncancel").prop("disabled", true);
+
+
+              $("#studProgram").css("pointer-events","");
+                  $("#studProgram").css("background-color","");
+                  $("#studMajor").css("pointer-events","");
+                  $("#studMajor").css("background-color","");
+                  $("#studSemester").css("pointer-events","");
+                  $("#studSemester").css("background-color","");
+                  $("#studYearLevel").css("pointer-events","");
+                  $("#studYearLevel").css("background-color","");
+                  $('#studScholarship').css('pointer-events','');
+                  $("#studScholarship").css("background-color", "");
+                  $('#studDiscount').css('pointer-events','');
+                  $("#studDiscount").css("background-color", "");
+                  $('#studStatus').css('pointer-events','');
+                  $("#studStatus").css("background-color", "");
+                  $('#studSchoolYear').css('pointer-events','');
+                  $("#studSchoolYear").css("background-color", "");
+                 
+                  // $('#studProgram').css('pointer-events','none');
+                  $('#stud_lecUnits').attr('readonly', false);
+                  $('#stud_labUnits').attr('readonly', false);
+                  $('#studSchoolYear').attr('readonly', false);
+                  $('#studId').attr('readonly', false);
+            }else{
               if ($("#studId").val() == 0){
                 $("#studId").focus()
               }else if ($("#studFirstname").val() == ""){
@@ -2068,7 +2091,9 @@
               dataType: 'JSON',
               success: function (data) {
                 console.log(data)
+                
                 $("#studId").val(data.stud_id);
+
                 $("#studFirstname").val(data.firstname);
                 $("#studLastname").val(data.lastname);
                 $("#studMiddlename").val(data.middlename);
@@ -2107,6 +2132,53 @@
                 $("#studSave").removeAttr('disabled');
                 $("#stud_archive").removeAttr('disabled',false);
                 $("#stud_delete").removeAttr('disabled');
+                $('#studId').attr('readonly', true);
+                if(data.total_amount_paid != '0'){
+                  // $( "#studProgram" ).prop( "disabled", true );
+                  // $( "#studMajor" ).prop( "disabled", true );
+                  // $( "#studSemester" ).prop( "disabled", true );
+                  // $( "#studYearLevel" ).prop( "disabled", true );
+                  
+                  $('#studProgram').css('pointer-events','none');
+                  $("#studProgram").css("background-color", "#c0c5ce");
+                  $('#studMajor').css('pointer-events','none');
+                  $("#studMajor").css("background-color", "#c0c5ce");
+                  $('#studSemester').css('pointer-events','none');
+                  $("#studSemester").css("background-color", "#c0c5ce");
+                  $('#studYearLevel').css('pointer-events','none');
+                  $("#studYearLevel").css("background-color", "#c0c5ce");
+                  $('#studScholarship').css('pointer-events','none');
+                  $("#studScholarship").css("background-color", "#c0c5ce");
+                  $('#studDiscount').css('pointer-events','none');
+                  $("#studDiscount").css("background-color", "#c0c5ce");
+
+
+                  $('#stud_lecUnits').attr('readonly', true);
+                  $('#stud_labUnits').attr('readonly', true);
+                  $('#studSchoolYear').attr('readonly', true);
+                }else{
+                  // $( "#studProgram" ).prop( "disabled", false );
+                  // $( "#studMajor" ).prop( "disabled", false );
+                  // $( "#studSemester" ).prop( "disabled", false );
+                  // $( "#studYearLevel" ).prop( "disabled", false );
+                  $("#studProgram").css("pointer-events","");
+                  $("#studProgram").css("background-color","");
+                  $("#studMajor").css("pointer-events","");
+                  $("#studMajor").css("background-color","");
+                  $("#studSemester").css("pointer-events","");
+                  $("#studSemester").css("background-color","");
+                  $("#studYearLevel").css("pointer-events","");
+                  $("#studYearLevel").css("background-color","");
+                  $('#studScholarship').css('pointer-events','');
+                  $("#studScholarship").css("background-color", "");
+                  $('#studDiscount').css('pointer-events','');
+                  $("#studDiscount").css("background-color", "");
+                 
+                  // $('#studProgram').css('pointer-events','none');
+                  $('#stud_lecUnits').attr('readonly', false);
+                  $('#stud_labUnits').attr('readonly', false);
+                  $('#studSchoolYear').attr('readonly', false);
+                }
               }
               
             });

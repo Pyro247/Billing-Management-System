@@ -381,7 +381,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="reSubmitRequest">Resubmit</button>
+                        <button type="button" class="btn btn-primary" id="reSubmitRequest">Resubmit</button>
                     </div>
                     </div>
                 </div>
@@ -800,34 +800,54 @@
             });
             $('#reSubmitRequest').click(function (e) { 
                 e.preventDefault();
+                let amount = document.getElementById('requestAmountRe');
+                let date = document.getElementById('requestDateRe');
+                let paymentGateway = document.getElementById('paymentGateway_IdRe');
+                let image = document.getElementById("imageRe");
+                
                 let formData = new FormData(document.getElementById('payReqFormRe'))
                 formData.append('reSubmitRequest', 'reSubmitRequest');
                 formData.append('transactionNo',$('#TransactionNo').text())
-                $.ajax({
-                    type: "POST",
-                    url: "../includes/studPaymentRequest.php",
-                    data: formData,
-                    contentType: false,
-                    processData:false,
-                    success: function (response) {
-                        console.log(response)
-                        Swal.fire({
-                                icon: response.status,
-                                text: response.message,
-                                confirmButtonText: 'Ok'
-                        }).then(function() {
-                            location.reload();
-                        });
-                            $('#requestAmountRe').val('');
-                            $('#requestDateRe').val('');
-                            $('#paymentGateway_IdRe').val('');
-                            document.getElementById("previewReInvoice").style.display = "none";
-                            document.getElementById("imageTextRe").style.display = "block";
-                            document.getElementById("imageRe").value = null;
+                if(amount.value == ''){
+                        amount.focus();
+                    }else if(date.value == ''){
+                        date.focus();
+                    }else if(paymentGateway.value == ''){
+                        paymentGateway.focus();
+                    }else if(image.files.length == 0){
+                        Swal.fire(
+                            'No Attachment',
+                            'Please attach image for as proof',
+                            'warning'
+                        )
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "../includes/studPaymentRequest.php",
+                            data: formData,
+                            contentType: false,
+                            processData:false,
+                            success: function (response) {
+                                console.log(response)
+                                $("#reasonModal").modal('hide');
+                                Swal.fire({
+                                        icon: response.status,
+                                        text: response.message,
+                                        confirmButtonText: 'Ok'
+                                }).then(function() {
+                                    location.reload();
+                                });
+                                    $('#requestAmountRe').val('');
+                                    $('#requestDateRe').val('');
+                                    $('#paymentGateway_IdRe').val('');
+                                    document.getElementById("previewReInvoice").style.display = "none";
+                                    document.getElementById("imageTextRe").style.display = "block";
+                                    document.getElementById("imageRe").value = null;
+                                    
+                            }
                             
+                        });
                     }
-                    
-                });
                 
             });
         </script>

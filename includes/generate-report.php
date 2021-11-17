@@ -2,6 +2,7 @@
   
   include_once '../connection/Config.php';
       $response = array();
+    
   if(isset($_POST['genReportAuth'])){
     $empId = $_POST['empId'];
     $password = $_POST['password'];
@@ -34,9 +35,9 @@
       $stmtCheck->execute();
       $resCheck = $stmtCheck->get_result();
       if($resCheck->num_rows > 0){
-        $slqUpdate = "UPDATE `tbl_reports` SET `cash_payment`= ? ,`fund_transfer`= ?,`total_transaction_count`= ? WHERE cashier_id = ?";
+        $slqUpdate = "UPDATE `tbl_reports` SET `cash_payment`= ? ,`fund_transfer`= ?,`total_transaction_count`= ? WHERE cashier_id = ? AND date = ?";
         $stmtUpdate = $con->prepare($slqUpdate);
-        $stmtUpdate->bind_param('ssss',$cash, $fund,$total,$cashier_id);
+        $stmtUpdate->bind_param('sssss',$cash, $fund,$total,$cashier_id,$today);
         if($stmtUpdate->execute()){
           $response['status'] = 'success';
           $response['message'] = 'Successfully Generated Report';

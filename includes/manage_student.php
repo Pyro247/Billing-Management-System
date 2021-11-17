@@ -208,7 +208,7 @@
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major,c.lab_Fee,c.lecture_Fee
+  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,f.total_amount_paid,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major,c.lab_Fee,c.lecture_Fee
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_fees as f ON s.stud_id = f.stud_id
               RIGHT JOIN tbl_student_school_details as d ON f.stud_id = d.stud_id
@@ -235,6 +235,7 @@ if(isset($_POST['edit'])){
     $data['tuition_fee'] = $row['tuition_fee'];
     $data['lab_units'] = $row['lab_units'];
     $data['lec_units'] = $row['lec_units'];
+    $data['total_amount_paid'] = $row['total_amount_paid'];
     $data['lab_Fee'] = $row['lab_Fee'] * $row['lab_units'];
     $data['lecture_Fee'] = $row['lecture_Fee'] * $row['lec_units'];
 
@@ -273,74 +274,106 @@ if(isset($_POST['update'])){
   $rowGetProgId = $resGetProgId->fetch_assoc();
   $course_id = $rowGetProgId['program_id'];
  
-  if($stud_scholarship != 'N/A'){
-    $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_description = ?";
-    $stmtGetScholar = $con->prepare($slqGetScholar);
-    $stmtGetScholar->bind_param('s',$stud_scholarship);
-    $stmtGetScholar->execute();
-    $resGetScholar = $stmtGetScholar->get_result();
-    $rowGetScholar = $resGetScholar->fetch_assoc();
-    $scholarType = $rowGetScholar['scholar_type'];
-    if($scholarType == 'Half'){
-      $balance = $stud_fee/2;
-      if($stud_discount != 'N/A'){
-        $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
-        $stmtGetDisc = $con->prepare($sqlGetDisc);
-        $stmtGetDisc->bind_param('s',$stud_discount);
-        $stmtGetDisc->execute();
-        $resGetDisc = $stmtGetDisc->get_result();
-        $rowGetDisc  = $resGetDisc->fetch_assoc();
-        $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
+  $checkAmountPaid = "SELECT total_amount_paid FROM tbl_student_fees WHERE stud_id ='$student_number'";
+  $stmtCheckAmountPaid = $con->prepare($checkAmountPaid);
+  $stmtCheckAmountPaid->execute();
+  $resCheckAmountPaid = $stmtCheckAmountPaid->get_result();
+  $rowChecAmountPaid = $resCheckAmountPaid->fetch_assoc();
+  $amountPaid = $rowChecAmountPaid['total_amount_paid'];
+
+  if($amountPaid == 0){
+      if($stud_scholarship != 'N/A'){
+        $slqGetScholar = "SELECT * FROM `tbl_scholarship` WHERE scholar_description = ?";
+        $stmtGetScholar = $con->prepare($slqGetScholar);
+        $stmtGetScholar->bind_param('s',$stud_scholarship);
+        $stmtGetScholar->execute();
+        $resGetScholar = $stmtGetScholar->get_result();
+        $rowGetScholar = $resGetScholar->fetch_assoc();
+        $scholarType = $rowGetScholar['scholar_type'];
+        if($scholarType == 'Half'){
+          $balance = $stud_fee/2;
+          if($stud_discount != 'N/A'){
+            $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+            $stmtGetDisc = $con->prepare($sqlGetDisc);
+            $stmtGetDisc->bind_param('s',$stud_discount);
+            $stmtGetDisc->execute();
+            $resGetDisc = $stmtGetDisc->get_result();
+            $rowGetDisc  = $resGetDisc->fetch_assoc();
+            $balance = (($balance * (100 - $rowGetDisc['discount_percent'])/  100));
+          }
+          $remarks = 'Not Fully Paid';
+          $studScholarType = 'Partial Scholar';
+        }else if($scholarType == 'Full'){
+          $balance = 0;
+          $remarks = 'Fully Paid';
+          $studScholarType = 'Full Scholar';
+        }
+      }else{
+        if($stud_discount != 'N/A'){
+          $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
+            $stmtGetDisc = $con->prepare($sqlGetDisc);
+            $stmtGetDisc->bind_param('s',$stud_discount);
+            $stmtGetDisc->execute();
+            $resGetDisc = $stmtGetDisc->get_result();
+            $rowGetDisc  = $resGetDisc->fetch_assoc();
+            $balance = (($stud_fee * (100 - $rowGetDisc['discount_percent'])/  100));
+        }else{
+          $balance = $stud_fee;
+        }
+        
+        $remarks = 'Not Fully Paid';
+          $studScholarType = 'N/A';
       }
-      $remarks = 'Not Fully Paid';
-      $studScholarType = 'Partial Scholar';
-    }else if($scholarType == 'Full'){
-      $balance = 0;
-      $remarks = 'Fully Paid';
-      $studScholarType = 'Full Scholar';
+
+      $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
+      $program_major = $stud_program.'-'.$stud_major;
+    $sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
+                    INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
+                    INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
+                      SET 
+                      info.firstname = ?,info.lastname = ?,info.middlename = ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
+                      det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?,fee.lab_units = ?,fee.lec_units = ?,fee.assessed_fee = ?
+                      WHERE info.stud_id = ?";
+    $stmtUpdateAll = $con->prepare($sqlUpdateAll);
+    $stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$student_number);
+
+    if($stmtUpdateAll->execute()) {
+
+      
+      $act = 'Update student details of '. $student_number . ' - ' . $fullname;
+      audit($empId,'Registrar',$empName,$act);
+      $response['status'] = 'success';
+      $response['message'] = 'Successfully Updated';
+    } else{
+      $response['status'] = 'error';
+      $response['message'] = 'Failed to update!';
+      
     }
   }else{
-    if($stud_discount != 'N/A'){
-      $sqlGetDisc = "SELECT * FROM `tbl_discount` WHERE discount_type = ?";
-        $stmtGetDisc = $con->prepare($sqlGetDisc);
-        $stmtGetDisc->bind_param('s',$stud_discount);
-        $stmtGetDisc->execute();
-        $resGetDisc = $stmtGetDisc->get_result();
-        $rowGetDisc  = $resGetDisc->fetch_assoc();
-        $balance = (($stud_fee * (100 - $rowGetDisc['discount_percent'])/  100));
-    }else{
-      $balance = $stud_fee;
-    }
-    
-    $remarks = 'Not Fully Paid';
-      $studScholarType = 'N/A';
+    $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
+    $sqlUpdate = "UPDATE `tbl_student_info` AS info 
+            INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
+            INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
+              SET 
+              info.firstname = ?,info.lastname = ?,info.middlename = ?,
+              det.LRN = ?,det.stud_type = ?,fee.fullname = ?
+              WHERE info.stud_id = ?";
+        $stmtUpdate = $con->prepare($sqlUpdate);
+        $stmtUpdate->bind_param('sssssss', $stud_firstname, $stud_lastname, $stud_middlename,$stud_lrn,$stud_status,$fullname,$student_number);
+
+        if($stmtUpdate->execute()) {
+        $act = 'Update student details of '. $student_number . ' - ' . $fullname;
+        audit($empId,'Registrar',$empName,$act);
+        $response['status'] = 'success';
+        $response['message'] = 'Successfully Updated';
+        } else{
+        $response['status'] = 'error';
+        $response['message'] = 'Failed to update!';
+        }
+        // $response ='hello';
   }
 
-  $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
-  $program_major = $stud_program.'-'.$stud_major;
-$sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
-                INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
-                INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
-                  SET 
-                  info.firstname = ?,info.lastname = ?,info.middlename = ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
-                  det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?,fee.lab_units = ?,fee.lec_units = ?,fee.assessed_fee = ?
-                  WHERE info.stud_id = ?";
-$stmtUpdateAll = $con->prepare($sqlUpdateAll);
-$stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$student_number);
-
-if($stmtUpdateAll->execute()) {
-
-  
-  $act = 'Update student details of '. $student_number . ' - ' . $fullname;
-  audit($empId,'Registrar',$empName,$act);
-  $response['status'] = 'success';
-  $response['message'] = 'Successfully Updated';
-} else{
-  $response['status'] = 'error';
-  $response['message'] = 'Failed to update!';
-  
-}
-echo json_encode($response);
+  echo json_encode($response);
 }
 if(isset($_POST['delete'])){
   $id = $_POST['id'];

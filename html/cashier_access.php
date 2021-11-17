@@ -90,8 +90,7 @@ include_once '../connection/Config.php';
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
           </div>
           <div class="modal-body">
-            <h4>Good day <strong><?= $_SESSION['fullname']?></strong> as of today, you are already generated a report.
-            You can't transact payment as of now. See you tomorrow!</h4>
+            <h4>Good day <strong><?= $_SESSION['fullname']?></strong> Please create your report so that you can logout.</h4>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="bannerOk">Ok</button>
