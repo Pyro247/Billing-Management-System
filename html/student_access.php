@@ -211,6 +211,7 @@
 
                         <div class="dashBoardBox remainingBal">
                             <i class="fas fa-wallet"></i>
+                            <span><?=$rowStud['remarks'];?></span>
                             <h1>₱ <?=$rowStud['balance'];?></h1>
                             <h3>Remaining Balance</h3>
                         </div>
