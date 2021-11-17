@@ -1024,7 +1024,7 @@ include_once '../connection/Config.php';
                     <label for="filterByRemarks" style="color: black">Filter by Remarks:</label>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <!-- <div class="col-md-4">
                   <div class="form-floating">
                     <select class="form-select" id="" aria-label="Floating label select example">
                             <option value="" selected></option>
@@ -1032,15 +1032,15 @@ include_once '../connection/Config.php';
                     </select>
                     <label for="filterByRemarks" style="color: black">Select Due Date:</label>
                   </div>
-                </div>
-                <div class="col-md-2">
+                </div> -->
+                <!-- <div class="col-md-2">
                 <input type="checkbox" class="btn-check" id="btn-check-2-outlined" autocomplete="off">
                   <label class="btn btn-outline-success pt-3  " for="btn-check-2-outlined" style="height: 100%; width: 100%;">Past Due</label><br>
 
                 </div>
                 <div class="col-md-2">
                   <button class="btn btn-outline-primary" style="height: 100%; width: 100%; color: var(--secondary)">Post e-bill</button>
-                </div>
+                </div> -->
                 </div>
 
 
