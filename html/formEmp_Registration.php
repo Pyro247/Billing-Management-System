@@ -265,7 +265,7 @@
                     })
                 }else if( $('#msg').text() != ''){
                     Swal.fire({
-                        title: 'Email is exist',
+                        title: 'Email is already taken',
                         icon: 'warning',
                         confirmButtonText: 'OK'
                 })

@@ -269,7 +269,7 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
                                     <?php if($data['status'] == 'Pending'){?>
-                                        <td class="text-success text-uppercase fw-bold"><?=$data['status'];?></td>
+                                        <td class="text-info text-uppercase fw-bold"><?=$data['status'];?></td>
                                     <?php }else{ ?>
                                         <td class="text-danger text-uppercase fw-bold"><?=$data['status'];?>
                                         </td>
@@ -644,7 +644,16 @@
                                     <td><?=$data['payment'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
                                     <td><?=$data['cashier_name'];?></td>
-                                    <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+
+                                    <?php if($data['payment_status'] == 'Denied'){?>
+                                        <td class="text-danger text-uppercase fw-bold"><?=$data['payment_status'];?></td>
+                                    <?php }else{ ?>
+                                        <td class="text-success text-uppercase fw-bold"><?=$data['payment_status'];?>
+                                        </td>
+                                    <?php }?>
+                                
+                                   
+                                    
                                     
                                 </tr>
                         <?php }?>
