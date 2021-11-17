@@ -194,13 +194,14 @@
 //    && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()
   if(  $stmtStudInfo->execute() && $stmtStudFee->execute() && $stmtDetails->execute() ) {
     
+    
     $act = 'Add new student '. $student_number . ' - ' . $fullname;
     audit($empId,'Registrar',$empName,$act);
     $response['status'] = 'success';
     $response['message'] = 'Successfully saved';
   } else{
     $response['status'] = 'error';
-    $response['message'] = 'Failed to save!';
+    $response['message'] = 'Failed to save';
   }
 //  
   echo  json_encode($response);
@@ -346,7 +347,7 @@ if(isset($_POST['update'])){
       $response['message'] = 'Successfully Updated';
     } else{
       $response['status'] = 'error';
-      $response['message'] = 'Failed to update!';
+      $response['message'] = 'Failed to update';
       
     }
   }else{
@@ -368,7 +369,7 @@ if(isset($_POST['update'])){
         $response['message'] = 'Successfully Updated';
         } else{
         $response['status'] = 'error';
-        $response['message'] = 'Failed to update!';
+        $response['message'] = 'Failed to update';
         }
         // $response ='hello';
   }
@@ -391,7 +392,7 @@ if(isset($_POST['delete'])){
     $response['message'] = 'Successfully Deleted';
   }else{
     $response['status'] = 'error';
-    $response['message'] = 'Failed Added';
+    $response['message'] = 'Fail to add';
   }
   echo json_encode($response);
 }
