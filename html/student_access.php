@@ -269,7 +269,7 @@
                                     <td><?=$data['amount'];?></td>
                                     <td><?=$data['transaction_date'];?></td>
                                     <?php if($data['status'] == 'Pending'){?>
-                                        <td class="text-info text-uppercase fw-bold"><?=$data['status'];?></td>
+                                        <td class="text-success text-uppercase fw-bold"><?=$data['status'];?></td>
                                     <?php }else{ ?>
                                         <td class="text-danger text-uppercase fw-bold"><?=$data['status'];?>
                                         </td>
