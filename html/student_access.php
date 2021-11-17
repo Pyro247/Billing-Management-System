@@ -205,8 +205,8 @@
                     <div class="dashBoardBox lastPaid">
                             <i class="far fa-clock"></i>
                             <span><?= $date?></span>
-                            <h1>₱ <?= $amount?></h1>
-                            <h3>Last Amount Paid</h3>
+                            <h1>₱ <?=$rowStud['total_amount_paid'];?></h1>
+                            <h3>Total Amount Paid</h3>
                         </div>
 
                         <div class="dashBoardBox remainingBal">
