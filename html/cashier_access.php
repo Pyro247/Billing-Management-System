@@ -556,16 +556,16 @@ include_once '../connection/Config.php';
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput">Total Amount Paid</span>
+                        <span class="input-group-text beforeInput" >Discount Deduction</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="studTotalAmountPaid" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="discountDeduction" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
                       <div class="input-group mb-2">
-                        <span class="input-group-text beforeInput" >Discount Deduction</span>
+                        <span class="input-group-text beforeInput">Total Amount Paid</span>
                         <span class="input-group-text">₱</span>
-                        <input type="text" class="form-control w-auto" id="discountDeduction" placeholder="0.00" disabled>
+                        <input type="text" class="form-control w-auto" id="studTotalAmountPaid" placeholder="0.00" disabled>
                       </div>  
                     </div>
                     <div class="col">
