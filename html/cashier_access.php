@@ -900,22 +900,22 @@ include_once '../connection/Config.php';
                     <div class="modal-body">
                       <form action="">
                       <div class="col">
+                        <label class="sr-only" for="StudProgram">Cashier name:</label>
+                          <div class="input-group mb-2">
+                              <div class="input-group-prepend">
+                                <div class="input-group-text beforeInput">Cashier name</div>
+                              </div>
+                            <input type="text" class="form-control w-auto" id="gencashierId" disabled
+                            value="<?= $_SESSION['fullname'] ?>">
+                          </div>
+                      </div>
+                      <div class="col">
                         <label class="sr-only" for="StudProgram">Cashier ID:</label>
                           <div class="input-group mb-2">
                               <div class="input-group-prepend">
                                 <div class="input-group-text beforeInput">Cashier ID</div>
                               </div>
-                            <input type="text" class="form-control w-auto" id="gencashierId" disabled
-                            value="<?= $_SESSION['employeeId'] ?>">
-                          </div>
-                      </div>
-                      <div class="col">
-                        <label class="sr-only" for="StudProgram">Cashier Name:</label>
-                          <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text beforeInput">Cashier Name</div>
-                              </div>
-                            <input type="text" class="form-control w-auto" id="gencashierName" disabled value="<?= $_SESSION['fullname'] ?>">
+                            <input type="text" class="form-control w-auto" id="gencashierName" disabled value="<?= $_SESSION['employeeId'] ?>">
                           </div>
                       </div>
                       <div class="col">
