@@ -386,6 +386,7 @@
                     </div>
                 </div>
                 </div>
+
             <!-- PAYMENT application -->
             <div class="tab-pane fade" id="v-pills-payment-application" role="tabpanel" aria-labelledby="v-pills-payment-application">
                 <p class="title_tab_universal my-3">Payment Application</p>
@@ -529,9 +530,17 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text d-inline-block">₱</span>
                                         </div>
-                                        <input type="number" class="form-control" name="amount" id="requestAmount" placeholder="0.00">
+                                        <input type="number" class="form-control" name="amount" id="requestAmount" placeholder="0.00" onkeypress="return onlyNumberKey(event)" />
                                         <span class="input-group-text text-success"><i class="fas fa-credit-card"></i>&nbsp;<strong>Online</strong></span>
-                                        
+                                        <script>
+                                            function onlyNumberKey(evt) {
+                                                // Only ASCII character in that range allowed
+                                                var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+                                                if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+                                                    return false;
+                                                return true;
+                                            }
+                                        </script>
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -747,6 +756,18 @@
                     formData.append('submitRequest', 'submitRequest');
                     if(amount.value == ''){
                         amount.focus();
+                    }else if(amount.value > <?=$rowStud['balance'];?>){
+                        Swal.fire(
+                            'Check amount',
+                            'Your payment is greater than your remaining balance',
+                            'warning'
+                            )
+                    }else if(amount.value <= 0){
+                        Swal.fire(
+                            'Check amount',
+                            'Please enter value greater than 0',
+                            'warning'
+                        )
                     }else if(date.value == ''){
                         date.focus();
                     }else if(paymentGateway.value == ''){
