@@ -906,7 +906,7 @@ include_once '../connection/Config.php';
                                 <div class="input-group-text beforeInput">Cashier ID</div>
                               </div>
                             <input type="text" class="form-control w-auto" id="gencashierId" disabled
-                            value="<?= $_SESSION['fullname'] ?>">
+                            value="<?= $_SESSION['employeeId'] ?>">
                           </div>
                       </div>
                       <div class="col">
@@ -915,7 +915,7 @@ include_once '../connection/Config.php';
                               <div class="input-group-prepend">
                                 <div class="input-group-text beforeInput">Cashier Name</div>
                               </div>
-                            <input type="text" class="form-control w-auto" id="gencashierName" disabled value="<?= $_SESSION['employeeId'] ?>">
+                            <input type="text" class="form-control w-auto" id="gencashierName" disabled value="<?= $_SESSION['fullname'] ?>">
                           </div>
                       </div>
                       <div class="col">
