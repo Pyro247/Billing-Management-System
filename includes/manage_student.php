@@ -201,7 +201,7 @@
     $response['message'] = 'Successfully saved';
   } else{
     $response['status'] = 'error';
-    $response['message'] = 'Failed to save';
+    $response['message'] = 'Student ID Already Exist';
   }
 //  
   echo  json_encode($response);
