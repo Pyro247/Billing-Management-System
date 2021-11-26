@@ -1056,6 +1056,19 @@
                           <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
                           <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
                           <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
+                          <script type="text/javascript">
+                            const popUpArchiveAdmin = document.querySelector('.popUpArchive')
+                            const popUpinnerAdmin = document.querySelector('.popUpArchiveinner')
+
+
+                                document.querySelector('#empArchive').addEventListener("click", function(){
+                                  popUpArchive.style.visibility = "visible"
+                                    popUpArchive.style.opacity = "1"
+                                    popUpinner.classList.toggle('animate__animated')
+                                    popUpinner.classList.toggle('animate__bounceIn')
+                                })
+
+                          </script>
                           <button type="button" name="" class="btn btn-secondary" id="btncancel" disabled>Cancel</button>
                         </div> 
                       </div>
