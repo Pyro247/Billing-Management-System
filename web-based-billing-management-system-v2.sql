@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 09:50 PM
--- Server version: 10.4.19-MariaDB
--- PHP Version: 7.4.20
+-- Generation Time: Nov 26, 2021 at 04:42 AM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -199,7 +199,38 @@ INSERT INTO `tbl_audit_logs` (`id`, `user_id`, `role`, `username`, `activity`, `
 (83, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-16 04:41:58'),
 (84, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-16 04:48:20'),
 (85, 2018301301, 'Student', 'Michael Isla', 'Login', '2021-11-16 04:48:45'),
-(86, 2018301301, 'Student', 'Michael Isla', 'Logout', '2021-11-16 04:49:45');
+(86, 2018301301, 'Student', 'Michael Isla', 'Logout', '2021-11-16 04:49:45'),
+(87, 102101, 'Admin', 'Admin', 'Login', '2021-11-26 10:23:14'),
+(88, 102101, 'Admin', 'Admin', 'Update employee details of 102102 - Merry Anne Villamo', '2021-11-26 10:31:16'),
+(89, 102101, 'Admin', 'Admin', 'Login', '2021-11-26 10:51:52'),
+(90, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 10:56:59'),
+(91, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 10:57:55'),
+(92, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 10:59:14'),
+(93, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 10:59:57'),
+(94, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 11:08:32'),
+(95, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 11:10:53'),
+(96, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 11:13:21'),
+(97, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 11:14:26'),
+(98, 102101, 'Admin', 'Admin', 'Add new employee 261121 - Mike Isla', '2021-11-26 11:17:34'),
+(99, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:22:57'),
+(100, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:23:22'),
+(101, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:23:28'),
+(102, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:23:50'),
+(103, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:28:45'),
+(104, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:28:51'),
+(105, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:32:58'),
+(106, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:33:06'),
+(107, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:33:37'),
+(108, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:33:41'),
+(109, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:34:33'),
+(110, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:34:56'),
+(111, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:35:43'),
+(112, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:35:48'),
+(113, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:35:57'),
+(114, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:36:04'),
+(115, 102101, 'Admin', 'Admin', 'Update employee details of 261121 - Mike Isla', '2021-11-26 11:37:46'),
+(116, 102101, 'Admin', 'Admin', 'Update employee details of 102102 - Merry Anne Villamo', '2021-11-26 11:37:51'),
+(117, 102101, 'Admin', 'Admin', 'Update employee details of 102102 - Merry Anne Villamo', '2021-11-26 11:37:55');
 
 -- --------------------------------------------------------
 
@@ -297,6 +328,7 @@ INSERT INTO `tbl_discount` (`discount_type`, `discount_percent`) VALUES
 
 CREATE TABLE `tbl_employee_info` (
   `reg_no` varchar(255) NOT NULL,
+  `profilePic` longtext NOT NULL,
   `employee_id` int(20) NOT NULL,
   `role` varchar(20) NOT NULL,
   `firstname` varchar(100) NOT NULL,
@@ -314,10 +346,11 @@ CREATE TABLE `tbl_employee_info` (
 -- Dumping data for table `tbl_employee_info`
 --
 
-INSERT INTO `tbl_employee_info` (`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES
-('20211', 102101, 'Admin', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', '2021-11-01', 'November 1, 2021, 8:08 pm'),
-('202112', 102102, 'Registrar', 'Merry Anne', 'Villamo', 'C', 'female', 'merryannevillano16@gmail.com', 'Tarlac City', '09307078204', '2018-06-12', 'November 5, 2021, 4:59 am'),
-('2021113', 102103, 'Cashier', 'Justine Dave', 'Delos Reyes', 'A', 'male', 'justine@gmail.com', 'Tarlac City', '09307078204', '2020-06-12', 'November 5, 2021, 5:00 am');
+INSERT INTO `tbl_employee_info` (`reg_no`, `profilePic`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES
+('20211', '', 102101, 'Admin', 'Admin', 'Admin', 'Admin', 'male', 'admin@gmail.com', 'San Roque, San Jacinto, Pangasinan', '09307078204', '2021-11-01', 'November 1, 2021, 8:08 pm'),
+('202112', '', 102102, 'Registrar', 'Merry Anne', 'Villamo', 'C', 'female', 'merryannevillano16@gmail.com', 'Tarlac City', '09307078204', '2018-06-12', 'November 5, 2021, 4:59 am'),
+('2021113', '', 102103, 'Cashier', 'Justine Dave', 'Delos Reyes', 'A', 'male', 'justine@gmail.com', 'Tarlac City', '09307078204', '2020-06-12', 'November 5, 2021, 5:00 am'),
+('', 'sven-mieke-MsCgmHuirDo-unsplash.jpg', 261121, 'Registrar', 'Mike', 'Isla', 'E', 'N/A', '', '', '', '2021-11-26', '');
 
 -- --------------------------------------------------------
 
@@ -625,7 +658,7 @@ ALTER TABLE `tbl_student_info`
 -- AUTO_INCREMENT for table `tbl_audit_logs`
 --
 ALTER TABLE `tbl_audit_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=87;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

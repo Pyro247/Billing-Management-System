@@ -894,12 +894,13 @@
                 <div class="tab-pane fade mt-2 manage__stud-emp-all-tab" id="employees" role="tabpanel" aria-labelledby="employees-tab">
                   <p class="role_information" style="color: var(--secondary)">Employee's Information</p>
 
-                  <form method="post" class="universalForm_two" id="empForm">
+                  <form method="post" class="universalForm_two" id="empForm" enctype="multipart/form-data">
                     <div class="manage_users_universal_tab_lmr_parent">
                       <!-- Profile Picture -->
                       <div class="manage_users_universal_left_tab">
-                        <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="...">
-                        <button type="button" class="btn btn-primary my-2">Change Image</button>
+                        <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="..." id="previewProfileEmp" style="width:300px;height:350px;">
+                        <button type="button" class="btn btn-primary my-2" id="changeImageEmp" disabled>Change Image</button>
+                        <input  type="file"  class="btn btn-primary my-2 w-100" id="imageEmp" accept="image/*" name="imageEmp" onchange="previewImage();" hidden >
                       </div>
                       <!-- Emoployee Details -->
                       <div class="manage_users_universal_mid_tab px-1">
@@ -2553,8 +2554,8 @@
       <!-- Script For Manage User-Employee Admin Access -->
       <script>
         let allData = '%'
-        let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empHireDate']
-        let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo','empHireDate']
+        let partialfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empHireDate','changeImageEmp']
+        let allfields = ['empRole','empId','empFirstname','empMiddlename','empLastname','empSex','empAddress','empEmail','empContactNo','empHireDate','changeImageEmp']
         // Mange User Clicked
         $('#v-pills-manage-users-tab').click(function (e) { 
           e.preventDefault();
@@ -2583,7 +2584,10 @@
         $("#empSave").click(function (e) { 
           e.preventDefault();
           if($('#empSave').text() == 'Update'){
-            let updateEmp = $('#empForm').serialize() + '&updateEmp=updateEmp';
+            // let updateEmp = $('#empForm').serialize() + '&updateEmp=updateEmp';
+            let updateEmp = new FormData(document.getElementById('empForm'))
+            updateEmp.append('updateEmp', 'updateEmp');
+            
             empActions(updateEmp);
             $('#empSave').text('Save');
             empFieldsAttr(allfields,true)
@@ -2607,11 +2611,14 @@
             }else if($('#empHireDate').val() == ''){
               $('#empHireDate').focus()
             }else{
-              let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
+              // let newEmp = $('#empForm').serialize() + '&newEmp=newEmp';
+              let newEmp = new FormData(document.getElementById('empForm'))
+              newEmp.append('newEmp', 'newEmp');
               empActions(newEmp);
               empFieldsAttr(partialfields,true)
               $("#empAdd").prop("disabled", false);
               $("#empSave").prop("disabled", true);
+
             }
             
           }
@@ -2645,7 +2652,12 @@
                 $("#empHireDate").val(data.hiredate);
                 $("input[name='emp_email']").val(data.email);
                 $("input[name='emp_contact_number']").val(data.contact_number);
-                
+                if(data.profilePic == ''){
+                  document.getElementById("previewProfileEmp").setAttribute("src",  '../images/registrar_img/sample_employee_pic.png' );
+                }else{
+                  document.getElementById("previewProfileEmp").setAttribute("src",  '../profilePics/' + data.profilePic );
+                }
+               
               },
               complete: function () { 
                 loaderClose() 
@@ -2681,6 +2693,8 @@
             type: "POST",
             url: "../includes/manage_employee.php",
             data: formData,
+            contentType: false,
+            processData:false,
             beforeSend: function () {
               loaderOpen()  
             },
@@ -2692,6 +2706,7 @@
                       confirmButtonText: 'Ok'
               })
               if(response.status == 'success'){
+                document.getElementById("previewProfileEmp").src = "../images/registrar_img/sample_employee_pic.png";
                 $('#empForm').trigger('reset');
                 viewEmployee(allData)
               }
@@ -3376,7 +3391,27 @@
           $("#totalStud").click();
         });
       </script>
-
+      <script>
+        $(document).ready(function () {
+          $('#changeImageEmp').click(function (e) { 
+            e.preventDefault();
+            document.getElementById('imageEmp').click();
+          });
+        });
+         function previewImage() {
+                let file = document.getElementById("imageEmp").files;
+                if (file.length > 0) {
+                    var fileReader = new FileReader();
+        
+                    fileReader.onload = function (event) {
+                        document.getElementById("previewProfileEmp").setAttribute("src", event.target.result);
+                        // document.getElementById("preview").style.display = "block";
+                    };
+        
+                    fileReader.readAsDataURL(file[0]);
+                }
+            }
+      </script>
 
 
 

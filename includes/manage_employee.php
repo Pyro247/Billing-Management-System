@@ -12,13 +12,16 @@
     $emp_middlename = $_POST['emp_middlename'];
     $emp_lastname = $_POST['emp_lastname'];
     $empHire = $_POST['empHireDate'];
+    $file =$_FILES['imageEmp']['name'];
+    $target_dir = '../profilePics/';
   }
 
   if(isset($_POST['newEmp'])){
-    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`reg_no`, `employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES ('',?,?,?,?,?,'','','','',?,'')";  
+    $sqlNewEmp = "INSERT INTO `tbl_employee_info`(`reg_no`,`profilePic`,`employee_id`, `role`, `firstname`, `lastname`, `middlename`, `sex`, `email`, `address`, `contact_number`, `hireDate`, `joined_date`) VALUES ('',?,?,?,?,?,?,'','','','',?,'')";  
     $stmtNewEmp = $con->prepare($sqlNewEmp);
-    $stmtNewEmp->bind_param('ssssss',$emp_id,$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$empHire);
+    $stmtNewEmp->bind_param('sssssss',$file,$emp_id,$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$empHire);
     if($stmtNewEmp->execute()){
+      move_uploaded_file($_FILES['imageEmp']['tmp_name'], $target_dir.$file);
       $response['status'] = 'success';
       $response['message'] = 'Successfully saved';
     }else{
@@ -49,6 +52,7 @@
     $data['address'] = $rowGetEmp['address'];
     $data['contact_number'] = $rowGetEmp['contact_number'];
     $data['hiredate'] = $rowGetEmp['hireDate'];
+    $data['profilePic'] = $rowGetEmp['profilePic'];
     echo json_encode($data);
   }
   if(isset($_POST['updateEmp'])){
@@ -56,11 +60,18 @@
     $emp_address = $_POST['emp_address'];
     $emp_email = $_POST['emp_email'];
     $emp_contact_number = $_POST['emp_contact_number'];
-
-    $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ? WHERE employee_id = ? ";  
-    $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);
-    $stmtUpdateEmp->bind_param('ssssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$empHire,$emp_id);
+    if($file == ''){
+      $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ? WHERE employee_id = ? ";  
+      $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);
+      $stmtUpdateEmp->bind_param('ssssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$empHire,$emp_id);
+    }else{
+      $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ?,`profilePic` = ? WHERE employee_id = ? ";  
+        $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);
+        $stmtUpdateEmp->bind_param('sssssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$empHire,$file,$emp_id);
+    }
+    
     if($stmtUpdateEmp->execute()){
+      move_uploaded_file($_FILES['imageEmp']['tmp_name'], $target_dir.$file);
       $response['status'] = 'success';
       $response['message'] = 'Successfully Updated';
     }else{

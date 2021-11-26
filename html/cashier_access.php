@@ -1712,7 +1712,16 @@ include_once '../connection/Config.php';
         // });
       $('#genReportBtn').click(function (e) { 
         e.preventDefault();
-        $('#genReportAuth').modal('show'); 
+        const totalTransactionCount =document.getElementById('totalTransactionCount')
+        if(totalTransactionCount.innerText == '0'){
+            Swal.fire(
+              'No Transaction',
+              '',
+              'info'
+            )
+        }else{
+            $('#genReportAuth').modal('show');  
+        }
       });
       $('#genReportAuthForm').submit(function (e) { 
         e.preventDefault();
