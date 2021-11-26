@@ -71,7 +71,7 @@
         <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end"></i>
         <p class="text-primary d-block text-center mt-5" >Choose Archive Reason</p>
         
-          <form action="">
+          <form action="" id="archiveForRegistrar">
             <div class="innerFormArchive">
               <input type="radio" class="btn-check" name="condition" id="graduate" value="Graduate" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="graduate">Graduate</label>
@@ -87,6 +87,23 @@
             </div>
               <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
+
+          <form action="" id="archiveForAdmin">
+            <div class="innerFormArchive">
+              <input type="radio" class="btn-check" name="condition" id="resignPopUp" value="resigned" autocomplete="off">
+              <label class="btn btn-outline-primary mx-1" for="resignPopUp">Resigned</label>
+
+              <input type="radio" class="btn-check" name="condition" id="transferPopUp" value="terminated" autocomplete="off">
+              <label class="btn btn-outline-primary mx-1" for="transferPopUp">Terminated</label>
+
+              <input type="radio" class="btn-check" name="condition" id="changePositionPopUp" value="changeposition" autocomplete="off">
+              <label class="btn btn-outline-primary mx-1" for="changePositionPopUp">Changed Position</label>
+
+            </div>
+              <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+          </form>
+
+
         </div>
       </div>
 
@@ -1244,6 +1261,7 @@
                           <option value="Graduated" selected>Graduate</option>
                           <option value="Dropout">Dropout</option>
                           <option value="Transfer">Transfer</option>
+                          <option value="Transfer">Discontinue</option>
                         </select>
                         <label for="floatingSelect" style="color: black">Condition</label>
                       </div>
@@ -1266,9 +1284,9 @@
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option value="" selected>All</option>
-                          <option value="resign">Resign</option>
+                          <option value="resigned">Resigned</option>
                           <option value="terminated">Terminated</option>
-                          <option value="changeposition">Change Position</option>
+                          <option value="changeposition">Changed Position</option>
                         </select>
                         <label for="floatingSelect" style="color: black">Student Status</label>
                       </div>
@@ -1319,6 +1337,27 @@
                   <hr>
                   
                     <table id="archiveTable" class="table" style="color: var(--white)">
+                        <thead class="thead-light">
+                          <tr>
+                            <th scope="col">ID number</th>
+                            <th scope="col">First name</th>
+                            <th scope="col">Last name</th>
+                            <th scope="col">Year Level</th>
+                            <th scope="col">Program and Major</th>
+                            <th scope="col">Student Status</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Condition</th>
+                            <th scope="col">Date Archived</th>
+
+                            
+                          </tr>
+                        </thead>
+                        <tbody id="registrarArchive">
+                        
+                        </tbody>
+                      </table>
+
+                      <table id="archiveTableForAdmin" class="table" style="color: var(--white)">
                         <thead class="thead-light">
                           <tr>
                             <th scope="col">ID number</th>
@@ -1586,25 +1625,72 @@
               </div>
 
               <div class="col dashboardBox">
-                <table class="table" style="color: var(--white)">
-                  <thead>
-                    <tr>
-                      <th scope="col">Course ID</th>
-                      <th scope="col">Program</th>
-                      <th scope="col">Major</th>
-                      <th scope="col">Year Level</th>
-                      <th scope="col">Duration</th>
-                      <th scope="col">Semester</th>
-                      <th scope="col">Lab Fee/Unit</th>
-                      <th scope="col">Lec Fee/Unit</th>
-                      <th scope="col">Other Fee</th>
-                      <th scope="col">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody id="viewAvaibleProgram">
+                <span style="color: var(--greenPrimary); font-size: 1.8rem; font-weight: bold" class="d-block">Academic Year 2021-2022</span>
 
-                  </tbody>
-                </table>
+
+                <ul class="nav nav-pills mt-3 mb-2" id="pills-tab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-success active" id="fees-toggle-tab" data-bs-toggle="pill" data-bs-target="#feesTab__" type="button" role="tab" aria-controls="fees-toggle-tab" aria-selected="true" style="min-width:150px">Fees</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-success" id="scholarship-toggle-tab" data-bs-toggle="pill" data-bs-target="#scholarshipTab__" type="button" role="tab" aria-controls="pills-scholarship-tab" aria-selected="false" style="min-width:150px; margin: 0 10px 0 10px">Scholarship</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="btn btn-outline-success" id="discount-toggle-tab" data-bs-toggle="pill" data-bs-target="#discountTab__" type="button" role="tab" aria-controls="pills-discount-tab" aria-selected="false" style="min-width:150px">Discount</button>
+                  </li>
+                </ul>
+
+                  
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="feesTab__" role="tabpanel" aria-labelledby="pills-fees-tab">
+                      <table class="table" style="color: var(--white)">
+                        <thead>
+                          <tr>
+                            <th scope="col">Course ID</th>
+                            <th scope="col">Program</th>
+                            <th scope="col">Major</th>
+                            <th scope="col">Year Level</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Lab Fee/Unit</th>
+                            <th scope="col">Lec Fee/Unit</th>
+                            <th scope="col">Other Fee</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
+                        <tbody id="viewAvaibleProgram">
+                        </tbody>
+                      </table>
+                    </div>
+              
+                    <div class="tab-pane fade" id="scholarshipTab__" role="tabpanel" aria-labelledby="pills-scholarship-tab">
+                      <table class="table" style="color: var(--white)">
+                        <thead>
+                          <tr>
+                            <th scope="col">Scholarship Description</th>
+                            <th scope="col">Scholarship Type</th>
+                            <th scope="col">Percent</th>
+                          </tr>
+                        </thead>
+                        <tbody id="">
+                        </tbody>
+                      </table>
+                    </div>
+              
+
+                    <div class="tab-pane fade" id="discountTab__" role="tabpanel" aria-labelledby="pills-discount-tab">
+                      <table class="table" style="color: var(--white)">
+                        <thead>
+                          <tr>
+                            <th scope="col">Discount Description</th>
+                            <th scope="col">Percent</th>
+                          </tr>
+                        </thead>
+                        <tbody id="">
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
               </div>
             </div>
 
@@ -1614,12 +1700,18 @@
                 const childContainerPopUpForAdmin = document.getElementsByClassName('popUpFeesMgmtinner')
                 const buttonsAdmin = document.getElementsByClassName('feesMgmt_btn')
                 const closeBtnPopUp = document.getElementsByClassName('closeBtnPopUp')
+                const feesManagementChangeTab = document.getElementsByClassName('feesManagementChangeTab')
 
                 function popUpAdmin_SchoolFees(counter){
                   parentContainerPopUpForAdmin[counter].style.visibility = "visible"
                   parentContainerPopUpForAdmin[counter].style.opacity = "1"
                   childContainerPopUpForAdmin[counter].classList.toggle('animate__animated')
                   childContainerPopUpForAdmin[counter].classList.toggle('animate__bounceIn')
+                }
+
+                function changeTab(tab_index){
+                  feesManagementChangeTab[tab_index].style.visibility ="visible";
+                  feesManagementChangeTab[tab_index].style.opacity = "1"
                 }
 
                 function closePopUp(index){
@@ -1652,6 +1744,7 @@
                       <th scope="col">Role</th> 
                       <th scope="col">Username</th>
                       <th scope="col">Activity Made</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Date/Time</th>
                     </tr>
                   </thead>
@@ -1669,6 +1762,8 @@
                       <td><?= $rowViewAudit['role']?></td>
                       <td><?= $rowViewAudit['username']?></td>
                       <td><?= $rowViewAudit['activity']?></td>
+                      
+                      <td></td>
                       <td><?= $rowViewAudit['date_time']?></td>
                     </tr>
                     <?php }?>
@@ -3225,6 +3320,8 @@
               document.querySelector('#v-pills-student-audit-log-tab').style.display="none"
               document.querySelector('#conditionForAdmin').style.display="none"
               document.querySelector('#employeeRoleForAdmin').style.display="none"
+              document.querySelector('#archiveTableForAdmin').style.display="none"
+              document.querySelector('#archiveForAdmin').style.display="none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"
@@ -3236,6 +3333,8 @@
               document.querySelector('.dashBoardForRegistrar').style.display = "none"
               document.querySelector('#conditionForRegistrar').style.display="none"
               document.querySelector('#studentStatusForRegistrar').style.display="none"
+              document.querySelector('#archiveTable').style.display="none"
+              document.querySelector('#archiveForRegistrar').style.display="none"
               
             }
 
