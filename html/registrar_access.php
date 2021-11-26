@@ -87,8 +87,8 @@
             </div>
               <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
-
-          <form action="" id="archiveForAdmin">
+                
+      <form action="" id="archiveForAdmin">
             <div class="innerFormArchive">
               <input type="radio" class="btn-check" name="condition" id="resignPopUp" value="resigned" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="resignPopUp">Resigned</label>
@@ -102,10 +102,10 @@
             </div>
               <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
-
-
         </div>
       </div>
+
+
 
     <!-- Add School Year -->
     <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
