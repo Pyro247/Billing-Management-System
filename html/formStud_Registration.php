@@ -197,7 +197,7 @@
                         <select class="form-select col-2" id="academicYear" name="currSchoolYr" required>
                             <option hidden>School Year</option>
                             <?php 
-                                $sqlYear = "SELECT DISTINCT academic_year FROM tbl_academic_year";
+                                $sqlYear = "SELECT * FROM tbl_academic_year ORDER BY `academic_year` DESC LIMIT 1";
                                 $stmtYear = $con->prepare($sqlYear);
                                 $stmtYear->execute();
                                 $resYear = $stmtYear->get_result();

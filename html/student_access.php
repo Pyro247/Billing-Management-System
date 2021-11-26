@@ -15,6 +15,15 @@
             $resStud = $stmtStud->get_result(); 
             $rowStud = $resStud->fetch_assoc();
 
+            $sqlPic ="SELECT *
+                        FROM tbl_student_info
+                        WHERE stud_id = ?";
+            $stmtPic = $con->prepare($sqlPic);
+            $stmtPic->bind_param('s', $_SESSION['stud_id']);
+            $stmtPic->execute();
+            $resPic = $stmtPic->get_result(); 
+            $rowPic = $resPic->fetch_assoc();
+
             $sqlLatestPaidDate ="SELECT  amount, transaction_date
                                 FROM tbl_payments WHERE stud_id = ? 
                                 ORDER BY transaction_date DESC LIMIT 1";
@@ -143,8 +152,12 @@
         <div class="col left-tab">
         <img src="../images/logo.png" class="logoLeftTab" alt="">
             <div class="upper-left-tab">
-              
-                <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+                <?php if($rowPic['profilePic'] == ''){?>
+                     <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+                <?php }else{?>
+                    <img src="../profilePics/<?php echo $rowPic['profilePic'];?>" alt="">
+                <?php }?>
+               
                 <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()"></i></p>
                         <div class="profile_link" id="profile_link_id">
                             <a href="">My Email</a>

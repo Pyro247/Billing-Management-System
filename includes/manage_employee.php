@@ -60,10 +60,11 @@
     $emp_address = $_POST['emp_address'];
     $emp_email = $_POST['emp_email'];
     $emp_contact_number = $_POST['emp_contact_number'];
-    if($file == ''){
+    if($_FILES['imageEmp']['size'] == 0 && $_FILES['imageEmp']['error'] == 0){
       $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ? WHERE employee_id = ? ";  
       $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);
       $stmtUpdateEmp->bind_param('ssssssssss',$emp_role,$emp_firstname,$emp_lastname,$emp_middlename,$emp_sex,$emp_email,$emp_address,$emp_contact_number,$empHire,$emp_id);
+      
     }else{
       $sqlUpdateEmp = "UPDATE `tbl_employee_info` SET `role`= ?,`firstname`= ? ,`lastname`= ? ,`middlename`= ?,`sex`= ? ,`email`= ? ,`address`= ?,`contact_number`= ?,`hireDate` = ?,`profilePic` = ? WHERE employee_id = ? ";  
         $stmtUpdateEmp = $con->prepare($sqlUpdateEmp);

@@ -79,6 +79,8 @@
         $stud_fee =$_POST['stud_feeTotal'];
         $empId = $_POST['empId'];
         $empName = $_POST['empName'];
+        $file =$_FILES['imageStud']['name'];
+        $target_dir = '../profilePics/';
         
         
          $stud_school_year = $_POST['stud_school_year'] ?? '';
@@ -127,9 +129,9 @@
     $rowGetProgId = $resGetProgId->fetch_assoc();
     $course_id = $rowGetProgId['program_id'];
     //Inserting Data to Student Info
-    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`reg_no`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES ('',?,?,?,?,'','','','','',?,?)";
+    $sqlStudInfo = "INSERT INTO `tbl_student_info`(`reg_no`,`profilePic`,`stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES ('',?,?,?,?,?,'','','','','',?,?)";
     $stmtStudInfo = $con->prepare($sqlStudInfo);
-    $stmtStudInfo->bind_param('ssssss',$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
+    $stmtStudInfo->bind_param('sssssss',$file,$student_number,$stud_firstname,$stud_lastname,$stud_middlename,$empId,$empName);
     // Computing Student Fee base on Scholarship and Discount
     // Getting scholar desc
     if($stud_scholarship != 'N/A'){
@@ -193,8 +195,7 @@
     $stmtDetails->bind_param('sssss',$student_number,$stud_semester,$stud_program,$stud_major,$stud_year_level);
 //    && $stmtRequirements->execute()  && $stmtStudFee->execute() &&$stmtDetails->execute()
   if(  $stmtStudInfo->execute() && $stmtStudFee->execute() && $stmtDetails->execute() ) {
-    
-    
+    move_uploaded_file($_FILES['imageStud']['tmp_name'], $target_dir.$file);
     $act = 'Add new student '. $student_number . ' - ' . $fullname;
     audit($empId,'Registrar',$empName,$act);
     $response['status'] = 'success';
@@ -209,7 +210,7 @@
 if(isset($_POST['edit'])){
   $id = $_POST['id'];
   $data = array();
-  $slqEdit = "SELECT s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,f.total_amount_paid,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major,c.lab_Fee,c.lecture_Fee
+  $slqEdit = "SELECT s.profilePic,s.stud_id,s.firstname,s.lastname,s.middlename,f.program_id,f.csi_year_level,f.lab_units,f.lec_units,f.tuition_fee,f.discount_type,f.scholar_desc,f.total_amount_paid,d.LRN,d.stud_type,d.csi_academic_year,d.csi_semester,d.csi_program,d.csi_major,c.lab_Fee,c.lecture_Fee
               FROM tbl_student_info as s
               RIGHT JOIN tbl_student_fees as f ON s.stud_id = f.stud_id
               RIGHT JOIN tbl_student_school_details as d ON f.stud_id = d.stud_id
@@ -225,6 +226,7 @@ if(isset($_POST['edit'])){
     $data['firstname'] = $row['firstname'];
     $data['lastname'] = $row['lastname'];
     $data['middlename'] = $row['middlename'];
+    $data['profilePic'] = $row['profilePic'];
     // $data['form_137'] = $row['form_137'];
     // $data['form_138'] = $row['form_138'];
     // $data['psa_birth_cert'] = $row['psa_birth_cert'];
@@ -328,19 +330,30 @@ if(isset($_POST['update'])){
 
       $fullname = $stud_firstname.' '.$stud_middlename.' '.$stud_lastname;
       $program_major = $stud_program.'-'.$stud_major;
-    $sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
-                    INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
-                    INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
-                      SET 
-                      info.firstname = ?,info.lastname = ?,info.middlename = ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
-                      det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?,fee.lab_units = ?,fee.lec_units = ?,fee.assessed_fee = ?
-                      WHERE info.stud_id = ?";
-    $stmtUpdateAll = $con->prepare($sqlUpdateAll);
-    $stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$student_number);
-
+      if($_FILES['imageStud']['size'] == 0 && $_FILES['imageStud']['error'] == 0){
+          $sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
+          INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
+          INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
+          SET 
+          info.firstname = ?,info.lastname = ?,info.middlename = ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
+          det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?,fee.lab_units = ?,fee.lec_units = ?,fee.assessed_fee = ?
+          WHERE info.stud_id = ?";
+          $stmtUpdateAll = $con->prepare($sqlUpdateAll);
+          $stmtUpdateAll->bind_param('sssssssssssssssssssssss', $stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$student_number);
+      }else{
+        $sqlUpdateAll = "UPDATE `tbl_student_info` AS info 
+        INNER JOIN `tbl_student_fees` AS fee ON info.stud_id = fee.stud_id
+        INNER JOIN `tbl_student_school_details` AS det ON info.stud_id = det.stud_id
+        SET 
+        info.firstname = ?,info.lastname = ?,info.middlename = ?,fee.program_id = ?, fee.fullname = ?,fee.csi_year_level = ?,fee.tuition_fee = ?,fee.discount_type = ?,fee.scholar_desc = ?,fee.scholar_type = ?,fee.balance = ?,fee.remarks = ?,
+        det.LRN = ?,det.stud_type = ?,det.csi_academic_year = ?,det.csi_semester = ?,det.csi_program = ?,det.csi_major = ?,det.csi_year_level = ?,fee.lab_units = ?,fee.lec_units = ?,fee.assessed_fee = ?,info.profilePic = ?
+        WHERE info.stud_id = ?";
+        $stmtUpdateAll = $con->prepare($sqlUpdateAll);
+        $stmtUpdateAll->bind_param('ssssssssssssssssssssssss',$stud_firstname, $stud_lastname, $stud_middlename,$course_id,$fullname,$stud_year_level,$stud_fee,$stud_discount,$stud_scholarship,$studScholarType,$balance,$remarks,$stud_lrn,$stud_status,$stud_school_year,$stud_semester,$stud_program,$stud_major,$stud_year_level,$stud_labUnits,$stud_lecUnits,$assessed_fee,$file,$student_number);
+      }
     if($stmtUpdateAll->execute()) {
 
-      
+      // move_uploaded_file($_FILES['imageStud']['tmp_name'], $target_dir.$file);
       $act = 'Update student details of '. $student_number . ' - ' . $fullname;
       audit($empId,'Registrar',$empName,$act);
       $response['status'] = 'success';

@@ -400,7 +400,21 @@ include_once '../connection/Config.php';
       <div class="col left-tab">
       <img src="../images/logo.png" class="logoLeftTab" alt="">
         <div class="upper-left-tab">
-          <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+        <?php
+              $sqlPic ="SELECT *
+                        FROM tbl_employee_info
+                        WHERE employee_id  = ?";
+              $stmtPic = $con->prepare($sqlPic);
+              $stmtPic->bind_param('s', $_SESSION['employeeId']);
+              $stmtPic->execute();
+              $resPic = $stmtPic->get_result(); 
+              $rowPic = $resPic->fetch_assoc();
+              if($rowPic['profilePic'] == ''){
+          ?>
+            <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+          <?php }else{ ?>
+            <img src="../profilePics/<?php echo $rowPic['profilePic'];?>" alt="">
+          <?php }?>
           <p class="reg__name" style="font-size: 1.2rem;"> <?= $_SESSION['fullname'];?> <i class="fas fa-caret-down" onclick="profile_link_show()   "></i></p>
             <div class="profile_link" id="profile_link_id">
               <a href="">My Email</a>

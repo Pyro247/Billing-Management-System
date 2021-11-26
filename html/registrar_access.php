@@ -258,7 +258,21 @@
       <div class="col left-tab">
       <img src="../images/logo.png" class="logoLeftTab" alt="">
         <div class="upper-left-tab">
+          <?php
+              $sqlPic ="SELECT *
+                        FROM tbl_employee_info
+                        WHERE employee_id  = ?";
+              $stmtPic = $con->prepare($sqlPic);
+              $stmtPic->bind_param('s', $_SESSION['employeeId']);
+              $stmtPic->execute();
+              $resPic = $stmtPic->get_result(); 
+              $rowPic = $resPic->fetch_assoc();
+              if($rowPic['profilePic'] == ''){
+          ?>
             <img src="..\images\registrar_img\sample_registrar_pic.png" alt="">
+          <?php }else{ ?>
+            <img src="../profilePics/<?php echo $rowPic['profilePic'];?>" alt="">
+          <?php }?>
             
             <p class="reg__name" style="font-size: 1.2rem;"><?= $_SESSION['fullname'];?><i class="fas fa-caret-down mx-2" onclick="profile_link_show()"></i></p>
             <div class="profile_link" id="profile_link_id">
@@ -559,14 +573,15 @@
                 <div class="tab-pane fade show active mt-2" id="student" role="tabpanel" aria-labelledby="student-tab">
                   <p class="role_information">Student's Information</p>
                         
-                  <form action="" method="post" class="universalForm_two" id="studForm">
+                  <form action="" method="post" class="universalForm_two" id="studForm" enctype="multipart/form-data">
 
                       <div class="manage_users_universal_tab_lmr_parent">
                           
                         
                           <div class="manage_users_universal_left_tab">
-                          <img src="../images/registrar_img/sample_student_pic.png" class="rounded float-start" alt="...">
-                          <button type="button" class="btn btn-primary my-2">Change Image</button>
+                          <img src="../images/registrar_img/sample_student_pic.png" class="rounded float-start" alt="..." id="previewProfileStud" style="width:300px;height:350px;">
+                          <button type="button" class="btn btn-primary my-2" id="changeImageStud" disabled>Change Image</button>
+                          <input  type="file"  class="btn btn-primary my-2 w-100" id="imageStud" accept="image/*" name="imageStud" onchange="previewImage('previewProfileStud','imageStud');" hidden >
                           </div>
 
 
@@ -900,7 +915,7 @@
                       <div class="manage_users_universal_left_tab">
                         <img src="../images/registrar_img/sample_employee_pic.png" class="rounded float-start" alt="..." id="previewProfileEmp" style="width:300px;height:350px;">
                         <button type="button" class="btn btn-primary my-2" id="changeImageEmp" disabled>Change Image</button>
-                        <input  type="file"  class="btn btn-primary my-2 w-100" id="imageEmp" accept="image/*" name="imageEmp" onchange="previewImage();" hidden >
+                        <input  type="file"  class="btn btn-primary my-2 w-100" id="imageEmp" accept="image/*" name="imageEmp" onchange="previewImage('previewProfileEmp','imageEmp');" hidden >
                       </div>
                       <!-- Emoployee Details -->
                       <div class="manage_users_universal_mid_tab px-1">
@@ -1856,7 +1871,7 @@
       </script>
       <!-- Manage User-Student Registrar Access -->
       <script>
-        let partialStudFields = ['studId','studFirstname','studMiddlename','studLastname','studSemester','studYearLevel','studProgram','studMajor','studFeeTotal','studScholarship','studDiscount','form137','form138','psa','goodMoral','stud_lecUnits','stud_labUnits']
+        let partialStudFields = ['studId','studFirstname','studMiddlename','studLastname','studSemester','studYearLevel','studProgram','studMajor','studFeeTotal','studScholarship','studDiscount','form137','form138','psa','goodMoral','stud_lecUnits','stud_labUnits','changeImageStud']
         let allStudFields = partialStudFields.concat(['studStatus','studLrn','studSchoolYear']);
 
         let status;
@@ -1885,6 +1900,7 @@
             $("#stud_archive").prop("disabled", true);
             $('#studSave').text('Save');
             $("#studSave").prop("disabled", true);
+            document.getElementById("previewProfileStud").src = "../images/registrar_img/sample_student_pic.png";
           });
            // Trigger OnChange Item of Dropdown Program
           $("#studProgram").change(function(){
@@ -2111,6 +2127,11 @@
                 $("#stud_lecUnits").val(data.lec_units);
                 $("#stud_lecUnitsTotal").val(data.lecture_Fee);
                 $("#stud_labUnitsTotal").val(data.lab_Fee);
+                if(data.profilePic == ''){
+                  document.getElementById("previewProfileStud").setAttribute("src",  '../images/registrar_img/sample_student_pic.png' );
+                }else{
+                  document.getElementById("previewProfileStud").setAttribute("src",  '../profilePics/' + data.profilePic );
+                }
                 // if(data.form_137 == '✓'){
                 //   $("#form137").prop('checked', true);
                 // }
@@ -2265,6 +2286,7 @@
                 confirmButtonText: 'Ok'
               })
               if(response.status == 'success'){
+                document.getElementById("previewProfileStud").src = "../images/registrar_img/sample_student_pic.png";
                 $('#studForm').trigger('reset');
                 let allStud = '%';
             viewStudetList(allStud)
@@ -2578,7 +2600,7 @@
           $("#empArchive").prop("disabled", true);
           $('#empSave').text('Save');
           $("#empSave").prop("disabled", true);
-
+          document.getElementById("previewProfileEmp").src = "../images/registrar_img/sample_employee_pic.png";
         });
         // Two way process Save and Save base on button text
         $("#empSave").click(function (e) { 
@@ -3397,14 +3419,18 @@
             e.preventDefault();
             document.getElementById('imageEmp').click();
           });
+          $('#changeImageStud').click(function (e) { 
+            e.preventDefault();
+            document.getElementById('imageStud').click();
+          });
         });
-         function previewImage() {
-                let file = document.getElementById("imageEmp").files;
+         function previewImage(target,id) {
+                let file = document.getElementById(id).files;
                 if (file.length > 0) {
                     var fileReader = new FileReader();
         
                     fileReader.onload = function (event) {
-                        document.getElementById("previewProfileEmp").setAttribute("src", event.target.result);
+                        document.getElementById(target).setAttribute("src", event.target.result);
                         // document.getElementById("preview").style.display = "block";
                     };
         
