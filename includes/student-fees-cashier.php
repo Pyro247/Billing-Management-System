@@ -51,9 +51,10 @@
               <td><?=$datastudFees['csi_major'];?></td>
               <td><?=$datastudFees['csi_year_level'];?></td>
               <td><?=$datastudFees['tuition_fee'];?></td>
+              <td><?=$datastudFees['scholar_type'];?></td>
               <td><?=$scholarDeduction?></td>
               <td><?=$discountDeduction?></td>
-              <td><?=$datastudFees['scholar_type'];?></td>
+              
               <td><?=$datastudFees['total_amount_paid'];?></td>
               <td><?=$datastudFees['balance'];?></td>
               <td><?=$datastudFees['remarks'];?></td>

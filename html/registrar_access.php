@@ -1237,22 +1237,20 @@
                 <p class="role_information mt-2" style="color: var(--secondary)">Choose Account to Filter</p>
                   <div class="row g-2">
 
-                    <div class="col-md">
+                    <div class="col-md" id="conditionForRegistrar">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                         <option value="BSIT_WMA" selected>All</option>
                           <option value="Graduated" selected>Graduate</option>
                           <option value="Dropout">Dropout</option>
                           <option value="Transfer">Transfer</option>
-                          <option value="Resign">Resign</option>
-                          <option value="Resign">Terminate</option>
                         </select>
                         <label for="floatingSelect" style="color: black">Condition</label>
                       </div>
                     </div>
 
 
-                    <div class="col-md">
+                    <div class="col-md" id="studentStatusForRegistrar">
                       <div class="form-floating">
                         <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                           <option value="" selected>All</option>
@@ -1262,6 +1260,32 @@
                         <label for="floatingSelect" style="color: black">Student Status</label>
                       </div>
                     </div>
+
+
+                    <div class="col-md" id="conditionForAdmin">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="" selected>All</option>
+                          <option value="resign">Resign</option>
+                          <option value="terminated">Terminated</option>
+                          <option value="changeposition">Change Position</option>
+                        </select>
+                        <label for="floatingSelect" style="color: black">Student Status</label>
+                      </div>
+                    </div>
+
+                    <div class="col-md" id="employeeRoleForAdmin">
+                      <div class="form-floating">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                          <option value="" selected>All</option>
+                          <option value="">Registrar</option>
+                          <option value="">Cashier</option>
+                        </select>
+                        <label for="floatingSelect" style="color: black">Role</label>
+                      </div>
+                    </div>
+
+
                     
 
                     <div class="col-md">
@@ -1303,6 +1327,8 @@
                             <th scope="col">Role</th>
                             <th scope="col">Email</th>
                             <th scope="col">Condition</th>
+                            <th scope="col">Date Archived</th>
+
                             
                           </tr>
                         </thead>
@@ -1527,9 +1553,9 @@
                           <th scope="col">Major</th>
                           <th scope="col">Year Level</th>
                           <th scope="col">Tuition Fee</th>
+                          <th scope="col">Scholar Type</th>
                           <th scope="col">Scholarship Deduction</th>  
                           <th scope="col">Discount Deduction</th>
-                          <th scope="col">Scholar Type</th>
                           <th scope="col">Total Amount Paid</th>
                           <th scope="col">Remaining Balance</th>
                           <th scope="col">Remarks</th>
@@ -3197,6 +3223,8 @@
               document.querySelector('#dashboardForAdminId').style.display = "none"
               document.querySelector('#v-pills-student-audit-log').style.display="none"
               document.querySelector('#v-pills-student-audit-log-tab').style.display="none"
+              document.querySelector('#conditionForAdmin').style.display="none"
+              document.querySelector('#employeeRoleForAdmin').style.display="none"
 
             }else{
               document.querySelector('#student-tab').style.display = "none"
@@ -3206,6 +3234,8 @@
               document.querySelector('#employees').classList.toggle('show')
               document.getElementById('v-pills-studFee-tab').style.display = "none"
               document.querySelector('.dashBoardForRegistrar').style.display = "none"
+              document.querySelector('#conditionForRegistrar').style.display="none"
+              document.querySelector('#studentStatusForRegistrar').style.display="none"
               
             }
 
