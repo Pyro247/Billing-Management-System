@@ -1625,7 +1625,14 @@
               </div>
 
               <div class="col dashboardBox">
-                <span style="color: var(--greenPrimary); font-size: 1.8rem; font-weight: bold" class="d-block">Academic Year 2021-2022</span>
+                <?php
+                    $sqlAcadYearLabel = "SELECT * FROM tbl_academic_year ORDER BY `academic_year` DESC LIMIT 1";
+                    $stmtAcadYearLabel = $con->prepare($sqlAcadYearLabel);
+                    $stmtAcadYearLabel->execute();
+                    $resAcadYearLabel = $stmtAcadYearLabel->get_result();
+                    $rowAcadYearLabel = $resAcadYearLabel->fetch_assoc();
+                ?>
+                <span style="color: var(--greenPrimary); font-size: 1.8rem; font-weight: bold" class="d-block">Academic Year <?php echo $rowAcadYearLabel['academic_year'];?></span>
 
 
                 <ul class="nav nav-pills mt-3 mb-2" id="pills-tab" role="tablist">
@@ -1664,7 +1671,7 @@
                     </div>
               
                     <div class="tab-pane fade" id="scholarshipTab__" role="tabpanel" aria-labelledby="pills-scholarship-tab">
-                      <table class="table" style="color: var(--white)">
+                      <table class="table" style="color: var(--white)" id="schoalrshipTbl">
                         <thead>
                           <tr>
                             <th scope="col">Scholarship Description</th>
@@ -1673,13 +1680,32 @@
                           </tr>
                         </thead>
                         <tbody id="">
+                          <?php
+                            $sqlScholarTable = "SELECT * FROM `tbl_scholarship`";
+                            $stmtScholarTable = $con->prepare($sqlScholarTable);
+                            $stmtScholarTable->execute();
+                            $resScholarTable = $stmtScholarTable->get_result();
+                            while($rowScholarTable = $resScholarTable->fetch_assoc()){
+                          ?>
+                            <tr>
+                              <td><?php echo $rowScholarTable['scholar_description'];?></td>
+                              <td><?php echo $rowScholarTable['scholar_type'].' Scholarship';?></td>
+                              <?php 
+                                if($rowScholarTable['scholar_type'] == 'Half'){
+                              ?>
+                                <td>50%</td>
+                              <?php }else{ ?>
+                                <td>100%</td>
+                              <?php } ?>
+                            </tr>
+                        <?php }?>
                         </tbody>
                       </table>
                     </div>
               
 
                     <div class="tab-pane fade" id="discountTab__" role="tabpanel" aria-labelledby="pills-discount-tab">
-                      <table class="table" style="color: var(--white)">
+                      <table class="table" style="color: var(--white)" id="discountTbl">
                         <thead>
                           <tr>
                             <th scope="col">Discount Description</th>
@@ -1687,6 +1713,18 @@
                           </tr>
                         </thead>
                         <tbody id="">
+                        <?php
+                            $sqlDiscountTable = "SELECT * FROM `tbl_discount`";
+                            $stmtDiscountTable = $con->prepare($sqlDiscountTable);
+                            $stmtDiscountTable->execute();
+                            $resDiscountTable = $stmtDiscountTable->get_result();
+                            while($rowDiscountTable = $resDiscountTable->fetch_assoc()){
+                          ?>
+                            <tr>
+                              <td><?php echo $rowDiscountTable['discount_type'].'%';?></td>
+                              <td><?php echo $rowDiscountTable['discount_percent'].'%';?></td>
+                            </tr>
+                        <?php }?>
                         </tbody>
                       </table>
                     </div>
@@ -2887,6 +2925,8 @@
         $('#v-pills-fees-tab').click(function (e) { 
           e.preventDefault();
           availablePrograms('%');
+          $( "#schoalrshipTbl" ).load( "../html/registrar_access.php #schoalrshipTbl" );
+          $( "#discountTbl" ).load( "../html/registrar_access.php #discountTbl" );
         });
         $("#searchProgram-btn").click(function (e) { 
           e.preventDefault();
@@ -3124,6 +3164,7 @@
                     $("#scholarDesc").val('').change()
                     $( "input[name='scholarDesc']" ).prop( "disabled", false );
                     $('#addNewScholarship').text('Submit');
+                    $( "#schoalrshipTbl" ).load( "../html/registrar_access.php #schoalrshipTbl" );
                     closePopUp(3)
                 }
               }
@@ -3210,6 +3251,7 @@
                   $("input[name='discountPer']").val('')
                   $( "input[name='discountDesc']" ).prop( "disabled", false );
                   $('#addNewDiscount').text('Submit');
+                  $( "#discountTbl" ).load( "../html/registrar_access.php #discountTbl" );
                   closePopUp(4)
                 }
               }

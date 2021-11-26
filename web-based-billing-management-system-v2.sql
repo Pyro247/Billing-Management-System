@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2021 at 01:07 PM
+-- Generation Time: Nov 26, 2021 at 01:38 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -36,7 +36,7 @@ CREATE TABLE `tbl_academic_year` (
 --
 
 INSERT INTO `tbl_academic_year` (`academic_year`) VALUES
-('2021-2021');
+('2021-2022');
 
 -- --------------------------------------------------------
 
@@ -317,7 +317,8 @@ INSERT INTO `tbl_audit_logs` (`id`, `user_id`, `role`, `username`, `activity`, `
 (203, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-26 17:16:46'),
 (204, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-26 17:21:09'),
 (205, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Login', '2021-11-26 17:21:19'),
-(206, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Logout', '2021-11-26 17:21:23');
+(206, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Logout', '2021-11-26 17:21:23'),
+(207, 102101, 'Admin', 'Admin', 'Login', '2021-11-26 20:11:54');
 
 -- --------------------------------------------------------
 
@@ -760,7 +761,7 @@ ALTER TABLE `tbl_student_info`
 -- AUTO_INCREMENT for table `tbl_audit_logs`
 --
 ALTER TABLE `tbl_audit_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
