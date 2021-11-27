@@ -243,6 +243,32 @@
       
       </div>
     </div>
+    <!-- View Laboratory Fee Fee -->
+    <div class="popUpAdmin_FeesManagement"  style="visibility: hidden; opacity: 0; transition: all 150ms;" id="mainViewLabLecFee">
+      <div class="popUpFeesMgmtinner" id="childviewLabLecFee">
+      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" id="closeviewLabLecFee"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5" id="titleTagview">Fee</p>
+        <hr class="mt-0 mb-3">
+        <form action="" id="viewLabLecFeeForm">
+          <p id="viewlecPara" >Laboratory Fee &nbsp;<input type="number" name="" id="lablecFee" placeholder="" value=""> </p>
+          <p id="viewlabPara">Number of Units&nbsp;<input type="number" name="" id="lablecUnit" placeholder="" value=""></p>
+          <p id="viewtotalPara"> Total Laboratory Fee &nbsp;<input type="number" name="" id="lablecTotal" placeholder="" value=""></p>  
+        </form>
+      </div>
+    </div>
+        <!-- View Lecture Fee Fee -->
+    <div class="popUpAdmin_FeesManagement"  style="visibility: hidden; opacity: 0; transition: all 150ms;" id="mainViewLabLecFee1">
+      <div class="popUpFeesMgmtinner" id="childviewLabLecFee1">
+      <i class="far fa-times-circle text-danger mb-3 closeBtnPopUp float-end" id="closeviewLabLecFee1"></i>
+        <p class="PopUpFeesMgmt_Title mb-0 mt-5" id="titleTagview1">Fee</p>
+        <hr class="mt-0 mb-3">
+        <form action="" id="viewLabLecFeeForm1">
+          <p >Lecture Fee &nbsp;<input type="number" name="" id="lablecFee1" placeholder="" value=""> </p>
+          <p >Number of Units&nbsp;<input type="number" name="" id="lablecUnit1" placeholder="" value=""></p>
+          <p> Total Lecture Fee &nbsp;<input type="number" name="" id="lablecTotal1" placeholder="" value=""></p>  
+        </form>
+      </div>
+    </div>
 
      <!-- Post e-bill -->
      <div class="popUpAdmin_FeesManagement" style="visibility: hidden; opacity: 0; transition: all 150ms;" >
@@ -2232,7 +2258,83 @@
               }
             }
           });
-          $(document).on('click', '#viewAssessdFee', function(){
+          $(document).on('click', '#viewLabFee', function(e){
+            e.preventDefault();
+            let id = $(this).attr("data-id");
+            // alert(id);
+            $.ajax({
+              type: "GET",
+              url: "../includes/manage_student.php",
+              data: {
+                'getLabFee': 1,
+                'studId': id
+              },
+              dataType: "JSON",
+              success: function (data) {
+                console.log(data)
+                $('#lablecFee').val(data.labFee);
+                $('#lablecUnit').val(data.labUnit);
+                $('#lablecTotal').val(data.totalFee);
+                openViewLecLabFee();
+              }
+            });
+            
+          });
+          $(document).on('click', '#viewLecFee', function(e){
+            e.preventDefault();
+            let id = $(this).attr("data-id");
+            // alert(id)
+            $.ajax({
+              type: "GET",
+              url: "../includes/manage_student.php",
+              data: {
+                'getLecFee': 1,
+                'studId': id
+              },
+              dataType: "JSON",
+              success: function (data) {
+                console.log(data)
+               
+                $('#lablecFee1').val(data.lecFee);
+                $('#lablecUnit1').val(data.lecUnit);
+                $('#lablecTotal1').val(data.totalFee);
+                openViewLecLabFee1();
+              }
+            });
+          })
+          $('#closeviewLabLecFee').click(function (e) { 
+            e.preventDefault();
+            closeviewLabLecFee();
+          });
+          $('#closeviewLabLecFee1').click(function (e) { 
+            e.preventDefault();
+            closeviewLabLecFee1();
+          });
+          let mainViewLabLecFee = document.getElementById('mainViewLabLecFee')
+          // let childViewLabLecFee = document.getElementById('childViewLabLecFee')
+          function openViewLecLabFee(){
+            mainViewLabLecFee.style.visibility = "visible"
+            mainViewLabLecFee.style.opacity = "1"
+            // childViewLabLecFee.classList.toggle('animate__animated')
+            // childViewLabLecFee.classList.toggle('animate__bounceIn')
+          }
+          function closeviewLabLecFee(){
+            mainViewLabLecFee.style.visibility = "hidden"
+            mainViewLabLecFee.style.opacity = "0"
+          }
+          let mainViewLabLecFee1 = document.getElementById('mainViewLabLecFee1')
+          function openViewLecLabFee1(){
+            mainViewLabLecFee1.style.visibility = "visible"
+            mainViewLabLecFee1.style.opacity = "1"
+            // childViewLabLecFee.classList.toggle('animate__animated')
+            // childViewLabLecFee.classList.toggle('animate__bounceIn')
+          }
+          function closeviewLabLecFee1(){
+            mainViewLabLecFee1.style.visibility = "hidden"
+            mainViewLabLecFee1.style.opacity = "0"
+          }
+          $(document).on('click', '#viewAssessdFee', function(e){
+            e.preventDefault();
             let id = $(this).attr("data-id");
             // alert(id)
             popUpAdmin_SchoolFees(1)

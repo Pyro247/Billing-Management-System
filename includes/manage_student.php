@@ -5,6 +5,50 @@
   session_start();
   $response = array();
   header('Content-type: application/json');
+  if(isset($_GET['getLabFee'])){
+    $data = array();
+    $studId = $_GET['studId'];
+    $sqlGet = "SELECT * FROM `tbl_student_fees` WHERE stud_id = ?";
+    $stmtGet = $con->prepare($sqlGet);
+    $stmtGet->bind_param('s',$studId);
+    $stmtGet->execute();
+    $resGet = $stmtGet->get_result();
+    $rowGet = $resGet->fetch_assoc();
+    $data['progId'] = $rowGet['program_id'];
+    $data['labUnit'] = $rowGet['lab_units'];
+
+    $sqlGetFee = "SELECT * FROM `tbl_course_fees` WHERE program_id = ?";
+    $stmtGetFee = $con->prepare($sqlGetFee);
+    $stmtGetFee->bind_param('s',$data['progId']);
+    $stmtGetFee->execute();
+    $resGetFee = $stmtGetFee->get_result();
+    $rowGetFee = $resGetFee->fetch_assoc();
+    $data['labFee'] = $rowGetFee['lab_Fee'];
+    $data['totalFee'] = $rowGetFee['lab_Fee'] * $data['labUnit'];
+    echo json_encode($data);
+  }
+  if(isset($_GET['getLecFee'])){
+    $data = array();
+    $studId = $_GET['studId'];
+    $sqlGet = "SELECT * FROM `tbl_student_fees` WHERE stud_id = ?";
+    $stmtGet = $con->prepare($sqlGet);
+    $stmtGet->bind_param('s',$studId);
+    $stmtGet->execute();
+    $resGet = $stmtGet->get_result();
+    $rowGet = $resGet->fetch_assoc();
+    $data['progId'] = $rowGet['program_id'];
+    $data['lecUnit'] = $rowGet['lec_units'];
+
+    $sqlGetFee = "SELECT * FROM `tbl_course_fees` WHERE program_id = ?";
+    $stmtGetFee = $con->prepare($sqlGetFee);
+    $stmtGetFee->bind_param('s',$data['progId']);
+    $stmtGetFee->execute();
+    $resGetFee = $stmtGetFee->get_result();
+    $rowGetFee = $resGetFee->fetch_assoc();
+    $data['lecFee'] = $rowGetFee['lecture_Fee'];
+    $data['totalFee'] = $rowGetFee['lecture_Fee'] * $data['lecUnit'];
+    echo json_encode($data);
+  }
   if(isset($_GET['getAssessedFeee'])){
     $data = array();
     $id = $_GET['id'];
@@ -443,8 +487,8 @@ while($data = $res->fetch_assoc()){
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['firstname'];?></td>
     <td><?=$data['lastname'];?></td>
-    <td><?=$LecFee?></td>
-    <td><?=$labFee?></td>
+    <td><a href="#" id="viewLecFee" data-id="<?=$data['stud_id'];?>"><?=$LecFee?></a></td>
+    <td><a href="#" id="viewLabFee" data-id="<?=$data['stud_id'];?>"><?=$labFee?></a></td>
     <td><a href="#" id="viewAssessdFee" data-id="<?=$program_id?>"><?=$data['assessed_fee'];?></a></td>
     <td><?=$data['tuition_fee'];?></td>
     
@@ -464,8 +508,9 @@ while($data = $res->fetch_assoc()){
   $byProgram = $_GET['byProgram'];
   // $byMajor = $_GET['byMajor'];
   $byMajor = $_GET['byMajor'] ?? '%';
-  $sql ="SELECT s.stud_id, s.firstname, s.lastname,det.csi_program,det.csi_major
+  $sql ="SELECT s.stud_id, s.firstname, s.lastname,det.csi_program,det.csi_major,fees.program_id,fees.lec_units,fees.lab_units,fees.assessed_fee,fees.tuition_fee
           FROM tbl_student_info as s
+          LEFT JOIN `tbl_student_fees` as fees ON s.stud_id = fees.stud_id
           LEFT JOIN tbl_student_school_details as det ON det.stud_id = s.stud_id
           WHERE det.csi_program LIKE CONCAT('%',?,'%') AND det.csi_major LIKE CONCAT('%',?,'%')";
   $stmt = $con->prepare($sql);
@@ -477,15 +522,26 @@ while($data = $res->fetch_assoc()){
 ?>
 <?php 
 if($count > 0){
-while($data = $res->fetch_assoc()){?>
+while($data = $res->fetch_assoc()){
+  $program_id = $data['program_id'];
+  $sqlProgId = "SELECT * FROM `tbl_course_fees` WHERE program_id = ?";
+  $stmtProgId = $con->prepare($sqlProgId);
+  $stmtProgId->bind_param('s',$program_id);
+  $stmtProgId->execute();
+  $resProgId = $stmtProgId->get_result();
+  $rowProgId = $resProgId->fetch_assoc();
+  $LecFee = $rowProgId['lecture_Fee'] * $data['lec_units'];
+  $labFee = $rowProgId['lab_Fee'] * $data['lab_units'];
+  ?>
   <tr>
     <td><?=$data['stud_id'];?></td>
     <td><?=$data['firstname'];?></td>
     <td><?=$data['lastname'];?></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td><a href="#" id="viewLecFee" data-id="<?=$data['stud_id'];?>"><?=$LecFee?></a></td>
+    <td><a href="#" id="viewLabFee" data-id="<?=$data['stud_id'];?>"><?=$labFee?></a></td>
+    <td><a href="#" id="viewAssessdFee" data-id="<?=$program_id?>"><?=$data['assessed_fee'];?></a></td>
+    <td><?=$data['tuition_fee'];?></td>
+    
     <td>
       <a href="#" class="btn btn-success "id="edit" data-id="<?=$data['stud_id'];?>">Edit</a>
     </td>
