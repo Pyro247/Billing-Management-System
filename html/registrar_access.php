@@ -90,17 +90,17 @@
                 
       <form action="" id="archiveForAdmin">
             <div class="innerFormArchive">
-              <input type="radio" class="btn-check" name="condition" id="resignPopUp" value="resigned" autocomplete="off">
+              <input type="radio" class="btn-check" name="EmpCondition" id="resignPopUp" value="resigned" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="resignPopUp">Resigned</label>
 
-              <input type="radio" class="btn-check" name="condition" id="transferPopUp" value="terminated" autocomplete="off">
+              <input type="radio" class="btn-check" name="EmpCondition" id="transferPopUp" value="terminated" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="transferPopUp">Terminated</label>
 
-              <input type="radio" class="btn-check" name="condition" id="changePositionPopUp" value="changeposition" autocomplete="off">
+              <input type="radio" class="btn-check" name="EmpCondition" id="changePositionPopUp" value="changeposition" autocomplete="off">
               <label class="btn btn-outline-primary mx-1" for="changePositionPopUp">Changed Position</label>
 
             </div>
-              <button type="submit" id="archive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
+              <button type="submit" id="EmpArchive_btn" class="btn btn-primary d-block mx-auto mt-5 mb-2 px-5">Archive</button>
           </form>
         </div>
       </div>
@@ -1081,7 +1081,7 @@
                         <div class="buttons_manage_universal">
                           <button type="button" name="" class="btn btn-info" id="empAdd">Add</button>
                           <button type="submit" name="emp_save" class="btn btn-success" id="empSave" disabled>Save</button>
-                          <button type="submit" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
+                          <button type="button" name="empArchive" class="btn btn-primary" id="empArchive" disabled>Archive</button>
                           <script type="text/javascript">
                             const popUpArchiveAdmin = document.querySelector('.popUpArchive')
                             const popUpinnerAdmin = document.querySelector('.popUpArchiveinner')
@@ -1093,6 +1093,12 @@
                                     popUpinner.classList.toggle('animate__animated')
                                     popUpinner.classList.toggle('animate__bounceIn')
                                 })
+                                document.querySelector('.closeBtnPopUp').addEventListener("click", function(){
+                                              popUpArchive.style.visibility = "hidden"
+                                              popUpArchive.style.opacity = "0"
+                                              popUpinner.classList.toggle('animate__animated')
+                                              popUpinner.classList.toggle('animate__bounceIn')
+                                          })
 
                           </script>
                           <button type="button" name="" class="btn btn-secondary" id="btncancel" disabled>Cancel</button>
@@ -2741,13 +2747,21 @@
                 });
             });
             $(document).ready(function(){
-                $("#empArchive").click(function(e){
+                $("#EmpArchive_btn").click(function(e){
                   e.preventDefault();
+                  if(!$("input[name='EmpCondition']").is(':checked')){
+                    Swal.fire(
+                      'No Selected',
+                      'Please select condtion',
+                      'warning'
+                    )
+                  }else{
                     $.ajax({
                       type: "POST",
                       url: "../includes/archive.php", 
                       data:{
-                        "empArchive": 1,
+                        "EmpArchive_btn": 1,
+                        "EmpCondition": $('input[name="EmpCondition"]:checked').val(),
                         "empId":$('#empId').val(),
                       },
                       dataType: 'JSON',
@@ -2770,7 +2784,7 @@
 
                         }
                     }});
-                  
+                  }
                     
                   });
             });

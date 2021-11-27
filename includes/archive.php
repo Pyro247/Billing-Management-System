@@ -66,7 +66,9 @@ if(isset($_POST['archive_btn'])){
     echo json_encode($response);
   }
   
-  if(isset($_POST['empArchive'])){
+  if(isset($_POST['EmpArchive_btn'])){
+    $EmpCondition = $_POST['EmpCondition'];
+    $EmpDate = date("Y-m-d");
     $empId = $_POST['empId'];
 
     $selectEmpInfo = "SELECT * FROM `tbl_employee_info` WHERE employee_id = ?";
@@ -86,8 +88,8 @@ if(isset($_POST['archive_btn'])){
     $Emp_email = $rowEmpInfo['email'];
     $Empcontact_number = $rowEmpInfo['contact_number'];
 
-    $sqlEmpArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`) 
-    VALUES ('$Emp_regNo','$Emp_id','$Emp_firstname','$Emp_lastname','$Emp_middlename','$Emp_role','$Emp_email','$Emp_sex','$Emp_address','$Empcontact_number')";
+    $sqlEmpArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `condition`, `date`) 
+    VALUES ('$Emp_regNo','$Emp_id','$Emp_firstname','$Emp_lastname','$Emp_middlename','$Emp_role','$Emp_email','$Emp_sex','$Emp_address','$Empcontact_number','$EmpCondition','$EmpDate')";
     $stmtEmpArchive = $con->prepare($sqlEmpArchive);
     if($stmtEmpArchive->execute()){
 
