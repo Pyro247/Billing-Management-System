@@ -1416,7 +1416,7 @@
                             
                           </tr>
                         </thead>
-                        <tbody id="registrarArchive">
+                        <tbody id="AdminArchive">
                         
                         </tbody>
                       </table>
@@ -2701,6 +2701,7 @@
         $(document).ready(function () {
           $('#v-pills-archives-tab').click(function (e) { 
             viewArchiveDataTable()
+            viewAdminArchiveDataTable()
             
           });
           $(document).ready(function(){
@@ -2788,21 +2789,6 @@
                     
                   });
             });
-
-          $("#searchArchive_btn").click(function(){
-            $.ajax({
-              type:'POST',
-              url:'../includes/searchArchive.php',
-              data:{
-                "search": 1,
-                "query":$("#searchArchive").val(),
-              },
-              success:function(data){
-                $("#registrarArchive").html(data);
-                
-              }
-            });
-          });
           function viewArchiveDataTable(){
               $.ajax({
                 type: "POST",
@@ -2813,8 +2799,19 @@
                 }
               });
           }
+          function viewAdminArchiveDataTable(){
+              $.ajax({
+                type: "POST",
+                url: "../includes/AdminArchive.php",
+                dataType: "html",
+                success: function (data) {
+                  $('#AdminArchive').html(data);
+                }
+              });
+          }
           
         });
+        
       </script>
        <!-- Student Fees Tab-->
     <script>

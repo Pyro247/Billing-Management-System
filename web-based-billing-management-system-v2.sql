@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2021 at 01:38 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Generation Time: Nov 28, 2021 at 12:19 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -82,6 +82,9 @@ CREATE TABLE `tbl_archive` (
   `sex` varchar(20) NOT NULL,
   `address` longtext NOT NULL,
   `contact_number` varchar(15) NOT NULL,
+  `year_level` varchar(100) NOT NULL,
+  `program_major` varchar(100) NOT NULL,
+  `stud_status` varchar(100) NOT NULL,
   `condition` varchar(100) NOT NULL,
   `date` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -90,16 +93,13 @@ CREATE TABLE `tbl_archive` (
 -- Dumping data for table `tbl_archive`
 --
 
-INSERT INTO `tbl_archive` (`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `condition`, `date`) VALUES
-('', 141121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', ''),
-('', 151121, 'Sofia', 'Estrecho', 'P', 'Registrar', '', 'N/A', '', '', '', ''),
-('', 151121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', ''),
-('', 151121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', ''),
-('', 2147483647, 'Juan', 'Dela Cruz', 'Manuel', 'Student', '', '', '', '', 'Dropped', '2021-11-15'),
-('', 0, '', '', '', 'Student', '', '', '', '', 'Dropped', '2021-11-15'),
-('', 0, '', '', '', 'Student', '', '', '', '', 'Dropped', '2021-11-15'),
-('', 2018305305, 'Mark', 'Bonifacio', 'Sanchez', 'Student', '', '', '', '', 'Graduate', '2021-11-15'),
-('', 0, '', '', '', 'Student', '', '', '', '', 'Graduate', '2021-11-15');
+INSERT INTO `tbl_archive` (`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `year_level`, `program_major`, `stud_status`, `condition`, `date`) VALUES
+('', 141121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', '', '', '', ''),
+('', 151121, 'Sofia', 'Estrecho', 'P', 'Registrar', '', 'N/A', '', '', '', '', '', '', ''),
+('', 151121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', '', '', '', ''),
+('', 151121, 'Sofia', 'Estrecho', 'Panis', 'Registrar', '', 'N/A', '', '', '', '', '', '', ''),
+('', 2147483647, 'Juan', 'Dela Cruz', 'Manuel', 'Student', '', '', '', '', '', '', '', 'Dropped', '2021-11-15'),
+('', 2018305305, 'Mark', 'Bonifacio', 'Sanchez', 'Student', '', '', '', '', '', '', '', 'Graduate', '2021-11-15');
 
 -- --------------------------------------------------------
 
@@ -318,7 +318,28 @@ INSERT INTO `tbl_audit_logs` (`id`, `user_id`, `role`, `username`, `activity`, `
 (204, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-26 17:21:09'),
 (205, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Login', '2021-11-26 17:21:19'),
 (206, 102103, 'Cashier', 'Justine Dave Delos Reyes', 'Logout', '2021-11-26 17:21:23'),
-(207, 102101, 'Admin', 'Admin', 'Login', '2021-11-26 20:11:54');
+(207, 102101, 'Admin', 'Admin', 'Login', '2021-11-26 20:11:54'),
+(208, 102101, 'Admin', 'Admin', 'Login', '2021-11-27 21:09:08'),
+(209, 102101, 'Admin', 'Admin', 'Add new employee 12345 - Kish  Pulido', '2021-11-27 21:09:32'),
+(210, 102101, 'Admin', 'Admin', 'Archive employee 12345 - Kish  Pulido', '2021-11-27 21:35:21'),
+(211, 102101, 'Admin', 'Admin', 'Add new employee 56789 - denver Pulido', '2021-11-27 21:36:17'),
+(212, 102101, 'Admin', 'Admin', 'Archive employee 56789 - denver Pulido', '2021-11-27 21:36:24'),
+(213, 102101, 'Admin', 'Admin Admin', 'Logout', '2021-11-27 21:36:43'),
+(214, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-27 21:36:50'),
+(215, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-27 21:41:16'),
+(216, 102101, 'Admin', 'Admin', 'Login', '2021-11-27 21:41:23'),
+(217, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-27 21:49:44'),
+(218, 102101, 'Admin', 'Admin', 'Login', '2021-11-28 18:19:50'),
+(219, 102101, 'Admin', 'Admin Admin', 'Logout', '2021-11-28 18:32:03'),
+(220, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-28 18:32:11'),
+(221, 102102, 'Registrar', 'Merry Anne Villamo', 'Update student details of 2018301276 - Denver G Pulido', '2021-11-28 18:50:43'),
+(222, 102102, 'Registrar', 'Merry Anne Villamo', 'Logout', '2021-11-28 18:56:12'),
+(223, 102101, 'Admin', 'Admin', 'Login', '2021-11-28 18:56:18'),
+(224, 102101, 'Admin', 'Admin', 'Add new employee 31231 - Kish  Pulido', '2021-11-28 18:56:51'),
+(225, 102101, 'Admin', 'Admin', 'Archive employee 31231 - Kish  Pulido', '2021-11-28 18:56:58'),
+(226, 102101, 'Admin', 'Admin Admin', 'Logout', '2021-11-28 18:58:53'),
+(227, 102102, 'Registrar', 'Merry Anne Villamo', 'Login', '2021-11-28 18:59:17'),
+(228, 102102, 'Registrar', 'Merry Anne Villamo', 'Update student details of 123456 - Mike Estrecho Isla', '2021-11-28 19:13:53');
 
 -- --------------------------------------------------------
 
@@ -579,7 +600,7 @@ INSERT INTO `tbl_student_fees` (`program_id`, `stud_id`, `fullname`, `csi_year_l
 (6, 2018098123, 'Mylene Estrecho Isla', '1', 'N/A', 'N/A', 'N/A', 5000, 1, 4, 2500, 0, 5000, 'Not Fully Paid'),
 (1, 2018276186, 'Merry Anne V Villano', '1', 'N/A', 'N/A', 'N/A', 9000, 2, 2, 3000, 0, 9000, 'Not Fully Paid'),
 (1, 2018287456, 'Justine Dave D Delos Reyes', '1', 'N/A', 'N/A', 'N/A', 10000, 3, 1, 3000, 0, 10000, 'Not Fully Paid'),
-(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
+(1, 2018301276, 'Denver G Pulido', '1', 'N/A', 'N/A', 'N/A', 3000, 0, 0, 3000, 0, 3000, 'Not Fully Paid'),
 (2, 2018301301, 'Michael Estrecho Isla', '4', 'N/A', 'N/A', 'N/A', 5100, 4, 2, 2500, 2000, 3100, 'Not Fully Paid'),
 (1, 2018302302, 'Juan Manuel  Dela Curz', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
 (1, 2018303303, 'Jose Cruz Velasco', '1', 'N/A', 'N/A', 'N/A', 8000, 2, 1, 3000, 0, 8000, 'Not Fully Paid'),
@@ -614,7 +635,7 @@ CREATE TABLE `tbl_student_info` (
 --
 
 INSERT INTO `tbl_student_info` (`reg_no`, `profilePic`, `stud_id`, `firstname`, `lastname`, `middlename`, `sex`, `address`, `email`, `contact_number`, `joined_date`, `registrar_id`, `registrar_name`) VALUES
-('', 'aron-visuals-bZZp1PmHI0E-unsplash.jpg', 123456, 'Mike', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
+('', '', 123456, 'Mike', 'Isla', 'Estrecho', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('20212', '7448.png', 310310, 'Mark', 'Makr', 'Mark', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('', '', 311311, 'Jan', 'Jan', 'Jan', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
 ('', 'sven-mieke-MsCgmHuirDo-unsplash.jpg', 312312, 'Wi', 'WI', 'WI', '', '', '', '', '', 102102, 'Merry Anne Villamo'),
@@ -677,13 +698,13 @@ CREATE TABLE `tbl_student_school_details` (
 --
 
 INSERT INTO `tbl_student_school_details` (`stud_id`, `LRN`, `stud_type`, `csi_academic_year`, `csi_semester`, `csi_program`, `csi_major`, `csi_year_level`) VALUES
-(123456, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(123456, '', 'old', '', '1', 'BSIT', 'WMA', '1'),
 (12345678, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018098123, '123456', 'old', '2021-2021', '1', 'BSED', 'Science', '1'),
 (2018276186, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018287456, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018301301, '101943050047', 'old', '2021-2022', '2', 'BSIT', 'TSM', '4'),
-(2018301276, '', '', '', '1', 'BSIT', 'WMA', '1'),
+(2018301276, '', 'old', '', '1', 'BSIT', 'WMA', '1'),
 (2018302302, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018303303, '', '', '', '1', 'BSIT', 'WMA', '1'),
 (2018304304, '', '', '', '1', 'BSIT', 'WMA', '1'),
@@ -761,7 +782,7 @@ ALTER TABLE `tbl_student_info`
 -- AUTO_INCREMENT for table `tbl_audit_logs`
 --
 ALTER TABLE `tbl_audit_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

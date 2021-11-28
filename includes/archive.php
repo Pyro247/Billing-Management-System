@@ -23,11 +23,16 @@ if(isset($_POST['archive_btn'])){
     $sex = $rowInfo['sex'];
     $address = $rowInfo['address'];
     $email = $rowInfo['email'];
+    $yearlevel = $rowInfo['studYearLevel'];
+    $program = $rowInfo['studProgram'];
+    $major = $rowInfo['studMajor'];
+    $studentstatus = $rowInfo['studStatus'];
     $contact_number = $rowInfo['contact_number'];
 
 
-    $sqlArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`, `condition`, `date`) 
-    VALUES ('$regNo','$stud_id','$firstname','$lastname','$middlename','Student','$email','$sex','$address','$contact_number','$condition','$date')";
+    $sqlArchive = "INSERT INTO `tbl_archive`(`reg_no`, `user_id`, `firstname`, `lastname`, `middlename`, `role`, `email`, `sex`, `address`, `contact_number`,
+     `year_level`, `program_major`, `stud_status`, `condition`, `date`)
+    VALUES ('$regNo','$stud_id','$firstname','$lastname','$middlename','Student','$email','$sex','$address','$contact_number','$yearlevel',$program.'-' .$major,$studentstatus,'$condition','$date')";
     $stmtArchive = $con->prepare($sqlArchive);
     if($stmtArchive->execute()){
 

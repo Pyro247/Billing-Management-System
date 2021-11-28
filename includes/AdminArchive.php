@@ -1,8 +1,8 @@
 <?php
   include_once '../connection/Config.php';
 
-  $sql = "SELECT `user_id`, `firstname`, `lastname`, `year_level`, `program_major`, `stud_status`, `email`, `condition`, `date` 
-          FROM `tbl_archive` WHERE `role` = 'Student'";
+  $sql = "SELECT `user_id`, `firstname`, `lastname`, `role`, `email`,  `condition`, `date` 
+          FROM `tbl_archive` WHERE `role` = 'Registrar' OR `role` = 'Cashier'";
   $stmt = $con->prepare($sql);
   $stmt->execute();
   $res = $stmt->get_result();
@@ -15,11 +15,9 @@ while($data = $res->fetch_assoc()){?>
     <td><?=$data['user_id'];?></td>
     <td><?=$data['firstname'];?></td>
     <td><?=$data['lastname'];?></td>
-    <td><?=$data['year_level'];?></td>
-    <td><?=$data['program_major'];?></td>
-    <td><?=$data['stud_status'];?></td>
-    <td><?=$data['email'];?></td>
+    <td><?=$data['role'];?></td>
     <td><?=$data['condition'];?></td>
+    <td><?=$data['email'];?></td>
     <td><?=$data['date'];?></td>
   </tr>
 <?php }?>
