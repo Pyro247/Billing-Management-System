@@ -1766,7 +1766,7 @@
                             while($rowDiscountTable = $resDiscountTable->fetch_assoc()){
                           ?>
                             <tr>
-                              <td><?php echo $rowDiscountTable['discount_type'].'%';?></td>
+                              <td><?php echo $rowDiscountTable['discount_type'];?></td>
                               <td><?php echo $rowDiscountTable['discount_percent'].'%';?></td>
                             </tr>
                         <?php }?>
