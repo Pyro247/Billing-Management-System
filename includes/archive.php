@@ -4,6 +4,7 @@
   include '../includes/audit_logs.php';
   
   $response =array();
+ 
 if(isset($_POST['archive_btn'])){
     $condition = $_POST['condition'];
     $date = date("Y-m-d");
@@ -131,3 +132,48 @@ if(isset($_POST['archive_btn'])){
   }
     
   ?>
+<?php
+  
+  if(isset($_GET['archiveFilter'])){
+  if(!empty($_GET['empStatus'])){
+    $status = $_GET['empStatus'];
+  }else{
+    $status = '%';
+  }
+  if(empty($_GET['empRole'])){
+    $role1 = 'Registrar';
+    $role2 = 'Cashier';
+  }else{
+    $role1 = $_GET['empRole'];
+    $role2 = $_GET['empRole'];
+  }
+  $startDate = $_GET['startDate'];
+  $endDate = $_GET['endDate'];
+  $sql = "SELECT `user_id`, `firstname`, `lastname`, `role`, `email`,  `condition`, `date` 
+          FROM `tbl_archive` WHERE `condition` LIKE ? AND (`role` = ? or `role` = ?) AND (date >= ? AND date <= ?)";
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param('sssss',$status,$role1,$role2,$startDate,$endDate);
+  $stmt->execute();
+  $res = $stmt->get_result();
+  $count = $res->num_rows;
+?>
+<?php 
+if($count > 0){
+while($data = $res->fetch_assoc()){?>
+  <tr>
+    <td><?=$data['user_id'];?></td>
+    <td><?=$data['firstname'];?></td>
+    <td><?=$data['lastname'];?></td>
+    <td><?=$data['role'];?></td>
+    <td><?=$data['condition'];?></td>
+    <td><?=$data['email'];?></td>
+    <td><?=$data['date'];?></td>
+  </tr>
+<?php }?>
+<?php }else{?>
+  <tr>
+    <td><?php echo "No Records"?></td>
+  </tr>
+<?php }
+  }
+?>

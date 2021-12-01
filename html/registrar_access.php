@@ -1327,24 +1327,24 @@
 
                     <div class="col-md" id="conditionForAdmin">
                       <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <select class="form-select" id="empStatusFilter" aria-label="Floating label select example">
                           <option value="" selected>All</option>
                           <option value="resigned">Resigned</option>
                           <option value="terminated">Terminated</option>
                           <option value="changeposition">Changed Position</option>
                         </select>
-                        <label for="floatingSelect" style="color: black">Student Status</label>
+                        <label for="empStatusFilter" style="color: black">Employee Status</label>
                       </div>
                     </div>
 
                     <div class="col-md" id="employeeRoleForAdmin">
                       <div class="form-floating">
-                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                        <select class="form-select" id="empRoleFilter" aria-label="Floating label select example">
                           <option value="" selected>All</option>
-                          <option value="">Registrar</option>
-                          <option value="">Cashier</option>
+                          <option value="Registrar">Registrar</option>
+                          <option value="Cashier">Cashier</option>
                         </select>
-                        <label for="floatingSelect" style="color: black">Role</label>
+                        <label for="empRoleFilter" style="color: black">Role</label>
                       </div>
                     </div>
 
@@ -1353,25 +1353,25 @@
 
                     <div class="col-md">
                       <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" "> 
-                        <label for="floatingInputGrid" style="color: black">Date archived From</label>
+                        <input type="date" class="form-control" id="startDateFilter" placeholder=" "> 
+                        <label for="startDateFilter" style="color: black">Date archived From</label>
                       </div>
                     </div>
                     
                     <div class="col-md">
                       <div class="form-floating">
-                        <input type="date" class="form-control" id="floatingInputGrid" placeholder=" ">
-                        <label for="floatingInputGrid" style="color: black">Date archived To</label>
+                        <input type="date" class="form-control" id="endDateFilter" placeholder=" ">
+                        <label for="endDateFilter" style="color: black">Date archived To</label>
                       </div>
                     </div>
 
                     <div class="row g-2 mb-2">
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-primary font p-2 s_c__">Apply</button>
+                        <button type="button" class="btn btn-primary font p-2 s_c__" id="applyFilterArchive">Apply</button>
                       </div>
 
                       <div class="col-md-2">  
-                        <button type="button" class="btn btn-primary font p-2 s_c__">Clear Filter</button>
+                        <button type="button" class="btn btn-primary font p-2 s_c__" id="clearFilterArchive">Clear Filter</button>
                       </div>
 
                     <div class="col-md">  
@@ -2705,6 +2705,62 @@
             
           });
           $(document).ready(function(){
+                $('#applyFilterArchive').click(function (e) { 
+                  e.preventDefault();
+                  let empStatus = $('#empStatusFilter').val();
+                  let empRole = $('#empRoleFilter').val();
+                  let startDate = $('#startDateFilter').val();
+                  let endDate = $('#endDateFilter').val();
+                  // alert(startDate)
+                  if(startDate > endDate){
+                      Swal.fire(
+                        '',
+                        'Starting Date From is greater than Date to',
+                        'info'
+                      )
+                  }else if (startDate == ''){
+                    Swal.fire(
+                        '',
+                        'Empty Date From',
+                        'info'
+                      )
+                  }else if (endDate == ''){
+                    Swal.fire(
+                        '',
+                        'Empty Date To',
+                        'info'
+                      )
+                  }else{
+                    $.ajax({
+                      type: "GET",
+                      url: "../includes/archive.php",
+                      data: {
+                        'archiveFilter': 1,
+                        'empRole': empRole,
+                        'empStatus': empStatus,
+                        'startDate': startDate,
+                        'endDate': endDate
+
+                      },
+                      dataType: "html",
+                      success: function (data) {
+                        // console.log(data)
+                        $('#AdminArchive').html(data);
+
+                      }
+                    });
+                  }
+                  
+          
+                });
+                $('#clearFilterArchive').click(function (e) { 
+                  e.preventDefault();
+                  $('#empStatusFilter').val('');
+                  $('#empRoleFilter').val('');
+                  $('#startDateFilter').val('');
+                  $('#endDateFilter').val('');
+                  viewAdminArchiveDataTable();
+                });
                 $("#archive_btn").click(function(e){
                   e.preventDefault();
                   if(!$("input[name='condition']").is(':checked')){
